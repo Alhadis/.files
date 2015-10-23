@@ -11,6 +11,46 @@ fit(){
 }
 
 
+# Print a Homebrew-style coloured marker
+marker(){
+	BOLD=$(tput bold)
+	GREEN=$(tput setaf 10)
+	RESET=$(tput sgr0)
+	ARROW="${BOLD}${GREEN}==>${RESET}"
+	echo "${ARROW} ${BOLD}$1${RESET}"
+}
+
+
+# Upgrade system software and libraries
+update(){
+	2>&1;
+	sudo -v || { echo 'User cancelled; aborting updates'; return 1; }
+	
+	# Update OS X
+	marker "Updating OS X";
+	softwareupdate -i -a;
+	
+	# Homebrew
+	marker "Updating Homebrew"
+	brew update --verbose;
+	brew upgrade --all --verbose;
+	brew cleanup;
+	
+	# NPM modules
+	marker "Updating Node modules"
+	npm -g update;
+	
+	# Ruby gems
+	marker "Updating Ruby gems" 
+	gem update --system;
+	gem update;
+	
+	# Update forks/copies of other people's repos
+	marker "Updating forked repositories"
+	~/Forks/update
+}
+
+
 
 
 #==============================================================================
