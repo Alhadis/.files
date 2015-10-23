@@ -1,0 +1,1 @@
+/Users/johngardner/Labs/Snippets/shell/add-image-extensions.sh
