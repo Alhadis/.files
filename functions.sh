@@ -135,3 +135,12 @@ camerausedby(){
 	usedby=$(lsof | grep -w "AppleCamera\|USBVDC\|iSight" | awk '{printf $2"\n"}' | xargs ps)
 	echo -e "Recent camera uses:\n$usedby"
 }
+
+
+# "oak" is a shorthand for "tree" with hidden files and colour enabled, ignoring
+# the ".git" directory, listing directories first. The output gets piped into "less"
+# with options to preserve colour and line numbers, unless the output is small enough
+# for one screen.
+oak(){
+	tree -aC -I '.git|node_modules|bower_components' --dirsfirst "$@" | less -FRNX;
+}
