@@ -59,7 +59,7 @@ function calc(){
 	local result=$(printf "$*\n" | tr x '*' | sed -re 's/[A-Za-z]+/ /g' | bc -l | tr -d '\\\n')
 	
 	# Drop trailing zeroes
-	printf "$result" | sed -re 's/(\.0+|0+)$//g;' | pbcopy;
+	printf "$result" | perl -pe 's/(\.[1-9]+)0+$|(\.0+$)/$1/g' | pbcopy;
 	
 	# Copy to STDERR
 	pbpaste;
