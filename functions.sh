@@ -56,7 +56,7 @@ function calc(){
 	
 	# Strip alphabetic characters from input; it's common to copy "180.00 pt" from
 	# Adobe Illustrator, or other programs that append units to metric fields.
-	local result=$(printf "$*\n" | sed -re 's/[A-Za-z]+/ /g' | bc -l | tr -d '\\\n')
+	local result=$(printf "$*\n" | tr x '*' | sed -re 's/[A-Za-z]+/ /g' | bc -l | tr -d '\\\n')
 	
 	# Improve floating point output
 	printf "$result" | sed -re 's/^(-)?\./\10./g; s/\.0+$//;' | pbcopy;
