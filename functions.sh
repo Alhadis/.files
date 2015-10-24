@@ -58,8 +58,8 @@ function calc(){
 	# Adobe Illustrator, or other programs that append units to metric fields.
 	local result=$(printf "$*\n" | tr x '*' | sed -re 's/[A-Za-z]+/ /g' | bc -l | tr -d '\\\n')
 	
-	# Improve floating point output
-	printf "$result" | sed -re 's/^(-)?\./\10./g; s/\.0+$//;' | pbcopy;
+	# Drop trailing zeroes
+	printf "$result" | sed -re 's/(\.0+|0+)$//g;' | pbcopy;
 	
 	# Copy to STDERR
 	pbpaste;
