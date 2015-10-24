@@ -51,6 +51,22 @@ update(){
 }
 
 
+# Quick calculator
+function calc(){
+	
+	# Strip alphabetic characters from input; it's common to copy "180.00 pt" from
+	# Adobe Illustrator, or other programs that append units to metric fields.
+	local result=$(printf "$*\n" | sed -re 's/[A-Za-z]+/ /g' | bc -l | tr -d '\\\n')
+	
+	# Improve floating point output
+	printf "$result" | sed -re 's/^(-)?\./\10./g; s/\.0+$//;' | pbcopy;
+	
+	# Copy to STDERR
+	pbpaste;
+	printf '\n';
+}
+
+
 
 
 #==============================================================================
@@ -111,22 +127,6 @@ function whois(){
 	/usr/bin/whois -h whois.internic.net $domain | sed '/NOTICE:/q'
 }
 
-
-# Simple calculator
-function calc(){
-	local result="";
-	result="$(printf "scale=10;$*\n" | bc --mathlib | tr -d '\\\n')";
-	if [[ "$result" == *.* ]]; then
-		# Improve the output for decimal numbers
-		printf "$result" |
-		sed -e 's/^\./0./'         # add "0" for cases like ".5"  \
-		    -e 's/^-\./-0./'       # add "0" for cases like "-.5" \
-		    -e 's/0*$//;s/\.$//';  # remove trailing zeros
-	else
-		printf "$result";
-	fi;
-	printf "\n";
-}
 
 
 # Check who's been using the laptop's iSight camera
