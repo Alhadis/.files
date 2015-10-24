@@ -2,6 +2,7 @@
 #	COMMON SHORTHAND
 #==============================================================================
 alias bc='bc -l'
+alias c='calc'
 alias g='git status'
 alias ga='git add . --all'
 alias gl='git log'
