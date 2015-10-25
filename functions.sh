@@ -51,12 +51,12 @@ update(){
 }
 
 
-# Quick calculator
+# Quick calculator: copies result to clipboard after evaluation
 function calc(){
 	
 	# Strip alphabetic characters from input; it's common to copy "180.00 pt" from
 	# Adobe Illustrator, or other programs that append units to metric fields.
-	local result=$(printf "$*\n" | tr x '*' | sed -re 's/[A-Za-z]+/ /g' | bc -l | tr -d '\\\n')
+	local result=$(printf "$*\n" | perl -pe 's/(\d+|\s+)x(\s+|\d+)/$1*$2/gi; s/[A-Za-z]+/ /g;' | bc -l | tr -d '\\\n')
 	
 	# Drop trailing zeroes after the decimal point
 	printf "$result" | perl -pe 's/\.0+$|(\.\d*?)0+$/$1/g' | pbcopy;
