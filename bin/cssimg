@@ -9,10 +9,11 @@
 #    1.5em
 #
 
-
-while getopts i option; do
+length=3
+while getopts il: option; do
 	case $option in
-	i)	invert=1;; # Use height instead of width
+	i)	invert=1;;			# Use height instead of width
+	l)	length=$OPTARG;;	# Set number of digits after decimal
 	esac;
 done;
 shift $((OPTIND - 1))
@@ -51,7 +52,7 @@ by=$height;
 
 
 # Calculate the result
-result=$(printf "$divide / $by\n" | bc -l);
+result=$(printf "scale=$length;$divide / $by\n" | bc);
 
 
 # Remove superfluous zeroes
