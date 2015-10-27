@@ -1,7 +1,7 @@
 export PATH="$HOME/.files/bin:$PATH"
 
 # Load connected files
-for i in ~/.files/{aliases,paths,functions}.sh; do
+for i in ~/.files/{aliases,paths,functions,tmp}.sh; do
 	source "$i";
 done;
 
