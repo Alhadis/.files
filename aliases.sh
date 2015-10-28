@@ -67,6 +67,10 @@ alias strip-meta='exiftool $@ "-All=" -overwrite_original'
 alias unquarantine='find .  -print0 -type f -o -type d | xargs -0 xattr -d com.apple.quarantine 2>/dev/null;'
 
 
+# Search for substring in CWD
+alias s='grep -rnw . -e '
+
+
 # Temporary workaround until I get WP-HookTracer finished
 alias hooks-on='perl -pi -e '"'"'s/(static\s+\$trace_(?:filters|actions)\s*=\s*)\d/${1}1/g'"'"' hooktracer.php'
 alias hooks-off='perl -pi -e '"'"'s/(static\s+\$trace_(?:filters|actions)\s*=\s*)\d/${1}0/g'"'"' hooktracer.php'
