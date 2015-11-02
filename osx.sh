@@ -85,6 +85,10 @@ defaults write com.apple.print.PrintingPrefs "Quit When Finished" -bool true
 defaults write NSGlobalDomain NSWindowResizeTime -float 0.001
 
 
+# iTunes: Stop iPods from automatically syncing when plugged in
+defaults write com.apple.iTunes dontAutomaticallySyncIPods -bool true
+
+
 
 # Reset Finder for the changes to take effect
 killall Finder
