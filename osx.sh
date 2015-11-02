@@ -27,15 +27,14 @@ defaults write NSGlobalDomain ApplePressAndHoldEnabled -bool false
 
 
 # Set a blazingly fast keyboard repeat rate
-defaults write NSGlobalDomain InitialKeyRepeat -int 4
+defaults write NSGlobalDomain InitialKeyRepeat -int 12
 
 
 # Avoid creating .DS_Store files on network volumes
 defaults write com.apple.desktopservices DSDontWriteNetworkStores -bool true
 
 
-# Empty Trash securely and without prompting the user with a confirmation
-defaults write com.apple.finder EmptyTrashSecurely -bool true
+# Empty trash without prompting user for confirmation
 defaults write com.apple.finder WarnOnEmptyTrash -bool false
 
 
@@ -64,10 +63,6 @@ defaults write NSGlobalDomain com.apple.springing.delay -float 0
 
 # Disable the warning when changing a file extension
 defaults write com.apple.finder FXEnableExtensionChangeWarning -bool false
-
-
-# Finder: show all filename extensions
-defaults write NSGlobalDomain AppleShowAllExtensions -bool true
 
 
 # Finder: disable window animations and Get Info animations
