@@ -30,6 +30,7 @@ alias passgen='passgen -c -l 24'
 #==============================================================================
 #	ALIASES THAT'RE LITERALLY ALIASES
 #==============================================================================
+alias to-otf='to_otf'
 alias woff-decode='woff2sfnt'
 alias woff-decompress='woff2sfnt'
 alias woff2-compress='woff2_compress'
