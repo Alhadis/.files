@@ -32,7 +32,7 @@ update(){
 	
 	# Homebrew
 	marker "Updating Homebrew"
-	brew update --verbose;
+	brew update;
 	brew upgrade --all --verbose;
 	brew cleanup;
 	
