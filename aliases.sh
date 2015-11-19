@@ -78,6 +78,11 @@ alias s='grep -rnw . -e '
 alias rot13="tr 'A-Za-z' 'N-ZA-Mn-za-m'"
 
 
+# Strip lines from STDIN that start with a # or ;
+# Useful for ignoring comment-lines in configuration files
+alias strip-comments="sed -r '/^\s*([#;].*)?$/d'"
+
+
 # Temporary workaround until I get WP-HookTracer finished
 alias hooks-on='perl -pi -e '"'"'s/(static\s+\$trace_(?:filters|actions)\s*=\s*)\d/${1}1/g'"'"' hooktracer.php'
 alias hooks-off='perl -pi -e '"'"'s/(static\s+\$trace_(?:filters|actions)\s*=\s*)\d/${1}0/g'"'"' hooktracer.php'
