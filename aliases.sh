@@ -78,6 +78,11 @@ alias s='grep -rnw . -e '
 alias rot13="tr 'A-Za-z' 'N-ZA-Mn-za-m'"
 
 
+# Output the last shell command as a string
+# Useful for saving helpful one-liners like these: "last-command | pbcopy"
+alias last-command='history | tail -n2 | head -n1 | sed -r "s/^\s+[0-9]+\*?\s+//"'
+
+
 # Strip lines from STDIN that start with a # or ;
 # Useful for ignoring comment-lines in configuration files
 alias strip-comments="sed -r '/^\s*([#;].*)?$/d'"
