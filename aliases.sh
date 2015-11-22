@@ -88,6 +88,11 @@ alias last-command='history | tail -n2 | head -n1 | sed -r "s/^\s+[0-9]+\*?\s+//
 alias strip-comments="sed -r '/^\s*([#;].*)?$/d'"
 
 
+# Highlight the current date on the calendar
+# This renders the cal command's options unusable, so make sure you won't be needing -m -y or whatever
+alias cal='cal | sed -r '"'"'s/(^|\s)('"'"'$(date +%d)'"'"')(\s|$)/\1'"'"'"\x1B[38;5;76m"'"'"'\2'"'"'"\x1B[0m"'"'"'\3/'"'"''
+
+
 # Temporary workaround until I get WP-HookTracer finished
 alias hooks-on='perl -pi -e '"'"'s/(static\s+\$trace_(?:filters|actions)\s*=\s*)\d/${1}1/g'"'"' hooktracer.php'
 alias hooks-off='perl -pi -e '"'"'s/(static\s+\$trace_(?:filters|actions)\s*=\s*)\d/${1}0/g'"'"' hooktracer.php'
