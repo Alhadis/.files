@@ -90,7 +90,7 @@ alias strip-comments="sed -r '/^\s*([#;].*)?$/d'"
 
 # Highlight the current date on the calendar
 # This renders the cal command's options unusable, so make sure you won't be needing -m -y or whatever
-alias cal='cal | sed -r '"'"'s/(^|\s)('"'"'$(date +%d)'"'"')(\s|$)/\1'"'"'"\x1B[38;5;76m"'"'"'\2'"'"'"\x1B[0m"'"'"'\3/'"'"''
+alias cal='cal | sed -r '"'"'s/(^|\s)('"'"'$(($(date +%d)))'"'"')(\s|$)/\1'"'"'"\x1B[38;5;76m"'"'"'\2'"'"'"\x1B[0m"'"'"'\3/'"'"''
 
 
 # Temporary workaround until I get WP-HookTracer finished
