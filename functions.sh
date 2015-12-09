@@ -73,6 +73,16 @@ to_otf(){
 }
 
 
+# Export a band entry from Metal Archives
+ma_save(){
+	local json="band-$1.json"
+	ma-export --embed-images band "$1" > "$json" && {
+		name=$(node -pe "require('./$json').bands[$1].name")
+		mv "$json" "$name.json"
+		{ rm .DS_Store; } > /dev/null 2>&1;
+	}
+}
+
 
 #==============================================================================
 #	FOLLOWING FUNCTIONS ALL SHAMELESSLY PINCHED FROM THESE LOVELY CHAPS:
