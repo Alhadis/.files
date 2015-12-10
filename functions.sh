@@ -73,6 +73,15 @@ to_otf(){
 }
 
 
+# Create a new Babel/ECMAScript2015+ project. Usage: babelplate "Project Name"
+babelplate(){
+	name="${1:-Babelplate}"
+	git clone https://github.com/Alhadis/Babelplate.git "$name";
+	cd "$name" && make;
+	echo -e "\x1B[38;5;10mDone. Don't forget to update \x1B[4mpackage.json\x1B[24m!\x1B[0m\n"
+}
+
+
 # Export a band entry from Metal Archives
 ma_save(){
 	local json="band-$1.json"
