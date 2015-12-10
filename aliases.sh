@@ -95,6 +95,10 @@ alias strip-comments="sed -r '/^\s*([#;].*)?$/d'"
 alias cal='cal | sed -r '"'"'s/(^|\s)('"'"'$(echo $(date +%d) | sed s/^0//)'"'"')(\s|$)/\1'"'"'"\x1B[38;5;76m"'"'"'\2'"'"'"\x1B[0m"'"'"'\3/'"'"''
 
 
+# Create a new Babel/ECMAScript2015+ project
+alias babelplate='git clone https://github.com/Alhadis/Babelplate.git && cd Babelplate && make;'
+
+
 # Temporary workaround until I get WP-HookTracer finished
 alias hooks-on='perl -pi -e '"'"'s/(static\s+\$trace_(?:filters|actions)\s*=\s*)\d/${1}1/g'"'"' hooktracer.php'
 alias hooks-off='perl -pi -e '"'"'s/(static\s+\$trace_(?:filters|actions)\s*=\s*)\d/${1}0/g'"'"' hooktracer.php'
