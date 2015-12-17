@@ -76,6 +76,11 @@ alias unquarantine='find .  -print0 -type f -o -type d | xargs -0 xattr -d com.a
 alias s='grep -rnw . -e '
 
 
+# Hide/show files or directories in Finder
+alias hide='chflags hidden'
+alias show='chflags nohidden'
+
+
 # ROT13 "encryption". Usage: echo "String" | rot13
 alias rot13="tr 'A-Za-z' 'N-ZA-Mn-za-m'"
 
