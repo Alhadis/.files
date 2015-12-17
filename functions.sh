@@ -92,6 +92,16 @@ ma_save(){
 }
 
 
+# Lazily symlink a resource into the current working directory.
+symlink(){
+	local src="$1"
+	local src_name=$(basename "$src")
+	local name="${2:-$src_name}"
+	ln -s "$src" $(pwd)/"$name"
+}
+
+
+
 #==============================================================================
 #	FOLLOWING FUNCTIONS ALL SHAMELESSLY PINCHED FROM THESE LOVELY CHAPS:
 #
