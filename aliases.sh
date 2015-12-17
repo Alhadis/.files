@@ -25,7 +25,6 @@ alias sudo='sudo '
 alias cpan='sudo cpan'
 alias md5='md5 -q'
 alias node='node --es_staging'
-alias passgen='passgen -c -l 24'
 
 
 
