@@ -11,8 +11,10 @@ bash
 bcrypt
 bdw-gc
 binutils
+bison
 boost
 brew-cask
+bullet
 cairo
 cd-discid
 cfitsio
@@ -32,7 +34,6 @@ dirmngr
 docbook
 dos2unix
 doxygen
-duck
 emscripten
 eot-utils
 erlang
@@ -83,8 +84,10 @@ harfbuzz
 help2man
 hicolor-icon-theme
 highlight
+html-xml-utils
 icu4c
 id3lib
+id3v2
 ilmbase
 imagemagick
 isl
@@ -92,8 +95,10 @@ iso-codes
 jasper
 jbig2dec
 jpeg
+json-c
 json-fortran
 lame
+latex2html
 lib3ds
 libart
 libass
@@ -113,12 +118,14 @@ libksba
 liblqr
 libmatio
 libmpc
+libmpeg2
 libogg
 libpcl
 libpng
 libquvi
 libraw
 librsvg
+libsodium
 libsoxr
 libsvg
 libsvg-cairo
@@ -134,6 +141,7 @@ libvpx
 libwebm
 libwmf
 libxml2
+libxslt
 libyaml
 links
 little-cms
@@ -165,6 +173,7 @@ openssh
 openssl
 opus
 orc
+ossp-uuid
 p7zip
 pandoc
 pango
@@ -172,13 +181,17 @@ pangox-compat
 partio
 pass
 pcre
+pcre2
+perl
 phantomjs
 php70
+php70-imagick
 phpdocumentor
 pinentry
 pixman
 pkg-config
 pngnq
+pngquant
 poppler
 poster
 protobuf
@@ -201,6 +214,7 @@ sdl
 sfnt2woff
 sfnt2woff-zopfli
 sfntly
+sip
 speex
 sqlite
 svg2pdf
