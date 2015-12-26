@@ -52,7 +52,7 @@ update(){
 
 
 # Quick calculator: copies result to clipboard after evaluation
-function calc(){
+calc(){
 	
 	# Strip alphabetic characters from input; it's common to copy "180.00 pt" from
 	# Adobe Illustrator, or other programs that append units to metric fields.
@@ -64,6 +64,13 @@ function calc(){
 	# Copy to STDERR
 	pbpaste;
 	printf '\n';
+}
+
+
+# Read a string of numbers out one at a time.
+# Useful to double-check number codes transcribed from physical sources (serial codes, etc).
+rtbtm(){
+	echo "$*" | perl -pe 's/(\d)\D*/$1. /g' | say
 }
 
 
