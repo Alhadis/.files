@@ -23,6 +23,7 @@ alias ..='cd ..'
 #==============================================================================
 alias sudo='sudo '
 alias cpan='sudo cpan'
+alias less='less -R'
 alias md5='md5 -q'
 alias node='node --es_staging'
 
