@@ -50,6 +50,10 @@ defaults write com.apple.finder FXInfoPanesExpanded -dict \
 defaults write com.apple.dock launchanim -bool false
 
 
+# Enable full keyboard access for all controls (e.g., enable Tab in modal dialogues)
+defaults write NSGlobalDomain AppleKeyboardUIMode -int 3
+
+
 # Automatically open a new Finder window when a volume is mounted
 defaults write com.apple.frameworks.diskimages auto-open-ro-root -bool true
 defaults write com.apple.frameworks.diskimages auto-open-rw-root -bool true
