@@ -33,6 +33,7 @@ alias node='node --es_staging'
 #==============================================================================
 #	ALIASES THAT'RE LITERALLY ALIASES
 #==============================================================================
+alias embed-atom-icon='embed_atom_icon'
 alias ma-save='ma_save'
 alias to-otf='to_otf'
 alias woff-decode='woff2sfnt'

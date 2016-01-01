@@ -127,6 +127,27 @@ git_hooks(){
 }
 
 
+# Add Atom's icon to a file in Finder.
+# Used to make files without extensions look code-related.
+# See also: http://apple.stackexchange.com/q/213302
+embed_atom_icon(){
+	[ -f "$1" ] || {
+		echo >&2 "Usage: embed_atom_icon [recipients...]"
+		return 2;
+	};
+	
+	for i in $@; do
+		[ -w "$i" ] && {
+			modified=$(stat -f "%Sm" -t "%Y%m%d%H%M.%S" "$i")
+			cat ~/.files/etc/atom-icon.rsrc > "$i"/..namedfork/rsrc
+			SetFile -a C "$i"
+			touch -t $modified "$i"
+		} || { echo >&2 "Skipping read-only file: $i"; }
+	done
+}
+
+
+
 #==============================================================================
 #	FOLLOWING FUNCTIONS ALL SHAMELESSLY PINCHED FROM THESE LOVELY CHAPS:
 #
