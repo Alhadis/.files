@@ -114,6 +114,18 @@ symlink(){
 }
 
 
+# Install some git-hooks to prevent hasty version-committing
+git_hooks(){
+	hash node 2>&- || { >&2 echo "These hooks require Node.js to run."; return 2; }
+	local name=check-version.sh
+	local dest=.git/hooks/commit-msg
+	test -f $SNIP/shell/git-hooks/$name && { cp $_ $dest; chmod +x $dest; } || {
+		echo >&2 "Couldn't locate hook in snippets repo; downloading";
+		curl -s 'https://raw.githubusercontent.com/Alhadis/Snippets/master/shell/git-hooks/$name' > $dest;
+		chmod +x $dest;
+	}
+}
+
 
 #==============================================================================
 #	FOLLOWING FUNCTIONS ALL SHAMELESSLY PINCHED FROM THESE LOVELY CHAPS:
