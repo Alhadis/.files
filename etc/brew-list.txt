@@ -60,7 +60,6 @@ geographiclib
 geoip
 geoipupdate
 gettext
-ghc
 ghostscript
 giflib
 git
@@ -71,7 +70,6 @@ gnu-barcode
 gnu-getopt
 gnu-sed
 gnutls
-go
 gobject-introspection
 gpg-agent
 graphicsmagick
