@@ -37,7 +37,6 @@ doxygen
 emscripten
 eot-utils
 erlang
-exiftool
 faac
 fdk-aac
 ffmpeg
@@ -180,7 +179,6 @@ partio
 pass
 pcre
 pcre2
-perl
 phantomjs
 php70
 php70-imagick
