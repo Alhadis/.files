@@ -3,6 +3,7 @@
 #==============================================================================
 alias bc='bc -l'
 alias c='calc'
+alias fs='pbpaste | filesafe | pbcopy'
 alias g='git status'
 alias ga='git add . --all'
 alias gl='git log'
