@@ -14,6 +14,7 @@ binutils
 bison
 boost
 brew-cask
+brotli
 bullet
 cairo
 cd-discid
