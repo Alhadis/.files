@@ -223,3 +223,13 @@ camerausedby(){
 oak(){
 	tree -aC -I '.git|node_modules|bower_components' --dirsfirst "$@" | less -FRNX;
 }
+
+
+# Compare original and gzipped file size
+function gz() {
+	local origsize=$(wc -c < "$1");
+	local gzipsize=$(gzip -c "$1" | wc -c);
+	local ratio=$(echo "$gzipsize * 100 / $origsize" | bc -l);
+	printf "Original: %d bytes\n" "$origsize";
+	printf "Gzipped:  %d bytes (%2.2f%%)\n" "$gzipsize" "$ratio";
+}
