@@ -106,6 +106,12 @@ alias strip-comments="sed -r '/^\s*([#;].*)?$/d'"
 alias cal='cal | sed -r '"'"'s/(^|\s)('"'"'$(echo $(date +%d) | sed s/^0//)'"'"')(\s|$)/\1'"'"'"\x1B[38;5;76m"'"'"'\2'"'"'"\x1B[0m"'"'"'\3/'"'"''
 
 
+# Clear Terminal's scrollback.
+# I sometimes get confused when switching between Windows in VirtualBox and Mac OS. :c
+alias cls='osascript -e '"'"'tell application "System Events" to keystroke "k" using command down'"';"
+
+
+
 # Temporary workaround until I get WP-HookTracer finished
 alias hooks-on='perl -pi -e '"'"'s/(static\s+\$trace_(?:filters|actions)\s*=\s*)\d/${1}1/g'"'"' hooktracer.php'
 alias hooks-off='perl -pi -e '"'"'s/(static\s+\$trace_(?:filters|actions)\s*=\s*)\d/${1}0/g'"'"' hooktracer.php'
