@@ -147,6 +147,16 @@ embed_atom_icon(){
 }
 
 
+# Create a blank HTML document in the current directory and open it in Atom
+# Usage: htmldoc [optional-name] -> ./optional-name.htm ("blank.htm" if omitted)
+htmldoc(){
+	name=blank
+	to=${1:-${name}}.htm
+	cp ~/.files/etc/$name.htm ./$to;
+	atom $to;
+}
+
+
 
 #==============================================================================
 #	FOLLOWING FUNCTIONS ALL SHAMELESSLY PINCHED FROM THESE LOVELY CHAPS:
