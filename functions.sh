@@ -157,6 +157,17 @@ htmldoc(){
 }
 
 
+# Print all locations that a file's been hard-linked to
+findlinks(){
+	[ ! "$1" ] && {
+		echo >&2 "Usage: findlinks [file] [root-directory]";
+		return 1;
+	};
+	find ${2:-~} -inum $(ls -i $1 | awk '{print $1}') 2>/dev/null;
+	return 0;
+}
+
+
 
 #==============================================================================
 #	FOLLOWING FUNCTIONS ALL SHAMELESSLY PINCHED FROM THESE LOVELY CHAPS:
