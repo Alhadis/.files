@@ -4,7 +4,7 @@
 alias bc='bc -l'
 alias c='calc'
 alias fs='pbpaste | filesafe | pbcopy'
-alias G:='cd ~/VirtualBox\ VMs/Shared'
+alias G:='cd ~/VirtualBox/Shared'
 alias g='git status'
 alias ga='git add . --all'
 alias gl='git log'
