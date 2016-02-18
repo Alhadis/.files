@@ -170,10 +170,10 @@ findlinks(){
 
 
 #==============================================================================
-#	FOLLOWING FUNCTIONS ALL SHAMELESSLY PINCHED FROM THESE LOVELY CHAPS:
+#   FOLLOWING FUNCTIONS ALL SHAMELESSLY PINCHED FROM THESE LOVELY CHAPS:
 #
-#	*	https://github.com/mathiasbynens/dotfiles
-#	*	https://github.com/paulirish/dotfiles
+#   *   https://github.com/mathiasbynens/dotfiles
+#   *   https://github.com/paulirish/dotfiles
 #==============================================================================
 
 

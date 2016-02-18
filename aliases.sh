@@ -1,5 +1,5 @@
 #==============================================================================
-#	COMMON SHORTHAND
+#   COMMON SHORTHAND
 #==============================================================================
 alias bc='bc -l'
 alias c='calc'
@@ -23,7 +23,7 @@ alias ..='cd ..'
 
 
 #==============================================================================
-#	PROGRAM DEFAULTS
+#   PROGRAM DEFAULTS
 #==============================================================================
 alias sudo='sudo '
 alias cpan='sudo cpan'
@@ -34,7 +34,7 @@ alias node='node --es_staging'
 
 
 #==============================================================================
-#	ALIASES THAT'RE LITERALLY ALIASES
+#   ALIASES THAT'RE LITERALLY ALIASES
 #==============================================================================
 alias embed-atom-icon='embed_atom_icon'
 alias git-hooks='git_hooks'
@@ -51,7 +51,7 @@ alias woff2-encode='woff2_compress'
 
 
 #==============================================================================
-#	USEFUL ONE-LINERS
+#   USEFUL ONE-LINERS
 #==============================================================================
 
 # Get rid of that sodding 1px-border running along Chrome's edges
@@ -121,8 +121,8 @@ alias hooks-reset='> ~/Documents/apache.log'
 
 
 #==============================================================================
-#	LOOTED FROM BELGIAN FLY-KICK GUY:
-#	*	https://github.com/mathiasbynens/dotfiles/blob/master/.aliases
+#   LOOTED FROM BELGIAN FLY-KICK GUY:
+#   *   https://github.com/mathiasbynens/dotfiles/blob/master/.aliases
 #==============================================================================
 
 # IP addresses

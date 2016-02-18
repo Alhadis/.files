@@ -12,8 +12,8 @@
 length=3
 while getopts il: option; do
 	case $option in
-	i)	invert=1;;			# Use height instead of width
-	l)	length=$OPTARG;;	# Set number of digits after decimal
+	i)  invert=1;;          # Use height instead of width
+	l)  length=$OPTARG;;    # Set number of digits after decimal
 	esac;
 done;
 shift $((OPTIND - 1))

@@ -7,10 +7,10 @@ done;
 
 
 # Shell options
-shopt -s nocaseglob;	# Case-insensitive globbing
-shopt -s histappend;	# Append Bash history instead of replace
-shopt -s autocd;		# DOS-style directory navigation
-shopt -s globstar;		# Enable recursive globbing
+shopt -s nocaseglob;    # Case-insensitive globbing
+shopt -s histappend;    # Append Bash history instead of replace
+shopt -s autocd;        # DOS-style directory navigation
+shopt -s globstar;      # Enable recursive globbing
 
 
 # Various other crap
