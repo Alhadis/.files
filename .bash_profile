@@ -16,3 +16,5 @@ shopt -s globstar;		# Enable recursive globbing
 # Various other crap
 { rm ~/.DS_Store; dsclean ~/Desktop; } > /dev/null 2>&1
 cd ~/Desktop; fit;
+
+export BOWER_DIRECTORY="components"
