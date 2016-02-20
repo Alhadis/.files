@@ -159,9 +159,9 @@ htmldoc(){
 
 
 # Print all locations that a file's been hard-linked to
-findlinks(){
+showlinks(){
 	[ ! "$1" ] && {
-		echo >&2 "Usage: findlinks [file] [root-directory]";
+		echo >&2 "Usage: showlinks [file] [root-directory]";
 		return 1;
 	};
 	find ${2:-~} -inum $(ls -i $1 | awk '{print $1}') 2>/dev/null;
