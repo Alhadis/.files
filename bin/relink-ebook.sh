@@ -20,7 +20,7 @@ esac
 };
 
 # Hard-link to Dropbox folder
-cd $ebooks
+cd "$ebooks"
 [ $(stat -f %l $pdf) -eq 1 ] && {
 	ln -f $name.pdf $dest/$name.pdf;
 };
