@@ -169,6 +169,17 @@ showlinks(){
 }
 
 
+# Search for a file extension on GitHub
+gh_ext(){
+	[ ! "$1" ] && {
+		echo >&2 "Usage: gh-ext [extension]";
+		return 3;
+	};
+	local url="https://github.com/search?q=extension%%3A%s+NOT+nothack&type=Code";
+	open $(printf $url $1);
+}
+
+
 
 #==============================================================================
 #   FOLLOWING FUNCTIONS ALL SHAMELESSLY PINCHED FROM THESE LOVELY CHAPS:
