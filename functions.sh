@@ -80,6 +80,12 @@ mansrc(){
 }
 
 
+# Browse an executable's source code
+show_src(){
+	less $(which "$1")
+}
+
+
 # Convert a font to OpenType format
 to_otf(){
 	fontforge -nosplash -lang=ff -c 'Open($1); Generate($1:r + ".otf");' "$1" 2>/dev/null
