@@ -138,8 +138,10 @@ git_hooks(){
 # See also: http://apple.stackexchange.com/q/213302
 embed_atom_icon(){
 	[ -f "$1" ] || {
-		echo >&2 "Usage: embed_atom_icon [recipients...]"
-		return 2;
+		[ -f "Makefile" ] && embed_atom_icon "Makefile" || {
+			echo >&2 "Usage: embed_atom_icon [recipients...]"
+			return 2;
+		}
 	};
 	
 	for i in $@; do
