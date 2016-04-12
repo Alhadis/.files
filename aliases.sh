@@ -116,6 +116,10 @@ alias cal='cal | sed -r '"'"'s/(^|\s)('"'"'$(echo $(date +%d) | sed s/^0//)'"'"'
 alias cls='osascript -e '"'"'tell application "System Events" to keystroke "k" using command down'"';"
 
 
+# Actually clear Terminal's history
+alias clear='history -c; > ~/.bash_history'
+
+
 
 # Temporary workaround until I get WP-HookTracer finished
 alias hooks-on='perl -pi -e '"'"'s/(static\s+\$trace_(?:filters|actions)\s*=\s*)\d/${1}1/g'"'"' hooktracer.php'
