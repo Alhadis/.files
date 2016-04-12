@@ -84,7 +84,7 @@ alias unquarantine='find .  -print0 -type f -o -type d | xargs -0 xattr -d com.a
 
 
 # Search for substring in CWD
-alias s='grep -rnw . -e '
+alias s='grep -irnw . -e '
 
 
 # Hide/show files or directories in Finder
