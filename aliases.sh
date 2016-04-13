@@ -2,7 +2,7 @@
 #   COMMON SHORTHAND
 #==============================================================================
 alias bc='bc -l'
-alias bup='brew update | grep -v "Already up-to-date"; [ "$(brew outdated)" ] && brew upgrade --all && brew cleanup;'
+alias bup='brew update; [ "$(brew outdated)" ] && brew upgrade --all && brew cleanup || true;'
 alias c='calc'
 alias fs='pbpaste | filesafe | pbcopy'
 alias G:='cd ~/VirtualBox/Shared'
