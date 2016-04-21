@@ -3,6 +3,8 @@ export F=~/.files
 export JOBS=~/Jobs
 export LABS=~/Labs
 export SNIP=~/Labs/Snippets
+export ATOM_THEME=~/Labs/Atom/phoenix-syntax
+export FILE_ICONS=~/.atom/packages/file-icons
 
 # Stuff I can never seem to memorise
 export APACHE_DIR=/private/etc/apache2
