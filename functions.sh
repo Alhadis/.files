@@ -45,6 +45,11 @@ update(){
 	gem update --system;
 	gem update;
 	
+	# Update local language listing
+	marker "Updating Linguist language listing"
+	local langfile="https://raw.githubusercontent.com/github/linguist/master/lib/linguist/languages.yml"
+	wget $langfile -O ~/Documents/"GitHub Languages.yml"
+	
 	# Update forks/copies of other people's repos
 	marker "Updating forked repositories"
 	~/Forks/update
