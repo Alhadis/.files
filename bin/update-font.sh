@@ -32,7 +32,7 @@ zipfile=$name.zip
 	mv $name/fonts/file-icons.woff2 "$FILE_ICONS/resources/fonts/file-icons-$tag.woff2"
 	
 	# Update the installed version of the font if there is one
-	installed_font=~/Library/Fonts/$name.zip
+	installed_font=~/Library/Fonts/$name.ttf
 	[ -f $installed_font ] && {
 		[ $verbose ] && echo "Updating $installed_font"
 		mv $name/fonts/file-icons.ttf $installed_font
