@@ -1,5 +1,10 @@
 #!/bin/bash
 
+# Explicitly set $EDITOR
+# See: https://github.com/VundleVim/Vundle.vim/issues/167#issuecomment-11760207
+git config --global core.editor $(which vim)
+
+
 #==============================================================================
 # Credit for this taken from Beyen's repo, onya cobber:
 #   *   https://github.com/mathiasbynens/dotfiles/blob/master/.osx
