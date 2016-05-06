@@ -182,14 +182,27 @@ showlinks(){
 }
 
 
-# Search for a file extension on GitHub
-gh_ext(){
-	[ ! "$1" ] && {
-		echo >&2 "Usage: gh-ext [extension]";
+# Search for a file on GitHub
+gh_search(){
+	local usage="Usage: gh_search [ext[ension]|file[name]] query"
+	[ "$#" -lt 2 ] && {
+		echo >&2 $usage;
 		return 3;
 	};
-	local url="https://github.com/search?q=extension%%3A%s+NOT+nothack&type=Code";
-	open $(printf $url $1);
+	
+	# Check what type of search we're performing
+	local type=$(echo "$1" | tr '[A-Z]' '[a-z]')
+	case "$type" in
+		ext|extension) type=extension ;;
+		name|filename) type=filename  ;;
+		*)
+			echo >&2 "Search type must be one of ext, extension, filename, name";
+			echo >&2 $usage;
+			return 3;;
+	esac
+	
+	local url="https://github.com/search?q=%s%%3A%s+NOT+nothack&type=Code";
+	open $(printf $url $type $2);
 }
 
 

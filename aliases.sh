@@ -44,7 +44,6 @@ alias node='node --es_staging'
 #   ALIASES THAT'RE LITERALLY ALIASES
 #==============================================================================
 alias embed-atom-icon='embed_atom_icon'
-alias gh-ext='gh_ext'
 alias ghext='gh_ext'
 alias git-hooks='git_hooks'
 alias ma-save='ma_save'
@@ -122,6 +121,11 @@ alias cls='osascript -e '"'"'tell application "System Events" to keystroke "k" u
 
 # Actually clear Terminal's history
 alias clear='history -c; > ~/.bash_history'
+
+
+# Search on GitHub for a filename or file extension
+alias gh-ext='gh_search ext'
+alias gh-name='gh_search name'
 
 
 
