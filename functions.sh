@@ -44,6 +44,7 @@ update(){
 	marker "Updating Ruby gems" 
 	gem update --system;
 	gem update;
+	gem cleanup;
 	
 	# Update local language listing
 	marker "Updating Linguist language listing"
