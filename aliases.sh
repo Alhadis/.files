@@ -44,7 +44,8 @@ alias node='node --es_staging'
 #   ALIASES THAT'RE LITERALLY ALIASES
 #==============================================================================
 alias embed-atom-icon='embed_atom_icon'
-alias ghext='gh_ext'
+alias ghext='gh-ext'
+alias gh-file='gh-name'
 alias git-hooks='git_hooks'
 alias ma-save='ma_save'
 alias to-otf='to_otf'
