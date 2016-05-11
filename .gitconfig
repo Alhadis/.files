@@ -1,0 +1,14 @@
+[user]
+	name = Alhadis
+	email = gardnerjohng@gmail.com
+	signingkey = 895D24EE
+[credential]
+	helper = osxkeychain
+[diff "word"]
+	textconv = docx2txt
+[diff "exif"]
+	textconv = exiftool
+[push]
+	default = simple
+[core]
+	editor = /usr/local/bin/vim
