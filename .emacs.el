@@ -18,6 +18,13 @@
        ((and (eq isdir nil) (string= (substring path -3) ".el"))
         (load (file-name-sans-extension fullpath)))))))
 
+;; Load Git-related syntax highlighting
+(add-to-list 'load-path "~/.emacs.d/lisp/")
+(load "git-modes")
+
+;; Show cursor's current column number
+(setq column-number-mode t)
+
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
