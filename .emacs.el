@@ -21,6 +21,7 @@
 ;; Load Git-related syntax highlighting
 (add-to-list 'load-path "~/.emacs.d/lisp/")
 (load "git-modes")
+(load "git-commit")
 
 ;; Show cursor's current column number
 (setq column-number-mode t)
