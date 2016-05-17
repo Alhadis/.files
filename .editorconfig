@@ -14,3 +14,7 @@ trim_trailing_whitespace = false
 [*.{yml,reek,rviz,yaml}]
 indent_style = space
 indent_size = 4
+
+[*.el]
+indent_style = space
+indent_size = 2
