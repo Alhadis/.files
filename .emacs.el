@@ -23,6 +23,11 @@
 (load "git-modes")
 (load "git-commit")
 
+;; Keybindings
+(global-set-key (kbd "C-u") (lambda ()
+                             (interactive)
+                             (kill-line 0)))
+
 ;; Show cursor's current column number
 (setq column-number-mode t)
 
