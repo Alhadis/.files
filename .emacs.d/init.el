@@ -31,6 +31,17 @@
 ;; Show cursor's current column number
 (setq column-number-mode t)
 
+;; Disable autosave
+(setq auto-save-default nil)
+
+;; Use a single directory for storing backup files
+(setq backup-directory-alist `(("." . "~/.emacs.d/auto-save-list")))
+(setq backup-by-copying t)
+(setq delete-old-versions t
+      kept-new-versions 6
+      kept-old-versions 2
+      version-control t)
+
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
