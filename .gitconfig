@@ -18,3 +18,6 @@
 	editor = /usr/local/bin/emacs
 	excludesfile = ~/.files/etc/.gitignore-global
 	attributesfile = ~/.files/etc/.gitattributes-global
+[alias]
+	co = checkout
+	s = status
