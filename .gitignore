@@ -29,4 +29,5 @@ components
 
 ## Repo-specific
 tmp.sh
-.emacs.el~
+.emacs.d/auto-save-list
+.emacs.d/elpa

@@ -1,0 +1,2 @@
+# Prevent Lisp files skewing repo's language stats
+.emacs.d/lisp/* linguist-vendored

@@ -1,0 +1,1 @@
+/Users/johngardner/Forks/git-commit-mode/git-commit.el
