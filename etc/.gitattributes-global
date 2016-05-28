@@ -1,0 +1,12 @@
+# Image diffs
+*.ai      diff=exif
+*.gif     diff=exif
+*.jpg     diff=exif
+*.jpeg    diff=exif
+*.pdf     diff=exif
+*.png     diff=exif
+*.psd     diff=exif
+
+# Document diffs
+*.docx    diff=word
+*.doc     diff=word

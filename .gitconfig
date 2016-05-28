@@ -4,11 +4,17 @@
 	signingkey = 895D24EE
 [credential]
 	helper = osxkeychain
+[diff]
+	renames = copies
 [diff "word"]
 	textconv = docx2txt
 [diff "exif"]
-	textconv = exiftool
+	textconv = exiftool -x FileName -x Directory
+[diff "bin"]
+	textconv = hexdump -v -C
 [push]
 	default = simple
 [core]
 	editor = /usr/local/bin/emacs
+	excludesfile = ~/.files/etc/.gitignore-global
+	attributesfile = ~/.files/etc/.gitattributes-global
