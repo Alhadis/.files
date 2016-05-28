@@ -4,6 +4,7 @@ export PATH="$HOME/.files/bin:$PATH"
 for i in ~/.files/{aliases,paths,functions,tmp}.sh; do
 	source "$i";
 done;
+unset i
 
 
 # Shell options
