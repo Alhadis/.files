@@ -32,19 +32,19 @@
   :group 'git-commit)
 
 (defface git-commit-summary-face
-  '((default (:weight bold))
+  '((default)
     (((class grayscale) (background light))
      (:foreground "DimGray" :slant italic))
     (((class grayscale) (background dark))
      (:foreground "LightGray" :slant italic))
     (((class color) (min-colors 88) (background light))
-     (:foreground "VioletRed4"))
+     (:foreground "Gold"))
     (((class color) (min-colors 88) (background dark))
-     (:foreground "LightSalmon"))
+     (:foreground "Gold"))
     (((class color) (min-colors 16) (background light))
      (:foreground "RosyBrown"))
     (((class color) (min-colors 16) (background dark))
-     (:foreground "LightSalmon"))
+     (:foreground "Yellow"))
     (((class color) (min-colors 8)) (:foreground "green"))
     (t (:slant italic)))
   "Face used to highlight the summary in git commit messages"
@@ -52,7 +52,7 @@
 
 (defface git-commit-overlong-summary-face
   '((((class color) (min-colors 88) (background light))
-     (:foreground "Red1" :weight bold))
+     (:background "Red1" :foreground "Gold"))
     (((class color) (min-colors 88) (background dark))
      (:foreground "Pink" :weight bold))
     (((class color) (min-colors 16) (background light))
@@ -66,7 +66,7 @@
 
 (defface git-commit-nonempty-second-line-face
   '((((class color) (min-colors 88) (background light))
-     (:foreground "Red1" :weight bold))
+     (:background "Red1"))
     (((class color) (min-colors 88) (background dark))
      (:foreground "Pink" :weight bold))
     (((class color) (min-colors 16) (background light))
@@ -80,7 +80,7 @@
 
 (defface git-commit-overlong-body-face
   '((((class color) (min-colors 88) (background light))
-     (:foreground "Red1" :weight bold))
+     (:background "Red1"))
     (((class color) (min-colors 88) (background dark))
      (:foreground "Pink" :weight bold))
     (((class color) (min-colors 16) (background light))
