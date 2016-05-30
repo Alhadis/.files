@@ -18,6 +18,12 @@
        ((and (eq isdir nil) (string= (substring path -3) ".el"))
         (load (file-name-sans-extension fullpath)))))))
 
+;; Load Homebrew-installed packages
+(let ((default-directory "/usr/local/share/emacs/site-lisp/"))
+  (normal-top-level-add-subdirs-to-load-path))
+(load "aggressive-indent")
+(add-hook 'emacs-lisp-mode-hook #'aggressive-indent-mode)
+
 ;; Load Git-related syntax highlighting
 (add-to-list 'load-path "~/.emacs.d/lisp/")
 (load "git-modes")
