@@ -185,7 +185,7 @@ showlinks(){
 
 # Search for a file on GitHub
 gh_search(){
-	local usage="Usage: gh_search [ext[ension]|file[name]] query"
+	local usage="Usage: gh_search [ext[ension]|file[name]|lang[uage]] query"
 	[ "$#" -lt 2 ] && {
 		echo >&2 $usage;
 		return 3;
@@ -196,8 +196,9 @@ gh_search(){
 	case "$type" in
 		ext|extension) type=extension ;;
 		name|filename) type=filename  ;;
+		lang|language) type=language  ;;
 		*)
-			echo >&2 "Search type must be one of ext, extension, filename, name";
+			echo >&2 "Search type must be one of ext, extension, filename, name, lang, language";
 			echo >&2 $usage;
 			return 3;;
 	esac
