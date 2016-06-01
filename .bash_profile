@@ -14,6 +14,10 @@ shopt -s autocd;        # DOS-style directory navigation
 shopt -s globstar;      # Enable recursive globbing
 
 
+# Install CPAN modules in a userland directory
+eval "$(perl -I$HOME/perl5/lib/perl5 -Mlocal::lib)"
+
+
 # Various other crap
 { rm ~/.DS_Store; dsclean ~/Desktop; } > /dev/null 2>&1
 cd ~/Desktop; fit;
