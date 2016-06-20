@@ -14,3 +14,6 @@ export PHP_INI=$(php -i | grep 'Loaded Configuration File' | sed -E 's/\s*=>\s*/
 # Stuff I can only memorise halfway
 export SNIPS=$SNIP
 export SNIPPETS=$SNIP
+
+# Anything else
+export ANDROID_HOME=/usr/local/opt/android-sdk
