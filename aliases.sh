@@ -101,8 +101,11 @@ alias rot13="tr 'A-Za-z' 'N-ZA-Mn-za-m'"
 
 
 # Output the last shell command as a string
-# Useful for saving helpful one-liners like these: "last-command | pbcopy"
 alias last-command='history | tail -n2 | head -n1 | sed -r "s/^\s+[0-9]+\*?\s+//"'
+
+
+# Copy the last command to the clipboard. Useful for saving helpful one-liners.
+alias copy-that='printf %s "$(last-command)" | pbcopy'
 
 
 # Strip lines from STDIN that start with a # or ;
