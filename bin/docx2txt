@@ -1,1 +1,2 @@
-/Users/johngardner/Forks/docx2txt/docx2txt.sh
+#!/bin/sh
+docx2txt.pl $1 -
