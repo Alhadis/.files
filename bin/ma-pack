@@ -1,0 +1,17 @@
+#!/bin/sh
+
+
+folder=$(echo $1 | sed 's/s$//')
+folder+="s"
+shift
+
+# Safety check
+[ -d "$*" ] || {
+	>&2 echo "Not a directory: $*"
+	exit 2;
+};
+
+zip -r "$*.zip" "$*"
+rm -rf "$*"
+mv "$*.zip" ~/Documents/MA/Images/Restored/$folder/
+dsclean
