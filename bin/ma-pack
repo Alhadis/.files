@@ -11,7 +11,9 @@ shift
 	exit 2;
 };
 
-zip -r "$*.zip" "$*"
-rm -rf "$*"
-mv "$*.zip" ~/Documents/MA/Images/Restored/$folder/
+name=$(basename "$*")
+dsclean
+zip -r "$name.zip" "$name"
+rm -rf "$name"
+mv "$name.zip" "$name"
 dsclean
