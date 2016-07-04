@@ -15,5 +15,5 @@ name=$(basename "$*")
 dsclean
 zip -r "$name.zip" "$name"
 rm -rf "$name"
-mv "$name.zip" "$name"
+mv "$name.zip" ~/Documents/MA/Images/Restored/$folder/
 dsclean
