@@ -1,6 +1,19 @@
 #!/bin/sh
 
 
+# Allow different containing folders to be specified
+type=Restored
+while getopts ohs option; do
+	case $option in
+		o) type=Old;;
+		h) type=High-quality;;
+		s) type=Scans;;
+		?) echo "Usage: $(basename $0) [-ows] type filename"; exit 2;;
+	esac
+done
+shift $((OPTIND - 1))
+
+
 folder=$(echo $1 | sed 's/s$//')
 folder+="s"
 shift
@@ -12,7 +25,7 @@ shift
 };
 
 name=$(basename "$*")
-dest=~/Documents/MA/Images/Restored/$folder/
+dest=~/Documents/MA/Images/$type/$folder/
 
 # Targeting a directory
 [ -d "$*" ] && {
