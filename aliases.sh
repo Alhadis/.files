@@ -27,6 +27,7 @@ alias uf='update-font.sh'
 alias wl='watchman watch-list'
 alias wlt='watchman trigger-list $(pwd)'
 alias w80="perl -p -i -e 's/.{80}/$&\n/g'"
+alias yeah="git reset HEAD .;"
 alias ..='cd ..'
 
 
