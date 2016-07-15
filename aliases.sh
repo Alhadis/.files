@@ -18,7 +18,7 @@ alias m='make'
 alias mk='make'
 alias mans='mansrc'
 alias nah='git checkout -- .'
-alias p='pbpaste | purify | trim | sed -E s/"\r\n"/"\n"/ | tr "\r" "\n" | pbcopy'
+alias p='perl -pe '
 alias src='show_src'
 alias t='mocha --es_staging'
 alias tl='pbpaste | clean-discogs | purify | pbcopy'
@@ -136,6 +136,9 @@ alias gh-ext='gh_search ext'
 alias gh-name='gh_search name'
 alias gh-lang='gh_search lang'
 
+
+# Clean the clipboard's contents of impurities
+alias purify='pbpaste | purify | trim | sed -E s/"\r\n"/"\n"/ | tr "\r" "\n" | pbcopy'
 
 
 # Temporary workaround until I get WP-HookTracer finished
