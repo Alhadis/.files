@@ -137,6 +137,10 @@ alias gh-name='gh_search name'
 alias gh-lang='gh_search lang'
 
 
+# Pull recently-taken photos off my phone
+alias yoink='adb pull storage/extSdCard/DCIM/Camera ~/Desktop; dsclean;'
+
+
 # Clean the clipboard's contents of impurities
 alias purify='pbpaste | purify | trim | sed -E s/"\r\n"/"\n"/ | tr "\r" "\n" | pbcopy'
 
