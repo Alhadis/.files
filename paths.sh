@@ -3,7 +3,7 @@ export F=~/.files
 export JOBS=~/Jobs
 export LABS=~/Labs
 export SNIP=~/Labs/Snippets
-export ATOM_THEME=~/Labs/Atom/phoenix-syntax
+export ATOM_THEME=~/Labs/Atom-PhoenixTheme
 export FILE_ICONS=~/.atom/packages/file-icons
 
 # Stuff I can never seem to memorise
