@@ -17,3 +17,4 @@ export SNIPPETS=$SNIP
 
 # Anything else
 export ANDROID_HOME=/usr/local/opt/android-sdk
+export GROFF_FONTS=/usr/local/Cellar/groff/1.22.3/share/groff/1.22.3/font/devps
