@@ -15,6 +15,12 @@ shopt -s autocd;        # DOS-style directory navigation
 shopt -s globstar;      # Enable recursive globbing
 
 
+# Editor paths
+export HOMEBREW_EDITOR=/usr/local/bin/atom\ --dev
+export EDITOR=/usr/local/bin/emacs
+export VISUAL=/usr/local/bin/vim
+
+
 # Various other crap
 { rm ~/.DS_Store; dsclean ~/Desktop; } > /dev/null 2>&1
 cd ~/Desktop; fit;
