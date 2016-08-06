@@ -1,8 +1,7 @@
 export PATH="$HOME/.files/bin:$PATH"
-export PS1="\[\033[38;5;10m\]λ \W\[\$(print-branch)\033[38;5;22m:\033[0m\] "
 
 # Load connected files
-for i in ~/.files/{aliases,paths,functions,tmp}.sh; do
+for i in ~/.files/{aliases,paths,functions,prompt,tmp}.sh; do
 	source "$i";
 done;
 unset i
