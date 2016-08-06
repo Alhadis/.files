@@ -92,6 +92,15 @@ show_src(){
 }
 
 
+# Print the current branch name for $PS1
+print-branch(){
+	local c1=$(tput setaf 22)
+	local c2=$(tput setaf 10)
+	local name=$(printf '%s\(%s\\1%s\)' $c1 $c2 $c1)
+	git branch --list 2>/dev/null | sed -e '/^[^*]/d' -e "s/* \(.*\)/ ${name}/"
+}
+
+
 # Convert a font to OpenType format
 to_otf(){
 	fontforge -nosplash -lang=ff -c 'Open($1); Generate($1:r + ".otf");' "$1" 2>/dev/null
