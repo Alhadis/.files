@@ -60,20 +60,26 @@ update(){
 # Run tests in Mocha or Atom
 t(){
 	
+	# Atom
+	[ -d spec ] && {
+		atom -t spec;
+		return;
+	}
+	
+	# Mocha
+	[ -d test ] && {
+		mocha --es_staging;
+		return;
+	}
+	
 	# Run test-script in current directory
 	[ -x test.js ] && {
 		./test.js;
 		return;
 	}
 	
-	# Atom: Run specs
-	[ -d spec ] && {
-		atom -t spec;
-		return;
-	}
-	
-	# Run Mocha
-	mocha --es_staging
+	# No tests found; do nothing
+	true;
 }
 
 
