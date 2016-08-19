@@ -57,6 +57,26 @@ update(){
 }
 
 
+# Run tests in Mocha or Atom
+t(){
+	
+	# Run test-script in current directory
+	[ -x test.js ] && {
+		./test.js;
+		return;
+	}
+	
+	# Atom: Run specs
+	[ -d spec ] && {
+		atom -t spec;
+		return;
+	}
+	
+	# Run Mocha
+	mocha --es_staging
+}
+
+
 # Quick calculator: copies result to clipboard after evaluation
 calc(){
 	
