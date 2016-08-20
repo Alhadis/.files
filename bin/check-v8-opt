@@ -1,0 +1,33 @@
+#!/usr/local/bin/node --es_staging
+"use strict";
+
+/** Code pretty much taken word-for-word from Bluebird's GitHub wiki */
+
+function printStatus(fn){
+	const status = %GetOptimizationStatus(fn);
+	let exitCode = 0;
+	switch(status){
+		case 1: console.log("Optimised"); break;
+		case 2: console.log("NOT optimised!"); exitCode = 1; break;
+		case 3: console.log("Always optimised"); break;
+		case 4: console.log("Never optimised"); exitCode = 1; break;
+		case 6: console.log("Maybe deoptimised"); exitCode = 2; break;
+		case 7: console.log("Optimised by TurboFan"); break;
+		default: console.log("Unknown optimisation status"); exitCode = 9; break;
+	}
+	process.exit(exitCode);
+}
+
+const subject = require(process.argv[2]);
+
+/** Fill type-info */
+subject();
+
+/** 2 calls are needed to go from uninitialised -> pre-monomorphic -> monomorphic */
+subject();
+
+%OptimizeFunctionOnNextCall(subject);
+/** Next call */
+subject();
+
+printStatus(subject);

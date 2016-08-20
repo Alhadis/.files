@@ -234,6 +234,30 @@ gh_search(){
 }
 
 
+# Check the V8 optimisation status of a JavaScript file
+opt(){
+	local usage="Usage: check-v8-opt /path/to/file.js"
+	local bin_path=~/.files/bin/check-v8-opt
+	
+	# Nothing passed
+	[ 0 -eq $# ] && {
+		>&2 echo $usage;
+		return 1;
+	};
+	
+	local file=$(realpath "$1")
+	
+	# Specified file actually wasn't a file
+	[ -f "$file" ] || {
+		>&2 echo "Not found: $file";
+		>&2 echo $usage;
+		return 1;
+	};
+	
+	node --trace_deopt --allow-natives-syntax $bin_path "$file"
+}
+
+
 
 #==============================================================================
 #   FOLLOWING FUNCTIONS ALL SHAMELESSLY PINCHED FROM THESE LOVELY CHAPS:
