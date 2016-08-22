@@ -15,6 +15,16 @@ export PHP_INI=$(php -i | grep 'Loaded Configuration File' | sed -E 's/\s*=>\s*/
 export SNIPS=$SNIP
 export SNIPPETS=$SNIP
 
+# Frequently-accessed projects
+export ACC=~/Labs/Accordion
+export AM=~/Labs/Atom-Mocha
+export APL=~/Labs/language-apl
+export LING=~/Forks/GitHub-Linguist
+export MA=~/Jobs/MA-Mobile
+export ROFF=~/Labs/language-roff
+export SHITPOSTS=~/Labs/Sandbox/*/docs/../
+export SIGILS=~/Labs/Atom-Sigils
+
 # Anything else
 export ANDROID_HOME=/usr/local/opt/android-sdk
 export GROFF_FONTS=/usr/local/Cellar/groff/1.22.3/share/groff/1.22.3/font/devps
