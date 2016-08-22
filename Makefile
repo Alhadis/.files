@@ -4,3 +4,8 @@ v8-obj := $(v8-src:.1=.ps)
 $(v8-obj): $(v8-src)
 	groff -man -eC -Tps $^ > $@
 v8: $(v8-obj)
+
+
+# Dump a list of currently-installed Homebrew formulae
+brew-list:
+	@brew list > etc/brew-list.txt

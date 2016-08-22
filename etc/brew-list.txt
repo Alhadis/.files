@@ -1,4 +1,5 @@
 aggressive-indent
+aha
 algol68g
 android-sdk
 ansiweather
@@ -26,6 +27,7 @@ cgal
 clisp
 cloog
 cmake
+cmark
 colordiff
 commonmark
 composer
@@ -61,6 +63,7 @@ fortune
 freetype
 frei0r
 fribidi
+gawk
 gcc
 gd
 gdbm
@@ -82,8 +85,8 @@ gmp
 gnu-getopt
 gnu-sed
 gnutls
-go
 gobject-introspection
+grap
 graphicsmagick
 graphite2
 grep
@@ -148,6 +151,7 @@ libsigc++
 libsigsegv
 libsodium
 libsoxr
+libspiro
 libssh2
 libsvg
 libsvg-cairo
@@ -156,6 +160,7 @@ libtiff
 libtool
 libusb
 libusb-compat
+libuv
 libvidstab
 libvo-aacenc
 libvorbis
@@ -179,6 +184,7 @@ mandoc
 markdown
 media-info
 mit-scheme
+mlton
 mongodb
 moreutils
 mp3info
@@ -242,6 +248,7 @@ rename
 rtmpdump
 ruby
 rust
+rust-mode
 sbcl
 schroedinger
 screen
