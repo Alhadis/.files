@@ -249,7 +249,7 @@ opt(){
 	# Check verbosity setting
 	local OPTIND
 	while getopts v option; do
-		[ v = $option ] && { options+=" --trace_opt"; shift; }
+		[ v = $option ] && { options+=" --trace_opt_verbose"; shift; }
 	done
 	
 	local file=$(realpath "$1")
