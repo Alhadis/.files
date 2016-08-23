@@ -238,12 +238,18 @@ gh_search(){
 opt(){
 	local usage="Usage: check-v8-opt /path/to/file.js"
 	local bin_path=~/.files/bin/check-v8-opt
+	local options="--trace_deopt --allow-natives-syntax"
 	
 	# Nothing passed
 	[ 0 -eq $# ] && {
 		>&2 echo $usage;
 		return 1;
 	};
+	
+	# Check verbosity setting
+	while getopts v option; do
+		[ v = $option ] && { options+=" --trace_opt"; shift; }
+	done
 	
 	local file=$(realpath "$1")
 	
@@ -254,7 +260,7 @@ opt(){
 		return 1;
 	};
 	
-	node --trace_deopt --allow-natives-syntax $bin_path "$file"
+	node $options $bin_path "$file"
 }
 
 
