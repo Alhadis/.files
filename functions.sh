@@ -236,7 +236,7 @@ gh_search(){
 
 # Check the V8 optimisation status of a JavaScript file
 opt(){
-	local usage="Usage: check-v8-opt /path/to/file.js"
+	local usage="Usage: opt /path/to/file.js [v8-flags…]"
 	local bin_path=~/.files/bin/check-v8-opt
 	local options="--trace_deopt --allow-natives-syntax"
 	
@@ -247,8 +247,8 @@ opt(){
 	};
 	
 	# Check verbosity setting
-	local OPTIND
-	while getopts v option; do
+	local OPTIND option;
+	while getopts v-: option; do
 		[ v = $option ] && { options+=" --trace_opt_verbose"; shift; }
 	done
 	
@@ -261,7 +261,8 @@ opt(){
 		return 1;
 	};
 	
-	node $options $bin_path "$file"
+	shift
+	node $options $@ $bin_path "$file"
 }
 
 
