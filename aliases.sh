@@ -25,6 +25,7 @@ alias src='show_src'
 alias tl='pbpaste | clean-discogs | purify | pbcopy'
 alias u='pbpaste | uglifyjs -c --mangle | pbcopy'
 alias uf='update-font.sh'
+alias vopt='opt -v'
 alias wl='watchman watch-list'
 alias wlt='watchman trigger-list $(pwd)'
 alias w80="perl -p -i -e 's/.{80}/$&\n/g'"
