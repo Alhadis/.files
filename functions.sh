@@ -57,8 +57,14 @@ update(){
 }
 
 
-# Run tests in Mocha or Atom
+# Run automated testss
 t(){
+	
+	# Makefile: "make test"
+	[ -f Makefile ] && { grep Makefile -qe ^test:; } && {
+		make test;
+		return;
+	}
 	
 	# Atom
 	[ -d spec ] && {
