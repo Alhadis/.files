@@ -57,8 +57,14 @@ update(){
 }
 
 
-# Run automated testss
+# Run automated tests
 t(){
+	
+	# Run test-script in current directory
+	[ -x test.js ] && {
+		./test.js;
+		return;
+	}
 	
 	# Makefile: "make test"
 	[ -f Makefile ] && { grep Makefile -qe ^test:; } && {
@@ -75,12 +81,6 @@ t(){
 	# Mocha
 	[ -d test ] && {
 		mocha --es_staging;
-		return;
-	}
-	
-	# Run test-script in current directory
-	[ -x test.js ] && {
-		./test.js;
 		return;
 	}
 	
