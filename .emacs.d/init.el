@@ -18,6 +18,9 @@
        ((and (eq isdir nil) (string= (substring path -3) ".el"))
         (load (file-name-sans-extension fullpath)))))))
 
+;; Tell Emacs we'd like to use Hunspell for spell-checking
+(setq ispell-program-name (executable-find "hunspell"))
+
 ;; Load Homebrew-installed packages
 (let ((default-directory "/usr/local/share/emacs/site-lisp/"))
   (normal-top-level-add-subdirs-to-load-path))
