@@ -19,6 +19,9 @@ export HOMEBREW_EDITOR=/usr/local/bin/atom\ --dev
 export EDITOR=/usr/local/bin/emacs
 export VISUAL=/usr/local/bin/vim
 
+# Hunspell dictionaries
+export DICPATH=/Applications/LibreOffice.app/Contents/Resources/extensions/dict-en
+export WORDLIST="$HOME/Library/Application Support/Google/Chrome/Default/Custom Dictionary.txt"
 
 # Various other crap
 { rm ~/.DS_Store; dsclean ~/Desktop; } > /dev/null 2>&1
