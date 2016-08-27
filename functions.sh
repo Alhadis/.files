@@ -105,6 +105,16 @@ calc(){
 }
 
 
+# Evaluate and print an Emacs Lisp expression
+elisp(){
+	local expr="$*"
+	
+	# Not enclosed in parentheses; fix that
+	echo "$expr" | grep -qE "^\\(" || { expr="($expr)"; }
+	emacs --batch --eval "(message \"%s\" $expr)"
+}
+
+
 # Read a string of numbers out one at a time.
 # Useful to double-check number codes transcribed from physical sources (serial codes, etc).
 rtbtm(){
@@ -124,9 +134,15 @@ show_src(){
 }
 
 
-# Convert a font to OpenType format
-to_otf(){
-	fontforge -nosplash -lang=ff -c 'Open($1); Generate($1:r + ".otf");' "$1" 2>/dev/null
+# Convert a font to another format. Defaults to OpenType.
+# - Usage: convert-font [path] [to=otf]
+convert-font(){
+	[ $# -eq 0 ] && {
+		echo >&2 "Usage: convert-font /path/to/file [format=.otf]"
+		return 1;
+	}
+	local format=$(echo ${2:-.otf} | tr -d '.')
+	fontforge -nosplash -lang=ff -c 'Open($1); Generate($1:r + ".$format");' "$1" 2>/dev/null
 }
 
 
