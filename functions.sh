@@ -142,7 +142,23 @@ convert-font(){
 		return 1;
 	}
 	local format=$(echo ${2:-.otf} | tr -d '.')
-	fontforge -nosplash -lang=ff -c 'Open($1); Generate($1:r + ".$format");' "$1" 2>/dev/null
+	fontforge -nosplash -lang=ff -c '
+		fonts = FontsInFile($1);
+		count = SizeOf(fonts);
+
+		if(count != 0)
+			i = 0;
+			while(i < count)
+				Open($1 + "(" + i + ")");
+				Generate(fonts[i] + "." + $2);
+				Close();
+				i++;
+			endloop
+		else
+			Open($1);
+			Generate($1:r + "." + $2);
+		endif
+	' "$1" "$2" 2>/dev/null;
 }
 
 
