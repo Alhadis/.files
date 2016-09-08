@@ -46,6 +46,15 @@ alias node='node --es_staging'
 
 
 #==============================================================================
+#   KEG-ONLY HOMEBREW FORMULAE
+#==============================================================================
+alias curl='/usr/local/opt/curl/bin/curl'
+alias cc='clang'
+alias clang='/usr/local/opt/llvm/bin/clang'
+
+
+
+#==============================================================================
 #   ALIASES THAT'RE LITERALLY ALIASES
 #==============================================================================
 alias embed-atom-icon='embed_atom_icon'
