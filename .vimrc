@@ -12,6 +12,12 @@ call vundle#end()
 execute pathogen#infect()
 syntax on
 
+" Use Solarized theme in MacVim
+if has('gui_running')
+	set background=dark
+	colorscheme solarized
+endif
+
 set number
 set autoread
 set backspace=indent,eol,start
