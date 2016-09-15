@@ -2,6 +2,7 @@
 ;; (set-language-environment "UTF-8")
 (setenv "LANG" "en_AU.UTF-8")
 (setenv "LC_ALL" "en_AU.UTF-8")
+(setq default-tab-width 4)
 
 
 ;;; Function to load all ".el" files in ~/.emacs.d/config
