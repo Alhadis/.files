@@ -3,6 +3,7 @@
 #==============================================================================
 alias au='apm update --no-confirm'
 alias bc='bc -l'
+alias brake='bundle exec rake'
 alias bup='brew update; [ "$(brew outdated)" ] && brew upgrade --all && brew cleanup --prune=0 || true;'
 alias c='calc'
 alias e='elisp'
