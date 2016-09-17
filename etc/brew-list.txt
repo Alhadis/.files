@@ -1,296 +1,317 @@
-aggressive-indent
-aha
-algol68g
-android-sdk
-ansiweather
-ant
-asciidoc
-atk
-atkmm
-ats2-postiats
-autoconf
-automake
-bash
-bcrypt
-bdw-gc
-binutils
-bison
-boost
-brotli
-bullet
-cabal-install
-cairo
-cairomm
-cd-discid
-cfitsio
-cgal
-clisp
-cloog
-cmake
-cmark
-colordiff
-commonmark
-composer
-coreutils
-crystal-lang
-curl
-czmq
-d-bus
-dash
-dbus
-diff-pdf
-dirmngr
-docbook
-docx2txt
-dos2unix
-doxygen
-editorconfig
-emacs
-emscripten
-eot-utils
-erlang
-faac
-fdk-aac
-ffmpeg
-fftw
-findutils
-flac
-fltk
-fontconfig
-fontforge
-fonttools
-fortune
-freetype
-frei0r
-fribidi
-gawk
-gcc
-gd
-gdbm
-gdk-pixbuf
-geographiclib
-geoip
-geoipupdate
-gettext
-ghc
-ghostscript
-gifify
-giflib
-git
-gl2ps
-glib
-glibmm
-glm
-gmp
-gnu-getopt
-gnu-sed
-gnutls
-gobject-introspection
-grap
-graphicsmagick
-graphite2
-grep
-groff
-gsasl
-gsl
-gtk+
-gtkglext
-gtkmm
-harfbuzz
-help2man
-hicolor-icon-theme
-highlight
-html-xml-utils
-hunspell
-icu4c
-id3lib
-id3v2
-ilmbase
-imagemagick
-imagesnap
-imageworsener
-iniparser
-inkscape
-isl
-iso-codes
-jasper
-jbig2dec
-jpeg
-jq
-json-c
-json-fortran
-lame
-latex2html
-lib3ds
-libart
-libass
-libassuan
-libav
-libbluray
-libcaca
-libcroco
-libevent
-libexif
-libffi
-libgcrypt
-libgpg-error
-libgsf
-libidn
-libksba
-liblqr
-libmatio
-libmpc
-libmpeg2
-libogg
-libpcl
-libpng
-libquvi
-libraw
-librsvg
-libsigc++
-libsigsegv
-libsodium
-libsoxr
-libspiro
-libssh2
-libsvg
-libsvg-cairo
-libtasn1
-libtiff
-libtool
-libusb
-libusb-compat
-libuv
-libvidstab
-libvo-aacenc
-libvorbis
-libvpx
-libwebm
-libwebsockets
-libwmf
-libxml2
-libxslt
-libyaml
-libzip
-links
-little-cms
-little-cms2
-llvm
-lua
-lynx
-mailutils
-malbolge
-mandoc
-markdown
-media-info
-mit-scheme
-mlton
-mongodb
-moreutils
-mp3info
-mpfr
-mysql
-nano
-nasm
-ncurses
-netpbm
-nettle
-node
-oggz
-oniguruma
-open-mesh
-open-scene-graph
-opencore-amr
-openexr
-openjpeg
-openslide
-openssh
-openssl
-opus
-orc
-ossp-uuid
-p7zip
-pandoc
-pango
-pangomm
-pangox-compat
-partio
-pass
-pcre
-pcre2
-perl
-phantomjs
-php70
-php70-imagick
-phpdocumentor
-pinentry
-pixman
-pkg-config
-pngnq
-pngquant
-poppler
-popt
-poster
-postgresql
-protobuf
-psutils
-pth
-putty
-pwgen
-py2cairo
-pygobject3
-python
-python3
-qt
-rakudo-star
-readline
-rename
-rtmpdump
-ruby
-rust
-rust-mode
-sbcl
-schroedinger
-screen
-sdl
-sfnt2woff
-sfnt2woff-zopfli
-sfntly
-sip
-slime
-source-highlight
-speex
-sqlite
-svg2pdf
-svg2png
-swig
-texi2html
-texinfo
-texmath
-theora
-tidy-html5
-tor
-tree
-ttf2pt1
-ttfautohint
-unixodbc
-unpaper
-v8
-vim
-vips
-watch
-watchman
-webp
-wget
-woff2
-wxmac
-x264
-x265
-xvid
-xz
-yasm
-youtube-dl
-yuicompressor
-zeromq
-zlib
-zopfli
+Casks
+	emacs
+	java
+	xquartz
+Taps
+	bramstein/webfonttools
+	caskroom/cask
+	caskroom/fonts
+	homebrew/core
+	homebrew/dupes
+	homebrew/emacs
+	homebrew/gui
+	homebrew/head-only
+	homebrew/php
+	homebrew/science
+	homebrew/tex
+	homebrew/versions
+Formulae
+	aggressive-indent
+	aha
+	algol68g
+	android-sdk
+	ansiweather
+	ant
+	asciidoc
+	atk
+	atkmm
+	ats2-postiats
+	autoconf
+	automake
+	bash
+	bcrypt
+	bdw-gc
+	binutils
+	bison
+	boost
+	brotli
+	bullet
+	cabal-install
+	cairo
+	cairomm
+	cd-discid
+	cfitsio
+	cgal
+	cl-lib
+	clisp
+	cloog
+	cmake
+	cmark
+	colordiff
+	commonmark
+	composer
+	coreutils
+	crystal-lang
+	cscope
+	curl
+	czmq
+	d-bus
+	dash
+	dbus
+	diff-pdf
+	dirmngr
+	docbook
+	docx2txt
+	dos2unix
+	doxygen
+	editorconfig
+	emacs
+	emscripten
+	eot-utils
+	erlang
+	faac
+	fdk-aac
+	ffmpeg
+	fftw
+	findutils
+	flac
+	fltk
+	fontconfig
+	fontforge
+	fonttools
+	fortune
+	freetype
+	frei0r
+	fribidi
+	gawk
+	gcc
+	gd
+	gdbm
+	gdk-pixbuf
+	geographiclib
+	geoip
+	geoipupdate
+	gettext
+	ghc
+	ghostscript
+	gifify
+	giflib
+	git
+	gl2ps
+	glib
+	glibmm
+	glm
+	gmp
+	gnu-getopt
+	gnu-sed
+	gnutls
+	gobject-introspection
+	grap
+	graphicsmagick
+	graphite2
+	grep
+	groff
+	gsasl
+	gsl
+	gtk+
+	gtkglext
+	gtkmm
+	harfbuzz
+	help2man
+	hicolor-icon-theme
+	highlight
+	html-xml-utils
+	hunspell
+	icu4c
+	id3lib
+	id3v2
+	ilmbase
+	imagemagick
+	imagesnap
+	imageworsener
+	iniparser
+	inkscape
+	isl
+	iso-codes
+	jasper
+	jbig2dec
+	jpeg
+	jq
+	json-c
+	json-fortran
+	keybase
+	lame
+	latex2html
+	lib3ds
+	libart
+	libass
+	libassuan
+	libav
+	libbluray
+	libcaca
+	libcroco
+	libevent
+	libexif
+	libffi
+	libgcrypt
+	libgpg-error
+	libgsf
+	libidn
+	libksba
+	liblqr
+	libmatio
+	libmpc
+	libmpeg2
+	libogg
+	libpcl
+	libpng
+	libquvi
+	libraw
+	librsvg
+	libsigc++
+	libsigsegv
+	libsodium
+	libsoxr
+	libspiro
+	libssh2
+	libsvg
+	libsvg-cairo
+	libtasn1
+	libtiff
+	libtool
+	libuninameslist
+	libusb
+	libusb-compat
+	libuv
+	libvidstab
+	libvo-aacenc
+	libvorbis
+	libvpx
+	libwebm
+	libwebsockets
+	libwmf
+	libxml2
+	libxslt
+	libyaml
+	libzip
+	links
+	little-cms
+	little-cms2
+	llvm
+	lua
+	lynx
+	macvim
+	mailutils
+	malbolge
+	mandoc
+	markdown
+	media-info
+	mit-scheme
+	mlton
+	mongodb
+	moreutils
+	mp3info
+	mpfr
+	mysql
+	nano
+	nasm
+	ncurses
+	netpbm
+	nettle
+	node
+	oggz
+	oniguruma
+	open-mesh
+	open-scene-graph
+	opencore-amr
+	openexr
+	openjpeg
+	openslide
+	openssh
+	openssl
+	opus
+	orc
+	ossp-uuid
+	p7zip
+	pandoc
+	pango
+	pangomm
+	pangox-compat
+	partio
+	pass
+	pcre
+	pcre2
+	perl
+	phantomjs
+	php70
+	php70-imagick
+	phpdocumentor
+	pinentry
+	pixman
+	pkg-config
+	pngnq
+	pngquant
+	poppler
+	popt
+	poster
+	postgresql
+	protobuf
+	psutils
+	pth
+	putty
+	pwgen
+	py2cairo
+	pygobject3
+	python
+	python3
+	qt
+	rakudo-star
+	readline
+	rename
+	rtmpdump
+	ruby
+	rust
+	rust-mode
+	sbcl
+	schroedinger
+	screen
+	sdl
+	sfnt2woff-zopfli
+	sip
+	slime
+	source-highlight
+	speex
+	sqlite
+	svg2pdf
+	svg2png
+	swig
+	texi2html
+	texinfo
+	texmath
+	theora
+	tidy-html5
+	tor
+	tree
+	ttf2pt1
+	ttfautohint
+	unixodbc
+	unpaper
+	v8
+	vim
+	vips
+	watch
+	watchman
+	webp
+	wget
+	woff2
+	wxmac
+	x264
+	x265
+	xvid
+	xz
+	yasm
+	youtube-dl
+	yuicompressor
+	zeromq
+	zlib
+	zopfli

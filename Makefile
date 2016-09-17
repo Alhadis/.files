@@ -6,6 +6,13 @@ $(v8-obj): $(v8-src)
 v8: $(v8-obj)
 
 
+list := etc/brew-list.txt
+
 # Dump a list of currently-installed Homebrew formulae
 brew-list:
-	@brew list > etc/brew-list.txt
+	@echo "Casks" > $(list)
+	@brew cask list 2>/dev/null | sed -r "s/^/\t/g" >> $(list)
+	@echo "Taps" >> $(list)
+	@brew tap  | sed -r "s/^/\t/g" >> $(list)
+	@echo "Formulae" >> $(list)
+	@brew list | sed -r "s/^/\t/g" >> $(list)
