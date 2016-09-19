@@ -36,6 +36,7 @@
 (load "git-commit")
 
 ;; Keybindings
+(global-set-key (kbd "<f7>") 'ispell-buffer)
 (global-set-key (kbd "C-u") (lambda ()
                              (interactive)
                              (kill-line 0)))
