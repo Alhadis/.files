@@ -36,7 +36,7 @@
 	<key>FontWidthSpacing</key>
 	<real>0.996</real>
 	<key>ProfileCurrentVersion</key>
-	<real>2.02</real>
+	<real>2.0499999999999998</real>
 	<key>SelectionColor</key>
 	<data>
 	YnBsaXN0MDDUAQIDBAUGFRZYJHZlcnNpb25YJG9iamVjdHNZJGFyY2hpdmVyVCR0b3AS
@@ -45,14 +45,6 @@
 	TlNPYmplY3RfEA9OU0tleWVkQXJjaGl2ZXLRFxhUcm9vdIABCBEaIy0yNztBSFBdZHBy
 	dHmEjZWYobO2uwAAAAAAAAEBAAAAAAAAABkAAAAAAAAAAAAAAAAAAAC9
 	</data>
-	<key>ShowActiveProcessInTitle</key>
-	<true/>
-	<key>ShowCommandKeyInTitle</key>
-	<false/>
-	<key>ShowShellCommandInTitle</key>
-	<false/>
-	<key>ShowTTYNameInTitle</key>
-	<false/>
 	<key>ShowWindowSettingsNameInTitle</key>
 	<false/>
 	<key>TextBoldColor</key>
@@ -71,6 +63,8 @@
 	TlNPYmplY3RfEA9OU0tleWVkQXJjaGl2ZXLRFxhUcm9vdIABCBEaIy0yNztBSFBdZHBy
 	dHmEjZWYobO2uwAAAAAAAAEBAAAAAAAAABkAAAAAAAAAAAAAAAAAAAC9
 	</data>
+	<key>VisualBell</key>
+	<false/>
 	<key>columnCount</key>
 	<integer>239</integer>
 	<key>name</key>
