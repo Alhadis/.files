@@ -21,6 +21,7 @@
 	whitespace = -blank-at-eol
 [alias]
 	co = checkout
+	r = remote --verbose
 	s = status
 [filter "lfs"]
 	clean = git-lfs clean -- %f
