@@ -28,6 +28,8 @@
 (load "aggressive-indent")
 (add-hook 'emacs-lisp-mode-hook #'aggressive-indent-mode)
 (autoload 'rust-mode "rust-mode" nil t)
+(autoload 'coffee-mode "coffee-mode" nil t)
+(autoload 'clojure-mode "clojure-mode" nil t)
 (add-to-list 'auto-mode-alist '("\\.rs\\'" . rust-mode))
 
 ;; Load Git-related syntax highlighting
