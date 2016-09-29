@@ -31,4 +31,5 @@ components
 tmp.sh
 .emacs.d/auto-save-list
 .emacs.d/elpa
+.emacs.d/url
 share/man/**/*.ps
