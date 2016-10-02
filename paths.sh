@@ -24,6 +24,7 @@ export MA=~/Jobs/MA-Mobile
 export ROFF=~/Labs/language-roff
 export SHITPOSTS=~/Labs/Sandbox/*/docs/../
 export SIGILS=~/Labs/Atom-Sigils
+export TMCG=~/Labs/TMCG-Spec
 
 # Anything else
 export ANDROID_HOME=/usr/local/opt/android-sdk
