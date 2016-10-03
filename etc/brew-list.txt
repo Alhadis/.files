@@ -1,6 +1,33 @@
 Casks
+	0xed
+	audacity
+	audio-hijack
+	beyond-compare
+	cyberduck
+	dropbox
 	emacs
+	firefox
+	flash-decompiler-trillix
+	gimp
+	glyphs
+	google-earth
+	handbrake
+	iterm2
 	java
+	libreoffice
+	opera
+	poedit
+	privatetunnel
+	robomongo
+	senuti
+	sequel-pro
+	soulseek
+	sqlitebrowser
+	tunnelblick
+	utorrent
+	virtualbox
+	vlc
+	xld
 	xquartz
 Taps
 	bramstein/webfonttools
@@ -232,7 +259,6 @@ Formulae
 	openexr
 	openjpeg
 	openslide
-	openssh
 	openssl
 	opus
 	orc
