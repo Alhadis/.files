@@ -82,7 +82,7 @@ alias woff2-encode='woff2_compress'
 #==============================================================================
 
 # Get rid of that sodding 1px-border running along Chrome's edges
-alias fit-chrome='osascript -e '"'"'tell first window of application "Google Chrome" to set bounds to {0, 0, 1440, 820}'"'"
+alias fit-chrome='osascript -e '"'"'tell first window of application "Google Chrome" to set bounds to {0, 0, 1440, 800}'"'"
 
 
 # Swipe the staging area clean and revert to the last commit
