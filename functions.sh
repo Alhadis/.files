@@ -105,6 +105,16 @@ calc(){
 }
 
 
+# Jump to whatever directory's containing a file or executable
+visit(){
+	
+	# If this is a directory, go straight to it
+	[ -d "$1" ] && { cd "$1"; return; }
+	
+	hash "$1" 2>/dev/null && cd $(which "$1" | xargs dirname)
+}
+
+
 # Evaluate and print an Emacs Lisp expression
 elisp(){
 	local expr="$*"
