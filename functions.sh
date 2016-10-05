@@ -105,10 +105,10 @@ calc(){
 }
 
 
-# Jump to whatever directory's containing a file or executable
-visit(){
+# Switch to whatever directory contains a file or executable
+jump-to(){
 	
-	# If this is a directory, go straight to it
+	# If given a directory, go to it
 	[ -d "$1" ] && { cd "$1"; return; }
 	
 	hash "$1" 2>/dev/null && cd $(which "$1" | xargs dirname)
