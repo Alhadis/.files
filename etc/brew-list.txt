@@ -26,6 +26,7 @@ Casks
 	tunnelblick
 	utorrent
 	virtualbox
+	virtualbox-extension-pack
 	vlc
 	xld
 	xquartz
@@ -170,7 +171,6 @@ Formulae
 	jq
 	json-c
 	json-fortran
-	keybase
 	lame
 	latex2html
 	lib3ds
@@ -296,6 +296,7 @@ Formulae
 	python
 	python3
 	qt
+	r
 	rakudo-star
 	readline
 	rename
@@ -308,6 +309,7 @@ Formulae
 	screen
 	sdl
 	sfnt2woff-zopfli
+	shared-mime-info
 	sip
 	slime
 	source-highlight
