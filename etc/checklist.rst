@@ -7,8 +7,18 @@ Not bothering to write a script, because I don't envision this will need to be d
 
 
 1. Reconnect symlinks
-~~~~~~~~~~~~~~~~~~~~~
-Relink these files to their relevant directories:
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+================== ===================
+ Point these paths to these files:
+================== ===================
+``~/.emacs.d``      ->   `<.emacs.d>`_
+``~/.gitconfig``    -> `<.gitconfig>`_
+``~/.vimrc``        ->     `<.vimrc>`_
+``~/.ssh/config``   -> `<ssh-config>`_
+================== ===================
+
+For Apache/PHP, relink these files to their relevant directories:
 
 * `<httpd-vhosts.conf>`_: ``/private/etc/apache2/extra/httpd-userdir.conf``
 *        `<httpd.conf>`_: ``/private/etc/apache2/httpd.conf``
@@ -61,3 +71,31 @@ Then add::
 There'll be ``~orig`` and ``~previous`` junk littered everywhere, which is safe to delete.
 
 If we happen to have made important changes to files that aren't symlinked back here, transfer them before culling.
+
+
+
+5. Other
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+* **Hide ~/perl5**::
+
+	cd ~
+	chflags hidden perl5
+
+* **Add line to ~/bash_profile**::
+
+	eval "$(perl -I$HOME/perl5/lib/perl5 -Mlocal::lib)"
+
+* **Convert fonts for Groff**:
+
+==========  ==================  =======================
+Groff file  PostScript name     PFA file
+==========  ==================  =======================
+CL          ClarendonBT-Heavy   clarendon.pfa
+CAMBRIA     CambriaMath         cambria.pfa
+CAMBRIABI   Cambria-BoldItalic  cambria-bold-italic.pfa
+CAMBRIAB    Cambria-Bold        cambria-bold.pfa
+CAMBRIAI    Cambria-Italic      cambria-italic.pfa
+==========  ==================  =======================
+
+Usually located in ``$GROFF_FONT`` (``/usr/local/share/groff/1.22.3/font/devps``).
