@@ -111,7 +111,7 @@ jump-to(){
 	# If given a directory, go to it
 	[ -d "$1" ] && { cd "$1"; return; }
 	
-	hash "$1" 2>/dev/null && cd $(which "$1" | xargs dirname)
+	hash "$1" 2>/dev/null && cd $(dirname "$1")
 }
 
 
