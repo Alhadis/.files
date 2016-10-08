@@ -139,7 +139,7 @@ mansrc(){
 
 
 # Browse an executable's source code
-show_src(){
+show-src(){
 	less $(which "$1")
 }
 
@@ -181,7 +181,7 @@ babelplate(){
 
 
 # Export a band entry from Metal Archives
-ma_save(){
+ma-save(){
 	local json="band-$1.json"
 	ma-export --embed-images band "$1" > "$json" && {
 		name=$(node -pe "require('./$json').bands[$1].name")
@@ -201,7 +201,7 @@ symlink(){
 
 
 # Install some git-hooks to prevent hasty version-committing
-git_hooks(){
+git-hooks(){
 	hash node 2>&- || { >&2 echo "These hooks require Node.js to run."; return 2; }
 	local name=check-version.sh
 	local dest=.git/hooks/commit-msg
@@ -216,10 +216,10 @@ git_hooks(){
 # Add Atom's icon to a file in Finder.
 # Used to make files without extensions look code-related.
 # See also: http://apple.stackexchange.com/q/213302
-embed_atom_icon(){
+embed-atom-icon(){
 	[ -f "$1" ] || {
-		[ -f "Makefile" ] && embed_atom_icon "Makefile" || {
-			echo >&2 "Usage: embed_atom_icon [recipients...]"
+		[ -f "Makefile" ] && embed-atom-icon "Makefile" || {
+			echo >&2 "Usage: embed-atom-icon [recipients...]"
 			return 2;
 		}
 	};
@@ -258,8 +258,8 @@ showlinks(){
 
 
 # Search for a file on GitHub
-gh_search(){
-	local usage="Usage: gh_search [ext[ension]|file[name]|lang[uage]] query"
+gh-search(){
+	local usage="Usage: gh-search [ext[ension]|file[name]|lang[uage]] query"
 	[ "$#" -lt 2 ] && {
 		echo >&2 $usage;
 		return 3;
