@@ -9,29 +9,41 @@ Not bothering to write a script, because I don't envision this will need to be d
 1. Reconnect symlinks
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-================== ===================
- Point these paths to these files:
-================== ===================
-``~/.emacs.d``      ->   `<.emacs.d>`_
-``~/.gitconfig``    -> `<.gitconfig>`_
-``~/.vimrc``        ->     `<.vimrc>`_
-``~/.ssh/config``   -> `<ssh-config>`_
-================== ===================
+================= ==========================
+Point these paths to these files:
+================= ==========================
+``~/.emacs.d``    → `<.emacs.d>`_
+``~/.gitconfig``  → `<.gitconfig>`_
+``~/.vimrc``      → `<.vimrc>`_
+``~/.ssh/config`` → `<ssh-config>`_
+|httpd-vhosts|    → `<httpd-vhosts.conf>`_
+|httpd|           → `<httpd.conf>`_
+``php.ini``       → ``$PHP_DIR``
+================= ==========================
 
-For Apache/PHP, relink these files to their relevant directories:
+.. NOTE:: Repeat the steps in `8dbf255...51f49c9`__ to preserve the unmodified ``httpd-`` files.
 
-* `<httpd-vhosts.conf>`_: ``/private/etc/apache2/extra/httpd-userdir.conf``
-*        `<httpd.conf>`_: ``/private/etc/apache2/httpd.conf``
-*           `<php.ini>`_: Version dependent. Run ``brew info php## | grep /php.ini``
+To relocate ``$PHP_DIR``, run ``brew info php## | grep /php.ini``. Swap ``##`` with the PHP version we're using (e.g., ``php71``).
 
-Repeat the steps in `8dbf255...51f49c9`__ to preserve the unmodified copies.
+Some INI settings will also need updating::
 
-	__ https://github.com/Alhadis/.files/compare/8dbf255...51f49c9
+	error_log = "/Users/johngardner/Documents/apache.log"
+	max_input_vars = 99999
+	post_max_size = 32M
+	serialize_precision = 17
+	upload_max_filesize = 90M
 
-Lastly, symlink Apache's logfile somewhere more visible::
+Finally, symlink Apache's logfile somewhere more visible::
 
 	sudo rm -f /private/var/log/apache2/error_log
 	ln -s $_ ~/Documents/apache.log
+	chown johngardner:staff $_
+
+.. Referenced links: ========================================================
+.. |httpd-vhosts| replace:: ``/private/etc/apache2/extra/httpd-userdir.conf``
+.. |httpd|        replace:: ``/private/etc/apache2/httpd.conf``
+__ https://github.com/Alhadis/.files/compare/8dbf255...51f49c9
+
 
 
 2. Restore ``/etc/hosts`` file
