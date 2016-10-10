@@ -145,9 +145,9 @@ alias clear='history -c; > ~/.bash_history'
 
 
 # Search on GitHub for a filename or file extension
-alias gh-ext='gh_search ext'
-alias gh-name='gh_search name'
-alias gh-lang='gh_search lang'
+alias gh-ext='gh-search ext'
+alias gh-name='gh-search name'
+alias gh-lang='gh-search lang'
 
 
 # Pull recently-taken photos off my phone
