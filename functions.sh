@@ -111,7 +111,8 @@ jump-to(){
 	# If given a directory, go to it
 	[ -d "$1" ] && { cd "$1"; return; }
 	
-	hash "$1" 2>/dev/null && cd $(dirname "$1")
+	path=$(which "$1" || echo "$1")
+	[ -e "$path" ] && cd $(dirname $(realpath "$path"))
 }
 
 
