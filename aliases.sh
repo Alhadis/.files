@@ -9,6 +9,7 @@ alias bup='brew update; [ "$(brew outdated)" ] && brew upgrade && brew cleanup -
 alias c='calc'
 alias cask='brew cask'
 alias e='elisp'
+alias fd='git clean -fd'
 alias fs='pbpaste | filesafe | pbcopy'
 alias G:='cd ~/VirtualBox/Shared'
 alias g='git status'
