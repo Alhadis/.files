@@ -2,6 +2,7 @@
 #   COMMON SHORTHAND
 #==============================================================================
 alias @='atom -d'
+alias Firefox='open /Applications/Firefox.app'
 alias au='apm update --no-confirm'
 alias bc='bc -l'
 alias brake='bundle exec rake'
