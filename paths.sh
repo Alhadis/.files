@@ -2,6 +2,7 @@
 export F=~/.files
 export JOBS=~/Jobs
 export LABS=~/Labs
+export AF=~/Forks/Atom
 export SNIP=~/Labs/Snippets
 export ATOM_THEME=~/Labs/Atom-PhoenixTheme
 export FILE_ICONS=~/.atom/packages/file-icons
