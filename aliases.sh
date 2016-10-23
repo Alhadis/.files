@@ -21,6 +21,7 @@ alias gd='git diff --cached -w'
 alias gl='git log'
 alias gp='git push origin'
 alias gr='git remote --verbose'
+alias gs='git show'
 alias k='make'
 alias l='ls -alh'
 alias m='make'
@@ -54,11 +55,12 @@ alias node='node --es_staging'
 
 
 #==============================================================================
-#   KEG-ONLY HOMEBREW FORMULAE
+#   HOMEBREW FORMULAE
 #==============================================================================
 alias curl='/usr/local/opt/curl/bin/curl'
 alias cc='clang'
 alias clang='/usr/local/opt/llvm/bin/clang'
+alias ghostscript='/usr/local/bin/gs'
 
 
 
