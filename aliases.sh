@@ -2,14 +2,9 @@
 #   COMMON SHORTHAND
 #==============================================================================
 alias @='atom -d'
-alias Firefox='open /Applications/Firefox.app'
-alias au='apm update --no-confirm'
-alias bc='bc -l'
 alias brake='bundle exec rake'
 alias bup='brew update; [ "$(brew outdated)" ] && brew upgrade && brew cleanup --prune=0 || true;'
 alias c='calc'
-alias cask='brew cask'
-alias e='elisp'
 alias fd='git clean -fd'
 alias fs='pbpaste | filesafe | pbcopy'
 alias G:='cd ~/VirtualBox/Shared'
@@ -30,13 +25,8 @@ alias mans='mansrc'
 alias nah='git checkout -- .'
 alias p='perl -pe '
 alias src='show-src'
-alias tl='pbpaste | clean-discogs | purify | pbcopy'
-alias u='pbpaste | uglifyjs -c --mangle | pbcopy'
-alias uf='update-font.sh'
 alias untag='xattr -d com.apple.metadata:_kMDItemUserTags 2>/dev/null'
 alias vopt='opt -v'
-alias wl='watchman watch-list'
-alias wlt='watchman trigger-list $(pwd)'
 alias w80="perl -p -i -e 's/.{80}/$&\n/g'"
 alias yeah="git reset HEAD .;"
 alias ..='cd ..'
@@ -44,8 +34,21 @@ alias ..='cd ..'
 
 
 #==============================================================================
+#   UNCOMMON SHORTHAND
+#==============================================================================
+alias Firefox='open /Applications/Firefox.app'
+alias BOXPLZ='atom -d ~/Documents/Box-Drawing.txt'
+alias au='apm update --no-confirm'
+alias cask='brew cask'
+alias wl='watchman watch-list'
+alias wlt='watchman trigger-list $(pwd)'
+
+
+
+#==============================================================================
 #   PROGRAM DEFAULTS
 #==============================================================================
+alias bc='bc -l'
 alias su='sudo su -l'
 alias sudo='sudo '
 alias less='less -R'
@@ -69,7 +72,6 @@ alias ghostscript='/usr/local/bin/gs'
 #==============================================================================
 alias ghext='gh-ext'
 alias gh-file='gh-name'
-alias ma='ma-move'
 alias woff-decode='woff2sfnt'
 alias woff-decompress='woff2sfnt'
 alias woff2-compress='woff2_compress'
