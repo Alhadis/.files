@@ -65,13 +65,13 @@ Confirm by running::
 3. Add shell-profile for root user
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 Run::
-	
+
 	sudo su -l
 	cd ~
 	vim .profile
 
 Then add::
-	
+
 	export PS1='# \W: '
 	alias l='ls -alh'
 	alias ..='cd ..'
@@ -111,3 +111,10 @@ CAMBRIAI    Cambria-Italic      cambria-italic.pfa
 ==========  ==================  =======================
 
 Usually located in ``$GROFF_FONT`` (``/usr/local/share/groff/1.22.3/font/devps``).
+
+
+* **Enable iCloud keychain if MacBook overheats**
+
+`Solution:`__ System preferences  →  iCloud  →  Check Keychain
+
+__	https://discussions.apple.com/thread/7675366?start=0&tstart=0
