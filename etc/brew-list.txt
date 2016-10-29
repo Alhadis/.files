@@ -34,6 +34,7 @@ Taps
 	bramstein/webfonttools
 	caskroom/cask
 	caskroom/fonts
+	homebrew/apache
 	homebrew/core
 	homebrew/dupes
 	homebrew/emacs
@@ -41,6 +42,7 @@ Taps
 	homebrew/head-only
 	homebrew/php
 	homebrew/science
+	homebrew/services
 	homebrew/tex
 	homebrew/versions
 Formulae
@@ -50,6 +52,8 @@ Formulae
 	android-sdk
 	ansiweather
 	ant
+	apr
+	apr-util
 	asciidoc
 	atk
 	atkmm
@@ -80,7 +84,6 @@ Formulae
 	coffee-mode
 	colordiff
 	commonmark
-	composer
 	coreutils
 	crystal-lang
 	cscope
@@ -153,6 +156,7 @@ Formulae
 	hicolor-icon-theme
 	highlight
 	html-xml-utils
+	httpd24
 	hunspell
 	icu4c
 	id3lib
@@ -173,6 +177,7 @@ Formulae
 	json-fortran
 	lame
 	latex2html
+	lfe
 	lib3ds
 	libart
 	libass
@@ -274,9 +279,8 @@ Formulae
 	pcre2
 	perl
 	phantomjs
-	php70
-	php70-imagick
-	phpdocumentor
+	php71
+	php71-imagick
 	pinentry
 	pixman
 	pkg-config
