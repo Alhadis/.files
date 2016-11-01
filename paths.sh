@@ -5,7 +5,7 @@ export LABS=~/Labs
 export AF=~/Forks/Atom
 export SNIP=~/Labs/Snippets
 export ATOM_THEME=~/Labs/Atom-PhoenixTheme
-export FILE_ICONS=~/.atom/packages/file-icons
+export FILE_ICONS=~/Labs/file-icons
 
 # Stuff I can never seem to memorise
 export APACHE_DIR=/private/etc/apache2
