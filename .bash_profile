@@ -40,3 +40,4 @@ export WORDLIST="$HOME/Library/Application Support/Google/Chrome/Default/Custom 
 cd ~/Desktop; fit;
 
 export BOWER_DIRECTORY="components"
+unset ATOM_HOME
