@@ -5,7 +5,7 @@
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm"
 
 # Configure $PATH
-export PATH=$HOME/Forks/Google/DepotTools:$PATH
+export PATH=$HOME/Mirrors/Google-DepotTools:$PATH
 export PATH="$HOME/.files/bin:/usr/local/sbin:$PATH"
 
 # Install CPAN modules outside Homebrew Cellar
