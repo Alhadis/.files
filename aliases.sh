@@ -39,6 +39,7 @@ alias ..='cd ..'
 #==============================================================================
 alias Firefox='open /Applications/Firefox.app'
 alias BOXPLZ='atom -d ~/Documents/Box-Drawing.txt'
+alias PHP_INI='php -i | grep "Loaded Configuration File" | sed -E "s/\s*=>\s*/:/g" | cut -d : -f 2'
 alias au='apm update --no-confirm'
 alias cask='brew cask'
 alias wl='watchman watch-list'
