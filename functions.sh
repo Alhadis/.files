@@ -78,6 +78,12 @@ t(){
 		return;
 	}
 	
+	# Atom + Mocha
+	[ -d test ] && [ -d node_modules/atom-mocha ] && {
+		atom -t test;
+		return;
+	}
+	
 	# Mocha
 	[ -d test ] && {
 		mocha --es_staging;
