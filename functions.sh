@@ -61,8 +61,8 @@ update(){
 t(){
 	
 	# Run test-script in current directory
-	[ -x test.js ] && {
-		./test.js;
+	[ -f test.js ] && {
+		node --es_staging ./test.js;
 		return;
 	}
 	
