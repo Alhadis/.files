@@ -1,8 +1,8 @@
 #!/bin/sh
 
-modules=(accordion atom-mocha basic-pagination chai-untab \
-	domtokenlist fix-ie get-options nag-window ppjson \
-	print record-jar)
+modules=(accordion atom-mocha basic-pagination \
+	domtokenlist fix-ie get-options nag-window \
+	ppjson print record-jar)
 
 for i in "${modules[@]}"; do
 	target="node_modules/$i"
@@ -12,7 +12,6 @@ for i in "${modules[@]}"; do
 		accordion)        path="$labs/Accordion";;
 		atom-mocha)       path="$labs/Atom-Mocha";;
 		basic-pagination) path="$labs/Pagination";;
-		chai-untab)       path="$labs/Chai-Untab";;
 		domtokenlist)     path="$labs/DOMTokenList";;
 		fix-ie)           path="$labs/Fix-IE";;
 		get-options)      path="$labs/GetOptions";;
