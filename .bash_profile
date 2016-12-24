@@ -24,6 +24,7 @@ shopt -s nocaseglob;    # Case-insensitive globbing
 shopt -s histappend;    # Append Bash history instead of replace
 shopt -s autocd;        # DOS-style directory navigation
 shopt -s globstar;      # Enable recursive globbing
+shopt -s dotglob;       # Enable .file globbing
 
 
 # Editor paths
