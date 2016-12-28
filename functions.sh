@@ -219,7 +219,6 @@ find-ext(){
 		return 3;
 	};
 	ext=$(echo "$1" | sed -e 's/\.//')
-	echo $ext;
 	mdfind ".$ext" | grep -E "\.$ext$"
 }
 
