@@ -179,47 +179,6 @@ convert-font(){
 }
 
 
-# Create a new Babel/ECMAScript2015+ project. Usage: babelplate "Project Name"
-babelplate(){
-	name="${1:-Babelplate}"
-	git clone https://github.com/Alhadis/Babelplate.git "$name";
-	cd "$name" && make;
-}
-
-
-# Export a band entry from Metal Archives
-ma-save(){
-	local json="band-$1.json"
-	ma-export --embed-images band "$1" > "$json" && {
-		name=$(node -pe "require('./$json').bands[$1].name")
-		mv "$json" "$name.json"
-		{ rm .DS_Store; } > /dev/null 2>&1;
-	}
-}
-
-
-# Lazily symlink a resource into the current working directory.
-symlink(){
-	local src="$1"
-	local src_name=$(basename "$src")
-	local name="${2:-$src_name}"
-	ln -s "$src" $(pwd)/"$name"
-}
-
-
-# Install some git-hooks to prevent hasty version-committing
-git-hooks(){
-	hash node 2>&- || { >&2 echo "These hooks require Node.js to run."; return 2; }
-	local name=check-version.sh
-	local dest=.git/hooks/commit-msg
-	test -f $SNIP/shell/git-hooks/$name && { cp $_ $dest; chmod +x $dest; } || {
-		echo >&2 "Couldn't locate hook in snippets repo; downloading";
-		curl -s 'https://raw.githubusercontent.com/Alhadis/Snippets/master/shell/git-hooks/$name' > $dest;
-		chmod +x $dest;
-	}
-}
-
-
 # Add Atom's icon to a file in Finder.
 # Used to make files without extensions look code-related.
 # See also: http://apple.stackexchange.com/q/213302
@@ -239,17 +198,6 @@ embed-atom-icon(){
 			touch -t $modified "$i"
 		} || { echo >&2 "Skipping read-only file: $i"; }
 	done
-}
-
-
-# Create a blank HTML document in the current directory and open it in Atom
-# Usage: htmldoc [optional-name] -> ./optional-name.htm ("blank.htm" if omitted)
-htmldoc(){
-	default=blank
-	to=${1:-${default}}
-	(echo "$to" | grep -sE '\.(html?|php)$' > /dev/null) || to+=".htm";
-	cp ~/.files/etc/$default.htm ./$to;
-	atom $to;
 }
 
 
