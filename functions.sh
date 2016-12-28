@@ -212,6 +212,40 @@ showlinks(){
 }
 
 
+# List files in the system that match a given extension
+find-ext(){
+	[ -z $1 ] && {
+		echo >&2 "Usage: find-ext .foo";
+		return 3;
+	};
+	ext=$(echo "$1" | sed -e 's/\.//')
+	echo $ext;
+	mdfind ".$ext" | grep -E "\.$ext$"
+}
+
+
+# Print file's header in hexadecimal
+xh(){
+	[ 0 -eq $# ] && {
+		>&2 echo "Usage: xh [-n count | -c bytes] /path/to/file";
+		return 1;
+	};
+	
+	# Check for options passed to `head`
+	opts=""
+	while getopts n:c: opt; do
+		case $opt in
+			n) opts+=" -n$OPTARG";;
+			c) opts+=" -c$OPTARG";;
+		esac
+	done
+	shift $((OPTIND - 1))
+	
+	# Print the damn thing
+	xxd < "$@" | head $opts
+}
+
+
 # Search for a file on GitHub
 gh-search(){
 	local usage="Usage: gh-search [ext[ension]|file[name]|lang[uage]] query"
