@@ -19,6 +19,7 @@
 	excludesfile = ~/.files/etc/.gitignore-global
 	attributesfile = ~/.files/etc/.gitattributes-global
 	whitespace = -blank-at-eol
+	ignorecase = false
 [alias]
 	co = checkout
 	r = remote --verbose
