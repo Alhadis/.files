@@ -37,6 +37,7 @@ alias ..='cd ..'
 #==============================================================================
 #   UNCOMMON SHORTHAND
 #==============================================================================
+alias ES6='open ~/Documents/eBooks/*/exploring-es6.pdf'
 alias Firefox='open /Applications/Firefox.app'
 alias BOXPLZ='atom -d ~/Documents/Box-Drawing.txt'
 alias PHP_INI='php -i | grep "Loaded Configuration File" | sed -E "s/\s*=>\s*/:/g" | cut -d : -f 2'
