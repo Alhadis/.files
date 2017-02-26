@@ -25,32 +25,32 @@ marker(){
 update(){
 	2>&1;
 	sudo -v || { echo 'User cancelled; aborting updates'; return 1; }
-	
+
 	# Update OS X
 	marker "Updating OS X";
 	softwareupdate -i -a;
-	
+
 	# Homebrew
 	marker "Updating Homebrew"
 	brew update;
 	brew upgrade --all --verbose;
 	brew cleanup;
-	
+
 	# NPM modules
 	marker "Updating Node modules"
 	npm -g update;
-	
+
 	# Ruby gems
-	marker "Updating Ruby gems" 
+	marker "Updating Ruby gems"
 	gem update --system;
 	gem update;
 	gem cleanup;
-	
+
 	# Update local language listing
 	marker "Updating Linguist language listing"
 	local langfile="https://raw.githubusercontent.com/github/linguist/master/lib/linguist/languages.yml"
 	wget $langfile -O ~/Documents/GitHub/Languages.yml
-	
+
 	# Update forks/copies of other people's repos
 	marker "Updating forked repositories"
 	~/Forks/update
@@ -59,37 +59,37 @@ update(){
 
 # Run automated tests
 t(){
-	
+
 	# Run test-script in current directory
 	[ -f test.js ] && {
 		node --es_staging ./test.js;
 		return;
 	}
-	
+
 	# Makefile: "make test"
 	[ -f Makefile ] && { grep Makefile -qe ^test:; } && {
 		make test;
 		return;
 	}
-	
+
 	# Atom
 	[ -d spec ] && {
 		atom -t spec;
 		return;
 	}
-	
+
 	# Atom + Mocha
 	[ -d test ] && [ -d node_modules/atom-mocha ] && {
 		atom -t test;
 		return;
 	}
-	
+
 	# Mocha
 	[ -d test ] && {
 		mocha --es_staging;
 		return;
 	}
-	
+
 	# No tests found; do nothing
 	true;
 }
@@ -97,26 +97,32 @@ t(){
 
 # Quick calculator: copies result to clipboard after evaluation
 calc(){
-	
+
 	# Strip alphabetic characters from input; it's common to copy "180.00 pt" from
 	# Adobe Illustrator, or other programs that append units to metric fields.
 	local result=$(printf "%s\n" "$*" | perl -pe 's/(\d+|\s+)x(\s+|\d+)/$1*$2/gi; s/[A-Za-z]+/ /g;' | bc -l | tr -d '\\\n')
-	
+
 	# Drop trailing zeroes after the decimal point
 	printf %s "$result" | perl -pe 's/\.0+$|(\.\d*?)0+$/$1/g' | pbcopy;
-	
+
 	# Copy to STDERR
 	pbpaste;
 	printf '\n';
 }
 
 
+# Open Atom in development mode.
+open-atom(){
+	atom -d "${1:-.}"
+}
+
+
 # Switch to whatever directory contains a file or executable
 jump-to(){
-	
+
 	# If given a directory, go to it
 	[ -d "$1" ] && { cd "$1"; return; }
-	
+
 	path=$(which "$1" || echo "$1")
 	[ -e "$path" ] && cd $(dirname $(realpath "$path"))
 }
@@ -125,7 +131,7 @@ jump-to(){
 # Evaluate and print an Emacs Lisp expression
 elisp(){
 	local expr="$*"
-	
+
 	# Not enclosed in parentheses; fix that
 	echo "$expr" | grep -qE "^\\(" || { expr="($expr)"; }
 	emacs --batch --eval "(message \"%s\" $expr)"
@@ -189,7 +195,7 @@ embed-atom-icon(){
 			return 2;
 		}
 	};
-	
+
 	for i in $@; do
 		[ -w "$i" ] && {
 			modified=$(stat -f "%Sm" -t "%Y%m%d%H%M.%S" "$i")
@@ -229,7 +235,7 @@ xh(){
 		>&2 echo "Usage: xh [-n count | -c bytes] /path/to/file";
 		return 1;
 	};
-	
+
 	# Check for options passed to `head`
 	opts=""
 	while getopts n:c: opt; do
@@ -239,7 +245,7 @@ xh(){
 		esac
 	done
 	shift $((OPTIND - 1))
-	
+
 	# Print the damn thing
 	xxd < "$@" | head $opts
 }
@@ -252,7 +258,7 @@ gh-search(){
 		echo >&2 $usage;
 		return 3;
 	};
-	
+
 	# Check what type of search we're performing
 	local type=$(echo "$1" | tr '[A-Z]' '[a-z]')
 	case "$type" in
@@ -264,7 +270,7 @@ gh-search(){
 			echo >&2 $usage;
 			return 3;;
 	esac
-	
+
 	local url="https://github.com/search?q=%s%%3A%s+NOT+nothack&type=Code";
 	open $(printf $url $type $2);
 }
@@ -275,28 +281,28 @@ opt(){
 	local usage="Usage: opt /path/to/file.js [v8-flags…]"
 	local bin_path=~/.files/bin/check-v8-opt
 	local options="--trace_deopt --allow-natives-syntax"
-	
+
 	# Nothing passed
 	[ 0 -eq $# ] && {
 		>&2 echo $usage;
 		return 1;
 	};
-	
+
 	# Check verbosity setting
 	local OPTIND option;
 	while getopts v-: option; do
 		[ v = $option ] && { options+=" --trace_opt_verbose"; shift; }
 	done
-	
+
 	local file=$(realpath "$1")
-	
+
 	# Specified file actually wasn't a file
 	[ -f "$file" ] || {
 		>&2 echo "Not found: $file";
 		>&2 echo $usage;
 		return 1;
 	};
-	
+
 	shift
 	node $options $@ $bin_path "$file"
 }

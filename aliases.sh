@@ -1,7 +1,7 @@
 #==============================================================================
 #   COMMON SHORTHAND
 #==============================================================================
-alias @='atom -d'
+alias @='open-atom'
 alias brake='bundle exec rake'
 alias bup='brew update; [ "$(brew outdated)" ] && brew upgrade && brew cleanup --prune=0 || true;'
 alias c='calc'
