@@ -1,7 +1,6 @@
 #==============================================================================
 #   COMMON SHORTHAND
 #==============================================================================
-alias @='open-atom'
 alias brake='bundle exec rake'
 alias bup='brew update; [ "$(brew outdated)" ] && brew upgrade && brew cleanup --prune=0 || true;'
 alias c='calc'
@@ -41,9 +40,6 @@ alias ES6='open ~/Documents/eBooks/*/exploring-es6.pdf'
 alias Firefox='open /Applications/Firefox.app'
 alias BOXPLZ='atom -d ~/Documents/Box-Drawing.txt'
 alias PHP_INI='php -i | grep "Loaded Configuration File" | sed -E "s/\s*=>\s*/:/g" | cut -d : -f 2'
-alias atom-dev=' [ ! -d ~/.atom/dev/packages ] && { mv ~/.atom/dev/* ~/.atom/dev/packages; }'
-alias atom-undev=' [ -d ~/.atom/dev/packages ] && { mv ~/.atom/dev/packages ~/.atom/dev/u; }'
-alias au='apm update --no-confirm'
 alias cask='brew cask'
 alias wl='watchman watch-list'
 alias wlt='watchman trigger-list $(pwd)'

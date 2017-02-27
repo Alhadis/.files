@@ -111,12 +111,6 @@ calc(){
 }
 
 
-# Open Atom in development mode.
-open-atom(){
-	atom -d "${1:-.}"
-}
-
-
 # Switch to whatever directory contains a file or executable
 jump-to(){
 

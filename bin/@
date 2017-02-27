@@ -1,0 +1,64 @@
+#!/bin/sh
+ON=~/.atom/dev/packages
+OFF=~/.atom/dev/u
+
+while getopts delsuDELSU? o; do
+	case $o in
+		# Disable dev-linked packages
+		D|d) {
+			if [ -d $ON ]; then
+				mv $ON $OFF
+				echo "Disabled"
+				exit 0
+			fi
+			echo "Already disabled"
+		};;
+
+		# Enable dev-linked packages
+		E|e) {
+			if [ ! -d $ON ]; then
+				mv $OFF $ON
+				echo "Enabled"
+				exit 0
+			fi
+			echo "Already enabled"
+		};;
+
+		# List packages currently dev-linked
+		L|l)
+			[ -d $ON ] && dir=$ON || dir=$OFF;
+			pkg=$(ls $dir)
+			if [ ! "$pkg" ]; then
+				"Empty directory: $pkg";
+				exit 1;
+			fi
+			IFS=
+			echo "Currently-linked:"
+			echo $pkg | sed 's/^/  * /'
+			exit 0
+		;;
+
+		# Show status of devlinks
+		S|s) [ ! -d $ON ] && echo "Disabled" || echo "Enabled" ;;
+
+		# Force an update of installed packages
+		U|u) apm update --no-confirm ;;
+
+		# Usage
+		*|?)
+			cat <<-"EOF"
+			Usage: @ [-delsu]
+			    -d  Disable devlinks
+			    -e  Enable devlinks
+			    -l  List devlinks
+			    -S  Show enabled/disabled status
+			    -u  Force apm update
+			EOF
+		;;
+	esac
+done
+
+# Open Atom in development mode.
+if [ $OPTIND -eq 1 ]; then
+	atom -d "${1:-.}"
+fi
