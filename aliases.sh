@@ -55,6 +55,7 @@ alias sudo='sudo '
 alias less='less -R'
 alias md5='md5 -q'
 alias node='node --es_staging'
+alias stat='stat -x'
 
 
 
