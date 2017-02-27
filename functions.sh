@@ -179,6 +179,24 @@ convert-font(){
 }
 
 
+# Quick 2-way conversion of WebP images
+webp(){
+	[ ! $1 ] && {
+		echo >&2 "Usage: webp /path/to/file";
+		return 1;
+	}
+	[ ! -f "$1" ] && {
+		echo >&2 "ERROR: \"$1\" isn't a valid image file.";
+		exit 1;
+	}
+	local abspath=$(realpath "$1")
+	local dirname=$(dirname "$abspath");
+	local filename=$(basename "$abspath");
+	echo "$filename" | grep -e '\.webp$' && { cmd=dwebp; ext=.png; }
+	${cmd-cwebp} "$abspath" -o "$dirname/"$(echo "$filename" | sed -E "s/(\.[A-Za-z0-9]+)$//")${ext-.webp};
+}
+
+
 # Add Atom's icon to a file in Finder.
 # Used to make files without extensions look code-related.
 # See also: http://apple.stackexchange.com/q/213302
@@ -301,6 +319,21 @@ opt(){
 	node $options $@ $bin_path "$file"
 }
 
+
+# Add filename extensions to images which lack them.
+add-image-extensions(){
+	local image_ext='png|gif|jpeg|jpg$'
+	for i in "$@"; do
+		local type=$(file -b --mime-type "$i" | grep -Eo "/$image_ext/" | tr -d '/' | sed -e 's/jpeg/jpg/')
+		[ $type ] && {
+			mv $i $(echo $i | sed -Ee "s/\.($image_ext)//")".$type" || {
+				tput setaf 9;
+				>&2 printf 'Could not rename file "%s".\n' $(basename $i);
+				tput sgr0;
+			};
+		};
+	done;
+}
 
 
 #==============================================================================

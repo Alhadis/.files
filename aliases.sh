@@ -19,20 +19,9 @@ alias l='ls -alh'
 alias m='make'
 alias nah='git checkout -- .'
 alias p='perl -pe '
-alias src='show-src'
 alias untag='xattr -d com.apple.metadata:_kMDItemUserTags 2>/dev/null'
 alias yeah="git reset HEAD .;"
 alias ..='cd ..'
-
-
-
-#==============================================================================
-#   UNCOMMON SHORTHAND
-#==============================================================================
-alias ES6='open ~/Documents/eBooks/*/exploring-es6.pdf'
-alias BOXPLZ='atom -d ~/Documents/Box-Drawing.txt'
-alias PHP_INI='php -i | grep "Loaded Configuration File" | sed -E "s/\s*=>\s*/:/g" | cut -d : -f 2'
-alias cask='brew cask'
 
 
 
@@ -78,7 +67,7 @@ alias woff2-encode='woff2_compress'
 #   USEFUL ONE-LINERS
 #==============================================================================
 
-# Get rid of that sodding 1px-border running along Chrome's edges
+# Restore Chrome's dimensions after accidentally resizing
 alias fit-chrome='osascript -e '"'"'tell first window of application "Google Chrome" to set bounds to {0, 0, 1440, 800}'"'"
 
 
@@ -88,10 +77,6 @@ alias fuck-this-shit='git stash; git stash drop; git gc; git prune -v; git clean
 
 # Undo last commit (as long as it's not been pushed)
 alias fuck-that-shit='git reset --soft HEAD~1;'
-
-
-# Generate 10 paragraphs of Ancient Roman "wat"
-alias lipsum='lorem-ipsum 10 paragraphs'
 
 
 # Strip embedded metadata from a file or directory of files
@@ -106,26 +91,8 @@ alias unquarantine='find .  -print0 -type f -o -type d | xargs -0 xattr -d com.a
 alias s='grep -irnw . -e '
 
 
-# Hide/show files or directories in Finder
-alias hide='chflags hidden'
-alias show='chflags nohidden'
-
-
-# ROT13 "encryption". Usage: echo "String" | rot13
-alias rot13="tr 'A-Za-z' 'N-ZA-Mn-za-m'"
-
-
-# Output the last shell command as a string
-alias last-command='history | tail -n2 | head -n1 | sed -r "s/^\s+[0-9]+\*?\s+//"'
-
-
 # Copy the last command to the clipboard. Useful for saving helpful one-liners.
-alias copy-that='printf %s "$(last-command)" | pbcopy'
-
-
-# Strip lines from STDIN that start with a # or ;
-# Useful for ignoring comment-lines in configuration files
-alias strip-comments="sed -r '/^\s*([#;].*)?$/d'"
+alias copy-that='printf %s "$(history | tail -n2 | head -n1 | sed -r '"'s/^\s+[0-9]+\*?\s+//'"')" | pbcopy'
 
 
 # Highlight the current date on the calendar
@@ -134,7 +101,6 @@ alias cal='cal | sed -r '"'"'s/(^|\s)('"'"'$(echo $(date +%d) | sed s/^0//)'"'"'
 
 
 # Clear Terminal's scrollback.
-# I sometimes get confused when switching between Windows in VirtualBox and Mac OS. :c
 alias cls='osascript -e '"'"'tell application "System Events" to keystroke "k" using command down'"';"
 
 
@@ -152,31 +118,6 @@ alias gh-lang='gh-search lang'
 alias yoink='adb pull storage/extSdCard/DCIM/Camera ~/Desktop; dsclean;'
 
 
-# Clean the clipboard's contents of impurities
-alias purify='pbpaste | purify | trim | sed -E s/"\r\n"/"\n"/ | tr "\r" "\n" | pbcopy'
-
-
-# Temporary workaround until I get WP-HookTracer finished
-alias hooks-on='perl -pi -e '"'"'s/(static\s+\$trace_(?:filters|actions)\s*=\s*)\d/${1}1/g'"'"' hooktracer.php'
-alias hooks-off='perl -pi -e '"'"'s/(static\s+\$trace_(?:filters|actions)\s*=\s*)\d/${1}0/g'"'"' hooktracer.php'
-alias hooks-reset='> ~/Documents/apache.log'
-
-
-
-
-#==============================================================================
-#   LOOTED FROM BELGIAN FLY-KICK GUY:
-#   *   https://github.com/mathiasbynens/dotfiles/blob/master/.aliases
-#==============================================================================
-
-# IP addresses
-alias ip='dig +short myip.opendns.com @resolver1.opendns.com'
-alias localip='ipconfig getifaddr en0'
-
-# Clean up LaunchServices to remove duplicates in the "Open With" menu
+# Crap to help macOS run smoother. Credit: https://mths.be/bum
 alias lscleanup="/System/Library/Frameworks/CoreServices.framework/Frameworks/LaunchServices.framework/Support/lsregister -kill -r -domain local -domain system -domain user && killall Finder"
-
-# Empty the Trash on all mounted volumes and the main HDD.
-# Also, clear Apple's System Logs to improve shell startup speed.
-# Finally, clear download history from quarantine. https://mths.be/bum
 alias emptytrash="sudo rm -rfv /Volumes/*/.Trashes; sudo rm -rfv ~/.Trash; rm -rfv ~/.emacs.d/auto-save-list && mkdir ~/.emacs.d/auto-save-list; sudo rm -rfv /private/var/log/asl/*.asl; sqlite3 ~/Library/Preferences/com.apple.LaunchServices.QuarantineEventsV* 'delete from LSQuarantineEvent'"
