@@ -6,8 +6,6 @@ alias bup='brew update; [ "$(brew outdated)" ] && brew upgrade && brew cleanup -
 alias c='calc'
 alias fd='git clean -fd'
 alias fj='t 2>&1 | tabfix | perl -pe "s/^\t+//g; s/Expected | to equal /\n/g;" | pbcopy'
-alias fs='pbpaste | filesafe | pbcopy'
-alias G:='cd ~/VirtualBox/Shared'
 alias g='git status'
 alias ga='git add . --all'
 alias gb='git branch -av'
@@ -17,17 +15,12 @@ alias gl='git log'
 alias gp='git push origin'
 alias gr='git remote --verbose'
 alias gs='git show'
-alias k='make'
 alias l='ls -alh'
 alias m='make'
-alias mk='make'
-alias mans='mansrc'
 alias nah='git checkout -- .'
 alias p='perl -pe '
 alias src='show-src'
 alias untag='xattr -d com.apple.metadata:_kMDItemUserTags 2>/dev/null'
-alias vopt='opt -v'
-alias w80="perl -p -i -e 's/.{80}/$&\n/g'"
 alias yeah="git reset HEAD .;"
 alias ..='cd ..'
 
@@ -37,12 +30,9 @@ alias ..='cd ..'
 #   UNCOMMON SHORTHAND
 #==============================================================================
 alias ES6='open ~/Documents/eBooks/*/exploring-es6.pdf'
-alias Firefox='open /Applications/Firefox.app'
 alias BOXPLZ='atom -d ~/Documents/Box-Drawing.txt'
 alias PHP_INI='php -i | grep "Loaded Configuration File" | sed -E "s/\s*=>\s*/:/g" | cut -d : -f 2'
 alias cask='brew cask'
-alias wl='watchman watch-list'
-alias wlt='watchman trigger-list $(pwd)'
 
 
 
