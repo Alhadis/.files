@@ -2,7 +2,7 @@
 ON=~/.atom/dev/packages
 OFF=~/.atom/dev/u
 
-while getopts delsuDELSU? o; do
+while getopts delsumDELSUM? o; do
 	case $o in
 		# Disable dev-linked packages
 		D|d) {
@@ -38,6 +38,9 @@ while getopts delsuDELSU? o; do
 			exit 0
 		;;
 
+		# Open a manual page in Atom
+		M|m) path=$(man -w "$2") && atom -d $(realpath "$path") || exit 1;;
+
 		# Show status of devlinks
 		S|s) [ ! -d $ON ] && echo "Disabled" || echo "Enabled" ;;
 
@@ -47,12 +50,13 @@ while getopts delsuDELSU? o; do
 		# Usage
 		*|?)
 			cat <<-"EOF"
-			Usage: @ [-delsu]
+			Usage: @ [-delsu] [-m name]
 			    -d  Disable devlinks
 			    -e  Enable devlinks
 			    -l  List devlinks
 			    -S  Show enabled/disabled status
 			    -u  Force apm update
+			    -m  Open a named manpage in Atom
 			EOF
 		;;
 	esac
