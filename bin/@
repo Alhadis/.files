@@ -1,70 +1,74 @@
 #!/bin/sh
-NL=$'\n'
+usage(){
+	cat <<-"EOF"
+	Usage: @ [-deSsUw] [-m name]
+	
+	Toggle devlinks
+	    -d  Disable
+	    -e  Enable
+	
+	Print status
+	    -s  Short
+	    -S  Verbose
+	
+	Anything else
+	    -m  Edit a named manpage in Atom
+	    -U  Force-update installed packages
+	    -w  Wipe user-cache/storage data
+	EOF
+}
+
 ON=~/.atom/dev/packages
 OFF=~/.atom/dev/u
 
-while getopts delsumwDELSUMW? o; do
-	case $o in
-		# Disable dev-linked packages
-		D|d) {
-			if [ -d $ON ]; then
-				mv $ON $OFF
-				echo "Disabled"
-				exit 0
-			fi
-			echo "Already disabled"
-		};;
+while getopts "deSsmUw?" o; do case $o in
 
-		# Enable dev-linked packages
-		E|e) {
-			if [ ! -d $ON ]; then
-				mv $OFF $ON
-				echo "Enabled"
-				exit 0
-			fi
-			echo "Already enabled"
-		};;
+	# Disable
+	d) [ -d $ON ] \
+		&& { mv $ON $OFF && echo "Disabled";}\
+		|| { echo "Already disabled"; exit 1;};;
 
-		# List packages currently dev-linked
-		L|l)
-			[ -d $ON ] && dir=$ON || dir=$OFF;
-			pkg=$(ls $dir)
-			if [ ! "$pkg" ]; then
-				"Empty directory: $pkg";
-				exit 1;
-			fi
-			IFS=
-			echo "Currently-linked:"
-			echo $pkg | sed 's/^/  * /'
-			exit 0
-		;;
+	# Enable
+	e) [ -d $OFF ] \
+		&& { mv $OFF $ON && echo "Enabled";}\
+		|| { echo "Already enabled"; exit 1;};;
 
-		# Open a manual page in Atom
-		M|m) path=$(man -w "$2") && atom -d $(realpath "$path") || exit 1;;
+	# Short status
+	s) [ -d $ON ] \
+		&& echo "Status: Enabled"  \
+		|| echo "Status: Disabled" ;;
 
-		# Show status of devlinks
-		S|s) [ ! -d $ON ] && echo "Disabled" || echo "Enabled" ;;
+	# Long status
+	S)
+		printf "Status:   ";
+		[ -d $ON ] \
+			&& { dir=$ON;  echo "Enabled" ;}\
+			|| { dir=$OFF; echo "Disabled";}
+		pkg=$(ls $dir)
+		num=$(echo "$pkg" | wc -l | tr -d ' ')
+		echo "Path:     $dir";
+		echo "$num Packages:";
+		[ 0 -eq "$num" ] \
+			&& { echo $'\t'"Empty directory"; exit 1;}\
+			|| { IFS=; echo $pkg | sed 's/^/  * /';}
+		exit 0;
+	;;
 
-		# Force an update of installed packages
-		U|u) apm update --no-confirm ;;
+	# Edit a named manpage in Atom
+	m) path=$(man -w "$2") && atom -d $(realpath "$path") || exit 1;;
 
-		# Wipe user-cache directories
-		W|w) rm -rfv ~/.atom/{blob-store,compile-cache,recovery,storage} && echo "${NL}Nuked";;
+	# Force-update installed packages
+	U) apm update --no-confirm ;;
 
-		# Usage
-		*|?)
-			cat <<-"EOF"
-			Usage: @ [-delsuw] [-m name]
-			    -d  Disable devlinks
-			    -e  Enable devlinks
-			    -l  List devlinks
-			    -s  Show enabled/disabled status
-			    -u  Force apm update
-			    -m  Open a named manpage in Atom
-			    -w  Wipe user-cache directories
-			EOF
-		;;
-	esac
+	# Wipe user-cache data
+	w) {
+		rm -rfv ~/.atom/{blob-store,compile-cache,recovery,storage}
+		echo $'\n'"Gone.";
+	};;
+	
+	# Default
+	\*|\?) usage && exit 0 ;;
+esac
 done
 
 # Open Atom in development mode.
