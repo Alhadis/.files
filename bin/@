@@ -1,8 +1,9 @@
 #!/bin/sh
+NL=$'\n'
 ON=~/.atom/dev/packages
 OFF=~/.atom/dev/u
 
-while getopts delsumDELSUM? o; do
+while getopts delsumwDELSUMW? o; do
 	case $o in
 		# Disable dev-linked packages
 		D|d) {
@@ -47,16 +48,20 @@ while getopts delsumDELSUM? o; do
 		# Force an update of installed packages
 		U|u) apm update --no-confirm ;;
 
+		# Wipe user-cache directories
+		W|w) rm -rfv ~/.atom/{blob-store,compile-cache,recovery,storage} && echo "${NL}Nuked";;
+
 		# Usage
 		*|?)
 			cat <<-"EOF"
-			Usage: @ [-delsu] [-m name]
+			Usage: @ [-delsuw] [-m name]
 			    -d  Disable devlinks
 			    -e  Enable devlinks
 			    -l  List devlinks
-			    -S  Show enabled/disabled status
+			    -s  Show enabled/disabled status
 			    -u  Force apm update
 			    -m  Open a named manpage in Atom
+			    -w  Wipe user-cache directories
 			EOF
 		;;
 	esac
