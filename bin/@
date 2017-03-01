@@ -1,7 +1,7 @@
 #!/bin/sh
 usage(){
 	cat <<-"EOF"
-	Usage: @ [-deSsUw] [-m name]
+	Usage: @ [-deSsFUw] [-m name]
 	
 	Toggle devlinks
 	    -d  Disable
@@ -12,6 +12,7 @@ usage(){
 	    -S  Verbose
 	
 	Anything else
+	    -F  Sync forked packages
 	    -m  Edit a named manpage in Atom
 	    -U  Force-update installed packages
 	    -w  Wipe user-cache/storage data
@@ -21,7 +22,7 @@ usage(){
 ON=~/.atom/dev/packages
 OFF=~/.atom/dev/u
 
-while getopts "deSsmUw?" o; do case $o in
+while getopts "deSsmFUw?" o; do case $o in
 
 	# Disable
 	d) [ -d $ON ] \
@@ -56,6 +57,13 @@ while getopts "deSsmUw?" o; do case $o in
 
 	# Edit a named manpage in Atom
 	m) path=$(man -w "$2") && atom -d $(realpath "$path") || exit 1;;
+
+	# Sync forked packages
+	F) {
+		path="$HOME/Forks/Atom"
+		update-repos -pg "$path"
+		find "$path" -type d -exec npm update {} +
+	};;
 
 	# Force-update installed packages
 	U) apm update --no-confirm ;;
