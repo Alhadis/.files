@@ -19,6 +19,7 @@ alias l='ls -alh'
 alias m='make'
 alias nah='git checkout -- .'
 alias p='perl -pe '
+alias PS='git commit --amend'
 alias untag='xattr -d com.apple.metadata:_kMDItemUserTags 2>/dev/null'
 alias yeah="git reset HEAD .;"
 alias ..='cd ..'
