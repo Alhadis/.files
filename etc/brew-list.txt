@@ -3,23 +3,16 @@ Casks
 	audacity
 	audio-hijack
 	beyond-compare
-	cyberduck
 	dropbox
 	emacs
 	firefox
 	flash-decompiler-trillix
-	gimp
 	glyphs
-	google-earth
 	handbrake
 	inkscape
 	iterm2
 	java
-	libreoffice
-	opera
 	poedit
-	privatetunnel
-	robomongo
 	senuti
 	sequel-pro
 	soulseek
