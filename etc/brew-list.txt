@@ -12,6 +12,7 @@ Casks
 	glyphs
 	google-earth
 	handbrake
+	inkscape
 	iterm2
 	java
 	libreoffice
@@ -23,6 +24,7 @@ Casks
 	sequel-pro
 	soulseek
 	sqlitebrowser
+	textmate
 	tunnelblick
 	utorrent
 	virtualbox
@@ -34,13 +36,13 @@ Taps
 	bramstein/webfonttools
 	caskroom/cask
 	caskroom/fonts
+	dunn/emacs
 	homebrew/apache
+	homebrew/boneyard
 	homebrew/core
 	homebrew/dupes
-	homebrew/emacs
 	homebrew/gui
 	homebrew/head-only
-	homebrew/php
 	homebrew/science
 	homebrew/services
 	homebrew/tex
@@ -50,11 +52,14 @@ Formulae
 	aha
 	algol68g
 	android-sdk
+	ansi-emacs
 	ansiweather
 	ant
 	apr
 	apr-util
+	ascii-art-to-unicode
 	asciidoc
+	async-emacs
 	atk
 	atkmm
 	ats2-postiats
@@ -87,10 +92,13 @@ Formulae
 	coreutils
 	crystal-lang
 	cscope
+	csv-mode
 	curl
+	cvs
 	czmq
 	d-bus
 	dash
+	dash-emacs
 	dbus
 	diff-pdf
 	dirmngr
@@ -99,6 +107,7 @@ Formulae
 	dos2unix
 	doxygen
 	editorconfig
+	editorconfig-emacs
 	emacs
 	emscripten
 	eot-utils
@@ -107,6 +116,7 @@ Formulae
 	fdk-aac
 	ffmpeg
 	fftw
+	field3d
 	findutils
 	flac
 	fltk
@@ -137,6 +147,8 @@ Formulae
 	glibmm
 	glm
 	gmp
+	gmp@4
+	gnu-apl
 	gnu-getopt
 	gnu-sed
 	gnutls
@@ -152,22 +164,24 @@ Formulae
 	gtkglext
 	gtkmm
 	harfbuzz
+	hdf5
 	help2man
 	hicolor-icon-theme
 	highlight
 	html-xml-utils
-	httpd24
+	hub
 	hunspell
 	icu4c
 	id3lib
 	id3v2
+	ievms
 	ilmbase
 	imagemagick
 	imagesnap
 	imageworsener
 	iniparser
-	inkscape
 	isl
+	isl@0.12
 	iso-codes
 	jasper
 	jbig2dec
@@ -216,6 +230,7 @@ Formulae
 	libtiff
 	libtool
 	libuninameslist
+	libunistring
 	libusb
 	libusb-compat
 	libuv
@@ -242,19 +257,20 @@ Formulae
 	malbolge
 	mandoc
 	markdown
+	markdown-mode
 	media-info
+	mercurial
 	mit-scheme
 	mlton
-	mongodb
 	moreutils
 	mp3info
 	mpfr
-	mysql
 	nano
 	nasm
 	ncurses
 	netpbm
 	nettle
+	ninja
 	node
 	oggz
 	oniguruma
@@ -267,7 +283,9 @@ Formulae
 	openssl
 	opus
 	orc
+	org-mode
 	ossp-uuid
+	p11-kit
 	p7zip
 	pandoc
 	pango
@@ -279,8 +297,6 @@ Formulae
 	pcre2
 	perl
 	phantomjs
-	php71
-	php71-imagick
 	pinentry
 	pixman
 	pkg-config
@@ -290,6 +306,7 @@ Formulae
 	popt
 	poster
 	postgresql
+	powerline-emacs
 	protobuf
 	psutils
 	pth
@@ -299,15 +316,17 @@ Formulae
 	pygobject3
 	python
 	python3
+	qrencode
 	qt
-	r
 	rakudo-star
+	re2c
 	readline
 	rename
 	rtmpdump
 	ruby
 	rust
 	rust-mode
+	s-emacs
 	sbcl
 	schroedinger
 	screen
@@ -315,13 +334,15 @@ Formulae
 	sfnt2woff-zopfli
 	shared-mime-info
 	sip
-	slime
 	source-highlight
 	speex
 	sqlite
+	subversion
 	svg2pdf
 	svg2png
 	swig
+	szip
+	tablist
 	texi2html
 	texinfo
 	texmath
@@ -331,6 +352,7 @@ Formulae
 	tree
 	ttf2pt1
 	ttfautohint
+	unar
 	unixodbc
 	unpaper
 	unrar
@@ -341,6 +363,7 @@ Formulae
 	watchman
 	webp
 	wget
+	wgetpaste
 	woff2
 	wxmac
 	x264
@@ -348,7 +371,6 @@ Formulae
 	xvid
 	xz
 	yasm
-	youtube-dl
 	yuicompressor
 	zeromq
 	zlib

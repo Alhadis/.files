@@ -26,6 +26,7 @@
 (let ((default-directory "/usr/local/share/emacs/site-lisp/"))
   (normal-top-level-add-subdirs-to-load-path))
 (load "aggressive-indent")
+(require 'ascii-art-to-unicode)
 (add-hook 'emacs-lisp-mode-hook #'aggressive-indent-mode)
 (autoload 'rust-mode "rust-mode" nil t)
 (autoload 'coffee-mode "coffee-mode" nil t)
