@@ -3,6 +3,8 @@ use strict;
 use warnings;
 use autodie;
 use Getopt::Long qw(:config auto_abbrev bundling);
+our (@expr, $verbose);
+
 
 # Read a file's entire content into memory
 sub slurp {
@@ -15,13 +17,9 @@ sub slurp {
 	return $data;
 }
 
-# Pluck -e args from command-line
-my @expr = ();
-my $verbose = undef;
-GetOptions("e|expr=s" => \@expr, "v|verbose" => \$verbose);
-
-for (@ARGV) {
-	my $file = $_;
+# Apply resolved expressions list to a file
+sub apply_edits {
+	my $file = $_[0];
 	my $input = slurp $file;
 	$_ = $input;
 	foreach my $re (@expr){ eval $re; }
@@ -36,4 +34,21 @@ for (@ARGV) {
 	elsif ($verbose) {
 		print "File unchanged: $file\n";
 	}
+}
+
+# Pluck -e args from command-line
+@expr = ();
+$verbose = undef;
+GetOptions("e|expr=s" => \@expr, "v|verbose" => \$verbose);
+if(scalar(@expr) > 0){
+	map { apply_edits $_ } @ARGV;
+}
+
+# If no expressions were passed as flags, treat args as starting
+# with target file, followed by variable-length expression list.
+else {
+	my $file = shift;
+	@expr = @ARGV;
+	@ARGV = ($file);
+	apply_edits $file;
 }
