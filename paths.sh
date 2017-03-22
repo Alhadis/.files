@@ -1,7 +1,6 @@
 # Commonly-accessed directories
 export F=~/.files
 export AF=~/Forks/Atom
-export SNIP=~/Labs/Snippets
 export ATOM_THEME=~/Labs/Atom-PhoenixTheme
 export FILE_ICONS=~/Labs/file-icons
 
