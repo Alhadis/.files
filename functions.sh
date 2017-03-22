@@ -11,49 +11,15 @@ fit(){
 }
 
 
-# Print a Homebrew-style coloured marker
-marker(){
-	BOLD=$(tput bold)
-	GREEN=$(tput setaf 10)
-	RESET=$(tput sgr0)
-	ARROW="${BOLD}${GREEN}==>${RESET}"
-	echo "${ARROW} ${BOLD}$1${RESET}"
-}
-
-
-# Upgrade system software and libraries
+# Upgrade system software and libraries, and keep local repos synced
 update(){
-	2>&1;
-	sudo -v || { echo 'User cancelled; aborting updates'; return 1; }
-
-	# Update OS X
-	marker "Updating OS X";
 	softwareupdate -i -a;
-
-	# Homebrew
-	marker "Updating Homebrew"
+	update-repos $AF ~/Mirrors ~/Forks
 	brew update;
-	brew upgrade --all --verbose;
-	brew cleanup;
-
-	# NPM modules
-	marker "Updating Node modules"
-	npm -g update;
-
-	# Ruby gems
-	marker "Updating Ruby gems"
-	gem update --system;
-	gem update;
+	brew upgrade && brew cleanup --prune=0;
+	npm update -g;
+	gem update -N --system && gem update -N;
 	gem cleanup;
-
-	# Update local language listing
-	marker "Updating Linguist language listing"
-	local langfile="https://raw.githubusercontent.com/github/linguist/master/lib/linguist/languages.yml"
-	wget $langfile -O ~/Documents/GitHub/Languages.yml
-
-	# Update forks/copies of other people's repos
-	marker "Updating forked repositories"
-	~/Forks/update
 }
 
 
