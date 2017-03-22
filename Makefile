@@ -1,12 +1,33 @@
 all: lists
 
-# Generate a purdy PostScript of V8's glossy new manpage
-v8-src := share/man/man1/v8.1
-v8-obj := $(v8-src:.1=.ps)
-$(v8-obj): $(v8-src)
-	groff -man -eC -Tps $^ > $@
-v8: $(v8-obj)
+# Setup new workstation
+install: symlinks packages perl-links post-install-msg
 
+# Reconnect symlinked dotfiles
+symlinks := ~/.emacs.d ~/.gitconfig ~/.vimrc ~/.ssh/config
+symlinks: $(symlinks)
+~/.%: ./%
+	ln -sf $^ $@
+~/.ssh/config: ssh-config
+	ln -sf $^ $@
+
+# Reinstall packages, modules and Homebrew formulae
+packages: $(install-script)
+	@./$^
+
+# Link preinstalled Perl stuff
+perl-links:
+	cd ~ && chflags hidden perl5
+	eval "$(perl -I$HOME/perl5/lib/perl5 -Mlocal::lib)"
+
+# Print reminders that won't fit easily into this mess
+post-install-msg:
+	@permalink="https://discussions.apple.com/thread/7675366?start=0&tstart=0";\
+	echo "Done. If MacBook overheats, enable iCloud keychain:";\
+	echo "\x1B[4m$$permalink""\x1B[0m";
+.PHONY: packages
+
+# ==================================
 
 # Update lists of installed packages
 lists: $(addsuffix -list,npm gem pip brew)

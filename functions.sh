@@ -288,38 +288,6 @@ gh-search(){
 }
 
 
-# Check the V8 optimisation status of a JavaScript file
-opt(){
-	local usage="Usage: opt /path/to/file.js [v8-flags…]"
-	local bin_path=~/.files/bin/check-v8-opt
-	local options="--trace_deopt --allow-natives-syntax"
-
-	# Nothing passed
-	[ 0 -eq $# ] && {
-		>&2 echo $usage;
-		return 1;
-	};
-
-	# Check verbosity setting
-	local OPTIND option;
-	while getopts v-: option; do
-		[ v = $option ] && { options+=" --trace_opt_verbose"; shift; }
-	done
-
-	local file=$(realpath "$1")
-
-	# Specified file actually wasn't a file
-	[ -f "$file" ] || {
-		>&2 echo "Not found: $file";
-		>&2 echo $usage;
-		return 1;
-	};
-
-	shift
-	node $options $@ $bin_path "$file"
-}
-
-
 # Add filename extensions to images which lack them.
 add-image-extensions(){
 	local image_ext='png|gif|jpeg|jpg$'
