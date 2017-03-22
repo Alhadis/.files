@@ -19,6 +19,7 @@ update(){
 	npm update -g;
 	gem update -N --system && gem update -N;
 	gem cleanup;
+	cd ~/Mirrors && gclient sync;
 	update-repos $AF ~/Mirrors ~/Forks
 }
 
