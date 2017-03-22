@@ -24,6 +24,7 @@ npm_modules="
 	karma
 	less
 	mocha
+	ppjson
 	semver
 	uglify-js
 ";
