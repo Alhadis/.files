@@ -1,4 +1,9 @@
-all: lists
+all:
+
+# Restore the pre-25.1 Emacs icon with the prettier traditional one
+emacs-icon: $(wildcard .emacs.d/*.icns)
+	@cp -f $^ /Applications/Emacs.app/Contents/Resources/
+	@echo "Emacs icon updated. Restart system to force display in Finder/Spotlight.";
 
 # Setup new workstation
 install: symlinks packages perl-links post-install-msg
