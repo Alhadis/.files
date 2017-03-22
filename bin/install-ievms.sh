@@ -11,10 +11,6 @@
 #
 
 
-# Import some useful functions
-source $(realpath $(dirname "$0")/../functions.sh)
-
-
 # Generate a temporary directory
 TEMP=$(mktemp -d /tmp/$(basename "$0").XXXXXX) || {
 	echo >&2 "Could not create temporary directory";
@@ -30,7 +26,7 @@ VBoxManage list vms > $BEFORE
 
 
 # Download and run the IEVM installer
-marker "Installing IEVMs"
+echo "==> Installing IEVMs"
 SCRIPT_URL=https://raw.githubusercontent.com/xdissent/ievms/master/ievms.sh
 curl -s $SCRIPT_URL | IEVMS_VERSIONS="$*" bash
 
@@ -73,7 +69,7 @@ config(){
 
 
 # Configure each new virtual machine
-marker "Configuring new VMs"
+echo "Configuring new VMs"
 VBoxManage list vms > $AFTER
 config $(comm -3 $BEFORE $AFTER | sed -r 's/^\t*"(.+)".+/\1/g')
 rm -rf $TEMP;

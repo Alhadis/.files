@@ -14,12 +14,12 @@ fit(){
 # Upgrade system software and libraries, and keep local repos synced
 update(){
 	softwareupdate -i -a;
-	update-repos $AF ~/Mirrors ~/Forks
 	brew update;
 	brew upgrade && brew cleanup --prune=0;
 	npm update -g;
 	gem update -N --system && gem update -N;
 	gem cleanup;
+	update-repos $AF ~/Mirrors ~/Forks
 }
 
 
@@ -98,8 +98,7 @@ elisp(){
 }
 
 
-# Read a string of numbers out one at a time.
-# Useful to double-check number codes transcribed from physical sources (serial codes, etc).
+# RTBTM: "Read that back to me". Reads out a list of numbers one-by-one.
 rtbtm(){
 	echo "$*" | perl -pe 's/(\d)\D*/$1. /g' | say
 }
@@ -160,28 +159,6 @@ webp(){
 	local filename=$(basename "$abspath");
 	echo "$filename" | grep -e '\.webp$' && { cmd=dwebp; ext=.png; }
 	${cmd-cwebp} "$abspath" -o "$dirname/"$(echo "$filename" | sed -E "s/(\.[A-Za-z0-9]+)$//")${ext-.webp};
-}
-
-
-# Add Atom's icon to a file in Finder.
-# Used to make files without extensions look code-related.
-# See also: http://apple.stackexchange.com/q/213302
-embed-atom-icon(){
-	[ -f "$1" ] || {
-		[ -f "Makefile" ] && embed-atom-icon "Makefile" || {
-			echo >&2 "Usage: embed-atom-icon [recipients...]"
-			return 2;
-		}
-	};
-
-	for i in $@; do
-		[ -w "$i" ] && {
-			modified=$(stat -f "%Sm" -t "%Y%m%d%H%M.%S" "$i")
-			cat ~/.files/etc/atom-icon.rsrc > "$i"/..namedfork/rsrc
-			SetFile -a C "$i"
-			touch -t $modified "$i"
-		} || { echo >&2 "Skipping read-only file: $i"; }
-	done
 }
 
 
@@ -271,84 +248,26 @@ add-image-extensions(){
 
 
 #==============================================================================
-#   FOLLOWING FUNCTIONS ALL SHAMELESSLY PINCHED FROM THESE LOVELY CHAPS:
-#
-#   *   https://github.com/mathiasbynens/dotfiles
-#   *   https://github.com/paulirish/dotfiles
+# Following functions sourced from https://github.com/mathiasbynens/dotfiles. #
 #==============================================================================
-
 
 # "Find" shorthand
 function f(){
 	find . -name "$1" 2>&1 | grep -v 'Permission denied'
 }
 
-
 # Change directory to whatever's in the forefront Finder window
-# Mnemonic: "cd Finder"
 function cdf(){
 	cd "`osascript -e 'tell app "Finder" to POSIX path of (insertion location as alias)'`"
 }
 
-
-# Use Git's coloured diff
-function diff(){
-	git diff --no-index --color-words "$@";
-}
-
-
-# Get a character's Unicode code point
-function codepoint(){
-	perl -e "use utf8; print sprintf('U+%04X', ord(\"$@\"))";
-
-	# Print a newline unless we're piping the output to another program
-	if [ -t 1 ]; then
-		echo ""; # newline
-	fi;
-}
-
-
-# Decode \x{ABCD}-style Unicode escape sequences
-function unidecode(){
-	perl -e "binmode(STDOUT, ':utf8'); print \"$@\"";
-	# Print a newline unless we're piping the output to another program
-	if [ -t 1 ]; then
-		echo ""; # newline
-	fi;
-}
-
-
-# Look-up a domain or a URL in whois
-function whois(){
-	local domain=$(echo "$1" | awk -F/ '{print $3}')
-	if [ -z $domain ] ; then
-		domain=$1
-	fi
-	echo "Getting whois record for: $domain …"
-	/usr/bin/whois -h whois.internic.net $domain | sed '/NOTICE:/q'
-}
-
-
-
-# Check who's been using the laptop's iSight camera
-camerausedby(){
-	echo -e "Checking to see who is using the iSight camera… \xF0\x9F\x93\xB7"
-	usedby=$(lsof | grep -w "AppleCamera\|USBVDC\|iSight" | awk '{printf $2"\n"}' | xargs ps)
-	echo -e "Recent camera uses:\n$usedby"
-}
-
-
-# "oak" is a shorthand for "tree" with hidden files and colour enabled, ignoring
-# the ".git" directory, listing directories first. The output gets piped into "less"
-# with options to preserve colour and line numbers, unless the output is small enough
-# for one screen.
+# Pimped `tree` output
 oak(){
 	tree -aC -I '.git|node_modules|bower_components' --dirsfirst "$@" | less -FRNX;
 }
 
-
 # Compare original and gzipped file size
-function gz() {
+gz() {
 	local origsize=$(wc -c < "$1");
 	local gzipsize=$(gzip -c "$1" | wc -c);
 	local ratio=$(echo "$gzipsize * 100 / $origsize" | bc -l);

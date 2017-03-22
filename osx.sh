@@ -6,8 +6,7 @@ git config --global core.editor $(which vim)
 
 
 #==============================================================================
-# Credit for this taken from Beyen's repo, onya cobber:
-#   *   https://github.com/mathiasbynens/dotfiles/blob/master/.osx
+# Source:  https://github.com/mathiasbynens/dotfiles/blob/master/.osx
 #==============================================================================
 
 
