@@ -43,6 +43,9 @@
 (global-set-key (kbd "C-u") (lambda ()
                              (interactive)
                              (kill-line 0)))
+(global-set-key [(f1)] (lambda ()
+                        (interactive)
+                        (manual-entry (current-word))))
 
 ;; Show cursor's current column number
 (setq column-number-mode t)
