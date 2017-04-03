@@ -41,19 +41,23 @@ lists: $(addsuffix -list,npm gem pip brew)
 install-script := etc/install-packages.sh
 brew-update-off = export HOMEBREW_NO_AUTO_UPDATE=1
 brew-update-on  = export HOMEBREW_NO_AUTO_UPDATE=
+print-status    = tput setaf 4; printf '==> '; tput sgr0; echo $(1)
 
 # Global NPM modules
 npm-list: $(install-script)
+	@$(call print-status,"Updating list: NPM modules");
 	@modules=$$(ls /usr/local/lib/node_modules | sort -fi | sed -Ee '/npm|uglifyjs/d; s/^/\t/g;');\
 	edit $^ 's/\nnpm_modules="\K[^"]*(?=")/\n'"$$modules"'\n/sm';
 
 # RubyGems
 gem-list: $(install-script)
+	@$(call print-status,"Updating list: RubyGems");
 	@gems=$$(gem list --no-versions | grep -v '* LOCAL GEMS *' | sort -fi | sed -r 's/^/\t/g');\
 	edit $^ 's/\nruby_gems="\K[^"]*(?=")/\n'"$$gems"'\n/sm';
 
 # Python packages
 pip-list: $(install-script)
+	@$(call print-status,"Updating list: Python packages");
 	@packages=$$(pip list --format=legacy | cut -d ' ' -f 1 | sort -fi | sed -r 's/^/\t/g');\
 	edit $^ 's/\npip_packages="\K[^"]*(?=")/\n'"$$packages"'\n/sm';
 
@@ -62,6 +66,7 @@ brew-list: $(addsuffix -list,cask tap formula)
 
 # Homebrew: Casks/Graphical programs
 cask-list: $(install-script)
+	@$(call print-status,"Updating list: Homebrew casks");
 	@$(call brew-update-off);\
 	casks=$$(brew cask list 2>/dev/null | sort -fi | sed -r "s/^/\t/g");\
 	edit $^ 's|\nbrew_casks="\K[^"]*(?=")|\n'"$$casks"'\n|sm';\
@@ -69,6 +74,7 @@ cask-list: $(install-script)
 
 # Homebrew: Tapped repositories
 tap-list: $(install-script)
+	@$(call print-status,"Updating list: Homebrew taps");
 	@$(call brew-update-off);\
 	taps=$$(brew tap | sort -fi | sed -r "s/^/\t/g");\
 	edit $^ 's|\nbrew_taps="\K[^"]*(?=")|\n'"$$taps"'\n|sm';\
@@ -76,6 +82,7 @@ tap-list: $(install-script)
 
 # Homebrew: Installed formulae
 formula-list: $(install-script)
+	@$(call print-status,"Updating list: Homebrew formulae");
 	@$(call brew-update-off);\
 	formulae="";\
 	names=$$(brew list | sort -fi); \

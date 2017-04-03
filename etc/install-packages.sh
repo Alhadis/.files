@@ -51,6 +51,7 @@ ruby_gems="
 	psych
 	rake
 	rdoc
+	rinku
 	ruby-enum
 	rubygems-bundler
 	rubygems-update
@@ -74,6 +75,7 @@ pip_packages="
 # Homebrew casks
 brew_casks="
 	0xed
+	android-sdk
 	audacity
 	audio-hijack
 	beyond-compare
@@ -108,7 +110,6 @@ brew_taps="
 	caskroom/fonts
 	dunn/emacs
 	homebrew/apache
-	homebrew/boneyard
 	homebrew/core
 	homebrew/dupes
 	homebrew/gui
@@ -124,7 +125,6 @@ brew_formulae="
 	aggressive-indent
 	aha
 	algol68g
-	android-sdk
 	ansi-emacs
 	ansiweather
 	ant
@@ -247,7 +247,7 @@ brew_formulae="
 	id3v2
 	ievms
 	ilmbase
-	imagemagick --with-little-cms --with-little-cms2 
+	imagemagick --with-hdri --with-little-cms --with-little-cms2 --with-openexr --with-ghostscript --with-webp 
 	imagesnap
 	imageworsener
 	iniparser
@@ -363,7 +363,6 @@ brew_formulae="
 	pandoc
 	pango
 	pangomm
-	pangox-compat
 	partio
 	pass
 	pcre
@@ -429,7 +428,6 @@ brew_formulae="
 	unixodbc
 	unpaper
 	unrar
-	v8
 	vim
 	vips
 	watch
