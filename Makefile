@@ -34,6 +34,19 @@ post-install-msg:
 
 # ==================================
 
+# Compile a cutting-edge build of V8
+v8:
+	@cd /Users/johngardner/Mirrors/v8;\
+	git pull;\
+	tools/dev/v8gen.py x64.release;\
+	ninja -C out.gn/x64.release;\
+	tools/run-tests.py --gn;\
+	path=/usr/local/bin/v8;\
+	[ -L $$path ] || ln -fs "$$path";\
+	$$path --help
+
+# ==================================
+
 # Update lists of installed packages
 lists: $(addsuffix -list,npm gem pip brew)
 
