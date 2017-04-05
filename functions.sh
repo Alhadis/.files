@@ -78,6 +78,24 @@ calc(){
 }
 
 
+# Assemble and link an executable from x86 assembly (macOS only).
+asm(){
+	[ $# -eq 0 ] && {
+		echo >&2 "Usage: asm /path/to/src.asm"
+		return 1;
+	}
+	for i in "$@"; do
+		[ -f "$i" ] && {
+			local name=$(echo "$i" | sed -Ee 's/\.[A-Za-z]+$//');
+			local obj="$name.o"
+			nasm -f macho64 -o "$obj" "$i" && \
+			ld -macosx_version_min 10.7.0 -lSystem -o "$name" "$obj" && \
+			rm "$obj"
+		};
+	done
+}
+
+
 # Switch to whatever directory contains a file or executable
 jump-to(){
 
