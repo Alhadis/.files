@@ -29,7 +29,7 @@ t(){
 
 	# Run test-script in current directory
 	[ -f test.js ] && {
-		node --es_staging ./test.js;
+		node --es_staging ./test.js "$@";
 		return;
 	}
 
