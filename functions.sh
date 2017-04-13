@@ -130,7 +130,7 @@ mansrc(){
 
 
 # Browse an executable's source code
-show-src(){
+src(){
 	less $(which "$1")
 }
 

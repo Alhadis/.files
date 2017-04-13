@@ -16,13 +16,14 @@ usage(){
 	    -m  Edit a named manpage in Atom
 	    -U  Force-update installed packages
 	    -w  Wipe user-cache/storage data
+	    -x  Edit an executable in Atom
 	EOF
 }
 
 ON=~/.atom/dev/packages
 OFF=~/.atom/dev/u
 
-while getopts "deSsmFUw?" o; do case $o in
+while getopts "deSsmFUwx?" o; do case $o in
 
 	# Disable
 	d) [ -d $ON ] \
@@ -55,7 +56,7 @@ while getopts "deSsmFUw?" o; do case $o in
 		exit 0;
 	;;
 
-	# Edit a named manpage in Atom
+	# Open a manpage by name
 	m) path=$(man -w "$2") && atom -d $(realpath "$path") || exit 1;;
 
 	# Sync forked packages
@@ -72,6 +73,13 @@ while getopts "deSsmFUw?" o; do case $o in
 	w) {
 		rm -rfv ~/.atom/{blob-store,compile-cache,recovery,storage}
 		echo $'\n'"Gone.";
+	};;
+	
+	# Open an executable by name
+	x) {
+		path=$(which "$2")
+		grep -Iq "$path" -Ee. || { echo "Binary file"; exit 1; }
+		atom -d $(realpath "$path")
 	};;
 	
 	# Default
