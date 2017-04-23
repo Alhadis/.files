@@ -37,6 +37,7 @@ alias su='sudo su -l'
 alias sudo='sudo '
 alias less='less -R'
 alias md5='md5 -q'
+alias mandoc='mandoc -aOindent=8,width=$(($(tput cols)-24))'
 alias node='node --es_staging'
 alias stat='stat -x'
 
