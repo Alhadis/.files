@@ -266,9 +266,24 @@ add-image-extensions(){
 }
 
 
-#==============================================================================
-# Following functions sourced from https://github.com/mathiasbynens/dotfiles. #
-#==============================================================================
+# Print the URL a file was downloaded from
+where-from(){
+	for i in "$@"; do
+		url=$(xattr -p user.xdg.origin.url "$i" 2>/dev/null)
+		[ $? -eq 0 ] && printf %s\\n "$url" || {
+			url=$(xattr -p com.apple.metadata:kMDItemWhereFroms "$i")
+			[ $? -eq 0 ] && {
+				echo $url | xxd -r -p | plutil -convert xml1 -o - - |\
+				grep -E -e '<string>http' | sed -E -e 's/\t?<\/?string>//g' | head -n1
+			};
+		};
+	done;
+}
+
+
+#=============================================================================#
+# Following functions sourced from https://github.com/mathiasbynens/dotfiles: #
+#=============================================================================#
 
 # "Find" shorthand
 function f(){
