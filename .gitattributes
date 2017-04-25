@@ -1,5 +1,8 @@
-# Prevent Lisp files skewing repo's language stats
+# Stuff I didn't write
 .emacs.d/lisp/* linguist-vendored
 
-# Mark generated files
+# Generated files
 etc/install-packages.sh linguist-vendored
+
+# Documentation
+*.1 linguist-documentation
