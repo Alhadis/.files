@@ -5,4 +5,4 @@
 etc/install-packages.sh linguist-vendored
 
 # Documentation
-*.1 linguist-documentation
+share/man/* linguist-documentation
