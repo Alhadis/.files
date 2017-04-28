@@ -33,6 +33,8 @@ alias ..='cd ..'
 #   PROGRAM DEFAULTS
 #==============================================================================
 alias bc='bc -l'
+alias df='df -H'
+alias du='du -h'
 alias su='sudo su -l'
 alias sudo='sudo '
 alias less='less -R'
