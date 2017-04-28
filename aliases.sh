@@ -122,7 +122,7 @@ alias gh-lang='gh-search lang'
 
 
 # Pull recently-taken photos off my phone
-alias yoink='adb pull storage/extSdCard/DCIM/Camera ~/Desktop; dsclean;'
+alias yoink='/usr/local/Caskroom/android-sdk/*/platform-tools/adb pull storage/extSdCard/DCIM/Camera ~/Desktop; dsclean;'
 
 
 # Crap to help macOS run smoother. Credit: https://mths.be/bum
