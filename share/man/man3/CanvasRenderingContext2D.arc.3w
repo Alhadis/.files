@@ -7,7 +7,7 @@
 ..
 .
 .Dd January 25, 2017
-.Dt CANVAS.ARC 3 "Web APIs"
+.Dt CANVAS.ARC 3w "Web APIs"
 .Os
 .
 .Sh NAME
@@ -62,7 +62,7 @@ The angle at which the arc ends, measured clockwise from the positive x axis and
 .
 .It Ar anticlockwise
 An optional
-.XR Boolean 3
+.XR Boolean 3j
 which, if true, causes the arc to be drawn counter-clockwise between the two angles.
 By default, it is drawn clockwise.
 .El
@@ -87,7 +87,7 @@ method:
 .
 .Sh SEE ALSO
 .\" --------
-.XR CanvasRenderingContext2D 3
+.XR CanvasRenderingContext2D 3w
 .Pp
 .Lk https://html.spec.whatwg.org/multipage/scripting.html#dom-context-2d-arc "WHATWG HTML Living Standard"
 .D1 The definition of Sy CanvasRenderingContext2D.arc No in that specification.
@@ -126,7 +126,7 @@ The
 parameter is optional.
 .It
 Specifying a negative radius now throws an
-.XR IndexSizeError 3
+.XR IndexSizeError 3w
 error: \(lqIndex or size is negative or greater than the allowed amount\(rq.
 .El
 .

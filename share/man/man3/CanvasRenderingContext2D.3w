@@ -1,6 +1,6 @@
 .\" -*- nroff -*-
 .de XR \" Cross-reference
-.	ds X 3
+.	ds X 3w
 .	ds Z
 .	if !''\\$3' .ds X \\$3
 .	if '.'\\$2' .ds Z \\$2
@@ -36,7 +36,7 @@
 .
 .\" ============================================================================
 .Dd \*D
-.Dt CANVAS 3 "Web APIs"
+.Dt CANVAS 3w "Web APIs"
 .Os
 .
 .Sh NAME
@@ -235,7 +235,7 @@ Create a pattern using the specified image (a
 instance).
 It repeats the source in the directions specified by the repetition argument.
 This method returns a
-.XR CanvasPattern 0 3 .
+.XR CanvasPattern 0 3w .
 .EL
 .\" ============================================================================
 .Ss Shadows
