@@ -8,13 +8,15 @@ emacs-icon: $(wildcard .emacs.d/*.icns)
 # Setup new workstation
 install: symlinks packages perl-links post-install-msg
 
-# Reconnect symlinked dotfiles
-symlinks := ~/.emacs.d ~/.gitconfig ~/.vimrc ~/.ssh/config
+# Reconnect symlinks
+symlinks := ~/.emacs.d ~/.gitconfig ~/.vimrc ~/.ssh/config /private/etc/man.conf
 symlinks: $(symlinks)
 ~/.%: ./%
 	ln -sf $^ $@
 ~/.ssh/config: ssh-config
 	ln -sf $^ $@
+/private/etc/man.conf: etc/man.conf
+	sudo ln -sf $^ $@
 
 # Reinstall packages, modules and Homebrew formulae
 packages: $(install-script)
