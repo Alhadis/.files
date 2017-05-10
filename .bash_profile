@@ -41,4 +41,5 @@ export WORDLIST="$HOME/Library/Application Support/Google/Chrome/Default/Custom 
 cd ~/Desktop; fit;
 
 export BOWER_DIRECTORY="components"
+export GREP_COLORS="sl=38;5;240:mt=1;38;5;10;48;5;22:fn=38;5;242:se=38;5;237:ln=38;5;10"
 unset ATOM_HOME
