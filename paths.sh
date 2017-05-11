@@ -9,6 +9,20 @@ export AM=~/Labs/Atom-Mocha
 export LING=~/Forks/GitHub-Linguist
 export ROFF=~/Labs/language-roff
 
+# Editors
+export HOMEBREW_EDITOR=/usr/local/bin/atom\ --dev
+export EDITOR=/usr/local/bin/emacs
+export VISUAL=/usr/local/bin/vim
+
+# Hunspell dictionaries
+export DICPATH=/Applications/LibreOffice.app/Contents/Resources/extensions/dict-en
+export WORDLIST="$HOME/Library/Application Support/Google/Chrome/Default/Custom Dictionary.txt"
+
 # Anything else
 export GROFF_FONTS=/usr/local/share/groff/current/font
 export VIM_SYNTAX=/usr/local/opt/vim/share/vim/vim80/syntax
+export ATOM_DEV_RESOURCE_PATH=$AF/Atom
+
+# Configure $PATH
+export PATH=~/Mirrors/Google-DepotTools:$PATH
+export PATH=~/.files/bin:/usr/local/sbin:$PATH
