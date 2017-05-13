@@ -4,7 +4,7 @@
 # Install (or reinstall) everything
 install () {
 	npm -g install $npm_modules;
-	gem install $ruby_gems;
+	gem install -N $ruby_gems;
 	pip install $pip_packages;
 	brew tap $brew_taps;
 	brew install $brew_formulae;
