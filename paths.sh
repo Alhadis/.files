@@ -21,7 +21,6 @@ export WORDLIST="$HOME/Library/Application Support/Google/Chrome/Default/Custom 
 # Anything else
 export GROFF_FONTS=/usr/local/share/groff/current/font
 export VIM_SYNTAX=/usr/local/opt/vim/share/vim/vim80/syntax
-export ATOM_DEV_RESOURCE_PATH=$AF/Atom
 
 # Configure $PATH
 export PATH=~/Mirrors/Google-DepotTools:$PATH
