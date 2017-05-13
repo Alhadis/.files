@@ -17,6 +17,7 @@ npm_modules="
 	clean-css
 	coffee-script
 	coffeelint
+	cson
 	electron
 	geographiclib
 	highlights
@@ -24,6 +25,7 @@ npm_modules="
 	karma
 	less
 	mocha
+	node-gyp
 	ppjson
 	semver
 	uglify-js
@@ -39,7 +41,6 @@ ruby_gems="
 	escape_utils
 	executable-hooks
 	gem-wrappers
-	github-linguist
 	github-markup
 	i18n
 	io-console
@@ -122,6 +123,7 @@ brew_taps="
 
 # Installed Homebrew formulae
 brew_formulae="
+	afl-fuzz
 	aggressive-indent
 	aha
 	algol68g
@@ -158,6 +160,7 @@ brew_formulae="
 	clojure-mode
 	cloog
 	cmake
+	cmark
 	coffee-mode
 	colordiff
 	coreutils
@@ -179,7 +182,7 @@ brew_formulae="
 	doxygen
 	editorconfig
 	editorconfig-emacs
-	emacs --with-ctags --with-dbus --with-gnutls --with-imagemagick --with-mailutils 
+	emacs --with-ctags --with-dbus --with-gnutls --with-mailutils 
 	emscripten
 	eot-utils
 	erlang
@@ -211,6 +214,7 @@ brew_formulae="
 	ghostscript
 	gifify
 	giflib
+	gist
 	git
 	git-lfs
 	gl2ps
@@ -263,6 +267,7 @@ brew_formulae="
 	jsoncpp
 	lame
 	latex2html
+	less --with-pcre 
 	lfe
 	lib3ds
 	libart
@@ -430,7 +435,9 @@ brew_formulae="
 	unrar
 	vim
 	vips
+	wabt
 	watch
+	watchexec
 	watchman
 	webp
 	wget
