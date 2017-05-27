@@ -6,7 +6,7 @@ emacs-icon: $(wildcard .emacs.d/*.icns)
 	@echo "Emacs icon updated. Restart system to force display in Finder/Spotlight.";
 
 # Setup new workstation
-install: symlinks packages perl-links post-install-msg
+install: symlinks packages perl-links mirrors post-install-msg
 
 # Reconnect symlinks
 symlinks := ~/.emacs.d ~/.gitconfig ~/.vimrc ~/.ssh/config /private/etc/man.conf
@@ -27,12 +27,44 @@ perl-links:
 	cd ~ && chflags hidden perl5
 	eval "$(perl -I$HOME/perl5/lib/perl5 -Mlocal::lib)"
 
+# Mirror projects of interest
+mirrors: ~/Mirrors
+~/Mirrors:
+	mkdir -p $@ && cd $@
+	git clone git@github.com:sathlan/dformat.git $@/ATT-DFORMAT
+	git clone git@github.com:att/ast.git $@/ATT-Research
+	git clone git@github.com:dspinellis/unix-history-repo.git $@/ATT-UnixHistory
+	git clone https://git.ffmpeg.org/ffmpeg.git $@/FFmpeg
+	git clone git@github.com:fontforge/fontforge.git $@/FontForge
+	svn co http://svn.savannah.gnu.org/svn/apl/trunk $@/GNU-APL
+	git clone git://git.savannah.gnu.org/emacs.git $@/GNU-Emacs
+	git clone git://git.savannah.gnu.org/groff.git $@/GNU-Groff
+	git clone git@github.com:bmatzelle/gow.git $@/GOW
+	git clone git@github.com:git/git.git $@/Git
+	git clone git@github.com:google/brotli.git --recurse-submodules $@/Google-Brotli
+	git clone https://chromium.googlesource.com/chromium/tools/depot_tools.git $@/Google-DepotTools
+	git clone git@github.com:google/fonts.git $@/Google-Fonts
+	git clone git@github.com:googlei18n/noto-fonts.git $@/Google-Noto
+	git clone git@github.com:googlei18n/noto-cjk.git $@/Google-NotoCJK
+	git clone git@github.com:googlei18n/noto-emoji.git $@/Google-NotoEmoji
+	git clone git@github.com:google/woff2.git --recurse-submodules $@/Google-WOFF2
+	git clone git@github.com:xdissent/ievms.git $@/IEVMS
+	git clone git@github.com:gilbarbara/logos.git $@/Logos
+	git clone git@github.com:bwarken/roff_classical.git $@/Roff-Classical
+	git clone git@github.com:n-t-roff/DWB3.3.git $@/Roff-DWB3.3
+	git clone git@github.com:n-t-roff/heirloom-doctools.git $@/Roff-Heirloom
+	git clone git@github.com:bwarken/RUNOFF_historical.git $@/Roff-History
+	git clone git@github.com:bwarken/runoff.git $@/Roff-RUNOFF
+	git clone git@github.com:facebook/watchman.git $@/Watchman
+	git clone git@github.com:WebAssembly/wabt.git $@/WebAssembly-WABT
+	git clone git@github.com:adoxa/ansicon.git $@/ansicon
+
 # Print reminders that won't fit easily into this mess
 post-install-msg:
 	@permalink="https://discussions.apple.com/thread/7675366?start=0&tstart=0";\
 	echo "Done. If MacBook overheats, enable iCloud keychain:";\
 	echo "\x1B[4m$$permalink""\x1B[0m";
-.PHONY: packages
+.PHONY: packages mirrors
 
 # ==================================
 
