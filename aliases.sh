@@ -58,20 +58,6 @@ alias ghostscript='/usr/local/bin/gs'
 
 
 
-#==============================================================================
-#   ALIASES THAT'RE LITERALLY ALIASES
-#==============================================================================
-alias ghext='gh-ext'
-alias gh-file='gh-name'
-alias woff-decode='woff2sfnt'
-alias woff-decompress='woff2sfnt'
-alias woff2-compress='woff2_compress'
-alias woff2-decompress='woff2_decompress'
-alias woff2-decode='woff2_decompress'
-alias woff2-encode='woff2_compress'
-
-
-
 
 #==============================================================================
 #   USEFUL ONE-LINERS
