@@ -28,7 +28,7 @@ npm_modules="
 	node-gyp
 	ppjson
 	semver
-	uglify-js
+	uglify-es
 ";
 
 # RubyGems
@@ -71,6 +71,7 @@ pip_packages="
 	pygobject
 	setuptools
 	wheel
+	yasm
 ";
 
 # Homebrew casks
@@ -143,6 +144,7 @@ brew_formulae="
 	bash
 	bcrypt
 	bdw-gc
+	binaryen
 	binutils
 	bison
 	boost
@@ -335,9 +337,10 @@ brew_formulae="
 	malbolge
 	mandoc
 	markdown
-	markdown-mode
+	mcrypt
 	media-info
 	mercurial
+	mhash
 	mit-scheme
 	mlton
 	moreutils
@@ -359,6 +362,7 @@ brew_formulae="
 	openjpeg
 	openslide
 	openssl
+	openssl@1.1
 	opus
 	orc
 	org-mode
@@ -377,6 +381,7 @@ brew_formulae="
 	pinentry
 	pixman
 	pkg-config
+	plotutils
 	pngnq
 	pngquant
 	poppler
