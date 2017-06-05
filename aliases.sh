@@ -3,7 +3,6 @@
 #==============================================================================
 alias brake='bundle exec rake'
 alias bup='brew update; [ "$(brew outdated)" ] && brew upgrade && brew cleanup --prune=0 || true;'
-alias c='calc'
 alias fd='git clean -fd'
 alias fj='t 2>&1 | tabfix | perl -pe "s/^\t+//g; s/Expected | to equal /\n/g;" | pbcopy'
 alias g='git status'
@@ -94,14 +93,6 @@ alias copy-that='printf %s "$(history | tail -n2 | head -n1 | sed -r '"'s/^\s+[0
 # Highlight the current date on the calendar
 # This renders the cal command's options unusable, so make sure you won't be needing -m -y or whatever
 alias cal='cal | sed -r '"'"'s/(^|\s)('"'"'$(echo $(date +%d) | sed s/^0//)'"'"')(\s|$)/\1'"'"'"\x1B[38;5;76m"'"'"'\2'"'"'"\x1B[0m"'"'"'\3/'"'"''
-
-
-# Clear Terminal's scrollback.
-alias cls='osascript -e '"'"'tell application "System Events" to keystroke "k" using command down'"';"
-
-
-# Actually clear Terminal's history
-alias clear='history -c; > ~/.bash_history'
 
 
 # Search on GitHub for a filename or file extension
