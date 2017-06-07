@@ -16,6 +16,7 @@ update(){
 	softwareupdate -i -a;
 	brew update;
 	brew upgrade && brew cleanup --prune=0;
+	npm install -g npm;
 	npm update -g;
 	gem update -N --system && gem update -N;
 	gem cleanup;
