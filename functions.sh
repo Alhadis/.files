@@ -186,24 +186,13 @@ webp(){
 
 
 # Print all locations that a file's been hard-linked to
-showlinks(){
+hardlinks(){
 	[ ! "$1" ] && {
-		echo >&2 "Usage: showlinks [file] [root-directory]";
+		echo >&2 "Usage: hardlinks [file] [root-directory]";
 		return 1;
 	};
 	find ${2:-~} -inum $(ls -i $1 | awk '{print $1}') 2>/dev/null;
 	return 0;
-}
-
-
-# List files in the system that match a given extension
-find-ext(){
-	[ -z $1 ] && {
-		echo >&2 "Usage: find-ext .foo";
-		return 3;
-	};
-	ext=$(echo "$1" | sed -e 's/\.//')
-	mdfind ".$ext" | grep -E "\.$ext$"
 }
 
 
