@@ -23,6 +23,7 @@ alias PS='git commit --amend'
 alias umount='diskutil unmount'
 alias untag='xattr -d com.apple.metadata:_kMDItemUserTags 2>/dev/null'
 alias yeah="git reset HEAD .;"
+alias 7='7z-crush'
 alias ?='man'
 alias ..='cd ..'
 

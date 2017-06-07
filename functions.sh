@@ -300,6 +300,18 @@ c(){
 }
 
 
+# Archive files using 7-Zip's strongest compression settings
+7z-crush(){
+	[ $# -eq 0 ] && {
+		echo >&2 "Usage: 7z-crush /path/to/file.psd"
+		return 1;
+	}
+	local filename
+	[ $# = 1 ] && filename=$(basename "$1" | sed -Ee 's/(.)\.\w+$/\1/' | tr " " -);
+	7z a -t7z -m0=lzma -mx=9 -mfb=64 -md=32m -ms=on "${filename-archive}".7z "$@"
+}
+
+
 #=============================================================================#
 # Following functions sourced from https://github.com/mathiasbynens/dotfiles: #
 #=============================================================================#
