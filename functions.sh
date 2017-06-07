@@ -26,12 +26,12 @@ update(){
 
 # Run automated tests
 t(){
-
-	# Run test-script in current directory
-	[ -f test.js ] && {
-		node --es_staging ./test.js "$@";
-		return;
-	}
+	
+	# Run test-scripts in current directory
+	[ -f test.sh ] && {      ./test.sh "$@"; return; }
+	[ -f test.pl ] && { perl ./test.pl "$@"; return; }
+	[ -f test.ru ] && { ruby ./test.ru "$@"; return; }
+	[ -f test.js ] && { node ./test.js "$@"; return; }
 
 	# Makefile: "make test"
 	[ -f Makefile ] && { grep Makefile -qe ^test:; } && {
@@ -56,6 +56,9 @@ t(){
 		mocha --es_staging;
 		return;
 	}
+	
+	# Unknown executable assumed to be a test-script
+	[ -x test ] && [ -s test ] && { ./test "$@"; return; }
 
 	# No tests found; do nothing
 	true;
