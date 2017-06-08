@@ -276,20 +276,20 @@ where-from(){
 
 # Clear clipboard/history if passed no args; execute calc() otherwise
 c(){
-	[ $# -eq 0 ] && {
-		
-		# Empty system clipboard
-		printf '' | pbcopy;
-		
-		# Actually clear Terminal's history
-		history -c; > ~/.bash_history
-		
-		# Erase scrollback
-		clear;
-		osascript -e 'tell application "System Events" to keystroke "k" using command down';
-		
-		true;
-	} || calc $@;
+	# Keep calculator-shorthand available when passed arguments
+	[ $# -gt 0 ] && { calc $@; return; }
+	
+	# Empty system clipboard
+	printf '' | pbcopy;
+	
+	# Actually clear Terminal's history
+	history -c; > ~/.bash_history
+	rm -fP ~/.{lesshst,viminfo}
+	rm -fP ~/.{coffee,node_repl}_history
+	
+	# Erase scrollback
+	clear;
+	osascript -e 'tell application "System Events" to keystroke "k" using command down';
 }
 
 
