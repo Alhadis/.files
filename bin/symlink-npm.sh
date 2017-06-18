@@ -1,6 +1,6 @@
 #!/bin/sh
 
-modules=(alhadis.utils atom-fs atom-mocha get-options print)
+modules=(alhadis.utils atom-fs atom-mocha get-options print urw-core35-fonts)
 
 for i in "${modules[@]}"; do
 	target="node_modules/$i"
@@ -12,6 +12,7 @@ for i in "${modules[@]}"; do
 		atom-mocha)       path="$labs/Atom-Mocha";;
 		get-options)      path="$labs/GetOptions";;
 		print)            path="$labs/Print";;
+		urw-core35-fonts) path="$labs/URW-Core35-Fonts";;
 		*)                path=;;
 	esac
 	
