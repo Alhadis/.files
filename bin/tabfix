@@ -1,8 +1,9 @@
 #!/usr/bin/env perl
 
+$^I = "";
+
 # Convert soft-tabs into proper tabs
-my $columns = shift() || 2;
 while(<>){
-	s|^( {$columns})+|"\t" x (length($&)/$columns)|ge;
-	print $_;
+	s|^( {2})+|"\t" x (length($&)/2)|ge;
+	print;
 }
