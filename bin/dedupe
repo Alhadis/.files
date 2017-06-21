@@ -57,9 +57,11 @@ for i in $@; do
 done;
 
 
-# Formatting variables
-BOLD=$(tput bold)
-RESET=$(tput sgr0)
+# Limit SGR formatting to TTY descriptors only
+[ -t 1 ] && {
+	BOLD=$(tput bold);
+	RESET=$(tput sgr0);
+};
 indent='s/^/    /g'
 
 # There weren't any files to process
