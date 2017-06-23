@@ -19,7 +19,6 @@ symlinks: \
 	~/.emacs.d \
 	~/.gitconfig \
 	~/.vimrc \
-	~/.profile \
 	~/.ssh/config \
 	/private/etc/man.conf
 ~/%: ./%

@@ -1,9 +1,3 @@
-# Load the default .profile
-[[ -s "$HOME/.profile" ]] && source "$HOME/.profile"
-
-# Load RVM into a shell session *as a function*
-[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm"
-
 # Install CPAN modules outside Homebrew Cellar
 eval "$(perl -I$HOME/perl5/lib/perl5 -Mlocal::lib)"
 
@@ -21,6 +15,11 @@ shopt -s histappend;    # Append Bash history instead of replace
 shopt -s autocd;        # DOS-style directory navigation
 shopt -s globstar;      # Enable recursive globbing
 shopt -s dotglob;       # Enable .file globbing
+
+
+# Ruby enVironment Manager
+export PATH+=:~/.rvm/bin
+[ -s ~/.rvm/scripts/rvm ] && source ~/.rvm/scripts/rvm
 
 
 # Various other crap
