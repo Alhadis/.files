@@ -9,14 +9,19 @@ emacs-icon: $(wildcard .emacs.d/*.icns)
 install: symlinks packages perl-links mirrors post-install-msg
 
 # Reconnect symlinks
-symlinks := ~/.emacs.d ~/.gitconfig ~/.vimrc ~/.ssh/config /private/etc/man.conf
-symlinks: $(symlinks)
-~/.%: ./%
-	ln -sf $^ $@
+symlinks: \
+	~/.bash_profile \
+	~/.emacs.d \
+	~/.gitconfig \
+	~/.vimrc \
+	~/.ssh/config \
+	/private/etc/man.conf
+~/%: ./%
+	ln -sf $(realpath $^) $@
 ~/.ssh/config: ssh-config
-	ln -sf $^ $@
+	ln -sf $(realpath $^) $@
 /private/etc/man.conf: etc/man.conf
-	sudo ln -sf $^ $@
+	sudo ln -sf $(realpath $^) $@
 
 # Reinstall packages, modules and Homebrew formulae
 packages: $(install-script)
