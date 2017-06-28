@@ -3,6 +3,7 @@
 #==============================================================================
 alias brake='bundle exec rake'
 alias bup='brew update; [ "$(brew outdated)" ] && brew upgrade && brew cleanup --prune=0 || true;'
+alias dash='PS1="λ " dash'
 alias fd='git clean -fd'
 alias fj='t 2>&1 | tabfix | perl -pe "s/^\t+//g; s/Expected | to equal /\n/g;" | pbcopy'
 alias g='git status'
