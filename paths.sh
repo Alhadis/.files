@@ -7,7 +7,7 @@ export FILE_ICONS=~/Labs/file-icons
 # Frequently-accessed projects
 export AM=~/Labs/Atom-Mocha
 export LING=~/Forks/GitHub-Linguist
-export ROFF=~/Labs/language-roff
+export ROFF=~/Labs/Roff.js
 
 # Editors
 export HOMEBREW_EDITOR=/usr/local/bin/atom\ --dev
