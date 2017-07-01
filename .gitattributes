@@ -2,7 +2,7 @@
 .emacs.d/lisp/* linguist-vendored
 
 # Generated files
-etc/install-packages.sh linguist-vendored
+etc/install-packages.sh linguist-generated=true
 
 # Documentation
 share/man/* linguist-documentation
