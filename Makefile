@@ -6,12 +6,16 @@ emacs-icon: $(wildcard .emacs.d/*.icns)
 	@echo "Emacs icon updated. Restart system to force display in Finder/Spotlight.";
 
 # Setup new workstation
-install: ~/.bash_sessions_disable symlinks packages perl-links mirrors post-install-msg
+install: ~/.bash_sessions_disable ~/.hushlogin symlinks packages perl-links mirrors post-install-msg
 
 # Disable Bash-session saving
 ~/.bash_sessions_disable:
 	touch $@
 	rm -rf ~/.bash_sessions
+
+# Suppress login messages
+~/.hushlogin:
+	touch $@
 
 # Reconnect symlinks
 symlinks: \
