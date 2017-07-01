@@ -111,6 +111,18 @@ jump-to(){
 }
 
 
+# Open Electron in a detached background process.
+electron(){
+	local execPath=$(which electron) 2>&1 >/dev/null;
+	[ -n "$execPath" ] || {
+		>&2 echo 'Electron could not be found in your $PATH.'
+		>&2 echo 'Run `npm install -g electron` before trying again.'
+		return 1;
+	};
+	{ $execPath $@ & disown; } 2>/dev/null 1>/dev/null
+}
+
+
 # Evaluate and print an Emacs Lisp expression
 elisp(){
 	local expr="$*"
