@@ -9,6 +9,9 @@ install () {
 	brew tap $brew_taps;
 	brew install $brew_formulae;
 	brew cask install $brew_casks;
+	
+	eval "$(perl -I$HOME/perl5/lib/perl5 -Mlocal::lib)"
+	cpan -i $cpan_modules;
 }
 
 # Globally-installed NPM modules
@@ -22,6 +25,7 @@ npm_modules="
 	geographiclib
 	highlights
 	jsdoc
+	json
 	karma
 	less
 	mocha
@@ -33,43 +37,43 @@ npm_modules="
 
 # RubyGems
 ruby_gems="
+	ast
 	bigdecimal
-	bundler
 	bundler-unload
-	charlock_holmes
-	commonmarker
-	escape_utils
+	did_you_mean
 	executable-hooks
 	gem-wrappers
-	github-markup
-	i18n
 	io-console
 	json
-	mime-types
-	mime-types-data
 	minitest
+	net-telnet
+	openssl
+	parallel
+	parser
+	powerpack
 	power_assert
 	psych
+	rainbow
 	rake
 	rdoc
-	rinku
-	ruby-enum
+	rubocop
+	ruby-progressbar
 	rubygems-bundler
-	rubygems-update
-	rugged
 	rvm
 	test-unit
+	unicode-display_width
+	xmlrpc
 ";
 
 # Python packages
 pip_packages="
-	docutils
 	mercurial
 	pip
 	protobuf
 	Pygments
 	pygobject
 	setuptools
+	TBB
 	wheel
 	yasm
 ";
@@ -133,6 +137,7 @@ brew_formulae="
 	ant
 	apr
 	apr-util
+	arpack
 	ascii-art-to-unicode
 	asciidoc
 	async-emacs
@@ -157,6 +162,7 @@ brew_formulae="
 	cd-discid
 	cfitsio
 	cgal
+	checkbashisms
 	cl-lib
 	clisp
 	clojure-mode
@@ -179,14 +185,17 @@ brew_formulae="
 	diff-pdf
 	dirmngr
 	docbook
+	docutils
 	docx2txt
 	dos2unix
 	doxygen
+	ebook-tools
 	editorconfig
 	editorconfig-emacs
 	emacs --with-ctags --with-dbus --with-gnutls --with-mailutils 
 	emscripten
 	eot-utils
+	epstool
 	erlang
 	faac
 	fdk-aac
@@ -223,11 +232,13 @@ brew_formulae="
 	glib
 	glibmm
 	glm
+	glpk
 	gmp
 	gmp@4
 	gnu-apl
 	gnu-getopt
 	gnu-sed --with-default-names 
+	gnuplot --with-qt@5.7 
 	gnutls
 	gobject-introspection
 	grap
@@ -285,6 +296,7 @@ brew_formulae="
 	libgcrypt
 	libgpg-error
 	libgsf
+	libharu
 	libidn
 	libksba
 	liblqr
@@ -331,15 +343,18 @@ brew_formulae="
 	lua
 	luajit
 	lynx
+	lzo
 	macvim
 	mailutils
 	makedepend
 	malbolge
 	mandoc
 	markdown
+	mathgl
 	mcrypt
 	media-info
 	mercurial
+	metis
 	mhash
 	mit-scheme
 	mlton
@@ -353,6 +368,7 @@ brew_formulae="
 	nettle
 	ninja
 	node
+	octave
 	oggz
 	oniguruma
 	open-mesh
@@ -363,6 +379,7 @@ brew_formulae="
 	openslide
 	openssl
 	openssl@1.1
+	openvpn
 	opus
 	orc
 	org-mode
@@ -390,6 +407,7 @@ brew_formulae="
 	postgresql
 	powerline-emacs
 	protobuf
+	pstoedit
 	psutils
 	pth
 	putty
@@ -398,8 +416,11 @@ brew_formulae="
 	pygobject3
 	python
 	python3
+	qhull
 	qrencode
+	qrupdate
 	qt
+	qt@5.7
 	rakudo-star
 	re2c
 	readline
@@ -411,6 +432,7 @@ brew_formulae="
 	s-emacs
 	sbcl
 	schroedinger
+	scons
 	screen
 	sdl
 	sfnt2woff-zopfli
@@ -419,18 +441,22 @@ brew_formulae="
 	source-highlight
 	speex
 	sqlite
+	st
 	subversion
+	suite-sparse
 	svg2pdf
 	svg2png
 	swig
 	szip
 	tablist
+	tbb
 	texi2html
 	texinfo
 	texmath
 	theora
 	tidy-html5
 	tor
+	transfig
 	tree
 	ttf2pt1
 	ttfautohint
@@ -438,6 +464,7 @@ brew_formulae="
 	unixodbc
 	unpaper
 	unrar
+	veclibfort
 	vim
 	vips
 	wabt
@@ -458,6 +485,905 @@ brew_formulae="
 	zeromq
 	zlib
 	zopfli
+";
+
+
+# Perl modules not distributed with core releases
+cpan_modules="
+	Algorithm::Diff
+	Algorithm::DiffOld
+	AnyDBM_File
+	App::Cpan
+	App::Prove
+	App::Prove::State
+	App::Prove::State::Result
+	App::Prove::State::Result::Test
+	Archive::Tar
+	Archive::Tar::Constant
+	Archive::Tar::File
+	Archive::Zip
+	Archive::Zip::Archive
+	Archive::Zip::BufferedFileHandle
+	Archive::Zip::DirectoryMember
+	Archive::Zip::FileMember
+	Archive::Zip::Member
+	Archive::Zip::MemberRead
+	Archive::Zip::MockFileHandle
+	Archive::Zip::NewFileMember
+	Archive::Zip::StringMember
+	Archive::Zip::Tree
+	Archive::Zip::ZipFileMember
+	Attribute::Handlers
+	AutoLoader
+	AutoSplit
+	B
+	B::Concise
+	B::Debug
+	B::Deparse
+	B::Op_private
+	B::Showlex
+	B::Terse
+	B::Xref
+	Benchmark
+	CPAN
+	CPAN::Author
+	CPAN::Bundle
+	CPAN::CacheMgr
+	CPAN::Complete
+	CPAN::Debug
+	CPAN::DeferredCode
+	CPAN::Distribution
+	CPAN::Distroprefs
+	CPAN::Distrostatus
+	CPAN::Exception::RecursiveDependency
+	CPAN::Exception::blocked_urllist
+	CPAN::Exception::yaml_not_installed
+	CPAN::Exception::yaml_process_error
+	CPAN::FTP
+	CPAN::FTP::netrc
+	CPAN::FirstTime
+	CPAN::HTTP::Client
+	CPAN::HTTP::Credentials
+	CPAN::HandleConfig
+	CPAN::Index
+	CPAN::InfoObj
+	CPAN::Kwalify
+	CPAN::LWP::UserAgent
+	CPAN::Meta
+	CPAN::Meta::Converter
+	CPAN::Meta::Feature
+	CPAN::Meta::History
+	CPAN::Meta::Merge
+	CPAN::Meta::Prereqs
+	CPAN::Meta::Requirements
+	CPAN::Meta::Spec
+	CPAN::Meta::Validator
+	CPAN::Meta::YAML
+	CPAN::Mirrors
+	CPAN::Module
+	CPAN::Nox
+	CPAN::Plugin
+	CPAN::Plugin::Specfile
+	CPAN::Prompt
+	CPAN::Queue
+	CPAN::Shell
+	CPAN::Tarzip
+	CPAN::URL
+	CPAN::Version
+	Carp
+	Carp::Heavy
+	Class::Struct
+	Compress::Raw::Bzip2
+	Compress::Raw::Zlib
+	Compress::Zlib
+	Config
+	Config::Extensions
+	Config::Perl::V
+	Cpanel::JSON::XS
+	Cwd
+	DB
+	DBM_Filter
+	DBM_Filter::compress
+	DBM_Filter::encode
+	DBM_Filter::int32
+	DBM_Filter::null
+	DBM_Filter::utf8
+	DB_File
+	Data::Dumper
+	Date::Format
+	Date::Language
+	Date::Language::Afar
+	Date::Language::Amharic
+	Date::Language::Austrian
+	Date::Language::Brazilian
+	Date::Language::Bulgarian
+	Date::Language::Chinese
+	Date::Language::Chinese_GB
+	Date::Language::Czech
+	Date::Language::Danish
+	Date::Language::Dutch
+	Date::Language::English
+	Date::Language::Finnish
+	Date::Language::French
+	Date::Language::Gedeo
+	Date::Language::German
+	Date::Language::Greek
+	Date::Language::Hungarian
+	Date::Language::Icelandic
+	Date::Language::Italian
+	Date::Language::Norwegian
+	Date::Language::Oromo
+	Date::Language::Romanian
+	Date::Language::Russian
+	Date::Language::Russian_cp1251
+	Date::Language::Russian_koi8r
+	Date::Language::Sidama
+	Date::Language::Somali
+	Date::Language::Spanish
+	Date::Language::Swedish
+	Date::Language::Tigrinya
+	Date::Language::TigrinyaEritrean
+	Date::Language::TigrinyaEthiopian
+	Date::Language::Turkish
+	Date::Parse
+	Devel::PPPort
+	Devel::Peek
+	Devel::SelfStubber
+	Digest
+	Digest::MD5
+	Digest::SHA
+	Digest::SHA1
+	Digest::base
+	Digest::file
+	DirHandle
+	Dumpvalue
+	DynaLoader
+	Encode
+	Encode::Alias
+	Encode::Byte
+	Encode::CJKConstants
+	Encode::CN
+	Encode::CN::HZ
+	Encode::Config
+	Encode::EBCDIC
+	Encode::Encoder
+	Encode::Encoding
+	Encode::GSM0338
+	Encode::Guess
+	Encode::JP
+	Encode::JP::H2Z
+	Encode::JP::JIS7
+	Encode::KR
+	Encode::KR::2022_KR
+	Encode::MIME::Header
+	Encode::MIME::Header::ISO_2022_JP
+	Encode::MIME::Name
+	Encode::Symbol
+	Encode::TW
+	Encode::Unicode
+	Encode::Unicode::UTF7
+	English
+	Env
+	Errno
+	Exporter
+	Exporter::Heavy
+	ExtUtils::CBuilder
+	ExtUtils::CBuilder::Base
+	ExtUtils::CBuilder::Platform::Unix
+	ExtUtils::CBuilder::Platform::VMS
+	ExtUtils::CBuilder::Platform::Windows
+	ExtUtils::CBuilder::Platform::Windows::BCC
+	ExtUtils::CBuilder::Platform::Windows::GCC
+	ExtUtils::CBuilder::Platform::Windows::MSVC
+	ExtUtils::CBuilder::Platform::aix
+	ExtUtils::CBuilder::Platform::android
+	ExtUtils::CBuilder::Platform::cygwin
+	ExtUtils::CBuilder::Platform::darwin
+	ExtUtils::CBuilder::Platform::dec_osf
+	ExtUtils::CBuilder::Platform::os2
+	ExtUtils::Command
+	ExtUtils::Command::MM
+	ExtUtils::Constant
+	ExtUtils::Constant::Base
+	ExtUtils::Constant::ProxySubs
+	ExtUtils::Constant::Utils
+	ExtUtils::Constant::XS
+	ExtUtils::Embed
+	ExtUtils::Install
+	ExtUtils::Installed
+	ExtUtils::Liblist
+	ExtUtils::Liblist::Kid
+	ExtUtils::MM
+	ExtUtils::MM_AIX
+	ExtUtils::MM_Any
+	ExtUtils::MM_BeOS
+	ExtUtils::MM_Cygwin
+	ExtUtils::MM_DOS
+	ExtUtils::MM_Darwin
+	ExtUtils::MM_MacOS
+	ExtUtils::MM_NW5
+	ExtUtils::MM_OS2
+	ExtUtils::MM_QNX
+	ExtUtils::MM_UWIN
+	ExtUtils::MM_Unix
+	ExtUtils::MM_VMS
+	ExtUtils::MM_VOS
+	ExtUtils::MM_Win32
+	ExtUtils::MM_Win95
+	ExtUtils::MY
+	ExtUtils::MakeMaker
+	ExtUtils::MakeMaker::Config
+	ExtUtils::MakeMaker::Locale
+	ExtUtils::MakeMaker::version
+	ExtUtils::MakeMaker::version::regex
+	ExtUtils::MakeMaker::version::vpp
+	ExtUtils::Manifest
+	ExtUtils::Miniperl
+	ExtUtils::Mkbootstrap
+	ExtUtils::Mksymlists
+	ExtUtils::Packlist
+	ExtUtils::ParseXS
+	ExtUtils::ParseXS::Constants
+	ExtUtils::ParseXS::CountLines
+	ExtUtils::ParseXS::Eval
+	ExtUtils::ParseXS::Utilities
+	ExtUtils::Typemaps
+	ExtUtils::Typemaps::Cmd
+	ExtUtils::Typemaps::InputMap
+	ExtUtils::Typemaps::OutputMap
+	ExtUtils::Typemaps::Type
+	ExtUtils::testlib
+	Fatal
+	Fcntl
+	File::Basename
+	File::Compare
+	File::Copy
+	File::DosGlob
+	File::Fetch
+	File::Find
+	File::Glob
+	File::GlobMapper
+	File::Path
+	File::RandomAccess
+	File::Spec
+	File::Spec::AmigaOS
+	File::Spec::Cygwin
+	File::Spec::Epoc
+	File::Spec::Functions
+	File::Spec::Mac
+	File::Spec::OS2
+	File::Spec::Unix
+	File::Spec::VMS
+	File::Spec::Win32
+	File::Temp
+	File::stat
+	FileCache
+	FileHandle
+	Filter::Simple
+	Filter::Simple::Compile
+	Filter::Util::Call
+	Filter::Util::Exec
+	Filter::cpp
+	Filter::decrypt
+	Filter::exec
+	Filter::sh
+	Filter::tee
+	FindBin
+	Getopt::Long
+	Getopt::Std
+	HTTP::Date
+	HTTP::Tiny
+	Hash::Util
+	Hash::Util::FieldHash
+	I18N::Collate
+	I18N::LangTags
+	I18N::LangTags::Detect
+	I18N::LangTags::List
+	I18N::Langinfo
+	IO
+	IO::Compress::Adapter::Bzip2
+	IO::Compress::Adapter::Deflate
+	IO::Compress::Adapter::Identity
+	IO::Compress::Base
+	IO::Compress::Base::Common
+	IO::Compress::Bzip2
+	IO::Compress::Deflate
+	IO::Compress::Gzip
+	IO::Compress::Gzip::Constants
+	IO::Compress::RawDeflate
+	IO::Compress::Zip
+	IO::Compress::Zip::Constants
+	IO::Compress::Zlib::Constants
+	IO::Compress::Zlib::Extra
+	IO::Dir
+	IO::File
+	IO::Handle
+	IO::Pipe
+	IO::Poll
+	IO::Seekable
+	IO::Select
+	IO::Socket
+	IO::Socket::INET
+	IO::Socket::IP
+	IO::Socket::UNIX
+	IO::Uncompress::Adapter::Bunzip2
+	IO::Uncompress::Adapter::Identity
+	IO::Uncompress::Adapter::Inflate
+	IO::Uncompress::AnyInflate
+	IO::Uncompress::AnyUncompress
+	IO::Uncompress::Base
+	IO::Uncompress::Bunzip2
+	IO::Uncompress::Gunzip
+	IO::Uncompress::Inflate
+	IO::Uncompress::RawInflate
+	IO::Uncompress::Unzip
+	IO::Zlib
+	IPC::Cmd
+	IPC::Msg
+	IPC::Open2
+	IPC::Open3
+	IPC::Semaphore
+	IPC::SharedMem
+	IPC::SysV
+	Image::ExifTool
+	Image::ExifTool::AES
+	Image::ExifTool::AFCP
+	Image::ExifTool::AIFF
+	Image::ExifTool::APE
+	Image::ExifTool::APP12
+	Image::ExifTool::ASF
+	Image::ExifTool::Apple
+	Image::ExifTool::Audible
+	Image::ExifTool::BMP
+	Image::ExifTool::BPG
+	Image::ExifTool::BZZ
+	Image::ExifTool::BigTIFF
+	Image::ExifTool::BuildTagLookup
+	Image::ExifTool::Canon
+	Image::ExifTool::CanonCustom
+	Image::ExifTool::CanonRaw
+	Image::ExifTool::CanonVRD
+	Image::ExifTool::CaptureOne
+	Image::ExifTool::Casio
+	Image::ExifTool::Charset
+	Image::ExifTool::DICOM
+	Image::ExifTool::DJI
+	Image::ExifTool::DNG
+	Image::ExifTool::DPX
+	Image::ExifTool::DV
+	Image::ExifTool::DarwinCore
+	Image::ExifTool::DjVu
+	Image::ExifTool::EXE
+	Image::ExifTool::Exif
+	Image::ExifTool::FLAC
+	Image::ExifTool::FLIF
+	Image::ExifTool::FLIR
+	Image::ExifTool::Fixup
+	Image::ExifTool::Flash
+	Image::ExifTool::FlashPix
+	Image::ExifTool::Font
+	Image::ExifTool::FotoStation
+	Image::ExifTool::FujiFilm
+	Image::ExifTool::GE
+	Image::ExifTool::GIF
+	Image::ExifTool::GIMP
+	Image::ExifTool::GPS
+	Image::ExifTool::GeoTiff
+	Image::ExifTool::Geotag
+	Image::ExifTool::H264
+	Image::ExifTool::HP
+	Image::ExifTool::HTML
+	Image::ExifTool::HtmlDump
+	Image::ExifTool::ICC_Profile
+	Image::ExifTool::ID3
+	Image::ExifTool::IPTC
+	Image::ExifTool::ISO
+	Image::ExifTool::ITC
+	Image::ExifTool::Import
+	Image::ExifTool::InDesign
+	Image::ExifTool::JPEG
+	Image::ExifTool::JPEGDigest
+	Image::ExifTool::JSON
+	Image::ExifTool::JVC
+	Image::ExifTool::Jpeg2000
+	Image::ExifTool::Kodak
+	Image::ExifTool::KyoceraRaw
+	Image::ExifTool::LNK
+	Image::ExifTool::Lang::cs
+	Image::ExifTool::Lang::de
+	Image::ExifTool::Lang::en_ca
+	Image::ExifTool::Lang::en_gb
+	Image::ExifTool::Lang::es
+	Image::ExifTool::Lang::fi
+	Image::ExifTool::Lang::fr
+	Image::ExifTool::Lang::it
+	Image::ExifTool::Lang::ja
+	Image::ExifTool::Lang::ko
+	Image::ExifTool::Lang::nl
+	Image::ExifTool::Lang::pl
+	Image::ExifTool::Lang::ru
+	Image::ExifTool::Lang::sv
+	Image::ExifTool::Lang::tr
+	Image::ExifTool::Lang::zh_cn
+	Image::ExifTool::Lang::zh_tw
+	Image::ExifTool::Leaf
+	Image::ExifTool::Lytro
+	Image::ExifTool::M2TS
+	Image::ExifTool::MIE
+	Image::ExifTool::MIFF
+	Image::ExifTool::MNG
+	Image::ExifTool::MOI
+	Image::ExifTool::MPC
+	Image::ExifTool::MPEG
+	Image::ExifTool::MPF
+	Image::ExifTool::MWG
+	Image::ExifTool::MXF
+	Image::ExifTool::MacOS
+	Image::ExifTool::MakerNotes
+	Image::ExifTool::Matroska
+	Image::ExifTool::Microsoft
+	Image::ExifTool::Minolta
+	Image::ExifTool::MinoltaRaw
+	Image::ExifTool::Motorola
+	Image::ExifTool::Nikon
+	Image::ExifTool::NikonCapture
+	Image::ExifTool::NikonCustom
+	Image::ExifTool::Nintendo
+	Image::ExifTool::OOXML
+	Image::ExifTool::Ogg
+	Image::ExifTool::Olympus
+	Image::ExifTool::OpenEXR
+	Image::ExifTool::Opus
+	Image::ExifTool::PDF
+	Image::ExifTool::PGF
+	Image::ExifTool::PICT
+	Image::ExifTool::PLIST
+	Image::ExifTool::PLUS
+	Image::ExifTool::PNG
+	Image::ExifTool::PPM
+	Image::ExifTool::PSP
+	Image::ExifTool::Palm
+	Image::ExifTool::Panasonic
+	Image::ExifTool::PanasonicRaw
+	Image::ExifTool::Pentax
+	Image::ExifTool::PhaseOne
+	Image::ExifTool::PhotoCD
+	Image::ExifTool::PhotoMechanic
+	Image::ExifTool::Photoshop
+	Image::ExifTool::PostScript
+	Image::ExifTool::PrintIM
+	Image::ExifTool::Qualcomm
+	Image::ExifTool::QuickTime
+	Image::ExifTool::RIFF
+	Image::ExifTool::RSRC
+	Image::ExifTool::RTF
+	Image::ExifTool::Radiance
+	Image::ExifTool::Rawzor
+	Image::ExifTool::Real
+	Image::ExifTool::Reconyx
+	Image::ExifTool::Ricoh
+	Image::ExifTool::Samsung
+	Image::ExifTool::Sanyo
+	Image::ExifTool::Scalado
+	Image::ExifTool::Shortcuts
+	Image::ExifTool::Sigma
+	Image::ExifTool::SigmaRaw
+	Image::ExifTool::Sony
+	Image::ExifTool::SonyIDC
+	Image::ExifTool::Stim
+	Image::ExifTool::TagInfoXML
+	Image::ExifTool::TagLookup
+	Image::ExifTool::Theora
+	Image::ExifTool::Torrent
+	Image::ExifTool::Unknown
+	Image::ExifTool::VCard
+	Image::ExifTool::Validate
+	Image::ExifTool::Vorbis
+	Image::ExifTool::XMP
+	Image::ExifTool::ZIP
+	Image::ExifTool::iWork
+	JSON::MaybeXS
+	JSON::PP
+	JSON::PP::Boolean
+	List::Util
+	List::Util::XS
+	Locale::Codes
+	Locale::Codes::Constants
+	Locale::Codes::Country
+	Locale::Codes::Country_Codes
+	Locale::Codes::Country_Retired
+	Locale::Codes::Currency
+	Locale::Codes::Currency_Codes
+	Locale::Codes::Currency_Retired
+	Locale::Codes::LangExt
+	Locale::Codes::LangExt_Codes
+	Locale::Codes::LangExt_Retired
+	Locale::Codes::LangFam
+	Locale::Codes::LangFam_Codes
+	Locale::Codes::LangFam_Retired
+	Locale::Codes::LangVar
+	Locale::Codes::LangVar_Codes
+	Locale::Codes::LangVar_Retired
+	Locale::Codes::Language
+	Locale::Codes::Language_Codes
+	Locale::Codes::Language_Retired
+	Locale::Codes::Script
+	Locale::Codes::Script_Codes
+	Locale::Codes::Script_Retired
+	Locale::Country
+	Locale::Currency
+	Locale::Language
+	Locale::Maketext
+	Locale::Maketext::Guts
+	Locale::Maketext::GutsLoader
+	Locale::Maketext::Simple
+	Locale::Script
+	MIME::Base64
+	MIME::QuotedPrint
+	Math::BigFloat
+	Math::BigFloat::Trace
+	Math::BigInt
+	Math::BigInt::Calc
+	Math::BigInt::CalcEmu
+	Math::BigInt::FastCalc
+	Math::BigInt::Lib
+	Math::BigInt::Trace
+	Math::BigRat
+	Math::Complex
+	Math::Trig
+	Memoize
+	Memoize::AnyDBM_File
+	Memoize::Expire
+	Memoize::ExpireFile
+	Memoize::ExpireTest
+	Memoize::NDBM_File
+	Memoize::SDBM_File
+	Memoize::Storable
+	Module::Build
+	Module::Build::Base
+	Module::Build::Compat
+	Module::Build::Config
+	Module::Build::Cookbook
+	Module::Build::Dumper
+	Module::Build::Notes
+	Module::Build::PPMMaker
+	Module::Build::Platform::Default
+	Module::Build::Platform::MacOS
+	Module::Build::Platform::Unix
+	Module::Build::Platform::VMS
+	Module::Build::Platform::VOS
+	Module::Build::Platform::Windows
+	Module::Build::Platform::aix
+	Module::Build::Platform::cygwin
+	Module::Build::Platform::darwin
+	Module::Build::Platform::os2
+	Module::Build::PodParser
+	Module::Compile
+	Module::CoreList
+	Module::CoreList::TieHashDelta
+	Module::CoreList::Utils
+	Module::Load
+	Module::Load::Conditional
+	Module::Loaded
+	Module::Metadata
+	NDBM_File
+	NEXT
+	Net::Cmd
+	Net::Config
+	Net::Domain
+	Net::FTP
+	Net::FTP::A
+	Net::FTP::E
+	Net::FTP::I
+	Net::FTP::L
+	Net::FTP::dataconn
+	Net::NNTP
+	Net::Netrc
+	Net::POP3
+	Net::Ping
+	Net::SMTP
+	Net::Time
+	Net::hostent
+	Net::netent
+	Net::protoent
+	Net::servent
+	O
+	Opcode
+	POSIX
+	POSIX::strptime
+	Params::Check
+	Parse::CPAN::Meta
+	Perl::OSType
+	PerlIO
+	PerlIO::encoding
+	PerlIO::mmap
+	PerlIO::scalar
+	PerlIO::via
+	PerlIO::via::QuotedPrint
+	Pod::Checker
+	Pod::Escapes
+	Pod::Find
+	Pod::Functions
+	Pod::Html
+	Pod::InputObjects
+	Pod::Man
+	Pod::ParseLink
+	Pod::ParseUtils
+	Pod::Parser
+	Pod::Perldoc
+	Pod::Perldoc::BaseTo
+	Pod::Perldoc::GetOptsOO
+	Pod::Perldoc::ToANSI
+	Pod::Perldoc::ToChecker
+	Pod::Perldoc::ToMan
+	Pod::Perldoc::ToNroff
+	Pod::Perldoc::ToPod
+	Pod::Perldoc::ToRtf
+	Pod::Perldoc::ToTerm
+	Pod::Perldoc::ToText
+	Pod::Perldoc::ToTk
+	Pod::Perldoc::ToXml
+	Pod::PlainText
+	Pod::Select
+	Pod::Simple
+	Pod::Simple::BlackBox
+	Pod::Simple::Checker
+	Pod::Simple::Debug
+	Pod::Simple::DumpAsText
+	Pod::Simple::DumpAsXML
+	Pod::Simple::HTML
+	Pod::Simple::HTMLBatch
+	Pod::Simple::HTMLLegacy
+	Pod::Simple::LinkSection
+	Pod::Simple::Methody
+	Pod::Simple::Progress
+	Pod::Simple::PullParser
+	Pod::Simple::PullParserEndToken
+	Pod::Simple::PullParserStartToken
+	Pod::Simple::PullParserTextToken
+	Pod::Simple::PullParserToken
+	Pod::Simple::RTF
+	Pod::Simple::Search
+	Pod::Simple::SimpleTree
+	Pod::Simple::Text
+	Pod::Simple::TextContent
+	Pod::Simple::TiedOutFH
+	Pod::Simple::Transcode
+	Pod::Simple::TranscodeDumb
+	Pod::Simple::TranscodeSmart
+	Pod::Simple::XHTML
+	Pod::Simple::XMLOutStream
+	Pod::Text
+	Pod::Text::Color
+	Pod::Text::Overstrike
+	Pod::Text::Termcap
+	Pod::Usage
+	SDBM_File
+	SUPER
+	SVN::Core
+	Safe
+	Scalar::Util
+	Search::Dict
+	SelectSaver
+	SelfLoader
+	Socket
+	Spiffy
+	Storable
+	Sub::Identify
+	Sub::Util
+	Symbol
+	Sys::Hostname
+	Sys::Syslog
+	TAP::Base
+	TAP::Formatter::Base
+	TAP::Formatter::Color
+	TAP::Formatter::Console
+	TAP::Formatter::Console::ParallelSession
+	TAP::Formatter::Console::Session
+	TAP::Formatter::File
+	TAP::Formatter::File::Session
+	TAP::Formatter::Session
+	TAP::Harness
+	TAP::Harness::Env
+	TAP::Object
+	TAP::Parser
+	TAP::Parser::Aggregator
+	TAP::Parser::Grammar
+	TAP::Parser::Iterator
+	TAP::Parser::Iterator::Array
+	TAP::Parser::Iterator::Process
+	TAP::Parser::Iterator::Stream
+	TAP::Parser::IteratorFactory
+	TAP::Parser::Multiplexer
+	TAP::Parser::Result
+	TAP::Parser::Result::Bailout
+	TAP::Parser::Result::Comment
+	TAP::Parser::Result::Plan
+	TAP::Parser::Result::Pragma
+	TAP::Parser::Result::Test
+	TAP::Parser::Result::Unknown
+	TAP::Parser::Result::Version
+	TAP::Parser::Result::YAML
+	TAP::Parser::ResultFactory
+	TAP::Parser::Scheduler
+	TAP::Parser::Scheduler::Job
+	TAP::Parser::Scheduler::Spinner
+	TAP::Parser::Source
+	TAP::Parser::SourceHandler
+	TAP::Parser::SourceHandler::Executable
+	TAP::Parser::SourceHandler::File
+	TAP::Parser::SourceHandler::Handle
+	TAP::Parser::SourceHandler::Perl
+	TAP::Parser::SourceHandler::RawTAP
+	TAP::Parser::YAMLish::Reader
+	TAP::Parser::YAMLish::Writer
+	Term::ANSIColor
+	Term::Cap
+	Term::Complete
+	Term::ReadLine
+	Test
+	Test2
+	Test2::API
+	Test2::API::Breakage
+	Test2::API::Context
+	Test2::API::Instance
+	Test2::API::Stack
+	Test2::Event
+	Test2::Event::Bail
+	Test2::Event::Diag
+	Test2::Event::Encoding
+	Test2::Event::Exception
+	Test2::Event::Generic
+	Test2::Event::Info
+	Test2::Event::Note
+	Test2::Event::Ok
+	Test2::Event::Plan
+	Test2::Event::Skip
+	Test2::Event::Subtest
+	Test2::Event::TAP::Version
+	Test2::Event::Waiting
+	Test2::Formatter
+	Test2::Formatter::TAP
+	Test2::Hub
+	Test2::Hub::Interceptor
+	Test2::Hub::Interceptor::Terminator
+	Test2::Hub::Subtest
+	Test2::IPC
+	Test2::IPC::Driver
+	Test2::IPC::Driver::Files
+	Test2::Tools::Tiny
+	Test2::Util
+	Test2::Util::ExternalMeta
+	Test2::Util::HashBase
+	Test2::Util::Trace
+	Test::Base
+	Test::Builder
+	Test::Builder::Formatter
+	Test::Builder::IO::Scalar
+	Test::Builder::Module
+	Test::Builder::Tester
+	Test::Builder::Tester::Color
+	Test::Builder::TodoDiag
+	Test::Deep
+	Test::Harness
+	Test::MockModule
+	Test::More
+	Test::Simple
+	Test::Tester
+	Test::Tester::Capture
+	Test::Tester::CaptureRunner
+	Test::Tester::Delegate
+	Test::YAML
+	Test::use::ok
+	Text::Abbrev
+	Text::Balanced
+	Text::Diff
+	Text::Diff::Config
+	Text::Diff::Table
+	Text::ParseWords
+	Text::Tabs
+	Text::Template
+	Text::Template::Preprocess
+	Text::Wrap
+	Thread
+	Thread::Queue
+	Thread::Semaphore
+	Tie::Array
+	Tie::File
+	Tie::Handle
+	Tie::Hash
+	Tie::Hash::NamedCapture
+	Tie::Memoize
+	Tie::RefHash
+	Tie::Scalar
+	Tie::StdHandle
+	Tie::SubstrHash
+	Time::HiRes
+	Time::Local
+	Time::Piece
+	Time::Seconds
+	Time::Zone
+	Time::gmtime
+	Time::localtime
+	Time::tm
+	UNIVERSAL
+	Unicode::Collate
+	Unicode::Collate::CJK::Big5
+	Unicode::Collate::CJK::GB2312
+	Unicode::Collate::CJK::JISX0208
+	Unicode::Collate::CJK::Korean
+	Unicode::Collate::CJK::Pinyin
+	Unicode::Collate::CJK::Stroke
+	Unicode::Collate::CJK::Zhuyin
+	Unicode::Collate::Locale
+	Unicode::Normalize
+	Unicode::UCD
+	User::grent
+	User::pwent
+	XSLoader
+	YAML
+	YAML::Any
+	YAML::Tiny
+	_charnames
+	arybase
+	attributes
+	autodie
+	autodie::Scope::Guard
+	autodie::Scope::GuardStack
+	autodie::Util
+	autodie::exception
+	autodie::exception::system
+	autodie::hints
+	autodie::skip
+	autouse
+	base
+	bigint
+	bignum
+	bigrat
+	blib
+	bytes
+	charnames
+	constant
+	deprecate
+	diagnostics
+	encoding
+	encoding::warnings
+	experimental
+	feature
+	fields
+	filetest
+	if
+	inc::latest
+	inc::latest::private
+	integer
+	less
+	lib
+	local::lib
+	locale
+	mro
+	ok
+	open
+	ops
+	overload
+	overloading
+	parent
+	perlfaq
+	re
+	sigtrap
+	sort
+	strict
+	subs
+	threads
+	threads::shared
+	utf8
+	vars
+	version
+	version::regex
+	version::vpp
+	version::vxs
+	vmsish
+	warnings
+	warnings::register
 ";
 
 install;

@@ -6,7 +6,7 @@ emacs-icon: $(wildcard .emacs.d/*.icns)
 	@echo "Emacs icon updated. Restart system to force display in Finder/Spotlight.";
 
 # Setup new workstation
-install: ~/.bash_sessions_disable ~/.hushlogin symlinks packages perl-links mirrors post-install-msg
+install: ~/.bash_sessions_disable ~/.hushlogin symlinks packages mirrors post-install
 
 # Disable Bash-session saving
 ~/.bash_sessions_disable:
@@ -35,11 +35,6 @@ symlinks: \
 # Reinstall packages, modules and Homebrew formulae
 packages: $(install-script)
 	@./$^
-
-# Link preinstalled Perl stuff
-perl-links:
-	cd ~ && chflags hidden perl5
-	eval "$(perl -I$HOME/perl5/lib/perl5 -Mlocal::lib)"
 
 # Mirror projects of interest
 mirrors: ~/Mirrors
@@ -73,8 +68,9 @@ mirrors: ~/Mirrors
 	git clone git@github.com:WebAssembly/wabt.git $@/WebAssembly-WABT
 	git clone git@github.com:adoxa/ansicon.git $@/ansicon
 
-# Print reminders that won't fit easily into this mess
-post-install-msg:
+# Random shite/Reminders that won't fit easily into this mess
+post-install:
+	cd ~ && chflags hidden perl5
 	@permalink="https://discussions.apple.com/thread/7675366?start=0&tstart=0";\
 	echo "Done. If MacBook overheats, enable iCloud keychain:";\
 	echo "\x1B[4m$$permalink""\x1B[0m";
@@ -115,6 +111,14 @@ gem-list: $(install-script)
 	@$(call print-status,"Updating list: RubyGems");
 	@gems=$$(gem list --no-versions | grep -v '* LOCAL GEMS *' | sort -fi | sed -r 's/^/\t/g');\
 	edit $^ 's/\nruby_gems="\K[^"]*(?=")/\n'"$$gems"'\n/sm';
+
+# CPAN modules; at least those *we* installed.
+# CPAN::Shell->autobundle no good: <http://www.perlmonks.org/?node_id=909966>
+cpan-list: $(install-script)
+	@core_modules=$$(perl -MModule::CoreList -E 'print join $$/, keys(%Module::CoreList::upstream);');\
+	modules_list=$$(cpan -l 2>/dev/null | grep -vE 'undef$$' | cut -f1 | grep -vF '$$modules_list' | sort | uniq);\
+	edit $^ 's/\ncpan_modules="\K[^"]*(?=")/\n'"$$modules_list"'\n/sm';
+.PHONY: cpan-list
 
 # Python packages
 pip-list: $(install-script)
