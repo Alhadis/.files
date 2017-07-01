@@ -1,0 +1,6 @@
+((nil . ((indent-tabs-mode . t)
+         (tab-width . 4)))
+ (git-commit-mode . ((indent-tabs-mode . nil)
+                     (fill-column . 72)))
+ (emacs-lisp-mode . ((indent-tabs-mode . nil)
+                     (tab-width . 2))))

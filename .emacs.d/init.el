@@ -1,9 +1,33 @@
 ;; UTF-8 support
-;; (set-language-environment "UTF-8")
+(set-language-environment "UTF-8")
 (setenv "LANG" "en_AU.UTF-8")
 (setenv "LC_ALL" "en_AU.UTF-8")
-(setq default-tab-width 4)
 
+;; Indentation preferences
+(setq default-tab-width 4)
+(setq indent-tabs-mode t)
+(setq indent-line-function 'insert-tab)
+(add-hook 'c-mode-common-hook
+          (lambda ()
+           (setq c-file-style "K&R")
+           (setq c-basic-offset 4)
+           (setq c-tab-always-indent t)
+           (setq c-syntactic-indentation nil)))
+(add-hook 'cperl-mode-hook
+          (lambda ()
+           (setq cperl-indent-level 8)
+           (setq cperl-extra-newline-before-brace nil)
+           (setq cperl-merge-trailing-else nil)))
+(add-hook 'git-commit-mode-hook
+          (lambda ()
+           (add-hook 'before-save-hook #'delete-trailing-whitespace nil t)
+           (setq indent-tabs-mode nil)
+           (setq fill-column 72)))
+(add-hook 'js-mode-hook
+          (lambda ()
+           (setq tab-width 4)
+           (setq indent-tabs-mode t)
+           (setq indent-line-function 'insert-tab)))
 
 ;;; Function to load all ".el" files in ~/.emacs.d/config
 (defun load-directory (directory)
@@ -33,6 +57,9 @@
 (autoload 'clojure-mode "clojure-mode" nil t)
 (add-to-list 'auto-mode-alist '("\\.rs\\'" . rust-mode))
 
+;; Disable newline auto-indentation
+(when (fboundp 'electric-indent-mode) (electric-indent-mode -1))
+
 ;; Load Git-related syntax highlighting
 (add-to-list 'load-path "~/.emacs.d/lisp/")
 (load "git-modes")
@@ -40,12 +67,8 @@
 
 ;; Keybindings
 (global-set-key (kbd "<f7>") 'ispell-buffer)
-(global-set-key (kbd "C-u") (lambda ()
-                             (interactive)
-                             (kill-line 0)))
-(global-set-key [(f1)] (lambda ()
-                        (interactive)
-                        (manual-entry (current-word))))
+(global-set-key (kbd "C-u")  (lambda () (interactive) (kill-line 0)))
+(global-set-key (kbd "<f1>") (lambda () (interactive) (manual-entry (current-word))))
 
 ;; Show cursor's current column number
 (setq column-number-mode t)
