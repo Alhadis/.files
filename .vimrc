@@ -29,7 +29,16 @@ set modelines=50
 set showmatch
 
 highlight OverLength ctermbg=red ctermfg=white guibg=#592929
-match OverLength /\%>72v.\+/
+fun! UpdateMatch()
+	if exists("b:current_syntax")
+		if b:current_syntax =~ "gitcommit"
+			match OverLength /\%>72v.\+/
+		else
+			match NONE
+		endif
+	endif
+endfun
+autocmd BufEnter,BufWinEnter * call UpdateMatch()
 
 
 "=========================================
