@@ -39,12 +39,17 @@ npm_modules="
 ruby_gems="
 	ast
 	bigdecimal
+	bundler
 	bundler-unload
+	charlock_holmes
 	did_you_mean
+	escape_utils
 	executable-hooks
 	gem-wrappers
 	io-console
 	json
+	mime-types
+	mime-types-data
 	minitest
 	net-telnet
 	openssl
@@ -59,6 +64,7 @@ ruby_gems="
 	rubocop
 	ruby-progressbar
 	rubygems-bundler
+	rugged
 	rvm
 	test-unit
 	unicode-display_width
