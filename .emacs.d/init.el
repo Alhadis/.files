@@ -15,6 +15,7 @@
            (setq c-syntactic-indentation nil)))
 (add-hook 'cperl-mode-hook
           (lambda ()
+           (setq tab-width 8)
            (setq cperl-indent-level 8)
            (setq cperl-extra-newline-before-brace nil)
            (setq cperl-merge-trailing-else nil)))
