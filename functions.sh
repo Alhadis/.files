@@ -298,6 +298,7 @@ c(){
 	history -c; > ~/.bash_history
 	rm -fP ~/.{lesshst,viminfo}
 	rm -fP ~/.{coffee,node_repl}_history
+	defaults delete com.apple.finder FXRecentFolders
 	
 	# Erase scrollback
 	clear;
