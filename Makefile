@@ -20,6 +20,7 @@ install: ~/.bash_sessions_disable ~/.hushlogin symlinks packages mirrors post-in
 # Reconnect symlinks
 symlinks: \
 	~/.bash_profile \
+	~/.curlrc \
 	~/.emacs.d \
 	~/.gitconfig \
 	~/.vimrc \
