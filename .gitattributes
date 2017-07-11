@@ -2,6 +2,7 @@
 .emacs.d/lisp/* linguist-vendored
 
 # Generated files
+etc/Brewfile            linguist-generated=true
 etc/install-packages.sh linguist-generated=true
 
 # Documentation
