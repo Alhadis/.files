@@ -2,8 +2,8 @@
 .emacs.d/lisp/* linguist-vendored
 
 # Generated files
-etc/Brewfile            linguist-generated=true
-etc/install-packages.sh linguist-generated=true
+etc/Brewfile   linguist-generated
+etc/install.sh linguist-generated
 
 # Documentation
 share/man/* linguist-documentation
