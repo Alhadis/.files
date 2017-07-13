@@ -23,6 +23,7 @@ symlinks: \
 	~/.curlrc \
 	~/.emacs.d \
 	~/.gitconfig \
+	~/.inputrc \
 	~/.vimrc \
 	~/.ssh/config \
 	/private/etc/man.conf
