@@ -6,9 +6,7 @@ install () {
 	npm -g install $npm_modules;
 	gem install -N $ruby_gems;
 	pip install $pip_packages;
-	brew tap $brew_taps;
-	brew install $brew_formulae;
-	brew cask install $brew_casks;
+	cd $(dirname "$0") && brew bundle
 	
 	eval "$(perl -I$HOME/perl5/lib/perl5 -Mlocal::lib)"
 	cpan -i $cpan_modules;
@@ -18,13 +16,11 @@ install () {
 npm_modules="
 	chai
 	clean-css
-	coffee-script
 	coffeelint
 	cson
 	electron
 	geographiclib
 	highlights
-	jsdoc
 	json
 	karma
 	less
@@ -84,416 +80,6 @@ pip_packages="
 	yasm
 ";
 
-# Homebrew casks
-brew_casks="
-	0xed
-	android-sdk
-	audacity
-	audio-hijack
-	beyond-compare
-	dropbox
-	emacs
-	firefox
-	flash-decompiler-trillix
-	glyphs
-	handbrake
-	inkscape
-	iterm2
-	java
-	poedit
-	senuti
-	sequel-pro
-	soulseek
-	sqlitebrowser
-	textmate
-	tunnelblick
-	utorrent
-	virtualbox
-	virtualbox-extension-pack
-	vlc
-	xld
-	xquartz
-";
-
-# Tapped formula repositories
-brew_taps="
-	bramstein/webfonttools
-	caskroom/cask
-	caskroom/fonts
-	dunn/emacs
-	homebrew/apache
-	homebrew/core
-	homebrew/dupes
-	homebrew/gui
-	homebrew/head-only
-	homebrew/science
-	homebrew/services
-	homebrew/tex
-	homebrew/versions
-";
-
-# Installed Homebrew formulae
-brew_formulae="
-	afl-fuzz
-	aggressive-indent
-	aha
-	algol68g
-	ansi-emacs
-	ansiweather
-	ant
-	apr
-	apr-util
-	arpack
-	ascii-art-to-unicode
-	asciidoc
-	async-emacs
-	atk
-	atkmm
-	ats2-postiats
-	autoconf
-	automake
-	bash
-	bcrypt
-	bdw-gc
-	binaryen
-	binutils
-	bison
-	boost
-	brotli
-	bullet
-	cabal-install
-	cairo
-	cairomm
-	cask
-	cd-discid
-	cfitsio
-	cgal
-	checkbashisms
-	cl-lib
-	clisp
-	clojure-mode
-	cloog
-	cmake
-	cmark
-	coffee-mode
-	colordiff
-	coreutils
-	crystal-lang
-	cscope
-	csv-mode
-	curl
-	cvs
-	czmq
-	d-bus
-	dash
-	dash-emacs
-	dbus
-	diff-pdf
-	dirmngr
-	docbook
-	docutils
-	docx2txt
-	dos2unix
-	doxygen
-	ebook-tools
-	editorconfig
-	editorconfig-emacs
-	emacs --with-ctags --with-dbus --with-gnutls --with-mailutils 
-	emscripten
-	eot-utils
-	epstool
-	erlang
-	faac
-	fdk-aac
-	ffmpeg --with-fdk-aac --with-libass --with-libsoxr --with-libvidstab --with-opencore-amr --with-openjpeg --with-rtmpdump --with-schroedinger --with-tools --with-x265 --with-fontconfig --with-freetype --with-frei0r --with-libbluray --with-libcaca --with-libvorbis --with-libvpx --with-opus --with-speex --with-theora 
-	fftw
-	field3d
-	findutils
-	flac
-	fltk
-	fontconfig
-	fontforge --with-extra-tools --with-libspiro 
-	fonttools
-	fortune
-	freetype
-	frei0r
-	fribidi
-	gawk
-	gcc
-	gd
-	gdbm
-	gdk-pixbuf
-	geographiclib
-	geoip --with-geoipupdate 
-	geoipupdate
-	gettext
-	ghc
-	ghostscript
-	gifify
-	giflib
-	gist
-	git
-	git-lfs
-	gl2ps
-	glib
-	glibmm
-	glm
-	glpk
-	gmp
-	gmp@4
-	gnu-apl
-	gnu-getopt
-	gnu-sed --with-default-names 
-	gnuplot --with-qt@5.7 
-	gnutls
-	gobject-introspection
-	grap
-	graphicsmagick
-	graphite2
-	grep --with-default-names 
-	groff --with-gpresent --with-grohtml --with-gropdf 
-	gsasl
-	gsl
-	gtk+
-	gtkglext
-	gtkmm
-	harfbuzz
-	hdf5
-	help2man
-	hicolor-icon-theme
-	highlight
-	html-xml-utils
-	hub
-	hunspell
-	icu4c
-	id3lib
-	id3v2
-	ievms
-	ilmbase
-	imagemagick --with-hdri --with-little-cms --with-little-cms2 --with-openexr --with-ghostscript --with-webp 
-	imagesnap
-	imageworsener
-	iniparser
-	isl
-	isl@0.12
-	iso-codes
-	jasper
-	jbig2dec
-	jpeg
-	jq
-	json-c
-	json-fortran
-	jsoncpp
-	lame
-	latex2html
-	less --with-pcre 
-	lfe
-	lib3ds
-	libart
-	libass
-	libassuan
-	libav
-	libbluray
-	libcaca
-	libcroco
-	libevent
-	libexif
-	libffi
-	libgcrypt
-	libgpg-error
-	libgsf
-	libharu
-	libidn
-	libksba
-	liblqr
-	libmatio
-	libmpc
-	libmpeg2
-	libogg
-	libpcl
-	libpng
-	libquvi
-	libraw
-	librsvg
-	libsigc++
-	libsigsegv
-	libsodium
-	libsoxr
-	libspiro
-	libssh2
-	libsvg
-	libsvg-cairo
-	libtasn1
-	libtiff
-	libtool
-	libuninameslist
-	libunistring
-	libusb
-	libusb-compat
-	libuv
-	libvidstab
-	libvo-aacenc
-	libvorbis
-	libvpx
-	libwebm
-	libwebsockets
-	libwmf
-	libxml2
-	libxslt
-	libyaml --universal 
-	libzip
-	links
-	little-cms
-	little-cms2
-	llvm
-	lua
-	luajit
-	lynx
-	lzo
-	macvim
-	mailutils
-	makedepend
-	malbolge
-	mandoc
-	markdown
-	mathgl
-	mcrypt
-	media-info
-	mercurial
-	metis
-	mhash
-	mit-scheme
-	mlton
-	moreutils
-	mp3info
-	mpfr
-	nano
-	nasm
-	ncurses
-	netpbm
-	nettle
-	ninja
-	node
-	octave
-	oggz
-	oniguruma
-	open-mesh
-	open-scene-graph
-	opencore-amr
-	openexr
-	openjpeg
-	openslide
-	openssl
-	openssl@1.1
-	openvpn
-	opus
-	orc
-	org-mode
-	ossp-uuid
-	p11-kit
-	p7zip
-	pandoc
-	pango
-	pangomm
-	partio
-	pass
-	pcre
-	pcre2
-	perl
-	phantomjs
-	pinentry
-	pixman
-	pkg-config
-	plotutils
-	pngnq
-	pngquant
-	poppler
-	popt
-	poster
-	postgresql
-	powerline-emacs
-	protobuf
-	pstoedit
-	psutils
-	pth
-	putty
-	pwgen
-	py2cairo
-	pygobject3
-	python
-	python3
-	qhull
-	qrencode
-	qrupdate
-	qt
-	qt@5.7
-	rakudo-star
-	re2c
-	readline
-	rename
-	rtmpdump
-	ruby
-	rust
-	rust-mode
-	s-emacs
-	sbcl
-	schroedinger
-	scons
-	screen
-	sdl
-	sfnt2woff-zopfli
-	shared-mime-info
-	sip
-	source-highlight
-	speex
-	sqlite
-	st
-	subversion
-	suite-sparse
-	svg2pdf
-	svg2png
-	swig
-	szip
-	tablist
-	tbb
-	texi2html
-	texinfo
-	texmath
-	theora
-	tidy-html5
-	tor
-	transfig
-	tree
-	ttf2pt1
-	ttfautohint
-	unar
-	unixodbc
-	unpaper
-	unrar
-	veclibfort
-	vim
-	vips
-	wabt
-	watch
-	watchexec
-	watchman
-	webp
-	wget
-	wgetpaste
-	woff2
-	wxmac
-	x264
-	x265
-	xvid
-	xz
-	yasm
-	yuicompressor
-	zeromq
-	zlib
-	zopfli
-";
-
-
 # Perl modules not distributed with core releases
 cpan_modules="
 	Algorithm::Diff
@@ -519,9 +105,20 @@ cpan_modules="
 	Archive::Zip::StringMember
 	Archive::Zip::Tree
 	Archive::Zip::ZipFileMember
+	arybase
 	Attribute::Handlers
+	attributes
+	autodie
+	autodie::exception
+	autodie::exception::system
+	autodie::hints
+	autodie::Scope::Guard
+	autodie::Scope::GuardStack
+	autodie::skip
+	autodie::Util
 	AutoLoader
 	AutoSplit
+	autouse
 	B
 	B::Concise
 	B::Debug
@@ -530,7 +127,23 @@ cpan_modules="
 	B::Showlex
 	B::Terse
 	B::Xref
+	base
 	Benchmark
+	bigint
+	bignum
+	bigrat
+	blib
+	bytes
+	Carp
+	Carp::Heavy
+	charnames
+	Class::Struct
+	Compress::Raw::Bzip2
+	Compress::Raw::Zlib
+	Compress::Zlib
+	Config::Extensions
+	Config::Perl::V
+	constant
 	CPAN
 	CPAN::Author
 	CPAN::Bundle
@@ -541,16 +154,16 @@ cpan_modules="
 	CPAN::Distribution
 	CPAN::Distroprefs
 	CPAN::Distrostatus
-	CPAN::Exception::RecursiveDependency
 	CPAN::Exception::blocked_urllist
+	CPAN::Exception::RecursiveDependency
 	CPAN::Exception::yaml_not_installed
 	CPAN::Exception::yaml_process_error
+	CPAN::FirstTime
 	CPAN::FTP
 	CPAN::FTP::netrc
-	CPAN::FirstTime
+	CPAN::HandleConfig
 	CPAN::HTTP::Client
 	CPAN::HTTP::Credentials
-	CPAN::HandleConfig
 	CPAN::Index
 	CPAN::InfoObj
 	CPAN::Kwalify
@@ -576,25 +189,8 @@ cpan_modules="
 	CPAN::Tarzip
 	CPAN::URL
 	CPAN::Version
-	Carp
-	Carp::Heavy
-	Class::Struct
-	Compress::Raw::Bzip2
-	Compress::Raw::Zlib
-	Compress::Zlib
-	Config
-	Config::Extensions
-	Config::Perl::V
 	Cpanel::JSON::XS
 	Cwd
-	DB
-	DBM_Filter
-	DBM_Filter::compress
-	DBM_Filter::encode
-	DBM_Filter::int32
-	DBM_Filter::null
-	DBM_Filter::utf8
-	DB_File
 	Data::Dumper
 	Date::Format
 	Date::Language
@@ -632,15 +228,24 @@ cpan_modules="
 	Date::Language::TigrinyaEthiopian
 	Date::Language::Turkish
 	Date::Parse
-	Devel::PPPort
+	DBM_Filter
+	DBM_Filter::compress
+	DBM_Filter::encode
+	DBM_Filter::int32
+	DBM_Filter::null
+	DBM_Filter::utf8
+	DB_File
+	deprecate
 	Devel::Peek
+	Devel::PPPort
 	Devel::SelfStubber
+	diagnostics
 	Digest
+	Digest::base
+	Digest::file
 	Digest::MD5
 	Digest::SHA
 	Digest::SHA1
-	Digest::base
-	Digest::file
 	DirHandle
 	Dumpvalue
 	DynaLoader
@@ -651,6 +256,8 @@ cpan_modules="
 	Encode::CN
 	Encode::CN::HZ
 	Encode::Config
+	Encode::Detect
+	Encode::Detect::Detector
 	Encode::EBCDIC
 	Encode::Encoder
 	Encode::Encoding
@@ -668,25 +275,27 @@ cpan_modules="
 	Encode::TW
 	Encode::Unicode
 	Encode::Unicode::UTF7
+	encoding
+	encoding::warnings
 	English
 	Env
-	Errno
+	experimental
 	Exporter
 	Exporter::Heavy
 	ExtUtils::CBuilder
 	ExtUtils::CBuilder::Base
-	ExtUtils::CBuilder::Platform::Unix
-	ExtUtils::CBuilder::Platform::VMS
-	ExtUtils::CBuilder::Platform::Windows
-	ExtUtils::CBuilder::Platform::Windows::BCC
-	ExtUtils::CBuilder::Platform::Windows::GCC
-	ExtUtils::CBuilder::Platform::Windows::MSVC
 	ExtUtils::CBuilder::Platform::aix
 	ExtUtils::CBuilder::Platform::android
 	ExtUtils::CBuilder::Platform::cygwin
 	ExtUtils::CBuilder::Platform::darwin
 	ExtUtils::CBuilder::Platform::dec_osf
 	ExtUtils::CBuilder::Platform::os2
+	ExtUtils::CBuilder::Platform::Unix
+	ExtUtils::CBuilder::Platform::VMS
+	ExtUtils::CBuilder::Platform::Windows
+	ExtUtils::CBuilder::Platform::Windows::BCC
+	ExtUtils::CBuilder::Platform::Windows::GCC
+	ExtUtils::CBuilder::Platform::Windows::MSVC
 	ExtUtils::Command
 	ExtUtils::Command::MM
 	ExtUtils::Constant
@@ -699,24 +308,6 @@ cpan_modules="
 	ExtUtils::Installed
 	ExtUtils::Liblist
 	ExtUtils::Liblist::Kid
-	ExtUtils::MM
-	ExtUtils::MM_AIX
-	ExtUtils::MM_Any
-	ExtUtils::MM_BeOS
-	ExtUtils::MM_Cygwin
-	ExtUtils::MM_DOS
-	ExtUtils::MM_Darwin
-	ExtUtils::MM_MacOS
-	ExtUtils::MM_NW5
-	ExtUtils::MM_OS2
-	ExtUtils::MM_QNX
-	ExtUtils::MM_UWIN
-	ExtUtils::MM_Unix
-	ExtUtils::MM_VMS
-	ExtUtils::MM_VOS
-	ExtUtils::MM_Win32
-	ExtUtils::MM_Win95
-	ExtUtils::MY
 	ExtUtils::MakeMaker
 	ExtUtils::MakeMaker::Config
 	ExtUtils::MakeMaker::Locale
@@ -727,20 +318,40 @@ cpan_modules="
 	ExtUtils::Miniperl
 	ExtUtils::Mkbootstrap
 	ExtUtils::Mksymlists
+	ExtUtils::MM
+	ExtUtils::MM_AIX
+	ExtUtils::MM_Any
+	ExtUtils::MM_BeOS
+	ExtUtils::MM_Cygwin
+	ExtUtils::MM_Darwin
+	ExtUtils::MM_DOS
+	ExtUtils::MM_MacOS
+	ExtUtils::MM_NW5
+	ExtUtils::MM_OS2
+	ExtUtils::MM_QNX
+	ExtUtils::MM_Unix
+	ExtUtils::MM_UWIN
+	ExtUtils::MM_VMS
+	ExtUtils::MM_VOS
+	ExtUtils::MM_Win32
+	ExtUtils::MM_Win95
+	ExtUtils::MY
 	ExtUtils::Packlist
 	ExtUtils::ParseXS
 	ExtUtils::ParseXS::Constants
 	ExtUtils::ParseXS::CountLines
 	ExtUtils::ParseXS::Eval
 	ExtUtils::ParseXS::Utilities
+	ExtUtils::testlib
 	ExtUtils::Typemaps
 	ExtUtils::Typemaps::Cmd
 	ExtUtils::Typemaps::InputMap
 	ExtUtils::Typemaps::OutputMap
 	ExtUtils::Typemaps::Type
-	ExtUtils::testlib
 	Fatal
 	Fcntl
+	feature
+	fields
 	File::Basename
 	File::Compare
 	File::Copy
@@ -761,31 +372,193 @@ cpan_modules="
 	File::Spec::Unix
 	File::Spec::VMS
 	File::Spec::Win32
-	File::Temp
 	File::stat
+	File::Temp
 	FileCache
 	FileHandle
-	Filter::Simple
-	Filter::Simple::Compile
-	Filter::Util::Call
-	Filter::Util::Exec
+	filetest
 	Filter::cpp
 	Filter::decrypt
 	Filter::exec
 	Filter::sh
+	Filter::Simple
+	Filter::Simple::Compile
 	Filter::tee
+	Filter::Util::Call
+	Filter::Util::Exec
 	FindBin
 	Getopt::Long
 	Getopt::Std
-	HTTP::Date
-	HTTP::Tiny
 	Hash::Util
 	Hash::Util::FieldHash
+	HTTP::Date
+	HTTP::Tiny
 	I18N::Collate
+	I18N::Langinfo
 	I18N::LangTags
 	I18N::LangTags::Detect
 	I18N::LangTags::List
-	I18N::Langinfo
+	if
+	Image::ExifTool
+	Image::ExifTool::AES
+	Image::ExifTool::AFCP
+	Image::ExifTool::AIFF
+	Image::ExifTool::APE
+	Image::ExifTool::APP12
+	Image::ExifTool::Apple
+	Image::ExifTool::ASF
+	Image::ExifTool::Audible
+	Image::ExifTool::BigTIFF
+	Image::ExifTool::BMP
+	Image::ExifTool::BPG
+	Image::ExifTool::BuildTagLookup
+	Image::ExifTool::BZZ
+	Image::ExifTool::Canon
+	Image::ExifTool::CanonCustom
+	Image::ExifTool::CanonRaw
+	Image::ExifTool::CanonVRD
+	Image::ExifTool::CaptureOne
+	Image::ExifTool::Casio
+	Image::ExifTool::Charset
+	Image::ExifTool::DarwinCore
+	Image::ExifTool::DICOM
+	Image::ExifTool::DJI
+	Image::ExifTool::DjVu
+	Image::ExifTool::DNG
+	Image::ExifTool::DPX
+	Image::ExifTool::DV
+	Image::ExifTool::EXE
+	Image::ExifTool::Exif
+	Image::ExifTool::Fixup
+	Image::ExifTool::FLAC
+	Image::ExifTool::Flash
+	Image::ExifTool::FlashPix
+	Image::ExifTool::FLIF
+	Image::ExifTool::FLIR
+	Image::ExifTool::Font
+	Image::ExifTool::FotoStation
+	Image::ExifTool::FujiFilm
+	Image::ExifTool::GE
+	Image::ExifTool::Geotag
+	Image::ExifTool::GeoTiff
+	Image::ExifTool::GIF
+	Image::ExifTool::GIMP
+	Image::ExifTool::GPS
+	Image::ExifTool::H264
+	Image::ExifTool::HP
+	Image::ExifTool::HTML
+	Image::ExifTool::HtmlDump
+	Image::ExifTool::ICC_Profile
+	Image::ExifTool::ID3
+	Image::ExifTool::Import
+	Image::ExifTool::InDesign
+	Image::ExifTool::IPTC
+	Image::ExifTool::ISO
+	Image::ExifTool::ITC
+	Image::ExifTool::iWork
+	Image::ExifTool::JPEG
+	Image::ExifTool::Jpeg2000
+	Image::ExifTool::JPEGDigest
+	Image::ExifTool::JSON
+	Image::ExifTool::JVC
+	Image::ExifTool::Kodak
+	Image::ExifTool::KyoceraRaw
+	Image::ExifTool::Lang::cs
+	Image::ExifTool::Lang::de
+	Image::ExifTool::Lang::en_ca
+	Image::ExifTool::Lang::en_gb
+	Image::ExifTool::Lang::es
+	Image::ExifTool::Lang::fi
+	Image::ExifTool::Lang::fr
+	Image::ExifTool::Lang::it
+	Image::ExifTool::Lang::ja
+	Image::ExifTool::Lang::ko
+	Image::ExifTool::Lang::nl
+	Image::ExifTool::Lang::pl
+	Image::ExifTool::Lang::ru
+	Image::ExifTool::Lang::sv
+	Image::ExifTool::Lang::tr
+	Image::ExifTool::Lang::zh_cn
+	Image::ExifTool::Lang::zh_tw
+	Image::ExifTool::Leaf
+	Image::ExifTool::LNK
+	Image::ExifTool::Lytro
+	Image::ExifTool::M2TS
+	Image::ExifTool::MacOS
+	Image::ExifTool::MakerNotes
+	Image::ExifTool::Matroska
+	Image::ExifTool::Microsoft
+	Image::ExifTool::MIE
+	Image::ExifTool::MIFF
+	Image::ExifTool::Minolta
+	Image::ExifTool::MinoltaRaw
+	Image::ExifTool::MNG
+	Image::ExifTool::MOI
+	Image::ExifTool::Motorola
+	Image::ExifTool::MPC
+	Image::ExifTool::MPEG
+	Image::ExifTool::MPF
+	Image::ExifTool::MWG
+	Image::ExifTool::MXF
+	Image::ExifTool::Nikon
+	Image::ExifTool::NikonCapture
+	Image::ExifTool::NikonCustom
+	Image::ExifTool::Nintendo
+	Image::ExifTool::Ogg
+	Image::ExifTool::Olympus
+	Image::ExifTool::OOXML
+	Image::ExifTool::OpenEXR
+	Image::ExifTool::Opus
+	Image::ExifTool::Palm
+	Image::ExifTool::Panasonic
+	Image::ExifTool::PanasonicRaw
+	Image::ExifTool::PDF
+	Image::ExifTool::Pentax
+	Image::ExifTool::PGF
+	Image::ExifTool::PhaseOne
+	Image::ExifTool::PhotoCD
+	Image::ExifTool::PhotoMechanic
+	Image::ExifTool::Photoshop
+	Image::ExifTool::PICT
+	Image::ExifTool::PLIST
+	Image::ExifTool::PLUS
+	Image::ExifTool::PNG
+	Image::ExifTool::PostScript
+	Image::ExifTool::PPM
+	Image::ExifTool::PrintIM
+	Image::ExifTool::PSP
+	Image::ExifTool::Qualcomm
+	Image::ExifTool::QuickTime
+	Image::ExifTool::Radiance
+	Image::ExifTool::Rawzor
+	Image::ExifTool::Real
+	Image::ExifTool::Reconyx
+	Image::ExifTool::Ricoh
+	Image::ExifTool::RIFF
+	Image::ExifTool::RSRC
+	Image::ExifTool::RTF
+	Image::ExifTool::Samsung
+	Image::ExifTool::Sanyo
+	Image::ExifTool::Scalado
+	Image::ExifTool::Shortcuts
+	Image::ExifTool::Sigma
+	Image::ExifTool::SigmaRaw
+	Image::ExifTool::Sony
+	Image::ExifTool::SonyIDC
+	Image::ExifTool::Stim
+	Image::ExifTool::TagInfoXML
+	Image::ExifTool::TagLookup
+	Image::ExifTool::Theora
+	Image::ExifTool::Torrent
+	Image::ExifTool::Unknown
+	Image::ExifTool::Validate
+	Image::ExifTool::VCard
+	Image::ExifTool::Vorbis
+	Image::ExifTool::XMP
+	Image::ExifTool::ZIP
+	inc::latest
+	inc::latest::private
+	integer
 	IO
 	IO::Compress::Adapter::Bzip2
 	IO::Compress::Adapter::Deflate
@@ -831,168 +604,17 @@ cpan_modules="
 	IPC::Semaphore
 	IPC::SharedMem
 	IPC::SysV
-	Image::ExifTool
-	Image::ExifTool::AES
-	Image::ExifTool::AFCP
-	Image::ExifTool::AIFF
-	Image::ExifTool::APE
-	Image::ExifTool::APP12
-	Image::ExifTool::ASF
-	Image::ExifTool::Apple
-	Image::ExifTool::Audible
-	Image::ExifTool::BMP
-	Image::ExifTool::BPG
-	Image::ExifTool::BZZ
-	Image::ExifTool::BigTIFF
-	Image::ExifTool::BuildTagLookup
-	Image::ExifTool::Canon
-	Image::ExifTool::CanonCustom
-	Image::ExifTool::CanonRaw
-	Image::ExifTool::CanonVRD
-	Image::ExifTool::CaptureOne
-	Image::ExifTool::Casio
-	Image::ExifTool::Charset
-	Image::ExifTool::DICOM
-	Image::ExifTool::DJI
-	Image::ExifTool::DNG
-	Image::ExifTool::DPX
-	Image::ExifTool::DV
-	Image::ExifTool::DarwinCore
-	Image::ExifTool::DjVu
-	Image::ExifTool::EXE
-	Image::ExifTool::Exif
-	Image::ExifTool::FLAC
-	Image::ExifTool::FLIF
-	Image::ExifTool::FLIR
-	Image::ExifTool::Fixup
-	Image::ExifTool::Flash
-	Image::ExifTool::FlashPix
-	Image::ExifTool::Font
-	Image::ExifTool::FotoStation
-	Image::ExifTool::FujiFilm
-	Image::ExifTool::GE
-	Image::ExifTool::GIF
-	Image::ExifTool::GIMP
-	Image::ExifTool::GPS
-	Image::ExifTool::GeoTiff
-	Image::ExifTool::Geotag
-	Image::ExifTool::H264
-	Image::ExifTool::HP
-	Image::ExifTool::HTML
-	Image::ExifTool::HtmlDump
-	Image::ExifTool::ICC_Profile
-	Image::ExifTool::ID3
-	Image::ExifTool::IPTC
-	Image::ExifTool::ISO
-	Image::ExifTool::ITC
-	Image::ExifTool::Import
-	Image::ExifTool::InDesign
-	Image::ExifTool::JPEG
-	Image::ExifTool::JPEGDigest
-	Image::ExifTool::JSON
-	Image::ExifTool::JVC
-	Image::ExifTool::Jpeg2000
-	Image::ExifTool::Kodak
-	Image::ExifTool::KyoceraRaw
-	Image::ExifTool::LNK
-	Image::ExifTool::Lang::cs
-	Image::ExifTool::Lang::de
-	Image::ExifTool::Lang::en_ca
-	Image::ExifTool::Lang::en_gb
-	Image::ExifTool::Lang::es
-	Image::ExifTool::Lang::fi
-	Image::ExifTool::Lang::fr
-	Image::ExifTool::Lang::it
-	Image::ExifTool::Lang::ja
-	Image::ExifTool::Lang::ko
-	Image::ExifTool::Lang::nl
-	Image::ExifTool::Lang::pl
-	Image::ExifTool::Lang::ru
-	Image::ExifTool::Lang::sv
-	Image::ExifTool::Lang::tr
-	Image::ExifTool::Lang::zh_cn
-	Image::ExifTool::Lang::zh_tw
-	Image::ExifTool::Leaf
-	Image::ExifTool::Lytro
-	Image::ExifTool::M2TS
-	Image::ExifTool::MIE
-	Image::ExifTool::MIFF
-	Image::ExifTool::MNG
-	Image::ExifTool::MOI
-	Image::ExifTool::MPC
-	Image::ExifTool::MPEG
-	Image::ExifTool::MPF
-	Image::ExifTool::MWG
-	Image::ExifTool::MXF
-	Image::ExifTool::MacOS
-	Image::ExifTool::MakerNotes
-	Image::ExifTool::Matroska
-	Image::ExifTool::Microsoft
-	Image::ExifTool::Minolta
-	Image::ExifTool::MinoltaRaw
-	Image::ExifTool::Motorola
-	Image::ExifTool::Nikon
-	Image::ExifTool::NikonCapture
-	Image::ExifTool::NikonCustom
-	Image::ExifTool::Nintendo
-	Image::ExifTool::OOXML
-	Image::ExifTool::Ogg
-	Image::ExifTool::Olympus
-	Image::ExifTool::OpenEXR
-	Image::ExifTool::Opus
-	Image::ExifTool::PDF
-	Image::ExifTool::PGF
-	Image::ExifTool::PICT
-	Image::ExifTool::PLIST
-	Image::ExifTool::PLUS
-	Image::ExifTool::PNG
-	Image::ExifTool::PPM
-	Image::ExifTool::PSP
-	Image::ExifTool::Palm
-	Image::ExifTool::Panasonic
-	Image::ExifTool::PanasonicRaw
-	Image::ExifTool::Pentax
-	Image::ExifTool::PhaseOne
-	Image::ExifTool::PhotoCD
-	Image::ExifTool::PhotoMechanic
-	Image::ExifTool::Photoshop
-	Image::ExifTool::PostScript
-	Image::ExifTool::PrintIM
-	Image::ExifTool::Qualcomm
-	Image::ExifTool::QuickTime
-	Image::ExifTool::RIFF
-	Image::ExifTool::RSRC
-	Image::ExifTool::RTF
-	Image::ExifTool::Radiance
-	Image::ExifTool::Rawzor
-	Image::ExifTool::Real
-	Image::ExifTool::Reconyx
-	Image::ExifTool::Ricoh
-	Image::ExifTool::Samsung
-	Image::ExifTool::Sanyo
-	Image::ExifTool::Scalado
-	Image::ExifTool::Shortcuts
-	Image::ExifTool::Sigma
-	Image::ExifTool::SigmaRaw
-	Image::ExifTool::Sony
-	Image::ExifTool::SonyIDC
-	Image::ExifTool::Stim
-	Image::ExifTool::TagInfoXML
-	Image::ExifTool::TagLookup
-	Image::ExifTool::Theora
-	Image::ExifTool::Torrent
-	Image::ExifTool::Unknown
-	Image::ExifTool::VCard
-	Image::ExifTool::Validate
-	Image::ExifTool::Vorbis
-	Image::ExifTool::XMP
-	Image::ExifTool::ZIP
-	Image::ExifTool::iWork
 	JSON::MaybeXS
 	JSON::PP
 	JSON::PP::Boolean
+	less
+	Lexical::SealRequireHints
+	lib
+	lib::core::only
 	List::Util
 	List::Util::XS
+	local::lib
+	locale
 	Locale::Codes
 	Locale::Codes::Constants
 	Locale::Codes::Country
@@ -1007,12 +629,12 @@ cpan_modules="
 	Locale::Codes::LangFam
 	Locale::Codes::LangFam_Codes
 	Locale::Codes::LangFam_Retired
-	Locale::Codes::LangVar
-	Locale::Codes::LangVar_Codes
-	Locale::Codes::LangVar_Retired
 	Locale::Codes::Language
 	Locale::Codes::Language_Codes
 	Locale::Codes::Language_Retired
+	Locale::Codes::LangVar
+	Locale::Codes::LangVar_Codes
+	Locale::Codes::LangVar_Retired
 	Locale::Codes::Script
 	Locale::Codes::Script_Codes
 	Locale::Codes::Script_Retired
@@ -1024,8 +646,6 @@ cpan_modules="
 	Locale::Maketext::GutsLoader
 	Locale::Maketext::Simple
 	Locale::Script
-	MIME::Base64
-	MIME::QuotedPrint
 	Math::BigFloat
 	Math::BigFloat::Trace
 	Math::BigInt
@@ -1045,6 +665,8 @@ cpan_modules="
 	Memoize::NDBM_File
 	Memoize::SDBM_File
 	Memoize::Storable
+	MIME::Base64
+	MIME::QuotedPrint
 	Module::Build
 	Module::Build::Base
 	Module::Build::Compat
@@ -1052,19 +674,20 @@ cpan_modules="
 	Module::Build::Cookbook
 	Module::Build::Dumper
 	Module::Build::Notes
-	Module::Build::PPMMaker
+	Module::Build::Platform::aix
+	Module::Build::Platform::cygwin
+	Module::Build::Platform::darwin
 	Module::Build::Platform::Default
 	Module::Build::Platform::MacOS
+	Module::Build::Platform::os2
 	Module::Build::Platform::Unix
 	Module::Build::Platform::VMS
 	Module::Build::Platform::VOS
 	Module::Build::Platform::Windows
-	Module::Build::Platform::aix
-	Module::Build::Platform::cygwin
-	Module::Build::Platform::darwin
-	Module::Build::Platform::os2
 	Module::Build::PodParser
+	Module::Build::PPMMaker
 	Module::Compile
+	Module::Compile::Opt
 	Module::CoreList
 	Module::CoreList::TieHashDelta
 	Module::CoreList::Utils
@@ -1072,34 +695,47 @@ cpan_modules="
 	Module::Load::Conditional
 	Module::Loaded
 	Module::Metadata
+	Module::Optimize
+	mro
 	NDBM_File
-	NEXT
 	Net::Cmd
 	Net::Config
 	Net::Domain
 	Net::FTP
 	Net::FTP::A
+	Net::FTP::dataconn
 	Net::FTP::E
 	Net::FTP::I
 	Net::FTP::L
-	Net::FTP::dataconn
-	Net::NNTP
-	Net::Netrc
-	Net::POP3
-	Net::Ping
-	Net::SMTP
-	Net::Time
 	Net::hostent
 	Net::netent
+	Net::Netrc
+	Net::NNTP
+	Net::Ping
+	Net::POP3
 	Net::protoent
 	Net::servent
+	Net::SMTP
+	Net::Time
+	NEXT
 	O
+	ok
 	Opcode
-	POSIX
-	POSIX::strptime
+	open
+	ops
+	overload
+	overload::numbers
+	overloading
 	Params::Check
+	Params::Classify
+	Params::Validate
+	Params::Validate::Constants
+	Params::Validate::PP
+	Params::Validate::XS
+	parent
 	Parse::CPAN::Meta
 	Perl::OSType
+	perlfaq
 	PerlIO
 	PerlIO::encoding
 	PerlIO::mmap
@@ -1109,13 +745,12 @@ cpan_modules="
 	Pod::Checker
 	Pod::Escapes
 	Pod::Find
-	Pod::Functions
 	Pod::Html
 	Pod::InputObjects
 	Pod::Man
 	Pod::ParseLink
-	Pod::ParseUtils
 	Pod::Parser
+	Pod::ParseUtils
 	Pod::Perldoc
 	Pod::Perldoc::BaseTo
 	Pod::Perldoc::GetOptsOO
@@ -1164,19 +799,34 @@ cpan_modules="
 	Pod::Text::Overstrike
 	Pod::Text::Termcap
 	Pod::Usage
-	SDBM_File
-	SUPER
-	SVN::Core
+	POSIX
+	POSIX::strptime
+	re
 	Safe
 	Scalar::Util
+	SDBM_File
 	Search::Dict
 	SelectSaver
 	SelfLoader
+	sigtrap
 	Socket
+	sort
 	Spiffy
+	Spiffy::mixin
 	Storable
+	strict
 	Sub::Identify
 	Sub::Util
+	subs
+	SUPER
+	SVN::Base
+	SVN::Client
+	SVN::Core
+	SVN::Delta
+	SVN::Fs
+	SVN::Ra
+	SVN::Repos
+	SVN::Wc
 	Symbol
 	Sys::Hostname
 	Sys::Syslog
@@ -1240,7 +890,6 @@ cpan_modules="
 	Test2::Event::Encoding
 	Test2::Event::Exception
 	Test2::Event::Generic
-	Test2::Event::Info
 	Test2::Event::Note
 	Test2::Event::Ok
 	Test2::Event::Plan
@@ -1263,6 +912,7 @@ cpan_modules="
 	Test2::Util::HashBase
 	Test2::Util::Trace
 	Test::Base
+	Test::Base::Filter
 	Test::Builder
 	Test::Builder::Formatter
 	Test::Builder::IO::Scalar
@@ -1271,6 +921,48 @@ cpan_modules="
 	Test::Builder::Tester::Color
 	Test::Builder::TodoDiag
 	Test::Deep
+	Test::Deep::All
+	Test::Deep::Any
+	Test::Deep::Array
+	Test::Deep::ArrayEach
+	Test::Deep::ArrayElementsOnly
+	Test::Deep::ArrayLength
+	Test::Deep::ArrayLengthOnly
+	Test::Deep::Blessed
+	Test::Deep::Boolean
+	Test::Deep::Cache
+	Test::Deep::Cache::Simple
+	Test::Deep::Class
+	Test::Deep::Cmp
+	Test::Deep::Code
+	Test::Deep::Hash
+	Test::Deep::HashEach
+	Test::Deep::HashElements
+	Test::Deep::HashKeys
+	Test::Deep::HashKeysOnly
+	Test::Deep::Ignore
+	Test::Deep::Isa
+	Test::Deep::ListMethods
+	Test::Deep::Methods
+	Test::Deep::MM
+	Test::Deep::None
+	Test::Deep::NoTest
+	Test::Deep::Number
+	Test::Deep::Obj
+	Test::Deep::Ref
+	Test::Deep::RefType
+	Test::Deep::Regexp
+	Test::Deep::RegexpMatches
+	Test::Deep::RegexpOnly
+	Test::Deep::RegexpRef
+	Test::Deep::RegexpRefOnly
+	Test::Deep::RegexpVersion
+	Test::Deep::ScalarRef
+	Test::Deep::ScalarRefOnly
+	Test::Deep::Set
+	Test::Deep::Shallow
+	Test::Deep::Stack
+	Test::Deep::String
 	Test::Harness
 	Test::MockModule
 	Test::More
@@ -1279,8 +971,8 @@ cpan_modules="
 	Test::Tester::Capture
 	Test::Tester::CaptureRunner
 	Test::Tester::Delegate
-	Test::YAML
 	Test::use::ok
+	Test::YAML
 	Text::Abbrev
 	Text::Balanced
 	Text::Diff
@@ -1294,6 +986,8 @@ cpan_modules="
 	Thread
 	Thread::Queue
 	Thread::Semaphore
+	threads
+	threads::shared
 	Tie::Array
 	Tie::File
 	Tie::Handle
@@ -1304,15 +998,14 @@ cpan_modules="
 	Tie::Scalar
 	Tie::StdHandle
 	Tie::SubstrHash
+	Time::gmtime
 	Time::HiRes
 	Time::Local
+	Time::localtime
 	Time::Piece
 	Time::Seconds
-	Time::Zone
-	Time::gmtime
-	Time::localtime
 	Time::tm
-	UNIVERSAL
+	Time::Zone
 	Unicode::Collate
 	Unicode::Collate::CJK::Big5
 	Unicode::Collate::CJK::GB2312
@@ -1324,63 +1017,9 @@ cpan_modules="
 	Unicode::Collate::Locale
 	Unicode::Normalize
 	Unicode::UCD
+	UNIVERSAL
 	User::grent
 	User::pwent
-	XSLoader
-	YAML
-	YAML::Any
-	YAML::Tiny
-	_charnames
-	arybase
-	attributes
-	autodie
-	autodie::Scope::Guard
-	autodie::Scope::GuardStack
-	autodie::Util
-	autodie::exception
-	autodie::exception::system
-	autodie::hints
-	autodie::skip
-	autouse
-	base
-	bigint
-	bignum
-	bigrat
-	blib
-	bytes
-	charnames
-	constant
-	deprecate
-	diagnostics
-	encoding
-	encoding::warnings
-	experimental
-	feature
-	fields
-	filetest
-	if
-	inc::latest
-	inc::latest::private
-	integer
-	less
-	lib
-	local::lib
-	locale
-	mro
-	ok
-	open
-	ops
-	overload
-	overloading
-	parent
-	perlfaq
-	re
-	sigtrap
-	sort
-	strict
-	subs
-	threads
-	threads::shared
 	utf8
 	vars
 	version
@@ -1390,6 +1029,59 @@ cpan_modules="
 	vmsish
 	warnings
 	warnings::register
+	XSLoader
+	YAML
+	YAML::Any
+	YAML::Dumper
+	YAML::Dumper::Base
+	YAML::Error
+	YAML::Loader
+	YAML::Loader::Base
+	YAML::Marshall
+	YAML::Mo
+	YAML::Node
+	YAML::Tag
+	YAML::Tiny
+	YAML::Types
 ";
 
 install;
+
+cd ~/Mirrors;
+git clone git@github.com:sathlan/dformat.git ATT-DFORMAT
+git clone git@github.com:att/ast.git ATT-Research
+git clone git@github.com:dspinellis/unix-history-repo.git ATT-UnixHistory
+git clone git@github.com:adobe-type-tools/agl-aglfn.git Adobe-AGL-Lists
+git clone git@github.com:coderiver/fonts.git CodeRiver-Fonts
+git clone git@github.com:digital-preservation/droid.git DROID
+git clone https://git.ffmpeg.org/ffmpeg.git FFmpeg
+git clone git@github.com:fontforge/fontforge.git FontForge
+git clone git://git.savannah.gnu.org/emacs.git GNU-Emacs
+git clone git://git.savannah.gnu.org/groff.git GNU-Groff
+git clone git@github.com:bmatzelle/gow.git GOW
+git clone git@github.com:git/git.git Git
+git clone git@github.com:google/brotli.git Google-Brotli
+git clone https://chromium.googlesource.com/chromium/tools/depot_tools.git Google-DepotTools
+git clone git@github.com:google/fonts.git Google-Fonts
+git clone git@github.com:googlei18n/noto-fonts.git Google-Noto
+git clone git@github.com:googlei18n/noto-cjk.git Google-NotoCJK
+git clone git@github.com:googlei18n/noto-emoji.git Google-NotoEmoji
+git clone git@github.com:google/woff2.git Google-WOFF2
+git clone git@github.com:xdissent/ievms.git IEVMS
+git clone git@github.com:gilbarbara/logos.git Logos
+git clone git@github.com:n-t-roff/9front_troff.git Roff-9Front
+git clone git@github.com:bwarken/roff_classical.git Roff-Classical
+git clone git@github.com:n-t-roff/DWB3.3.git Roff-DWB3.3
+git clone git@github.com:n-t-roff/heirloom-doctools.git Roff-Heirloom
+git clone git@github.com:bwarken/RUNOFF_historical.git Roff-History
+git clone git@github.com:n-t-roff/Plan9_troff.git Roff-Plan9Troff
+git clone git@github.com:bwarken/runoff.git Roff-RUNOFF
+git clone git@github.com:n-t-roff/Solaris10-ditroff.git Roff-Solaris10
+git clone git://git.ghostscript.com/urw-core35-fonts.git URW-Core35-Fonts
+git clone git@github.com:facebook/watchman.git Watchman
+git clone git@github.com:WebAssembly/wabt.git WebAssembly-WABT
+git clone git@github.com:adoxa/ansicon.git ansicon
+git clone git@github.com:libuv/libuv.git libuv
+git clone git@github.com:skvadrik/re2c.git re2c
+git clone https://chromium.googlesource.com/v8/v8.git v8
+svn co svn://svn.savannah.gnu.org/apl/trunk GNU-APL

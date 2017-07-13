@@ -1,4 +1,4 @@
-all:
+all: mirror-list
 
 # Restore the pre-25.1 Emacs icon with the prettier traditional one
 emacs-icon: $(wildcard .emacs.d/*.icns)
@@ -6,7 +6,7 @@ emacs-icon: $(wildcard .emacs.d/*.icns)
 	@echo "Emacs icon updated. Restart system to force display in Finder/Spotlight.";
 
 # Setup new workstation
-install: ~/.bash_sessions_disable ~/.hushlogin symlinks packages mirrors post-install
+install: ~/.bash_sessions_disable ~/.hushlogin symlinks packages post-install
 
 # Disable Bash-session saving
 ~/.bash_sessions_disable:
@@ -26,6 +26,7 @@ symlinks: \
 	~/.vimrc \
 	~/.ssh/config \
 	/private/etc/man.conf
+
 ~/%: ./%
 	ln -sf $(realpath $^) $@
 ~/.ssh/config: ssh-config
@@ -37,37 +38,6 @@ symlinks: \
 packages: $(install-script)
 	@./$^
 
-# Mirror projects of interest
-mirrors: ~/Mirrors
-~/Mirrors:
-	mkdir -p $@ && cd $@
-	git clone git@github.com:sathlan/dformat.git $@/ATT-DFORMAT
-	git clone git@github.com:att/ast.git $@/ATT-Research
-	git clone git@github.com:dspinellis/unix-history-repo.git $@/ATT-UnixHistory
-	git clone https://git.ffmpeg.org/ffmpeg.git $@/FFmpeg
-	git clone git@github.com:fontforge/fontforge.git $@/FontForge
-	svn co http://svn.savannah.gnu.org/svn/apl/trunk $@/GNU-APL
-	git clone git://git.savannah.gnu.org/emacs.git $@/GNU-Emacs
-	git clone git://git.savannah.gnu.org/groff.git $@/GNU-Groff
-	git clone git@github.com:bmatzelle/gow.git $@/GOW
-	git clone git@github.com:git/git.git $@/Git
-	git clone git@github.com:google/brotli.git --recurse-submodules $@/Google-Brotli
-	git clone https://chromium.googlesource.com/chromium/tools/depot_tools.git $@/Google-DepotTools
-	git clone git@github.com:google/fonts.git $@/Google-Fonts
-	git clone git@github.com:googlei18n/noto-fonts.git $@/Google-Noto
-	git clone git@github.com:googlei18n/noto-cjk.git $@/Google-NotoCJK
-	git clone git@github.com:googlei18n/noto-emoji.git $@/Google-NotoEmoji
-	git clone git@github.com:google/woff2.git --recurse-submodules $@/Google-WOFF2
-	git clone git@github.com:xdissent/ievms.git $@/IEVMS
-	git clone git@github.com:gilbarbara/logos.git $@/Logos
-	git clone git@github.com:bwarken/roff_classical.git $@/Roff-Classical
-	git clone git@github.com:n-t-roff/DWB3.3.git $@/Roff-DWB3.3
-	git clone git@github.com:n-t-roff/heirloom-doctools.git $@/Roff-Heirloom
-	git clone git@github.com:bwarken/RUNOFF_historical.git $@/Roff-History
-	git clone git@github.com:bwarken/runoff.git $@/Roff-RUNOFF
-	git clone git@github.com:facebook/watchman.git $@/Watchman
-	git clone git@github.com:WebAssembly/wabt.git $@/WebAssembly-WABT
-	git clone git@github.com:adoxa/ansicon.git $@/ansicon
 
 # Random shite/Reminders that won't fit easily into this mess
 post-install:
@@ -75,7 +45,7 @@ post-install:
 	@permalink="https://discussions.apple.com/thread/7675366?start=0&tstart=0";\
 	echo "Done. If MacBook overheats, enable iCloud keychain:";\
 	echo "\x1B[4m$$permalink""\x1B[0m";
-.PHONY: packages mirrors
+.PHONY: packages
 
 # ==================================
 
@@ -94,11 +64,12 @@ v8:
 
 .ONESHELL:
 brews          := etc/Brewfile
-install-script := etc/install-packages.sh
+install-script := etc/install.sh
 print-status    = tput setaf 4; printf '==> '; tput sgr0; echo $(1)
 
 # Update lists of installed packages
-lists: $(brews) $(addsuffix -list,npm gem pip)
+lists: $(brews) $(addsuffix -list,npm gem pip cpan mirror)
+
 
 # Homebrew: Tapped repositories and installed formulae/casks
 $(brews):
@@ -106,11 +77,13 @@ $(brews):
 	@> $@; cd $(@D) && brew bundle dump --force;
 .PHONY: $(brews)
 
+
 # Global NPM modules
 npm-list: $(install-script)
 	@$(call print-status,"Updating list: NPM modules");
 	@modules=$$(ls /usr/local/lib/node_modules | sort -fi | sed -Ee '/npm|uglifyjs/d; s/^/\t/g;');\
 	edit $^ 's/\nnpm_modules="\K[^"]*(?=")/\n'"$$modules"'\n/sm';
+
 
 # RubyGems
 gem-list: $(install-script)
@@ -118,16 +91,40 @@ gem-list: $(install-script)
 	@gems=$$(gem list --no-versions | grep -v '* LOCAL GEMS *' | sort -fi | sed -r 's/^/\t/g');\
 	edit $^ 's/\nruby_gems="\K[^"]*(?=")/\n'"$$gems"'\n/sm';
 
+
 # CPAN modules; at least those *we* installed.
 # CPAN::Shell->autobundle no good: <http://www.perlmonks.org/?node_id=909966>
 cpan-list: $(install-script)
-	@core_modules=$$(perl -MModule::CoreList -E 'print join $$/, keys(%Module::CoreList::upstream);');\
-	modules_list=$$(cpan -l 2>/dev/null | grep -vE 'undef$$' | cut -f1 | grep -vF '$$modules_list' | sort | uniq);\
-	edit $^ 's/\ncpan_modules="\K[^"]*(?=")/\n'"$$modules_list"'\n/sm';
+	@$(call print-status,"Updating list: CPAN modules");
+	@bundle_file=$$(echo "$$(cpan -a 2>/dev/null)" | tail -n1 | sed -E 's/^ +//;');\
+	[ -s "$$bundle_file" ] || { >&2 echo "Empty autobundle at $$bundle_file"; exit 2; }; \
+	modules=$$(perl -ne 'print if /^=head1 CONTENTS$$/../^=head1 CONFIGURATION$$/' "$$bundle_file" \
+	| grep -vE ^=head | sort -fi | cut -d' ' -f1 | uniq \
+	| perl -MModule::CoreList -ne 'print unless Module::CoreList::is_core($$_);' \
+	| sed -n $$'/[^ \t]/,$$p' | sed -r 's/^/\t/g');\
+	edit $^ 's/\ncpan_modules="\K[^"]*(?=")/\n'"$$modules"'\n/sm';\
+	rm -f "$$bundle_file"
 .PHONY: cpan-list
+
 
 # Python packages
 pip-list: $(install-script)
 	@$(call print-status,"Updating list: Python packages");
 	@packages=$$(pip list --format=legacy | cut -d ' ' -f 1 | sort -fi | sed -r 's/^/\t/g');\
 	edit $^ 's/\npip_packages="\K[^"]*(?=")/\n'"$$packages"'\n/sm';
+
+
+# Locally-cloned repositories containing interesting or relevant content
+mirror-list: $(install-script)
+	@$(call print-status,"Updating list: Mirrored repositories");
+	@edit $^ 's/\ninstall;\n\K.*//s';\
+	printf '\ncd ~/Mirrors;\n' >> $^;\
+	for repo in ~/Mirrors/*/.{git,svn}; do (\
+		cd $$repo/..; \
+		case $$(echo $$repo | grep -Eo '(git|svn)$$') in \
+			git) uri=$$(git remote get-url origin); cmd="git clone %s %s\n";;\
+			svn) uri=$$(svn info --show-item url);  cmd="svn co %s %s\n";;\
+			*)   continue;; esac;\
+		printf "$$cmd" "$$uri" $$(pwd);\
+	) | sed -e "s|$$HOME/Mirrors/||g" >> $^;\
+	done;
