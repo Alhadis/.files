@@ -19,6 +19,7 @@ shopt -s dotglob;       # Enable .file globbing
 
 # Ruby enVironment Manager
 export PATH+=:~/.rvm/bin
+export rvm_project_rvmrc=0
 [ -s ~/.rvm/scripts/rvm ] && source ~/.rvm/scripts/rvm
 
 

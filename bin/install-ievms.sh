@@ -61,7 +61,6 @@ config(){
 		VBoxManage sharedfolder remove "$vm" --name ievms 2>/dev/null
 		
 		# Configure shared folders
-		share Jobs "$vm" readonly
 		share Labs "$vm" readonly
 		share VirtualBox/Shared "$vm"
 	done
