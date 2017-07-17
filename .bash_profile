@@ -23,8 +23,8 @@ export PATH+=:~/.rvm/bin
 
 
 # Various other crap
-{ rm ~/.DS_Store; dsclean ~/Desktop; } > /dev/null 2>&1
-cd ~/Desktop; fit;
+rm -f ~/.DS_Store
+cd ~/Desktop && dsclean -q
 
 export BOWER_DIRECTORY="components"
 export GREP_COLORS="sl=38;5;240:mt=1;38;5;10;48;5;22:fn=38;5;242:se=38;5;237:ln=38;5;10"
