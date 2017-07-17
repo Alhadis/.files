@@ -25,10 +25,9 @@ AFTER=$TEMP/after
 VBoxManage list vms > $BEFORE
 
 
-# Download and run the IEVM installer
+# Run the IEVM installer
 echo "==> Installing IEVMs"
-SCRIPT_URL=https://raw.githubusercontent.com/xdissent/ievms/master/ievms.sh
-curl -s $SCRIPT_URL | IEVMS_VERSIONS="$*" bash
+IEVMS_VERSIONS=$(echo "$*" | sed s/[^[:digit:][:blank:]]//g) ievms
 
 
 
