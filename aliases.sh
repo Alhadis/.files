@@ -56,6 +56,8 @@ alias curl='/usr/local/opt/curl/bin/curl'
 alias cc='clang'
 alias clang='/usr/local/opt/llvm/bin/clang'
 alias ghostscript='/usr/local/bin/gs'
+alias python='python2'
+alias pip='pip2'
 
 
 

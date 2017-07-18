@@ -61,6 +61,7 @@ pip_packages="
 	Pygments
 	pygobject
 	setuptools
+	six
 	TBB
 	wheel
 	yasm
@@ -120,7 +121,9 @@ cpan_modules="
 	Date::Language::TigrinyaEthiopian
 	Date::Language::Turkish
 	Date::Parse
+	Devel::CallChecker
 	Digest::SHA1
+	DynaLoader::Functions
 	Encode::Detect
 	Encode::Detect::Detector
 	Encode::Locale
