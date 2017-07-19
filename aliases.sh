@@ -1,10 +1,12 @@
 #==============================================================================
 #   COMMON SHORTHAND
 #==============================================================================
+alias b='brew info'
+alias B='brew home'
+alias cask='brew cask'
 alias brake='bundle exec rake'
-alias bup='brew update; [ "$(brew outdated)" ] && brew upgrade && brew cleanup --prune=0 || true;'
+alias bup='brew update; [ ! "$(brew outdated)" ] || { brew cask outdated; brew upgrade && brew cleanup --prune=0; }'
 alias dash='PS1="λ " dash'
-alias fd='git clean -fd'
 alias fj='t 2>&1 | tabfix | perl -pe "s/^\t+//g; s/Expected | to equal /\n/g;" | pbcopy'
 alias g='git status'
 alias ga='git add . --all'
@@ -15,16 +17,14 @@ alias gl='git log'
 alias gp='git push origin'
 alias gr='git remote --verbose'
 alias gs='git show'
+alias k='git branch -D --remote'
 alias l='ls -alh'
 alias L='l -i'
 alias m='make'
 alias nah='git checkout -- . && git clean -fd'
-alias p='perl -pe '
 alias PS='git commit --amend'
 alias umount='diskutil unmount'
-alias untag='xattr -d com.apple.metadata:_kMDItemUserTags 2>/dev/null'
 alias yeah="git reset HEAD .;"
-alias 7='7z-crush'
 alias ?='man'
 alias ..='cd ..'
 
