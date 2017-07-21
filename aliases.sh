@@ -82,6 +82,11 @@ alias fuck-that-shit='git reset --soft HEAD~1;'
 alias strip-meta='exiftool $@ "-All=" -overwrite_original'
 
 
+# Chop leading or trailing blank lines from input
+alias trim-start='sed -n $'"'"'/[^ \t]/,$p'"'"
+alias trim-end='sed -e :a -e '"'"'/^\n*$/{$d;N;};/\n$/ba'"'"
+
+
 # Remove com.apple.quarantine attribute recursively
 alias unquarantine='find .  -print0 -type f -o -type d | xargs -0 xattr -d com.apple.quarantine 2>/dev/null;'
 
