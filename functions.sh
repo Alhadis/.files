@@ -123,16 +123,6 @@ electron(){
 }
 
 
-# Evaluate and print an Emacs Lisp expression
-elisp(){
-	local expr="$*"
-
-	# Not enclosed in parentheses; fix that
-	echo "$expr" | grep -qE "^\\(" || { expr="($expr)"; }
-	emacs --batch --eval "(message \"%s\" $expr)"
-}
-
-
 # RTBTM: "Read that back to me". Reads out a list of numbers one-by-one.
 rtbtm(){
 	echo "$*" | perl -pe 's/(\d)\D*/$1. /g' | say
@@ -197,39 +187,6 @@ webp(){
 }
 
 
-# Print all locations that a file's been hard-linked to
-hardlinks(){
-	[ ! "$1" ] && {
-		echo >&2 "Usage: hardlinks [file] [root-directory]";
-		return 1;
-	};
-	find ${2:-~} -inum $(ls -i $1 | awk '{print $1}') 2>/dev/null;
-	return 0;
-}
-
-
-# Print file's header in hexadecimal
-xh(){
-	[ 0 -eq $# ] && {
-		>&2 echo "Usage: xh [-n count | -c bytes] /path/to/file";
-		return 1;
-	};
-
-	# Check for options passed to `head`
-	opts=""
-	while getopts n:c: opt; do
-		case $opt in
-			n) opts+=" -n$OPTARG";;
-			c) opts+=" -c$OPTARG";;
-		esac
-	done
-	shift $((OPTIND - 1))
-
-	# Print the damn thing
-	xxd < "$@" | head $opts
-}
-
-
 # Search for a file on GitHub
 gh-search(){
 	local usage="Usage: gh-search [ext[ension]|file[name]|lang[uage]] query"
@@ -252,22 +209,6 @@ gh-search(){
 
 	local url="https://github.com/search?q=%s%%3A%s+NOT+nothack&type=Code";
 	open $(printf $url $type $2);
-}
-
-
-# Add filename extensions to images which lack them.
-add-image-extensions(){
-	local image_ext='png|gif|jpeg|jpg$'
-	for i in "$@"; do
-		local type=$(file -b --mime-type "$i" | grep -Eo "/$image_ext/" | tr -d '/' | sed -e 's/jpeg/jpg/')
-		[ $type ] && {
-			mv $i $(echo $i | sed -Ee "s/\.($image_ext)//")".$type" || {
-				tput setaf 9;
-				>&2 printf 'Could not rename file "%s".\n' $(basename $i);
-				tput sgr0;
-			};
-		};
-	done;
 }
 
 
@@ -330,11 +271,6 @@ function f(){
 # Change directory to whatever's in the forefront Finder window
 function cdf(){
 	cd "`osascript -e 'tell app "Finder" to POSIX path of (insertion location as alias)'`"
-}
-
-# Pimped `tree` output
-oak(){
-	tree -aC -I '.git|node_modules|bower_components' --dirsfirst "$@" | less -FRNX;
 }
 
 # Compare original and gzipped file size

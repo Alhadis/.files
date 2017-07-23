@@ -31,3 +31,26 @@ update-list = \
 	eval $(2) | sort -fi | sed -Ee 's/^/\t/g' >> $^; \
 	printf '";\n' >> $^;
 .PHONY: lists
+
+
+
+# Reconnect hard-links after downloading an updated eBook
+relink-ebooks:
+	books=~/Downloads/exploring-es6.*; \
+	dest=~/Documents/eBooks/Exploring\ ES6/; \
+	for i in $$books; do [ ! -f "$$i" ] || mv $$i "$$dest" && \
+		ln -f "$${dest}"$$(basename "$$i") $(dropbox)/; \
+	done;
+	open /Applications/Dropbox.app
+.PHONY: relink-ebooks
+
+
+# Compress and backup iTunes library database
+itunes := $$(dropbox)/itunes-backup.zip
+$(itunes): ~/Music/iTunes
+	@zip -r $@ $^/*.{itl,xml}; \
+	open /Applications/Dropbox.app; \
+	hdd="/Volumes/Amra Helion"; \
+	[ ! -d "$$hdd" ] || cp "$@" "$$hdd/MacBook/";
+itunes-backup: $(itunes)
+dropbox = ~/Dropbox/Backups
