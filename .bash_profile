@@ -27,6 +27,7 @@ export rvm_project_rvmrc=0
 rm -f ~/.DS_Store
 cd ~/Desktop && dsclean -q
 
+alias linguist=$LING/bin/linguist
 export BOWER_DIRECTORY="components"
 export GREP_COLORS="sl=38;5;240:mt=1;38;5;10;48;5;22:fn=38;5;242:se=38;5;237:ln=38;5;10"
 export SHELL_SESSION_HISTORY=0
