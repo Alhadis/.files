@@ -87,6 +87,10 @@ alias trim-start='sed -n $'"'"'/[^ \t]/,$p'"'"
 alias trim-end='sed -e :a -e '"'"'/^\n*$/{$d;N;};/\n$/ba'"'"
 
 
+# Convert 2-space "soft-tabs" into actual tabs
+alias tabfix='perl -pi -Xe '"'"'s|^(  )+|"\t"x(length($&)/2)|ge;'"'"
+
+
 # Remove com.apple.quarantine attribute recursively
 alias unquarantine='find .  -print0 -type f -o -type d | xargs -0 xattr -d com.apple.quarantine 2>/dev/null;'
 
