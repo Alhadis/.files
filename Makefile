@@ -39,18 +39,17 @@ relink-ebooks:
 	books=~/Downloads/exploring-es6.*; \
 	dest=~/Documents/eBooks/Exploring\ ES6/; \
 	for i in $$books; do [ ! -f "$$i" ] || mv $$i "$$dest" && \
-		ln -f "$${dest}"$$(basename "$$i") $(dropbox)/; \
+		ln -f "$${dest}"$$(basename "$$i") ~/Dropbox/Backups/; \
 	done;
 	open /Applications/Dropbox.app
 .PHONY: relink-ebooks
 
 
 # Compress and backup iTunes library database
-itunes := $$(dropbox)/itunes-backup.zip
+itunes := ~/Dropbox/Backups/itunes-backup.zip
 $(itunes): ~/Music/iTunes
 	@zip -r $@ $^/*.{itl,xml}; \
 	open /Applications/Dropbox.app; \
 	hdd="/Volumes/Amra Helion"; \
 	[ ! -d "$$hdd" ] || cp "$@" "$$hdd/MacBook/";
 itunes-backup: $(itunes)
-dropbox = ~/Dropbox/Backups
