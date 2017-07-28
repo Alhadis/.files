@@ -227,6 +227,15 @@ where-from(){
 }
 
 
+# Open the URL a file was downloaded from
+goto-source(){
+	where-from "$*" |\
+		sed -Ee 's|^(https?://)raw\.githubusercontent\.com|\1github.com|i' |\
+		sed -Ee 's|^(https?://github\.com/[^/]+/[^/]+/)|\1blob/|i' |\
+		xargs open
+}
+
+
 # Clear clipboard/history if passed no args; execute calc() otherwise
 c(){
 	# Keep calculator-shorthand available when passed arguments
@@ -256,6 +265,15 @@ c(){
 	local filename
 	[ $# = 1 ] && filename=$(basename "$1" | sed -Ee 's/(.)\.\w+$/\1/' | tr " " -);
 	7z a -t7z -m0=lzma -mx=9 -mfb=64 -md=32m -ms=on "${filename-archive}".7z "$@"
+}
+
+
+# Print names of files containing binary (non-textual) data
+list-binary(){
+	for i in "$@"; do
+		[ ! -f "$i" ] && continue;
+		[ ! -s "$i" ] || grep -Iq "$i" -Ee. || printf %s\\n "$i";
+	done
 }
 
 
