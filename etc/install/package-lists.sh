@@ -55,6 +55,7 @@ ruby_gems="
 ";
 
 pip_packages="
+	fonttools
 	mercurial
 	pip
 	protobuf
@@ -151,6 +152,80 @@ cpan_modules="
 	Font::Metrics::TimesBoldItalic
 	Font::Metrics::TimesItalic
 	Font::Metrics::TimesRoman
+	Font::TTF
+	Font::TTF::AATKern
+	Font::TTF::AATutils
+	Font::TTF::Anchor
+	Font::TTF::Bsln
+	Font::TTF::Cmap
+	Font::TTF::Coverage
+	Font::TTF::Cvt_
+	Font::TTF::Delta
+	Font::TTF::DSIG
+	Font::TTF::Dumper
+	Font::TTF::EBDT
+	Font::TTF::EBLC
+	Font::TTF::Fdsc
+	Font::TTF::Feat
+	Font::TTF::Features::Cvar
+	Font::TTF::Features::Size
+	Font::TTF::Features::Sset
+	Font::TTF::Fmtx
+	Font::TTF::Font
+	Font::TTF::Fpgm
+	Font::TTF::GDEF
+	Font::TTF::Glat
+	Font::TTF::Gloc
+	Font::TTF::Glyf
+	Font::TTF::Glyph
+	Font::TTF::GPOS
+	Font::TTF::GrFeat
+	Font::TTF::GSUB
+	Font::TTF::Hdmx
+	Font::TTF::Head
+	Font::TTF::Hhea
+	Font::TTF::Hmtx
+	Font::TTF::Kern
+	Font::TTF::Kern::ClassArray
+	Font::TTF::Kern::CompactClassArray
+	Font::TTF::Kern::OrderedList
+	Font::TTF::Kern::StateTable
+	Font::TTF::Kern::Subtable
+	Font::TTF::Loca
+	Font::TTF::LTSH
+	Font::TTF::Maxp
+	Font::TTF::Mort
+	Font::TTF::Mort::Chain
+	Font::TTF::Mort::Contextual
+	Font::TTF::Mort::Insertion
+	Font::TTF::Mort::Ligature
+	Font::TTF::Mort::Noncontextual
+	Font::TTF::Mort::Rearrangement
+	Font::TTF::Mort::Subtable
+	Font::TTF::Name
+	Font::TTF::OldCmap
+	Font::TTF::OldMort
+	Font::TTF::OS_2
+	Font::TTF::OTTags
+	Font::TTF::PCLT
+	Font::TTF::Post
+	Font::TTF::Prep
+	Font::TTF::Prop
+	Font::TTF::PSNames
+	Font::TTF::Segarr
+	Font::TTF::Silf
+	Font::TTF::Sill
+	Font::TTF::Table
+	Font::TTF::Ttc
+	Font::TTF::Ttopen
+	Font::TTF::Utils
+	Font::TTF::Vhea
+	Font::TTF::Vmtx
+	Font::TTF::Win32
+	Font::TTF::Woff
+	Font::TTF::Woff::MetaData
+	Font::TTF::Woff::PrivateData
+	Font::TTF::XMLparse
 	HTML::AsSubs
 	HTML::Element
 	HTML::Element::traverse
@@ -355,6 +430,7 @@ cpan_modules="
 	inc::latest
 	inc::latest::private
 	IO::HTML
+	IO::String
 	JSON::MaybeXS
 	JSON::XS
 	Lexical::SealRequireHints
