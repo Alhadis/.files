@@ -56,7 +56,7 @@ brew doctor
 
 
 # Link dotfiles
-for name in bash_profile curlrc emacs.d gitconfig inputrc vimrc; do
+for name in bash_profile emacs.d gitconfig inputrc vimrc; do
 	[ -L ~/.$name ] || ln -Fsv ~/.files/.$name ~/.$name;
 done
 

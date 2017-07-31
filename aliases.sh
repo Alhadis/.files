@@ -53,7 +53,7 @@ alias stat='stat -x'
 #==============================================================================
 #   HOMEBREW FORMULAE
 #==============================================================================
-alias curl='/usr/local/opt/curl/bin/curl'
+alias curl='/usr/local/opt/curl/bin/curl -K ~/.files/.curlrc'
 alias cc='clang'
 alias clang='/usr/local/opt/llvm/bin/clang'
 alias ghostscript='/usr/local/bin/gs'
