@@ -34,6 +34,31 @@ update-list = \
 
 
 
+# Keep fonts up-to-date with latest upstream changes
+find-types = $(foreach ext,$(1),$(wildcard $(2)/*.$(ext)))
+font-repos = $(addprefix ~/Mirrors/Google-,Fonts Noto NotoEmoji) ~/Mirrors/URW-Core35-Fonts
+font-sources = $(shell find ~/Mirrors/Google-Fonts/{apache,ofl,ufl} -type f -name *.ttf ! \( \
+		-name Noto* -or \
+		-ipath '*/alefhebrew/*' -or \
+		-ipath '*/misssaintde*' -or \
+		-ipath '*/mrbedford/*' -or \
+		-ipath '*/siamreap/*' -or \
+		-ipath '*/terminaldosis*' \)) \
+	$(call find-types,ttf ttc otf,~/Mirrors/Google-Noto/unhinted) \
+	$(call find-types,ttc,~/Mirrors/Google-NotoCJK) \
+	$(call find-types,ttf,~/Mirrors/Google-NotoEmoji/fonts) \
+	$(call find-types,ttf,~/Mirrors/URW-Core35-Fonts)
+font-links:; @for i in $(font-sources); do relink "$$i" ~/Library/Fonts/$$(basename "$$i"); done;
+.PHONY: font-links
+
+# Install githooks to relink fonts after pulling updates
+font-hooks: $(addsuffix /.git/hooks/post-merge,$(font-repos))
+%/.git/hooks/post-merge:
+	>  $@ echo "#!/bin/sh"
+	>> $@ echo "(cd ~/.files && make font-links)"
+	chmod +x $@
+
+
 # Reconnect hard-links after downloading an updated eBook
 relink-ebooks:
 	books=~/Downloads/exploring-es6.*; \

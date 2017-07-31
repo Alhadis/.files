@@ -1,0 +1,16 @@
+#!/bin/sh
+
+[ $# -lt 2 ] && {
+	>&2 echo "Usage: $0 [file.1] [file.2]"
+	exit 1;
+};
+
+# (Re)connect a pair of hard-linked files
+relink(){
+	[ -s "$1" ] && [ -s "$2" ] && \
+	[ $(stat -f %d%i "$1") = $(stat -f %d%i "$2") ] ||
+	ln -fv "$1" "$2";
+}
+
+# Check a hard-linked pair of files and reconnect if necessary
+relink "$(realpath $1)" "$(realpath $2)"
