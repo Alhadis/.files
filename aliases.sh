@@ -92,6 +92,10 @@ alias trim-end='sed -e :a -e '"'"'/^\n*$/{$d;N;};/\n$/ba'"'"
 alias tabfix='perl -pi -Xe '"'"'s|^(  )+|"\t"x(length($&)/2)|ge;'"'"
 
 
+# Transpile CoffeeScript into ES6 using piped input
+alias cough='coffee -b --no-header -p -s | tabfix'
+
+
 # Remove com.apple.quarantine attribute recursively
 alias unquarantine='find .  -print0 -type f -o -type d | xargs -0 xattr -d com.apple.quarantine 2>/dev/null;'
 
