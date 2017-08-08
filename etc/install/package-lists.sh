@@ -5,6 +5,7 @@ npm_modules="
 	chai
 	clean-css
 	coffeelint
+	coffeescript
 	cson
 	electron
 	geographiclib
@@ -57,6 +58,8 @@ ruby_gems="
 pip_packages="
 	fonttools
 	mercurial
+	nose
+	numpy
 	pip
 	protobuf
 	Pygments
