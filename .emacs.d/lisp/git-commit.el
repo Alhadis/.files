@@ -280,8 +280,6 @@ default comments in git commit messages"
                ":\\)\\(\s.*\\)$")
       (1 'git-commit-known-pseudo-header-face)
       (2 'git-commit-pseudo-header-face))
-     ("^\\w[^\s\n]+:\s.*$"
-      (0 'git-commit-pseudo-header-face))
      ("^\\(\\[\\)\\([^\s@]+@[^\s@]+:\\)\\(.*\\)\\(\\]\\)$"
       (1 'git-commit-note-brace-face)
       (2 'git-commit-note-address-face)
