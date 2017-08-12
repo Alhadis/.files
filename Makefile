@@ -70,6 +70,20 @@ relink-ebooks:
 .PHONY: relink-ebooks
 
 
+# Repair NPM projects eaten by VirtualBox
+relink-npm := $(patsubst %,~/Labs/%/.git,GetOptions Print Utils Atom-Mocha Atom-FS)
+$(relink-npm):
+	@for project in $@; do \
+		path=$$(dirname $$project); \
+		name=$$(basename $$project); \
+		printf "%sRelinking:%s %s\n" $$(tput bold) $$(tput sgr0) "$$name"; \
+		rm -rf "$$path" && git clone "git@github.com:Alhadis/$$name.git" "$$path" && cd "$$path"; \
+		npm install . && symlink-npm.sh; \
+		[ Utils = "$$name" ] && make || :;\
+	done
+relink-npm: $(relink-npm)
+
+
 # Compress and backup iTunes library database
 itunes := ~/Dropbox/Backups/itunes-backup.zip
 $(itunes): ~/Music/iTunes
