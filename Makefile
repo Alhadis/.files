@@ -59,6 +59,15 @@ font-hooks: $(addsuffix /.git/hooks/post-merge,$(font-repos))
 	chmod +x $@
 
 
+# Configure scheduled tasks with launchd(8)
+cron = ~/Library/LaunchAgents
+jobs = $(notdir $(wildcard etc/launch-agents/*.plist))
+$(cron):; @mkdir $@ && chmod 0700 $@
+$(cron)/%: etc/launch-agents/%
+	@cp -v $^ $@ && chmod 0644 $@
+cronjobs: $(cron) $(addprefix $(cron)/,$(jobs))
+
+
 # Reconnect hard-links after downloading an updated eBook
 relink-ebooks:
 	books=~/Downloads/exploring-es6.*; \
