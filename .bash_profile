@@ -24,7 +24,7 @@ export rvm_project_rvmrc=0
 
 
 # Various other crap
-rm -f ~/.DS_Store
+rm -f ~/.DS_Store ~/pslog.txt
 cd ~/Desktop && dsclean -q
 
 alias linguist=$LING/bin/linguist

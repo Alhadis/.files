@@ -9,6 +9,7 @@ alias bup='brew update; [ ! "$(brew outdated)" ] || { cask outdated; brew upgrad
 alias dash='PS1="λ " dash'
 alias dedupe='fdupes -dNI '
 alias fixperm='find . -type f -exec chmod 0640 {} +; find . -type d -exec chmod 0700 {} +'
+alias fd='git clean -fd'
 alias fj='t 2>&1 | tabfix | perl -pe "s/^\t+//g; s/Expected | to equal /\n/g;" | pbcopy'
 alias g='git status'
 alias ga='git add . --all'
