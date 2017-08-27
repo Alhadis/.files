@@ -2,6 +2,7 @@
 
 npm_modules="
 	bower
+	browserify
 	chai
 	clean-css
 	coffeelint
@@ -10,6 +11,7 @@ npm_modules="
 	electron
 	geographiclib
 	highlights
+	istanbul
 	json
 	karma
 	less
@@ -18,6 +20,8 @@ npm_modules="
 	ppjson
 	semver
 	uglify-es
+	webpack
+	yarn
 ";
 
 ruby_gems="
