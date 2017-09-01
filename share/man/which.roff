@@ -1,0 +1,23 @@
+.\" Identify the formatter processing the document.
+.\" The program's name is stored in the `T?` string.
+.if !\n(T? \{
+.	nf
+.	nr A \n(.d
+\v'2m'
+.	nr B \n(.d
+\v'-2m'
+.	ie '\nA'\nB' .ds T? mandoc
+.	el \{
+.		ie 0<>1 .ds T? heirloom
+.		el \{
+.			nr A 1
+.			do if \n[A]=1 .ds T? groff
+.		\}
+.	\}
+.	rr A
+.	rr B
+.	if 'T?'' .ds T? unknown
+.\}
+.
+.
+\fBInterpreter\fP:	\*(T?
