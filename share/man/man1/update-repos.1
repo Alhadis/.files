@@ -26,24 +26,6 @@ with their remote counterparts.
 Updated folders must be a repository's root directory, or contain subdirectories which are.
 Unfamiliar folders are ignored: the script will not recurse into subdirectories.
 .
-.Bd -literal     \" TODO: Use Pic (or bare drawing commands) for this.
-\&     Example
-\&    Directory
-\&        │
-\&        ├── Atom           ✔  Updated: Has .git directory
-\&        │   └── .git
-\&        │
-\&        ├── GNU-APL        ✔  Updated: Has .svn directory
-\&        │   └── .svn
-\&        │
-\&        ├── Documents      ✖  Skipped: Not VCS-related
-\&        │   └── files
-\&        │
-\&        └── Google-V8      ✖  Skipped: .git not located
-\&            └── v8            in immediate subdirectory
-\&                └── .git
-.Ed
-.
 .Pp
 If no
 .Ar directories
