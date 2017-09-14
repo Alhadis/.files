@@ -55,6 +55,7 @@ alias stat='stat -x'
 #==============================================================================
 #   HOMEBREW FORMULAE
 #==============================================================================
+alias checkbashisms='PERL5LIB= /usr/local/bin/checkbashisms --'
 alias curl='/usr/local/opt/curl/bin/curl -K ~/.files/.curlrc'
 alias cc='clang'
 alias clang='/usr/local/opt/llvm/bin/clang'
