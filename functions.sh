@@ -250,6 +250,22 @@ goto-source(){
 }
 
 
+# Print geographical location of an IP address
+iplocation(){
+	[ $# -eq 0 ] && {
+		echo >&2 "Usage: iplocation [ip-addr]";
+		return 1;
+	}
+	(echo "$1" | grep -Eqe '^([0-9]+\.){3}[0-9]+') || {
+		echo >&2 "Not an IP address: $1";
+		return 2;
+	}
+	local body=$(curl 'http://iplocation.com/' -sd "ip=$1")
+	[ $? -ne 0 ] && return $?
+	printf '%s\n' "$body" | json -i
+}
+
+
 # Clear clipboard/history if passed no args; execute calc() otherwise
 c(){
 	# Keep calculator-shorthand available when passed arguments
