@@ -24,6 +24,7 @@ alias k='git branch -D --remote'
 alias l='ls -alh'
 alias L='l -i'
 alias m='make'
+alias map='xargs -n1'
 alias nah='git checkout -- . && git clean -fd'
 alias PS='git commit --amend'
 alias umount='diskutil unmount'
@@ -55,7 +56,7 @@ alias stat='stat -x'
 #==============================================================================
 #   HOMEBREW FORMULAE
 #==============================================================================
-alias checkbashisms='PERL5LIB= /usr/local/bin/checkbashisms --'
+alias checkbashisms='PERL5LIB= /usr/local/bin/checkbashisms'
 alias curl='/usr/local/opt/curl/bin/curl -K ~/.files/.curlrc'
 alias cc='clang'
 alias clang='/usr/local/opt/llvm/bin/clang'
