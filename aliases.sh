@@ -54,13 +54,14 @@ alias stat='stat -x'
 
 
 #==============================================================================
-#   HOMEBREW FORMULAE
+#   PROGRAM REPLACEMENTS / EXECUTABLES OUTSIDE $PATH
 #==============================================================================
 alias checkbashisms='PERL5LIB= /usr/local/bin/checkbashisms'
 alias curl='/usr/local/opt/curl/bin/curl -K ~/.files/.curlrc'
 alias cc='clang'
 alias clang='/usr/local/opt/llvm/bin/clang'
 alias ghostscript='/usr/local/bin/gs'
+alias plistbuddy='/usr/libexec/PlistBuddy'
 alias python='python2'
 alias pip='pip2'
 
