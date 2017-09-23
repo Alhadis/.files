@@ -250,6 +250,39 @@ goto-source(){
 }
 
 
+# Encode characters that have a special meaning in URIs
+encode-url(){
+	command >/dev/null 2>&1 node -v
+	[ $? -eq 0 ] && haveNode=1 || haveNode=""
+	for arg in "$@"; do
+		# Use JavaScript's URI-encoding function if possible
+		[ $haveNode ] && {
+			arg=$(printf %s "$arg" | sed -Ee 's/"/\\"/g');
+			node -pe 'encodeURIComponent("'"$arg"'").replace(/%20/g, "+")';
+		} || {
+			printf '%s\n' "$arg" | sed -Ee 's,/,%2F,g; s/\\/%5C/g;
+			s/\?/%3F/g; s/&/%26/g; s/\+/%2B/g; s/\s+|%20/+/g';
+		};
+	done
+}
+
+
+# Shorten an absolute path by replacing $HOME with a tilde
+tildify(){
+	for arg in "$@"; do
+		[ -n "$HOME" ] \
+			&& printf '%s\n' "$arg" | sed "s,^$HOME/,~/," \
+			|| printf '%s\n' "$arg";
+	done
+	# Read from stdin if piping additional input through
+	[ -t 0 ] || while IFS= read -r line || [ -n "$line" ]; do
+		[ -n "$HOME" ] \
+			&& printf '%s\n' "$line" | sed "s,^$HOME/,~/," \
+			|| printf "%s\n" "$line";
+	done
+}
+
+
 # Print geographical location of an IP address
 iplocation(){
 	[ $# -eq 0 ] && {
