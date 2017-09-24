@@ -20,6 +20,7 @@
 	attributesfile = ~/.files/etc/.gitattributes-global
 	whitespace = -blank-at-eol
 	ignorecase = false
+	untrackedCache = true
 [alias]
 	co = checkout
 	r = remote --verbose
