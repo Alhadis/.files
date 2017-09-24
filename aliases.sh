@@ -6,7 +6,6 @@ alias B='brew home'
 alias cask='brew cask'
 alias brake='bundle exec rake'
 alias bup='brew update; [ ! "$(brew outdated)" ] || { cask outdated; brew upgrade && brew cleanup --prune=0; cask cleanup; }'
-alias dash='PS1="λ " dash'
 alias dedupe='fdupes -dNI '
 alias fixperm='find . -type f -exec chmod 0640 {} +; find . -type d -exec chmod 0700 {} +'
 alias fd='git clean -fd'
@@ -50,6 +49,9 @@ alias egrep='egrep --colour=auto'
 alias mandoc='mandoc -aOindent=8,width=$(($(tput cols)-24))'
 alias node='node --es_staging'
 alias stat='stat -x'
+alias dash='PS1="$ " dash'
+alias ksh='PS1="% " ksh'
+alias zsh='PS1="%m%#" ksh'
 
 
 
