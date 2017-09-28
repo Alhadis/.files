@@ -75,7 +75,7 @@ fe80::1%lo0	localhost
 Confirm correct entry by running:
 ~~~shell
 sudo killall -HUP mDNSResponder
-sudo apache -k graceful
+sudo apachectl -k graceful
 open http://labs/
 ~~~
 
