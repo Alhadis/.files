@@ -1,0 +1,223 @@
+#!/usr/bin/env perl
+use strict;
+use warnings;
+use v5.14;
+use POSIX;
+use Getopt::Long qw<:config bundling>;
+
+# Parse CLI switches
+my $all     = 0;
+my $print   = 0;
+my $names   = 0;
+my $browser = "";
+my $default = "origin";
+
+GetOptions(
+	"a|all" => \$all,
+	"b|browser=s" => \$browser,
+	"d|default=s" => \$default,
+	"n|names" => \$names,
+	"p|print" => \$print,
+);
+
+
+# Resolve the browser-friendly URL for an upstream repository
+sub getURL(;$) {
+	my $protocol = qr{^
+		(?>git|ssh|https?|ftps?)
+		(?>://|[\@:])     # Separator
+		(?:[^\@/\s]+\@)?  # Username (optional)
+	}x;
+	
+	local $_ = shift;
+	return unless $_;
+	s'/$|\.git/?$''gmi;
+	
+	# protocol://[username@]site.org/user/project.git
+	return "https://$1/$2/$3" if m{
+		$protocol
+		( github\.com     # Domain
+		| bitbucket\.org
+		| gitlab\.com
+		)
+		: ([^/]+)         # Username
+		/ ([^/]+)         # Project slug
+		$
+	}x;
+	
+	# GNU Savannah
+	return "https://savannah.gnu.org/git/?group=$1" if m{
+		$protocol
+		git\.(?>sv|savannah)\.gnu\.org
+		/ ([^/]+) # Project/group name
+		$
+	}x;
+	
+	# GhostScript
+	return "https://$1/?p=$2.git;a=summary" if m{
+		$protocol
+		(git\.ghostscript\.com)
+		/ ([^/]+) # Project name
+		$
+	}x;
+	
+	# Everything else: Rough guess
+	return "https://$1/$2" if m{
+		$protocol
+		([^/.]+\.[^/]+)   # Domain
+		/ (.+) $          # Project path
+	}x;
+}
+
+
+# Terminate with a specific error code, optionally writing a message to stderr.
+sub cark {
+	my ($code, $message) = @_;
+	say STDERR $message if defined $message && $message;
+	exit $code;
+}
+
+
+# Retrieve a list of remotes expressed as `$name => $url` pairs.
+sub getRemotes {
+	
+	# Bail early if we're not running from inside a Git repository
+	`git rev-parse --is-inside-work-tree` or cark $? >> 8;
+	
+	# Extract a list of remote URLs
+	my $fail = "fatal: No remote set for repository";
+	my $data = `git remote -v` or cark $? ? $? >> 8 : 128, $fail;
+	
+	$data =~ s/
+		^.+ \(push\)  \h* $ \n |  # Ignore lines containing push targets
+		\h+ \(fetch\) \h* $       # Strip "(fetch)" appended to each URL
+	//gmix;
+	
+	return $data =~ m/^([^\t]+)\t(.+)$/gm;
+}
+
+
+# Prepend the given URL with a remote's name if the `--names` switch was set
+sub prefixURL {
+	my ($url, $name) = @_;
+	return ($names && $url) ? "$name\t$url" : $url;
+}
+
+
+# Search a repository's remotes for the URL of its official upstream.
+sub getWebURL {
+	my %remotes = getRemotes;
+	
+	# Check for the default (and most common) remote name first
+	if(defined $remotes{$default}){
+		my $url = getURL $remotes{$default};
+		return prefixURL($url, $default) if $url;
+	}
+	
+	# Search the remaining remotes for one that DOES have a web-based counterpart
+	else{
+		# Only use URL of "fork" remote if nothing else exists
+		my $fork = $remotes{fork};
+		delete $remotes{fork} if $fork;
+		
+		# Check every other remote, assuming there are any
+		my @keys = keys %remotes;
+		for(@keys){
+			my $url = getURL $remotes{$_};
+			return prefixURL($url, $_) if $url;
+		}
+		
+		# Last resort: Use forked repository
+		my $url = getURL $fork;
+		return prefixURL($url, "fork") if $url;
+	}
+}
+
+
+# Retrieve the URL of each remote with a web-hosted counterpart
+sub getWebURLs {
+	my %remotes = getRemotes;
+	my @urls = ();
+	
+	# List the "most important" remote first, if present
+	if(defined $remotes{$default}){
+		my $url = getURL $remotes{$default};
+		push @urls, prefixURL($url, $default) if $url;
+		delete $remotes{$default};
+	}
+	
+	my @keys = keys %remotes;
+	push @urls, sort map { prefixURL(getURL($remotes{$_}), $_) } @keys if $#keys;
+	return grep(/./, @urls);
+}
+
+
+# Retrieve host system's command for opening URLs in a web-browser. Source:
+# https://github.com/paulirish/git-open/blob/3be1c00f3689/git-open#L86-L92
+sub getBrowserCommand() {
+	local ($_) = POSIX::uname();
+	return "open"      if m/^Darwin$/;
+	return "start"     if m/^MINGW|^MSYS/;
+	return "cygstart"  if m/^CYGWIN/;
+	return "xdg-open"; # Default
+}
+
+
+# Print URLs to stdout instead of open them
+if($print){
+	my @urls = $all ? getWebURLs : getWebURL;
+	map { say } @urls;
+}
+# Otherwise, open the most relevant URL
+else{
+	my $url = getWebURL;
+	cark 2, "No upstream with a web-friendly URL found" unless $url;
+	my $command = $browser || getBrowserCommand;
+	`$command "$url"`;
+	exit $?;
+}
+
+
+__END__
+
+#=======================================================================
+
+=head1 NAME
+
+C<filename> - open upstream repository in a web-browser
+
+
+=head1 SYNOPSIS
+
+C<git home>                                      # Open in browser
+C<git home [-b|--browser=E<lt>pathE<gt>]>        # Specify browser path
+C<git home [-d|--default=E<lt>remoteE<gt>]>      # Specify default remote name
+C<git home [-p|--print] [-a|--all] [-n|--names]> # Print URLs instead of open them
+
+
+=head1 DESCRIPTION
+
+Opens the web-based version of a repository's upstream, if one exists.
+The command is compatible with GitHub, BitBucket, and GitLab, with limited
+support for other Git-hosting providers.
+
+	git@github.com:atom/tabs.git
+	git@bitbucket.org:teamsinspace/documentation-tests.git
+	git://git.sv.gnu.org/emacs.git
+	git://git.savannah.gnu.org/groff.git
+
+Alternatively, one may set the C<-p> switch to print the resolved URL instead of open it:
+
+	$ git home -p
+	https://github.com/atom/tabs
+	https://bitbucket.org/teamsinspace/documentation-tests
+	https://savannah.gnu.org/git/?group=emacs
+	...
+
+
+=head1 AUTHOR
+
+John Gardner <gardnerjohng@gmail.com>
+https://github.com/Alhadis
+
+=cut
