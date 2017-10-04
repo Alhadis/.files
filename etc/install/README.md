@@ -100,27 +100,11 @@ alias ..='cd ..'
 ~~~
 
 
-7. Update `/private/etc/man.conf` to enable UTF8 output in `man(1)`:
+7. Relink `man.conf(5)` file to enable Unicode output:
 
+~~~shell
+sudo ln -sf ~/.files/etc/man.conf /private/etc/man.conf
 ~~~
-TROFF		/usr/local/bin/groff -Tps -mandoc
-NROFF		/usr/local/bin/groff -Tutf8 -mandoc
-JNROFF		/usr/local/bin/groff -Tnippon -mandocj
-EQN			/usr/local/bin/eqn -Tps
-NEQN		/usr/local/bin/eqn -Tutf8
-JNEQN		/usr/local/bin/eqn -Tnippon
-TBL			/usr/local/bin/tbl
-# COL		/usr/local/bin/col
-REFER		/usr/local/bin/refer
-PIC			/usr/local/bin/pic
-VGRIND		
-GRAP		/usr/local/bin/grap
-PAGER		/usr/bin/less -Ris
-BROWSER		/usr/bin/less -Ris
-HTMLPAGER	/bin/cat
-CAT			/bin/cat
-~~~
-
 
 
 
