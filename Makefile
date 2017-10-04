@@ -48,8 +48,9 @@ font-sources = $(shell find ~/Mirrors/Google-Fonts/{apache,ofl,ufl} -type f -nam
 	$(call find-types,ttc,~/Mirrors/Google-NotoCJK) \
 	$(call find-types,ttf,~/Mirrors/Google-NotoEmoji/fonts) \
 	$(call find-types,ttf,~/Mirrors/URW-Core35-Fonts)
-font-links:; @for i in $(font-sources); do relink "$$i" ~/Library/Fonts/$$(basename "$$i"); done;
-.PHONY: font-links
+$(font-sources):; @ relink $@ ~/Library/Fonts/$(notdir $@)
+font-links: $(font-sources)
+.PHONY:     $(font-sources)
 
 # Install githooks to relink fonts after pulling updates
 font-hooks: $(addsuffix /.git/hooks/post-merge,$(font-repos))
