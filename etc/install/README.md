@@ -14,6 +14,7 @@ Steps
 2. Run `install.sh` in this directory.
 
 3. Update `/private/etc/apache2/extra/httpd-vhosts.conf`:
+
 ~~~apache
 <Directory "/Users/johngardner/Labs">
 	Options All
@@ -28,7 +29,9 @@ Steps
 </VirtualHost>
 ~~~
 
+
 4. Update `/private/etc/apache2/httpd.conf`:
+
 ~~~diff
 -#LoadModule userdir_module libexec/apache2/mod_userdir.so
 +LoadModule userdir_module libexec/apache2/mod_userdir.so
@@ -64,7 +67,9 @@ Steps
 +Include /private/etc/apache2/extra/httpd-vhosts.conf
 ~~~
 
-4. Update `/etc/hosts`, ensuring *tabs* are used to delimit columns:
+
+5. Update `/etc/hosts`, ensuring *tabs* are used to delimit columns:
+
 ~~~~~~~~~~~~~~~~~~~~
 127.0.0.1	localhost labs
 255.255.255.255	broadcasthost
@@ -73,13 +78,16 @@ fe80::1%lo0	localhost
 ~~~~~~~~~~~~~~~~~~~~
 
 Confirm correct entry by running:
+
 ~~~shell
 sudo killall -HUP mDNSResponder
 sudo apachectl -k graceful
 open http://labs/
 ~~~
 
-5. Add `.profile` for superuser:
+
+6. Add `.profile` for superuser:
+
 ~~~shell
 # Run this:
 sudo su -l
@@ -89,6 +97,28 @@ vim ~/.profile
 export PS1='# \W: '
 alias l='ls -alh'
 alias ..='cd ..'
+~~~
+
+
+7. Update `/private/etc/man.conf` to enable UTF8 output in `man(1)`:
+
+~~~
+TROFF		/usr/local/bin/groff -Tps -mandoc
+NROFF		/usr/local/bin/groff -Tutf8 -mandoc
+JNROFF		/usr/local/bin/groff -Tnippon -mandocj
+EQN			/usr/local/bin/eqn -Tps
+NEQN		/usr/local/bin/eqn -Tutf8
+JNEQN		/usr/local/bin/eqn -Tnippon
+TBL			/usr/local/bin/tbl
+# COL		/usr/local/bin/col
+REFER		/usr/local/bin/refer
+PIC			/usr/local/bin/pic
+VGRIND		
+GRAP		/usr/local/bin/grap
+PAGER		/usr/bin/less -Ris
+BROWSER		/usr/bin/less -Ris
+HTMLPAGER	/bin/cat
+CAT			/bin/cat
 ~~~
 
 
@@ -102,8 +132,9 @@ Notes
 [1]: https://discussions.apple.com/thread/7675366?start=0&tstart=0
 
 
-* NPM may require us to reauthenticate our tokens locally. Check
-[your account settings](https://www.npmjs.com/settings/tokens).
+* NPM may require [tokens][2] to be re-authenticated.
+
+[2]: https://www.npmjs.com/settings/tokens
 
 
 * There might be junk in `/private/etc` after upgrading macOS:  
