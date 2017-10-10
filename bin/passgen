@@ -23,4 +23,5 @@ while(output.length < length){
 	output     += palette[ random[1][pointer] % palette.length ];
 }
 
-console.log(output);
+process.stdout.isTTY && (output += "\n");
+process.stdout.write(output);
