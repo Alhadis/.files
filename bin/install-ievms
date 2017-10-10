@@ -7,7 +7,7 @@
 # Full credit goes to xdissent for the deployment procedure.
 # See: http://xdissent.github.com/ievms
 #
-# Usage: install-ievms.sh [version-number]
+# Usage: install-ievms [version-number]
 #
 
 

@@ -88,7 +88,7 @@ $(relink-npm):
 		name=$$(basename $$project); \
 		printf "%sRelinking:%s %s\n" $$(tput bold) $$(tput sgr0) "$$name"; \
 		rm -rf "$$path" && git clone "git@github.com:Alhadis/$$name.git" "$$path" && cd "$$path"; \
-		npm install . && symlink-npm.sh; \
+		npm install . && symlink-npm; \
 		[ Utils = "$$name" ] && make || :;\
 	done
 relink-npm: $(relink-npm)
