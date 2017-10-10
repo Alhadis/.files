@@ -30,6 +30,7 @@ alias nah='git checkout -- . && git clean -fd'
 alias nuke='rm -rfvP'
 alias PS='git commit --amend'
 alias umount='diskutil unmount'
+alias untag='xattr -d com.apple.lastuseddate#PS'
 alias yeah="git reset HEAD .;"
 alias ?='man'
 alias ..='cd ..'
