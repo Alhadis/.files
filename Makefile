@@ -102,3 +102,16 @@ $(itunes): ~/Music/iTunes
 	hdd="/Volumes/Amra Helion"; \
 	[ ! -d "$$hdd" ] || cp "$@" "$$hdd/MacBook/";
 itunes-backup: $(itunes)
+
+
+# Run unit tests for Troff-implementation detector
+heirloom := $(HEIRLOOM)/nroff
+tests: share/man/which.roff
+	@ groff     -Tutf8 -mandoc $^ | grep -Eq "^Interpreter: groff$$"    || exit 1
+	@ groff  -c -Tutf8 -mandoc $^ | grep -Eq "^Interpreter: groff$$"    || exit 2
+	@ mandoc    -Tutf8 -mandoc $^ | grep -Eq "^Interpreter: mandoc$$"   || exit 3
+	@ mandoc    -Tutf8    -man $^ | grep -Eq "^Interpreter: mandoc$$"   || exit 4
+	@ $(heirloom)  -x1 -mandoc $^ | grep -Eq "^Interpreter: heirloom$$" || exit 5
+	@ $(heirloom)  -x0 -mandoc $^ | grep -Eq "^Interpreter: unknown$$"  || exit 6
+	@ printf '✓ %s%s%s\n' $$(tput setaf 10) 'All tests passed!' $$(tput sgr0)
+.PHONY: tests
