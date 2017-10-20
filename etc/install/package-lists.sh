@@ -4,20 +4,24 @@ npm_modules="
 	bower
 	browserify
 	chai
+	check-node-version
 	clean-css
 	coffeelint
 	coffeescript
 	cson
 	electron
 	geographiclib
+	he
 	highlights
 	istanbul
+	jsdoc
 	json
 	karma
 	less
 	mocha
 	node-gyp
 	ppjson
+	reify
 	semver
 	uglify-es
 	webpack
@@ -52,6 +56,7 @@ ruby_gems="
 	rubocop
 	ruby-progressbar
 	rubygems-bundler
+	rubygems-update
 	rugged
 	rvm
 	test-unit
@@ -66,8 +71,8 @@ pip_packages="
 	numpy
 	pip
 	protobuf
+	pycairo
 	Pygments
-	pygobject
 	setuptools
 	six
 	TBB
@@ -90,7 +95,7 @@ cpan_modules="
 	Archive::Zip::StringMember
 	Archive::Zip::Tree
 	Archive::Zip::ZipFileMember
-	Canary::Stability
+	B::Flags
 	common::sense
 	Cpanel::JSON::XS
 	Date::Format
@@ -135,6 +140,7 @@ cpan_modules="
 	Encode::Detect
 	Encode::Detect::Detector
 	Encode::Locale
+	ExtUtils::Constant::Aaargh56Hash
 	ExtUtils::MakeMaker::version::vpp
 	File::Listing
 	File::RandomAccess
@@ -438,7 +444,6 @@ cpan_modules="
 	inc::latest::private
 	IO::HTML
 	IO::String
-	JSON::MaybeXS
 	JSON::XS
 	Lexical::SealRequireHints
 	lib::core::only
@@ -514,6 +519,20 @@ cpan_modules="
 	SVN::Ra
 	SVN::Repos
 	SVN::Wc
+	Test2::Event::Fail
+	Test2::Event::Pass
+	Test2::EventFacet
+	Test2::EventFacet::About
+	Test2::EventFacet::Amnesty
+	Test2::EventFacet::Assert
+	Test2::EventFacet::Control
+	Test2::EventFacet::Error
+	Test2::EventFacet::Info
+	Test2::EventFacet::Meta
+	Test2::EventFacet::Parent
+	Test2::EventFacet::Plan
+	Test2::EventFacet::Trace
+	Test2::Util::Facets2Legacy
 	Test::Base
 	Test::Base::Filter
 	Test::Deep
@@ -562,6 +581,9 @@ cpan_modules="
 	Test::Exception
 	Test::Fatal
 	Test::MockModule
+	Test::Needs
+	Test::NoWarnings
+	Test::NoWarnings::Warning
 	Test::RequiresInternet
 	Test::Warnings
 	Test::YAML
