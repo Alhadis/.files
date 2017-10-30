@@ -16,8 +16,7 @@ update(){
 	softwareupdate -i -a;
 	brew update;
 	brew upgrade && brew cleanup --prune=0;
-	npm install -g npm;
-	npm update -g;
+	npm -g update;
 	gem update -N --system && gem update -N;
 	gem cleanup;
 	cd ~/Mirrors && gclient sync;
@@ -27,6 +26,12 @@ update(){
 
 # Run automated tests
 t(){
+	
+	# Nroff without trailing lines
+	[ -f test.roff ] && {
+		groff -tpUTutf8 $@ < test.roff | trim-end;
+		return;
+	}
 	
 	# Run test-scripts in current directory
 	[ -f test.sh ] && {      ./test.sh "$@"; return; }

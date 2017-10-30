@@ -66,11 +66,7 @@ alias checkbashisms='PERL5LIB= /usr/local/bin/checkbashisms'
 alias curl='/usr/local/opt/curl/bin/curl -K ~/.files/.curlrc'
 alias cc='clang'
 alias clang='/usr/local/opt/llvm/bin/clang'
-alias ghostscript='/usr/local/bin/gs'
 alias plistbuddy='/usr/libexec/PlistBuddy'
-alias python='python2'
-alias pip='pip2'
-
 
 
 
@@ -103,12 +99,12 @@ alias trim-end='sed -e :a -e '"'"'/^\n*$/{$d;N;};/\n$/ba'"'"
 alias tabfix='perl -pi -Xe '"'"'s|^(  )+|"\t"x(length($&)/2)|ge;'"'"
 
 
-# Transpile CoffeeScript into ES6 using piped input
-alias cough='coffee -b --no-header -p -s | tabfix'
+# Show every xterm colour
+alias rainbow='for i in {1..255}; do printf "$i\t\x1B[38;5;${i}m$(printf %s {A..Z} {a..z})\t\x1B[48;5;${i}m$(jot -nb" " -s" " 30 0)\x1B[0m\n"; done | less -R'
 
 
-# Remove com.apple.quarantine attribute recursively
-alias unquarantine='find .  -print0 -type f -o -type d | xargs -0 xattr -d com.apple.quarantine 2>/dev/null;'
+# Recursively delete an extended attribute
+alias untag='xargs -J% xattr 2>/dev/null -d % * <<<'
 
 
 # Search for substring in CWD
@@ -116,12 +112,11 @@ alias s='grep -irnw . -e '
 
 
 # Copy the last command to the clipboard. Useful for saving helpful one-liners.
-alias copy-that='printf %s "$(history | tail -n2 | head -n1 | sed -r '"'s/^\s+[0-9]+\*?\s+//'"')" | pbcopy'
+alias copy-that='printf %s "$(history | tail -2 | head -1 | sed s/^[[:space:]]*[[:digit:]]*[[:space:]]*//)" | pbcopy'
 
 
 # Highlight the current date on the calendar
-# This renders the cal command's options unusable, so make sure you won't be needing -m -y or whatever
-alias cal='cal | sed -r '"'"'s/(^|\s)('"'"'$(echo $(date +%d) | sed s/^0//)'"'"')(\s|$)/\1'"'"'"\x1B[38;5;76m"'"'"'\2'"'"'"\x1B[0m"'"'"'\3/'"'"''
+alias cal='cal -h | sed "s/\b$(date +%d)\b/\x1B[38;5;10m&\x1B[0m/"'
 
 
 # Search on GitHub for a filename or file extension
