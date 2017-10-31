@@ -129,6 +129,11 @@ alias gh-lang='gh-search lang'
 alias yoink='adb pull storage/extSdCard/DCIM/Camera ~/Desktop'
 
 
+# Codepoint and base conversion
+for i in chr oct hex; do alias "$i"="perl -E 'say join $/, map $i, -t ? @ARGV : map split, <>'"; done;
+alias ord='perl -mEncode=decode -E "map { printf \"%1\\\$s\tU+%1\\\$X\n\", ord decode \"UTF-8\", \$_ } -t ? @ARGV : map split, <>"'
+
+
 # Crap to help macOS run smoother. Credit: https://mths.be/bum
 alias lscleanup="/System/Library/Frameworks/CoreServices.framework/Frameworks/LaunchServices.framework/Support/lsregister -kill -r -domain local -domain system -domain user && killall Finder"
 alias emptytrash="sudo rm -rfPv /Volumes/*/.Trashes; sudo rm -rfPv ~/.Trash; rm -rfPv ~/.emacs.d/auto-save-list && mkdir ~/.emacs.d/auto-save-list; sudo rm -rfPv /private/var/log/asl/*.asl; sqlite3 ~/Library/Preferences/com.apple.LaunchServices.QuarantineEventsV* 'delete from LSQuarantineEvent'"

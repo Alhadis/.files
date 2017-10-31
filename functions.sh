@@ -146,20 +146,6 @@ src(){
 }
 
 
-# Convert octal values to base-10 (decimal)
-oct(){
-	local args=$(echo "$@" | sed -E 's/\s+/;/g');
-	echo "obase=10; ibase=8; $args" | bc
-}
-
-
-# Convert hexadecimal values to base-10
-hex(){
-	local args=$(echo "$@" | sed -E 's/0[Xx]//g; y/abcdef/ABCDEF/; s/\s+/;/g');
-	printf "ibase=16;obase=A; %s\n" "$args" | bc
-}
-
-
 # Convert a font to another format. Defaults to OpenType.
 # - Usage: convert-font [path] [to=otf]
 convert-font(){
