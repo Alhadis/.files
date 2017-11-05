@@ -23,6 +23,7 @@ export GROFF_FONTS=/usr/local/share/groff/current/font
 export TMAC=/usr/local/share/groff/current/tmac
 export VIM_SYNTAX=/usr/local/opt/vim/share/vim/vim80/syntax
 export ANDROID_SDK_ROOT=/usr/local/share/android-sdk
+export PYTHONPATH=~/Mirrors/Caffe/python
 
 # Configure $PATH
 export PATH=~/Mirrors/Google-DepotTools:$PATH
