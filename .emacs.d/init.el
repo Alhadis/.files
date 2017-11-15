@@ -51,11 +51,13 @@
 (let ((default-directory "/usr/local/share/emacs/site-lisp/"))
   (normal-top-level-add-subdirs-to-load-path))
 (load "aggressive-indent")
+(require 'yaml-mode)
 (require 'ascii-art-to-unicode)
 (add-hook 'emacs-lisp-mode-hook #'aggressive-indent-mode)
 (autoload 'rust-mode "rust-mode" nil t)
 (autoload 'coffee-mode "coffee-mode" nil t)
 (autoload 'clojure-mode "clojure-mode" nil t)
+(add-to-list 'auto-mode-alist '("\.yml$" . yaml-mode))
 (add-to-list 'auto-mode-alist '("\\.rs\\'" . rust-mode))
 
 ;; Disable newline auto-indentation
