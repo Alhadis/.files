@@ -303,6 +303,7 @@ c(){
 	rm -fP ~/.{lesshst,viminfo}
 	rm -fP ~/.{coffee,node_repl}_history
 	defaults delete com.apple.finder FXRecentFolders 2>/dev/null
+	mdfind -0 'kMDItemLastUsedDate = "*"' | xargs -0 xattr -d com.apple.lastuseddate#PS 2>/dev/null
 	
 	# Erase scrollback
 	clear;
