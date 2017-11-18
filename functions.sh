@@ -284,7 +284,7 @@ iplocation(){
 		echo >&2 "Not an IP address: $1";
 		return 2;
 	}
-	local body=$(curl 'http://iplocation.com/' -sd "ip=$1")
+	local body=$(curl -s "https://extreme-ip-lookup.com/json/$1")
 	[ $? -ne 0 ] && return $?
 	printf '%s\n' "$body" | json -i
 }
