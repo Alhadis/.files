@@ -192,6 +192,59 @@ webp(){
 }
 
 
+# Upload an image to Imgur
+imgur(){
+	local id=${IMGUR_CLIENT_ID-c9a6efb3d7932fd}
+	[ -z "$id" ] && {
+		printf >&2 "imgur: A registered client ID is required"
+		return 2;
+	}
+	for arg in "$@"; do
+		local upload=$(xattr -p user.imgur.upload "$arg" 2>/dev/null)
+		if [ "$upload" ]; then
+			printf >&2 'imgur: Already uploaded: %s\n' "$arg";
+		elif file -bI "$arg" | grep -Eq '^image/(png|jpeg|webp|gif|tiff|bmp)'; then 
+			upload=$(curl "https://api.imgur.com/3/image.json" -sF "image=@$arg" \
+				-H "Authorization: Client-ID $id" \
+				-H "Expect: ");
+			xattr -w user.imgur.upload "$upload" "$arg"
+		else continue; fi
+		printf %s "$upload" | json data.link
+	done
+}
+
+
+# Compress images with TinyPNG
+tinify(){
+	[ $# -lt 1 ] && {
+		printf >&2 "Usage: tinify /path/to/file.png\n"
+		return 1;
+	}
+	
+	# Locate API key
+	local key=${TINIFY_KEY:-${TINIFY_API_KEY}}
+	[ ! "$key" ] && [ -s ~/.tinify ] && key=$(head -n1 ~/.tinify)
+	[ ! "$key" ] && {
+		printf >&2 "tinify: Unable to locate API key\n";
+		return 2;
+	}
+	
+	# Handle arguments list
+	for arg in "$@"; do
+		file -bI "$arg" | grep -qE '^image/(png|jpeg)' && {
+			echo >&2 "Compressing: $arg"
+			curl "https://api.tinify.com/shrink" \
+				--user "api:$key" -qs \
+				--data-binary @"$arg" \
+				--dump-header /dev/stdout \
+			| sed -En 's/^location:\s*(.+)$/\1/p' \
+			| tr -d '\r\n' \
+			| xargs -J% curl -qso "$arg" "%";
+		}
+	done
+}
+
+
 # Search for a file on GitHub
 gh-search(){
 	local usage="Usage: gh-search [ext[ension]|file[name]|lang[uage]] query"
