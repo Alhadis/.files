@@ -1,9 +1,11 @@
-;; UTF-8 support
+(package-initialize)
+
+;; Locale
 (set-language-environment "UTF-8")
 (setenv "LANG" "en_AU.UTF-8")
 (setenv "LC_ALL" "en_AU.UTF-8")
 
-;; Indentation preferences
+;; Indentation
 (setq default-tab-width 4)
 (setq indent-tabs-mode t)
 (setq indent-line-function 'insert-tab)
@@ -51,7 +53,6 @@
 (let ((default-directory "/usr/local/share/emacs/site-lisp/"))
   (normal-top-level-add-subdirs-to-load-path))
 (load "aggressive-indent")
-(require 'yaml-mode)
 (require 'ascii-art-to-unicode)
 (add-hook 'emacs-lisp-mode-hook #'aggressive-indent-mode)
 (autoload 'rust-mode "rust-mode" nil t)
