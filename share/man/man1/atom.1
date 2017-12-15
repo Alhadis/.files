@@ -36,11 +36,11 @@ Otherwise, they will be opened in a new window.
 .\" ============================================================================
 .SH OPTIONS
 
-.op -1 --one
+.op -1 --one ""
 This option is no longer supported.
 It was formerly used to preview v1.0 APIs, and became redundant once Atom v1.0 shipped.
 
-.op -a --add
+.op -a --add ""
 Open path as a new project in last used window.
 
 .op --benchmark
@@ -52,13 +52,16 @@ Run a faster version of the benchmarks in headless mode.
 .op --clear-window-state
 Delete all Atom environment state.
 
-.op -d --dev
+.op -d --dev ""
 Run in development mode.
 
-.op -f --foreground
+.op --enable-electron-logging
+Enable low-level logging messages from Electron.
+
+.op -f --foreground ""
 Keep the main process in the foreground.
 
-.op -h --help
+.op -h --help ""
 Print a usage message.
 
 .op --include-deprecated-apis
@@ -67,10 +70,10 @@ This option is not currently supported.
 .op -l --log-file file
 Log all output to \fIfile\fP.
 
-.op -m --main-process
+.op -m --main-process ""
 Run the specified specs in the main process.
 
-.op -n --new-window
+.op -n --new-window ""
 Open a new window.
 
 .op --profile-startup
@@ -81,20 +84,22 @@ Set the path to the Atom source directory and enable dev-mode.
 
 .op --safe
 Do not load packages from
-.IR ~/.atom/packages
+.I ~/.atom/packages
 or
 .IR ~/.atom/dev/packages .
 
-.op -t --test
-Run the specified specs and exit with error code on failures.
+.op -t --test specs
+Run the specified
+.I specs
+and exit with an error code on failure.
 
 .op --timeout delay
 When in test mode, waits until the specified time (in minutes) and kills the process (exit code: 130).
 
-.op -v --version
+.op -v --version ""
 Print the version information.
 
-.op -w --wait
+.op -w --wait ""
 Wait for window to be closed before returning.
 
 
@@ -116,3 +121,12 @@ The root path for all configuration files and folders. Defaults to
 
 The Atom flight manual:
 .I http://flight-manual.atom.io/
+
+
+.\" ============================================================================
+.SH AUTHORS
+Copyright \(co 2011-2017, GitHub Inc.
+Released under the MIT license.
+
+Manpage written by Alhadis
+.RI < gardnerjohng@gmail.com >.
