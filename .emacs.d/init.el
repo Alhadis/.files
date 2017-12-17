@@ -1,3 +1,13 @@
+;; Packages
+(require 'package)
+(let* ((no-ssl (and (memq system-type '(windows-nt ms-dos))
+                    (not (gnutls-available p))))
+       (url (concat (if no-ssl "http" "https")
+                    "://melpa.org/packages/")))
+  (add-to-list 'package-archives (cons "melpa" url) t))
+(when (< emacs-major-version 24)
+  (add-to-list 'package-archives
+               '("gnu" . "https://elpa.gnu.org/packages/")))
 (package-initialize)
 
 ;; Locale
@@ -56,10 +66,11 @@
 ;; Tell Emacs we'd like to use Hunspell for spell-checking
 (setq ispell-program-name (executable-find "hunspell"))
 
-;; Load Homebrew-installed packages
+;; Load Homebrew/MELPA-installed packages
 (let ((default-directory "/usr/local/share/emacs/site-lisp/"))
   (normal-top-level-add-subdirs-to-load-path))
 (load "aggressive-indent")
+(load "move-text")
 (require 'ascii-art-to-unicode)
 (add-hook 'emacs-lisp-mode-hook #'aggressive-indent-mode)
 (autoload 'rust-mode "rust-mode" nil t)
@@ -78,6 +89,8 @@
 
 ;; Keybindings
 (global-set-key (kbd "<f7>") 'ispell-buffer)
+(global-set-key (kbd "C-<up>") `move-text-up)
+(global-set-key (kbd "C-<down>") `move-text-down)
 (global-set-key (kbd "C-u")  (lambda () (interactive) (kill-line 0)))
 (global-set-key (kbd "<f1>") (lambda () (interactive) (manual-entry (current-word))))
 
@@ -102,7 +115,11 @@
  ;; If there is more than one, they won't work right.
  '(blink-cursor-mode nil)
  '(column-number-mode t)
+ '(package-selected-packages
+   (quote
+    (haskell-tab-indent haskell-mode move-text ## ascii-art-to-unicode aggressive-indent)))
  '(show-paren-mode t))
+
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
