@@ -1,4 +1,5 @@
 # OpenBSD sh/ksh .profile
+alias @='emacs'
 alias l='ls -alh'
 alias ..='cd ..'
 alias c='clear'
@@ -6,7 +7,9 @@ alias g='git status'
 alias gl='git log'
 alias gd='git diff --cached'
 alias ga='git add --all'
+alias gb='git branch -av'
 alias gc='git gc && git prune -v'
+alias gr='git remote --verbose'
 alias gs='git show'
 alias GS='/usr/local/bin/gs'
 alias gp='git push'
@@ -23,6 +26,15 @@ alias fuck-that-shit='git reset --soft HEAD~1'
 	gpg-agent
 } 2>/dev/null;
 
+# Add paths containing additional manual-pages
 MANPATH=:/root/.files/share/man
 MANPATH=$MANPATH:/usr/local/lib/node_modules/npm/man
 export MANPATH
+
+# Test function pinched from `functions.sh`
+t(){
+	[ -x "test.js" ] && {
+		node ./test.js $@;
+		return $?;
+	}
+}

@@ -36,6 +36,9 @@
             (add-hook 'before-save-hook #'delete-trailing-whitespace nil t)
             (setq indent-tabs-mode nil)
             (setq fill-column 72)))
+(add-hook 'html-mode-hook
+          (lambda ()
+            (set (make-local-variable 'sgml-basic-offset) 4)))
 (add-hook 'js-mode-hook
           (lambda ()
             (setq tab-width 4)
@@ -63,6 +66,12 @@
        ((and (eq isdir nil) (string= (substring path -3) ".el"))
         (load (file-name-sans-extension fullpath)))))))
 
+;; Execute something in shell and inject results
+(defun inject (command)
+  "Insert output of COMMAND into current buffer"
+  (interactive "sShell command: ")
+  (insert-before-markers (shell-command-to-string command)))
+
 ;; Tell Emacs we'd like to use Hunspell for spell-checking
 (setq ispell-program-name (executable-find "hunspell"))
 
@@ -78,6 +87,7 @@
 (autoload 'clojure-mode "clojure-mode" nil t)
 (add-to-list 'auto-mode-alist '("\.yml$" . yaml-mode))
 (add-to-list 'auto-mode-alist '("\\.rs\\'" . rust-mode))
+(add-to-list 'auto-mode-alist '("\\.jsx$" . js2-mode))
 
 ;; Disable newline auto-indentation
 (when (fboundp 'electric-indent-mode) (electric-indent-mode -1))
@@ -117,7 +127,7 @@
  '(column-number-mode t)
  '(package-selected-packages
    (quote
-    (haskell-tab-indent haskell-mode move-text ## ascii-art-to-unicode aggressive-indent)))
+    (slime haskell-tab-indent haskell-mode move-text ## ascii-art-to-unicode aggressive-indent)))
  '(show-paren-mode t))
 
 (custom-set-faces
