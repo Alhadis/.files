@@ -1,5 +1,6 @@
 # OpenBSD sh/ksh .profile
 alias @='emacs'
+alias K='kill -KILL'
 alias l='ls -alh'
 alias ..='cd ..'
 alias c='clear'
@@ -18,6 +19,7 @@ alias yeah='git reset HEAD .;'
 alias nah='git checkout -- . && git clean -fd'
 alias PS='git commit --amend'
 alias fuck-that-shit='git reset --soft HEAD~1'
+alias s='grep -irnw . -e '
 
 {
 	export GPG_TTY=`tty`
