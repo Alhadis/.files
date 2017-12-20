@@ -3,6 +3,7 @@ alias @='emacs'
 alias K='kill -KILL'
 alias F='cd /root/.files'
 alias P='cd /home/projects'
+alias E='cd /root/.files/.emacs.d'
 alias l='ls -alh'
 alias ..='cd ..'
 alias c='clear'
@@ -38,7 +39,8 @@ export MANPATH
 
 # Path shortcuts
 export F=/root/.files
-export P=/home/projects
+export P=/root/.files/.profile
+export E=/root/.files/.emacs.d/init.el
 
 # Test function pinched from `functions.sh`
 t(){
