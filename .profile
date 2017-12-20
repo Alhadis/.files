@@ -1,6 +1,8 @@
 # OpenBSD sh/ksh .profile
 alias @='emacs'
 alias K='kill -KILL'
+alias F='cd /root/.files'
+alias P='cd /home/projects'
 alias l='ls -alh'
 alias ..='cd ..'
 alias c='clear'
@@ -30,8 +32,13 @@ alias s='grep -irnw . -e '
 
 # Add paths containing additional manual-pages
 MANPATH=:/root/.files/share/man
+MANPATH=$MANPATH:/usr/local/heirloom-doctools/man
 MANPATH=$MANPATH:/usr/local/lib/node_modules/npm/man
 export MANPATH
+
+# Path shortcuts
+export F=/root/.files
+export P=/home/projects
 
 # Test function pinched from `functions.sh`
 t(){
