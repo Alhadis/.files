@@ -88,6 +88,8 @@
 (autoload 'rust-mode "rust-mode" nil t)
 (autoload 'coffee-mode "coffee-mode" nil t)
 (autoload 'clojure-mode "clojure-mode" nil t)
+
+;; Filetype mappings
 (add-to-list 'auto-mode-alist '("\.yml$" . yaml-mode))
 (add-to-list 'auto-mode-alist '("\\.rs\\'" . rust-mode))
 (add-to-list 'auto-mode-alist '("\\.jsx$" . js2-mode))
@@ -101,6 +103,8 @@
 (load "git-commit")
 
 ;; Keybindings
+(global-unset-key [(control z)])
+(global-unset-key [(control x)(control z)])
 (global-set-key (kbd "<f7>") 'ispell-buffer)
 (global-set-key (kbd "C-<up>") `move-text-up)
 (global-set-key (kbd "C-<down>") `move-text-down)
