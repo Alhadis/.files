@@ -38,6 +38,9 @@
             (setq fill-column 72)))
 (add-hook 'html-mode-hook
           (lambda ()
+            (setq tab-width 4)
+            (setq indent-tabs-mode t)
+            (define-key html-mode-map (kbd "TAB") 'self-insert-command)
             (set (make-local-variable 'sgml-basic-offset) 4)))
 (add-hook 'js-mode-hook
           (lambda ()
