@@ -29,6 +29,7 @@ alias mime='file -b --mime-type'
 alias nah='git checkout -- . && git clean -fd'
 alias nuke='rm -rfvP'
 alias PS='git commit --amend'
+alias t='run-tests'
 alias umount='diskutil unmount'
 alias untag='xattr -d com.apple.lastuseddate#PS'
 alias yeah="git reset HEAD .;"

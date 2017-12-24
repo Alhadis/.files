@@ -1,0 +1,27 @@
+#!/usr/bin/env perl
+use warnings;
+use strict;
+use v5.14;
+
+#
+# Quick calculator.
+# Copies result to clipboard if possible.
+#
+$_ = sprintf "%s\n", join(" ", @ARGV);
+
+# Strip alphabetic characters from input; it's common to mistakenly
+# copy "180.00 pt" from Adobe Illustrator, or other programs which
+# append units to metric fields.
+s/(\d+|\s+)x(\s+|\d+)/$1*$2/gi;
+s/[A-Za-z]+/ /g;
+$_ = eval "$_";
+s/\\\n//;
+
+# Drop trailing zeroes after the decimal point
+s/\.0+$|(\.\d*?)0+$/$1/g;
+
+# Copy to clipboard, if available
+`which pbcopy 2>&1 >/dev/null`;
+`printf "$_" | pbcopy` unless $?;
+
+say $_;

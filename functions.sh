@@ -24,69 +24,6 @@ update(){
 }
 
 
-# Run automated tests
-t(){
-	
-	# Nroff without trailing lines
-	[ -f test.roff ] && {
-		groff -tpUTutf8 $@ < test.roff | trim-end;
-		return;
-	}
-	
-	# Run test-scripts in current directory
-	[ -f test.sh ] && {      ./test.sh "$@"; return; }
-	[ -f test.pl ] && { perl ./test.pl "$@"; return; }
-	[ -f test.ru ] && { ruby ./test.ru "$@"; return; }
-	[ -f test.js ] && { node ./test.js "$@"; return; }
-
-	# Makefile: "make test"
-	[ -f Makefile ] && { grep Makefile -qe ^test:; } && {
-		make test;
-		return;
-	}
-
-	# Atom
-	[ -d spec ] && {
-		atom -t spec;
-		return;
-	}
-
-	# Atom + Mocha
-	[ -d test ] && [ -d node_modules/atom-mocha ] && {
-		atom -t test;
-		return;
-	}
-
-	# Mocha
-	[ -d test ] && {
-		mocha --es_staging;
-		return;
-	}
-	
-	# Unknown executable assumed to be a test-script
-	[ -x test ] && [ -s test ] && { ./test "$@"; return; }
-
-	# No tests found; do nothing
-	true;
-}
-
-
-# Quick calculator: copies result to clipboard after evaluation
-calc(){
-
-	# Strip alphabetic characters from input; it's common to copy "180.00 pt" from
-	# Adobe Illustrator, or other programs that append units to metric fields.
-	local result=$(printf "%s\n" "$*" | perl -pe 's/(\d+|\s+)x(\s+|\d+)/$1*$2/gi; s/[A-Za-z]+/ /g;' | bc -l | tr -d '\\\n')
-
-	# Drop trailing zeroes after the decimal point
-	printf %s "$result" | perl -pe 's/\.0+$|(\.\d*?)0+$/$1/g' | pbcopy;
-
-	# Copy to STDERR
-	pbpaste;
-	printf '\n';
-}
-
-
 # Assemble and link an executable from x86 assembly (macOS only).
 asm(){
 	[ $# -eq 0 ] && {

@@ -4,6 +4,9 @@ alias K='kill -KILL'
 alias F='cd /root/.files'
 alias P='cd /home/projects'
 alias E='cd /root/.files/.emacs.d'
+alias npm-start='{ npm start 2>&1; } >/dev/null &'
+
+# Copied from `aliases.sh`
 alias l='ls -alh'
 alias ..='cd ..'
 alias c='clear'
@@ -17,12 +20,12 @@ alias gr='git remote --verbose'
 alias gs='git show'
 alias GS='/usr/local/bin/gs'
 alias gp='git push'
-alias npm-start='{ npm start 2>&1; } >/dev/null &'
 alias yeah='git reset HEAD .;'
 alias nah='git checkout -- . && git clean -fd'
 alias PS='git commit --amend'
 alias fuck-that-shit='git reset --soft HEAD~1'
 alias s='grep -irnw . -e '
+alias t='run-tests'
 
 {
 	export GPG_TTY=`tty`
@@ -31,8 +34,11 @@ alias s='grep -irnw . -e '
 	gpg-agent
 } 2>/dev/null;
 
+# Configure $PATH
+export PATH=~/.files/bin:$PATH
+
 # Add paths containing additional manual-pages
-MANPATH=:/root/.files/share/man
+MANPATH=:~/.files/share/man
 MANPATH=$MANPATH:/usr/local/heirloom-doctools/man
 MANPATH=$MANPATH:/usr/local/lib/node_modules/npm/man
 export MANPATH
@@ -41,11 +47,3 @@ export MANPATH
 export F=/root/.files
 export P=/root/.files/.profile
 export E=/root/.files/.emacs.d/init.el
-
-# Test function pinched from `functions.sh`
-t(){
-	[ -x "test.js" ] && {
-		node ./test.js $@;
-		return $?;
-	}
-}
