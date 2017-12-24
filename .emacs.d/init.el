@@ -75,7 +75,7 @@
   (interactive "sShell command: ")
   (insert-before-markers (shell-command-to-string command)))
 
-;; Tell Emacs we'd like to use Hunspell for spell-checking
+;; Use Hunspell for spellchecking
 (setq ispell-program-name (executable-find "hunspell"))
 
 ;; Load Homebrew/MELPA-installed packages
@@ -103,13 +103,8 @@
 (load "git-commit")
 
 ;; Keybindings
-(global-unset-key [(control z)])
-(global-unset-key [(control x)(control z)])
-(global-set-key (kbd "<f7>") 'ispell-buffer)
-(global-set-key (kbd "C-<up>") `move-text-up)
-(global-set-key (kbd "C-<down>") `move-text-down)
-(global-set-key (kbd "C-u")  (lambda () (interactive) (kill-line 0)))
-(global-set-key (kbd "<f1>") (lambda () (interactive) (manual-entry (current-word))))
+(cua-mode)
+(load "~/.emacs.d/keymap")
 
 ;; Show cursor's current column number
 (setq column-number-mode t)
