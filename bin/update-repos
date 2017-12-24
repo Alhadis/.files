@@ -1,9 +1,8 @@
 #!/bin/sh
-shopt -s dotglob
 
 # Print current activity
 status(){
-	printf "\033[1;94m==>\033[0m\033[1m %s\033[0m"$'\n' "$1";
+	printf "\033[1;94m==>\033[0m\033[1m %s\033[0m\n" "$1";
 }
 
 # Update the repository of a VCS-controlled project folder
@@ -76,12 +75,12 @@ done
 shift $((OPTIND - 1))
 
 # Resolve positional parameters
-[ $# -eq 0 ] && dirs=$(pwd) || dirs=($@)
+[ $# -eq 0 ] && dirs=$(pwd) || dirs="$@"
 
 IFS=''
 
 # Look for VCS-enabled projects in each directory
-for i in ${dirs[@]}; do
+for i in $dirs; do
 	cd "$i";
 	update "$i" || for i in *; do update "$i"; done;
 done;

@@ -1,5 +1,5 @@
 .\" -*- coding: utf-8 -*-
-.Dd "February 26, 2017"
+.Dd "December 24, 2017"
 .Dt UPDATE-REPOS 1
 .Os macOS 10.12.3
 .Sh NAME
@@ -56,21 +56,11 @@ is called with its
 .Fl \-aggressive No option set.
 Refer to
 .Xr git-gc 1
-for the effects of this.
+for the exact effects.
 .
 .It Fl p
 Prune remote-tracking branches that are deleted upstream.
 If a remote named "fork" has been defined locally, it will also be checked for deleted branches.
-.El
-.
-.Sh FILES
-.ds file-1 ~/.files/bin/update-repos
-.ds file-2 ~/.files/share/man/man1/update-repos.1
-.Bl -tag -width \*[file-1] -compact
-.It Pa \*[file-1]
-The executable file.
-.It Pa \*[file-2]
-This spiffy-looking manual page.
 .El
 .
 .Sh EXIT STATUS
