@@ -1,5 +1,10 @@
 all:
 
+# Byte-compile Emacs Lisp files
+elc: ~/.files/.emacs.d
+	emacs -q --batch --eval '(byte-recompile-directory "$^")'
+
+
 # Restore the pre-25.1 Emacs icon with the prettier traditional one
 emacs-icon: $(wildcard .emacs.d/*.icns)
 	@cp -f $^ /Applications/Emacs.app/Contents/Resources/

@@ -47,3 +47,13 @@ export MANPATH
 export F=/root/.files
 export P=/root/.files/.profile
 export E=/root/.files/.emacs.d/init.el
+
+# Everything else
+export LESS=-R
+
+
+# Print temperature diagnostics
+temp(){
+	sysctl hw.sensors | grep temp | \
+	sed 's/hw.sensors.//; s/\.temp[0-9]=/: /;'
+}

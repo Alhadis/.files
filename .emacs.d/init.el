@@ -19,6 +19,7 @@
 (setq default-tab-width 4)
 (setq indent-tabs-mode t)
 (setq indent-line-function 'insert-tab)
+(setq nxml-child-indent 4)
 (add-hook 'c-mode-common-hook
           (lambda ()
             (setq c-file-style "K&R")
