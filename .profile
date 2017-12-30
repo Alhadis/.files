@@ -50,6 +50,8 @@ export E=/root/.files/.emacs.d/init.el
 
 # Everything else
 export LESS=-R
+export EDITOR=/usr/local/bin/emacs
+export VISUAL=/usr/local/bin/emacs
 
 
 # Print temperature diagnostics
