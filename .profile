@@ -1,15 +1,29 @@
-# OpenBSD sh/ksh .profile
+# $OpenBSD: dot.profile,v 1.9 2010/12/13 12:54:31 millert Exp $
+#
+# sh/ksh initialization
+
+PATH=/sbin:/usr/sbin:/bin:/usr/bin:/usr/X11R6/bin:/usr/local/sbin:/usr/local/bin
+PATH=~/.files/bin:$PATH
+export PATH
+: ${HOME='/root'}
+export HOME
+umask 022
+
+# Aliases
 alias @='emacs'
+alias p='pwd'
 alias K='kill -KILL'
 alias F='cd /root/.files'
 alias P='cd /home/projects'
 alias E='cd /root/.files/.emacs.d'
 alias npm-start='{ npm start 2>&1; } >/dev/null &'
 
-# Copied from `aliases.sh`
+# Aliases copied from `aliases.sh`
 alias l='ls -alh'
 alias ..='cd ..'
 alias c='clear'
+alias df='df -h'
+alias du='du -h'
 alias g='git status'
 alias gl='git log'
 alias gd='git diff --cached'
@@ -34,9 +48,6 @@ alias t='run-tests'
 	gpg-agent
 } 2>/dev/null;
 
-# Configure $PATH
-export PATH=~/.files/bin:$PATH
-
 # Add paths containing additional manual-pages
 MANPATH=:~/.files/share/man
 MANPATH=$MANPATH:/usr/local/heirloom-doctools/man
@@ -59,3 +70,15 @@ temp(){
 	sysctl hw.sensors | grep temp | \
 	sed 's/hw.sensors.//; s/\.temp[0-9]=/: /;'
 }
+
+
+# Interactive shell setup
+case "$-" in *i*)
+if [ -x /usr/bin/tset ]; then
+	if [ X"$XTERM_VERSION" = X"" ]; then
+		eval `/usr/bin/tset -sQ '-munknown:?vt220' $TERM`
+	else
+		eval `/usr/bin/tset -IsQ '-munknown:?vt220' $TERM`
+	fi
+fi ;;
+esac
