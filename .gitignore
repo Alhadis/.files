@@ -1,4 +1,5 @@
 .DS_Store
+mandoc.db
 node_modules
 *.log
 *.elc
