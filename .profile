@@ -16,6 +16,7 @@ alias K='kill -KILL'
 alias F='cd /root/.files'
 alias P='cd /home/projects'
 alias E='cd /root/.files/.emacs.d'
+alias desktop='startxfce4 --with-ck-launch'
 alias npm-start='{ npm start 2>&1; } >/dev/null &'
 
 # Aliases copied from `aliases.sh`
