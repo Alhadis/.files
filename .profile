@@ -17,7 +17,9 @@ alias F='cd /root/.files'
 alias P='cd /home/projects'
 alias E='cd /root/.files/.emacs.d'
 alias desktop='startxfce4 --with-ck-launch'
-alias npm-start='{ npm start 2>&1; } >/dev/null &'
+alias fixown='find . -exec chown -h root:wheel {} +;'
+alias make='gmake'
+alias untar='bsdtar -xf'
 
 # Aliases copied from `aliases.sh`
 alias l='ls -alh'
@@ -64,6 +66,22 @@ export E=/root/.files/.emacs.d/init.el
 export LESS=-R
 export EDITOR=/usr/local/bin/emacs
 export VISUAL=/usr/local/bin/emacs
+
+
+# Shorthand for finding files by name
+f(){
+	find . -type f -name "*$1*";
+}
+
+
+# Browse OpenPSD's ports tree
+# - Usage: `openports [version]'
+openports(){
+	for ver in $1 $(uname -r); do
+		lynx "$(cat /etc/installurl)/${ver}/packages/$(machine)/";
+		break;
+	done;
+}
 
 
 # Print temperature diagnostics
