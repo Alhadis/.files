@@ -66,6 +66,8 @@ export E=/root/.files/.emacs.d/init.el
 export LESS=-R
 export EDITOR=/usr/local/bin/emacs
 export VISUAL=/usr/local/bin/emacs
+export CC=/usr/local/bin/egcc
+export CXX=/usr/local/bin/eg++
 
 
 # Shorthand for finding files by name
