@@ -38,7 +38,7 @@
     (((class grayscale) (background dark))
      (:foreground "LightGray" :slant italic))
     (((class color) (min-colors 88) (background light))
-     (:foreground "Gold"))
+     (:foreground "DarkGreen"))
     (((class color) (min-colors 88) (background dark))
      (:foreground "Gold"))
     (((class color) (min-colors 16) (background light))
