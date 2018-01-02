@@ -111,6 +111,11 @@
 ;; Show cursor's current column number
 (setq column-number-mode t)
 
+;; Disable bell while on desktop
+(when (display-graphic-p)
+  (setq ring-bell-function (lambda () ()))
+  (setq visible-bell 1))
+
 ;; Disable autosave
 (setq auto-save-default nil)
 
@@ -129,6 +134,7 @@
  ;; If there is more than one, they won't work right.
  '(blink-cursor-mode nil)
  '(column-number-mode t)
+ '(inhibit-startup-screen t)
  '(package-selected-packages
    (quote
     (slime haskell-tab-indent haskell-mode move-text ## ascii-art-to-unicode aggressive-indent)))
