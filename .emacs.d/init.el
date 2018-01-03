@@ -89,12 +89,15 @@
 (autoload 'rust-mode "rust-mode" nil t)
 (autoload 'coffee-mode "coffee-mode" nil t)
 (autoload 'clojure-mode "clojure-mode" nil t)
+(autoload 'nroff-mode "nroff-mode" nil t)
 
 ;; Filetype mappings
 (add-to-list 'auto-mode-alist '("\.yml$" . yaml-mode))
-(add-to-list 'auto-mode-alist '("\\.rs\\'" . rust-mode))
+(add-to-list 'auto-mode-alist '("\\.rs$" . rust-mode))
 (add-to-list 'auto-mode-alist '("\\.mjs$" . js-mode))
 (add-to-list 'auto-mode-alist '("\\.jsx$" . js-mode))
+(add-to-list 'auto-mode-alist '("\\.tmac$" . nroff-mode))
+(add-to-list 'auto-mode-alist '("\\.roff$" . nroff-mode))
 
 ;; Disable newline auto-indentation
 (when (fboundp 'electric-indent-mode) (electric-indent-mode -1))
