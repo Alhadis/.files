@@ -13,11 +13,11 @@ umask 022
 alias @='emacs'
 alias p='pwd'
 alias K='kill -KILL'
-alias F='cd /root/.files'
+alias F='cd ~/.files'
+alias E='cd ~/.files/.emacs.d'
 alias P='cd /home/projects'
-alias E='cd /root/.files/.emacs.d'
 alias desktop='startxfce4 --with-ck-launch'
-alias fixown='find . -exec chown -h root:wheel {} +;'
+alias fixown='find . -exec chown -h Alhadis:wheel {} +;'
 alias make='gmake'
 alias untar='bsdtar -xf'
 
@@ -58,9 +58,9 @@ MANPATH=$MANPATH:/usr/local/lib/node_modules/npm/man
 export MANPATH
 
 # Path shortcuts
-export F=/root/.files
-export P=/root/.files/.profile
-export E=/root/.files/.emacs.d/init.el
+export F=~/.files
+export P=~/.files/.profile
+export E=~/.files/.emacs.d/init.el
 
 # Everything else
 export LESS=-R
