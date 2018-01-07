@@ -82,6 +82,14 @@ f(){
 }
 
 
+# Run a Google search
+# - Usage: `google [query string]'
+google(){
+	lynx 'https://google.com/search?q='"$(printf "%s" "$@" \
+	| sed -Ee 's/%/%25/g; s/\+/%2B/g; s/\?/%3F/g; s/#/%23/g; s/\&/%26/g;')";
+}
+
+
 # Browse OpenBSD's ports tree
 # - Usage: `openports [version]'
 openports(){
