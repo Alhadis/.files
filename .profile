@@ -19,6 +19,7 @@ alias P='cd /home/projects'
 alias desktop='startxfce4 --with-ck-launch'
 alias fixown='find . -exec chown -h Alhadis:wheel {} +;'
 alias make='gmake'
+alias unlink='rm'
 alias untar='bsdtar -xf'
 
 # Aliases copied from `aliases.sh`
@@ -76,7 +77,7 @@ f(){
 }
 
 
-# Browse OpenPSD's ports tree
+# Browse OpenBSD's ports tree
 # - Usage: `openports [version]'
 openports(){
 	for ver in $1 $(uname -r); do
