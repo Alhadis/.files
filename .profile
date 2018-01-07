@@ -22,8 +22,11 @@ alias P='cd /home/projects'
 alias desktop='startxfce4 --with-ck-launch'
 alias fixown='find . -exec chown -h Alhadis:wheel {} +;'
 alias make='gmake'
+alias stat='stat -x'
 alias unlink='rm'
+alias unmount='umount'
 alias untar='bsdtar -xf'
+alias usb='doas mount -t msdos /dev/sd2i /mnt'
 
 # Aliases copied from `aliases.sh`
 alias l='ls -alh'
