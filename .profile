@@ -3,11 +3,14 @@
 # sh/ksh initialization
 
 PATH=/sbin:/usr/sbin:/bin:/usr/bin:/usr/X11R6/bin:/usr/local/sbin:/usr/local/bin
-PATH=~/.files/bin:$PATH
+PATH=~/.files/bin:~/.files/perl5/bin:$PATH
 export PATH
-: ${HOME='/root'}
-export HOME
-umask 022
+
+# Perl/CPAN environment
+export PERL5LIB=~/perl5/lib/perl5:$PERL5LIB
+export PERL_LOCAL_LIB_ROOT=~/perl5:$PERL_LOCAL_LIB_ROOT
+export PERL_MB_OPT='--install_base "~/perl5"'
+export PERL_MM_OPT="INSTALL_BASE=~/perl5"
 
 # Aliases
 alias @='emacs'
@@ -52,13 +55,13 @@ alias t='run-tests'
 	gpg-agent
 } 2>/dev/null;
 
-# Add paths containing additional manual-pages
+# Additional documentation
 MANPATH=:~/.files/share/man
 MANPATH=$MANPATH:/usr/local/heirloom-doctools/man
 MANPATH=$MANPATH:/usr/local/lib/node_modules/npm/man
 export MANPATH
 
-# Path shortcuts
+# Commonly-referenced paths
 export F=~/.files
 export P=~/.files/.profile
 export E=~/.files/.emacs.d/init.el
@@ -69,6 +72,7 @@ export EDITOR=/usr/local/bin/emacs
 export VISUAL=/usr/local/bin/emacs
 export CC=/usr/local/bin/egcc
 export CXX=/usr/local/bin/eg++
+umask 022
 
 
 # Shorthand for finding files by name
