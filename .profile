@@ -68,6 +68,7 @@ export E=~/.files/.emacs.d/init.el
 
 # Everything else
 export LESS=-R
+export LYNX_CFG=~/.files/etc/lynx.cfg
 export EDITOR=/usr/local/bin/emacs
 export VISUAL=/usr/local/bin/emacs
 export CC=/usr/local/bin/egcc
