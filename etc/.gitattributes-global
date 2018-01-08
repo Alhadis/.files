@@ -8,5 +8,6 @@
 *.psd     diff=exif
 
 # Document diffs
-*.docx    diff=word
-*.doc     diff=word
+*.docx    diff=docx
+*.doc     diff=docx
+*.odt     diff=odt

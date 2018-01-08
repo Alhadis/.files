@@ -1,19 +1,7 @@
 [user]
 	name = Alhadis
 	email = gardnerjohng@gmail.com
-	signingkey = 895D24EE
-[credential]
-	helper = osxkeychain
-[diff]
-	renames = copies
-[diff "word"]
-	textconv = docx2txt
-[diff "exif"]
-	textconv = exiftool -x FileName -x Directory
-[diff "bin"]
-	textconv = hexdump -v -C
-[push]
-	default = simple
+	signingkey = C57044A83594344A
 [core]
 	editor = /usr/local/bin/emacs
 	excludesfile = ~/.files/etc/.gitignore-global
@@ -25,7 +13,29 @@
 	co = checkout
 	r = remote --verbose
 	s = status
+[credential]
+	helper = osxkeychain
+[diff]
+	renames = copies
+[diff "bin"]
+	textconv = hexdump -v -C
+	cachetextconv = true
+[diff "exif"]
+	textconv = exiftool -x FileName -x Directory
+	cachetextconv = true
+[diff "ps"]
+	textconv = ps2ascii
+	cachetextconv = true
+	binary = true
+[diff "odt"]
+	textconv = odt2txt
+	cachetextconv = true
+[diff "docx"]
+	textconv = docx2txt
+	cachetextconv = true
 [filter "lfs"]
 	clean = git-lfs clean -- %f
 	smudge = git-lfs smudge -- %f
 	required = true
+[gpg]
+	program = gpg2
