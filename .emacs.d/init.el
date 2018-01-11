@@ -98,6 +98,7 @@
 (add-to-list 'auto-mode-alist '("\\.jsx$" . js-mode))
 (add-to-list 'auto-mode-alist '("\\.tmac$" . nroff-mode))
 (add-to-list 'auto-mode-alist '("\\.roff$" . nroff-mode))
+(add-to-list 'auto-mode-alist '("\\.cson$" . coffee-mode))
 
 ;; Disable newline auto-indentation
 (when (fboundp 'electric-indent-mode) (electric-indent-mode -1))
@@ -114,10 +115,14 @@
 ;; Show cursor's current column number
 (setq column-number-mode t)
 
-;; Disable bell while on desktop
+;; Desktop-only
 (when (display-graphic-p)
   (setq ring-bell-function (lambda () ()))
   (setq visible-bell 1))
+
+;; Non-desktop
+(unless (display-graphic-p)
+  (tty-suppress-bold-inverse-default-colors t))
 
 ;; Disable autosave
 (setq auto-save-default nil)
@@ -131,10 +136,7 @@
       version-control t)
 
 (custom-set-variables
- ;; custom-set-variables was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
+ '(backward-delete-char-untabify-method nil)
  '(blink-cursor-mode nil)
  '(column-number-mode t)
  '(inhibit-startup-screen t)
@@ -144,8 +146,4 @@
  '(show-paren-mode t))
 
 (custom-set-faces
- ;; custom-set-faces was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- )
+ '(font-lock-function-name-face ((t (:foreground "black" :weight bold)))))
