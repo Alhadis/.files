@@ -139,6 +139,8 @@
  '(backward-delete-char-untabify-method nil)
  '(blink-cursor-mode nil)
  '(column-number-mode t)
+ '(cua-mode t nil (cua-base))
+ '(display-battery-mode t)
  '(inhibit-startup-screen t)
  '(package-selected-packages
    (quote
