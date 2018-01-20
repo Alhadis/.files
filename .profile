@@ -34,7 +34,7 @@ alias usb='doas mount -t msdos /dev/sd2i /mnt'
 # Aliases copied from `aliases.sh`
 alias l='ls -alh'
 alias ..='cd ..'
-alias c='clear'
+alias c="printf '\033[3J'; clear"
 alias df='df -h'
 alias du='du -h'
 alias g='git status'
