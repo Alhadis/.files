@@ -4,6 +4,7 @@
 
 (global-set-key (kbd "C-h C-f") 'describe-function)
 (global-set-key (kbd "C-h C-c") 'describe-key-briefly)
+(global-set-key (kbd "<backtab>") 'decrease-left-margin)
 (global-set-key (kbd "<f7>") 'ispell-buffer)
 (global-set-key (kbd "C-<up>") `move-text-up)
 (global-set-key (kbd "C-<down>") `move-text-down)
