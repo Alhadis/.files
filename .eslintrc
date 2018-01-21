@@ -1,0 +1,34 @@
+// -*- mode: js -*-
+{
+	"extends": "eslint:recommended",
+	"env": {
+		"browser": true,
+		"es6": true,
+		"mocha": true,
+		"node": true
+	},
+	"parserOptions": {
+		"ecmaVersion": 2017
+	},
+	"plugins": [
+		"json"
+	],
+	"rules": {
+		"indent": [
+			"error",
+			"tab"
+		],
+		"linebreak-style": [
+			"error",
+			"unix"
+		],
+		"quotes": [
+			"error",
+			"double"
+		],
+		"semi": [
+			"error",
+			"always"
+		]
+	}
+}
