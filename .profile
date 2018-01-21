@@ -25,7 +25,7 @@ alias make='gmake'
 alias mysql='mysql --auto-vertical-output'
 alias reconnect='doas sh /etc/netstart iwn0'
 alias stat='stat -x'
-alias tabfix='perl -pi -e "s/  /\t/g"'
+alias tabfix='perl -pi -Xe '"'"'s|^(  )+|"\t"x(length($&)/2)|ge;'"'"
 alias unlink='rm'
 alias unmount='umount'
 alias untar='bsdtar -xf'
@@ -53,6 +53,7 @@ alias PS='git commit --amend'
 alias fuck-that-shit='git reset --soft HEAD~1'
 alias s='grep -irnw . -e '
 alias t='run-tests'
+
 
 {
 	export GPG_TTY=`tty`
