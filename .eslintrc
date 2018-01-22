@@ -7,10 +7,15 @@
 		"node": true
 	},
 	"parserOptions": {
-		"ecmaVersion": 2017
+		"ecmaVersion": 2017,
+		"sourceType": "module",
+		"ecmaFeatures": {
+			"jsx": true
+		}
 	},
 	"plugins": [
-		"json"
+		"json",
+		"react"
 	],
 	"rules": {
 		"indent": [
