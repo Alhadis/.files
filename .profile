@@ -54,14 +54,6 @@ alias fuck-that-shit='git reset --soft HEAD~1'
 alias s='grep -irnw . -e '
 alias t='run-tests'
 
-
-{
-	export GPG_TTY=`tty`
-	eval "$(ssh-agent -s)" >/dev/null
-	ssh-add ~/.ssh/github
-	gpg-agent
-} 2>/dev/null;
-
 # Additional documentation
 MANPATH=:~/.files/share/man
 MANPATH=$MANPATH:/usr/local/heirloom-doctools/man
@@ -87,6 +79,16 @@ umask 022
 # Shorthand for finding files by name
 f(){
 	find . -type f -name "*$1*";
+}
+
+
+# Initialise ssh-agent and enable SSH acces in Git.
+# Something I've not figured out how to do in OpenBSD yet.
+loadSSHKeys(){
+	export GPG_TTY=`tty`
+	eval "$(ssh-agent -s)" >/dev/null
+	ssh-add ~/.ssh/github
+	gpg-agent
 }
 
 
