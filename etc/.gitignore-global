@@ -1,5 +1,6 @@
 # Ignore with extreme prejudice
 .DS_Store
 ._*
+.#*
 Desktop.ini
 Thumbs.db
