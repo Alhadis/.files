@@ -6,6 +6,9 @@ PATH=/sbin:/usr/sbin:/bin:/usr/bin:/usr/X11R6/bin:/usr/local/sbin:/usr/local/bin
 PATH=~/.files/bin:~/.files/perl5/bin:$PATH
 export PATH
 
+# Load connected files
+. ~/.files/prompt.sh
+
 # Perl/CPAN environment
 export PERL5LIB=~/perl5/lib/perl5:$PERL5LIB
 export PERL_LOCAL_LIB_ROOT=~/perl5:$PERL_LOCAL_LIB_ROOT

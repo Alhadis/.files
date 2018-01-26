@@ -1,23 +1,39 @@
-# Prompt-line customisation
+#!/bin/sh
 
-colour='\001\033[38;5;10m\002'
-punct='\001\033[38;5;22m\002'
-reset='\001\033[0m\002'
+# Spiffy-looking symbol
+PS1='λ'
 
-# Dim the λ's colour if last command exited with a non-zero status
-status-colour(){
-	[ $? -ne 0 ] && printf '\001\033[38;5;28m\002'
-}
+case $TERM in
+	vt*|dumb) PS1='$' ;;
+esac
 
-# Print the current branch name
-print-branch(){
-	local c1=$(tput setaf 22)
-	local c2=$(tput setaf 10)
-	local name=$(printf '%s\(%s\\1%s\)' $c1 $c2 $c1)
-	git branch --list 2>/dev/null | sed -e '/^[^*]/d' -e "s/* \(.*\)/ ${name}/"
-}
+# Dynamic prompt strings (Bash only)
+case `basename ${0#-}` in
+	bash)
+		# SGR colour sequences
+		colour='\001\033[38;5;10m\002'
+		punct='\001\033[38;5;22m\002'
+		reset='\001\033[0m\002'
 
-PS1="${colour}\$(status-colour)λ${colour} "
-PS1+="\W\$(print-branch)${punct}:${reset} "
+		# Darken sigil's colour to indicate an error code
+		statusColour(){
+			[ $? -ne 0 ] && printf '\001\033[38;5;28m\002'
+		}
+
+		# Current branch of Git repository
+		branchName(){
+			name=`git branch --list --no-color 2>/dev/null | cut -d" " -f2`
+			[ -n "$name" ] && printf " ${1}(${2}%s${1})" "$name"
+		}
+
+		PS1="${colour}\$(statusColour)$PS1${colour}"
+		PS1="$PS1 \W\$(branchName \"${punct}\" \"${colour}\")${punct}:${reset} "		
+		unset colour punct reset
+	;;
+
+	*)
+		PS1="$PS1 \w: "
+	;;
+esac
+
 export PS1
-unset colour punct reset
