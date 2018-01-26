@@ -125,9 +125,10 @@
 (unless (display-graphic-p)
   (tty-suppress-bold-inverse-default-colors t))
 
-;; Disable autosave and interlocking
+;; Disable autosave, interlocking, and annoying crap
 (setq auto-save-default nil)
 (setq create-lockfiles nil)
+(setq disabled-command-function nil)
 
 ;; Use a single directory for storing backup files
 (setq backup-directory-alist `(("." . "~/.emacs.d/auto-save-list")))
