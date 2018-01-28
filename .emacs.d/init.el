@@ -91,15 +91,18 @@
 (autoload 'clojure-mode "clojure-mode" nil t)
 (autoload 'nroff-mode "nroff-mode" nil t)
 
+;; Use improved major-modes
+(add-to-list 'auto-mode-alist '("\\.m?js\\'" . js2-mode))
+(add-to-list 'auto-mode-alist '("\\.jsx$" . js2-jsx-mode))
+(add-to-list 'auto-mode-alist '("\\.eslintrc$" . js2-mode))
+(add-to-list 'interpreter-mode-alist '("node" . js2-mode))
+
 ;; Filetype mappings
 (add-to-list 'auto-mode-alist '("\.yml$" . yaml-mode))
 (add-to-list 'auto-mode-alist '("\\.rs$" . rust-mode))
-(add-to-list 'auto-mode-alist '("\\.mjs$" . js-mode))
-(add-to-list 'auto-mode-alist '("\\.jsx$" . js-mode))
 (add-to-list 'auto-mode-alist '("\\.tmac$" . nroff-mode))
 (add-to-list 'auto-mode-alist '("\\.roff$" . nroff-mode))
 (add-to-list 'auto-mode-alist '("\\.cson$" . coffee-mode))
-(add-to-list 'auto-mode-alist '("\\.eslintrc$" . js-mode))
 
 ;; Disable newline auto-indentation
 (when (fboundp 'electric-indent-mode) (electric-indent-mode -1))
@@ -147,7 +150,7 @@
  '(inhibit-startup-screen t)
  '(package-selected-packages
    (quote
-    (slime haskell-tab-indent haskell-mode move-text ## ascii-art-to-unicode aggressive-indent)))
+    (js2-mode slime haskell-tab-indent haskell-mode move-text ## ascii-art-to-unicode aggressive-indent)))
  '(show-paren-mode t))
 
 (custom-set-faces
