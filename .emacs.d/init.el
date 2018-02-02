@@ -91,7 +91,8 @@
 (autoload 'clojure-mode "clojure-mode" nil t)
 (autoload 'nroff-mode "nroff-mode" nil t)
 
-;; Use improved major-modes
+;; Improved JavaScript editing
+(setq js2-strict-trailing-comma-warning nil)
 (add-to-list 'auto-mode-alist '("\\.m?js\\'" . js2-mode))
 (add-to-list 'auto-mode-alist '("\\.jsx$" . js2-jsx-mode))
 (add-to-list 'auto-mode-alist '("\\.eslintrc$" . js2-mode))
