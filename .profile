@@ -3,7 +3,7 @@
 # sh/ksh initialization
 
 PATH=/sbin:/usr/sbin:/bin:/usr/bin:/usr/X11R6/bin:/usr/local/sbin:/usr/local/bin
-PATH=~/.files/bin:~/.files/perl5/bin:$PATH
+PATH=~/.files/bin:$PATH:~/Mirrors/depot_tools
 export PATH
 
 # Load connected files
@@ -36,6 +36,10 @@ alias unmount='umount'
 alias untar='bsdtar -xf'
 alias usb='doas mount -t msdos /dev/sd2i /mnt'
 alias !!='`history | tail -n1 | cut -f2 | tee /dev/stderr`'
+
+# macOS parity
+alias pbcopy='xclip -s clip'
+alias pbpaste='xclip -o -s clip'
 
 # Aliases copied from `aliases.sh`
 alias l='ls -alh'
