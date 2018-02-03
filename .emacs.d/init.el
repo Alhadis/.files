@@ -142,17 +142,6 @@
       kept-old-versions 2
       version-control t)
 
-(custom-set-variables
- '(backward-delete-char-untabify-method nil)
- '(blink-cursor-mode nil)
- '(column-number-mode t)
- '(cua-mode t nil (cua-base))
- '(display-battery-mode t)
- '(inhibit-startup-screen t)
- '(package-selected-packages
-   (quote
-    (js2-mode slime haskell-tab-indent haskell-mode move-text ## ascii-art-to-unicode aggressive-indent)))
- '(show-paren-mode t))
-
-(custom-set-faces
- '(font-lock-function-name-face ((t (:foreground "black" :weight bold)))))
+;; Load customisation data
+(setq custom-file "~/.emacs.d/custom")
+(load custom-file)
