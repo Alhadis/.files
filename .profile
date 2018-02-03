@@ -92,16 +92,6 @@ f(){
 }
 
 
-# Initialise ssh-agent and enable SSH acces in Git.
-# Something I've not figured out how to do in OpenBSD yet.
-loadSSHKeys(){
-	export GPG_TTY=`tty`
-	eval "$(ssh-agent -s)" >/dev/null
-	ssh-add ~/.ssh/github
-	gpg-agent
-}
-
-
 # Run a Google search
 # - Usage: `google [query string]'
 google(){
