@@ -55,41 +55,9 @@
             (setq sh-use-smie nil)
             (setq indent-tabs-mode t)
             (setq tab-width 4)))
-
-;;; Function to load all ".el" files in ~/.emacs.d/config
-(defun load-directory (directory)
-  "Recursively load all Emacs Lisp files in a directory."
-  (dolist (element (directory-files-and-attributes directory nil nil nil))
-    (let* ((path (car element))
-           (fullpath (concat directory "/" path))
-           (isdir (car (cdr element)))
-           (ignore-dir (or (string= path ".") (string= path ".."))))
-      (cond
-       ((and (eq isdir t) (not ignore-dir))
-        (load-directory fullpath))
-       ((and (eq isdir nil) (string= (substring path -3) ".el"))
-        (load (file-name-sans-extension fullpath)))))))
-
-;; Execute something in shell and inject results
-(defun inject (command)
-  "Insert output of COMMAND into current buffer"
-  (interactive "sShell command: ")
-  (insert-before-markers (shell-command-to-string command)))
-
-;; Use Hunspell for spellchecking
-(setq ispell-program-name (executable-find "hunspell"))
-
-;; Load Homebrew/MELPA-installed packages
-(let ((default-directory "/usr/local/share/emacs/site-lisp/"))
-  (normal-top-level-add-subdirs-to-load-path))
-(load "aggressive-indent")
-(load "move-text")
-(require 'ascii-art-to-unicode)
-(add-hook 'emacs-lisp-mode-hook #'aggressive-indent-mode)
-(autoload 'rust-mode "rust-mode" nil t)
-(autoload 'coffee-mode "coffee-mode" nil t)
-(autoload 'clojure-mode "clojure-mode" nil t)
-(autoload 'nroff-mode "nroff-mode" nil t)
+(add-hook 'emacs-lisp-mode-hook
+          (lambda ()
+            (aggressive-indent-mode)))
 
 ;; Improved JavaScript editing
 (setq js2-strict-trailing-comma-warning nil)
@@ -99,17 +67,14 @@
 (add-to-list 'interpreter-mode-alist '("node" . js2-mode))
 
 ;; Filetype mappings
-(add-to-list 'auto-mode-alist '("\.yml$" . yaml-mode))
-(add-to-list 'auto-mode-alist '("\\.rs$" . rust-mode))
 (add-to-list 'auto-mode-alist '("\\.tmac$" . nroff-mode))
 (add-to-list 'auto-mode-alist '("\\.roff$" . nroff-mode))
-(add-to-list 'auto-mode-alist '("\\.cson$" . coffee-mode))
 
 ;; Disable newline auto-indentation
 (when (fboundp 'electric-indent-mode) (electric-indent-mode -1))
 
 ;; Load Git-related syntax highlighting
-(add-to-list 'load-path "~/.emacs.d/lisp/")
+(add-to-list 'load-path "~/.emacs.d/lisp")
 (load "git-modes")
 (load "git-commit")
 
