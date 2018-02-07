@@ -1,0 +1,17 @@
+#!/bin/sh
+set -o posix
+
+# Copy to clipboard
+if [ ! -t 0 ]; then
+	if command -v pbcopy >/dev/null; then
+		pbcopy
+	else
+		xclip -sel clip
+	fi
+else
+	if command -v pbpaste >/dev/null; then
+		pbpaste
+	else
+		xclip -o -sel clip
+	fi
+fi

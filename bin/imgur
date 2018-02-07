@@ -1,0 +1,83 @@
+#!/bin/sh
+set -o posix
+
+#
+# imgur: Upload files to Imgur and print the resulting URLs.
+#
+usage='imgur [-h|--help] [-v|--version] ...images'
+version='v1.0.0'
+
+# Parse command-line switches
+while [ -n "$1" ]; do case $1 in
+
+	# Print a brief usage summary and exit
+	-h|--help|-\?)
+		printf 'Usage: %s\n' "$usage"
+		exit ;;
+	
+	# Print a version string and exit
+	-v|--version)
+		printf '%s\n' "$version"
+		exit ;;
+
+	# Double-dash: Terminate option parsing
+	--)
+		shift
+		break ;;
+
+	# Invalid option: abort
+	--*|-?*)
+		>&2 printf 'imgur: Invalid option: "%s"\n' "$1"
+		>&2 printf 'Usage: %s\n' "$usage"
+		exit 1 ;;
+
+	# Argument not prefixed with a dash
+	*) break ;;
+
+esac; shift
+done
+
+
+# Bail if there's nothing to upload
+if [ -z "$1" ]; then
+	>&2 printf 'imgur: No files specified for upload\n'
+	>&2 printf 'Usage: %s\n' "$usage"
+	exit 1
+fi
+
+
+# Check dependencies are available
+for i in curl file; do
+	command -v $i 2>&1 >/dev/null || {
+		>&2 printf 'imgur: Required utility `%s` not found in $PATH\n' $i
+		exit 1
+	};
+done
+
+
+for file in "$@"; do
+
+	# Check file's format and skip anything that's unsupported
+	case `file -b --mime "$file"` in
+		image/bmp | image/jpeg | image/gif | \
+		image/png | image/tiff | image/webp) ;;
+		*) continue ;;
+	esac
+
+	# FIXME: The handling of JSON output is completely retarded.
+	curl 'https://api.imgur.com/3/image.json' -sF "image=@$file" \
+		-H "Authorization: Client-ID ${IMGUR_CLIENT_ID-c9a6efb3d7932fd}" \
+		-H 'Expect: ' \
+	| tee /dev/stderr | (
+		if command -v jg 2>&1 >/dev/null
+			then jg 'data.{link,deletehash}'
+		elif command -v json 2>&1 >/dev/null
+			then json data.link
+		elif command -v ppjson 2>&1 >/dev/null
+			then ppjson
+		else
+			key='"link"[[:blank:]]*:[[:blank:]]*"'
+			grep -o "$key[^\"]*" | head -1 | sed "s/$key//";
+		fi
+	);
+done

@@ -4,8 +4,8 @@
 	signingkey = C57044A83594344A
 [core]
 	editor = /usr/local/bin/emacs
-	excludesfile = ~/.files/etc/.gitignore-global
-	attributesfile = ~/.files/etc/.gitattributes-global
+	excludesfile = ~/.files/etc/.global.gitignore
+	attributesfile = ~/.files/etc/.global.gitattributes
 	whitespace = -blank-at-eol
 	ignorecase = false
 	untrackedCache = true
@@ -13,6 +13,7 @@
 	co = checkout
 	r = remote --verbose
 	s = status
+	undo = reset --soft HEAD~1
 [credential]
 	helper = osxkeychain
 [diff]

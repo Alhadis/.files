@@ -1,0 +1,83 @@
+#!/bin/sh
+set -o posix
+
+#
+# tinify: Compress images with TinyPNG
+#
+usage='tinify [-h|--help] [-v|--version] ...images'
+version='v1.0.0'
+
+# Parse command-line switches
+while [ -n "$1" ]; do case $1 in
+
+	# Print a usage summary and exit
+	-h|--help|-\?)
+		printf 'Usage: %s\n' "$usage"
+		exit ;;
+
+	# Print a version string and exit
+	-v|--version)
+		printf '%s\n' "$version"
+		exit ;;
+
+	# Double-dash: Terminate option parsing
+	--)
+		shift
+		break ;;
+
+	# Invalid option: abort
+	--*|-?*)
+		>&2 printf 'tinify: Invalid option: "%s"\n' "$1"
+		>&2 printf 'Usage: %s\n' "$usage"
+		exit 1 ;;
+
+	# Argument not prefixed with a dash
+	*) break ;;
+
+esac; shift
+done
+
+
+# Error: Not enough arguments
+[ $# -lt 1 ] && {
+	>&2 printf 'tinify: No files specified for compression\n'
+	>&2 printf 'Usage: %s\n' "$usage"
+	exit 1
+}
+
+
+# Check dependencies are available
+for i in curl file; do
+	command -v $i 2>&1 >/dev/null || {
+		>&2 printf 'tinify: Required utility `%s` not found in $PATH\n' $i
+		exit 1
+	};
+done
+
+
+# Locate API key
+key=${TINIFY_KEY:-${TINIFY_API_KEY}}
+[ ! "$key" ] && [ -s ~/.tinify ] && key=`head -1 ~/.tinify`
+[ ! "$key" ] && {
+	>&2 printf 'tinify: Unable to locate API key\n';
+	exit 2;
+}
+
+# Handle arguments list
+for file in "$@"; do
+
+	# Skip unsupported filetypes
+	case `file --brief --mime "$file"` in
+		image/png | image/jpeg) ;;
+		*) continue ;;
+	esac
+
+	>&2 printf 'Compressing: %s\n' "$file"
+	curl 'https://api.tinify.com/shrink' \
+		--user "api:$key" -qs \
+		--data-binary @"$file" \
+		--dump-header /dev/stdout \
+	| sed -n 's/^location:[[:blank:]]*\(.*\)$/\1/p' \
+	| tr -d '\r\n' \
+	| xargs -J% curl -qso "$file" "%";
+done

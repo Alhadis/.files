@@ -1,0 +1,43 @@
+#!/bin/sh
+set -o posix
+
+#
+# gh-search: Search for filetypes on GitHub
+#
+
+usage='Usage: gh-search [-e|--extension] [-f|--filename] [-l|--language] query'
+type=extension
+
+[ $# -lt 2 ] && {
+	>&2 printf '%s\n' "$usage"
+	return 1
+}
+
+while [ -n "$1" ]; do case $1 in
+	-e|--ext|--extension) type=extension ;;
+	-f|--file|--filename) type=filename  ;;
+	-n|--name)            type=filename  ;;
+	-l|--language)        type=language  ;;
+	--)                   shift; break   ;;
+	-*)
+		printf '%s\n' "$usage"
+		case $i in
+			-h|--help|-\?) return 0 ;;
+			*)             return 1 ;;
+		esac ;;
+	*) break ;;
+esac; shift
+done
+
+[ -z "$1" ] && {
+	>&2 printf 'gh-search: No search query specified\n'
+	>&2 printf '%s\n' "$usage"
+	return 1
+}
+
+printf \
+	'%sq=%s%%3A%s+NOT+nothack&type=Code' \
+	'https://github.com/search?' \
+	"$type" \
+	"$1" \
+| xargs open

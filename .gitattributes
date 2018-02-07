@@ -1,9 +1,9 @@
 # Stuff I didn't write
-.emacs.d/lisp/* linguist-vendored
+.emacs.d/lisp/*   linguist-vendored
 
 # Generated files
-etc/install/Brewfile         linguist-generated
-etc/install/package-lists.sh linguist-generated
+Brewfile          linguist-generated
+package-lists.sh  linguist-generated
 
 # Documentation
-share/man/* linguist-documentation
+share/man/*       linguist-documentation
