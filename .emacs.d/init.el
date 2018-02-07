@@ -11,7 +11,7 @@
 ;; Locale
 (set-language-environment "UTF-8")
 (setenv "LANG" "en_AU.UTF-8")
-(setenv "LC_ALL" "en_AU.UTF-8")
+(setenv "LC_COLLATE" "C")
 
 ;; Filetype mappings
 (add-to-list 'interpreter-mode-alist '("node" . js2-mode))

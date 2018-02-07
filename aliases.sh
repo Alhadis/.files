@@ -1,6 +1,6 @@
 # Mandatory aliases for speedy shell navigation
 alias ..='cd ..'
-alias l='ls -alh'
+alias l='LC_COLLATE=C ls -alh'
 alias p='pwd'
 
 
