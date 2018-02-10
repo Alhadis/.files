@@ -1,4 +1,4 @@
-#!/usr/bin/env node --es_staging
+#!/usr/bin/env node
 "use strict";
 
 let length   = +(process.argv[2] || 26);
