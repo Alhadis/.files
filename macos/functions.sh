@@ -8,7 +8,8 @@ fit(){
 		activate
 		set bounds of window 1 to {0, 0, 1440, 800}
 		set position of window 1 to {0, 0}
-		end tell'
+		end tell';;
+	esac
 }
 
 
