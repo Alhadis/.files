@@ -8,8 +8,8 @@
   (add-to-list 'package-archives
                '("gnu" . "https://elpa.gnu.org/packages/")))
 
-(defun init--install-packages ()
-  (packages-install
+(custom-set-variables
+ '(package-selected-packages
    '(adoc-mode
      aggressive-indent
      apache-mode
