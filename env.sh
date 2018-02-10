@@ -2,6 +2,7 @@ PATH=/sbin:/usr/sbin:/bin:/usr/bin:/usr/X11R6/bin:/usr/local/sbin:/usr/local/bin
 PATH=~/.files/bin:$PATH:~/Mirrors/depot_tools
 export PATH
 
+export GPG_TTY=`tty`
 export GREP_COLORS="sl=38;5;240:mt=1;38;5;10;48;5;22:fn=38;5;242:se=38;5;237:ln=38;5;10"
 export HISTFILE=
 export LESS=-R

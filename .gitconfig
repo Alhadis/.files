@@ -1,7 +1,7 @@
 [user]
 	name = Alhadis
 	email = gardnerjohng@gmail.com
-	signingkey = C57044A83594344A
+	signingkey = 29ADC0C5D992F678
 [core]
 	excludesfile = ~/.files/etc/.global.gitignore
 	attributesfile = ~/.files/etc/.global.gitattributes
