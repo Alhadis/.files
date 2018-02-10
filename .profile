@@ -12,16 +12,19 @@ for i in env aliases prompt functions tmp; do
 	esac
 done
 
-# Interactive shell setup
-case "$-" in *i*)
-[ -x /usr/bin/tset ] && {
+# Bail if running non-interactively
+case $- in *i*) ;; *) return 0 ;; esac
+
+# Initialise TTY
+if [ -x /usr/bin/tset ]; then
 	if [ X"$XTERM_VERSION" = X"" ]; then
 		eval `/usr/bin/tset -sQ '-munknown:?vt220' $TERM`
 	else
 		eval `/usr/bin/tset -IsQ '-munknown:?vt220' $TERM`
 	fi
-}
+fi
 
 # Make less(1) more helpful when reading non-binary stuff
-[ -x /usr/bin/lesspipe ] && eval "`SHELL=/bin/sh lesspipe`"
-;; esac
+if [ -x /usr/bin/lesspipe ]; then
+	eval "`SHELL=/bin/sh lesspipe`"
+fi
