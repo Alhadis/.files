@@ -3,6 +3,8 @@ shopt -s nocaseglob;    # Case-insensitive globbing
 shopt -s autocd;        # DOS-style directory navigation
 shopt -s globstar;      # Enable recursive globbing
 shopt -s dotglob;       # Enable .file globbing
+shopt -s checkwinsize;  # Update $LINES/$COLUMNS on each command
 
-[ -r ~/.profile ] && . ~/.profile
-case "$-" in *i*) [ -r ~/.bashrc ] && . ~/.bashrc;; esac
+if [ -r ~/.profile ]; then
+	. ~/.profile
+fi

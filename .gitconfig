@@ -3,7 +3,6 @@
 	email = gardnerjohng@gmail.com
 	signingkey = C57044A83594344A
 [core]
-	editor = /usr/local/bin/emacs
 	excludesfile = ~/.files/etc/.global.gitignore
 	attributesfile = ~/.files/etc/.global.gitattributes
 	whitespace = -blank-at-eol

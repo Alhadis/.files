@@ -20,5 +20,8 @@ case "$-" in *i*)
 	else
 		eval `/usr/bin/tset -IsQ '-munknown:?vt220' $TERM`
 	fi
-} ;;
-esac
+}
+
+# Make less(1) more helpful when reading non-binary stuff
+[ -x /usr/bin/lesspipe ] && eval "`SHELL=/bin/sh lesspipe`"
+;; esac
