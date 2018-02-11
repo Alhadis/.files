@@ -1,6 +1,6 @@
 (package-initialize)
 (load "~/.emacs.d/packages")
-(load "~/.emacs.d/indent")
+(load "~/.emacs.d/whitespace")
 (load "~/.emacs.d/keymap")
 
 ;; Site-specific
@@ -26,7 +26,8 @@
 (setq auto-save-default nil
       create-lockfiles nil
       disabled-command-function nil
-      js2-strict-trailing-comma-warning nil)
+      js2-strict-trailing-comma-warning nil
+      js2-strict-inconsistent-return-warning nil)
 
 ;; Use a single directory for storing backup files
 (setq backup-directory-alist `(("." . "~/.emacs.d/auto-save-list"))

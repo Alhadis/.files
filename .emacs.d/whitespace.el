@@ -2,6 +2,7 @@
 (setq default-tab-width 4
       indent-tabs-mode t
       indent-line-function 'insert-tab
+      coffee-indent-tabs-mode t
       nxml-child-indent 4)
 
 ;; Disable newline auto-indentation
