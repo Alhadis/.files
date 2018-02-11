@@ -8,6 +8,7 @@ export HISTFILE=
 export LESS=-R
 export LYNX_CFG=~/.files/etc/lynx.cfg
 export NODE_REPL_HISTORY=
+export PRINTER=Officejet-6500-E710n-z
 
 
 # Perl/CPAN modules path
