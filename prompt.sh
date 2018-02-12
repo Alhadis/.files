@@ -22,12 +22,12 @@ case `basename ${0#-}` in
 
 		# Current branch of Git repository
 		branchName(){
-			name=`git branch --list --no-color 2>/dev/null | cut -d" " -f2`
+			name=`git branch --list --no-color 2>/dev/null | cut -d" " -f2 | tr -d "\n"`
 			[ -n "$name" ] && printf " ${1}(${2}%s${1})" "$name"
 		}
 
 		PS1="${colour}\$(statusColour)$PS1${colour}"
-		PS1="$PS1 \W\$(branchName \"${punct}\" \"${colour}\")${punct}:${reset} "		
+		PS1="$PS1 \W\$(branchName \"${punct}\" \"${colour}\")${punct}:${reset} "
 		unset colour punct reset
 	;;
 
