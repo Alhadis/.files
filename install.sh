@@ -6,7 +6,17 @@ cd "$HOME"
 [ -e .hushlogin ] || touch .hushlogin
 
 # Create symlinks in $HOME
-for i in .bashrc .curlrc .emacs.d .eslintrc .gitconfig .inputrc .profile .vimrc; do
+dotfiles='
+	.bashrc
+	.curlrc
+	.emacs.d
+	.eslintrc.json
+	.gitconfig
+	.inputrc
+	.profile
+	.vimrc
+'
+for i in $dotfiles; do
 	[ -e $i ] || {
 		ln -s .files/$i
 		printf 'Symlinked: %s -> %s\n' $i .files/$i

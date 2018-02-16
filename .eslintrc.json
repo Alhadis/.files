@@ -8,27 +8,35 @@
 	},
 	"parserOptions": {
 		"ecmaVersion": 2017,
-		"sourceType": "module",
-		"ecmaFeatures": {
-			"jsx": true
-		}
+		"sourceType": "module"
 	},
 	"rules": {
 		"indent": [
 			"error",
-			"tab"
+			"tab",
+			{
+				"ignoreComments": true,
+				"SwitchCase": 1
+			}
 		],
 		"linebreak-style": [
 			"error",
 			"unix"
 		],
+		"no-console": 0,
+		"no-empty": 0,
 		"quotes": [
 			"error",
-			"double"
+			"double",
+			{"avoidEscape": true}
 		],
 		"semi": [
 			"error",
 			"always"
-		]
+		],
+		"spaced-comment": [
+			"error",
+			"always"
+		],
 	}
 }
