@@ -13,10 +13,6 @@
 			"jsx": true
 		}
 	},
-	"plugins": [
-		"json",
-		"react"
-	],
 	"rules": {
 		"indent": [
 			"error",
