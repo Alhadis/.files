@@ -41,3 +41,11 @@
 	user = Alhadis
 [gpg]
 	program = gpg2
+[url "git@github.com:"]
+	insteadOf = "gh:"
+	pushInsteadOf = "github:"
+	pushInsteadOf = "git://github.com/"
+[url "git@gist.github.com:"]
+	insteadOf = "gist:"
+	pushInsteadOf = "gist:"
+	pushInsteadOf = "git://gist.github.com/"
