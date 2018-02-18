@@ -1,4 +1,4 @@
-PATH=/sbin:/usr/sbin:/bin:/usr/bin:/usr/X11R6/bin:/usr/local/sbin:/usr/local/bin
+PATH=/sbin:/usr/sbin:/bin:/usr/local/sbin:/usr/local/bin:/usr/bin:/usr/X11R6/bin
 PATH=~/.files/bin:$PATH:~/Mirrors/depot_tools
 export PATH
 
