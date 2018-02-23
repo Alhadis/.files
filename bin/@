@@ -1,93 +1,47 @@
 #!/bin/sh
-usage(){
-	cat <<-"EOF"
-	Usage: @ [-deSsFUw] [-m name]
-	
-	Toggle devlinks
-	    -d  Disable
-	    -e  Enable
-	
-	Print status
-	    -s  Short
-	    -S  Verbose
-	
-	Anything else
-	    -F  Sync forked packages
-	    -m  Edit a named manpage in Atom
-	    -U  Force-update installed packages
-	    -w  Wipe user-cache/storage data
-	    -x  Edit an executable in Atom
-	EOF
+
+have(){
+	command -v "$1" 2>&1 >/dev/null
 }
 
-ON=~/.atom/dev/packages
-OFF=~/.atom/dev/u
+physpath(){
+	have realpath && realpath "$1 --" || printf '%s\n' "$1"
+}
 
-while getopts "deSsmFUwx?" o; do case $o in
+open(){
+	if have atom
+	then atom -d "$@"
+	else emacs -nw "$@"
+	fi
+}
 
-	# Disable
-	d) [ -d $ON ] \
-		&& { mv $ON $OFF && echo "Disabled";}\
-		|| { echo "Already disabled"; exit 1;};;
+while [ "$1" ]; do case $1 in
 
-	# Enable
-	e) [ -d $OFF ] \
-		&& { mv $OFF $ON && echo "Enabled";}\
-		|| { echo "Already enabled"; exit 1;};;
-
-	# Short status
-	s) [ -d $ON ] \
-		&& echo "Status: Enabled"  \
-		|| echo "Status: Disabled" ;;
-
-	# Long status
-	S)
-		printf "Status:   ";
-		[ -d $ON ] \
-			&& { dir=$ON;  echo "Enabled" ;}\
-			|| { dir=$OFF; echo "Disabled";}
-		pkg=$(ls $dir)
-		num=$(echo "$pkg" | wc -l | tr -d ' ')
-		echo "Path:     $dir";
-		echo "$num Packages:";
-		[ 0 -eq "$num" ] \
-			&& { echo $'\t'"Empty directory"; exit 1;}\
-			|| { IFS=; echo $pkg | sed 's/^/  * /';}
-		exit 0;
-	;;
+	# Print a short help notice
+	-h|--help|-\?)
+		>&2 printf 'Usage: @ [-m name] [-x name] ...files\n'
+		exit 0 ;;
 
 	# Open a manpage by name
-	m) path=$(man -w "$2") && atom -d $(realpath "$path") || exit 1;;
+	-m|--man)
+		shift
+		path=`man -w $@` || exit 1
+		open `physpath "$path" | head -n1`
+		exit $? ;;
 
-	# Sync forked packages
-	F) {
-		path="$HOME/Forks/Atom"
-		update-repos -pg "$path"
-		find "$path" -type d -exec npm update {} +
-	};;
-
-	# Force-update installed packages
-	U) apm update --no-confirm ;;
-
-	# Wipe user-cache data
-	w) {
-		rm -rfv ~/.atom/{blob-store,compile-cache,recovery,storage}
-		echo $'\n'"Gone.";
-	};;
-	
 	# Open an executable by name
-	x) {
-		path=$(which "$2")
-		grep -Iq "$path" -Ee. || { echo "Binary file"; exit 1; }
-		atom -d $(realpath "$path")
-	};;
-	
-	# Default
-	\*|\?) usage && exit 0 ;;
-esac
+	-x|--exec)
+		path=`command -v 2>/dev/null "$2"`
+		grep -Iq "$path" -Ee. || echo "Binary file" && exit 1
+		open `physpath "$path"`
+		exit $? ;;
+
+	# Anything else; pass to program
+	*) break ;;
+
+esac; shift
 done
 
-# Open Atom in development mode.
-if [ $OPTIND -eq 1 ]; then
-	atom -d "${1:-.}"
-fi
+[ $# -eq 0 ] && set -- "."
+
+open "$@"
