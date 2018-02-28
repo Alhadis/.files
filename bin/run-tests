@@ -3,44 +3,56 @@
 # Run automated tests
 #
 
+have(){
+	while [ $# -gt 0 ]; do
+		command -v "$1" 2>&1 >/dev/null || return 1
+		shift
+	done
+}
+
 # Nroff without trailing lines
-[ -f test.roff ] && {
-	groff -tpUTutf8 $@ < test.roff | trim-end;
-	return;
+[ -f test.roff ] && have groff && {
+	groff -tpUTutf8 $@ < test.roff | sed -e :a -e '/^\n*$/{$d;N;};/\n$/ba'
+	exit
 }
 
 # Run test-scripts in current directory
-[ -f test.sh ] && {      ./test.sh "$@"; return; }
-[ -f test.pl ] && { perl ./test.pl "$@"; return; }
-[ -f test.ru ] && { ruby ./test.ru "$@"; return; }
-[ -f test.js ] && { node ./test.js "$@"; return; }
+[ -f test.sh ] && {      ./test.sh "$@"; exit; }
+[ -f test.pl ] && { perl ./test.pl "$@"; exit; }
+[ -f test.ru ] && { ruby ./test.ru "$@"; exit; }
+[ -f test.js ] && { node ./test.js "$@"; exit; }
 
-# Makefile: "make test"
-[ -f Makefile ] && { grep Makefile -qe ^test:; } && {
-	make test;
-	return;
+# Makefile: "make test" (GNU Make only)
+[ -f Makefile ] && grep Makefile -qe ^test: && {
+	if have gmake; then
+		gmake test
+		exit
+	elif make --version 2>/dev/null | grep GNU; then
+		make test
+		exit
+	fi
 }
 
 # Atom
-[ -d spec ] && {
+[ -d spec ] && have atom && {
 	atom -t spec;
-	return;
+	exit;
 }
 
 # Atom + Mocha
-[ -d test ] && [ -d node_modules/atom-mocha ] && {
+[ -d test ] && [ -d node_modules/atom-mocha ] && have atom mocha && {
 	atom -t test;
-	return;
+	exit;
 }
 
 # Mocha
-[ -d test ] && {
-	mocha --es_staging;
-	return;
+[ -d test ] && have mocha && {
+	mocha
+	exit
 }
 
 # Unknown executable assumed to be a test-script
-[ -x test ] && [ -s test ] && { ./test "$@"; return; }
+[ -x test ] && [ -s test ] && { ./test "$@"; exit; }
 
 # No tests found; do nothing
 true
