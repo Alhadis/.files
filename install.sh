@@ -24,6 +24,11 @@ for i in $dotfiles; do
 done
 unset i
 
+# Link Konsole profile
+command -v konsole 2>&1 >/dev/null && [ -d .kde4/share/apps ] && {
+	cp -r .files/etc/konsole .kde4/share/apps/konsole
+}
+
 # Tell NPM to pull its head in
 command -v npm 2>&1 >/dev/null && {
 	npm config set package-lock false
