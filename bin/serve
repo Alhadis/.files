@@ -1,0 +1,144 @@
+#!/usr/bin/env node
+/**
+ * Serve static files from the current working directory.
+ *
+ * Used for serving files over a local network, chiefly
+ * for viewing on mobile devices.
+ */
+"use strict";
+
+const HTTP = require("http");
+const fs   = require("fs");
+const path = require("path");
+
+const port = 1337;
+const root = path.resolve(process.argv[2] || process.cwd());
+process.chdir(root);
+
+const server = HTTP.createServer(async (request, response) => {
+	const {file, redirect, stats} = parseURL(request.url);
+
+	// File not found
+	if(!file){
+		response.writeHead(404, {"Content-Type": "text/plain; charset=UTF-8"});
+		response.write("File not found");
+		return response.end();
+	}
+
+	// Redirect
+	if(redirect){
+		response.writeHead(301, {Location: redirect});
+		return response.end();
+	}
+
+	const [type, isBinary = false] = getContentType(file);
+	const date = new Date(stats.mtime);
+	response.writeHead(200, {
+		"Content-Type": type,
+		"Cache-Control": "max-age=864000",
+		"Content-Length": stats.size,
+		"Last-Modified": date,
+	});
+	if("GET" === request.method)
+		await send(file, response);
+	
+	response.end();
+});
+
+server.listen(port);
+console.log(`Serving files from ${root} on port ${port}`);
+
+
+/**
+ * Derive a file's content-type from its file extension.
+ *
+ * @param {String} filePath
+ * @return {Array}
+ */
+function getContentType(filePath){
+	const textual = {
+		css:  "text/css",
+		htm:  "text/html",
+		html: "text/html",
+		json: "application/json",
+		js:   "application/javascript",
+		mjs:  "application/javascript",
+		svg:  "image/svg+xml",
+		webmanifest: "application/manifest+json",
+	};
+	const binary = {
+		gif:   "image/gif",
+		jpg:   "image/jpeg",
+		jpeg:  "image/jpeg",
+		png:   "image/png",
+		apng:  "image/png",
+		webp:  "image/webp",
+		svg:   "image/svg+xml",
+		ico:   "image/x-icon",
+		woff2: "font/woff2",
+		woff:  "font/woff",
+		ttf:   "font/ttf",
+		otf:   "font/otf",
+		eot:   "application/vnd.ms-fontobject",
+	};
+	if(/\.([-\w]+)$/.test(filePath)){
+		const extension = RegExp.lastParen.toLowerCase();
+		if(textual[extension]) return [textual[extension]];
+		if(binary[extension])  return [binary[extension], true];
+	}
+	return ["application/octet-stream", true];
+}
+
+
+/**
+ * Map the URL of an HTTP request to a local filesystem path.
+ *
+ * @example parseURL("/dir/") == "/root/dir/index.html"
+ * @param {String} input
+ * @return {Object}
+ */
+function parseURL(input){
+	let file = path.join(root, input.replace(/^\/+/, ""));
+	if(!fs.existsSync(file)){
+		console.log("No such file: " + file);
+		return {};
+	}
+
+	const stats = fs.lstatSync(file);
+	if(stats.isFile(file))
+		return {file, stats};
+
+	if(stats.isSymbolicLink(file))
+		return parseURL(fs.readlinkSync(file));
+
+	if(stats.isDirectory(file)){
+		
+		// Enforce trailing slashes in URLs
+		if(!/\/$/.test(input))
+			return {file, stats, redirect: input + "/"};
+		
+		for(let index of ["index.htm", "index.html"]){
+			index = path.join(file, index);
+			if(fs.existsSync(index))
+				return {file: index, stats: fs.lstatSync(index)};
+		}
+	}
+
+	return {};
+}
+
+
+/**
+ * Send a file in response to an HTTP request.
+ *
+ * @param {String} file
+ * @param {ServerResponse} response
+ * @return {Promise}
+ */
+async function send(file, response){
+	await new Promise(resolve => {
+		const stream = fs.createReadStream(file);
+		stream.on("data", chunk => response.write(chunk));
+		stream.on("end", resolve);
+	});
+}
