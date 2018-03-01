@@ -34,9 +34,14 @@ done
 	return 1
 }
 
+case `uname -s` in
+	Darwin) browse=open ;;
+	*)      browse=xdg-open ;;
+esac
+
 printf \
 	'%sq=%s%%3A%s+NOT+nothack&type=Code' \
 	'https://github.com/search?' \
 	"$type" \
 	"$1" \
-| xargs open
+| xargs $browse
