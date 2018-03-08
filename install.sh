@@ -3,9 +3,8 @@
 #
 # install.sh: Quickly setup a new workstation
 #
-usage="${0##*/} [-h|--help] [-f|--force] [-p|--packages]"
-force=    # Set by --force
-packs=    # Set by --packages
+usage="${0##*/} [-h|--help] [-f|--force]"
+force=
 
 # Parse command-line switches
 while [ -n "$1" ]; do case $1 in
@@ -18,10 +17,6 @@ while [ -n "$1" ]; do case $1 in
 	# Force replacement of existing files
 	-f|--force)
 		force=1 ;;
-
-	# Enable installation of frequently-used packages
-	-p|--packages)
-		packs=1 ;;
 
 	# Double-dash: Terminate option parsing
 	--)
@@ -40,22 +35,6 @@ while [ -n "$1" ]; do case $1 in
 esac; shift
 done
 
-
-# Determine if a program exists in the user's $PATH
-have(){
-	while [ $# -gt 0 ]; do
-		command -v "$1" 2>&1 >/dev/null || return 1
-		shift
-	done
-}
-
-# Install a package
-install(){
-	while [ -n "$1" ]; do
-		have "$1" || .files/etc/install-packages.sh "$1"
-		shift
-	done
-}
 
 # Link `$HOME/$1` to `$HOME/.files/$1` unless it's already a symlink
 symlink(){
@@ -121,13 +100,3 @@ case `uname -s` in Linux)
 	}
 	unset flag launcher
 esac
-
-# Install packages if `-p` switch is set
-if [ "$packs" ]; then
-	install curl wget git ghostscript groff emacs hunspell vim node
-
-	# Debian
-	if have apt-get; then
-		have xclip || install xclip
-	fi
-fi
