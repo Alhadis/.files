@@ -76,6 +76,10 @@ alias rainbow='for i in {1..255}; do printf "$i\t\e[38;5;${i}m$(printf %s {A..Z}
 alias copythat='printf %s "$(history | tail -2 | head -1 | sed s/^[[:space:]]*[[:digit:]]*[[:space:]]*//)" | clip'
 
 
+# Irrevocably annihilate a file
+command -v shred >/dev/null && alias nuke='shred -u' || alias nuke='rm -rfP'
+
+
 # Search on GitHub for a filename or file extension
 alias ghext='gh-search ext'
 alias ghname='gh-search name'
