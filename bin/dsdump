@@ -1,0 +1,17 @@
+#!/usr/bin/env perl
+use strict;
+use warnings;
+use utf8;
+use v5.14;
+
+use Mac::AppleSingleDouble;
+use Data::Dumper;
+
+for (@ARGV) {
+	my $store = new Mac::AppleSingleDouble($_);
+	my %output = (
+		finderInfo => $store->get_finder_info(),
+		allEntries => $store->get_all_entries(),
+	);
+	print Dumper \%output;
+}
