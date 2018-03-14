@@ -8,4 +8,5 @@
  '(show-paren-mode t))
 
 (custom-set-faces
- '(font-lock-function-name-face ((t (:foreground "black" :weight bold)))))
+ '(font-lock-function-name-face ((t (:foreground "black" :weight bold))))
+ '(match ((t (:background "brightcyan" :foreground "black")))))
