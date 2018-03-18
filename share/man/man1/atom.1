@@ -19,7 +19,7 @@
 .\" ============================================================================
 .TH ATOM 1 v1.16.0
 .SH NAME
-atom - a hackable text editor for the 21st century
+atom \(em a hackable text editor for the 21st century
 .
 .SH SYNOPSIS
 .B  atom
@@ -29,9 +29,11 @@ atom - a hackable text editor for the 21st century
 .\" ============================================================================
 .SH DESCRIPTION
 Opens one or more \fIpaths\fP in Atom, which may point to either files or folders.
-.
+.PP
 If there is an existing Atom window that contains all of the given folders, the paths will be opened in that window.
 Otherwise, they will be opened in a new window.
+.PP
+Paths that start with \(lqatom://\(rq will be interpreted as URLs.
 .
 .\" ============================================================================
 .SH OPTIONS
@@ -105,10 +107,8 @@ Print the version information.
 .op -w --wait ""
 Wait for window to be closed before returning.
 .
-
 .\" ============================================================================
 .SH ENVIRONMENT VARIABLES
-.
 .env ATOM_DEV_RESOURCE_PATH
 The path from which Atom loads source code in dev-mode. Defaults to
 .IR ~/github/atom .
@@ -117,19 +117,19 @@ The path from which Atom loads source code in dev-mode. Defaults to
 The root path for all configuration files and folders. Defaults to
 .IR ~/.atom .
 .
-
 .\" ============================================================================
 .SH SEE ALSO
 .BR apm (1)
 .
+.PP
 The Atom flight manual:
 .I http://flight-manual.atom.io/
 .
-
 .\" ============================================================================
 .SH AUTHORS
-Copyright \(co 2011-2017, GitHub Inc.
+Copyright \(co 2011\(en2017, GitHub Inc.
 Released under the MIT license.
 .
+.PP
 Manpage written by Alhadis
 .RI < gardnerjohng@gmail.com >.
