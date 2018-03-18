@@ -1,4 +1,5 @@
 umask 022
+macos=; case `uname -s` in [Dd]arwin) macos=1;; esac
 
 # Load connected files
 for i in env aliases prompt functions tmp; do
@@ -6,10 +7,10 @@ for i in env aliases prompt functions tmp; do
 	[ -r "$i" ] && . "$i"
 
 	# macOS-specific extras
-	case `uname -s` in [Dd]arwin)
+	if [ "$macos" ]; then
 		i="${i%/*}/macos/${i##*/}"
-		[ -r "$i" ] && . "$i" ;;
-	esac
+		[ -r "$i" ] && . "$i"
+	fi
 done
 
 # Bail if running non-interactively
@@ -28,3 +29,7 @@ fi
 if [ -x /usr/bin/lesspipe ]; then
 	eval "`SHELL=/bin/sh lesspipe`"
 fi
+
+# macOS-specific startup code
+[ -z "$macos" ] || . ~/.files/macos/init.sh
+unset macos
