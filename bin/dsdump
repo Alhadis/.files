@@ -4,14 +4,23 @@ use warnings;
 use utf8;
 use v5.14;
 
+use Getopt::Long qw<:config bundling>;
 use Mac::AppleSingleDouble;
 use Data::Dumper;
 
+my $extractEntry = 0;
+GetOptions("e|extract=i" => \$extractEntry);
+
 for (@ARGV) {
 	my $store = new Mac::AppleSingleDouble($_);
-	my %output = (
-		finderInfo => $store->get_finder_info(),
-		allEntries => $store->get_all_entries(),
-	);
-	print Dumper \%output;
+	if($extractEntry){
+		print $store->get_entry($extractEntry);
+	}
+	else{
+		my %output = (
+			finderInfo => $store->get_finder_info(),
+			allEntries => $store->get_all_entries(),
+		);
+		print Dumper \%output;
+	}
 }
