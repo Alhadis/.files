@@ -1,0 +1,249 @@
+.de op
+.	ds o \\fB\\$1\\fP
+.	ie \\n(.$>2 .as o , \\fB\\$2\\fP \\fI\\$3\\fP
+.	el .if \\n(.$=2 \{
+.		length L \\$1
+.		ie \\nL=2 .as o , \\fB\\$2\\fP
+.		el        .as o " \\fI\\$2\\fP
+.		rm L
+.	\}
+.	TP
+\\*o
+.	rm o
+..
+.\" ============================================================================
+.TH ASAR 1 v0.14.3
+.SH NAME
+asar \(em create Electron app packages
+.
+.SH SYNOPSIS
+.B  asar
+.RI [ options ]
+.RI [ command ]
+.
+.\" ============================================================================
+.SH DESCRIPTION
+.B asar
+is a simple, extensive archive format similar to
+.BR tar (1)
+in that it concatenates files without compression, yet retains random access support.
+.
+.\" ============================================================================
+.SH OPTIONS
+.
+.op -h --help ""
+Output usage information.
+.
+.op -v --version ""
+Print the version number, then exit.
+.
+.\" ============================================================================
+.SH COMMANDS
+.
+.BR p | pack
+.RI [ input ]
+.RI [ output ]
+.br
+	Create an \fBasar\fP archive.
+.sp 2
+.
+.BR l | list
+.RI [ archive ]
+.br
+	List the contents of an \fBasar\fP \fIarchive\fP.
+.sp 2
+.
+.BR e | extract
+.RI [ archive ]
+.RI [ destination ]
+.br
+	Extract the contents of an archive.
+.sp 2
+.
+.BR ef | extract-file
+.RI [ archive ]
+.RI [ file ]
+.br
+	Extract \fIfile\fP from an archive.
+.
+.\" ============================================================================
+.SH EXAMPLES
+.SS "Excluding multiple resources from being packed"
+.B Given:
+.br
+.in +4n
+.EX
+\&    app
+\&(a) +-- x1
+\&(b) +-- x2
+\&(c) +-- y3
+\&(d) |   +-- x1
+\&(e) |   +-- z1
+\&(f) |       +-- x2
+\&(g) +-- z4
+\&(h)     +-- w1
+.EE
+.
+.PP
+.B Exclude: a, b
+.br
+.in +4n
+.EX
+$ asar pack app app.asar --unpack-dir "{x1,x2}"
+.EE
+.
+.PP
+.B Exclude: a, b, d, f
+.br
+.in +4n
+.EX
+$ asar pack app app.asar --unpack-dir "**/{x1,x2}"
+.EE
+.
+.PP
+.B Exclude: a, b, d, f, h
+.br
+.in +4n
+.EX
+$ asar pack app app.asar --unpack-dir "{**/x1,**/x2,z4/w1}"
+.EE
+.
+.\" ----------------------------------------------------------------------------
+.SS Using programatically
+.B Example:
+.br
+.in +4n
+.EX
+var asar = require("asar");
+\&
+var src = "some/path/";
+var dest = "name.asar";
+\&
+asar.createPackage(src, dest, function() {
+	console.log("done.");
+});
+.EE
+.PP
+Please note that there is currently \fIno\fP error handling provided!
+.
+.\" ----------------------------------------------------------------------------
+.SS Transform
+You can pass in a
+.B transform
+option, that is a function, which either returns nothing, or a
+.BR stream.Transform .
+The latter will be used on files that will be in the
+.B .asar
+file to transform them (e.g. compress).
+.PP
+.in +4n
+.EX
+var asar = require("asar");
+\&
+var src = "some/path/";
+var dest = "name.asar";
+\&
+function transform(filename) {
+	return new CustomTransformStream()
+}
+\&
+asar.createPackageWithOptions(src, dest, { transform: transform }, function() {
+	console.log("done.");
+});
+.EE
+.
+.\" ============================================================================
+.SH FORMAT
+.BI asar
+uses
+.B Pickle
+to safely serialise binary values to a file.
+There is also a
+.B node.js
+binding of
+.B Pickle
+class:
+.I https://www.npmjs.org/package/chromium-pickle
+.
+.PP
+The format of
+.B asar
+is very flat:
+.sp
+.in +4n
+.EX
+| UInt32: header_size | String: header | Bytes: file1 | ... | Bytes: file42 |
+.EE
+.
+.PP
+The \fIheader_size\fP and \fIheader\fP are serialised with the \fBPickle\fP class,
+and \fIheader_size\fP\(cqs \fBPickle\fP object is 8 bytes.
+.
+.PP
+The header is a JSON string,
+and the \fIheader_size\fP is the size of \fIheader\fP's \fBPickle\fP object.
+.
+.PP
+Structure of \fIheader\fP is something like this:
+.sp
+.in +4n
+.EX
+{
+	files: {
+		tmp: {
+			files: {}
+		},
+		usr: {
+			files: {
+				bin: {
+					files: {
+						ls: {
+							offset: "0",
+							size: 100,
+							executable: true
+						},
+						cd: {
+							offset: "100",
+							size: 100,
+							executable: true
+						}
+					}
+				}
+			}
+		},
+		etc: {
+			files: {
+				hosts: {
+					offset: "200",
+					size: 32
+				}
+			}
+		}
+	}
+}
+.EE
+.PP
+.I offset
+and
+.I size
+records the information to read the file from archive, the
+.I offset
+starts from 0 so you have to manually add the size of
+.I header_size
+and
+.I header
+to the offset to get the real
+.I offset of the file.
+.
+.PP
+.I offset
+is a UINT64 number represented in string, because there is no way to precisely represent UINT64 in JavaScript \fBNumber\fP.
+.I size
+is a JavaScript \fBNumber\fP that is no larger than \fBNumber.MAX_SAFE_INTEGER\fP,
+which has a value of 9007199254740991 and is about 8PB in size.
+We didn't store size in UINT64 because file size in Node.js is represented as \fBNumber\fP and it is not safe to convert \fBNumber\fP to UINT64.
+.
+.\" ============================================================================
+.SH AUTHORS
+Copyright \(co 2014\(en2018, GitHub Inc.
+Released under the MIT license.
