@@ -1,10 +1,6 @@
 # Stuff I didn't write
 .emacs.d/lisp/*   linguist-vendored
 
-# Generated files
-Brewfile          linguist-generated
-package-lists.sh  linguist-generated
-
 # Documentation
 share/man/*       linguist-documentation
 
@@ -13,4 +9,3 @@ share/man/*       linguist-documentation
 Shell.profile     linguist-language=INI
 sessionui.rc      linguist-language=XML
 konsoleui.rc      linguist-language=XML
-*.terminal        linguist-language=XML
