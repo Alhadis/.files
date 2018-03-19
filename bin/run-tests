@@ -52,7 +52,7 @@ have(){
 }
 
 # Unknown executable assumed to be a test-script
-[ -x test ] && [ -s test ] && { ./test "$@"; exit; }
+[ -x test ] && [ -f test ] && { ./test "$@"; exit; }
 
 # No tests found; do nothing
 true
