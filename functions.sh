@@ -103,6 +103,20 @@ encodeurl(){
 }
 
 
+# Assign a filename suffix to a list of files
+suffix(){
+	[ $# -lt 2 ] && {
+		>&2 printf 'Usage: suffix [files...] [suffix]\n'
+		return 1
+	}
+	for suffix in "$@"; do :; done
+	while [ $# -ge 2 ]; do
+		mv -i "$1" "$1.$suffix"
+		shift
+	done; unset suffix
+}
+
+
 # Shorten an absolute path by replacing $HOME with a tilde
 tildify(){
 	for arg in "$@"; do
