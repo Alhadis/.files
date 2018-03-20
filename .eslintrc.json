@@ -37,6 +37,6 @@
 		"spaced-comment": [
 			"error",
 			"always"
-		],
+		]
 	}
 }
