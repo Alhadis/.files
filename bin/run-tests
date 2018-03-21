@@ -27,7 +27,7 @@ have(){
 	if have gmake; then
 		gmake test
 		exit
-	elif make --version 2>/dev/null | grep GNU; then
+	elif make --version 2>/dev/null | grep -q GNU; then
 		make test
 		exit
 	fi
