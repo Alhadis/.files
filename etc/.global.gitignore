@@ -1,6 +1,15 @@
-# Ignore with extreme prejudice
 .DS_Store
-._*
-.#*
-Desktop.ini
 Thumbs.db
+Desktop.ini
+node_modules
+package-lock.json
+._*
+.\#*
+\#*\#
+*~
+*.log
+*.lock
+[._]*.s[a-v][a-z]
+[._]*.sw[a-p]
+[._]s[a-v][a-z]
+[._]sw[a-p]
