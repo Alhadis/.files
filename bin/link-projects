@@ -1,0 +1,27 @@
+#!/bin/sh
+
+[ -d ~/Labs ] || exit
+
+# NPM modules installed in current working directory
+if [ -d node_modules ]; then
+	set -- `ls node_modules`
+
+	while [ "$1" ]; do
+		case $1 in
+			alhadis.utils)    name='Utils';;
+			atom-fs)          name='Atom-FS';;
+			atom-mocha)       name='Atom-Mocha';;
+			get-options)      name='GetOptions';;
+			print)            name='Print';;
+			urw-core35-fonts) name='URW-Core35-Fonts';;
+			*)                shift; continue;;
+		esac
+		
+		if [ -d ~/Labs/$name ] && [ ! -L "$1" ]; then
+			rm -rf "$1"
+			ln -s ~/Labs/$name "$1"
+			printf 'Linked: %s -> %s\n' "$1" ~/Labs/$name
+		fi
+		shift
+	done
+fi
