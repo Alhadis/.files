@@ -17,9 +17,9 @@ if [ -d node_modules ]; then
 			*)                shift; continue;;
 		esac
 		
-		if [ -d ~/Labs/$name ] && [ ! -L "$1" ]; then
-			rm -rf "$1"
-			ln -s ~/Labs/$name "$1"
+		if [ -d ~/Labs/$name ] && [ ! -L "node_modules/$1" ]; then
+			rm -rf "node_modules/$1"
+			ln -s ~/Labs/$name "node_modules/$1"
 			printf 'Linked: %s -> %s\n' "$1" ~/Labs/$name
 		fi
 		shift
