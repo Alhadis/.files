@@ -19,14 +19,14 @@ or you may want to disable spell check as you type those portions of your text d
 .PP
 The language grammar is used only to parse the document and assign names to subsets of this document.
 Then
-.UR http://manual.macromates.com/en/scope_selectors.html
+.UR \fIhttp://\:manual\.macromates\.com/\:en/\:scope_selectors\.html\fP
 scope selectors
 .UE
 can be used for styling, preferences and deciding how keys and tab triggers should expand.
 .
 .PP
 For a more thorough introduction to this concept, see the
-.UR http://macromates.com/blog/archives/2005/07/06/introduction-to-scopes/
+.UR \fIhttp://\:macromates\.com/\:blog/\:archives/\:2005/\:07/\:06/\:introduction-to-scopes/\fP
 introduction to scopes
 .UE
 blog post.
@@ -63,7 +63,7 @@ This will give you a starting grammar which will look like the one below, so let
 .EE
 .PP
 The format is the
-.UR http://manual.macromates.com/en/appendix#property_list_format.html
+.UR \fIhttp://\:manual\.macromates\.com/\:en/\:appendix#property_list_format\.html\fP
 property list format
 .UE
 and at the root level there are five key/value pairs:
@@ -492,12 +492,7 @@ variable.other	Other variables, like \fI$some_variables\fP
 .TE
 .
 .
-.SS Appendix 1: CSS classes used on GitHub
-.TP 14
-.BR "Last updated" :
-1 June 2017 19:00:38 GMT
-.sp 2
-.RE
+.SS Appendix 1: Primer CSS classes
 .TS
 lb lbx
 l lx .
@@ -578,8 +573,45 @@ variable.language	pl-c1
 variable.other	pl-smi
 variable.other.constant	pl-c1
 variable.parameter.function	pl-smi
-_
 .TE
 .
 .
+.SH AUTHORS
+Specifications and reference for the TextMate grammar format sourced from
+.UR \fIhttp://\:manual\.macromates\.com/\:en/\:language_grammars\fP
+TextMate\(cqs online manual
+.UE
+with additions and minor amendments to adapt
+.SX "NAMING CONVENTIONS"
+for improved display in
+.BR man (1).
+Copyright \(co 2004\-2018 MacroMates Ltd.
+Updated on 1 June 2017.
+.
+.PP
+Primer CSS classes sourced from
+.UR \fIhttps://\:github.com/\:primer/\:github-syntax-light\fP
+.UE
+on 1 April 2018,
+released under the MIT license.
+Copyright \(co 2016\-2018 GitHub, Inc.
+Updated on 9 June 2017.
+.
+.PP
+Manpage adaptation by
+.MT \fIgardnerjohng@gmail.com\fP Alhadis
+.ME
+on 22 October 2017.
+.
+.
+.SH SEE ALSO
+.BR man (1),
+.BR onigsyntax (3),
+.BR pcresyntax (3),
+.BR plist (5).
+.
+.PP
+.UR \fIhttp://\:manual\.macromates\.com/\fP
+TextMate\(cqs online documentation
+.UE \.
 .\" vim: ts=40
