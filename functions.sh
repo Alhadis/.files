@@ -2,7 +2,7 @@
 
 # Jump to whatever directory contains a file or executable
 visit(){
-	[ -z "$1" ] || {
+	[ -n "$1" ] || {
 		>&2 printf "Usage: visit [file | command]\n";
 		return 1;
 	}
