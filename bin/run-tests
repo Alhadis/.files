@@ -19,7 +19,7 @@ have(){
 # Run test-scripts in current directory
 [ -f test.sh ] && {      ./test.sh "$@"; exit; }
 [ -f test.pl ] && { perl ./test.pl "$@"; exit; }
-[ -f test.ru ] && { ruby ./test.ru "$@"; exit; }
+[ -f test.rb ] && { ruby ./test.rb "$@"; exit; }
 [ -f test.js ] && { node ./test.js "$@"; exit; }
 
 # Makefile: "make test" (GNU Make only)
