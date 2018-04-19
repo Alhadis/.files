@@ -9,7 +9,7 @@ type=extension
 
 [ $# -lt 2 ] && {
 	>&2 printf '%s\n' "$usage"
-	return 1
+	exit 1
 }
 
 while [ -n "$1" ]; do case $1 in
@@ -21,8 +21,8 @@ while [ -n "$1" ]; do case $1 in
 	-*)
 		printf '%s\n' "$usage"
 		case $i in
-			-h|--help|-\?) return 0 ;;
-			*)             return 1 ;;
+			-h|--help|-\?) exit 0 ;;
+			*)             exit 1 ;;
 		esac ;;
 	*) break ;;
 esac; shift
@@ -31,7 +31,7 @@ done
 [ -z "$1" ] && {
 	>&2 printf 'gh-search: No search query specified\n'
 	>&2 printf '%s\n' "$usage"
-	return 1
+	exit 1
 }
 
 case `uname -s` in
