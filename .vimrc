@@ -1,23 +1,28 @@
 " Configure Vundle
-filetype off
-set nocompatible
-set rtp+=~/.vim/bundle/Vundle.vim
-call vundle#begin()
-Plugin 'VundleVim/Vundle.vim'
+if getftype("~/.vim/bundle/Vundle.vim") ==? "dir"
+	filetype off
+	set nocompatible
+	set rtp+=~/.vim/bundle/Vundle.vim
+	call vundle#begin()
+	Plugin "VundleVim/Vundle.vim"
+	call vundle#end()
+	filetype on
+endif
 
-" Vundle plugins
-call vundle#end()
-"=========================================
-
-execute pathogen#infect()
-syntax on
+" Configure Pathogen
+if exists("g:loaded_pathogen")
+	execute pathogen#infect()
+	syntax on
+	filetype plugin indent on
+endif
 
 " Use Solarized theme in MacVim
-if has('gui_running')
+if has("gui_running")
 	set background=dark
 	colorscheme solarized
 endif
 
+"======================================================================*
 set number
 set autoread
 set backspace=indent,eol,start
@@ -41,7 +46,7 @@ endfun
 autocmd BufEnter,BufWinEnter * call UpdateMatch()
 
 
-"=========================================
+"======================================================================*
 " Status line colours
 highlight statusline ctermbg=DarkGreen ctermfg=Black
 
