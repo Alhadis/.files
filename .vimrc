@@ -42,12 +42,45 @@ autocmd BufEnter,BufWinEnter * call UpdateMatch()
 
 
 "=========================================
-" Status line: Format
-set laststatus=2
-set statusline=%<%f\ -   " Filename
-set statusline+=\ %l:%c  " Line:column
-set statusline+=%=       " Left/right divider
-set statusline+=%y       " Filetype
-
-" Status line: Colours
+" Status line colours
 highlight statusline ctermbg=DarkGreen ctermfg=Black
+
+" Display highlighting group at cursor
+fun! StatusLineHighlightGroup()
+	return synIDattr(synID(line("."), col("."), 1), "name")
+endfun
+
+" Name of currently-active filetype
+fun! StatusLineFileType()
+	return strlen(&ft) ? &ft : "none"
+endfun
+
+" Character encoding and byte-order mark indicators
+fun! StatusLineEncoding()
+	let encoding = toupper (&fenc == "" ? &enc : &fenc)
+	if exists("+bomb") && &bomb
+	 	encoding += "(BOM)"
+	endif
+	return encoding
+endfun
+
+" Line-ending style
+fun! StatusLineEOLStyle()
+	if     (&fileformat ==? "unix") | return "LF"
+	elseif (&fileformat ==? "dos")  | return "CRLF"
+	elseif (&fileformat ==? "mac")  | return "CR"
+	endif; return type
+endfun
+
+if has("statusline")
+	set laststatus=2
+	set statusline=%#Question#%-2.2n\               " Buffer number
+	set statusline+=%#WarningMsg#%<%f\ %#Question#  " Filename
+	set statusline+=\ %l:%c                         " Line:column
+	set statusline+=\ %{StatusLineHighlightGroup()} " Highlighting group at cursor
+	set statusline+=%=                              " Left/right divider
+	set statusline+=%{StatusLineEOLStyle()}\ \      " What line terminators are used
+	set statusline+=%{StatusLineEncoding()}\ \      " Encoding + BOM
+	set statusline+=%{StatusLineFileType()}\ \      " Filetype
+	set statusline+=%h%m%r%w\                       " Flags
+endif
