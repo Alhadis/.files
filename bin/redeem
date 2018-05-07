@@ -1,0 +1,38 @@
+#!/bin/sh
+set -e
+
+while [ "$1" ]; do
+	case "$1" in
+		=AdobeFnt07.lst | =AdobeFnt.lst)
+			rm "$1"
+			shift
+			continue
+			;;
+		=* | AdobeFnt.lst | AdobeFnt07.lst)
+			chmod 0644 "$1"
+			shift
+			continue
+			;;
+	esac
+	[ -f "$1" ] && [ ! -s "$1" ];
+	mv "=$1" "$1";
+	ext=`exiftool -s3 -FileTypeExtension "$1"`;
+	case $ext in
+		rsrc)
+			case `file "$1" | tr A-Z a-z` in
+				*datafork\ font*)
+					mv "$1" "$1.rsrc"
+					chmod 0644 "$1.rsrc"
+					;;
+			esac
+			;;
+		dfont)
+			mv "$1" "$1.dfont"
+			t1unmac --raw --pfa "$1.dfont" > "$1.pfa"
+			t1unmac --raw --pfb "$1.dfont" > "$1.pfb"
+			chmod 0644 "$1.dfont" "$1."pf?
+			touch -amr "$1.dfont" "$1."pf?
+			;;
+	esac
+	shift
+done
