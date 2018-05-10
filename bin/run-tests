@@ -16,6 +16,15 @@ have(){
 	exit
 }
 
+# Run JavaScript tests with native module support
+[ -f test.mjs ] && [ -n "$NODE_OPTIONS" ] && \
+	case "$NODE_OPTIONS" in
+	( *--experimental-modules* )
+		node test.mjs "$@"
+		exit ;;
+	esac
+
+
 # Run test-scripts in current directory
 [ -f test.sh ] && {      ./test.sh "$@"; exit; }
 [ -f test.pl ] && { perl ./test.pl "$@"; exit; }

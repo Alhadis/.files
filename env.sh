@@ -37,3 +37,10 @@ MANPATH=:~/.files/share/man
 MANPATH=$MANPATH:/usr/local/heirloom-doctools/man
 MANPATH=$MANPATH:/usr/local/lib/node_modules/npm/man
 export MANPATH
+
+# Node.js: Enable cutting-edge language features
+NODE_OPTIONS='--no-warnings'
+NODE_OPTIONS="$NODE_OPTIONS --experimental-modules"
+NODE_OPTIONS="$NODE_OPTIONS --experimental-repl-await"
+NODE_OPTIONS="$NODE_OPTIONS --experimental-vm-modules"
+export NODE_OPTIONS
