@@ -17,12 +17,14 @@ have(){
 }
 
 # Run JavaScript tests with native module support
-[ -f test.mjs ] && [ -n "$NODE_OPTIONS" ] && \
-	case "$NODE_OPTIONS" in
-	( *--experimental-modules* )
+# TODO: Drop use of $NODE_OPTIONS once Node ditches the flags
+[ -f test.mjs ] && [ -n "$NODE_OPTIONS" ] && have node && {
+	if printf %s "$NODE_OPTIONS" | grep -qe --experimental-modules; then
 		node test.mjs "$@"
-		exit ;;
-	esac
+		exit
+	fi
+}
+
 
 
 # Run test-scripts in current directory
