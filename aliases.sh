@@ -68,6 +68,10 @@ alias trimend='sed -e :a -e '"'"'/^\n*$/{$d;N;};/\n$/ba'"'"
 alias temp='sysctl hw.sensors | grep temp | sed "s/hw.sensors.//; s/\.temp[0-9]=/: /;"'
 
 
+# Delete broken symlinks in the current directory
+alias prune='find -L . -name . -o -type d -prune -o -type l -exec rm -v {} +'
+
+
 # Show every xterm colour
 alias rainbow='for i in {1..255}; do printf "$i\t\e[38;5;${i}m$(printf %s {A..Z} {a..z})\t\e[48;5;${i}m$(jot -nb" " -s" " 30 0)\e[0m\n"; done | less -R'
 
