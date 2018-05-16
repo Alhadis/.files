@@ -44,3 +44,7 @@ NODE_OPTIONS="$NODE_OPTIONS --experimental-modules"
 NODE_OPTIONS="$NODE_OPTIONS --experimental-repl-await"
 NODE_OPTIONS="$NODE_OPTIONS --experimental-vm-modules"
 export NODE_OPTIONS
+
+# NPM: Temporary workaround for npm#20623
+alias npm='NODE_OPTIONS= npm'
+alias npx='NODE_OPTIONS= npx'
