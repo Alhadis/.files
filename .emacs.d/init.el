@@ -26,6 +26,7 @@
 (setq auto-save-default nil
       create-lockfiles nil
       disabled-command-function nil
+      js2-strict-cond-assign-warning nil
       js2-strict-trailing-comma-warning nil
       js2-strict-inconsistent-return-warning nil)
 
