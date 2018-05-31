@@ -50,8 +50,15 @@ done; unset file
 
 # Link Konsole profile
 command -v konsole 2>&1 >/dev/null && [ -d .kde4/share/apps ] && {
-	cp -r .files/etc/konsole .kde4/share/apps/konsole
+	cp -R .files/etc/konsole .kde4/share/apps/konsole
+	
+	# Install Menlig font
+	fonts=/usr/local/share/fonts
+	[ -d "$fonts" ] && [ ! -e "$fonts/Menlig.otf" ] &&
+		cp .files/share/desktop/Menlig.otf "$fonts/Menlig.otf"
+	unset fonts
 }
+
 
 # Tell NPM to pull its head in
 command -v npm 2>&1 >/dev/null && {
