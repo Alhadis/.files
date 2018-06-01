@@ -1,5 +1,8 @@
 umask 022
 
+# Fedora: Load /etc/bashrc as advised
+command -v yum 2>&1 >/dev/null && [ -f /etc/bashrc ] && . /etc/bashrc
+
 # Load connected files
 for i in env aliases prompt functions tmp; do
 	i=~/.files/$i.sh
