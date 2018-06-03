@@ -26,13 +26,6 @@ EDITOR=`command -v emacs 2>/dev/null`
 	export EDITOR GIT_EDITOR VISUAL
 }
 
-# OpenBSD: Use GCC from ports-tree
-[ -x /usr/local/bin/egcc ] && {
-	CC=/usr/local/bin/egcc
-	CXX=/usr/local/bin/eg++
-	export CC CXX
-}
-
 # OpenBSD: Additional documentation
 MANPATH=:~/.files/share/man
 MANPATH=$MANPATH:/usr/local/heirloom-doctools/man
