@@ -47,10 +47,18 @@ for file in $dotfiles; do
 	};
 done; unset file
 
+# Copy SSH config
+[ ! -s .ssh/config ] && {
+	cp .files/etc/ssh-agent .ssh/config
+	printf 'Copied: %s -> %s\n' .files/etc/ssh-agent .ssh/config
+}
+
 
 # Link Konsole profile
 command -v konsole 2>&1 >/dev/null && [ -d .kde4/share/apps ] && {
-	ln -s .files/etc/konsole .kde4/share/apps/konsole
+
+	[ -d .kde4/share/apps/konsole ] ||
+		ln -s .files/etc/konsole .kde4/share/apps/konsole
 	
 	# Install Menlig font
 	fonts=/usr/local/share/fonts
