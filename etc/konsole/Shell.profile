@@ -20,6 +20,7 @@ TerminalRows=85
 [Interaction Options]
 MouseWheelZoomEnabled=false
 OpenLinksByDirectClickEnabled=true
+TrimTrailingSpacesInSelectedText=true
 
 [Scrolling]
 HistoryMode=1

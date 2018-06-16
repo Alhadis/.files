@@ -28,3 +28,7 @@ Panels:
 
 Preferred applications:
 	Set terminal emulator to `konsole'
+
+Konsole:
+	Enable "Trim trailing spaces"
+	(under "Edit profile" -> "Mouse" -> "Copy & Paste")
