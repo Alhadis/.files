@@ -49,7 +49,7 @@ done; unset file
 
 # Copy SSH config
 [ ! -s .ssh/config ] && {
-	cp .files/etc/ssh-agent .ssh/config
+	cp .files/etc/ssh-config .ssh/config
 	printf 'Copied: %s -> %s\n' .files/etc/ssh-agent .ssh/config
 }
 
