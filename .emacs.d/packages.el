@@ -50,4 +50,5 @@
      toml-mode
      typescript-mode
      wavefront-obj-mode
-     yaml-mode)))
+     yaml-mode
+     yasnippet)))
