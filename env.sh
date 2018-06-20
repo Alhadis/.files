@@ -31,3 +31,9 @@ MANPATH=:~/.files/share/man
 MANPATH=$MANPATH:/usr/local/heirloom-doctools/man
 MANPATH=$MANPATH:/usr/local/lib/node_modules/npm/man
 export MANPATH
+
+# DWB3.3: Add $DWBHOME to search paths
+[ -d "$DWBHOME" ] && printf "$DWBHOME" | grep -sqve "$PATH" && {
+	export PATH=$DWBHOME/bin:$PATH
+	export MANPATH=$DWBHOME/man:$MANPATH
+}
