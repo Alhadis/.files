@@ -57,8 +57,10 @@ done; unset file
 # Link Konsole profile
 command -v konsole 2>&1 >/dev/null && [ -d .kde4/share/apps ] && {
 
-	[ -d .kde4/share/apps/konsole ] ||
+	[ -d .kde4/share/apps/konsole ] || {
+		rm -rf .kde4/share/apps/konsole
 		ln -sf .files/etc/konsole .kde4/share/apps/konsole
+	}
 	
 	# Install Menlig font
 	fonts=/usr/local/share/fonts
