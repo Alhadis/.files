@@ -81,6 +81,16 @@ command -v gsettings 2>&1 >/dev/null && [ "$DISPLAY" ] && {
 	gsettings set org.gnome.desktop.interface cursor-blink false
 }
 
+# Configure Xfce4
+command -v startxfce4 2>&1 >/dev/null && {
+	xfconf-query -c keyboards -p /Default/KeyRepeat/Delay -s 200
+	xfconf-query -c keyboards -p /Default/KeyRepeat/Rate  -s 60
+	xfconf-query -c xfwm4     -p /general/workspace_count -s 1
+	xfconf-query -c xfce4-desktop \
+		-p /backdrop/screen0/monitor0/workspace0/last-image \
+		-s ~/.files/share/desktop/wallpaper.jpg
+}
+
 
 # OS-specific configuration
 case `uname -s` in
