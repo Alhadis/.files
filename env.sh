@@ -26,6 +26,10 @@ EDITOR=`command -v emacs 2>/dev/null`
 	export EDITOR GIT_EDITOR VISUAL
 }
 
+# Prefer LLVM for building projects
+export CC=clang
+export CXX=clang++
+
 # OpenBSD: Additional documentation
 MANPATH=:~/.files/share/man
 MANPATH=$MANPATH:/usr/local/heirloom-doctools/man
