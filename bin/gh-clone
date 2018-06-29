@@ -1,0 +1,75 @@
+#!/bin/sh
+
+#
+# gh-clone: Clone a GitHub repository using "user/repo" shorthand.
+#
+usage='gh-clone [-r|--recursive] username/repository'
+version='v1.0.0'
+recurse=
+
+# Parse command-line switches
+while [ -n "$1" ]; do case $1 in
+
+	# Print a usage summary and exit
+	-h|--help|-\?)
+		printf 'Usage: %s\n' "$usage"
+		exit ;;
+
+	# Print a version string and exit
+	-v|--version)
+		printf '%s\n' "$version"
+		exit ;;
+
+	# Checkout repository's submodules if any are used 
+	-r|--recurse)
+		recurse="--recursive" ;;
+
+	# Double-dash: Terminate option parsing
+	--)
+		shift
+		break ;;
+
+	# Invalid option: abort
+	--*|-?*)
+		>&2 printf 'gh-clone: Invalid option: "%s"\n' "$1"
+		>&2 printf 'Usage: %s\n' "$usage"
+		exit 1 ;;
+
+	# Argument not prefixed with a dash
+	*) break ;;
+
+esac; shift
+done
+
+
+# Actual program's logic starts here
+[ -z "$1" ] && {
+	>&2 printf 'Usage: %s\n' "$usage"
+	exit 1
+}
+
+# Input lacks a trailing slash? Assume it's the current GitHub user.
+if printf "$1" | grep -vq -e'/'; then
+	user=`git config github.user`
+	repo=$1
+	
+	# If we can't derive username from the user's `git.config', abort
+	[ ! "$user" ] && {
+		>&2 printf 'Usage: %s\n' "$usage"
+		exit 2;
+	}
+	
+	src="git@github.com:${user}/${repo}.git"
+	printf 'git clone %s %s\n' "$recurse" "$src" | sed -e 's/  */ /g'
+	git clone $recurse "$src"
+
+# Single argument: "user/repo"
+else
+	user=`printf %s "$1" | cut -d/ -f1`
+	repo=`printf %s "$1" | cut -d/ -f2`
+	[ "$user" ] && [ "$repo" ] || {
+		>&2 printf 'Usage: %s\n' "$usage"
+		exit 2;
+	}
+	git clone $recurse "git@github.com:${user}/${repo}.git"
+fi
