@@ -20,11 +20,14 @@
      coffee-mode
      csv-mode
      cuda-mode
+     dna-mode
      dockerfile-mode
+     dotenv-mode
      dyalog-mode
      enh-ruby-mode
      erlang
      fic-mode
+     form-feed
      forth-mode
      glsl-mode
      go-mode
@@ -32,6 +35,7 @@
      haskell-tab-indent
      ini-mode
      js2-mode
+     less-css-mode
      lfe-mode
      markdown-mode
      move-text
@@ -42,13 +46,16 @@
      pov-mode
      powershell
      rust-mode
+     scad-mode
      sed-mode
+     shift-number
      slime
      sml-mode
      spice-mode
      ssh-config-mode
      toml-mode
      typescript-mode
+     vimrc-mode
      wavefront-obj-mode
      yaml-mode
      yasnippet)))
