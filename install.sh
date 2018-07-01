@@ -71,9 +71,8 @@ command -v konsole 2>&1 >/dev/null && [ -d .kde4/share/apps ] && {
 
 
 # Link Inkscape preferences
-command -v inkscape 2>&1 >/dev/null && [ -d .config ] && {
-	rm -rf .config/inkscape
-	ln -sf .files/etc/inkscape .config/inkscape
+[ -d .config/inkscape ] && {
+	ln -sf ~/.files/etc/inkscape/preferences.xml .config/inkscape/
 }
 
 
