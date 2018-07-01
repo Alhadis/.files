@@ -70,6 +70,13 @@ command -v konsole 2>&1 >/dev/null && [ -d .kde4/share/apps ] && {
 }
 
 
+# Link Inkscape preferences
+command -v inkscape 2>&1 >/dev/null && [ -d .config ] && {
+	rm -rf .config/inkscape
+	ln -sf .files/etc/inkscape .config/inkscape
+}
+
+
 # Tell NPM to pull its head in
 command -v npm 2>&1 >/dev/null && {
 	npm config set package-lock false
