@@ -14,3 +14,5 @@ package-lock.json
 [._]s[a-v][a-z]
 [._]sw[a-p]
 !urls.log
+/test.mjs
+/test.js
