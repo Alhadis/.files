@@ -13,6 +13,14 @@
 (setenv "LANG" "en_AU.UTF-8")
 (setenv "LC_COLLATE" "C")
 
+;; Unicode support
+(setq locale-coding-system 'utf-8)
+(set-terminal-coding-system 'utf-8)
+(set-keyboard-coding-system 'utf-8)
+(set-selection-coding-system 'utf-8)
+(prefer-coding-system 'utf-8)
+(define-coding-system-alias 'UTF-8 'utf-8)
+
 ;; Filetype mappings
 (add-to-list 'interpreter-mode-alist '("node" . js2-mode))
 (add-to-list 'auto-mode-alist '("\\.m?js\\'" . js2-mode))
