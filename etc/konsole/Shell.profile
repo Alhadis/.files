@@ -23,5 +23,5 @@ OpenLinksByDirectClickEnabled=true
 TrimTrailingSpacesInSelectedText=true
 
 [Scrolling]
-HistoryMode=1
+HistoryMode=2
 HistorySize=2000
