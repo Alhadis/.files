@@ -18,7 +18,7 @@ have(){
 
 # Run JavaScript tests with native module support
 [ -f test.mjs ] && have node && {
-	node test.mjs "$@"
+	node --experimental-modules test.mjs "$@"
 	exit
 }
 
