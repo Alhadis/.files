@@ -3,6 +3,8 @@
       indent-tabs-mode t
       indent-line-function 'insert-tab
       coffee-indent-tabs-mode t
+      ruby-indent-tabs-mode t
+      ruby-indent-level 4
       nxml-child-indent 4)
 
 ;; Disable newline auto-indentation
