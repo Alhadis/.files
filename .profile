@@ -1,4 +1,4 @@
-umask 022
+[ `uname` = "OpenBSD" ] && umask 022
 
 # Fedora: Load /etc/bashrc as advised
 command -v yum 2>&1 >/dev/null && [ -f /etc/bashrc ] && . /etc/bashrc
