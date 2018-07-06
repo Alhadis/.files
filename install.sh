@@ -53,6 +53,9 @@ done; unset file
 	printf 'Copied: %s -> %s\n' .files/etc/ssh-agent .ssh/config
 }
 
+# Tighten permissions on `~/.ssh' directory
+chmod go-rwx .ssh/*
+
 
 # Link Konsole profile
 command -v konsole 2>&1 >/dev/null && [ -d .kde4/share/apps ] && {
