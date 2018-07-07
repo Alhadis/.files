@@ -91,7 +91,7 @@ command -v gsettings 2>&1 >/dev/null && [ "$DISPLAY" ] && {
 }
 
 # Configure Xfce4
-command -v startxfce4 2>&1 >/dev/null && {
+command -v startxfce4 2>&1 >/dev/null && [ "$DISPLAY" ] && {
 	xfconf-query -c keyboards -p /Default/KeyRepeat/Delay -s 200
 	xfconf-query -c keyboards -p /Default/KeyRepeat/Rate  -s 60
 	xfconf-query -c xfwm4     -p /general/workspace_count -s 1
