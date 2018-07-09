@@ -49,3 +49,6 @@
 ;; Load customisation data
 (setq custom-file "~/.emacs.d/custom.el")
 (load custom-file)
+
+;; Site-specific
+(load "~/.emacs.d/site.el" t)
