@@ -33,6 +33,7 @@ alias T='NODE_DEBUG=\* run-tests'
 alias sudo='sudo '
 alias yeah='git reset HEAD .;'
 alias nah='git checkout -- . && git clean -fd'
+alias x='exiftool'
 
 
 # Enable coloured grep output if supported
