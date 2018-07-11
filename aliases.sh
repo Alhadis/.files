@@ -51,8 +51,11 @@ case ${SHELL##*/} in ksh)
 esac
 
 
-# Shim to replace `untar` command on *BSD
-command -v untar >/dev/null || alias untar='bsdtar -xf'
+# Use libarchive's `bsdtar' for shimming extraction commands
+command -v bsdtar >/dev/null 2>&1 && {
+	command -v untar >/dev/null 2>&1 || alias untar='bsdtar -xf'
+	command -v unzip >/dev/null 2>&1 || alias unzip='bsdtar -xf'
+}
 
 
 # Strip embedded metadata from a file or directory of files
