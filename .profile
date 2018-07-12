@@ -1,13 +1,18 @@
 [ `uname` = "OpenBSD" ] && umask 022
 
+alias have='command -v 2>&1 >/dev/null'
+
 # Fedora: Load /etc/bashrc as advised
-command -v yum 2>&1 >/dev/null && [ -f /etc/bashrc ] && . /etc/bashrc
+have yum && [ -f /etc/bashrc ] && . /etc/bashrc
 
 # Load connected files
 for i in env aliases prompt functions tmp; do
 	i=~/.files/$i.sh
 	[ -r "$i" ] && . "$i"
 done
+
+unalias have
+
 
 # Bail if running non-interactively
 case $- in *i*) ;; *) return 0 ;; esac
