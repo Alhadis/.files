@@ -72,7 +72,7 @@ have bsdtar && {
 
 
 # Copy a hard tab (U+0009) to the system's clipboard
-alias tab='printf "\t" | clip'
+alias cptab='printf "\t" | clip'
 
 
 # Convert 2-space "soft-tabs" into actual tabs
