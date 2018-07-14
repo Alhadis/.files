@@ -71,6 +71,10 @@ have bsdtar && {
 [ "$DISPLAY" ] || have startxfce4 && alias desktop='startxfce4 --with-ck-launch'
 
 
+# Copy a hard tab (U+0009) to the system's clipboard
+alias tab='printf "\t" | clip'
+
+
 # Convert 2-space "soft-tabs" into actual tabs
 alias tabfix='perl -pi -Xe '"'"'s|^(  )+|"\t"x(length($&)/2)|ge;'"'"
 
