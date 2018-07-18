@@ -34,7 +34,7 @@ alias du='du -h'
 
 # Aliases for programs that mightn't be available/installed
 have bundle   && alias brake='bundle exec rake'
-have fdupes   && alias dedupe='fdupes -dNI'
+have fdupes   && alias dedupe='fdupes -dN'
 have file     && alias mime='file --brief --mime-type'
 have mysql    && alias mysql='mysql --auto-vertical-output'
 have sudo     && alias sudo='sudo '
