@@ -30,6 +30,8 @@ have git && {
 alias bc='bc -l'
 alias df='df -h'
 alias du='du -h'
+alias mv='mv -i'
+alias cp='cp -i'
 
 
 # Aliases for programs that mightn't be available/installed
