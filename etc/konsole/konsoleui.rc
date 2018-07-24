@@ -52,7 +52,6 @@
  <ActionProperties scheme="Default">
   <Action shortcut="Ctrl+Shift+B" name="add_bookmark"/>
   <Action shortcut="" name="help_contents"/>
-  <Action shortcut="Ctrl+T" name="new-tab"/>
   <Action shortcut="Ctrl+Tab" name="next-view"/>
   <Action shortcut="" name="previous-view"/>
   <Action shortcut="Ctrl+Shift+K" name="options_configure_keybinding"/>
