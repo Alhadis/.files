@@ -3,8 +3,7 @@
 #
 # install.sh: Quickly setup a new workstation
 #
-force=
-npm=
+force= npm= sudo=
 
 # Parse command-line switches
 while [ -n "$1" ]; do case $1 in
@@ -36,6 +35,11 @@ esac; shift
 done
 
 
+# Resolve command for running as superuser
+command -v sudo 2>&1 >/dev/null && sudo=sudo
+command -v doas 2>&1 >/dev/null && sudo=doas
+
+
 # Install/uninstall Node programs
 [ "$npm" ] && {
 	command -v npm 2>&1 >/dev/null || {
@@ -65,11 +69,8 @@ done
 		modules=`printf %s "$modules" | grep -v 'electron$'`
 
 	# Should we install as superuser?
-	if [ ! -w "`npm -g root`" ];
-	then command -v doas 2>&1 >/dev/null \
-		&& cmd="doas $cmd" \
-		|| cmd="sudo $cmd"; fi
-	
+	[ -w "`npm -g root`" ] || cmd="$sudo $cmd"
+
 	$cmd $modules
 	exit
 }
@@ -138,6 +139,14 @@ command -v npm 2>&1 >/dev/null && {
 	npm config set package-lock false
 	npm config set save false
 }
+
+# Fix ownership of `~/.npm' and its contents
+name=`id -un`
+find ~/.npm \! \( -user "$name" \) |
+while read path; do
+	$sudo chown -h "$name" "$path"
+done; unset name
+
 
 # Disable blinking cursor in Gnome Terminal
 command -v gsettings 2>&1 >/dev/null && [ "$DISPLAY" ] && {
