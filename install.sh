@@ -4,6 +4,7 @@
 # install.sh: Quickly setup a new workstation
 #
 force=
+npm=
 
 # Parse command-line switches
 while [ -n "$1" ]; do case $1 in
@@ -12,13 +13,66 @@ while [ -n "$1" ]; do case $1 in
 	-f|--force)
 		force=1 ;;
 
-	# Usual copy+pasta
+	# Install global NPM modules
+	-n|--npm)
+		npm=1 ;;
+
+	# Remove global NPM modules
+	--uninstall-npm)
+		npm=2 ;;
+
+	# Double-dash: terminate option parsing
 	--) shift; break ;;
-	--* | -?*) echo "Usage: ${0##*/} [-f|--force]"; exit 1 ;;
+
+	# Invalid option: exit with usage message
+	--* | -?*)
+		printf "Usage: ${0##*/} [-f|--force]\n"
+		printf "       ${0##*/} [-n|--npm|--uninstall-npm]\n"
+		exit 1 ;;
+
 	*) break ;;
 
 esac; shift
 done
+
+
+# Install/uninstall Node programs
+[ "$npm" ] && {
+	command -v npm 2>&1 >/dev/null || {
+		printf 'Aborted: `npm` executable not found\n'
+		exit 1
+	}
+	case $npm in
+		2) cmd="npm -g uninstall" ;;
+		*) cmd="npm -g install"   ;;
+	esac
+	modules='
+		asar
+		browserify
+		clean-css-cli
+		cson
+		electron
+		eslint
+		istanbul
+		jsdoc
+		json
+		mocha
+		ppjson
+		uglify-es
+	'
+	# Unlist Electron if running on OpenBSD; not yet ported
+	[ "`uname -s`" = OpenBSD ] &&
+		modules=`printf %s "$modules" | grep -v 'electron$'`
+
+	# Should we install as superuser?
+	if [ ! -w "`npm -g root`" ];
+	then command -v doas 2>&1 >/dev/null \
+		&& cmd="doas $cmd" \
+		|| cmd="sudo $cmd"; fi
+	
+	$cmd $modules
+	exit
+}
 
 
 cd "$HOME"
