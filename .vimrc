@@ -1,3 +1,6 @@
+filetype on
+syntax enable
+
 " Configure Vundle
 if getftype("~/.vim/bundle/Vundle.vim") ==? "dir"
 	filetype off
@@ -16,7 +19,7 @@ if exists("g:loaded_pathogen")
 	filetype plugin indent on
 endif
 
-" Use Solarized theme in MacVim
+" Use Solarized theme if running graphically
 if has("gui_running")
 	set background=dark
 	colorscheme solarized
