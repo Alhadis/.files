@@ -8,7 +8,6 @@ export GREP_COLORS="sl=38;5;240:mt=1;38;5;10;48;5;22:fn=38;5;242:se=38;5;237:ln=
 export HISTFILE=
 export LESS=-R
 export LYNX_CFG=~/.files/etc/lynx.cfg
-export NODE_REPL_HISTORY=
 export PRINTER=Officejet-6500-E710n-z
 
 
