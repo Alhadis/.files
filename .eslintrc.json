@@ -32,7 +32,6 @@
 			"error",
 			"unix"
 		],
-		"new-parens": "error",
 		"no-fallthrough": [
 			"error",
 			{"commentPattern": "[Ff]alls?[-\\s]?through"}
