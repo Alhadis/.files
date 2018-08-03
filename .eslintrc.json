@@ -11,11 +11,20 @@
 		"sourceType": "module"
 	},
 	"rules": {
+		"eqeqeq": [
+			"error",
+			"smart"
+		],
+		"eol-last": [
+			"error",
+			"always"
+		],
 		"indent": [
 			"error",
 			"tab",
 			{
 				"ignoreComments": true,
+				"VariableDeclarator": 0,
 				"SwitchCase": 1
 			}
 		],
@@ -23,10 +32,12 @@
 			"error",
 			"unix"
 		],
+		"new-parens": "error",
 		"no-fallthrough": [
 			"error",
 			{"commentPattern": "[Ff]alls?[-\\s]?through"}
 		],
+		"no-return-await": "error",
 		"no-case-declarations": 0,
 		"no-cond-assign": 0,
 		"no-console": 0,
