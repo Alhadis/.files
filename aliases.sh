@@ -81,6 +81,10 @@ alias cptab='printf "\t" | clip'
 alias tabfix='perl -pi -Xe '"'"'s|^(  )+|"\t"x(length($&)/2)|ge;'"'"
 
 
+# Make other people's projects less aggravating to read
+alias unfuck='prettier --config ~/.prettierrc.json --write "**/*.{js,jsx,json,ts,mjs,css,less,scss}" >/dev/null'
+
+
 # Chop leading or trailing blank lines from input
 alias trimstart='sed -n $'"'"'/[^ \t]/,$p'"'"
 alias trimend='sed -e :a -e '"'"'/^\n*$/{$d;N;};/\n$/ba'"'"

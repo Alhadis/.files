@@ -62,6 +62,7 @@ command -v doas 2>&1 >/dev/null && sudo=doas
 		json
 		mocha
 		ppjson
+		prettier
 		uglify-es
 	'
 	# Unlist Electron if running on OpenBSD; not yet ported
@@ -89,6 +90,7 @@ dotfiles='
 	.eslintrc.json
 	.gitconfig
 	.inputrc
+	.prettierrc.json
 	.profile
 	.vimrc
 '
