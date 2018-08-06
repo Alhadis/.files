@@ -44,7 +44,7 @@
 	</group>
 	<group id="tools" bounding_box="0">
 		<group id="shapes" style="fill-rule:evenodd;" selcue="1" gradientdrag="1">
-			<eventcontext id="rect" style="fill:blue;" usecurrent="1" width="642.857" height="548.571" rx="37.7953" ry="0"/>
+			<eventcontext id="rect" style="fill:blue;" usecurrent="1" width="100" height="100" rx="0" ry="0"/>
 			<eventcontext id="3dbox" style="stroke:none;stroke-linejoin:round;" usecurrent="1">
 				<side id="XYfront" style="fill:#8686bf;stroke:none;stroke-linejoin:round;" usecurrent="0"/>
 				<side id="XYrear" style="fill:#e9e9ff;stroke:none;stroke-linejoin:round;" usecurrent="0"/>
@@ -151,10 +151,10 @@
 			<group id="exportarea" value="page"/>
 			<group id="defaultxdpi"/>
 		</group>
-		<group id="save_as" default="org.inkscape.output.scour" append_extension="1" enable_preview="1" path="/home/Alhadis/Desktop/DNA" use_current_dir="1"/>
+		<group id="save_as" default="org.inkscape.output.scour" append_extension="1" enable_preview="1" path="/home/Alhadis/Desktop" use_current_dir="1"/>
 		<group id="save_copy" default="" append_extension="1" enable_preview="1" path=""/>
-		<group id="open" enable_preview="1" path="/home/Alhadis/Desktop/DNA/"/>
-		<group id="import" enable_preview="1" path="/home/Alhadis/Desktop/" ask="1" link="link" scale="optimizeQuality" forcexdpi="0"/>
+		<group id="open" enable_preview="1" path="/home/Alhadis/"/>
+		<group id="import" enable_preview="1" path="/home/Alhadis/" ask="1" link="link" scale="optimizeQuality" forcexdpi="0"/>
 		<group id="debug" redirect="0"/>
 		<group id="clonetiler" dotrace="0"/>
 		<group id="gridtiler"/>
