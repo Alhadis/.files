@@ -38,7 +38,9 @@
      less-css-mode
      lfe-mode
      markdown-mode
+     mocha
      move-text
+     multiple-cursors
      nasm-mode
      newlisp-mode
      ninja-mode

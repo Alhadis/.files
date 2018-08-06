@@ -2,6 +2,7 @@
 (load "~/.emacs.d/packages")
 (load "~/.emacs.d/whitespace")
 (load "~/.emacs.d/keymap")
+(load "~/.emacs.d/hooks")
 
 ;; Site-specific
 (add-to-list 'load-path "~/.emacs.d/lisp")
@@ -30,14 +31,18 @@
 (add-to-list 'auto-mode-alist '("\\.tmac$" . nroff-mode))
 (add-to-list 'auto-mode-alist '("\\.roff$" . nroff-mode))
 
+;; Configure `js2-mode' for nicer JavaScript editing
+(setq js2-highlight-level 3
+      js2-include-node-externs t
+      js2-strict-trailing-comma-warning nil
+      js2-strict-cond-assign-warning nil
+      js2-strict-inconsistent-return-warning nil)
+
 ;; Disable various annoyances
 (tty-suppress-bold-inverse-default-colors t)
 (setq auto-save-default nil
       create-lockfiles nil
-      disabled-command-function nil
-      js2-strict-cond-assign-warning nil
-      js2-strict-trailing-comma-warning nil
-      js2-strict-inconsistent-return-warning nil)
+      disabled-command-function nil)
 
 ;; Use a single directory for storing backup files
 (setq backup-directory-alist `(("." . "~/.emacs.d/auto-save-list"))
