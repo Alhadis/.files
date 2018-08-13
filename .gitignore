@@ -4,6 +4,7 @@ node_modules
 *.log
 *.elc
 
+/bin/gpg2
 /tmp.sh
 .emacs.d/.cask
 .emacs.d/auto-save-list
