@@ -37,6 +37,8 @@
 			{"commentPattern": "[Ff]alls?[-\\s]?through"}
 		],
 		"no-return-await": "error",
+		"no-control-regex": 0,
+		"no-sparse-arrays": 0,
 		"no-case-declarations": 0,
 		"no-cond-assign": 0,
 		"no-console": 0,
