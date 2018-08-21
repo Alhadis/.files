@@ -7,7 +7,25 @@
 .nh
 .de SX
 .ie n \fB\\$1\\fP\\$2
-.el the \(lq\\$1\\rq section\\$2
+.el the \(lq\\$1\\(rq section\\$2
+..
+.
+.\" Following two macros copied from `an-ext.tmac'
+.\" .EX: Start example
+.de EX
+.do ds mF \\n[.fam]
+.nr mE \\n(.f
+.nf
+.nh
+.do fam C
+.ft CW
+..
+.\" .EE: End example
+.de EE
+.do fam \\*(mF
+.ft \\n(mE
+.fi
+.hy \\n(HY
 ..
 .
 .TH TEXTMATE 5 "16 May 2016 14:18:35 GMT" "TextMate Manual" "Language Grammars"
@@ -175,7 +193,7 @@ What follows is a list of all keys which can be used in a rule.
 .B name
 The name which gets assigned to the portion matched.
 This is used for styling and scope-specific settings and actions, which means it should generally be derived from one of the standard names (see
-.XR "naming conventions" ).
+.SX "NAMING CONVENTIONS" ).
 .
 .TP
 .B match
@@ -347,7 +365,7 @@ Even though you should \(lqspread out\(rq your names,
 when you have found the group in which you want to place your element (e.g. \fIstorage\fP),
 you should reuse the existing names used below that group (for \fIstorage\fP that is \fImodifier\fP or \fItype\fP) rather than make up a new subtype.
 You should however append as much information to the subtype you choose.
-For example if you are matching the \<*static\>* storage modifier,
+For example if you are matching the \*<static\*> storage modifier,
 then instead of just naming it \fIstorage.modifier\fP use \fIstorage.modifier.static\fP.
 A scope selector of just \fIstorage.modifier\fP will match both,
 but having the extra information in the name means it is possible to specifically target it disregarding the other storage modifiers.
