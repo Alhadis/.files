@@ -6,8 +6,11 @@
 
 ;; Site-specific
 (add-to-list 'load-path "~/.emacs.d/lisp")
+(add-to-list 'load-path "~/.emacs.d/plugins/yasnippet")
 (load "git-modes")
 (load "git-commit")
+(load "yasnippet")
+(yas-global-mode 1)
 
 ;; Locale
 (set-language-environment "UTF-8")
