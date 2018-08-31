@@ -35,7 +35,7 @@ alias cp='cp -i'
 
 
 # Aliases for programs that mightn't be available/installed
-have bundle   && alias brake='bundle exec rake'
+have bundle   && alias brake='LANG=en_AU.UTF-8 bundle exec rake'
 have fdupes   && alias dedupe='fdupes -dN'
 have file     && alias mime='file --brief --mime-type'
 have mysql    && alias mysql='mysql --auto-vertical-output'
