@@ -1,7 +1,0 @@
-# -*- mode: snippet -*-
-# name: Watchman
-# key: watch
-# atom-selector: .source.makefile
-# --
-watch:;   @watchman -- trigger . _ '${1:fixtures/*}' -- make all >/dev/null
-unwatch:; @watchman -- watch-del . >/dev/null

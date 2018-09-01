@@ -6,11 +6,8 @@
 
 ;; Site-specific
 (add-to-list 'load-path "~/.emacs.d/lisp")
-(add-to-list 'load-path "~/.emacs.d/plugins/yasnippet")
 (load "git-modes")
 (load "git-commit")
-(load "yasnippet")
-(yas-global-mode 1)
 
 ;; Locale
 (set-language-environment "UTF-8")
@@ -55,11 +52,12 @@
       kept-old-versions 2
       version-control t)
 
-;; Snippets and customisation data
-(setq custom-file "~/.emacs.d/custom.el"
-      yas-snippet-dirs '("~/.emacs.d/snippets")
-      yas-indent-line "fixed")
-(load custom-file)
+;; Snippets
+(load "yasnippet")
+(setq yas-indent-line "fixed")
+(yas-global-mode 1)
 
-;; Site-specific
+;; Everything else
+(setq custom-file "~/.emacs.d/custom.el")
+(load custom-file)
 (load "~/.emacs.d/site.el" t)
