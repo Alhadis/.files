@@ -104,6 +104,12 @@ for file in $dotfiles; do
 	};
 done; unset file
 
+# Link Emacs to snippets repository, assuming usual project paths
+[ ! -e ~/.emacs.d/snippets ] && [ -d ~/Labs/YASR/snippets ] && {
+	ln -s ~/Labs/YASR/snippets ~/.emacs.d/snippets
+	printf 'Symlinked: %s -> %s\n' ~/Labs/YASR/snippets ~/.emacs.d/snippets
+}
+
 # Copy SSH config
 [ ! -s .ssh/config ] && {
 	cp .files/etc/ssh-config .ssh/config
