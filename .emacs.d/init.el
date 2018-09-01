@@ -55,8 +55,10 @@
       kept-old-versions 2
       version-control t)
 
-;; Load customisation data
-(setq custom-file "~/.emacs.d/custom.el")
+;; Snippets and customisation data
+(setq custom-file "~/.emacs.d/custom.el"
+      yas-snippet-dirs '("~/.emacs.d/snippets")
+      yas-indent-line "fixed")
 (load custom-file)
 
 ;; Site-specific

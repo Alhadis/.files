@@ -1,0 +1,10 @@
+# -*- mode: snippet -*-
+# name: When - Braced closure
+# key: When
+# atom-selector: .source.js
+# --
+when("$1", () => {
+	it("$2", ${3:async }() => {
+		$4
+	});
+});

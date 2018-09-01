@@ -1,0 +1,11 @@
+# -*- mode: snippet -*-
+# name: Getopts
+# key: opt
+# atom-selector: .source.shell
+# --
+while getopts ${1:o:pt} ${2:option}; do
+	case \$${2:option} in
+		${3:o) name=$OPTARG;;}
+	esac
+done
+shift \$((OPTIND - 1))
