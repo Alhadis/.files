@@ -53,9 +53,9 @@
       version-control t)
 
 ;; Snippets
-(load "yasnippet")
+(load "yasnippet" t)
+(when (boundp 'yas-global-mode) (yas-global-mode 1))
 (setq yas-indent-line "fixed")
-(yas-global-mode 1)
 
 ;; Everything else
 (setq custom-file "~/.emacs.d/custom.el")

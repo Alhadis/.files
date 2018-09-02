@@ -47,4 +47,5 @@
             (setq tab-width 4)))
 
 (load "aggressive-indent" t)
-(add-hook 'emacs-lisp-mode-hook #'aggressive-indent-mode)
+(when (boundp 'aggressive-indent-mode)
+      (add-hook 'emacs-lisp-mode-hook #'aggressive-indent-mode))
