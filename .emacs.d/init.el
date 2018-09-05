@@ -1,4 +1,4 @@
-(package-initialize)
+(when (version< emacs-version "27.0") (package-initialize))
 (load "~/.emacs.d/packages")
 (load "~/.emacs.d/whitespace")
 (load "~/.emacs.d/keymap")
