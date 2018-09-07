@@ -48,6 +48,12 @@ have exiftool && {
 }
 
 
+# Programs known by other names on other systems
+have pbcopy || { alias pbcopy=clip; alias pbpaste=clip; }
+have sudo && ! have doas && alias doas=sudo
+
+
+
 # Enable coloured grep output if supported
 (echo . | grep . --colour=auto 2>&1)>/dev/null && {
 	alias grep='grep --colour=auto'
