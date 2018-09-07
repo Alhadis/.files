@@ -1,5 +1,5 @@
 PATH=/sbin:/usr/sbin:/bin:/usr/local/sbin:/usr/local/bin:/usr/bin:/usr/X11R6/bin:/usr/games
-PATH=~/.files/bin:$PATH:~/Mirrors/depot_tools
+PATH=~/.files/bin:$PATH
 export PATH
 
 export DWBHOME=/usr/local/dwb
@@ -29,14 +29,18 @@ EDITOR=`command -v emacs 2>/dev/null`
 export CC=clang
 export CXX=clang++
 
+# Add Google's Depot-Tools to $PATH if they're installed
+[ -d ~/Mirrors/depot_tools ] && PATH=$PATH:~/Mirrors/depot_tools
+
+
 # OpenBSD: Additional documentation
 MANPATH=:~/.files/share/man
-MANPATH=$MANPATH:/usr/local/heirloom-doctools/man
 MANPATH=$MANPATH:/usr/local/lib/node_modules/npm/man
-export MANPATH
 
-# DWB3.3: Add $DWBHOME to search paths
-[ -d "$DWBHOME" ] && printf "$DWBHOME" | grep -sqve "$PATH" && {
-	export PATH=$DWBHOME/bin:$PATH
-	export MANPATH=$DWBHOME/man:$MANPATH
-}
+# Include other Troff implementations in search paths
+for path in "/usr/local/heirloom-doctools" "$DWBHOME"; do 
+	[ -d "$path/bin" ] && PATH="$path/bin:$PATH"
+	[ -d "$path/man" ] && MANPATH="$MANPATH:$path/man"
+done
+unset path
+export PATH MANPATH
