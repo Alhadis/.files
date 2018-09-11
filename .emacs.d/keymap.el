@@ -17,9 +17,14 @@
 (global-set-key
  (kbd "C-w")
  (lambda () "Close the currently active buffer."
-   (interactive) (if (minibufferp)
-                     (keyboard-quit)  ;; Quit minibuffer if focussed
-                     (kill-buffer)))) ;; Otherwise, kill current buffer
+   (interactive)
+   (if (minibufferp)
+       (keyboard-quit)               ;; Quit minibuffer if focussed
+     (if (and (< 1 (count-windows))  ;; Otherwise, kill current buffer
+              (eq major-mode 'help-mode))
+         (progn (kill-buffer) (delete-window))
+         (kill-buffer)))))
+
 (global-set-key
  (kbd "C-u")
  (lambda () "Erase text between point and start-of-line."
@@ -32,7 +37,7 @@
    (interactive)
    (if (minibufferp)
        (keyboard-quit)
-       (call-interactively 'goto-line))))
+     (call-interactively 'goto-line))))
 
 (global-set-key
  (kbd "<f1>")

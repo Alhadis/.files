@@ -5,7 +5,8 @@
  '(cua-mode t nil (cua-base))
  '(display-battery-mode t)
  '(inhibit-startup-screen t)
- '(show-paren-mode t))
+ '(show-paren-mode t)
+ '(help-window-select t))
 
 (custom-set-faces
  '(font-lock-function-name-face ((t (:foreground "black" :weight bold))))
