@@ -133,4 +133,12 @@ case `uname -s` in
 		# Print temperature diagnostics
 		alias temp='sysctl hw.sensors | grep temp | sed "s/hw.sensors.//; s/\.temp[0-9]=/: /;"'
 	;;
+
+	Darwin)
+		# Update installed Homebrew formulae
+		alias bup='brew update && brew upgrade --all && brew cleanup --prune=0'
+		
+		# Nuke .DS_Store junk
+		alias dsclean='find . -type f -name .DS_Store -exec rm -fP {} +'
+	;;
 esac
