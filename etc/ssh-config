@@ -3,3 +3,6 @@ Host *
 
 Host github.com
 	IdentityFile ~/.ssh/github
+
+Host bitbucket.org
+	IdentityFile ~/.ssh/bitbucket
