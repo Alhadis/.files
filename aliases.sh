@@ -132,6 +132,19 @@ case `uname -s` in
 
 		# Print temperature diagnostics
 		alias temp='sysctl hw.sensors | grep temp | sed "s/hw.sensors.//; s/\.temp[0-9]=/: /;"'
+
+		# Mount USB stick
+		alias usb='mount -t msdos /dev/sd"`(mount | grep -q /dev/sd2) && echo 3 || echo 2`"i /mnt'
+
+		# Run the following commands as superuser by default
+		alias chown='doas chown'
+		alias chgrp='doas chgrp'
+		alias chmod='doas chmod'
+		alias halt='doas halt'
+		alias mount='doas mount'
+		alias umount='doas umount'
+		alias pkg_add='doas pkg_add'
+		alias pkg_delete='doas pkg_delete'
 	;;
 
 	Darwin)
