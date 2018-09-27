@@ -1,0 +1,388 @@
+'\" t
+.\" Modified from the original version, taken from:
+.\" https://groups.google.com/d/topic/comp.text/IFbbkuI91nA
+.\"
+.ie t .ds | \|
+.el   .ds | \~
+.
+.TH CAT 5 TRW
+.UC 4
+.SH NAME
+cat \(em GSI CAT-4/8 phototypesetter code
+.SH SYNOPSIS
+.B "#include <local/cat.h>"
+.SH DESCRIPTION
+The Graphic Systems Industries CAT phototypesetter is driven by sending it a sequence of one-byte codes which specify characters, fonts, sizes, and other control information.
+.PP
+The CAT\(cqs basic unit of length is 1/432 of an inch (6 units to a typesetter\(cqs \(lqpoint\(rq).
+The quantum of horizontal motion is one unit.
+The quantum of vertical motion is three units (1/144 of an inch, 1/2 point).
+.PP
+The top two bits of the code classify it as one of three major types: an 
+.I escape
+code (top bit 1), a
+.I flash
+code (top bits 00), or a control code (top bits 01).
+A code of all zeros is ignored; a code of all ones is illegal.
+.PP
+A flash code specifies flashing one of 63 characters, as given by the remaining six bits.
+Since this is not enough to specify all possible characters,
+or even all characters in a single font \(en there are 108 per font \(en
+various control codes (described later) select a font and either the
+.I lower
+or
+.I upper
+half of the font.
+The lower half is the first 63 characters of the font; the upper half is the remaining 45.
+A flash code of 46 or higher in the upper half is illegal.
+.PP
+An escape code specifies horizontal motion.
+The size of the motion, in horizontal quanta, is the one\(cqs-complement of the low seven bits of the code.
+The direction of the motion is set by control codes.
+Hitting the right or left margin limit switch is illegal and will cause the machine to stop.
+The machine starts out, after initialization, hard against the left margin limit switch; an initial escape of 16 units
+.I must
+be given before starting work, and the position after this motion should be the limit of all future leftward motions.
+From this point, the distance to the right margin limit switch is about 7.5 inches.
+.PP
+A code with the top three bits 011 is a
+.I lead
+code, specifying vertical motion.
+The remaining five bits are the one\(cqs-complement of the size of the motion, in vertical quanta.
+The direction of motion is set by control codes.
+The amount of vertical motion is, in principle, limited only by running off the paper in the upward direction and by the limited capacity of the output cartridge in the downward direction.
+.PP
+A code with the top four bits 0101 is a size-change code, which specifies movement of the lens turret and the doubler lens to change point size.
+These codes are as follows:
+.PP
+.RS
+.nf
+.ta 2c
+Size	Code
+
+6	0101\*|1000
+7	0101\*|0000
+8	0101\*|0001
+9	0101\*|0111
+10	0101\*|0010
+11	0101\*|0011
+12	0101\*|0100
+14	0101\*|0101
+16	0101\*|1001
+18	0101\*|0110
+20	0101\*|1010
+22	0101\*|1011
+24	0101\*|1100
+28	0101\*|1101
+36	0101\*|1110
+.DT
+.fi
+.RE
+.PP
+Size changes involving the doubler lens alter the horizontal position.
+Changes from single to double sizes should be followed by a forward escape of 55 quanta;
+changes from double to single sizes should be followed by a reverse escape of 55 quanta.
+The single sizes are 6, 7, 8, 9, 10, 11, 12, 14, and 18;
+the double sizes are 16, 20, 22, 24, 28, and 36.
+.PP
+The control codes with the top four bits 0100 specify miscellaneous control codes, not all of which have valid meanings.
+They are:
+.PP
+.RS
+.ta 6c
+.nf
+initialize	0100\*|0000
+stop	0100\*|1001
+upper rail	0100\*|0010
+lower rail	0100\*|0001
+upper magazine	0100\*|0011
+lower magazine	0100\*|0100
+tilt up	0100\*|1110
+tilt down	0100\*|1111
+upper font half	0100\*|0110
+lower font half	0100\*|0101
+escape forward	0100\*|0111
+escape backward	0100\*|1000
+lead forward	0100\*|1010
+lead backward	0100\*|1100
+.fi
+.DT
+.RE
+.PP
+The
+.I initialize
+code causes leftward motion to the left margin limit switch, and sets the following modes:
+escape forward, lead forward, lower font half, lower rail, lower mag, tilt down.
+Note that the left margin limit switch does not define a precise position,
+and hence reinitializing the machine will destroy precise left-margin alignment.
+.PP
+The
+.I stop
+code stops the machine, which must be manually restarted (normally after changing output cartridges);
+this code should be used only at the end of a run.
+.PP
+Fonts are selected by the combination of
+.IR rail ,
+.IR magazine ,
+and
+.IR tilt .
+The tilt codes do not exist on the 4-font CAT; this is the only user-visible difference between the 4-font and 8-font machines.
+The correspondence between rail/magazine/tilt and font number is as follows:
+.PP
+.RS
+.nf
+.ta 2c 5c 7c 9c
+rail	magazine	tilt	4 font	8 font
+
+lower	lower	up	1	1
+lower	lower	down	1	2
+upper	lower	up	2	3
+upper	lower	down	2	4
+lower	upper	up	3	5
+lower	upper	down	3	6
+upper	upper	up	4	7
+upper	upper	down	4	8
+.DT
+.fi
+.RE
+.PP
+Several additional commands were introduced locally to ease the simulation of the CAT on a variety of raster plotters.
+Each is several bytes long.
+The first byte is the
+.I extension
+control code 0100\*|1011.
+The remaining bytes specify the command and its argument (if any, treated as an unsigned integer).
+The commands are:
+.PP
+.RS
+.nf
+.ta 6c
+big lead	0000\*|0001
+big escape	0000\*|0010
+formfeed	0000\*|0011
+.fi
+.DT
+.RE
+.PP
+The
+.I "big lead"
+code specifies vertical motion whose magnitude is 64 * the following byte.
+The
+.I "big escape"
+code specifies horizontal motion whose magnitude is 128 * the following byte.
+The
+.I formfeed
+code specifies an advance to the next page resetting the current row and column to <0,0>.
+.PP
+A complete CAT file should begin with an
+.I initialize
+code followed by an
+.IR escape -16
+code, and should end with 14 inches of trailer and a
+.I stop
+code.
+.
+.SH HEADER FILE
+In the following description of
+.IR cat.h ,
+.I b
+denotes an arbitrary byte treated as an unsigned integer,
+.I c
+denotes a CAT code and
+.IR i " or " j
+denotes a small positive integer.
+.
+.TP
+.B CAT_IS_CONTROL(c)
+Returns nonzero if
+.I c
+is a control code and zero otherwise.
+.
+.TP
+.B CAT_IS_DOUBLE(i)
+Returns nonzero if
+.I i
+is a double point size and zero otherwise.
+.
+.TP
+.B CAT_IS_DOUBLE_TO_SINGLE(i,j)
+Returns nonzero if and only if
+.I i
+is a double point size and
+.I j
+is a single point size.
+.
+.TP
+.B CAT_IS_ESCAPE(c)
+Returns nonzero if
+.I c
+is an escape code and zero otherwise.
+.
+.TP
+.B CAT_IS_FLASH(c)
+Returns nonzero if
+.I c
+is a flash code and zero otherwise.
+.
+.TP
+.B CAT_IS_LEADING(c)
+Returns nonzero if
+.I c
+is a leading code and zero otherwise.
+.
+.TP
+.B CAT_IS_SINGLE(i)
+Returns nonzero if
+.I i
+is a single point size and zero otherwise.
+.
+.TP
+.B CAT_IS_SINGLE_TO_DOUBLE(i,j)
+Returns nonzero if and only if
+.I i
+is a single point size and
+.I j
+is a double point size.
+.
+.TP
+.B CAT_IS_SIZE_CHANGE(c)
+Returns nonzero if
+.I c
+is a size change code and zero otherwise.
+.
+.TP
+.B CAT_ESCAPE(c)
+Returns the magnitude of the escape code
+.IR c .
+.
+.TP
+.B CAT_LEAD(c)
+Returns the magnitude of the lead code
+.IR c .
+.
+.TP
+.B CAT_SIZE_CHANGE(c)
+Extracts the size change from the point size code
+.I c
+translating the CAT encoding to the corresponding integer value.
+.
+.TP
+.B CAT_ENCODE_ESCAPE(i)
+Returns an escape code with magnitude
+.IR i .
+.
+.TP
+.B CAT_ENCODE_LEAD(i)
+Returns a lead code with magnitude
+.IR i .
+.
+.TP
+.B CAT_ENCODE_SIZE(i)
+Returns a point size change code for size
+.IR i .
+.
+.TP
+.B CAT_ENCODE_FLASH(i)
+Returns a flash code with font index
+.IR i .
+.
+.TP
+.B CAT_HORIZONTAL_UNITS
+The horizontal resolution per inch of the CAT-4/8 as a floating point number.
+.
+.TP
+.B CAT_LENSE_COMPENSATION
+The amount of compensatory escape for single/double point size transitions.
+.
+.TP
+.B CAT_MAX_FONT_INDEX
+The maximum number of glyphs on a CAT-4/8 filmstrip.
+.
+.TP
+.B CAT_VERTICAL_UNITS
+The vertical resolution per inch of the CAT-4/8 as a floating point number.
+.PP
+The constants:
+.nf
+
+	CAT_BIG_ESCAPE
+	CAT_BIG_LEAD
+	CAT_ESCAPE_BACKWARD
+	CAT_ESCAPE_FORWARD
+	CAT_EXTENSION
+	CAT_FORMFEED
+	CAT_INITIALIZE
+	CAT_LEAD_BACKWARD
+	CAT_LEAD_FORWARD
+	CAT_LOWER_FONT
+	CAT_LOWER_MAGAZINE
+	CAT_LOWER_RAIL
+	CAT_NOOP
+	CAT_STOP
+	CAT_TILT_DOWN
+	CAT_TILT_UP
+	CAT_UPPER_FONT
+	CAT_UPPER_RAIL
+	CAT_UPPER_MAGAZINE
+
+.fi
+.ft
+are provided as mnemonics for the CAT-4/8 control codes.
+.PP
+The structure:
+.nf
+.ta \w'typedef 'u +\w'char escape_where;  'u
+
+typedef struct CAT {
+	char escape_where;	/* BACKWARD or FORWARD */
+	char lead_where;	/* BACKWARD or FORWARD */
+	char font;		/* bit 0 => tilt, bit 1 => rail, bit 2 => magazine */
+	char font_half;		/* LOWER or UPPER */
+	char point_size;	/* current point size */
+} CAT;
+
+.DT
+.fi
+is used to represent the CAT internal state.
+.PP
+The constants:
+.nf
+
+	CAT_BACKWARD
+	CAT_FORWARD
+	CAT_LOWER
+	CAT_MAGAZINE
+	CAT_RAIL
+	CAT_TILT
+	CAT_UPPER
+
+.fi
+are provided as aids for setting and testing components of the state.
+.PP
+The constants:
+.nf
+
+	CAT_ROMAN_FONT
+	CAT_ITALIC_FONT
+	CAT_BOLD_FONT
+	CAT_SPECIAL_FONT
+
+.fi
+are the font positions assumed by
+.BR scribe (1)
+for the CAT-8.
+They are upward compatible with the default font postions assummed by
+.BR troff (1)
+for the CAT-4.
+.
+.SH AUTHORS
+Henry Spencer, University of Toronto
+.br
+Michael Gorlick, TRW
+.
+.SH BUGS
+The documentation and the hardware disagree on the initial tilt setting;
+the above describes the hardware.
+.
+.SH SEE ALSO
+.BR cati (1)
