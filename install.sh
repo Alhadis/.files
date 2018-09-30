@@ -63,7 +63,7 @@ command -v doas 2>&1 >/dev/null && sudo=doas
 		mocha
 		ppjson
 		prettier
-		uglify-es
+		terser
 	'
 	# Unlist Electron if running on OpenBSD; not yet ported
 	[ "`uname -s`" = OpenBSD ] &&
