@@ -1,5 +1,15 @@
 #!/bin/sh
 
+# Clear the clipboard's contents
+case $1 in
+	-c|--clear|\
+	-r|--reset)
+		printf '' | "$0";
+		printf 'Clipboard reset.\n' >&2
+		exit $?
+	;;
+esac
+
 # Copy to clipboard
 if [ ! -t 0 ]; then
 	if command -v pbcopy >/dev/null; then
