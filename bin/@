@@ -24,7 +24,7 @@ while [ "$1" ]; do case $1 in
 
 	# Print a short help notice
 	-h|--help|-\?)
-		>&2 printf 'Usage: @ [-m name] [-x name] ...files\n'
+		>&2 printf 'Usage: @ [-m name] [-r|--recompile] [-x name] ...files\n'
 		exit 0 ;;
 
 	# Open a manpage by name
@@ -32,6 +32,14 @@ while [ "$1" ]; do case $1 in
 		shift
 		path=`man -w $@ | head -n1` || exit 1
 		open `realpath "$path"`
+		exit $? ;;
+
+	# Recompile snippets.cson from YASR repository
+	-r|--recompile)
+		[ -d ~/.atom ]     || die "Can't locate ~/.atom"
+		[ -d ~/Labs/YASR ] || die "Can't locate ~/Labs/YASR"
+		printf "Recompiling: ~/.atom/snippets.cson\n"
+		cd ~/.atom && make snippets
 		exit $? ;;
 
 	# Open an executable by name
