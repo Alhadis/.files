@@ -1,11 +1,8 @@
 #!/bin/sh
 
 # Spiffy-looking symbol
-PS1='λ'
+[ "$DISPLAY" ] && PS1='λ' || PS1='$'
 
-case $TERM in
-	vt*|dumb) PS1='$' ;;
-esac
 
 # Dynamic prompt strings (Bash only)
 case `basename ${0#-}` in
