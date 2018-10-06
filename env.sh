@@ -12,8 +12,19 @@ paths='
 '; for path in $paths; do
 	[ -d "$path" ] && PATH="$PATH:$path";
 done
-unset paths
 export PATH
+
+# Define manual search paths
+MANPATH=:~/.files/share/man
+paths='
+	/usr/share/man
+	/usr/local/share/man
+	/usr/local/lib/node_modules/npm/man
+'; for path in $paths; do
+	[ -d "$path" ] && MANPATH="$MANPATH:$path"
+done
+export MANPATH
+unset paths
 
 export DWBHOME=/usr/local/dwb
 export GPG_TTY=`tty`
@@ -44,11 +55,6 @@ export CXX=clang++
 
 # Add Google's Depot-Tools to $PATH if they're installed
 [ -d ~/Mirrors/depot_tools ] && PATH=$PATH:~/Mirrors/depot_tools
-
-
-# OpenBSD: Additional documentation
-MANPATH=:~/.files/share/man
-MANPATH=$MANPATH:/usr/local/lib/node_modules/npm/man
 
 # Include other Troff implementations in search paths
 for path in "/usr/local/heirloom-doctools" "$DWBHOME"; do 
