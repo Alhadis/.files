@@ -1,5 +1,18 @@
-PATH=/sbin:/usr/sbin:/bin:/usr/local/sbin:/usr/local/bin:/usr/bin:/usr/X11R6/bin:/usr/games
-PATH=~/.files/bin:$PATH
+# Configure $PATH
+PATH=~/.files/bin
+paths='
+	/sbin
+	/usr/sbin
+	/bin
+	/usr/local/sbin
+	/usr/local/bin
+	/usr/bin
+	/usr/X11R6/bin
+	/usr/games
+'; for path in $paths; do
+	[ -d "$path" ] && PATH="$PATH:$path";
+done
+unset paths
 export PATH
 
 export DWBHOME=/usr/local/dwb
