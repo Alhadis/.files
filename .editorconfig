@@ -1,13 +1,36 @@
 root = true
 
 [*]
-charset = utf-8
-end_of_line = lf
-insert_final_newline = true
+indent_style             = tab
+tab_width                = 4
+charset                  = utf-8
+end_of_line              = lf
+insert_final_newline     = true
 trim_trailing_whitespace = false
-indent_style = tab
-indent_size = 4
+quote_type               = double
+curly_bracket_next_line  = false
+spaces_around_operators  = false
+spaces_around_brackets   = none
+indent_brace_style       = K&R
 
-[*.el]
+[*.{bat,cmd,com,ps1}]
+end_of_line     = crlf
+
+[*.{yml,yaml}]
+indent_style    = space
+indent_size     = 4
+
+[.git/COMMIT_EDITMSG]
+max_line_length = 72
+indent_style    = space
+indent_size     = 4
+
+[*.{cl,l,lisp,asd,lsp,ny,podsl,sexp,scm,sld,sps}]
+trim_trailing_whitespace = true
 indent_style = space
 indent_size = 2
+
+[*.{el,elc,eld,spacemacs,emacs_emacs,emacs.desktop,gnus,viper,abbrev_defs,Project.ede}]
+trim_trailing_whitespace = true
+indent_style = space
+indent_size  = 2
