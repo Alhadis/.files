@@ -132,11 +132,6 @@
 		"no-useless-rename": "error",
 		"no-var": "error",
 		"no-with": "error",
-		"operator-linebreak": [
-			"error",
-			"before",
-			{"overrides": {"=": "after"}}
-		],
 		"prefer-arrow-callback": "error",
 		"prefer-const": [
 			"error",
@@ -160,7 +155,6 @@
 		"prefer-object-spread": "error",
 		"prefer-rest-params": "error",
 		"prefer-spread": "error",
-		"prefer-template": "error",
 		"quotes": [
 			"error",
 			"double",
