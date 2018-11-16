@@ -51,19 +51,27 @@ command -v doas 2>&1 >/dev/null && sudo=doas
 		*) cmd="npm -g install"   ;;
 	esac
 	modules='
+		@alhadis/eslint-config
 		asar
 		browserify
+		chai
 		clean-css-cli
+		coffeelint
 		cson
 		electron
 		eslint
+		guess-sig
 		istanbul
 		jsdoc
 		json
 		mocha
 		ppjson
 		prettier
+		rollup
+		semver
 		terser
+		tslint
+		typescript
 	'
 	# Unlist Electron if running on OpenBSD; not yet ported
 	[ "`uname -s`" = OpenBSD ] &&
