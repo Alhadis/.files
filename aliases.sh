@@ -140,11 +140,8 @@ case `uname -s` in
 		alias chown='doas chown'
 		alias chgrp='doas chgrp'
 		alias chmod='doas chmod'
-		alias halt='doas halt'
 		alias mount='doas mount'
 		alias umount='doas umount'
-		alias pkg_add='doas pkg_add'
-		alias pkg_delete='doas pkg_delete'
 	;;
 
 	Darwin)
