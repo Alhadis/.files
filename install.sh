@@ -52,8 +52,11 @@ command -v doas 2>&1 >/dev/null && sudo=doas
 	esac
 	modules='
 		@alhadis/eslint-config
+		acorn
 		asar
+		babel-eslint
 		browserify
+		buble
 		chai
 		clean-css-cli
 		coffeelint
