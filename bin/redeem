@@ -1,6 +1,18 @@
 #!/bin/sh
 set -e
 
+#
+# redeem: Recover Type 1 PostScript fonts from bare resource forks.
+#
+
+# Ensure dependencies are available before running
+for i in exiftool file t1unmac; do
+	command -v $i 2>&1 >/dev/null || {
+		>&2 printf 'redeem: Required utility `%s` not found in $PATH\n' $i
+		exit 1
+	};
+done
+
 while [ "$1" ]; do
 	case "$1" in
 		=AdobeFnt07.lst | =AdobeFnt.lst)
