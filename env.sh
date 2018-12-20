@@ -62,4 +62,8 @@ for path in "/usr/local/heirloom-doctools" "$DWBHOME"; do
 	[ -d "$path/man" ] && MANPATH="$MANPATH:$path/man"
 done
 unset path
+
+# macOS's man(1) gets confused if $MANPATH starts with a colon
+case `uname` in [Dd]arwin) MANPATH=${MANPATH#:} ;; esac
+
 export PATH MANPATH
