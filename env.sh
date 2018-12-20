@@ -17,8 +17,8 @@ export PATH
 # Define manual search paths
 MANPATH=:~/.files/share/man
 paths='
-	/usr/share/man
 	/usr/local/share/man
+	/usr/share/man
 	/usr/local/lib/node_modules/npm/man
 '; for path in $paths; do
 	[ -d "$path" ] && MANPATH="$MANPATH:$path"
