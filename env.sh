@@ -8,6 +8,8 @@ paths='
 	/usr/local/bin
 	/usr/bin
 	/usr/X11R6/bin
+	/opt/local/sbin
+	/opt/local/bin
 	/usr/games
 '; for path in $paths; do
 	[ -d "$path" ] && PATH="$PATH:$path";
@@ -19,6 +21,7 @@ MANPATH=:~/.files/share/man
 paths='
 	/usr/local/share/man
 	/usr/share/man
+	/opt/local/share/man
 	/usr/local/lib/node_modules/npm/man
 '; for path in $paths; do
 	[ -d "$path" ] && MANPATH="$MANPATH:$path"
