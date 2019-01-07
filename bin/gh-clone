@@ -4,7 +4,7 @@
 # gh-clone: Clone a GitHub repository using "user/repo" shorthand.
 #
 usage='gh-clone [-r|--recursive] username/repository'
-version='v1.0.0'
+version='v1.1.0'
 recurse=
 
 # Parse command-line switches
@@ -63,8 +63,8 @@ if printf "$1" | grep -vq -e'/'; then
 	printf 'git clone %s %s\n' "$recurse" "$src" | sed -e 's/  */ /g'
 	git clone $recurse "$src"
 
-# Single argument: "user/repo"
-else
+# Shorthand: `user/repo'
+elif printf "$1" | grep -qe'^[^/@]*/[^/@]*$'; then
 	user=`printf %s "$1" | cut -d/ -f1`
 	repo=`printf %s "$1" | cut -d/ -f2`
 	[ "$user" ] && [ "$repo" ] || {
@@ -72,4 +72,6 @@ else
 		exit 2;
 	}
 	git clone $recurse "git@github.com:${user}/${repo}.git"
-fi
+
+# Assume anything else uses a conventional address format
+else git clone $recurse "$1"; fi
