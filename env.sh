@@ -21,6 +21,7 @@ MANPATH=:~/.files/share/man
 paths='
 	/usr/local/share/man
 	/usr/share/man
+	/usr/X11/man
 	/opt/local/share/man
 	/usr/local/lib/node_modules/npm/man
 '; for path in $paths; do
@@ -42,6 +43,7 @@ export PERL5LIB=~/perl5/lib/perl5:$PERL5LIB
 export PERL_LOCAL_LIB_ROOT=~/perl5:$PERL_LOCAL_LIB_ROOT
 export PERL_MB_OPT='--install_base "~/perl5"'
 export PERL_MM_OPT="INSTALL_BASE=~/perl5"
+export MANPATH=$MANPATH:~/perl5/man
 
 # Prefer Emacs for terminal-based editing
 EDITOR=`command -v emacs 2>/dev/null`
