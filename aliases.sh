@@ -148,7 +148,14 @@ case `uname -s` in
 		# Update installed Homebrew formulae
 		alias bup='brew update && brew upgrade --all && brew cleanup --prune=0'
 		
-		# Nuke .DS_Store junk
-		alias dsclean='find . -type f -name .DS_Store -exec rm -fP {} +'
+		# Apple recommend diskutil(1) be used instead of umount(1)
+		alias umount='diskutil unmount'
+		
+		# Remove annoying extended attributes added to downloads
+		alias unquarantine='xattr -d com.apple.quarantine * 2>/dev/null || true'
+		
+		# Alias unreachable commands specific to macOS
+		alias scrub='~/.files/etc/darwin/scrub.sh'
+		alias PlistBuddy='/usr/libexec/PlistBuddy'
 	;;
 esac
