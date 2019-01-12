@@ -1,0 +1,140 @@
+.\" -*- coding: utf-8 -*-
+.Dd January 12, 2019
+.Dt FORMAT-BYTES 1
+.Os
+.Sh NAME
+.Nm format-bytes
+.Nd format a number of bytes for human-readable output
+.Sh SYNOPSIS
+.Nm
+.Op Fl hl
+.Op Fl d Ar decimals
+.Op Fl f Ar filename
+.Ar bytes ...
+.Sh DESCRIPTION
+The
+.Nm
+utility formats a list of
+.Ar bytes
+for human-readable output.
+For example,
+.Ql Nm Ar 4358361
+prints
+.Qq 4.16 MBs .
+.Nm
+reads from standard input if no
+.Ar bytes
+are passed.
+.
+.
+.\" Options
+.Bl -tag -width 4n
+.It Fl d , -decimals Ar num
+Specify maximum decimal length
+.Ar ( num
+digits after the decimal point).
+Default:
+.Ar 2 .
+.
+.It Fl f , -filename Ar file
+Read bytes from
+.Ar file 's
+size instead of the specified amount(s).
+.
+.It Fl h , -help
+Display a short usage summary, then exit.
+.
+.It Fl l , -long-names
+Use long unit-names like
+.Qq Kilobytes
+rather than
+.Qq KB .
+.El
+.
+.Ss Obsolete options
+The following switches were defined in the original
+.Xr bash 1
+implementation of
+.Nm ,
+but have since been removed.
+They have no effect and only supported for compatibility with older scripts:
+.
+.Bl -tag -width 4n
+.It Fl p
+Pluralise short-units when necessary.
+The purpose of this switch was to toggle between
+.Qq 2.5 KB
+and
+.Qq 2.5 KBs ,
+which is now determined based on whether a result equals 1.
+Note that the
+.Qq B
+unit is never pluralised.
+.
+.It Fl p
+By default,
+.Nm
+This option was formerly used to preserve redundant zeroes so
+.Ql 20 KB
+becomes formatted as
+.Ql 20.00 KB .
+This feature has since been removed, and needless zeroes are always stripped.
+.El
+.
+.Sh EXIT STATUS
+.Ex -std
+.
+.Sh EXAMPLES
+Basic usage:
+.Bd -literal -compact -offset 4n
+.Li $ Nm Ar 1600 No "        # 1.56 KB"
+.Ed
+.
+.Pp
+Use longer measurement units:
+.Bd -literal -compact -offset 4n
+.Li $ Nm Fl l Ar 1600 No "     # 1.56 Kilobytes"
+.Ed
+.
+.Pp
+Read a file's size instead:
+.Bd -literal -compact -offset 4n
+.Li $ Nm Fl f Ar README.md
+.Ed
+.
+.Sh SEE ALSO
+.Xr bc 1 ,
+.Xr dc 1 ,
+.Xr units 1
+.
+.Sh HISTORY
+.Nm
+was written on March 15th as a
+.Xr bash 1
+script, with numerous bugs and awkward documentation.
+A real manpage was added on May 14th, though it contained many mistakes.
+.
+.Pp
+The
+.Nm
+utility was rewritten in
+.Xr perl 1
+on January 12th 2019, and its manpage rewritten in
+.Xr mdoc 7
+instead of
+.Xr man 7
+macros.
+This new version added support for long-option names, simplified unit-formatting to be predictable and consistent,
+and dropped support for the
+.Fl f
+and
+.Fl k
+switches.
+.
+.Sh AUTHORS
+.An -nosplit
+Copyright \(co 2015-2019
+.An John Gardner Aq Mt gardnerjohng@gmail.com .
+.Pp
+Freely released under the
+.Lk http://opensource.org/licenses/ISC "ISC license" .

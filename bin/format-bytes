@@ -1,0 +1,53 @@
+#!/usr/bin/env perl
+use strict;
+use warnings;
+use autodie;
+use v5.14;
+use Getopt::Long qw< :config bundling >;
+use POSIX;
+
+# Parse CLI options
+my $decimals    = 2;
+my $filename    = "";
+my $long_names  = 0;
+my $show_help   = 0;
+
+GetOptions(
+	"d|decimals=n"  => \$decimals,
+	"f|filename=s"  => \$filename,
+	"l|long-names"  => \$long_names,
+	"h|help|?"      => \$show_help,
+	"p|pluralise"   => 0,
+	"k|keep-zeroes" => 0,
+);
+
+# Print a short usage summary and exit
+say "Usage: format-bytes [-hlpk] [-d num] [-f file] bytes" and exit if $show_help;
+
+my @units = $long_names
+	? qw(Byte Kilobyte Megabyte Gigabyte Terabyte Petabyte Exabyte Zettabyte Yottabyte)
+	: qw(B KB MB GB TB PB EB ZB YB);
+
+# Read byte-count from a filesize instead
+if($_ = $filename){
+	die "Not a file: $_" unless -f;
+	die "Can't stat: $_" unless scalar (@ARGV = (-s));
+}
+
+unless(scalar @ARGV or -t){
+	local $/ = undef;
+	@ARGV = split(/\s+/, <>);
+}
+
+# Format each argument as a number of bytes
+for my $bytes (@ARGV){
+	warn("Invalid byte-count: $bytes") && next unless $bytes =~ /^[0-9]+$/;
+	my $unit;
+	for(@units){
+		$unit = $_;
+		$bytes >= 1024 ? $bytes /= 1024 : last;
+	}
+	($bytes = sprintf "\%.${decimals}f", $bytes) =~ s/\.0*$//g;
+	$unit .= "s" unless $bytes == 1 or $unit eq "B";
+	say "$bytes $unit";
+}

@@ -1,0 +1,64 @@
+#!/usr/bin/env perl
+use strict;
+use warnings;
+
+use utf8;
+use open         qw< :std :utf8 >;
+use charnames    qw< :full >;
+use feature      qw< unicode_strings >;
+use Getopt::Long qw< :config auto_abbrev >;
+use POSIX;
+
+# Parse CLI options
+my $max_width    = `tput cols`;
+my $from         = 0;
+my $to           = $max_width;
+my $major_colour = 7;
+my $minor_colour = 8;
+my $reset_colour;
+my $inverted;
+
+GetOptions (
+	"major-colour=i" => \$major_colour,
+	"minor-colour=i" => \$minor_colour,
+	"inverted"       => \$inverted,
+	"from=i"         => \$from,
+	"to=i"           => \$to
+);
+
+
+# Prepare some variables for output
+my $width       = $to - $from;
+$major_colour   = `tput setaf $major_colour`;
+$minor_colour   = `tput setaf $minor_colour`;
+$reset_colour   = `tput sgr0`;
+
+
+# Ruler units
+my $length_from = length $from;
+my $length_to   = length $to;
+my $buffer      = $width - ($length_from + $length_to);
+my $offset      = POSIX::floor($length_to / 2);
+$buffer -= 1 if $length_to <3;
+$buffer += $offset if(!($to + $offset > $max_width));
+my $whitespace  = " " x $buffer;
+
+# Ruler frame
+my $repeat_char =  defined $inverted ? "╤" : "╧";
+my $border      =  $repeat_char x ($width - 2);
+$border         =~ s/(.{9})./$1${major_colour}${repeat_char}${minor_colour}/g;
+
+my @ruler_parts = (
+	"${from}${whitespace}${to}", "\n",
+	
+	"${major_colour}╞${minor_colour}" .
+	"${border}${major_colour}╡${reset_colour}"
+);
+
+
+if(defined $inverted){
+	@ruler_parts = reverse @ruler_parts;
+}
+
+print @ruler_parts;
+print "\n";
