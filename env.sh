@@ -10,6 +10,8 @@ paths='
 	/usr/X11R6/bin
 	/opt/local/sbin
 	/opt/local/bin
+	/opt/tools/sbin
+	/opt/tools/bin
 	/usr/games
 '; for path in $paths; do
 	[ -d "$path" ] && PATH="$PATH:$path";
@@ -22,8 +24,10 @@ paths='
 	/usr/local/share/man
 	/usr/share/man
 	/usr/X11/man
+	/opt/local/man
 	/opt/local/share/man
 	/usr/local/lib/node_modules/npm/man
+	/opt/tools/man
 '; for path in $paths; do
 	[ -d "$path" ] && MANPATH="$MANPATH:$path"
 done
@@ -66,6 +70,12 @@ for path in "/usr/local/heirloom-doctools" "$DWBHOME"; do
 	[ -d "$path/man" ] && MANPATH="$MANPATH:$path/man"
 done
 unset path
+
+# SmartOS: Include `/smartdc/*' directories in search paths
+[ -d /smartdc ] && {
+	PATH="$PATH:/smartdc/bin:/opt/smartdc/bin:/opt/smartdc/agents/bin"
+	MANPATH="$MANPATH:/smartdc/man:/opt/smartdc/man"
+}
 
 # macOS's man(1) gets confused if $MANPATH starts with a colon
 case `uname` in [Dd]arwin) MANPATH=${MANPATH#:} ;; esac
