@@ -1,0 +1,46 @@
+#!/bin/sh
+
+#
+# rainbow: Show every xterm colour
+#
+
+abc='ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz'
+bar=`printf %30.s`
+csi='\033['
+tab='	'
+
+# Pipe result through less(1) unless output is already redirected
+[ -t 1 ] && prog="less -R" || prog="tee"
+
+# Execute the main body in a subshell; we need a way of redirecting stderr
+# because posh(1) complains about something weird regarding "bad numbers".
+(
+	# Print a sequence of integers
+	mkrange(){
+		for i in {A..Z}; do
+			
+			# Use brace expansion when possible
+			if [ "$i" = A ]; then eval "echo {$1..$2}";
+			
+			# Otherwise, do things the *much* slower way
+			else i=$1; while [ $i -le $2 ]; do printf '%s ' "$i"; i=`printf '%s + 1\n' $i | bc`
+			
+			done; fi; break
+		done
+	}
+
+	# Assume non-graphical environments are limited to 8-bit
+	if [ -z "$DISPLAY" ]; then
+		range=`mkrange 0 7`
+		for i in $range; do
+			printf "$i${tab}${csi}3${i}m$abc${tab}${csi}4${i}m${bar}${csi}0m\n"
+		done
+
+	# Otherwise, assume 256-colour terminal
+	else
+		range=`mkrange 0 255`
+		for i in $range; do
+			printf "$i${tab}${csi}38;5;${i}m$abc${tab}${csi}48;5;${i}m${bar}${csi}0m\n"
+		done
+	fi
+) 2>/dev/null | $prog
