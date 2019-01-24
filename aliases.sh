@@ -148,6 +148,9 @@ case `uname -s` in
 		# Update installed Homebrew formulae
 		alias bup='brew update && brew upgrade --all && brew cleanup --prune=0'
 		
+		# Print power diagnostics (battery-level and charge status)
+		alias pow='pmset -g batt'
+		
 		# Apple recommend diskutil(1) be used instead of umount(1)
 		alias umount='diskutil unmount'
 		
