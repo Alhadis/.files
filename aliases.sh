@@ -32,6 +32,8 @@ alias df='df -h'
 alias du='du -h'
 alias mv='mv -i'
 alias cp='cp -i'
+alias diff='diff -r'
+alias scp='scp -pr'
 
 
 # Aliases for programs that mightn't be available/installed
