@@ -164,6 +164,7 @@ case `uname -s` in
 		alias unquarantine='xattr -d com.apple.quarantine * 2>/dev/null || true'
 		
 		# Alias unreachable commands specific to macOS
+		alias fit='~/.files/etc/darwin/fit-terminal.scpt'
 		alias scrub='~/.files/etc/darwin/scrub.sh'
 		alias PlistBuddy='/usr/libexec/PlistBuddy'
 	;;
