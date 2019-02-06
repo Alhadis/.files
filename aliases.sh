@@ -152,7 +152,7 @@ case `uname -s` in
 
 	Darwin)
 		# Update installed Homebrew formulae
-		alias bup='brew update && brew upgrade --all && brew cleanup --prune=0'
+		alias bup='brew update && brew upgrade && brew cleanup --prune=0'
 		
 		# Print power diagnostics (battery-level and charge status)
 		alias pow='pmset -g batt'
