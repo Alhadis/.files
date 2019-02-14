@@ -9,5 +9,5 @@
  '(help-window-select t))
 
 (custom-set-faces
- '(font-lock-function-name-face ((t (:foreground "black" :weight bold))))
+ '(font-lock-function-name-face ((t (:weight bold))))
  '(match ((t (:background "brightcyan" :foreground "black")))))

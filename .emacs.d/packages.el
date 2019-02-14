@@ -24,6 +24,7 @@
      dockerfile-mode
      dotenv-mode
      dyalog-mode
+     editorconfig
      enh-ruby-mode
      erlang
      fic-mode

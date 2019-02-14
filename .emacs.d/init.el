@@ -25,7 +25,7 @@
 
 ;; Filetype mappings
 (add-to-list 'interpreter-mode-alist '("node" . js2-mode))
-(add-to-list 'auto-mode-alist '("\\.m?js\\'" . js2-mode))
+(add-to-list 'auto-mode-alist '("\\.[cm]?js\\'" . js2-mode))
 (add-to-list 'auto-mode-alist '("\\.jsx$" . js2-jsx-mode))
 (add-to-list 'auto-mode-alist '("\\.eslintrc$" . js2-mode))
 (add-to-list 'auto-mode-alist '("\\.tmac$" . nroff-mode))
