@@ -103,6 +103,22 @@ encodeurl(){
 }
 
 
+# Convert PostScript to PNG
+ps2png(){
+	command -v gs 2>&1 >/dev/null || {
+		>&2 printf 'GhostScript is required to use this function.\n'
+		return 1
+	}
+	[ $# -lt 1 ] && {
+		>&2 printf 'Usage: ps2png [files...]\n'
+		return 1
+	}
+	for arg in "$@"; do
+		\gs -q -r300 -dTextAlphaBits=4 -sDEVICE=png16m -o "${arg%.ps}-%d.png" "$arg"
+	done; unset arg
+}
+
+
 # Assign a filename suffix to a list of files
 suffix(){
 	[ $# -lt 2 ] && {
