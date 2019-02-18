@@ -13,7 +13,12 @@ paths='
 	/opt/tools/sbin
 	/opt/tools/bin
 	/usr/games
+	~/.deno/bin
+	~/.local/bin
+	~/go/bin
+	~/Mirrors/depot_tools
 '; for path in $paths; do
+	case $path in \~/*) path=~/${path#\~/};; esac
 	[ -d "$path" ] && PATH="$PATH:$path";
 done
 export PATH
@@ -61,9 +66,6 @@ EDITOR=`command -v emacs 2>/dev/null`
 # Prefer LLVM for building projects
 export CC=clang
 export CXX=clang++
-
-# Add Google's Depot-Tools to $PATH if they're installed
-[ -d ~/Mirrors/depot_tools ] && PATH=$PATH:~/Mirrors/depot_tools
 
 # Include other Troff implementations in search paths
 for path in "/usr/local/heirloom-doctools" "$DWBHOME"; do 
