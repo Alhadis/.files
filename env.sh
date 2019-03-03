@@ -67,6 +67,12 @@ EDITOR=`command -v emacs 2>/dev/null`
 export CC=clang
 export CXX=clang++
 
+# Nodebrew: Include paths for currently-selected version
+have nodebrew && [ -x ~/.nodebrew/current/bin/node ] && {
+	PATH=~/.nodebrew/current/bin:"$PATH"
+	MANPATH=~/.nodebrew/current/share/man:"$MANPATH"
+}
+
 # Include other Troff implementations in search paths
 for path in "/usr/local/heirloom-doctools" "$DWBHOME"; do 
 	[ -d "$path/bin" ] && PATH="$path/bin:$PATH"
