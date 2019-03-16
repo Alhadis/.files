@@ -68,6 +68,7 @@ command -v doas 2>&1 >/dev/null && sudo=doas
 		jsdoc
 		json
 		mocha
+		mocha-when
 		ppjson
 		prettier
 		rollup
