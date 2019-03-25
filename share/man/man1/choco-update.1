@@ -1,0 +1,57 @@
+.Dd March 25, 2019
+.Dt CHOCO-UPDATE 1
+.Os Windows
+.
+.Sh NAME
+.Nm choco-update
+.Nd deprecated version of `choco upgrade`
+.
+.Sh SYNOPSIS
+.Nm choco Cm update
+.
+.Sh DESCRIPTION
+.Sy NOTE :
+Update has been deprecated and will be removed/replaced in version 1.0.0 with something that performs the functions of updating package indexes.
+Please use
+.Xr choco-upgrade 1
+instead.
+.
+.Ss Options
+.Bl -tag -width 4n
+.
+.It Fl -pre , Fl -prerelease
+Whether to include prereleases.
+Defaults to false.
+.
+.It Fl s , Fl -source Ns No = Ns Ar VALUE
+The source to find the package(s) to install.
+Special sources include:
+.Ql ruby ,
+.Ql webpi ,
+.Ql cygwin ,
+.Ql windowsfeatures ,
+and
+.Ql python .
+Defaults to default feeds.
+.
+.It Fl -version Ns No = Ns Ar VALUE
+A specific version to install.
+Defaults to unspecified.
+.El
+.
+.Sh SEE ALSO
+.Xr choco 1 ,
+.Xr choco-upgrade 1
+.
+.Sh HISTORY
+Last revised for
+.Nm choco
+v0.10.11.
+.
+.Sh AUTHORS
+\(co 2011-2017 RealDimensions Software, LLC
+.br
+\(co 2017-2019 Chocolatey Software, Inc
+.Pp
+Man page written by
+.An Alhadis Aq Mt gardnerjohng\&@\&gmail.com .

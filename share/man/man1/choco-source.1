@@ -1,0 +1,125 @@
+.Dd March 25, 2019
+.Dt CHOCO-SOURCE 1
+.Os Windows
+.
+.Sh NAME
+.Nm choco-source
+.Nd view and configure default sources
+.
+.Sh SYNOPSIS
+.Nm choco Cm source Op list Ns No | add Ns No | remove Ns No | disable Ns No | enable Op options
+.
+.Sh DESCRIPTION
+Interact with sources.
+.Pp
+.Sy NOTE :
+Mostly compatible with older chocolatey client (0.9.8.x and below) with options and switches.
+When enabling, disabling or removing a source, use
+.Fl name
+in front of the option now.
+In most cases you can still pass options and switches with one dash
+.Pq Dq \N'45' .
+For more details, see the command reference
+.Pq Dq choco -?
+or
+.Dq man choco .
+.
+.Pp
+When it comes to the source location, this can be a folder/file share or an HTTP location.
+If it is a URL,
+it will be a location you can go to in a browser and it returns OData with something that says Packages in the browser,
+similar to what you see when you go to
+.Lk https://chocolatey.org/api/v2/ .
+.
+.
+.Ss Options
+.Bl -tag -width 4n
+.It Fl -adminonly , Fl -admin-only
+Whether this source should be visible to non-administrators.
+Requires business edition (v1.12.2+).
+Defaults to false.
+Available since v0.10.8+.
+.
+.It Fl -allowselfservice , Fl -allow-self-service
+Whether this source should be allowed to be used with self-service.
+Requires business edition (v1.10.0+) with feature
+.Dq useBackgroundServiceWithSelfServiceSourcesOnly
+turned on.
+Defaults to false.
+Available since v0.10.4.
+.
+.It Fl -bypassproxy , Fl -bypass-proxy
+Whether this source should explicitly bypass any explicitly or system configured proxies.
+Defaults to false.
+Available since v0.10.4.
+.
+.It Fl -cert Ns No = Ns Ar VALUE
+Client certificate \(en
+PFX pathname for an x509 authenticated feeds.
+Defaults to the empty string.
+Available since v0.9.10.
+.
+.It Fl -cp , Fl -certpassword Ns No = Ns Ar VALUE
+The client certificate's password to the source.
+Defaults to the empty string.
+Available since v0.9.10.
+.
+.It Fl n , Fl -name Ns No = Ns Ar VALUE
+The name of the source.
+Required with some actions.
+Defaults to empty.
+.
+.It Fl p , Fl -password Ns No = Ns Ar VALUE
+The user's password to the source.
+Encrypted in
+.Pa chocolatey.config
+file.
+.
+.It Fl -priority Ns No = Ns Ar VALUE
+The priority order of this source as compared to other sources, lower is better.
+Defaults to
+.Ar 0
+(no priority).
+All priorities above 0 will be evaluated first, then zero-based values will be evaluated in config file order.
+Available since v0.9.9.9.
+.
+.It Fl s , Fl -source Ns No = Ns Ar VALUE
+The source.
+This can be a folder/file share or an HTTP location.
+If it is a URL,
+it will be a location you can go to in a browser and it returns OData with something that says Packages in the browser,
+similar to what you see when you go to
+.Lk https://chocolatey.org/api/v2/ .
+Defaults to the empty string.
+.
+.It Fl u , Fl -user Ns No = Ns Ar VALUE
+Username, used with authenticated feeds.
+Defaults to the empty string.
+.El
+.
+.Sh EXAMPLES
+.Bd -literal
+.Nm choco Cm source
+.Nm choco Cm source list
+.Nm choco Cm source add Fl n Ns No = Ns Ar bob Fl s Ns No = Ns Qq Ar https://somewhere/out/there/api/v2/
+.Nm choco Cm source add Fl n Ns No = Ns Ar bob Fl s Qo Ar 'https://somewhere/out/there/api/v2/' Qc Fl cert Ns No = Ns Ar \eUsers\ebob\ebob\.pfx
+.Nm choco Cm source add Fl n Ns No = Ns Ar bob Fl s Qo Ar 'https://somewhere/out/there/api/v2/' Qc Fl u    Ns No = Ns Ar bob Fl p Ns No = Ns Ar 12345
+.Nm choco Cm source disable Fl n Ns No = Ns Ar bob
+.Nm choco Cm source enable Fl n Ns No = Ns Ar bob
+.Nm choco Cm source remove Fl n Ns No = Ns Ar bob
+.Ed
+.
+.
+.\" ----------------------------------------------------------------------------
+.Sh HISTORY
+Last revised for
+.Nm choco
+v0.10.11.
+.
+.Sh AUTHORS
+\(co 2011-2017 RealDimensions Software, LLC
+.br
+\(co 2017-2019 Chocolatey Software, Inc
+.Pp
+Man page written by
+.An Alhadis Aq Mt gardnerjohng\&@\&gmail.com .

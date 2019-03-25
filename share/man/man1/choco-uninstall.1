@@ -1,0 +1,248 @@
+.Dd March 25, 2019
+.Dt CHOCO-UNINSTALL 1
+.Os Windows
+.
+.Sh NAME
+.Nm choco-uninstall ,
+.Nm cuninst
+.Nd uninstall a package
+.
+.Sh SYNOPSIS
+.Nm choco Cm uninstall
+.    Op pkg Ns | Ns all
+.    Op pkg2 pkgN
+.    Op options
+.Nm cuninst
+.    Op pkg Ns | Ns all
+.    Op pkg2 pkgN
+.    Op options
+.
+.Sh DESCRIPTION
+Uninstall a package or a list of packages.
+Some may prefer to use
+.Sy cuninst
+as a shortcut for
+.Ql choco uninstall .
+.
+.Pp
+100% compatible with older chocolatey client (0.9.8.32 and below) with options and switches.
+Add `-y` for previous behaviour with no prompt.
+In most cases you can still pass options and switches with one dash
+.Pq Dq \N'45' .
+For more details, see the command reference
+.Pq Dq choco -?
+or
+.Dq man choco .
+.
+.Pp
+Choco 0.9.9+ automatically tracks registry changes for
+.Dq Programs and Features
+of the underlying software\(cqs native installers when installing packages.
+The
+.Dq Automatic Uninstaller
+.Pq auto uninstaller
+service is a feature that can use that information to automatically determine how to uninstall these natively installed applications.
+This means that a package may not need an explicit
+.Pa chocolateyUninstall.ps1
+to reverse the installation done in the install script.
+.
+.Pp
+Chocolatey tracks packages, which are the files in
+.Ql $env:ChocolateyInstall\elib\epackagename .
+These packages may or may not contain the software (applications/tools) that each package represents.
+The software may actually be installed in
+.Sy Program Files
+.Pq most native installers will install the software there
+or elsewhere on the machine.
+.
+.Pp
+With auto uninstaller turned off, a
+.Pa chocolateyUninstall.ps1
+is required to perform uninstall from the system.
+In the absence of
+.Pa chocolateyUninstall.ps1 ,
+.Nm choco Cm uninstall
+only removes the package from Chocolatey but does not remove the software from your system
+.Pq unless in the package directory .
+.
+.Pp
+A package with a failing uninstall can be removed with the
+.Ql Fl n Fl -skipautouninstaller
+flags.
+This will remove the package from chocolatey without attempting to uninstall the program.
+.
+.Pp
+Starting in 0.9.10+, the Automatic Uninstaller (AutoUninstaller) is turned on by default.
+To turn it off, run the following command:
+.Bd -literal -offset 4n
+.Nm choco Cm feature disable Fl n Ar autoUninstaller
+.Ed
+.Pp
+Chocolatey Pro / Business automatically synchronizes with Programs and Features,
+ensuring manually removed apps are automatically removed from Chocolatey\(cqs repository.
+.
+.Pp
+Synchroniser and AutoUninstaller enhancements in licensed versions of Chocolatey ensure that Autouninstaller is up to 95% effective at removing software without an uninstall script.
+This is because synchroniser ensures the registry snapshot stays up to date and licensed enhancements have the ability to inspect more locations to determine how to automatically uninstall software.
+.Pp
+.Sy NOTE :
+.Ql all
+is a special package keyword that will allow you to uninstall all packages.
+.
+.
+.Ss Options
+.Sy NOTE :
+Options and switches apply to all items passed,
+so if you are installing multiple packages, and you use
+.Fl -version Ns No = Ns Ar 1.0.0 ,
+it is going to look for and try to install version 1.0.0 of every package passed.
+So please split out multiple package calls when wanting to pass specific options.
+.
+.Bl -tag -width 4n
+.It Fl a , Fl -allversions , Fl -all-versions
+Whether to uninstall all versions.
+Defaults to false.
+.
+.It Fl -argsglobal , Fl -args-global , Fl -installargsglobal , Fl -install-args-global , \
+Fl -applyargstodependencies , Fl -apply-args-to-dependencies , Fl -apply-install-arguments-to-dependencies
+Whether install arguments should be applied to dependent packages.
+Defaults to false.
+.
+.It Fl -autouninstaller , Fl -use-autouninstaller
+Whether to use auto-uninstaller service when uninstalling.
+Overrides the default feature
+.Dq autoUninstaller
+set to
+.Ar True .
+Available since v0.9.10.
+.
+.It Fl -failonautouninstaller , Fl -fail-on-autouninstaller
+Whether to fail the package uninstall if the auto uninstaller reports an error.
+Overrides the default feature
+.Dq failOnAutoUninstaller
+set to
+.Ar False .
+Available since v0.9.10.
+.
+.It Fl -ignoreautouninstallerfailure , Fl -ignore-autouninstaller-failure
+Do not fail the package if auto uninstaller reports an error.
+Overrides the default feature
+.Dq failOnAutoUninstaller
+set to
+.Ar False .
+Available since v0.9.10.
+.
+.It Fl -ignorepackagecodes , Fl -ignorepackageexitcodes , Fl -ignore-package-codes , Fl -ignore-package-exit-codes
+Exit with a 0 for success and 1 for non-success, no matter what package scripts provide for exit codes.
+Overrides the default feature
+.Dq usePackageExitCodes
+set to
+.Ar True .
+Available since v0.9.10.
+.
+.It Fl m , Fl -sxs , Fl -sidebyside , Fl -side-by-side , Fl -allowmultiple , Fl -allow-multiple , \
+Fl -allowmultipleversions , Fl -allow-multiple-versions
+Whether multiple versions of a package should be installed.
+Defaults to false.
+.
+.It Fl n , Fl -skippowershell , Fl -skip-powershell , Fl -skipscripts , Fl -skip-scripts , Fl -skip-automation-scripts
+Do not run
+.Pa chocolateyUninstall.ps1 .
+Defaults to false.
+.
+.It Fl -notsilent , Fl  -not-silent
+Do not uninstall this silently.
+Defaults to false.
+.
+.It Fl o , Fl -override , Fl -overrideargs , Fl -overridearguments , Fl -override-arguments
+Whether uninstall arguments should be used exclusively without appending to current package passed arguments.
+Defaults to false.
+.
+.It Fl -params , Fl -parameters , Fl -pkgparameters , Fl -packageparameters , Fl -package-parameters Ns No = Ns Ar VALUE
+Parameters to pass to the package.
+Defaults to unspecified.
+.
+.It Fl -paramsglobal , Fl -params-global Fl , -packageparametersglobal , Fl -package-parameters-global , \
+Fl -applyparamstodependencies , Fl -apply-params-to-dependencies , Fl -apply-package-parameters-to-dependencies
+Whether package parameters should be applied to dependent packages.
+Defaults to false.
+.
+.It Fl s , Fl -source Ns No = Ns Ar VALUE
+The source to find the package(s) to install.
+Special sources include:
+.Ql ruby ,
+.Ql webpi ,
+.Ql cygwin ,
+.Ql windowsfeatures ,
+and
+.Ql python .
+Defaults to default feeds.
+.
+.It Fl -skipautouninstaller , Fl -skip-autouninstaller
+Skip auto uninstaller service when uninstalling.
+Overrides the default feature
+.Dq autoUninstaller
+set to
+.Ar True .
+Available since v0.9.10.
+.
+.It Fl -stoponfirstfailure , Fl -stop-on-first-failure , Fl -stop-on-first-package-failure
+Stop running install, upgrade or uninstall on first package failure instead of continuing with others.
+Overrides the default feature
+.Dq stopOnFirstPackageFailure
+set to
+.Ar False .
+Available since v0.10.4.
+.
+.It Fl -ua , Fl -uninstallargs , Fl -uninstallarguments , Fl -uninstall-arguments Ns No = Ns Ar VALUE
+Uninstall Arguments to pass to the native installer in the package.
+Defaults to unspecified.
+.
+.It Fl -usepackagecodes , Fl -usepackageexitcodes , Fl -use-package-codes , Fl -use-package-exit-codes
+Package scripts can provide exit codes.
+Use those for
+.Nm choco Ns \(cqs exit code when non-zero
+(this value can come from a dependency package).
+Chocolatey defines valid exit codes as 0, 1605, 1614, 1641, 3010.
+Overrides the default feature
+.Dq usePackageExitCodes
+set to
+.Ar True .
+Available since v0.9.10.
+.
+.It Fl -version Ns No = Ns Ar VALUE
+A specific version to uninstall.
+Defaults to unspecified.
+.
+.It Fl x , Fl -forcedependencies , Fl -force-dependencies , Fl -removedependencies , Fl -remove-dependencies
+Uninstall dependencies when uninstalling package(s).
+Defaults to false.
+.El
+.
+.
+.Sh EXAMPLES
+.Bd -literal
+.Nm choco Cm uninstall No git
+.Nm choco Cm uninstall No notepadplusplus googlechrome atom 7zip
+.Nm choco Cm uninstall No notepadplusplus googlechrome atom 7zip Fl dv
+.Nm choco Cm uninstall No ruby Fl -version Ar 1.8.7.37402
+.Nm choco Cm uninstall No nodejs.install Fl -all-versions
+.Ed
+.
+.Sh SEE ALSO
+.Xr choco 1
+.Pp
+.Lk https://raw.githubusercontent.com/wiki/chocolatey/choco/images/gifs/choco_uninstall.gif "See it in action" .
+.
+.Sh HISTORY
+Last revised for
+.Nm choco
+v0.10.11.
+.
+.Sh AUTHORS
+\(co 2011-2017 RealDimensions Software, LLC
+.br
+\(co 2017-2019 Chocolatey Software, Inc
+.Pp
+Man page written by
+.An Alhadis Aq Mt gardnerjohng\&@\&gmail.com .

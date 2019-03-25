@@ -1,0 +1,341 @@
+.ds ' \N'39'
+.ds - \N'45'
+.
+.Dd March 25, 2019
+.Dt CHOCO 1
+.Os Windows
+.Sh NAME
+.Nm choco
+.Nd the package manager for Windows
+.
+.Sh SYNOPSIS
+.Nm choco Ar [ options ] Cm command
+.
+.Sh DESCRIPTION
+Chocolatey is software management automation for Windows that wraps installers, executables, zips, and scripts into compiled packages.
+.
+.Pp
+Run Chocolatey with
+.Qq Li choco command -help
+for specific help on each command.
+.
+.\" ----------------------------------------------------------------------------
+.Ss Subcommands
+.
+.Bl -tag -width 4n -offset 4n
+.
+.It Sy apikey , setapikey
+Retrieve or save an API-key for a particular source.
+See
+.Xr choco-apikey 1 .
+.
+.It Sy config
+Retrieve and configure config file settings.
+See
+.Xr choco-config 1 .
+.
+.It Sy feature , features
+View and configure
+.Nm
+features.
+See
+.Xr choco-feature 1 .
+.
+.It Sy info
+Retrieve package information.
+Shorthand for
+.Qq Li choco search pkgname --exact --verbose .
+See
+.Xr choco-info 1 .
+.
+.It Sy install
+Install packages from various sources.
+See
+.Xr choco-install 1 .
+.
+.It Sy list , search
+List remote or local packages.
+See
+.Xr choco-list 1 .
+.
+.It Sy new
+Generate files necessary for a chocolatey package from a template.
+See
+.Xr choco-new 1 .
+.
+.It Sy outdated
+Retrieve packages that are outdated.
+Similar to
+.Qq Li upgrade all --noop .
+See
+.Xr choco-outdated 1 .
+.
+.It Sy pack
+Package up a nuspec to a compiled nupkg.
+See
+.Xr choco-pack 1 .
+.
+.It Sy pin
+Suppress upgrades for a package.
+See
+.Xr choco-pin 1 .
+.
+.It Sy push
+Push a compiled nupkg.
+See
+.Xr choco-push 1 .
+.
+.It Sy source , sources
+View and configure default sources.
+See
+.Xr choco-source 1 .
+.
+.It Sy uninstall
+Uninstall a package.
+See
+.Xr choco-uninstall 1 .
+.
+.It Sy update
+.Sy [ DEPRECATED ]
+Reserved for future use.
+See
+.
+.It Sy upgrade
+Upgrade packages from various sources.
+See
+.Xr choco-upgrade 1 .
+.
+.It Sy unpackself
+Have chocolatey set itself up.
+.
+.It Sy version
+.Sy [ DEPRECATED ]
+Will be removed in v1 \(em use
+.Qq Li choco outdated
+or
+.Qq Li cup <pkg|all> -whatif
+instead.
+.El
+.\" ----------------------------------------------------------------------------
+.
+.Ss "Global options"
+.Bl -tag -width 4n
+.It Fl ? , Fl -help , Fl h
+Print out the help menu.
+.
+.It Fl d , Fl -debug
+Show debug messaging.
+.
+.It Fl v , Fl -verbose
+Show verbose messaging.
+Very verbose messaging, avoid using under normal circumstances.
+.
+.It Fl -trace
+Show trace messaging.
+Very, very verbose trace messaging.
+Avoid except when needing super low-level .NET Framework debugging.
+Available since 0.10.4.
+.
+.It Fl -nocolor , Fl -no-color
+Do not show colourisation in logging output.
+This overrides the feature
+.Sq logWithoutColor
+set to
+.Sq False .
+Available since 0.10.9.
+.
+.It Fl -acceptlicense , Fl -accept-license
+Accept license dialogs automatically.
+Reserved for future use.
+.
+.It Fl y , Fl -yes , Fl -confirm
+Chooses affirmative answer instead of prompting.
+Implies
+.Fl -accept-license .
+.
+.It Fl f , Fl -force
+Force the behaviour.
+Do not use force during normal operation \(em it subverts some of the smart behaviour for commands.
+.
+.It Fl -noop , Fl -whatif , Fl -what-if
+Don\(cqt actually do anything.
+.
+.It Fl r , Fl -limitoutput , Fl -limit-output
+Limit the output to essential information.
+.
+.It Fl timeout , Fl -execution-timeout Ns No = Ns Ar VALUE
+The time (in seconds) to allow a command to finish before timing out.
+Overrides the default execution timeout in the configuration of 2700 seconds.
+.Sq 0
+for infinite starting in 0.10.4.
+.
+.It Fl c , Fl -cache , Fl -cachelocation , Fl -cache-location Ns No = Ns Ar VALUE
+Location for download cache, defaults to
+.Va %TEMP%
+or value in chocolatey.config file.
+.
+.It Fl -allowunofficial , Fl -allow-unofficial , Fl -allowunofficialbuild , Fl -allow-unofficial-build
+When not using the official build you must set this flag for
+.Nm
+to continue.
+.
+.It Fl -failstderr , Fl -failonstderr , Fl -fail-on-stderr , Fl -fail-on-standard-error , Fl -fail-on-error-output
+Fail on standard error output (stderr), typically received when running external commands during install providers.
+This overrides the feature
+.Sq failOnStandardError .
+.
+.It Fl -use-system-powershell
+Execute PowerShell using an external process instead of the built-in PowerShell host.
+Should only be used when internal host is failing.
+Available since 0.9.10.
+.
+.It Fl -no-progress
+Do not show download progress percentages.
+Available since 0.10.4+.
+.
+.It Fl -proxy Ns No = Ns Ar VALUE
+Explicit proxy location.
+Overrides the default proxy location of
+.Dq \& .
+Available for config settings since 0.9.9.9, and for CLI usage since 0.10.4.
+.
+.It Fl -proxy-user Ns No = Ns Ar VALUE
+Explicit proxy user (optional).
+Requires explicit proxy (the
+.Fl -proxy
+switch, or config setting).
+Overrides the default proxy user of
+.Dq \& .
+Available for config settings since 0.9.9.9, and for CLI usage since 0.10.4.
+.
+.It Fl -proxy-password Ns No = Ns Ar VALUE
+Explicit proxy password (optional) to be used with username.
+Requires explicit proxy (the
+.Fl -proxy
+switch, or config setting) and user name.
+Overrides the default proxy password (encrypted in settings if set).
+Available for config settings in 0.9.9.9+, and for CLI usage since 0.10.4.
+.
+.It Fl -proxy-bypass-list Ns No = Ns Ar VALUE
+Comma separated list of regex locations to bypass on proxy.
+Requires explicit proxy (the
+.Fl -proxy
+switch, or config setting).
+Overrides the default proxy bypass list of
+.Dq \& .
+Available since 0.10.4.
+.
+.It Fl -proxy-bypass-on-local
+Bypass proxy for local connections.
+Requires explicit proxy (the
+.Fl -proxy
+switch, or config setting).
+Overrides the default proxy bypass on local setting of
+.Sq True .
+Available since 0.10.4.
+.
+.It Fl -log-file Ns No = Ns Ar VALUE
+File to output logging messages to in addition to regular loggers.
+Available since 0.10.8.
+.El
+.
+.Sh NOTES
+Unless stated otherwise, an option/switch should only be passed one time.
+Otherwise you may find weird/non-supported behavior.
+.Pp
+Options may be prefixed with
+.Ql - ,
+.Ql / ,
+or
+.Ql -- .
+One-character switches should not use
+.Ql `--` .
+.
+.Ss "Option Bundling / Bundled Options"
+One character switches can be bundled.
+For example,
+.Fl d No (debug),
+.Fl f No (force),
+.Fl v No (verbose),
+and
+.Fl y No (confirm yes)
+can be bundled as
+.Fl dfvy .
+.Pp
+.Sy NOTE :
+If
+.Ql debug
+or
+.Ql verbose
+are bundled with local options (not the global ones above),
+some logging may not show up until after the local options are parsed.
+.
+.Ss "Using equals-sign assignment"
+You can also include (or not include) an equals-sign
+.Ql =
+between options and values.
+.
+.Ss "Quoting values"
+When you need to quote an entire argument, such as when using spaces, please use a combination of double quotes and apostrophes
+.Pq Qq \*'value\*' .
+In cmd.exe you can just use double quotes
+.Pq Qq value
+but in powershell.exe you should use backticks
+.Pq `"value`"
+or apostrophes
+.Pq `\*'value\*' .
+Using the combination allows for both shells to work without issue,
+except for when the next section applies.
+.
+.Ss "Periods in PowerShell"
+If you need to pass a period as part of a value or a path,
+PowerShell doesn\(cqt always handle it well.
+Please quote those values using the
+.Dq Quote Values
+section above.
+.
+.Ss "Passing quotes in arguments"
+When you need to pass quoted values to to something like a native installer,
+you are in for a world of fun. \" lol, Windows
+.
+.Pp
+In
+.Sy cmd.exe ,
+you must pass it like this:
+.Dl -ia Qq /yo= Ns Qq Qq Spaces spaces  .
+.
+.Pp
+In
+.Sy PowerShell.exe ,
+you must pass it like this:
+.Dl -ia \*'/yo= Ns Qq Qq Spaces spaces\*' .
+No other combination will work.
+In PowerShell.exe if you are on version v3+, you can try
+.Ql --%
+before
+.Ql -ia
+to just pass the args through as is,
+which means it should not require any special workarounds.
+.
+.Ss Using Fl -version
+Options and switches apply to all items passed,
+so if you are installing multiple packages,
+and you use
+.Fl -version Ns No = Ns Ar 1.0.0 ,
+.Nm
+is going to look for and try to install version 1.0.0 of every package passed.
+So please split out multiple package calls when wanting to pass specific options.
+.\" ----------------------------------------------------------------------------
+.
+.Sh HISTORY
+Last revised for
+.Nm
+v0.10.11.
+.
+.Sh AUTHORS
+\(co 2011-2017 RealDimensions Software, LLC
+.br
+\(co 2017-2019 Chocolatey Software, Inc
+.Pp
+Man page written by
+.An Alhadis Aq Mt gardnerjohng\&@\&gmail.com .

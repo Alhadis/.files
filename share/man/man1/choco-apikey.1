@@ -1,0 +1,87 @@
+.Dd March 25, 2019
+.Dt CHOCO-APIKEY 1
+.Os Windows
+.Sh NAME
+.Nm choco-apikey ,
+.Nm choco-setapikey
+.Nd retrieve or save an API-key for a particular source
+.
+.Sh SYNOPSIS
+.Nm choco
+.Cm apikey
+.Op Fl s Ns | Ns Fl -source Ar value
+.Op Fl k Ns | Ns Fl -key    Ar value
+.
+.\" ============================================================================
+.Sh OPTIONS
+.Bl -tag -width 4n
+.It Fl s , Fl -source Ns No = Ns Ar VALUE
+.Sy [ REQUIRED ]
+\(em The source location for the key.
+.
+.It Fl k , Fl -key , Fl -apikey , Fl -api-key Ns No = Ns Ar VALUE
+The API key for the source.
+This is the authentication that identifies you and allows you to push to a source.
+With some sources this is either a key or it could be a username and password specified as 'user:password'.
+.El
+.Pp
+In addition, global options are available.
+See
+.Xr choco 1 .
+.
+.\" ============================================================================
+.Sh DESCRIPTION
+This lists api keys that are set or sets an API key for a particular source so it doesn\(cqt need to be specified every time.
+Anything that doesn\(cqt contain source and key will list API keys.
+.
+.Pp
+For source location, this can be a folder/file share or an HTTP location.
+When it comes to URLs, they can be different from the package\(cqs URL (where packages are searched and installed from).
+As an example, for Chocolatey's community package package repository, the package URL is
+.Lk https://chocolatey.org/api/v2 ,
+but the push URL is
+.Lk https://push.chocolatey.org
+(and the deprecated
+.Lk https://chocolatey.org/
+as a push URL).
+Check the documentation for your choice of repository to learn what the push URL is.
+.
+.Pp
+For the key, this can be an apikey that is provided by your source repository.
+With some sources, like Nexus, this can be a NuGet API key,
+or it could be a username and password specified as
+.Sq user:password
+for the API key.
+Please see your repository\(cqs documentation
+(for Nexus, please see
+.Lk https://bit.ly/nexus2apikey ) .
+.
+.\" ----------------------------------------------------------------------------
+.
+.Ss Connecting to Chocolatey.org (Community Package Repository)
+In order to save your API key for
+.Lk https://push.chocolatey.org/ ,
+log in (or register, confirm and then log in) to
+.Lk https://push.chocolatey.org/ ,
+go to
+.Lk https://push.chocolatey.org/account ,
+copy the API Key, and then use it in the following command:
+.Dq Li choco apikey -k <your key here> -s https://push.chocolatey.org/
+.
+.\" ============================================================================
+.Sh EXAMPLES
+.Bd -literal
+.Nm choco Cm apikey Fl s Ar https://somewhere/out/there
+.Nm choco Cm apikey Fl s Ns No = Ns Qo Ar https://somewhere/out/there/ Qc Fl k Ns No = Ns Qq Ar value
+.Nm choco Cm apikey Fl s Qo Ar https://push.chocolatey.org/ Qc Fl k Qq Ar 123-123123-123
+.Nm choco Cm apikey Fl s Qo Ar http://internal_nexus Qc Fl k Ns No = Ns Qq Ar user:password
+.Ed
+.
+.Sh SEE ALSO
+.Xr choco 1
+.
+.Sh HISTORY
+Last revised for
+.Nm choco
+v0.10.11.
+.

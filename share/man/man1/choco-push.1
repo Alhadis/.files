@@ -1,0 +1,109 @@
+.Dd March 25, 2019
+.Dt CHOCO-PUSH 1
+.Os Windows
+.
+.Sh NAME
+.Nm choco-push
+.Nd push a compiled nupkg
+.
+.Sh SYNOPSIS
+.Nm choco Cm push Ar path-to-nupkg Op options
+.Nm cpush         Ar path-to-nupkg Op options
+.
+.Sh DESCRIPTION
+Attempt to push a compiled nupkg to a package feed.
+Some may prefer to use
+.Sy cpush
+as a shortcut for
+.Ql choco push .
+.
+.Pp
+100% compatible with older chocolatey client (0.9.8.32 and below) with options and switches.
+Default push location is deprecated and will be removed by v1.
+In most cases you can still pass options and switches with one dash
+.Pq Dq \N'45' .
+For more details, see the command reference
+.Pq Dq choco -?
+or
+.Dq man choco .
+.
+.Pp
+A feed can be a local folder, a file share, the community feed
+.Pq Lk https://push.chocolatey.org/ ,
+or a custom/private feed.
+For web feeds, it has a requirement that it implements the proper OData endpoints required for NuGet packages.
+.
+.Pp
+.Sy NOTE :
+If there is more than one nupkg file in the folder,
+the command will require specifying the path to the file.
+.
+.Ss Options
+.Bl -tag -width 4n
+.
+.It Fl s , Fl -source Ns No = Ns Ar VALUE
+The source to push the package to.
+Use
+.Lk https://push.chocolatey.org/
+to push to community feed.
+.
+.It Fl k , Fl -key , Fl -apikey , Fl -api-key Ns No = Ns Ar VALUE
+The API key for the source.
+If not specified (and not a local file source), does a lookup.
+If not specified and one is not found for an HTTPS source,
+.Sy push
+will fail.
+.
+.It Fl t Ns No = Ar VALUE
+The time to allow a package push to occur before timing out (in seconds).
+Defaults to execution timeout 2700.
+.El
+.
+.Sh EXAMPLES
+.Bd -literal
+.Nm choco Cm push Fl -source Ar https://chocolatey.org/
+.Nm choco Cm push Fl -source Qo Ar 'https://chocolatey.org/' Qc Fl t Ar 500
+.Nm choco Cm push Fl -source Qo Ar 'https://chocolatey.org/' Qc Fl k Ns No = Ns Qq Ar '123-123123-123'
+.Ed
+.
+.
+.Sh DIAGNOSTICS
+To use this command, you must have your API key saved for the community feed (chocolatey.org) or the source you want to push to.
+Or you can explicitly pass the API key to the command.
+See
+.Xr choco-apikey 1
+for instructions on saving your key, or run:
+.Bd -literal -offset indent
+.Nm choco Cm apikey Fl ?
+.Ed
+.
+.Pp
+A common error is
+.Bd -literal -offset indent
+Failed to process request.
+The specified API key does not provide the authority to push packages.
+The remote server returned an error: (403) Forbidden..
+.Ed
+.Pp
+This means the package already exists with a different user (API key).
+The package could be unlisted.
+You can verify by going to
+.Lk https://push.chocolatey.org/packages/packageName .
+Please contact the administrators of
+.Lk https://push.chocolatey.org/
+if you see this and you don\(cqt see a good reason for it.
+.
+.
+.\" ----------------------------------------------------------------------------
+.Sh HISTORY
+Last revised for
+.Nm choco
+v0.10.11.
+.
+.Sh AUTHORS
+\(co 2011-2017 RealDimensions Software, LLC
+.br
+\(co 2017-2019 Chocolatey Software, Inc
+.Pp
+Man page written by
+.An Alhadis Aq Mt gardnerjohng\&@\&gmail.com .

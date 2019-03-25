@@ -1,0 +1,82 @@
+.Dd March 25, 2019
+.Dt CHOCO-PACK 1
+.Os Windows
+.
+.Sh NAME
+.Nm choco-pack
+.Nd package up a nuspec to a compiled nupkg
+.
+.Sh SYNOPSIS
+.Nm choco Cm pack Ar path-to-nuspec
+.Op options
+.Op Cm property Ns No = Ns Ar value
+.
+.Nm cpack Ar path-to-nuspec
+.Op options
+.Aq Sy DEPRECATED
+.
+.Sh DESCRIPTION
+Attempt to package a nuspec into a compiled nupkg.
+Some may prefer to use
+.Dq cpack
+as a shortcut for
+.Dq choco pack .
+.
+.Pp
+100% compatible with older chocolatey client (0.9.8.32 and below) with options and switches.
+In most cases you can still pass options and switches with one dash
+.Pq Dq \N'45' .
+For more details, see the command reference
+.Pq Dq choco -?
+or
+.Dq man choco .
+.
+.Pp
+You can pass arbitrary property value pairs through to nuspecs.
+These will replace variables formatted as
+.Dq $property$
+with the value passed.
+.
+.Pp
+.Nm cpack
+has been deprecated as it has a name collision with CMake.
+Please use
+.Ql choco pack
+instead.
+The shortcut will be removed in v1.
+.
+.
+.Ss Options
+.Bl -tag -width 4n
+.
+.It Fl -out , Fl -outdir , Fl -outputdirectory , Fl -output-directory Ns No = Ns Ar VALUE
+Specify the directory for the created Chocolatey package file.
+If not specified, uses the current directory.
+.
+.It Fl -version Ns No = Ns Ar VALUE
+The version you would like to insert into the package.
+.El
+.
+.\" ============================================================================
+.Sh EXAMPLES
+.Bd -literal
+.Nm choco Cm pack
+.Nm choco Cm pack Fl -version Ar 1.2.3 Cm configuration Ns No = Ns Ar release
+.Nm choco Cm pack No path/to/nuspec
+.Nm choco Cm pack Fl -outputdirectory Ar build
+.Ed
+.
+.\" ----------------------------------------------------------------------------
+.
+.Sh HISTORY
+Last revised for
+.Nm choco
+v0.10.11.
+.
+.Sh AUTHORS
+\(co 2011-2017 RealDimensions Software, LLC
+.br
+\(co 2017-2019 Chocolatey Software, Inc
+.Pp
+Man page written by
+.An Alhadis Aq Mt gardnerjohng\&@\&gmail.com .

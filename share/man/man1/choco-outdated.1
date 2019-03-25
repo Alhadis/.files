@@ -1,0 +1,85 @@
+.Dd March 25, 2019
+.Dt CHOCO-OUTDATED 1
+.Os Windows
+.Sh NAME
+.Nm choco-outdated
+.Nd retrieve packages that are outdated
+.
+.Sh SYNOPSIS
+.Nm choco-outdated
+.Op Fl options
+.Ar arguments
+.Sh DESCRIPTION
+Returns a list of outdated packages.
+Similar to
+.Qq Li upgrade all --noop .
+.Pp
+Available since v0.9.9.6.
+.Pp
+If you use
+.Fl -source Ns No = Ns Qq Ar https://somewhere/out/there ,
+it is going to look for outdated packages only based on that source.
+.
+.Ss Options
+.Bl -tag -width 4n
+.
+.It Fl -cert Ns No = Ns Ar VALUE
+Client certificate \(en
+PFX pathname for an x509 authenticated feeds.
+Defaults to empty.
+Available since v0.9.10.
+.
+.It Fl -cp , Fl -certpassword Ns No = Ns Ar VALUE
+The client certificate's password to the source.
+Defaults to the empty string.
+Available in v0.9.10.
+.
+.It Fl -ignore-pinned
+Ignore pinned packages.
+Defaults to false.
+Available in v0.10.6.
+.
+.It Fl -ignore-unfound
+Ignore packages that are not found on the sources used (or the defaults).
+Overrides the default feature
+.Dq ignoreUnfoundPackagesOnUpgradeOutdated
+set to
+.Ar False .
+Available since v0.10.9.
+.
+.It Fl p , Fl -password Ns No = Ns Ar VALUE
+The user's password to the source.
+Defaults to the empty string.
+.
+.It Fl s , Fl -source Ns No = Ns Ar VALUE
+The source to find the package(s) to install.
+Special sources include:
+.Ql ruby ,
+.Ql webpi ,
+.Ql cygwin ,
+.Ql windowsfeatures ,
+and
+.Ql python .
+To specify more than one source,
+pass it with a semicolon separating the values
+(e.g.
+.Qq 'source1;source2' ) .
+Defaults to default feeds.
+.
+.It Fl u , Fl -user Ns No = Ns Ar VALUE
+Username, used with authenticated feeds.
+Defaults to the empty string.
+.El
+.
+.Sh EXAMPLES
+.Bd -literal
+.Nm choco Cm outdated
+.Nm choco Cm outdated Fl s Ar https://somewhere/out/there
+.Nm choco Cm outdated Fl s Qo Ar 'https://somewhere/protected' Qc Fl u Ar user Fl p Ar pass
+.Ed
+.
+.Sh SEE ALSO
+.Xr choco 1 ,
+.Xr choco-upgrade 1
+.Pp
+.Lk https://raw.githubusercontent.com/wiki/chocolatey/choco/images/gifs/choco_outdated.gif "See it in action" .
