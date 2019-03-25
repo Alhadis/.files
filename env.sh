@@ -73,6 +73,12 @@ have nodebrew && [ -x ~/.nodebrew/current/bin/node ] && {
 	MANPATH=~/.nodebrew/current/share/man:"$MANPATH"
 }
 
+# Yarn: Paths added to .bashrc upon installation
+for path in ~/.yarn/ ~/.config/yarn/global/node_modules/.; do
+	[ -d "${path}bin" ] && PATH="$PATH:${path}bin"
+	[ -d "${path}man" ] && MANPATH="$MANPATH:${path}man"
+done
+
 # Include other Troff implementations in search paths
 for path in "/usr/local/heirloom-doctools" "$DWBHOME"; do 
 	[ -d "$path/bin" ] && PATH="$path/bin:$PATH"
