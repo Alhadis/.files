@@ -22,6 +22,11 @@ have(){
 	exit
 }
 
+# TypeScript: Use Deno if available
+have deno && {
+	[ -f test.ts  ] && { deno test.ts  "$@"; exit; }
+	[ -f test.tsx ] && { deno test.tsx "$@"; exit; }
+}
 
 
 # Run test-scripts in current directory
