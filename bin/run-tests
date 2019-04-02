@@ -22,10 +22,10 @@ have(){
 	exit
 }
 
-# TypeScript: Use Deno if available
-have deno && {
-	[ -f test.ts  ] && { deno test.ts  "$@"; exit; }
-	[ -f test.tsx ] && { deno test.tsx "$@"; exit; }
+# TypeScript
+have ts-node && {
+	[ -f test.ts  ] && { ts-node test.ts  "$@"; exit; }
+	[ -f test.tsx ] && { ts-node test.tsx "$@"; exit; }
 }
 
 

@@ -75,6 +75,7 @@ command -v doas 2>&1 >/dev/null && sudo=doas
 		semver
 		terser
 		tslint
+		ts-node
 		typescript
 	'
 	# Unlist Electron if running on OpenBSD; not yet ported
