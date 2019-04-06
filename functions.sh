@@ -178,6 +178,24 @@ iplocation(){
 }
 
 
+# Pretty-print a variable containing a colon-delimited path-list
+ppls(){
+	case $# in
+		0) nolabel=1; set -- PATH ;;
+		1) nolabel=1 ;;
+		*) nolabel=  ;;
+	esac
+	while [ $# -gt 0 ]; do
+		[ "$nolabel" ] || printf '%s:\n' "$1"
+		ls=`eval 'printf "%s\n" "$'$1'"' | tr : '\n'`
+		[ "$nolabel" ] || ls=`printf %s "$ls" | sed -e 's/^/	/'`
+		printf '%s\n' "$ls"
+		shift
+	done
+	unset nolabel
+}
+
+
 # Print names of files containing binary (non-textual) data
 listbinary(){
 	for i in "$@"; do
