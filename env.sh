@@ -21,7 +21,6 @@ paths='
 	case $path in \~/*) path=~/${path#\~/};; esac
 	[ -d "$path" ] && PATH="$PATH:$path";
 done
-export PATH
 
 # Define manual search paths
 MANPATH=:~/.files/share/man
@@ -37,8 +36,6 @@ paths='
 '; for path in $paths; do
 	[ -d "$path" ] && MANPATH="$MANPATH:$path"
 done
-export MANPATH
-unset paths
 
 export DWBHOME=/usr/local/dwb
 export GPG_TTY=`tty`
@@ -84,7 +81,6 @@ for path in "/usr/local/heirloom-doctools" "$DWBHOME"; do
 	[ -d "$path/bin" ] && PATH="$path/bin:$PATH"
 	[ -d "$path/man" ] && MANPATH="$MANPATH:$path/man"
 done
-unset path
 
 # SmartOS: Include `/smartdc/*' directories in search paths
 [ -d /smartdc ] && {
@@ -92,7 +88,26 @@ unset path
 	MANPATH="$MANPATH:/smartdc/man:/opt/smartdc/man"
 }
 
-# macOS's man(1) gets confused if $MANPATH starts with a colon
-case `uname` in [Dd]arwin) MANPATH=${MANPATH#:} ;; esac
+# Darwin: Scan Apple's Developer/SDK directories for manual-pages
+case `uname` in [Dd]arwin)
+	paths='
+		/Applications/*/share/man
+		/Developer/usr/share/man
+		/Developer/usr/*/share/man
+		/Developer/usr/X11/share/man
+		/Library/Developer/CommandLineTools/usr/share/man
+		/Library/Developer/CommandLineTools/SDKs/*/usr/share/man
+		/System/Library/Filesystems/*/Contents/man
+		/Developer/Platforms/*/Developer/usr/share/man
+		/Developer/Platforms/*/Developer/usr/*/share/man
+		/Developer/Platforms/*/Developer/SDKs/*/usr/share/man
+	'; for path in $paths; do
+		[ -d "$path" ] && MANPATH="$MANPATH:$path"
+	done
+	
+	# macOS's man(1) gets confused if $MANPATH starts with a colon
+	MANPATH=${MANPATH#:}
+;; esac 
 
 export PATH MANPATH
+unset path paths
