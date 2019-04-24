@@ -84,20 +84,22 @@ sub parseOpts {
 				$hideType = 1;
 				if($default eq "true"){
 					$desc =~ s/^Shares(?=\h)/Share/i;
+					$desc =~ s/^Allocate\Ks(?=\h)//i;
 					
 					# Try to negate sentence, but don't try TOO hard
 					unless(
 						$desc =~ s/^Enable/Disable/i  or
 						$desc =~ s/^Include/Exclude/i or
 						$desc =~ s/^(
-							Abort|Automatically|Analy[zs]e|Cache|Compact|Elide|Expose|Filter|
+							Abort|Allocate|Automatically|Analy[zs]e|Cache|Compact|Elide|Expose|Filter|
 							Free|Generate|Get|Inline|Intrinsify|Optimi[sz]e|Pretenure|Promote|Randomi[zs]e|
-							Rehash|Run|Rewrite|Share|Split|Trace|Track|Trigger|Use|Validate|Write
+							Rehash|Run|Rewrite|Share|Skip|Split|Trace|Track|Trigger|Use|Validate|Write
 						)(?=\h)/Don't \l$1/xi
 					){
 						my %replacements = (
 							"concurrent-recompilation" => "Force synchronous optimisation of hot functions.",
 							"fast-math" => "Don't enable faster, potentially less accurate, math functions.",
+							"flush-bytecode" => "Don't flush bytecode that hasn't executed recently.",
 							"parallel-scavenge" => "Disable parallel scavenging.",
 							"polymorphic-inlining" => "Disable polymorphic inlining.",
 							"trace-maps-details" => "Don't log map details.",
@@ -184,7 +186,7 @@ sub parseOpts {
 			$desc =~ s/(?<=\h)(random)\(0,\h*([xX])\)\h*/\\*(CB$1\\fP\\*(CW(0,\\fP\n.VAR $2 )\n/g;
 			$desc =~ s/\bC\+\+/\\*(C+/g;
 			$desc =~ s/(?<=Disable namespace exports \()[^)\n]+(?=\))/"\\f(CW" . ($& =~ tr|'"|"'|r) . "\\fP"/e;
-			$desc =~ s/(?:Can|Don|Won|Shouldn|Wouldn)\K'(?=t )/\\(cq/gi;
+			$desc =~ s/(?:Can|Don|Hasn|Won|Shouldn|Wouldn)\K'(?=t )/\\(cq/gi;
 			$desc =~ s/(?<=\w)'(?=s )/\\(cq/g;
 			$desc =~ s/(\n\.(?:``|JS).+)\n+/$1\n/g;
 			$desc =~ s/\n+$//;

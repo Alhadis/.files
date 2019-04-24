@@ -142,7 +142,7 @@
 .
 .\"======================================================
 .\" BEGIN DOCUMENT
-.TH V8 1 "April 7, 2019" "V8 7.3.492.25" V8
+.TH V8 1 "April 24, 2019" "V8 7.4.288.25" V8
 .
 .SH NAME
 .BR v8 " \(em Google\(cqs JavaScript engine
@@ -296,6 +296,9 @@ Enable debugging the simulator.
 .V8 deopt-every-n-times | Int 0
 Deoptimize every n times a deopt point is passed.
 
+.V8 detailed-error-stack-trace
+Include arguments for each function call in the error stack frames array.
+
 .V8 detailed-line-info
 Always generate detailed line information for CPU profiling.
 
@@ -351,6 +354,9 @@ Disable use of BMI2 instructions if available.
 .V8 no-enable-fma3
 Disable use of FMA3 instructions if available.
 
+.V8 enable-lazy-source-positions
+Skip generating source positions during initial compile, but regenerate when actually required.
+
 .V8 no-enable-lzcnt
 Disable use of LZCNT instruction if available.
 
@@ -368,6 +374,9 @@ Disable unaligned accesses for the regexp engine.
 
 .V8 no-enable-sahf
 Disable use of SAHF instruction if available (X64 only).
+
+.V8 enable-source-at-csa-bind
+Include source information in the binary at CSA bind locations.
 
 .V8 no-enable-sse3
 Disable use of SSE3 instructions if available.
@@ -415,6 +424,9 @@ Enable prototype exception handling opcodes for WASM.
 .V8 experimental-wasm-mv
 Enable prototype multi-value support for WASM.
 
+.V8 experimental-wasm-return-call
+Enable prototype return call opcodes for WASM.
+
 .V8 experimental-wasm-sat-f2i-conversions
 Enable prototype saturating float conversion opcodes for WASM.
 
@@ -461,6 +473,9 @@ Expose trigger-failure extension.
 .V8 no-expose-wasm
 Don\(cqt expose WASM interface to JavaScript.
 
+.V8 no-fast-calls-with-arguments-mismatches
+Don\(cqt skip arguments adaptor frames when it\(cqs provably safe.
+
 .V8 no-fast-math
 Don\(cqt enable faster, potentially less accurate, math functions.
 
@@ -470,8 +485,8 @@ Fast promote new space on high survival rates.
 .V8 feedback-normalization
 Feed back normalization to constructors.
 
-.V8 flush-bytecode
-Flush of bytecode when it has not been executed recently.
+.V8 no-flush-bytecode
+Don\(cqt flush bytecode that hasn\(cqt executed recently.
 
 .V8 force-long-branches
 Force all emitted branches to be in long mode (MIPS/PPC only).
@@ -530,10 +545,6 @@ Don\(cqt abort by crashing.
 .V8 harmony
 Enable all completed Harmony features.
 
-.V8 no-harmony-array-flat
-Disable
-.JS Array.prototype.{flat,flatMap} .
-
 .V8 no-harmony-await-optimization
 Disable
 .JS await
@@ -549,21 +560,23 @@ Disable dynamic import.
 Disable
 .JS global .
 
-.V8 harmony-hashbang
-Enable hashbang syntax.
+.V8 no-harmony-hashbang
+Disable support for interpreter directive (hashbang) syntax.
 
 .V8 no-harmony-import-meta
 Disable
 .JS import.meta
 property.
 
-.V8 no-harmony-intl-list-format
-Disable
-.JS Intl.ListFormat .
+.V8 harmony-intl-bigint (WIP)
+Enable
+.JS BigInt.prototype.toLocaleString .
 
-.V8 no-harmony-intl-relative-time-format
-Disable
-.JS Intl.RelativeTimeFormat .
+.V8 harmony-intl-datetime-style (WIP)
+Enable
+.CW "dateStyle timeStyle"
+for
+.JS DateTimeFormat .
 
 .V8 harmony-intl-segmenter
 Enable
@@ -573,8 +586,8 @@ Enable
 Disable well-formed
 .JS JSON.stringify .
 
-.V8 harmony-locale (WIP)
-Enable
+.V8 no-harmony-locale
+Disable
 .JS Intl.Locale .
 
 .V8 no-harmony-namespace-exports
@@ -587,8 +600,8 @@ Enable numeric separator between digits.
 Disable
 .JS Object.fromEntries() .
 
-.V8 harmony-private-fields
-Enable private fields in class literals.
+.V8 no-harmony-private-fields
+Disable private fields in class literals.
 
 .V8 harmony-private-methods (WIP)
 Enable private methods in class literals.
@@ -612,10 +625,6 @@ Disable static fields in class literals.
 .V8 no-harmony-string-matchall
 Disable
 .JS String.prototype.matchAll .
-
-.V8 no-harmony-symbol-description
-Disable
-.JS Symbol.prototype.description .
 
 .V8 harmony-weak-refs (WIP)
 Enable weak references.
@@ -768,8 +777,14 @@ Maximum cumulative size of bytecode considered for inlining.
 .V8 max-inlined-bytecode-size-small | Int 30
 Maximum size of bytecode considered for small function inlining.
 
+.V8 max-lazy
+Ignore eager compilation hints.
+
 .V8 max-old-space-size | size_t 0
 Maximum size of the old space (in Mbytes).
+
+.V8 max-polymorphic-map-count | Int 4
+Maximum number of maps to track in \*(CWPOLYMORPHIC\fP state.
 
 .V8 max-semi-space-size | size_t 0
 Maximum size of a semi-space (in MBytes), the new space consists of two semi-spaces.
@@ -782,6 +797,9 @@ Enable optimisation for a specific CPU.
 
 .V8 no-memory-reducer
 Don\(cqt use memory reducer.
+
+.V8 no-memory-reducer-for-small-heaps
+Don\(cqt use memory reducer for small heaps.
 
 .V8 min-inlining-frequency | Float 0.15
 Minimum frequency for inlining.
@@ -840,6 +858,9 @@ Don\(cqt use parallel pointer update during compaction.
 
 .V8 no-parallel-scavenge
 Disable parallel scavenging.
+
+.V8 parse-only
+Only parse the sources.
 
 .V8 no-partial-constant-pool
 Disable use of partial constant pools (X64 only).
@@ -923,6 +944,9 @@ Output deopt information and disassembly into file
 
 .V8 redirect-code-traces-to | String NULL
 Output deopt information and disassembly into the given file.
+
+.V8 regexp-interpret-all
+Interpret all regexp code.
 
 .V8 regexp-mode-modifiers
 Enable inline flags in regexp.
@@ -1340,6 +1364,9 @@ Disable TurboFan allocation folding.
 .V8 no-turbo-cf-optimization
 Don\(cqt optimize control flow in TurboFan.
 
+.V8 turbo-control-flow-aware-allocation
+Consider control flow while allocating registers.
+
 .V8 no-turbo-escape
 Disable escape analysis.
 
@@ -1515,8 +1542,8 @@ Write protect code memory on the WASM native heap.
 .V8 no-write-protect-code-memory
 Don\(cqt write protect code memory.
 
-.V8 young-generation-large-objects
-Allocates large objects by default in the young generation large object space.
+.V8 no-young-generation-large-objects
+Don\(cqt allocate large objects by default in the young generation large object space.
 .\" END SCRAPE
 
 .SH SEE ALSO
