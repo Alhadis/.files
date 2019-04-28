@@ -1,6 +1,7 @@
 # Configure $PATH
 PATH=~/.files/bin
 paths='
+	~/bin
 	/sbin
 	/usr/sbin
 	/bin
