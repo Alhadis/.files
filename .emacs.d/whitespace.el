@@ -47,3 +47,17 @@
 (load "aggressive-indent" t)
 (when (boundp 'aggressive-indent-mode)
       (add-hook 'emacs-lisp-mode-hook #'aggressive-indent-mode))
+
+;; Prevent tabs from creeping into Lisp code
+(dolist (hook (list 'emacs-lisp-mode-hook
+                    'lisp-interaction-mode-hook
+                    'lisp-mode-hook
+                    'scheme-mode-hook))
+  (add-hook hook (lambda ()
+                   (setq indent-tabs-mode nil)
+                   (setq tab-width 8)
+                   (add-hook 'before-save-hook
+                             (lambda ()
+                               (untabify (point-min) (point-max))
+                               (delete-trailing-whitespace))
+                             nil t))))
