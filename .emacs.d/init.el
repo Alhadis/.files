@@ -1,6 +1,7 @@
 (when (version< emacs-version "27.0") (package-initialize))
 (load "~/.emacs.d/packages")
 (load "~/.emacs.d/whitespace")
+(load "~/.emacs.d/filetypes")
 (load "~/.emacs.d/keymap")
 (load "~/.emacs.d/hooks")
 
@@ -22,14 +23,6 @@
            (set-selection-coding-system 'utf-8)
            (prefer-coding-system 'utf-8)
            (define-coding-system-alias 'UTF-8 'utf-8)))
-
-;; Filetype mappings
-(add-to-list 'interpreter-mode-alist '("node" . js2-mode))
-(add-to-list 'auto-mode-alist '("\\.[cm]?js\\'" . js2-mode))
-(add-to-list 'auto-mode-alist '("\\.jsx$" . js2-jsx-mode))
-(add-to-list 'auto-mode-alist '("\\.eslintrc$" . js2-mode))
-(add-to-list 'auto-mode-alist '("\\.tmac$" . nroff-mode))
-(add-to-list 'auto-mode-alist '("\\.roff$" . nroff-mode))
 
 ;; Configure `js2-mode' for nicer JavaScript editing
 (setq js2-highlight-level 3
