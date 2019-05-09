@@ -1,0 +1,13 @@
+#!/usr/bin/env node
+"use strict";
+
+// Convert an octal dump back to binary
+const fs = require("fs");
+for(const name of process.argv.slice(2)){
+	const data = fs.readFileSync(name, {encoding: "utf8"})
+		.trim()
+		.replace(/^[0-7]{7}\s+/gm, "")
+		.split(/\s+/g)
+		.map(n => parseInt(n, 8));
+	fs.writeFileSync(name, Buffer.from(data), {encoding: "binary"});
+}
