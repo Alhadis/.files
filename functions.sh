@@ -119,33 +119,25 @@ ps2png(){
 }
 
 
-# Assign a filename suffix to a list of files
-suffix(){
-	[ $# -lt 2 ] && {
-		>&2 printf 'Usage: suffix [files...] [suffix]\n'
+# Make other people's projects less aggravating to read
+unfuck(){
+	command -v prettier 2>&1 >/dev/null || {
+		>&2 printf 'Prettier is required to use this function.\n'
 		return 1
 	}
-	for suffix in "$@"; do :; done
-	while [ $# -ge 2 ]; do
-		mv -i "$1" "$1.$suffix"
-		shift
-	done; unset suffix
-}
-
-
-# Shorten an absolute path by replacing $HOME with a tilde
-tildify(){
-	for arg in "$@"; do
-		[ -n "$HOME" ] \
-			&& printf '%s\n' "$arg" | sed "s,^$HOME/,~/," \
-			|| printf '%s\n' "$arg";
-	done
-	# Read from stdin if piping additional input through
-	[ -t 0 ] || while IFS= read -r line || [ -n "$line" ]; do
-		[ -n "$HOME" ] \
-			&& printf '%s\n' "$line" | sed "s,^$HOME/,~/," \
-			|| printf "%s\n" "$line";
-	done
+	prettier >/dev/null \
+		--tab-width 4 \
+		--use-tabs \
+		--print-width 120 \
+		--trailing-comma es5 \
+		--no-bracket-spacing \
+		--arrow-parens avoid \
+		--end-of-line lf \
+		--with-node-modules \
+		--loglevel silent \
+		--no-editorconfig \
+		--write -- \
+		"**/*.{js,jsx,json,ts,mjs,css,less,scss}"
 }
 
 
