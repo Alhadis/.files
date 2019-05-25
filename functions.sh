@@ -138,6 +138,8 @@ unfuck(){
 		--no-editorconfig \
 		--write -- \
 		"**/*.{js,jsx,json,ts,mjs,css,less,scss}"
+	(eslint -c "`jg -p eslint/atom`" --fix --ext mjs,js . 2>&1) >/dev/null
+	return 0
 }
 
 
