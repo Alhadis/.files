@@ -77,14 +77,6 @@ have bsdtar && {
 }
 
 
-# If OpenBSD's sha256(1) is unavailable, shim using shasum(1) or sha256sum(1)
-have shasum sha256sum && {
-	have sha1   || alias sha1='shasum -a1'     && have sha1sum   && alias sha1='sha1sum'
-	have sha256 || alias sha256='shasum -a256' && have sha256sum && alias sha256='sha256sum'
-	have sha512 || alias sha512='shasum -a512' && have sha512sum && alias sha512='sha512sum'
-}
-
-
 # Shortcut to start window manager (ignored if it's running)
 [ "$DISPLAY" ] || have startxfce4 && alias desktop='startxfce4 --with-ck-launch'
 
