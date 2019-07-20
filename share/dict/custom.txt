@@ -1,0 +1,14 @@
+Homebrew
+Verilog
+conformant
+deathgrind
+ds
+goujon
+goujons
+grindcore
+groff_diff
+grops
+identicality
+lexing
+lq
+rq

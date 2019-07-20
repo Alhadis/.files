@@ -7,6 +7,7 @@
 (global-set-key (kbd "C-h C-f") 'describe-function)
 (global-set-key (kbd "C-h C-c") 'describe-key-briefly)
 (global-set-key (kbd "<backtab>") 'decrease-left-margin)
+(global-set-key (kbd "<f5>") 'toggle-truncate-lines)
 (global-set-key (kbd "<f7>") 'ispell-buffer)
 (global-set-key (kbd "C-<up>") `move-text-up)
 (global-set-key (kbd "C-<down>") `move-text-down)
@@ -17,6 +18,7 @@
 (global-set-key (kbd "C-<next>") 'end-of-buffer)
 (global-set-key (kbd "C-a") 'mark-whole-buffer)
 (define-key lisp-interaction-mode-map (kbd "C-e") 'eval-defun)
+(add-hook 'dired-load-hook (lambda() (define-key dired-mode-map (kbd "C-o") nil)))
 
 
 ;; Custom commands
