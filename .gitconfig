@@ -34,6 +34,7 @@
 	textconv = docx2txt
 	cachetextconv = true
 [filter "lfs"]
+	process = git-lfs filter-process
 	clean = git-lfs clean -- %f
 	smudge = git-lfs smudge -- %f
 	required = true

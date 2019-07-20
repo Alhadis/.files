@@ -11,5 +11,6 @@ node_modules
 [._]*.sw[a-p]
 [._]s[a-v][a-z]
 [._]sw[a-p]
+/.atom-ci
 /test.mjs
 /test.js
