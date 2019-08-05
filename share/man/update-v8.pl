@@ -4,6 +4,7 @@ use warnings;
 use autodie;
 use v5.14;
 use utf8;
+use POSIX;
 $| = 1;
 
 # Generate Roff from extracted V8 options
@@ -61,9 +62,10 @@ sub parseOpts {
 		# Typos and ad-hoc formatting fixes
 		s/alingment/alignment/gi;
 		s/^enable "harmony ([^"]+)"/Enable $1/gi;
-		s/^(Max|Min) /${1}imum /gi;
+		s/^(?:Increase |Decrease )?\K(Max|Min) /${1}imum /gi;
 		s/reducing it's size/reducing its size/;
 		s/only smi values/only SMI values/g;
+		s/(?<=\w with)\K(?=the \w)/ /g;
 
 		# Format the switch's type and default value
 		my $desc = $_;
@@ -149,8 +151,18 @@ sub parseOpts {
 			$desc =~ s/\((\d+) \+ (heap_growing_percent)\/100\)\.?/\n.EQ\n( $1 + $2 \/ 100 ).\n.EN\n/;
 			$desc =~ s/(?<=Disallow )eval\h+(?=and friends\.?$)/\n.`` eval\n/mi;
 			$desc =~ s/(?<=Expose )(async_hooks|freeBuffer|gc|injected-script-source\.js)\h+/\n.`` $1\n/g;
-			$desc =~ s/(?<=Enable )optimization for specific cpu/optimisation for a specific CPU/;
+			$desc =~ s/Enables? optimi\Kz(ations?)(?=\h|$)/s$1/gm;
+			$desc =~ s/for \Kspecific CPU\.$/a specific CPU\./im;
+			$desc =~ s/ favo\Kr /u$&/gi;
+			$desc =~ s/(?<=Print mutator utili)\Kzation\b/sation/;
+			$desc =~ s/behavio\K(rs to ease correctness fuzzing:)\h+(A)/u$1\n\l$2/i;
+			$desc =~ s/, gc(?= speed\.)|(?<=target )os\./\U$&/gi;
+			$desc =~ s/(?<=target arch)(?=[.,])/itecture/gi;
+			$desc =~ s/during initial compile\K(?= but regenerate)/,/i;
 			$desc =~ s/(?<=Disable )(await) (?=taking 1 tick)/\n.JS $1\n/;
+			$desc =~ s/ lazily\K (?=compiled\b)/-/gi;
+			$desc =~ s/ to track in \KPOLYMORPHIC(?= state)/\\*(CW$&\\fP/g;
+			$desc =~ s/Stress\K (?=test)\b/-/gi;
 			$desc =~ s/(?<= )l(?=inux profiler)/L/;
 			$desc =~ s/(?<=Dump )elf(?= objects)/ELF/;
 			$desc =~ s/(?<= )h(?=armony )/H/;
@@ -162,8 +174,9 @@ sub parseOpts {
 				( Error\.stack
 				| ArrayBuffer
 				| RangeError
-				| Promise
-				| BigInt
+				| JSON\.stringify
+				| Promise(?:\.allSettled)?
+				| BigInt(?:\.[\$\w]+)*+
 				| WebAssembly\.compile
 				| (?i:sharedarraybuffer)
 				| (?:[A-Z]\w+)\.prototype (?:\.\w+)* (?:\.\{[^}]+\})?
@@ -186,9 +199,24 @@ sub parseOpts {
 			$desc =~ s/(?<=\h)(random)\(0,\h*([xX])\)\h*/\\*(CB$1\\fP\\*(CW(0,\\fP\n.VAR $2 )\n/g;
 			$desc =~ s/\bC\+\+/\\*(C+/g;
 			$desc =~ s/(?<=Disable namespace exports \()[^)\n]+(?=\))/"\\f(CW" . ($& =~ tr|'"|"'|r) . "\\fP"/e;
+			$desc =~ s/^Disable \Khashbang(?= syntax\.$)/support for interpreter directive (hashbang)/m;
 			$desc =~ s/(?:Can|Don|Hasn|Won|Shouldn|Wouldn)\K'(?=t )/\\(cq/gi;
+			$desc =~ s/^(?=New background|Less compaction)./Use \l$&/im;
+			$desc =~ s/ease correctness fuzzing: \KAbort/\L$&/i;
+			$desc =~ s/^(Include|Exclude)\Ks(?=\h)//gmi;
+			$desc =~ s/^(Disable|Enable) "(Add calendar and numberingSystem to DateTimeFormat)"/$2/mi;
+			$desc =~ s/^(Disable|Enable) "(Unified Intl.NumberFormat )(Features)"/$1 \l$2\l$3/mi;
+			$desc =~ s/^(Disable|Enable)s /$1 /gmi;
+			$desc =~ s/^(?:Disable|Enable) \K"(\n\.JS[^\n]+)\n"([.,])/$1 $2/gm;
+			$desc =~ s/^(?:Disable|Enable) \K"(DateTimeFormat) (formatRange)"/\n.JS $1.$2 /m;
+			$desc =~ s/^(?:Disable|Enable) \K"(dateStyle) (timeStyle)( for DateTimeFormat)"/\\f(CW$1\\fP and \\f(CW$2\\fP$3/m;
+			$desc =~ s/^Add \K(calendar) and (numberingSystem)(?= to DateTimeFormat\.)/\\f(CW$1\\fP and \\f(CW$2\\fP/m;
+			$desc =~ s/^(?!\.).*?\s\K(Intl\.NumberFormat|DateTimeFormat)([.,]|(?:\h+|$))/\n.JS $1 $2\n/gm;
+			$desc =~ s/^\.JS +\S+\K\h+(?=[^.,\s])//gm;
+			$desc =~ s/^\.JS.+?\K\h{2,}(?=[.,]\h*$)/ /gm;
 			$desc =~ s/(?<=\w)'(?=s )/\\(cq/g;
 			$desc =~ s/(\n\.(?:``|JS).+)\n+/$1\n/g;
+			$desc =~ s/\.\nU(?=se a fixed suppression string)/,\nand u/is;
 			$desc =~ s/\n+$//;
 		}
 		
@@ -206,7 +234,7 @@ s/^\s*Synopsis:(.*?)\n(?=Options:)//si;
 s/\s*Options:(.+?)\s*\Z//si;
 my $opts = parseOpts($_);
 
-# Write the updated result to the man-page file
+# Load man-page
 (my $pagePath = `man -w v8`) =~ s/\s+$//;
 my $source = do {{
 	local $/ = undef;
@@ -214,8 +242,21 @@ my $source = do {{
 	join "", <$fh>
 }};
 
+# Extract the document's header and footer
 (my $head) = ($source =~ m/(\A.+\n\.\\" BEGIN SCRAPE\n)/s);
 (my $foot) = ($source =~ m/(\n\.\\" END SCRAPE\n.+\Z)/s);
+
+# Update revision date and version string
+(my $version) = (`echo exit | d8 --version` =~ /^V8 version v?([\d.]+)$/mi);
+if($version){
+	my ($day, $month, $year) = (localtime())[3..5];
+	$month = POSIX::strftime("%B", 0, 0, 0, $day, $month, $year);
+	$year += 1900;
+	$head =~ s/^\.TH V8 1 \K"[^"]*" "[^"]*"/"$month $day, $year" "V8 $version"/m;
+	$foot =~ s/\\\(co 2016-\K\d+(?=,\n\.MT\h+gardnerjohng)/$year/;
+}
+
+# Piece it back together
 open(my $fh, ">", $pagePath) or die("Can't reopen man-page: $!");
 print $fh $head . $opts . $foot;
 close($fh);

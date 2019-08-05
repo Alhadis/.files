@@ -142,7 +142,7 @@
 .
 .\"======================================================
 .\" BEGIN DOCUMENT
-.TH V8 1 "July 20, 2019" "V8 7.5.288.30" V8
+.TH V8 1 "August 6, 2019" "V8 7.6.303.27" V8
 .
 .SH NAME
 .BR v8 " \(em Google\(cqs JavaScript engine
@@ -161,6 +161,9 @@
 .RI [[ "\fB\-\-module\fP" ] " file..." ]
 .
 .SH OPTIONS
+.TP 6
+.B \-\-
+Capture all remaining arguments in JavaScript.
 .TP 6
 .BI \-e " string"
 Execute \fIstring\fR in V8.
@@ -183,11 +186,6 @@ Option names beginning with
 pertain to a boolean V8 flag enabled by default.
 
 .\" BEGIN SCRAPE
-.V8 abort-on-stack-or-string-length-overflow
-Abort program when the stack overflows or a string exceeds maximum length (as opposed to throwing
-.JS RangeError ).
-This is useful for fuzzing where the spec behaviour would introduce nondeterminism.
-
 .V8 abort-on-uncaught-exception
 Abort program (dump core) when an uncaught exception is thrown.
 
@@ -282,6 +280,12 @@ Don\(cqt use concurrent store buffer processing.
 .V8 no-concurrent-sweeping
 Don\(cqt use concurrent sweeping.
 
+.V8 correctness-fuzzer-suppressions
+Suppress certain unspecified behaviours to ease correctness fuzzing:
+abort program when the stack overflows or a string exceeds maximum length (as opposed to throwing
+.JS RangeError),
+and use a fixed suppression string for error messages.
+
 .V8 cpu-profiler-sampling-interval | Int 1000
 CPU profiler sampling interval in microseconds.
 
@@ -309,7 +313,7 @@ Always generate detailed line information for CPU profiling.
 Don\(cqt trigger out-of-memory failure to avoid GC storm near heap limit.
 
 .V8 disable-abortjs
-Disables AbortJS runtime function.
+Disable AbortJS runtime function.
 
 .V8 disable-old-api-accessors
 Disable old-style API accessors whose setters trigger through the prototype chain.
@@ -409,6 +413,9 @@ constructor in TurboFan.
 
 .V8 experimental-new-space-growth-heuristic
 Grow the new space based on the percentage of survivors instead of their absolute value.
+
+.V8 experimental-stack-trace-frames
+Enable experimental frames (API/Builtins) and stack trace layout.
 
 .V8 experimental-wasm-anyref
 Enable prototype anyref opcodes for WASM.
@@ -521,6 +528,12 @@ Prints number of allocations and enables analysis mode for gc fuzz testing, e.g.
 .V8 fuzzer-random-seed
 Default seed for initializing fuzzer random generator (0, the default, means to use v8\(cqs random number generator seed).
 
+.V8 gc-experiment-background-schedule
+Use new background GC schedule heuristics.
+
+.V8 gc-experiment-less-compaction
+Use less compaction in non-memory reducing mode.
+
 .V8 gc-fake-mmap | String \(lq/tmp/__v8_gc__\(rq
 Specify the name of the file for fake gc mmap used in
 .`` ll_prof .
@@ -548,19 +561,14 @@ Dump only objects containing this substring.
 .V8 gdbjit-full
 Enable GDBJIT interface for all code objects.
 
+.V8 global-gc-scheduling
+Enable GC scheduling based on global memory.
+
 .V8 no-hard-abort
 Don\(cqt abort by crashing.
 
 .V8 harmony
 Enable all completed Harmony features.
-
-.V8 no-harmony-await-optimization
-Disable
-.JS await
-taking 1 tick.
-
-.V8 harmony-class-fields (WIP)
-Enable fields in class literals.
 
 .V8 no-harmony-dynamic-import
 Disable dynamic import.
@@ -577,31 +585,30 @@ Disable
 .JS import.meta
 property.
 
-.V8 harmony-intl-bigint
-Enable
+.V8 harmony-intl-add-calendar-numbering-system
+Add \f(CWcalendar\fP and \f(CWnumberingSystem\fP to
+.JS DateTimeFormat .
+
+.V8 no-harmony-intl-bigint
+Disable
 .JS BigInt.prototype.toLocaleString .
 
-.V8 harmony-intl-date-format-range (WIP)
-Enable
-.`` "DateTimeFormat formatRange" .
+.V8 no-harmony-intl-date-format-range
+Disable
+.JS DateTimeFormat.formatRange .
 
-.V8 harmony-intl-datetime-style
-Enable
-.CW "dateStyle timeStyle"
-for
+.V8 no-harmony-intl-datetime-style
+Disable \f(CWdateStyle\fP and \f(CWtimeStyle\fP for
 .JS DateTimeFormat .
+
+.V8 harmony-intl-numberformat-unified
+Enable unified
+.JS Intl.NumberFormat
+features.
 
 .V8 harmony-intl-segmenter
 Enable
 .JS Intl.Segmenter .
-
-.V8 no-harmony-json-stringify
-Disable well-formed
-.JS JSON.stringify .
-
-.V8 no-harmony-locale
-Disable
-.JS Intl.Locale .
 
 .V8 no-harmony-namespace-exports
 Disable namespace exports (\f(CWexport * as foo from "bar"\fP).
@@ -613,18 +620,12 @@ Disable numeric separator between digits.
 Disable
 .JS Object.fromEntries() .
 
-.V8 no-harmony-private-fields
-Disable private fields in class literals.
-
 .V8 harmony-private-methods (WIP)
 Enable private methods in class literals.
 
-.V8 harmony-promise-all-settled
-Enable
+.V8 no-harmony-promise-all-settled
+Disable
 .JS Promise.allSettled .
-
-.V8 no-harmony-public-fields
-Disable public instance fields in class literals.
 
 .V8 harmony-regexp-sequence (WIP)
 Enable RegExp Unicode sequence properties.
@@ -635,13 +636,6 @@ Disable
 
 .V8 no-harmony-shipping
 Disable all shipped Harmony features.
-
-.V8 no-harmony-static-fields
-Disable static fields in class literals.
-
-.V8 no-harmony-string-matchall
-Disable
-.JS String.prototype.matchAll .
 
 .V8 harmony-weak-refs (WIP)
 Enable weak references.
@@ -667,6 +661,9 @@ Truncate strings to this length in the heap snapshot.
 
 .V8 histogram-interval | Int 600000
 Time interval in ms for aggregating memory histograms.
+
+.V8 huge-max-old-generation-size
+Increase maximum size of the old space to 4 GB for x64 systems with the physical memory bigger than 16 GB.
 
 .V8 no-icu-timezone-data
 Don\(cqt get information about timezones from ICU.
@@ -703,9 +700,6 @@ Initial old space size (in Mbytes).
 .V8 no-inline-accessors
 Don\(cqt inline JavaScript accessors.
 
-.V8 no-inline-into-try
-Don\(cqt inline into try blocks.
-
 .V8 no-inline-new
 Don\(cqt use fast inline allocation.
 
@@ -726,6 +720,9 @@ Allocate feedback vectors lazily.
 
 .V8 liftoff
 Enable Liftoff, the baseline compiler for WebAssembly.
+
+.V8 lite-mode
+Enable trade-off of performance for memory savings.
 
 .V8 ll-prof
 Enable low-level Linux profiler.
@@ -768,9 +765,6 @@ Log source code.
 
 .V8 log-suspect
 Log suspect operations.
-
-.V8 log-timer-events
-Time events including external callbacks.
 
 .V8 logfile
 Specify the name of the log file.
@@ -846,8 +840,8 @@ Memory limit for mock
 .JS ArrayBuffer
 allocator used to simulate OOM for testing.
 
-.V8 modify-field-representation-inplace
-Enable in-place field representation updates.
+.V8 no-modify-field-representation-inplace
+Disable in-place field representation updates.
 
 .V8 no-move-object-start
 Disable moving of object starts.
@@ -862,7 +856,7 @@ Never perform compaction on full GC.
 Don\(cqt use adaptive optimizations.
 
 .V8 optimize-for-size
-Enables optimizations which favor memory size over execution speed.
+Enable optimisations which favour memory size over execution speed.
 
 .V8 no-page-promotion
 Don\(cqt promote pages based on utilization.
@@ -1069,7 +1063,7 @@ Force marking at random points between 0 and
 Number of stress runs.
 
 .V8 stress-sampling-allocation-profiler | Int 0
-Enables sampling allocation profiler with
+Enable sampling allocation profiler with
 .VAR X
 as a sample interval.
 
@@ -1081,8 +1075,15 @@ Force scavenge at random points between 0 and
 .V8 stress-validate-asm
 Try to validate everything as asm.js.
 
+.V8 stress-wasm-code-gc
+Stress-test garbage collection of WASM code.
+
 .V8 suppress-asm-messages
 Don\(cqt emit asm.js related messages (for golden file testing).
+
+.V8 target-arch | String NULL
+The \*(C!mksnapshot\fP target architecture.
+(\*(C!mksnapshot\fP only).
 
 .V8 target-os | String NULL
 The \*(C!mksnapshot\fP target OS.
@@ -1123,9 +1124,6 @@ Print stack trace after
 .VAR N
 free-list allocations.
 
-.V8 trace-array-abuse
-Trace out-of-bounds accesses to all arrays.
-
 .V8 trace-asm-parser
 Verbose logging of asm.js parse failures.
 
@@ -1161,9 +1159,6 @@ Trace liveness of local variable slots.
 
 .V8 trace-evacuation
 Report evacuation statistics.
-
-.V8 trace-external-array-abuse
-Trace out-of-bounds-accesses to external arrays.
 
 .V8 trace-file-names
 Include file names in trace-opt/trace-deopt output.
@@ -1221,9 +1216,6 @@ The file to which the bytecode handler dispatch table is written (by default, th
 
 .V8 trace-incremental-marking
 Trace progress of the incremental marking.
-
-.V8 trace-js-array-abuse
-Trace out-of-bounds accesses to JS arrays.
 
 .V8 trace-maps
 Trace map creation.
@@ -1352,6 +1344,9 @@ End function for WASM AST trace (exclusive).
 .V8 trace-wasm-ast-start | Int 0
 Start function for WASM AST trace (inclusive).
 
+.V8 trace-wasm-code-gc
+Trace garbage collection of WASM code.
+
 .V8 trace-wasm-memory
 Print all memory updates performed in WASM code.
 
@@ -1426,9 +1421,6 @@ Disable TurboFan loop variable optimisation.
 
 .V8 no-turbo-move-optimization
 Don\(cqt optimize gap moves in TurboFan.
-
-.V8 no-turbo-preprocess-ranges
-Don\(cqt run pre-register allocation heuristics.
 
 .V8 turbo-profiling
 Enable profiling in TurboFan.
@@ -1521,6 +1513,9 @@ Execute all WASM code in the WASM interpreter.
 .V8 wasm-lazy-compilation
 Enable lazy compilation for all WASM modules.
 
+.V8 wasm-lazy-validation
+Enable lazy validation for lazily-compiled WASM functions.
+
 .V8 no-wasm-math-intrinsics
 Don\(cqt intrinsify some Math imports into WASM.
 
@@ -1566,8 +1561,8 @@ Don\(cqt use signal handlers to catch out of bounds memory access in WASM (curre
 .V8 wasm-write-protect-code-memory
 Write protect code memory on the WASM native heap.
 
-.V8 win64-unwinding-info
-Enable unwinding info for Windows/x64 (experimental).
+.V8 no-win64-unwinding-info
+Disable unwinding info for Windows/x64.
 
 .V8 no-write-protect-code-memory
 Don\(cqt write protect code memory.
@@ -1584,7 +1579,7 @@ Copyright \(co 2014, the V8 project authors.
 All rights reserved.
 .
 .PP
-Manpage adaption and programming copyright \(co 2016-2019, 
+Manpage adaption and programming copyright \(co 2016-2019,
 .MT gardnerjohng@gmail.com
 Alhadis
 .ME .
