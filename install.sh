@@ -64,11 +64,11 @@ command -v doas 2>&1 >/dev/null && sudo=doas
 		electron
 		eslint
 		guess-sig
-		istanbul
 		jsdoc
 		json
 		mocha
 		mocha-when
+		nyc
 		ppjson
 		prettier
 		rollup
