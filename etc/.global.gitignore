@@ -2,6 +2,7 @@
 Thumbs.db
 Desktop.ini
 node_modules
+.nyc_output
 ._*
 .\#*
 \#*\#
