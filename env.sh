@@ -58,6 +58,7 @@ export MANPATH=$MANPATH:~/perl5/man
 # Prefer Emacs for terminal-based editing
 EDITOR=`command -v emacs 2>/dev/null`
 [ -x "$EDITOR" ] && {
+	EDITOR="$EDITOR -nw"
 	GIT_EDITOR=$EDITOR
 	VISUAL=$EDITOR
 	export EDITOR GIT_EDITOR VISUAL
