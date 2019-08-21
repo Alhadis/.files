@@ -58,7 +58,9 @@
      ssh-config-mode
      toml-mode
      typescript-mode
+     use-package
      vimrc-mode
      wavefront-obj-mode
+     xterm-color
      yaml-mode
      yasnippet)))
