@@ -98,6 +98,7 @@ cd "$HOME"
 
 # Create symlinks in $HOME
 dotfiles='
+	.alacritty.yml
 	.bashrc
 	.curlrc
 	.emacs.d

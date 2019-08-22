@@ -1,0 +1,53 @@
+# Alacritty: https://github.com/jwilm/alacritty
+
+window:
+    startup_mode: Maximized
+    padding: { x: 5, y: 2 }
+
+font:
+    size:    14
+    offset:  { x: 0, y: 1 }
+    normal:  { family: Menlig, style: Regular }
+    bold:    { family: Menlig, style: Bold    }
+    italic:  { family: Menlig, style: Italic  }
+    use_thin_strokes: false
+
+colors:
+    primary:
+        background: "0x000000"
+        foreground: "0xF2F2F2"
+
+    cursor:
+        cursor: "0x606060"
+
+    selection:
+        background: "0x414141"
+        foreground: "0xF2F2F2"
+
+    normal:
+        black:   '0x000000'
+        red:     '0x990000'
+        green:   '0x00A600'
+        yellow:  '0x999900'
+        blue:    '0x0000B2'
+        magenta: '0xB200B2'
+        cyan:    '0x00A6B2'
+        white:   '0xBFBFBF'
+
+    bright:
+        black:   '0x666666'
+        red:     '0xE50000'
+        green:   '0x00D900'
+        yellow:  '0xE5E500'
+        blue:    '0x0000FF'
+        magenta: '0xE500E5'
+        cyan:    '0x00E5E5'
+        white:   '0xE5E5E5'
+
+background_opacity: 0.85
+dynamic_title:      true
+dynamic_padding:    false
+
+cursor:
+    style: Beam
+    unfocused_hollow: true
