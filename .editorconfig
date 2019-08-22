@@ -27,7 +27,7 @@ indent_size = 2
 [*.{bat,cmd}]
 end_of_line = crlf
 
-[*.{yml,yaml}]
+[*.{clang-format,yml,yaml}]
 indent_style = space
 indent_size = 4
 
