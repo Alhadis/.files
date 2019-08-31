@@ -14,7 +14,8 @@ case `basename ${0#-}` in
 
 		# Darken sigil's colour to indicate an error code
 		statusColour(){
-			[ $? -ne 0 ] && printf '\001\033[38;5;28m\002'
+			[ $? -eq 0 ] && return
+			[ "$DISPLAY" ] && printf '\001\033[38;5;28m\002' || printf '\001\033[31m\002'
 		}
 
 		# Current branch of Git repository
