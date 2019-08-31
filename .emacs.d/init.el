@@ -1,15 +1,3 @@
-(when (version< emacs-version "27.0") (package-initialize))
-(load "~/.emacs.d/packages")
-(load "~/.emacs.d/whitespace")
-(load "~/.emacs.d/filetypes")
-(load "~/.emacs.d/keymap")
-(load "~/.emacs.d/hooks")
-
-;; Site-specific
-(add-to-list 'load-path "~/.emacs.d/lisp")
-(load "git-modes")
-(load "git-commit")
-
 ;; Locale
 (set-language-environment "UTF-8")
 (setenv "LANG" "en_AU.UTF-8")
@@ -24,15 +12,14 @@
            (prefer-coding-system 'utf-8)
            (define-coding-system-alias 'UTF-8 'utf-8)))
 
-;; Configure `js2-mode' for nicer JavaScript editing
-(setq js2-highlight-level 3
-      js2-include-node-externs t
-      js2-strict-trailing-comma-warning nil
-      js2-strict-cond-assign-warning nil
-      js2-strict-inconsistent-return-warning nil)
+;; No pointless distractions, please
+(setq inhibit-startup-screen t)
+(blink-cursor-mode nil)
 
-;; Disable various annoyances
-(tty-suppress-bold-inverse-default-colors t)
+;; Modifying this file, could you not
+(setq custom-file "~/.emacs.d/custom.el")
+
+;; Don't leave clutter around while editing
 (setq auto-save-default nil
       create-lockfiles nil
       disabled-command-function nil)
@@ -45,12 +32,46 @@
       kept-old-versions 2
       version-control t)
 
-;; Snippets
-(load "yasnippet" t)
-(when (boundp 'yas-global-mode) (yas-global-mode 1))
-(setq yas-indent-line "fixed")
+;; Keep a familiar workflow
+(cua-mode t)
+(setq help-window-select t
+      backward-delete-char-untabify-method nil)
 
-;; Everything else
-(setq custom-file "~/.emacs.d/custom.el")
-(load custom-file)
-(load "~/.emacs.d/site.el" t)
+;; Configure indentation
+(when (fboundp 'electric-indent-mode) (electric-indent-mode -1))
+(setq default-tab-width 4
+      indent-tabs-mode t
+      indent-line-function 'insert-tab
+      coffee-indent-tabs-mode t
+      nxml-child-indent 4)
+
+;; Prevent tabs from creeping into Lisp code
+(dolist (hook
+  (list 'emacs-lisp-mode-hook
+        'lisp-interaction-mode-hook
+        'lisp-mode-hook
+        'scheme-mode-hook))
+  (add-hook hook
+     (lambda ()
+       (setq indent-tabs-mode nil)
+       (setq tab-width 8)
+       (add-hook 'before-save-hook
+         (lambda ()
+           (untabify (point-min) (point-max))
+           (delete-trailing-whitespace))
+         nil t))))
+
+;; Load Git-related major modes
+(add-to-list 'load-path "~/.emacs.d/lisp")
+(add-hook 'git-commit-mode-hook
+  (lambda ()
+    (add-hook 'before-save-hook #'delete-trailing-whitespace nil t)
+    (setq indent-tabs-mode nil)
+    (setq fill-column 72)))
+(load "git-modes")
+(load "git-commit")
+
+;; Load everything else
+(load "~/.emacs.d/keybindings")
+(load "~/.emacs.d/theme")
+(load "~/.emacs.d/packages")

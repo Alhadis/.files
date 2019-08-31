@@ -9,6 +9,7 @@ node_modules
 /tmp.sh
 .emacs.d/.cask
 .emacs.d/auto-save-list
+.emacs.d/custom.el
 .emacs.d/elpa
 .emacs.d/session*
 .emacs.d/snippets
