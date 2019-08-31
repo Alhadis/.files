@@ -106,10 +106,8 @@ alias copythat='printf %s "$(history | tail -2 | head -1 | sed s/^[[:space:]]*[[
 have shred && alias nuke='shred -u' || alias nuke='rm -rfP'
 
 
-# Search on GitHub for a filename or file extension
-alias ghext='gh-search ext'
-alias ghname='gh-search name'
-alias ghlang='gh-search lang'
+# Bring up notes for things I keep forgetting
+alias notes='less ~/.files/etc/random-notes.md'
 
 
 # Codepoint and base conversion
