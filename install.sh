@@ -66,6 +66,12 @@ command -v doas 2>&1 >/dev/null && sudo=doas
 		guess-sig
 		jsdoc
 		json
+		karma
+		karma-coverage
+		karma-chrome-launcher
+		karma-firefox-launcher
+		karma-mocha-reporter
+		karma-mocha
 		mocha
 		mocha-when
 		nyc
