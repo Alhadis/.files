@@ -64,6 +64,10 @@ have sudo && ! have doas && alias doas=sudo
 };
 
 
+# Hide GNU bc(1)'s startup message
+(echo quit | bc --quiet 2>&1)>/dev/null && alias bc='bc --quiet -l'
+
+
 # Ksh: Emulate Bash's history expansion
 case ${SHELL##*/} in ksh)
 	alias !!='`history | tail -n1 | cut -f2 | tee /dev/stderr`';;
