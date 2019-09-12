@@ -69,3 +69,11 @@ Test using `git log 30837e3...b51fe81`.
 	https://url.com/file.pdf#page=[number]
 
 Exempli gratia: [`https://troff.org/54.pdf#page=29`](https://troff.org/54.pdf#page=29)
+
+
+
+6․ Encrypt/decrypt shit with GPG:
+---------------------------------
+
+	gpg -aer Alhadis
+	gpg -adr Alhadis
