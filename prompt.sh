@@ -20,8 +20,8 @@ case `basename ${0#-}` in
 
 		# Current branch of Git repository
 		branchName(){
-			name=`git branch --list --no-color 2>/dev/null | cut -d" " -f2 | tr -d "\n"`
-			[ -n "$name" ] && printf " ${1}(${2}%s${1})" "$name"
+			set -- "$1" "$2" "`git branch --list --no-color 2>/dev/null | grep '^\* ' | sed 's/^\* //; s/^(//; s/)$//;'`"
+			[ -n "$3" ] && printf " ${1}(${2}%s${1})" "$3"
 		}
 
 		PS1="${colour}\$(statusColour)$PS1${colour}"
