@@ -142,7 +142,7 @@
 .
 .\"======================================================
 .\" BEGIN DOCUMENT
-.TH V8 1 "August 6, 2019" "V8 7.6.303.27" V8
+.TH V8 1 "September 19, 2019" "V8 7.7.299.11" V8
 .
 .SH NAME
 .BR v8 " \(em Google\(cqs JavaScript engine
@@ -216,6 +216,9 @@ Generate instructions for the selected ARM architecture if available: armv6, arm
 .V8 asm-wasm-lazy-compilation
 Enable lazy compilation for asm-wasm modules.
 
+.V8 assert-types
+Generate runtime type assertions to test the typer.
+
 .V8 assume-asmjs-origin
 Force WASM decoder to assume input is internal asm-wasm format.
 
@@ -245,7 +248,7 @@ Clear pending exceptions when entering JavaScript.
 Initialize free memory with 0.
 
 .V8 code-comments
-Emit comments in code disassembly; for more readable source positions you should add \*(C!--no-concurrent_recompilation\fP.
+Emit comments in code disassembly; for more readable source positions you should add \*(C!--no-concurrent-recompilation\fP.
 
 .V8 no-compact-code-space
 Don\(cqt compact code space on full collections.
@@ -341,13 +344,13 @@ Label to disambiguate symbols in embedded data file.
 (\*(C!mksnapshot\fP only).
 
 .V8 enable-32dregs | maybe_bool unset
-Deprecated (use \*(C!--arm_arch\fP instead).
+Deprecated (use \*(C!--arm-arch\fP instead).
 
 .V8 enable-armv7 | maybe_bool unset
-Deprecated (use \*(C!--arm_arch\fP instead).
+Deprecated (use \*(C!--arm-arch\fP instead).
 
 .V8 enable-armv8 | maybe_bool unset
-Deprecated (use \*(C!--arm_arch\fP instead).
+Deprecated (use \*(C!--arm-arch\fP instead).
 
 .V8 no-enable-avx
 Disable use of AVX instructions if available.
@@ -368,7 +371,7 @@ Skip generating source positions during initial compile, but regenerate when act
 Disable use of LZCNT instruction if available.
 
 .V8 enable-neon | maybe_bool unset
-Deprecated (use \*(C!--arm_arch\fP instead).
+Deprecated (use \*(C!--arm-arch\fP instead).
 
 .V8 no-enable-one-shot-optimization
 Disable size optimizations for the code that will only be executed once.
@@ -391,14 +394,17 @@ Disable use of SSE3 instructions if available.
 .V8 no-enable-sse4-1
 Disable use of SSE4.1 instructions if available.
 
+.V8 no-enable-sse4-2
+Disable use of SSE4.2 instructions if available.
+
 .V8 no-enable-ssse3
 Disable use of SSSE3 instructions if available.
 
 .V8 enable-sudiv | maybe_bool unset
-Deprecated (use \*(C!--arm_arch\fP instead).
+Deprecated (use \*(C!--arm-arch\fP instead).
 
 .V8 enable-vfp3 | maybe_bool unset
-Deprecated (use \*(C!--arm_arch\fP instead).
+Deprecated (use \*(C!--arm-arch\fP instead).
 
 .V8 ephemeron-fixpoint-iterations | Int 10
 Number of fixpoint iterations it takes to switch to linear ephemeron algorithm.
@@ -459,6 +465,11 @@ Enable prototype WASM type reflection in JS for WASM.
 Expose
 .`` async_hooks
 object.
+
+.V8 expose-cputracemark-as | String NULL
+Expose
+.`` cputracemark
+extension under the specified name.
 
 .V8 expose-externalize-string
 Expose externalize string extension.
@@ -523,9 +534,9 @@ Enable function context specialization in TurboFan.
 Implies all staged features that we want to ship in the not-too-far future.
 
 .V8 fuzzer-gc-analysis
-Prints number of allocations and enables analysis mode for gc fuzz testing, e.g. \*(C!--stress-marking\fP, \*(C!--stress-scavenge\fP.
+Print number of allocations and enable analysis mode for GC fuzz-testing, e.g. \*(C!--stress-marking\fP, \*(C!--stress-scavenge\fP.
 
-.V8 fuzzer-random-seed
+.V8 fuzzer-random-seed | Int 0
 Default seed for initializing fuzzer random generator (0, the default, means to use v8\(cqs random number generator seed).
 
 .V8 gc-experiment-background-schedule
@@ -537,6 +548,12 @@ Use less compaction in non-memory reducing mode.
 .V8 gc-fake-mmap | String \(lq/tmp/__v8_gc__\(rq
 Specify the name of the file for fake gc mmap used in
 .`` ll_prof .
+
+.V8 gc-freelist-strategy | Int 0
+Freelist strategy to use.
+\*(C?1\fP selects \*(C!FreeListFastAlloc\fP,
+\*(C?2\fP selects \*(C!FreeListMany\fP,
+and any other value selects \*(C!FreeListLegacy\fP.
 
 .V8 gc-global
 Always perform global GCs.
@@ -561,8 +578,8 @@ Dump only objects containing this substring.
 .V8 gdbjit-full
 Enable GDBJIT interface for all code objects.
 
-.V8 global-gc-scheduling
-Enable GC scheduling based on global memory.
+.V8 no-global-gc-scheduling
+Disable GC scheduling based on global memory.
 
 .V8 no-hard-abort
 Don\(cqt abort by crashing.
@@ -572,13 +589,6 @@ Enable all completed Harmony features.
 
 .V8 no-harmony-dynamic-import
 Disable dynamic import.
-
-.V8 no-harmony-global
-Disable
-.JS global .
-
-.V8 no-harmony-hashbang
-Disable support for interpreter directive (hashbang) syntax.
 
 .V8 no-harmony-import-meta
 Disable
@@ -597,12 +607,30 @@ Disable
 Disable
 .JS DateTimeFormat.formatRange .
 
+.V8 harmony-intl-dateformat-day-period
+Add
+.`` dayPeriod
+option to
+.JS DateTimeFormat .
+
+.V8 harmony-intl-dateformat-fractional-second-digits
+Add
+.`` fractionalSecondDigits
+option to
+.JS DateTimeFormat .
+
+.V8 harmony-intl-dateformat-quarter (WIP)
+Add
+.`` quarter
+option to
+.JS DateTimeFormat .
+
 .V8 no-harmony-intl-datetime-style
 Disable \f(CWdateStyle\fP and \f(CWtimeStyle\fP for
 .JS DateTimeFormat .
 
-.V8 harmony-intl-numberformat-unified
-Enable unified
+.V8 no-harmony-intl-numberformat-unified
+Disable unified
 .JS Intl.NumberFormat
 features.
 
@@ -615,10 +643,6 @@ Disable namespace exports (\f(CWexport * as foo from "bar"\fP).
 
 .V8 no-harmony-numeric-separator
 Disable numeric separator between digits.
-
-.V8 no-harmony-object-from-entries
-Disable
-.JS Object.fromEntries() .
 
 .V8 harmony-private-methods (WIP)
 Enable private methods in class literals.
@@ -668,8 +692,8 @@ Increase maximum size of the old space to 4 GB for x64 systems with the physical
 .V8 no-icu-timezone-data
 Don\(cqt get information about timezones from ICU.
 
-.V8 idle-time-scavenge
-Perform scavenges in idle time.
+.V8 no-idle-time-scavenge
+Don\(cqt perform scavenges in idle time.
 
 .V8 no-ignition-elide-noneffectful-bytecodes
 Don\(cqt elide bytecodes which won\(cqt have any external effect.
@@ -695,7 +719,7 @@ Don\(cqt use incremental marking.
 Don\(cqt use incremental marking for marking wrappers.
 
 .V8 initial-old-space-size | size_t 0
-Initial old space size (in Mbytes).
+Initial old space size (in MBytes).
 
 .V8 no-inline-accessors
 Don\(cqt inline JavaScript accessors.
@@ -715,8 +739,8 @@ Disable runtime allocation of executable memory.
 .V8 no-lazy
 Don\(cqt use lazy compilation.
 
-.V8 lazy-feedback-allocation
-Allocate feedback vectors lazily.
+.V8 no-lazy-feedback-allocation
+Don\(cqt allocate feedback vectors lazily.
 
 .V8 liftoff
 Enable Liftoff, the baseline compiler for WebAssembly.
@@ -739,8 +763,8 @@ Log API events to the log file.
 .V8 log-code
 Log code events to the log file without profiling.
 
-.V8 log-colour
-When logging, try to use coloured output.
+.V8 no-log-colour
+Don\(cqt use coloured output when logging.
 
 .V8 log-function-events
 Log function events (parse, compile, execute) separately.
@@ -748,10 +772,10 @@ Log function events (parse, compile, execute) separately.
 .V8 log-handles
 Log global handle events.
 
-.V8 log-instruction-file
+.V8 log-instruction-file | String \(lqarm64_inst.csv\(rq
 AArch64 instruction statistics log file.
 
-.V8 log-instruction-period
+.V8 log-instruction-period | Int 4194304
 AArch64 instruction statistics logging period.
 
 .V8 log-instruction-stats
@@ -766,18 +790,23 @@ Log source code.
 .V8 log-suspect
 Log suspect operations.
 
-.V8 logfile
+.V8 logfile | String \(lqv8.log\(rq
 Specify the name of the log file.
 
-.V8 logfile-per-isolate
-Separate log files for each isolate.
+.V8 no-logfile-per-isolate
+Use a single log-file for each isolate.
 
 .V8 manual-evacuation-candidates-selection
 Test mode only flag.
-It allows an unit test to select evacuation candidates pages (requires \*(C!--stress_compaction\fP).
+It allows a unit test to select evacuation candidates pages (requires \*(C!--stress-compaction\fP).
 
 .V8 map-counters
 Map counters to a file.
+
+.V8 max-heap-size | size_t 0
+Maximum size of the heap (in MBytes).
+Both \*(C!--max-semi-space-size\fP and \*(C!--max-old-space-size\fP take precedence.
+All three flags cannot be specified at the same time.
 
 .V8 max-inlined-bytecode-size | Int 500
 Maximum size of bytecode for a single inlining.
@@ -795,7 +824,7 @@ Maximum size of bytecode considered for small function inlining.
 Ignore eager compilation hints.
 
 .V8 max-old-space-size | size_t 0
-Maximum size of the old space (in Mbytes).
+Maximum size of the old space (in MBytes).
 
 .V8 max-optimized-bytecode-size | Int 61440
 Maximum bytecode size to be considered for optimization; too high values may cause the compiler to hit (release) assertions.
@@ -806,7 +835,7 @@ Maximum number of maps to track in \*(CWPOLYMORPHIC\fP state.
 .V8 max-semi-space-size | size_t 0
 Maximum size of a semi-space (in MBytes), the new space consists of two semi-spaces.
 
-.V8 max-stack-trace-source-length
+.V8 max-stack-trace-source-length | Int 300
 Maximum length of function source code printed in a stack trace.
 
 .V8 mcpu | String \(lqauto\(rq
@@ -835,7 +864,7 @@ Use a mock
 .JS ArrayBuffer
 allocator for testing.
 
-.V8 mock-arraybuffer-allocator-limit
+.V8 mock-arraybuffer-allocator-limit | size_t 0
 Memory limit for mock
 .JS ArrayBuffer
 allocator used to simulate OOM for testing.
@@ -934,25 +963,25 @@ Print WebAssembly stub code.
 .V8 prof
 Log statistical profiling information (implies \*(C!--log-code\fP).
 
-.V8 prof-browser-mode
-Used with \*(C!--prof\fP, turns on browser-compatible mode for profiling.
+.V8 no-prof-browser-mode
+Turn off browser-compatible mode when profiling with \*(C!--prof\fP.
 
 .V8 prof-cpp
 Like \*(C!--prof\fP, but ignore generated code.
 
-.V8 prof-sampling-interval
+.V8 prof-sampling-interval | Int 1000
 Interval for \*(C!--prof\fP samples (in microseconds).
 
 .V8 profile-deserialization
 Print the time it takes to deserialize the snapshot.
 
-.V8 random-gc-interval
+.V8 random-gc-interval | Int 0
 Collect garbage after \*(CBrandom\fP\*(CW(0,\fP
 .VAR X )
 allocations.
-It overrides \*(C!gc_interval\fP.
+It overrides \*(C!--gc-interval\fP.
 
-.V8 random-seed
+.V8 random-seed | Int 0
 Default seed for initializing random generator (0, the default, means to use system random).
 
 .V8 no-randomize-hashes
@@ -1035,11 +1064,11 @@ Simulator stop after
 number of instructions.
 
 .V8 stress-compaction
-Stress the GC compactor to flush out bugs (implies \*(C!--force_marking_deque_overflows\fP).
+Stress the GC compactor to flush out bugs (implies \*(C!--force-marking-deque-overflows\fP).
 
 .V8 stress-compaction-random
 Stress GC compaction by selecting random percent of pages as evacuation candidates.
-It overrides \*(C!stress_compaction\fP.
+It overrides \*(C!--stress-compaction\fP.
 
 .V8 stress-flush-bytecode
 Stress bytecode flushing.
@@ -1053,6 +1082,9 @@ Force incremental marking for small heaps and run it more often.
 
 .V8 stress-inline
 Set high thresholds for inlining to inline as much as possible.
+
+.V8 stress-lazy-source-positions
+Collect lazy source positions immediately after lazy compilation.
 
 .V8 stress-marking | Int 0
 Force marking at random points between 0 and
@@ -1116,9 +1148,6 @@ Trace function calls.
 .V8 trace-all-uses
 Trace all use positions.
 
-.V8 trace-alloc
-Trace register allocator.
-
 .V8 trace-allocation-stack-interval | Int -1
 Print stack trace after
 .VAR N
@@ -1160,6 +1189,9 @@ Trace liveness of local variable slots.
 .V8 trace-evacuation
 Report evacuation statistics.
 
+.V8 trace-evacuation-candidates
+Show statistics about the pages evacuation by the compaction.
+
 .V8 trace-file-names
 Include file names in trace-opt/trace-deopt output.
 
@@ -1174,6 +1206,12 @@ Report fragmentation for old space (detailed).
 
 .V8 trace-gc
 Print one trace line following each garbage collection.
+
+.V8 trace-gc-freelists
+Print details of each freelist before and after each major garbage collection.
+
+.V8 trace-gc-freelists-verbose
+Print details of freelists of each page before and after each major garbage collection.
 
 .V8 trace-gc-ignore-scavenger
 Do not print trace line after scavenger collection.
@@ -1203,7 +1241,7 @@ Trace inline cache state transitions for tools/ic-processor.
 Print one trace line following each idle notification.
 
 .V8 trace-idle-notification-verbose
-Prints the heap state used by the idle notification.
+Print the heap state used by the idle notification.
 
 .V8 trace-ignition-codegen
 Trace the codegen of ignition interpreter bytecode handlers.
@@ -1253,6 +1291,9 @@ Trace pretenuring decisions of HAllocate instructions.
 .V8 trace-pretenuring-statistics
 Trace allocation site pretenuring statistics.
 
+.V8 trace-protector-invalidation
+Trace protector cell invalidations.
+
 .V8 trace-prototype-users
 Trace updates to prototype user tracking.
 
@@ -1289,6 +1330,9 @@ Trace the tracking of allocation sites.
 
 .V8 trace-turbo
 Trace generated TurboFan IR.
+
+.V8 trace-turbo-alloc
+Trace TurboFan\(cqs register allocator.
 
 .V8 trace-turbo-ceq
 Trace TurboFan\(cqs control equivalence.
@@ -1470,11 +1514,11 @@ Use external strings for source code.
 .V8 no-use-ic
 Don\(cqt use inline caching.
 
-.V8 use-idle-notification
-Use idle notification to reduce memory footprint.
+.V8 no-use-idle-notification
+Don\(cqt use idle notification to reduce memory footprint.
 
-.V8 use-marking-progress-bar
-Use a progress bar to scan large objects in increments when incremental marking is active.
+.V8 no-use-marking-progress-bar
+Don\(cqt use a progress bar to scan large objects in increments when incremental marking is active.
 
 .V8 no-use-osr
 Don\(cqt use on-stack replacement.
@@ -1495,8 +1539,8 @@ Don\(cqt validate asm.js modules before compiling.
 Disable actual asynchronous compilation for
 .JS WebAssembly.compile .
 
-.V8 wasm-code-gc
-Enable garbage collection of WASM code.
+.V8 no-wasm-code-gc
+Disable garbage collection of WASM code.
 
 .V8 wasm-disable-structured-cloning
 Disable WASM structured cloning.

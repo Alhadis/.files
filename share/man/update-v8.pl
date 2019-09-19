@@ -36,7 +36,12 @@ sub parseOpts {
 
 	for my $key (sort keys %opts) {
 		$_ = $opts{$key};
-		next if m/^\(deprecated/i or $key =~ m/^(help|testing-bool-flag)$/i;
+		next if m/^\(deprecated/i or $key =~ m/^
+			( help
+			| testing-d8-test-runner
+			| testing-bool-flag
+			) $
+			/ix;
 		
 		
 		# Strip brackets enclosing description
@@ -62,16 +67,19 @@ sub parseOpts {
 		# Typos and ad-hoc formatting fixes
 		s/alingment/alignment/gi;
 		s/^enable "harmony ([^"]+)"/Enable $1/gi;
+		s/^Enable "Add ([^"\s]+)\s+(option to DateTimeFormat)"[,.\h]*$/Add\n.`` $1\n$2\n/gim;
 		s/^(?:Increase |Decrease )?\K(Max|Min) /${1}imum /gi;
 		s/reducing it's size/reducing its size/;
 		s/only smi values/only SMI values/g;
+		s/(?<=\s)an unit/a unit/g;
 		s/(?<=\w with)\K(?=the \w)/ /g;
+		s/\(in M\Kb(?=ytes\))/B/gi;
 
 		# Format the switch's type and default value
 		my $desc = $_;
-		my $typeArgs = "";	
+		my $typeArgs = "";
 		my %attr = $_ =~ m/
-			\h+ (type):    \h+ (\S.*?)
+			\s+ (type):    \h+ (\S.*?)
 			\h+ (default): \h+ (\S+.*?)
 			\h* \Z
 		/x;
@@ -98,12 +106,17 @@ sub parseOpts {
 							Rehash|Run|Rewrite|Share|Skip|Split|Trace|Track|Trigger|Use|Validate|Write
 						)(?=\h)/Don't \l$1/xi
 					){
+						my $replacements_line = __LINE__ + 1;
 						my %replacements = (
 							"concurrent-recompilation" => "Force synchronous optimisation of hot functions.",
+							"idle-time-scavenge" => "Don't perform scavenges in idle time.",
+							"log-colour" => "Don't use coloured output when logging.",
+							"logfile-per-isolate" => "Use a single log-file for each isolate.",
 							"fast-math" => "Don't enable faster, potentially less accurate, math functions.",
 							"flush-bytecode" => "Don't flush bytecode that hasn't executed recently.",
 							"parallel-scavenge" => "Disable parallel scavenging.",
 							"polymorphic-inlining" => "Disable polymorphic inlining.",
+							"prof-browser-mode" => "Turn off browser-compatible mode when profiling with --prof.",
 							"trace-maps-details" => "Don't log map details.",
 							"turbo-allocation-folding" => "Disable TurboFan allocation folding.",
 							"turbo-loop-peeling" => "Disable TurboFan loop peeling.",
@@ -115,7 +128,8 @@ sub parseOpts {
 							$desc = $replacements{$key};
 						}
 						else{
-							warn "Unable to negate sentence for --$key: $desc";
+							print STDERR "Unable to negate sentence for \e[4m--$key\e[24m: \e[7m$desc\e[27m\n";
+							print STDERR "Please update \`\%replacements\` list in " . __FILE__ . " (line $replacements_line)\n";
 							exit 1;
 						}
 					}
@@ -147,9 +161,13 @@ sub parseOpts {
 			$desc =~ s/ wasm( |\.(?:$|\h))/ WASM$1/g;
 			$desc =~ s/\bmksnapshot\b/\\*(C!$&\\fP/g;
 			$desc =~ s/^Turbofan /TurboFan /gm;
+			$desc =~ s/^Print\Ks(?=\s)//gm;
+			$desc =~ s/^Print number of allocations and enable\Ks (analysis mode for) gc fuzz (?=testing)/ $1 GC fuzz-/i;
 			$desc =~ s/\ADisable \Kglobal\.\Z/\n.JS global .\n/;
 			$desc =~ s/\((\d+) \+ (heap_growing_percent)\/100\)\.?/\n.EQ\n( $1 + $2 \/ 100 ).\n.EN\n/;
 			$desc =~ s/(?<=Disallow )eval\h+(?=and friends\.?$)/\n.`` eval\n/mi;
+			$desc =~ s/(?<=Maximum size of the heap \(in Mbytes\))\h+b(?=.+?semi.space.size\b)/.\nB/i;
+			$desc =~ s/(?<=\s)max_(semi|old)_space_size(?=\s)/--max-$1-space-size/g;
 			$desc =~ s/(?<=Expose )(async_hooks|freeBuffer|gc|injected-script-source\.js)\h+/\n.`` $1\n/g;
 			$desc =~ s/Enables? optimi\Kz(ations?)(?=\h|$)/s$1/gm;
 			$desc =~ s/for \Kspecific CPU\.$/a specific CPU\./im;
@@ -166,8 +184,9 @@ sub parseOpts {
 			$desc =~ s/(?<= )l(?=inux profiler)/L/;
 			$desc =~ s/(?<=Dump )elf(?= objects)/ELF/;
 			$desc =~ s/(?<= )h(?=armony )/H/;
+			$desc =~ s/(?<= after lazy compil)e\b/ation/;
 			$desc =~ s/
-				(StubName,NodeId|ll_prof|ASM_UNIMPLEMENTED_BREAK)\b
+				(StubName,NodeId|ll_prof|ASM_UNIMPLEMENTED_BREAK|cputracemark)\b
 				$punct \h*
 			/\n.`` $1 $2\n/gx;
 			$desc =~ s/\b
@@ -192,9 +211,9 @@ sub parseOpts {
 			$desc =~ s/ <([a-z])> /\n.VAR \u$1\n/gi;
 			$desc =~ s/ ([xX]) /\n.VAR \u$1\n/gi;
 			$desc =~ s/ <([Nn])> times\b/\n.VAR \u$1\ntimes/gi;
-			$desc =~ s/$matchKeys/\\*(C!$&\\fP/g;
+			$desc =~ s/$matchKeys(?![-_\w])/"\\*(C!".($& =~ y|_|-|r)."\\fP"/eg;
 			$desc =~ s/($matchURL)$punct/\n.LK "$1" $2\n/g;
-			$desc =~ s/(?<=\h)(gc_interval|stress_compaction)(?!-)\b/\\*(C!$&\\fP/g;
+			$desc =~ s/(?<=\h)(gc[-_]interval|stress[-_]compaction)(?!-)\b/"\\*(C!--".($& =~ tr#_#-#r)."\\fP"/eg;
 			$desc =~ s/code-<pid>-<isolate id>(\.asm\.?)/\n.RI \\(lqcode- pid - isolate-id $1\\(rq/g;
 			$desc =~ s/(?<=\h)(random)\(0,\h*([xX])\)\h*/\\*(CB$1\\fP\\*(CW(0,\\fP\n.VAR $2 )\n/g;
 			$desc =~ s/\bC\+\+/\\*(C+/g;
@@ -217,6 +236,9 @@ sub parseOpts {
 			$desc =~ s/(?<=\w)'(?=s )/\\(cq/g;
 			$desc =~ s/(\n\.(?:``|JS).+)\n+/$1\n/g;
 			$desc =~ s/\.\nU(?=se a fixed suppression string)/,\nand u/is;
+			$desc =~ s/^Freelist strategy to use\K:\h*/.\n/m;
+			$desc =~ s/^([12])=([^\s.,]+)[.,]?$/\\*(C?$1\\fP selects \\*(C!$2\\fP,/igm;
+			$desc =~ s/^Anything else=([^\s.,]+)[.,]?$/and any other value selects \\*(C!$1\\fP.\n/igm;
 			$desc =~ s/\n+$//;
 		}
 		
