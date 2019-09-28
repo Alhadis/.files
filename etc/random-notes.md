@@ -77,3 +77,10 @@ Exempli gratia: [`https://troff.org/54.pdf#page=29`](https://troff.org/54.pdf#pa
 
 	gpg -aer Alhadis
 	gpg -adr Alhadis
+
+
+
+7․ The “GNUmake idiom” OpenBSD hates is `$<`
+--------------------------------------------
+
+	Using $< in a non-suffix rule context is a GNUmake idiom
