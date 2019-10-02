@@ -105,6 +105,7 @@ cd "$HOME"
 # Create symlinks in $HOME
 dotfiles='
 	.alacritty.yml
+	.bash_logout
 	.bashrc
 	.curlrc
 	.emacs.d
