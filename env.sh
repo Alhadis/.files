@@ -68,6 +68,26 @@ EDITOR=`command -v emacs 2>/dev/null`
 export CC=clang
 export CXX=clang++
 
+# Node: Configure NPM and global search directories
+have npm && {
+	export ADBLOCK=1     # Filter useless crap when installing
+	export NPM_TOKEN=0   # Stop gripes about missing tokens
+	
+	# Prepend linked and globally-installed modules to search path
+	NPM_PREFIX=`npm config get prefix`
+	NPM="${NPM_PREFIX}/lib/node_modules"
+	[ -d "$NPM" ]            && NODE_PATH="$NPM"
+	[ -d ~/Labs/.npm ]       && NODE_PATH=~/Labs/.npm:"$NPM"
+	[ -d ~/.files/var/node ] && NODE_PATH=~/.files/var/node:"$NPM"
+	export NODE_PATH NPM_PREFIX NPM
+	
+	# Force ASCII output for non-graphical displays
+	[ "$DISPLAY" ] || {
+		export npm_config_unicode=false
+		export npm_config_heading='|'
+	};
+}
+
 # Nodebrew: Include paths for currently-selected version
 have nodebrew && [ -x ~/.nodebrew/current/bin/node ] && {
 	PATH=~/.nodebrew/current/bin:"$PATH"

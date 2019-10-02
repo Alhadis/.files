@@ -7,6 +7,7 @@ share/man/*       linguist-documentation
 
 # Unrecognised filetypes
 *.colorscheme     linguist-language=INI
+*.npmrc           linguist-language=INI
 Shell.profile     linguist-language=INI
 sessionui.rc      linguist-language=XML
 konsoleui.rc      linguist-language=XML

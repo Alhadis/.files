@@ -108,10 +108,9 @@ dotfiles='
 	.bashrc
 	.curlrc
 	.emacs.d
-	.eslintrc.json
 	.gitconfig
 	.inputrc
-	.prettierrc.json
+	.npmrc
 	.profile
 	.vimrc
 '
@@ -164,10 +163,7 @@ command -v konsole 2>&1 >/dev/null && [ -d .kde4/share/apps ] && {
 
 
 # Tell NPM to pull its head in
-command -v npm 2>&1 >/dev/null && {
-	npm config set package-lock false
-	npm config set save false
-}
+have npm && npm config set globalconfig ~/.files/etc/npmrc
 
 # Fix ownership of `~/.npm' and its contents
 name=`id -un`
