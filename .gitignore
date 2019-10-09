@@ -2,19 +2,9 @@
 mandoc.db
 node_modules
 *.log
-*.elc
 
 /bin/docker
 /bin/gpg2
 /share/man/man1/d8.1
 /share/man/man1/v8.1
 /tmp.sh
-
-.emacs.d/.cask
-.emacs.d/auto-save-list
-.emacs.d/custom.el
-.emacs.d/elpa
-.emacs.d/session*
-.emacs.d/snippets
-.emacs.d/site.el
-.emacs.d/url

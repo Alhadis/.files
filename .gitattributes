@@ -1,5 +1,4 @@
 # Stuff I didn't write
-.emacs.d/lisp/*   linguist-vendored
 share/dict/en_*   linguist-vendored
 
 # Documentation
