@@ -1,5 +1,6 @@
 .DS_Store
 Thumbs.db
+coverage
 Desktop.ini
 node_modules
 .nyc_output
