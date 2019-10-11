@@ -1,6 +1,8 @@
 # Configure $PATH
-PATH=~/.files/bin
+unset PATH
 paths='
+	~/.files/var/bin
+	~/.files/bin
 	~/bin
 	/sbin
 	/usr/sbin
@@ -24,8 +26,10 @@ paths='
 done
 
 # Define manual search paths
-MANPATH=:~/.files/share/man
+unset MANPATH
 paths='
+	~/.files/var/man
+	~/.files/share/man
 	/usr/local/share/man
 	/usr/share/man
 	/usr/X11/man
@@ -34,7 +38,9 @@ paths='
 	/opt/local/share/man
 	/usr/local/lib/node_modules/npm/man
 	/opt/tools/man
+	~/perl5/man
 '; for path in $paths; do
+	case $path in \~/*) path=~/${path#\~/};; esac
 	[ -d "$path" ] && MANPATH="$MANPATH:$path"
 done
 
@@ -53,7 +59,6 @@ export PERL5LIB=~/perl5/lib/perl5:$PERL5LIB
 export PERL_LOCAL_LIB_ROOT=~/perl5:$PERL_LOCAL_LIB_ROOT
 export PERL_MB_OPT='--install_base "~/perl5"'
 export PERL_MM_OPT="INSTALL_BASE=~/perl5"
-export MANPATH=$MANPATH:~/perl5/man
 
 # Prefer Emacs for terminal-based editing
 EDITOR=`command -v emacs 2>/dev/null`
@@ -74,12 +79,7 @@ have npm && {
 	export NPM_TOKEN=0   # Stop gripes about missing tokens
 	
 	# Prepend linked and globally-installed modules to search path
-	NPM_PREFIX=`npm config get prefix`
-	NPM="${NPM_PREFIX}/lib/node_modules"
-	[ -d "$NPM" ]            && NODE_PATH="$NPM"
-	[ -d ~/Labs/.npm ]       && NODE_PATH=~/Labs/.npm:"$NPM"
-	[ -d ~/.files/var/node ] && NODE_PATH=~/.files/var/node:"$NPM"
-	export NODE_PATH NPM_PREFIX NPM
+	export NODE_PATH=~/.files/var/node:/usr/local/lib/node_modules:/usr/lib/node_modules
 	
 	# Force ASCII output for non-graphical displays
 	[ "$DISPLAY" ] || {
