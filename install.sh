@@ -89,6 +89,7 @@ command -v npm 2>&1 >/dev/null && {
 		babel-eslint
 		browserify
 		buble
+		c8
 		chai
 		clean-css-cli
 		coffeelint
@@ -96,6 +97,7 @@ command -v npm 2>&1 >/dev/null && {
 		electron
 		eslint
 		guess-sig
+		hint
 		jsdoc
 		json
 		karma
