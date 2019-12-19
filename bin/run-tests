@@ -28,6 +28,11 @@ have ts-node && {
 	[ -f test.tsx ] && { ts-node test.tsx "$@"; exit; }
 }
 
+# WebAssembly
+have wasmtime && {
+	[ -f test.wat  ] && { wasmtime test.wat  "$@"; exit; }
+	[ -f test.wast ] && { wasmtime test.wast "$@"; exit; }
+}
 
 # Run test-scripts in current directory
 [ -f test.sh ] && {      ./test.sh "$@"; exit; }

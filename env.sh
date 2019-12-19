@@ -16,6 +16,7 @@ paths='
 	/opt/tools/sbin
 	/opt/tools/bin
 	/usr/games
+	~/.wasmtime/bin
 	~/.deno/bin
 	~/.local/bin
 	~/go/bin
@@ -52,6 +53,7 @@ export HISTFILE=
 export LESS=-R
 export LYNX_CFG=~/.files/etc/lynx.cfg
 export WORDLIST=~/.files/share/dict/custom.txt
+export WASMTIME_HOME=~/.wasmtime
 
 
 # Perl/CPAN modules path
