@@ -34,6 +34,12 @@ have wasmtime && {
 	[ -f test.wast ] && { wasmtime test.wast "$@"; exit; }
 }
 
+# Tcl
+[ -f test.tcl ] && have tclsh && {
+	tclsh test.tcl "$@"
+	exit
+}
+
 # Run test-scripts in current directory
 [ -f test.sh ] && {      ./test.sh "$@"; exit; }
 [ -f test.pl ] && { perl ./test.pl "$@"; exit; }
