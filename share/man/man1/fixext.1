@@ -1,0 +1,71 @@
+.Dd January 2, 2020
+.Dt FIXEXT 1
+.Os
+.Sh NAME
+.Nm fixext
+.Nd rename incorrectly-suffixed files
+.
+.Sh SYNOPSIS
+.Nm
+.Op Fl n | -dry-run
+.Ar extension
+.Ar files...
+.
+.Nm
+.Op Fl h | -help
+.
+.Sh DESCRIPTION
+.Nm
+takes a list of
+.Ar files
+and renames them, swapping a dot-separated numeric suffix with an adjoining file
+.Ar extension .
+For example:
+.
+.Bd -literal
+filename.\fIfoo\fP.\fI1\fP \(-> filename\.\fI1\fP.\fIfoo\fP
+filename.\fIfoo\fP.\fI2\fP \(-> filename\.\fI2\fP.\fIfoo\fP
+.Ed
+.
+.Pp
+.Nm
+was written to correct the names of files downloaded with
+.Xr wget 1 .
+It is careful not to overwrite an existing file when renaming.
+.
+.Bl -tag -width 4n
+.It Fl n , -dry-run
+Print the list of files that would be renamed, but don\(cqt actually rename anything
+.
+.It Fl h , -help
+Print a short usage summary, then exit.
+.
+.It Ar extension
+The extension that should assume the place of a trailing dot-separated number.
+Filenames not ending with
+.Ar extension
+are ignored.
+.
+.It Ar files...
+One or more
+.Ar files
+to rename,
+which may include directories of files.
+Note that only the immediate contents of a directory will be renamed;
+.Nm
+is not recursive.
+.El
+.
+.Sh EXIT STATUS
+.Ex -std
+.
+.Sh SEE ALSO
+.Xr wget 1
+.
+.Sh AUTHORS
+.An -nosplit
+Copyright \(co 2016-2020
+.An John Gardner Aq Mt gardnerjohng@gmail.com .
+.Pp
+Freely released under the
+.Lk http://opensource.org/licenses/ISC "ISC license" .

@@ -2,21 +2,99 @@
 use strict;
 use warnings;
 use autodie;
-use feature "say";
+use v5.14;
+use utf8;
+$| = 1;
+
+use warnings  qw< FATAL utf8 >;
+use open      qw< :std :utf8 >;
+use charnames qw< :full >;
+use feature   qw< say unicode_strings >;
+use Carp      qw< confess >;
+
+END { close STDOUT }
+local $SIG{__DIE__} = sub {
+	confess "Uncaught exception: @_" unless $^S;
+};
+
+
 use File::Copy "mv";
+use File::Spec::Functions qw< :ALL >;
+use Getopt::Long qw(:config auto_abbrev);
+
+# Retrieve the contents of a directory as a list of absolute paths
+sub ls {
+	my $path = Cwd::abs_path(rel2abs shift);
+	return ($path) unless -d $path;
+	opendir(my $dir, $path) || die "Unable to open directory `$path': $!";
+	my @files = grep !/^\.{1,2}\z/, readdir $dir;
+	closedir $dir;
+	return map {catdir $path, $_} @files;
+}
+
+# Determine if an array contains a value
+sub includes {
+	my $needle = shift;
+	for(@_){ return 1 if $_ eq $needle; }
+	return 0;
+}
+
+# Replace any occurrences of `$HOME` with a tilde.
+# - Usage: tildify $path [, $home]
+sub tildify {
+	my $path = shift;
+	my $home = shift || $ENV{HOME};
+	$home =~ s|/?$|/|;
+	return 0 == index($path, $home)
+		? "~/" . substr($path, length($home))
+		: $path;
+}
+
+# Shorten path for human-readable display (if possible)
+sub abbrPath {
+	my $path = shift;
+	my @abbr = ($path, tildify($path), abs2rel($path));
+	@abbr = sort {length($a) <=> length($b)} @abbr;
+	return $abbr[0];
+}
+
+
+my ($help, $dryRun);
+GetOptions(
+	"help|usage" => \$help,
+	"n|dry-run"  => \$dryRun,
+) or die "Error parsing command-line arguments: $@\n";
+
+# Print a short help notice and exit
+if($help || $#ARGV <= 0){
+	(my $name = $0) =~ s/^(?:.*?[\/\\])?([^\/\\]+)$/$1/;
+	say "Usage: $name [--help] [-n|--dry-run] extension ...files";
+	exit($help ? 0 : 1);
+}
 
 my $ext = shift;
+my @renamed = [];
 
-for my $file (@ARGV) {
-	if($file =~ m/^(.*?)\.($ext)\.(\d+)$/i){
-		my ($base, $extstr, $index) = ($1, $2, $3);
-		my $rename = "$base.$index.$extstr";
-		while(-f $rename){
-			$index++;
-			$rename = "$base.$index.$extstr";
+for my $arg (@ARGV) {
+	for my $file (ls $arg) {
+		if($file =~ m/^(.*?)\.($ext)\.(\d+)$/i){
+			my ($base, $extstr, $index) = ($1, $2, $3);
+			my $rename = "$base.$index.$extstr";
+			while(includes(@renamed, $rename) || -f $rename){
+				$index++;
+				$rename = "$base.$index.$extstr";
+			}
+			push @renamed, $rename;
+			my $f = abbrPath($file);
+			my $r = abbrPath($rename);
+			
+			# Just print the path if `--dry-run' was passed
+			if($dryRun){
+				say "Would rename: $f -> $r";
+				next;
+			}
+			mv($file, $rename) or die "Couldn't rename `$file' to `$rename': $!";
+			say "Renamed: $f -> $r";
 		}
-		
-		say "Renamed: $file -> $rename";
-		mv($file, $rename);
 	}
 }
