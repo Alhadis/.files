@@ -1,0 +1,97 @@
+.Dd January 7, 2020
+.Dt GH-CLONE 1
+.Os
+.Sh NAME
+.Nm gh-clone
+.Nd quickly clone a GitHub repository
+.
+.Sh SYNOPSIS
+.Nm
+.Op Fl rshv
+.Op Fl b Ar branch
+.Oo
+.Ar username Ns No /
+.Oc Ns
+.Ar repository
+.
+.Sh DESCRIPTION
+.Nm
+is a wrapper around
+.Xr git-clone 1
+that supports a
+.Ql Ar username Ns No / Ns Ar repository
+shorthand for GitHub URLs, expanding it into
+.Dq git@github.com: Ns Ar username Ns No / Ns Ar repository Ns No .git ,
+.
+.Pp
+If the
+.Ar username
+component is omitted, the value of
+.Ql github.user
+configured in one\(cqs
+.Xr git-config 1
+file is used as a fallback.
+.
+.Pp
+Any other URL form, such as HTTPS or SSH, is passed directly to
+.Xr git-clone 1
+without further intervention.
+.
+.\" Options
+.Bl -tag -width 4n
+.
+.It Fl b , -branch Ar name
+Shallow-clone only from specific branch
+.Ar name .
+Implies
+.Fl s .
+.Pp
+This option is exactly equivalent to using
+.Ql git clone --depth=1 --single-branch --branch Ar name .
+.
+.
+.It Fl h , -help
+Print a short usage summary and exit.
+.
+.It Fl r , -recurse
+Checkout repository\(cqs submodules
+.Pq if any are used .
+.
+.It Fl s , -shallow
+Shallow-clone
+.Ar repository Ns No \(cqs
+default branch.
+Equivalent to using
+.Ql git clone --depth=1 .
+See also
+.Fl b .
+.
+.It Fl v , -version
+Print a version string and exit.
+.El
+.
+.Sh EXIT STATUS
+.Ex -std
+.
+.Sh EXAMPLES
+Three different ways of running
+.Ql git clone git@github.com:Alhadis/Utils.git :
+.
+.Bd -literal -offset 4n
+$ gh Alhadis/Utils
+$ gh Utils
+$ gh git@github.com:Alhadis/Utils.git
+.Ed
+.\" End of options
+.
+.Sh SEE ALSO
+.Xr git-clone 1 ,
+.Xr git-config 1
+.
+.Sh AUTHORS
+.An -nosplit
+Copyright \(co 2018-2020
+.An John Gardner Aq Mt gardnerjohng@gmail.com .
+.Pp
+Freely released under the
+.Lk http://opensource.org/licenses/ISC "ISC license" .

@@ -3,9 +3,11 @@
 #
 # gh-clone: Clone a GitHub repository using "user/repo" shorthand.
 #
-usage='gh-clone [-r|--recursive] username/repository'
-version='v1.1.0'
+usage='gh-clone [-b|--branch name] [-r|--recurse] [-s|--shallow] username/repository'
+version='v1.2.0'
+branch=
 recurse=
+shallow=
 
 # Parse command-line switches
 while [ -n "$1" ]; do case $1 in
@@ -20,9 +22,24 @@ while [ -n "$1" ]; do case $1 in
 		printf '%s\n' "$version"
 		exit ;;
 
+	# Shallow-clone a specific branch only (implies `-s')
+	-b|--branch)
+		shift
+		[ ! "$1" ] && {
+			>&2 printf 'gh-clone: No branch specified\n'
+			>&2 printf 'Usage: %s\n' "$usage"
+			exit 1
+		}
+		branch="--single-branch --branch $1"
+		shallow="--depth=1" ;;
+
 	# Checkout repository's submodules if any are used 
 	-r|--recurse)
 		recurse="--recursive" ;;
+
+	# Shallow-clone the remote's currently-active branch
+	-s|--shallow)
+		shallow="--depth=1" ;;
 
 	# Double-dash: Terminate option parsing
 	--)
@@ -48,6 +65,9 @@ done
 	exit 1
 }
 
+# Concatenate each option passed to git-clone(1)
+opts="$recurse $shallow $branch"
+
 # Input lacks a trailing slash? Assume it's the current GitHub user.
 if printf "$1" | grep -vq -e'/'; then
 	user=`git config github.user`
@@ -60,8 +80,8 @@ if printf "$1" | grep -vq -e'/'; then
 	}
 	
 	src="git@github.com:${user}/${repo}.git"
-	printf 'git clone %s %s\n' "$recurse" "$src" | sed -e 's/  */ /g'
-	git clone $recurse "$src"
+	printf 'git clone %s %s\n' "$opts" "$src" | sed -e 's/  */ /g'
+	git clone $opts "$src"
 
 # Shorthand: `user/repo'
 elif printf "$1" | grep -qe'^[^/@]*/[^/@]*$'; then
@@ -71,7 +91,7 @@ elif printf "$1" | grep -qe'^[^/@]*/[^/@]*$'; then
 		>&2 printf 'Usage: %s\n' "$usage"
 		exit 2;
 	}
-	git clone $recurse "git@github.com:${user}/${repo}.git"
+	git clone $opts "git@github.com:${user}/${repo}.git"
 
 # Assume anything else uses a conventional address format
-else git clone $recurse "$1"; fi
+else git clone $opts "$1"; fi
