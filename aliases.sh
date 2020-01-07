@@ -106,6 +106,10 @@ alias prune='find -L . -name . -o -type d -prune -o -type l -exec rm -v {} +'
 alias copythat='printf %s "$(history | tail -2 | head -1 | sed s/^[[:space:]]*[[:digit:]]*[[:space:]]*//)" | clip'
 
 
+# Copy a JavaScript one-liner for listing globals. Sometimes needed when running certain REPLs.
+alias pp='printf %s '\''Object.keys(Object.getOwnPropertyDescriptors(globalThis)).sort().join("\n")'\'' | clip'
+
+
 # Irrevocably annihilate a file
 have shred && alias nuke='shred -u' || alias nuke='rm -rfP'
 
