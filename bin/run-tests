@@ -34,17 +34,13 @@ have wasmtime && {
 	[ -f test.wast ] && { wasmtime test.wast "$@"; exit; }
 }
 
-# Tcl
-[ -f test.tcl ] && have tclsh && {
-	tclsh test.tcl "$@"
-	exit
-}
-
-# Run test-scripts in current directory
-[ -f test.sh ] && {      ./test.sh "$@"; exit; }
-[ -f test.pl ] && { perl ./test.pl "$@"; exit; }
-[ -f test.rb ] && { ruby ./test.rb "$@"; exit; }
-[ -f test.js ] && { node ./test.js "$@"; exit; }
+# Various other programming languages
+[ -f test.lua ] && { lua ./test.lua "$@"; exit; }
+[ -f test.tcl ] && { tclsh test.tcl "$@"; exit; }
+[ -f test.sh  ] && {      ./test.sh "$@"; exit; }
+[ -f test.pl  ] && { perl ./test.pl "$@"; exit; }
+[ -f test.rb  ] && { ruby ./test.rb "$@"; exit; }
+[ -f test.js  ] && { node ./test.js "$@"; exit; }
 
 # Makefile: "make test" (GNU Make only)
 [ -f Makefile ] && grep Makefile -qe ^test: && {
