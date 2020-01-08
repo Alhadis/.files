@@ -47,3 +47,4 @@ configure:
 	defaults write com.apple.finder FXEnableExtensionChangeWarning -bool false
 	defaults write com.apple.finder DisableAllAnimations -bool true
 	defaults write com.apple.finder QuitMenuItem -bool true
+	defaults write com.apple.universalaccess reduceMotion -bool true
