@@ -1,0 +1,10 @@
+#!/usr/bin/env node
+"use strict";
+
+process.stdin.setRawMode(true);
+process.stdin.on("data", key => {
+	const bytes = [...key].map(x => x.toString(16).toUpperCase().padStart(2, "0"));
+	process.stdin.setRawMode(false);
+	process.stdout.write(bytes.join(" ") + "\n");
+	process.exit();
+});

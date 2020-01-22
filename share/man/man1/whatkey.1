@@ -1,0 +1,29 @@
+.Dd January 22, 2019
+.Dt WHATKEY 1
+.Os
+.Sh NAME
+.Nm whatkey
+.Nd print the character(s) emitted by the next keystroke
+.
+.Sh SYNOPSIS
+.Nm
+.
+.Sh DESCRIPTION
+.Nm
+intercepts the next keypress sent to the controlling terminal, prints the character sequence in hexadecimal, then returns control to the user.
+Terminal-sent signals such as
+.Li ^C
+will also be caught and the control code echoed to the user.
+.
+.Sh EXIT STATUS
+.Ex -std
+.
+.Sh SEE ALSO
+.Xr stty 1
+.
+.Sh AUTHORS
+.An -nosplit
+Copyright \(co 2020
+.An John Gardner Aq Mt gardnerjohng@gmail.com .
+Freely released under the
+.Lk http://opensource.org/licenses/ISC "ISC license" .
