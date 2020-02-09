@@ -19,6 +19,7 @@ dotfiles='
 	.npmrc
 	.profile
 	.vimrc
+	.wgetrc
 '
 # Link `$HOME/$file` to `$HOME/.files/$file` unless it's already symlinked
 for file in $dotfiles; do [ -h $file ] || {
