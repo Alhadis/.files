@@ -47,6 +47,12 @@ have wasmtime && {
 	exit
 }
 
+# Haskell
+[ -f test.hs ] && have ghc runghc && {
+	runghc test.hs "$@"
+	exit
+}
+
 # Various other programming languages
 [ -f test.lua ] && { lua ./test.lua "$@"; exit; }
 [ -f test.tcl ] && { tclsh test.tcl "$@"; exit; }
@@ -82,6 +88,24 @@ have wasmtime && {
 [ -d test ] && have mocha && {
 	mocha
 	exit
+}
+
+# C: Compile, run, delete
+[ -f test.c ] && {
+	cc -o test.c.tmp test.c || exit $?
+	./test.c.tmp "$@"
+	set -- $?
+	rm ./test.c.tmp
+	exit $1
+}
+
+# V: Compile, run, delete
+[ -f test.v ] && have v && {
+	v -o test.v.tmp test.v
+	./test.v.tmp "$@"
+	set -- $?
+	rm ./test.v.tmp
+	exit $1
 }
 
 # Unknown executable assumed to be a test-script
