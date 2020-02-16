@@ -1,6 +1,7 @@
 #!/bin/sh
+
 #
-# Run automated tests
+# run-tests: Run test-scripts in the current directory
 #
 
 have(){
@@ -32,6 +33,18 @@ have ts-node && {
 have wasmtime && {
 	[ -f test.wat  ] && { wasmtime test.wat  "$@"; exit; }
 	[ -f test.wast ] && { wasmtime test.wast "$@"; exit; }
+}
+
+# PostScript
+[ -f test.ps ] && have gs && {
+	gs -sDEVICE=txtwrite -sOutputFile=- -q -sBATCH -dNOPAUSE test.ps
+	exit
+}
+
+# PowerShell
+[ -f test.ps1 ] && have pwsh && {
+	pwsh -File test.ps1 "$@"
+	exit
 }
 
 # Various other programming languages
