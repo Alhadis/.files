@@ -11,8 +11,8 @@ die(){
 
 open(){
 	if have atom
-	then NODE_ENV=production atom -d "$@"
-	else emacs -nw "$@"
+	then NODE_ENV=production atom $@
+	else emacs -nw $@
 	fi
 }
 
