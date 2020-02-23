@@ -17,12 +17,6 @@ have(){
 	exit
 }
 
-# Run JavaScript tests with native module support
-[ -f test.mjs ] && have node && {
-	node --experimental-modules test.mjs "$@"
-	exit
-}
-
 # TypeScript
 have ts-node && {
 	[ -f test.ts  ] && { ts-node test.ts  "$@"; exit; }
@@ -60,6 +54,12 @@ have wasmtime && {
 [ -f test.pl  ] && { perl ./test.pl "$@"; exit; }
 [ -f test.rb  ] && { ruby ./test.rb "$@"; exit; }
 [ -f test.js  ] && { node ./test.js "$@"; exit; }
+
+# JavaScript with native module support
+[ -f test.mjs ] && have node && {
+	node --experimental-modules test.mjs "$@"
+	exit
+}
 
 # Makefile: "make test" (GNU Make only)
 [ -f Makefile ] && grep Makefile -qe ^test: && {
