@@ -11,6 +11,7 @@ SunOS
 SyON
 TypeScript
 Verilog
+WebAssembly
 camelCase
 camelCased
 config
@@ -33,6 +34,7 @@ minimap
 nroff
 readme
 rq
+significand
 stderr
 stdin
 stdout
