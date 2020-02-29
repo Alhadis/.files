@@ -84,3 +84,11 @@ Exempli gratia: [`https://troff.org/54.pdf#page=29`](https://troff.org/54.pdf#pa
 --------------------------------------------
 
 	Using $< in a non-suffix rule context is a GNUmake idiom
+
+
+
+8․ Generate disassembly
+-----------------------
+
+	clang -S -mllvm --x86-asm-syntax=intel -O0 test.c
+	d8 --print-bytecode test.js
