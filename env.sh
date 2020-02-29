@@ -20,7 +20,7 @@ paths='
 	~/.deno/bin
 	~/.local/bin
 	~/go/bin
-	~/Mirrors/depot_tools
+	~/Forks/depot_tools
 '; for path in $paths; do
 	case $path in \~/*) path=~/${path#\~/};; esac
 	[ -d "$path" ] && PATH="$PATH:$path";
@@ -40,6 +40,7 @@ paths='
 	/usr/local/lib/node_modules/npm/man
 	/opt/tools/man
 	~/perl5/man
+	~/Forks/depot_tools/man
 '; for path in $paths; do
 	case $path in \~/*) path=~/${path#\~/};; esac
 	[ -d "$path" ] && MANPATH="$MANPATH:$path"
