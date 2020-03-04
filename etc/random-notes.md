@@ -92,3 +92,40 @@ Exempli gratia: [`https://troff.org/54.pdf#page=29`](https://troff.org/54.pdf#pa
 
 	clang -S -mllvm --x86-asm-syntax=intel -O0 test.c
 	d8 --print-bytecode test.js
+
+
+
+9․ “Hello, world” in x86-64 assembly (macOS only)
+-------------------------------------------------
+
+	nasm -f macho64 -o input.o input.asm
+	ld -macosx_version_min 10.7.0 -lSystem -o input input.o
+
+~~~asm
+; input.asm
+global start
+section .text
+start:
+	mov     rax, 0x2000004 ; write
+	mov     rdi, 1         ; stdout
+	mov     rsi, qword msg
+	mov     rdx, msg.len
+	syscall
+
+	mov     rax, 0x2000001 ; exit
+	mov     rdi, 0
+	syscall
+
+section .data
+	msg:    db      "Hello, world!", 10
+	.len:   equ     $ - msg
+~~~
+
+
+
+10․ Random weird shit on macOS
+------------------------------
+
+	/usr/share/misc/birthtoken
+	/usr/share/sandbox/*.sb
+	/opt/X11/bin/xkeystone
