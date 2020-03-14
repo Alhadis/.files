@@ -5,7 +5,6 @@ case $1 in
 	-c|--clear|\
 	-r|--reset)
 		printf '' | "$0";
-		printf 'Clipboard reset.\n' >&2
 		exit $?
 	;;
 esac
