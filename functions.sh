@@ -125,21 +125,13 @@ unfuck(){
 		>&2 printf 'Prettier is required to use this function.\n'
 		return 1
 	}
+	[ $# -gt 0 ] || set -- "**/*.{js,jsx,json,ts,mjs,css,less,scss}"
 	prettier >/dev/null \
-		--tab-width 4 \
-		--use-tabs \
-		--print-width 120 \
-		--trailing-comma es5 \
-		--no-bracket-spacing \
-		--arrow-parens avoid \
-		--end-of-line lf \
+		--config ~/Labs/JG/etc/.prettierrc.json \
 		--with-node-modules \
 		--loglevel silent \
 		--no-editorconfig \
-		--write -- \
-		"**/*.{js,jsx,json,ts,mjs,css,less,scss}"
-	(eslint -c "`jg -p eslint/atom`" --fix --ext mjs,js . 2>&1) >/dev/null
-	return 0
+		--write -- "$@"
 }
 
 
