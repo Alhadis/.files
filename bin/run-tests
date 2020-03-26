@@ -48,6 +48,7 @@ have wasmtime && {
 }
 
 # Various other programming languages
+[ -f test.awk ] && { awk -f test.awk;     exit; }
 [ -f test.lua ] && { lua ./test.lua "$@"; exit; }
 [ -f test.tcl ] && { tclsh test.tcl "$@"; exit; }
 [ -f test.sh  ] && {      ./test.sh "$@"; exit; }
