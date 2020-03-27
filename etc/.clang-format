@@ -1,4 +1,4 @@
-# NOTE: The fields commented-out below are unsupported as of v8.0.0, despite
+# NOTE: The fields commented-out below are unsupported as of v9.0.0, despite
 # being documented: https://clang.llvm.org/docs/ClangFormatStyleOptions.html
 ---
 AlignAfterOpenBracket: AlwaysBreak
@@ -8,14 +8,14 @@ AlignConsecutiveDeclarations: false
 AlignEscapedNewlines: DontAlign
 AlignOperands: true
 AlignTrailingComments: true
-# AllowAllArgumentsOnNextLine: true
-# AllowAllConstructorInitializersOnNextLine: true
+AllowAllArgumentsOnNextLine: true
+AllowAllConstructorInitializersOnNextLine: true
 AllowAllParametersOfDeclarationOnNextLine: true
 AllowShortBlocksOnASingleLine: true
 AllowShortCaseLabelsOnASingleLine: true
 AllowShortFunctionsOnASingleLine: Empty
-# AllowShortIfStatementsOnASingleLine: WithoutElse
-# AllowShortLambdasOnASingleLine: All
+AllowShortIfStatementsOnASingleLine: WithoutElse
+AllowShortLambdasOnASingleLine: All
 AllowShortLoopsOnASingleLine: true
 AlwaysBreakAfterReturnType: None
 AlwaysBreakBeforeMultilineStrings: true
@@ -24,7 +24,7 @@ BinPackArguments: true
 BinPackParameters: true
 BreakBeforeBraces: Custom
 BraceWrapping:
-    # AfterCaseLabel: false
+    AfterCaseLabel: false
     AfterClass: true
     AfterControlStatement: false
     AfterEnum: false
@@ -104,7 +104,7 @@ ReflowComments: false
 SortIncludes: false
 SortUsingDeclarations: false
 SpaceAfterCStyleCast: true
-# SpaceAfterLogicalNot: false
+SpaceAfterLogicalNot: false
 SpaceAfterTemplateKeyword: true
 SpaceBeforeAssignmentOperators: true
 SpaceBeforeCpp11BracedList: true
