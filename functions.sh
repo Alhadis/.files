@@ -24,6 +24,14 @@ visit(){
 }
 
 
+# Run git-status(1) with an empty line inserted before each list of changes
+g(){
+	if [ ! -t 1 ]; then git status "$@"; return $?; fi
+	git -c color.status=always status "$@" \
+	| sed -e '1h;1!H;$!d;x;{s/\(\n[^]*\)\(\n\)\([[:blank:]]*\[\)/\1\2\2\3/g;}'
+}
+
+
 # Locate files by name
 f(){
 	find . -type f -name "*$1*";
