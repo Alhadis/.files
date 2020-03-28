@@ -1,6 +1,9 @@
 Host *
 	AddKeysToAgent yes
 
+Host 10.0.0.*
+	IdentityFile ~/.ssh/local
+
 Host github.com
 	IdentityFile ~/.ssh/github
 
