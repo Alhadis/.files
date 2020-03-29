@@ -34,6 +34,7 @@ $(brew-deps):
 # Make Apple bloatware more tolerable
 configure:
 	chflags hidden ~/[a-z]*
+	sudo pmset -a lessbright 0
 	sudo systemsetup -setrestartfreeze on
 	defaults write com.apple.LaunchServices LSQuarantine -bool false
 	defaults write NSGlobalDomain ApplePressAndHoldEnabled -bool false
