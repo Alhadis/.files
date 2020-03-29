@@ -158,13 +158,13 @@ iplocation(){
 
 
 # Archive files using 7-Zip's strongest compression settings
-7zcrush(){
+crush(){
 	command -v 7z 2>&1 >/dev/null || {
 		>&2 printf 'error: p7zip not installed or 7z executable not in path\n'
 		return 1
 	}
 	case $# in
-		0) >&2 printf 'Usage: 7zcrush /path/to/file.psd\n'; return 1 ;;
+		0) >&2 printf 'Usage: crush /path/to/file.psd\n'; return 1 ;;
 		1) name=`basename "${1%.[[:alnum:]]*}" | sed 's/[[:blank:]]/-/g; s/--*/-/g'`;;
 		*) name=archive ;;
 	esac
