@@ -50,35 +50,6 @@ src(){
 }
 
 
-# Convert a font to another format. Defaults to OpenType.
-convertfont(){
-	command -v fontforge 2>&1 >/dev/null || {
-		>&2 printf 'FontForge is required to use this function.\n'
-		return 1
-	}
-	[ $# -eq 0 ] && {
-		>&2 printf 'Usage: convertfont /path/to/file [format=.otf]\n'
-		return 1
-	}
-	fontforge 2>/dev/null -nosplash -lang=ff -c '
-		fonts = FontsInFile($1);
-		count = SizeOf(fonts);
-		if(count != 0)
-			i = 0;
-			while(i < count)
-				Open($1 + "(" + i + ")");
-				Generate(fonts[i] + "." + $2);
-				Close();
-				i++;
-			endloop
-		else
-			Open($1);
-			Generate($1:r + "." + $2);
-		endif
-	' "$1" `printf %s ${2:-otf} | tr -d .`
-}
-
-
 # Quick 2-way conversion of WebP images
 webp(){
 	[ -z "$1" ] && {

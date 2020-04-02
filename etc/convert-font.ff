@@ -1,0 +1,53 @@
+#!/usr/bin/env fontforge
+_verbose = 0
+
+# Parse command-line options
+while($argc > 1 && "-" == Strsub($1, 0, 1))
+	arg = Strsub($1, 1);
+	if("-" == Strsub(arg, 0, 1)) arg = Strsub(arg, 1); endif
+	
+	# Print help, then exit
+	if("h" == arg || "help" == arg)
+		Print("Usage: " + $0:t + " [-h|--help] [-v|--verbose] /path/to/input output.ext");
+		return(0);
+	
+	# Print paths of generated fonts
+	elseif("v" == arg || "verbose" == arg)
+		_verbose = 1
+	
+	# No idea; bail with an error code
+	else
+		Error("Unknown option: " + $1);
+	endif
+	shift
+endloop
+
+# Insufficient arguments
+if($argc < 3)
+	PostNotice("Usage: " + $0:t + " [-hv] /path/to/input output.ext");
+	Error("Not enough arguments");
+endif
+
+
+# Actual program logic begins here
+fonts = FontsInFile($1);
+count = SizeOf(fonts);
+if(count > 1)
+	i = 0;
+	while(i < count)
+		Open($1 + "(" + i + ")");
+		name = fonts[i]:t:r + "." + $2:e;
+		path = $2:h + "/" + name;
+		if($2:h == $2) path = "./" + name; endif
+		if(_verbose) Print("Saving to: " + path); endif
+		Generate(path);
+		Close();
+		i++;
+	endloop
+elseif(1 == count)
+	Open($1);
+	if(_verbose) Print("Saving to: " + $2); endif
+	Generate($2);
+else
+	Error("No fonts found in file: " + $1);
+endif

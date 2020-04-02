@@ -123,6 +123,10 @@ alias ord='perl -mEncode=decode -E "map { printf \"%1\\\$s\tU+%1\\\$X\n\", ord d
 unset fn
 
 
+# Convert a font using FontForge
+have fontforge && alias convertfont='~/.files/etc/convert-font.ff'
+
+
 # OS-specific
 case `uname -s` in
 	OpenBSD)
