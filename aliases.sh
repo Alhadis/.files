@@ -106,7 +106,7 @@ alias copythat='printf %s "$(history | tail -2 | head -1 | sed s/^[[:space:]]*[[
 
 
 # Copy a JavaScript one-liner for listing globals. Sometimes needed when running certain REPLs.
-alias pp='printf %s '\''Object.keys(Object.getOwnPropertyDescriptors(globalThis)).sort().join("\n")'\'' | clip'
+alias pp='printf %s '\''var pp = x => Object.keys(Object.getOwnPropertyDescriptors(x)).sort().join("\n"); pp(globalThis)'\'' | clip'
 
 
 # Irrevocably annihilate a file
