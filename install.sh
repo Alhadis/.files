@@ -40,11 +40,10 @@ chmod go-rwx .ssh/*
 
 
 # Link Konsole profile
-command -v konsole 2>&1 >/dev/null && [ -d .kde4/share/apps ] && {
-	[ -d .kde4/share/apps/konsole ] || {
-		rm -rf .kde4/share/apps/konsole
-		ln -sf .files/etc/konsole .kde4/share/apps/konsole
-	}
+command -v konsole 2>&1 >/dev/null && [ ! -h .local/share/konsole ] && {
+	[ -d .local/share ] || mkdir -p .local/share
+	rm -rf .local/share/konsole
+	ln -sf ~/.files/etc/konsole .local/share/konsole
 	
 	# Install Menlig font
 	fonts=/usr/local/share/fonts
