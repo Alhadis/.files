@@ -67,11 +67,11 @@ command -v gsettings 2>&1 >/dev/null && [ "$DISPLAY" ] && {
 
 # Configure Xfce4
 command -v startxfce4 2>&1 >/dev/null && [ "$DISPLAY" ] && {
-	xfconf-query -c keyboards -p /Default/KeyRepeat/Delay -s 200
-	xfconf-query -c keyboards -p /Default/KeyRepeat/Rate  -s 60
-	xfconf-query -c xfwm4     -p /general/workspace_count -s 1
-	xfconf-query -c xfce4-desktop \
-		-p /backdrop/screen0/monitor0/workspace0/last-image \
+	xfconf-query -nt int -c keyboards -p /Default/KeyRepeat/Delay -s 200
+	xfconf-query -nt int -c keyboards -p /Default/KeyRepeat/Rate  -s 60
+	xfconf-query -nt int -c xfwm4     -p /general/workspace_count -s 1
+	xfconf-query -nt string -c xfce4-desktop \
+		-p /backdrop/screen0/monitorLVDS-1/workspace0/last-image \
 		-s ~/.files/share/desktop/wallpaper.jpg
 }
 
