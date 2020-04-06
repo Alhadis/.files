@@ -115,6 +115,13 @@ done
 	MANPATH="$MANPATH:/smartdc/man:/opt/smartdc/man"
 }
 
+# Tcl/Tk: Add versioned installation paths to $MANPATH
+[ -d /usr/local/lib/tcl ] && {
+	for path in /usr/local/lib/tcl/*/man; do
+		[ -d "$path" ] && MANPATH="$MANPATH:$path"
+	done
+}
+
 # Darwin: Scan Apple's Developer/SDK directories for manual-pages
 case `uname` in [Dd]arwin)
 	paths='
