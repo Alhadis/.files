@@ -67,6 +67,10 @@ have sudo && ! have doas && alias doas=sudo
 (echo quit | bc --quiet 2>&1)>/dev/null && alias bc='bc --quiet -l'
 
 
+# Prefer GNU units(1) over the older BSD-licensed version
+have gunits && alias units='gunits'
+
+
 # Ksh: Emulate Bash's history expansion
 case ${SHELL##*/} in ksh)
 	alias !!='`history | tail -n1 | cut -f2 | tee /dev/stderr`';;
