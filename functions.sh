@@ -50,6 +50,16 @@ src(){
 }
 
 
+# Print bytes by decimal value
+bytes(){
+	case $1 in -h|--help|-\?|'')
+		printf >&2 'Usage: bytes [0..255]\n'; [ "$1" ]
+		return ;;
+	esac
+	printf %b "`printf \\\\%03o "$@"`"
+}
+
+
 # Quick 2-way conversion of WebP images
 webp(){
 	[ -z "$1" ] && {
