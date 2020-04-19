@@ -72,6 +72,12 @@ command -v startxfce4 2>&1 >/dev/null && [ "$DISPLAY" ] && {
 	xfconf-query -nt string -c xfce4-desktop \
 		-p /backdrop/screen0/monitorLVDS-1/workspace0/last-image \
 		-s ~/.files/share/desktop/wallpaper.jpg
+	xfconf-query -nt int  -c xfce4-screensaver -p /lock/saver-activation/delay -s 5
+	xfconf-query -nt int  -c xfce4-screensaver -p /saver/idle-activation/delay -s 10
+	xfconf-query -nt bool -c xfce4-screensaver -p /saver/fullscreen-inhibit    -s true
+	xfconf-query -nt string -c xfce4-keyboard-shortcuts \
+		-p /commands/custom/Super_L \
+		-s xfce4-popup-applicationsmenu
 
 	# Symlink xfce4-terminal(1) configuration
 	[ -h .config/xfce4/terminal ] || {
