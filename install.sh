@@ -72,6 +72,13 @@ command -v startxfce4 2>&1 >/dev/null && [ "$DISPLAY" ] && {
 	xfconf-query -nt string -c xfce4-desktop \
 		-p /backdrop/screen0/monitorLVDS-1/workspace0/last-image \
 		-s ~/.files/share/desktop/wallpaper.jpg
+
+	# Symlink xfce4-terminal(1) configuration
+	[ -h .config/xfce4/terminal ] || {
+		rm -rf .config/xfce4/terminal
+		ln -sf ~/.files/etc/xfce4/terminal .config/xfce4/terminal
+		chmod -w .config/xfce4/terminal/accels.scm
+	}
 }
 
 
