@@ -19,6 +19,8 @@ case $- in *i*) ;; *) return 0 ;; esac
 
 # Initialise TTY
 if [ -x /usr/bin/tset ] && [ ! "`uname -s`" = Darwin ]; then
+	xset -b
+
 	if [ X"$XTERM_VERSION" = X"" ]; then
 		eval `/usr/bin/tset -sQ '-munknown:?vt220' $TERM`
 	else
