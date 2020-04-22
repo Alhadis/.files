@@ -138,6 +138,15 @@ iplocation(){
 }
 
 
+# Empty clipboard, wipe history logs, and nuke pointless junk
+purge(){
+	rm -fP .{irb,units,node_repl,python}_history .lesshst ~/.DS_Store
+	case `uname -s` in [Dd]arwin) rm -fP ~/.Trash/* ~/.Trash/.DS_Store;; esac
+	case "${0##-}"  in bash) history -c;; esac
+	clip -c
+}
+
+
 # Archive files using 7-Zip's strongest compression settings
 crush(){
 	command -v 7z 2>&1 >/dev/null || {

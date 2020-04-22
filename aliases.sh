@@ -158,9 +158,6 @@ case `uname -s` in
 		# Print power diagnostics (battery-level and charge status)
 		alias pow='pmset -g batt'
 		
-		# Purge workspace of junk I was sidetracked into Photoshopping during work
-		alias purge='rm -fP ~/.Trash/* ~/.Trash/.DS_Store; clip -c 2>/dev/null; history -c;'
-		
 		# Apple recommend diskutil(1) be used instead of umount(1)
 		alias umount='diskutil unmount'
 		
