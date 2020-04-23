@@ -85,7 +85,7 @@ have bsdtar && {
 
 
 # Shortcut to start window manager (ignored if it's running)
-[ "$DISPLAY" ] || have startxfce4 && alias desktop='startxfce4 --with-ck-launch'
+[ "$DISPLAY" ] || have startxfce4 && alias desktop='startxfce4'
 
 
 # Copy a hard tab (U+0009) to the system's clipboard
