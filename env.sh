@@ -74,10 +74,6 @@ EDITOR=`command -v emacs 2>/dev/null`
 	export EDITOR GIT_EDITOR VISUAL
 }
 
-# Prefer LLVM for building projects
-export CC=clang
-export CXX=clang++
-
 # Node: Configure NPM and global search directories
 have npm && {
 	export ADBLOCK=1     # Filter useless crap when installing
