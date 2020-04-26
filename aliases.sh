@@ -113,6 +113,10 @@ alias copythat='printf %s "$(history | tail -2 | head -1 | sed s/^[[:space:]]*[[
 alias pp='printf %s '\''var pp = x => Object.keys(Object.getOwnPropertyDescriptors(x)).sort().join("\n"); pp(globalThis)'\'' | clip'
 
 
+# Order-of-operations check. Runs clipboard contents through Terser to reveal which brackets are unnecessary.
+have terser && alias ooc='clip | sed '\''s/^[^=]*$/_=&/'\'' | terser -mc'
+
+
 # Irrevocably annihilate a file
 have shred && alias nuke='shred -u' || alias nuke='rm -rfP'
 
