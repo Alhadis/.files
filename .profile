@@ -11,8 +11,6 @@ for i in env aliases prompt functions tmp; do
 	[ -r "$i" ] && . "$i"
 done
 
-unalias have
-
 
 # Bail if running non-interactively
 case $- in *i*) ;; *) return 0 ;; esac
