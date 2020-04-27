@@ -1,4 +1,7 @@
-[ `uname` = "OpenBSD" ] && umask 022
+# Shell options
+set -o braceexpand >/dev/null 2>&1
+set -o pipefail    >/dev/null 2>&1
+set -o notify      >/dev/null 2>&1
 
 alias have='command -v 2>&1 >/dev/null'
 
