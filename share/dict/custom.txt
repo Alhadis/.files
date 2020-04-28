@@ -51,6 +51,8 @@ grindcore
 groff
 groff_diff
 grops
+hashbang
+hashbangs
 hectopascal
 hectopascals
 identicality
@@ -94,6 +96,7 @@ nanolitre
 nanolitres
 nanometre
 nanometres
+nr
 nroff
 petabit
 petabits
@@ -108,6 +111,7 @@ picolitres
 picometre
 picometres
 readme
+rn
 rq
 siemens
 significand
