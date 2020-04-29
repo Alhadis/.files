@@ -110,7 +110,9 @@ alias copythat='printf %s "$(history | tail -2 | head -1 | sed s/^[[:space:]]*[[
 
 
 # Copy a JavaScript one-liner for listing globals. Sometimes needed when running certain REPLs.
-alias pp='printf %s '\''var pp = x => Object.keys(Object.getOwnPropertyDescriptors(x)).sort().join("\n"); pp(globalThis)'\'' | clip'
+fn='var pp = x => Object.getOwnPropertyNames(x).concat(Object.getOwnPropertySymbols(x))'
+alias pp='printf %s '\'"$fn"'.map(n => String(n)).sort().join("\n"); pp(globalThis)'\'' | clip'
+unset fn
 
 
 # Order-of-operations check. Runs clipboard contents through Terser to reveal which brackets are unnecessary.
