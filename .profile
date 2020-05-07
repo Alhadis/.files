@@ -1,6 +1,5 @@
 # Shell options
 set -o braceexpand >/dev/null 2>&1
-set -o pipefail    >/dev/null 2>&1
 set -o notify      >/dev/null 2>&1
 
 alias have='command -v 2>&1 >/dev/null'
@@ -33,3 +32,6 @@ fi
 if [ -x /usr/bin/lesspipe ]; then
 	eval "`SHELL=/bin/sh lesspipe`"
 fi
+
+# Enable this last so it doesn't screw with startup code
+set -o pipefail >/dev/null 2>&1
