@@ -12,7 +12,7 @@ cd "$HOME"
 dotfiles='
 	.alacritty.yml
 	.bash_logout
-	.bashrc
+	.bash_profile
 	.curlrc
 	.gitconfig
 	.inputrc
