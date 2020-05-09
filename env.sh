@@ -3,6 +3,7 @@ unset PATH
 paths='
 	~/.files/var/bin
 	~/.files/bin
+	~/.jsvu
 	~/bin
 	/sbin
 	/usr/sbin
