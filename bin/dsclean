@@ -25,6 +25,10 @@ shift $((OPTIND - 1))
 
 
 
+# Trim trailing slash from directory argument
+[[ $1 =~ /$ ]] && set -- "${1%/}"
+
+
 # Track how many files are deleted, and how many bytes we've saved. Just because.
 total_filesize=0
 skipped=0
