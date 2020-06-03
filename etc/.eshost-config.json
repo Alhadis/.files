@@ -1,0 +1,12 @@
+{
+	"hosts": {
+		"chakra":         {"type": "ch",      "path": "~/.jsvu/chakra"},
+		"graaljs":        {"type": "graaljs", "path": "~/.jsvu/graaljs"},
+		"hermes":         {"type": "hermes",  "path": "~/.jsvu/hermes"},
+		"javascriptcore": {"type": "jsc",     "path": "~/.jsvu/javascriptcore"},
+		"quickjs":        {"type": "qjs",     "path": "~/.jsvu/qjs"},
+		"spidermonkey":   {"type": "jsshell", "path": "~/.jsvu/spidermonkey"},
+		"v8":             {"type": "d8",      "path": "~/.jsvu/v8"},
+		"xs":             {"type": "xs",      "path": "~/.jsvu/xs"}
+	}
+}
