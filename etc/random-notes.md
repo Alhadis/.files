@@ -129,3 +129,12 @@ section .data
 	/usr/share/misc/birthtoken
 	/usr/share/sandbox/*.sb
 	/opt/X11/bin/xkeystone
+
+
+
+11․ Clone or update Git submodules
+----------------------------------
+
+	git submodule init
+	git submodule sync --quiet
+	git submodule update --recursive
