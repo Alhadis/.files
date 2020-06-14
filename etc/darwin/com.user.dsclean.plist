@@ -9,14 +9,14 @@
 	<array>
 		<string>~/.files/bin/dsclean</string>
 		<string>-q</string>
-		<string>/</string>
+		<string>~</string>
 	</array>
 
 	<key>RunAtLoad</key>
 	<true/>
 
 	<key>StartInterval</key>
-	<integer>3600</integer>
+	<integer>86400</integer>
 
 	<key>StandardOutPath</key>
 	<string>/dev/null</string>
