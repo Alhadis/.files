@@ -56,6 +56,7 @@ export GROFF_FONT_PATH=/usr/local/share/groff/site-font
 export HISTFILE=
 export LESS=-R
 export LYNX_CFG=~/.files/etc/lynx.cfg
+export TROFFONTS=~/Fonts:~/Library/Fonts:$GROFF_FONT_PATH
 export WORDLIST=~/.files/share/dict/custom.txt
 export WASMTIME_HOME=~/.wasmtime
 
