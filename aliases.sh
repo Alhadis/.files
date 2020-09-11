@@ -39,6 +39,7 @@ alias scp='scp -pr'
 # Aliases for programs that mightn't be available/installed
 have bundle   && alias brake='LANG=en_AU.UTF-8 bundle exec rake'
 have fdupes   && alias dedupe='fdupes -dN'
+have tree     && alias tree='tree -a --noreport'
 have file     && alias mime='file --brief --mime-type'
 have mysql    && alias mysql='mysql --auto-vertical-output'
 have sudo     && alias sudo='sudo '
