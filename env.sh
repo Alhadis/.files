@@ -97,6 +97,9 @@ have nodebrew && [ -x ~/.nodebrew/current/bin/node ] && {
 	MANPATH=~/.nodebrew/current/share/man:"$MANPATH"
 }
 
+# Stop brew(1) from auto-updating when installing stuff
+have brew && export HOMEBREW_NO_AUTO_UPDATE=1
+
 # Yarn: Paths added to .bashrc upon installation
 for path in ~/.yarn/ ~/.config/yarn/global/node_modules/.; do
 	[ -d "${path}bin" ] && PATH="$PATH:${path}bin"
