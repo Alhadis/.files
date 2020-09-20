@@ -138,3 +138,15 @@ section .data
 	git submodule init
 	git submodule sync --quiet
 	git submodule update --recursive
+
+
+
+12․ Control characters that're legal in Roff
+--------------------------------------------
+
+	U+0002 STX ^B
+	U+0003 ETX ^C
+	U+0005 ENQ ^E
+	U+0006 ACK ^F
+	U+0007 BEL ^G
+	U+007F DEL ^?
