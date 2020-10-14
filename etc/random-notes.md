@@ -150,3 +150,23 @@ section .data
 	U+0006 ACK ^F
 	U+0007 BEL ^G
 	U+007F DEL ^?
+
+
+
+13․ Format conversion
+---------------------
+
+~~~sh
+# Display permission bits in octal notation (GNU only)
+stat  -c %a    # Linux
+gstat -c %a    # BSD/macOS
+
+# Display modification date as a Unix timestamp
+stat -f %m /path/to/file
+
+# Human-readable English timestamp
+stat -f '%Sm -> %N'
+
+# Repeat character 𝑁 times
+printf "%${COUNT-100}s" | tr ' ' "${CHAR-=}"
+~~~
