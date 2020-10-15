@@ -14,6 +14,7 @@ dotfiles='
 	.bash_logout
 	.bash_profile
 	.curlrc
+	.exrc
 	.gitconfig
 	.inputrc
 	.npmrc
