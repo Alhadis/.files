@@ -60,6 +60,34 @@ bytes(){
 }
 
 
+# Display file permissions in octal format
+ostat(){
+	case $1 in -h|--help|-\?|'')
+		printf >&2 'Usage: ostat [...files]\n'; [ "$1" ]
+		return ;;
+	esac
+	
+	# GNU/Linux
+	if command -v gstat >/dev/null 2>&1; then gstat -c %a "$@"
+	elif stat -c %a /   >/dev/null 2>&1; then stat  -c %a "$@"
+	
+	# BSD derivatives
+	else while [ $# -gt 0 ]; do
+		stat -f %Op "$1" | tee -c4
+		shift
+	done; fi
+}
+
+
+# Display modification date as a Unix timestamp
+unixstamp(){
+	case `stat --version 2>/dev/null` in
+		*GNU*) stat -c %Y "$@" ;; # Linux
+		*)     stat -f %m "$@" ;; # BSD/macOS
+	esac
+}
+
+
 # Quick 2-way conversion of WebP images
 webp(){
 	[ -z "$1" ] && {
