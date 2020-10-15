@@ -73,7 +73,7 @@ ostat(){
 	
 	# BSD derivatives
 	else while [ $# -gt 0 ]; do
-		stat -f %Op "$1" | tee -c4
+		stat -f %Op "$1" | tail -c4
 		shift
 	done; fi
 }
