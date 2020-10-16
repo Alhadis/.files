@@ -95,7 +95,7 @@ have monero-wallet-cli && alias monero='cd ~/Monero && monero-wallet-cli'
 
 
 # Copy a hard tab (U+0009) to the system's clipboard
-alias cptab='printf "\t" | clip'
+alias tab='printf "\t" | clip'
 
 
 # Convert 2-space "soft-tabs" into actual tabs
