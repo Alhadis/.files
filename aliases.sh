@@ -90,6 +90,10 @@ have bsdtar && {
 [ "$DISPLAY" ] || have startxfce4 && alias desktop='startxfce4'
 
 
+# Run Monero's CLI from wallet directory
+have monero-wallet-cli && alias monero='cd ~/Monero && monero-wallet-cli'
+
+
 # Copy a hard tab (U+0009) to the system's clipboard
 alias cptab='printf "\t" | clip'
 
