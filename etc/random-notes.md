@@ -150,3 +150,12 @@ section .data
 	U+0006 ACK ^F
 	U+0007 BEL ^G
 	U+007F DEL ^?
+
+
+
+13․ Giant terminal text
+-----------------------
+
+	\e#3    Double-size, top half
+	\e#4    Double-size, bottom half
+	\e#6    Double-length (stretched)
