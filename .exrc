@@ -4,7 +4,6 @@ set comment
 set extended
 set iclower
 set leftright
-set noexpandtab
 set number
 set report=1
 set ruler
