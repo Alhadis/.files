@@ -73,6 +73,13 @@ have wasmtime && {
 	fi
 }
 
+# Rakefile
+[ -f Rakefile ] && have bundle rake && {
+	[ -f "$1" ] && case $1 in *.rb) set -- "TEST=$@";; esac
+	LANG=en_AU.UTF-8 bundle exec rake test "$@"
+	exit
+}
+
 # Atom
 [ -d spec ] && have atom && {
 	atom -t spec;
