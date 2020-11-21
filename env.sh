@@ -24,7 +24,7 @@ paths='
 	~/Forks/depot_tools
 '; for path in $paths; do
 	case $path in \~/*) path=~/${path#\~/};; esac
-	[ -d "$path" ] && PATH="$PATH:$path";
+	[ -d "$path" ] && PATH="${PATH#:}:$path";
 done
 
 # Define manual search paths
@@ -44,7 +44,7 @@ paths='
 	~/Forks/depot_tools/man
 '; for path in $paths; do
 	case $path in \~/*) path=~/${path#\~/};; esac
-	[ -d "$path" ] && MANPATH="$MANPATH:$path"
+	[ -d "$path" ] && MANPATH="${MANPATH#:}:$path"
 done
 
 export DICPATH=~/.files/share/dict
