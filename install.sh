@@ -17,6 +17,7 @@ dotfiles='
 	.exrc
 	.gitconfig
 	.inputrc
+	.irbrc
 	.npmrc
 	.profile
 	.vimrc
