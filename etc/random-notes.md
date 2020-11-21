@@ -171,3 +171,16 @@ Giant terminal text
 	\e#3    Double-size, top half
 	\e#4    Double-size, bottom half
 	\e#6    Double-length (stretched)
+
+
+
+VirtualBox logins
+-----------------
+
+<!--------------------------------------------------->
+| VM            | Username    | Password             |
+|---------------|-------------|----------------------|
+| IEVMs         |             | `Passw0rd!`          |
+| Solaris 11.3  | `vagrant`   | `1vagrant`           |
+| Ubuntu        | `vagrant`   | `vagrant`            |
+<!--------------------------------------------------->
