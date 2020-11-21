@@ -180,5 +180,8 @@ case `uname -s` in
 		alias fit='~/.files/etc/darwin/fit-terminal.scpt'
 		alias scrub='~/.files/etc/darwin/scrub.sh'
 		alias PlistBuddy='/usr/libexec/PlistBuddy'
+		
+		# Mount temporary case-sensitive filesystem
+		alias tempfs='hdiutil create -size 512m -fs "Case-sensitive APFS" -type UDIF -nospotlight -attach'
 	;;
 esac
