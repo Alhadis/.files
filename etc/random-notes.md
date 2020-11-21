@@ -123,6 +123,18 @@ section .data
 
 
 
+Resource fork access on macOS
+-----------------------------
+
+…is achieved by affixing `/..namedfork/rsrc` to the subject's filename.
+
+	RezWack -d /dev/null -r Palatino/..namedfork/rsrc -o Palatino.dfont
+	cp icon.rsrc file.txt/..namedfork/rsrc && SetFile -a C file.txt
+
+As explained by RezWack(1), this only works on HFS or HFS+ filesystems.
+
+
+
 Random weird shit on macOS
 --------------------------
 
