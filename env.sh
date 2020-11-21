@@ -106,6 +106,15 @@ for path in ~/.yarn/ ~/.config/yarn/global/node_modules/.; do
 	[ -d "${path}man" ] && MANPATH="$MANPATH:${path}man"
 done
 
+# RubyGems: Include latest version's executables in search path
+[ -d /usr/local/lib/ruby/gems ] && {
+	path=`echo /usr/local/lib/ruby/gems/* | sort --version-sort | tail -n1`
+	[ -d "$path/bin" ] && PATH="$path/bin:$PATH"
+	for path in "$path/man" "$path/doc/man" "$path"/gems/*/man; do
+		[ -d "$path" ] && MANPATH="$MANPATH:$path"
+	done
+}
+
 # Include other Troff implementations in search paths
 for path in "/usr/local/heirloom-doctools" "$DWBHOME"; do 
 	[ -d "$path/bin" ] && PATH="$path/bin:$PATH"
@@ -125,8 +134,16 @@ done
 	done
 }
 
-# Darwin: Scan Apple's Developer/SDK directories for manual-pages
+# macOS-specific
 case `uname` in [Dd]arwin)
+	# Include “keg-only” Homebrew formulae in search paths
+	for path in ruby sqlite tcl-tk texinfo; do
+		path="/usr/local/opt/$path"
+		test -d $path/bin       && PATH="$path/bin:$PATH"
+		test -d $path/share/man && MANPATH="$path/share/man:$MANPATH"
+	done
+	
+	# Scan Apple's Developer/SDK directories for manual-pages
 	paths='
 		/Applications/*/share/man
 		/Developer/usr/share/man
