@@ -61,6 +61,10 @@ export WORDLIST=~/.files/share/dict/custom.txt
 export WASMTIME_HOME=~/.wasmtime
 
 
+
+# Kludge to simplify GUI detection on macOS without XQuartz installed
+[ "$DISPLAY" ] || case `uname` in [Dd]arwin) export DISPLAY=1 ;; esac
+
 # Perl/CPAN modules path
 export PERL5LIB=~/perl5/lib/perl5:$PERL5LIB
 export PERL_LOCAL_LIB_ROOT=~/perl5:$PERL_LOCAL_LIB_ROOT
