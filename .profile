@@ -10,21 +10,28 @@ have yum && [ -f /etc/bashrc ] && . /etc/bashrc
 # Load connected files
 for i in env aliases prompt functions tmp; do
 	i=~/.files/$i.sh
-	[ -r "$i" ] && case "${SHELL##*/}" in
-		zsh) emulate sh -c '(){ typeset -h path; . "$i"; }';;
-		*) . "$i" ;;
-	esac
+	[ -r "$i" ] || continue
+	if [ "$ZSH_VERSION" ]; then
+		emulate sh -c '(){ typeset -h path; . "$i"; }'
+	else
+		. "$i"
+	fi
 done
 
 
 # Bail if running non-interactively
 case $- in *i*) ;; *) return 0 ;; esac
 
+
+# Silence nag from macOS >=10.15 about using bash(1)
+if [ "`uname -s`" = Darwin ]; then
+	export BASH_SILENCE_DEPRECATION_WARNING=1
+
 # Initialise TTY
-if [ -x /usr/bin/tset ] && [ ! "`uname -s`" = Darwin ]; then
+elif [ -x /usr/bin/tset ]; then
 	case $DISPLAY in *?*) xset -b;; esac
 
-	if [ X"$XTERM_VERSION" = X"" ]; then
+	if [ "$XTERM_VERSION" ]; then
 		eval `/usr/bin/tset -sQ '-munknown:?vt220' $TERM`
 	else
 		eval `/usr/bin/tset -IsQ '-munknown:?vt220' $TERM`
