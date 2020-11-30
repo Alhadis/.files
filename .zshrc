@@ -35,6 +35,7 @@ setopt pushdignoredups
 setopt pushdsilent
 setopt pushdtohome
 setopt rcquotes
+setopt rmstarsilent
 
 # We're done initialising zsh(1). Load our main profile.
 if [ -r ~/.profile ]; then
