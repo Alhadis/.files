@@ -65,7 +65,7 @@ case `basename ${0#-}` in
 	
 	# Z shell
 	zsh)
-		setopt PROMPT_SUBST
+		set -o PROMPT_SUBST
 		PS1_TMP="\$(branchName \"${punct}\" \"${colour}\")"
 		[ "$DISPLAY" ] \
 		&& { error="${error:10:2}"; colour="${colour:10:2}"; punct="${punct:10:2}"; } \

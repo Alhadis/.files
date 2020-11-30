@@ -10,7 +10,10 @@ have yum && [ -f /etc/bashrc ] && . /etc/bashrc
 # Load connected files
 for i in env aliases prompt functions tmp; do
 	i=~/.files/$i.sh
-	[ -r "$i" ] && . "$i"
+	[ -r "$i" ] && case "${SHELL##*/}" in
+		zsh) emulate sh -c '(){ typeset -h path; . "$i"; }';;
+		*) . "$i" ;;
+	esac
 done
 
 
