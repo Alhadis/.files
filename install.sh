@@ -101,10 +101,7 @@ command -v npm 2>&1 >/dev/null && {
 	install=
 	modules='
 		acorn
-		asar
 		babel-eslint
-		browserify
-		buble
 		c8
 		chai
 		clean-css-cli
