@@ -1,0 +1,11 @@
+#!/usr/bin/sed -f
+# Convert 2-space "soft-tabs" into actual tabs
+:x
+s/^  /\	/g
+s/^ \	/	/g
+s/\(	\) \([^[:blank:]]\)/\1\2/g
+s/\(	\) $/\1/g
+/\	  / {
+	s/\(\	\)  /\1\1/
+	bx
+}

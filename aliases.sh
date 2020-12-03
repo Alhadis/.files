@@ -98,10 +98,6 @@ have monero-wallet-cli && alias monero='cd ~/Monero && monero-wallet-cli'
 alias tab='printf "\t" | clip'
 
 
-# Convert 2-space "soft-tabs" into actual tabs
-alias tabfix='perl -pi -Xe '"'"'s|^(  )+|"\t"x(length($&)/2)|ge;'"'"
-
-
 # Chop leading or trailing blank lines from input
 alias trimstart='sed -n $'"'"'/[^ \t]/,$p'"'"
 alias trimend='sed -e :a -e '"'"'/^\n*$/{$d;N;};/\n$/ba'"'"
