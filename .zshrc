@@ -1,10 +1,3 @@
-MAILCHECK=300
-DIRSTACKSIZE=20
-
-# Disable history logging
-SAVEHIST=0
-HISTFILE=
-
 # Use Emacs-flavoured keybindings
 bindkey -e
 

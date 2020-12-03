@@ -22,6 +22,7 @@ dotfiles='
 	.profile
 	.vimrc
 	.wgetrc
+	.zshenv
 	.zshrc
 '
 # Link `$HOME/$file` to `$HOME/.files/$file` unless it's already symlinked
