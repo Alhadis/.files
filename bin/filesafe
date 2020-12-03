@@ -1,0 +1,15 @@
+#!/usr/bin/sed -f
+# Convert unsafe filename characters to Unicode lookalikes
+s|:|꞉|g
+s|<|﹤|g
+s|>|﹥|g
+s|\\|⧵|g
+s|"\([^"]*\)"|“\1”|g
+s| / |／|g
+s|/| ∕ |g
+s|?!|⁈|g
+s|??|⁇|g
+s|?|⁇|g
+s|^\.|․|g
+s|\.\(\.[^.]*\)\{0,1\}$|․\1|g
+s|\.{3}|…|g
