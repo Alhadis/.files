@@ -33,6 +33,7 @@ paths='
 	~/.files/var/man
 	~/.files/share/man
 	/usr/local/share/man
+	/usr/local/man
 	/usr/share/man
 	/usr/X11/man
 	/opt/X11/share/man
