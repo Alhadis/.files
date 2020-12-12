@@ -167,6 +167,9 @@ case `uname -s` in
 		# Update installed Homebrew formulae
 		alias bup='brew update && brew upgrade && brew cleanup --prune=0'
 		
+		# Print temperature diagnostics
+		alias temp='sudo powermetrics --samplers smc -i1 -n1 | grep --colour=none "^Fan\|temp"'
+		
 		# Print power diagnostics (battery-level and charge status)
 		alias pow='pmset -g batt'
 		
