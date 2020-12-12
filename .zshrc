@@ -2,8 +2,12 @@
 bindkey -e
 
 # Disable some annoying defaults
+zle_highlight+=(paste:none)
 unsetopt beep
 unsetopt caseglob
+unsetopt completeinword
+unsetopt nomatch
+unsetopt promptcr
 unsetopt sharehistory
 
 # Configure zsh(1)-specific options
@@ -23,6 +27,8 @@ setopt mailwarning
 setopt notify
 setopt numericglobsort
 setopt pipefail
+setopt posixidentifiers
+setopt promptpercent
 setopt promptsubst
 setopt pushdignoredups
 setopt pushdsilent
