@@ -44,10 +44,8 @@ if(count > 1)
 		Close();
 		i++;
 	endloop
-elseif(1 == count)
+else
 	Open($1);
 	if(_verbose) Print("Saving to: " + $2); endif
 	Generate($2);
-else
-	Error("No fonts found in file: " + $1);
 endif
