@@ -136,7 +136,7 @@ unset fn
 
 
 # Convert a font using FontForge
-have fontforge && alias convertfont='~/.files/etc/convert-font.ff'
+have fontforge && alias convertfont='~/.files/etc/convert-font.ff 2>/dev/null'
 
 
 # OS-specific
