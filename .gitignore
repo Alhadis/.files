@@ -1,4 +1,6 @@
 .DS_Store
+whatis
+man/index.*
 mandoc.db
 node_modules
 *.log
