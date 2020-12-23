@@ -21,6 +21,7 @@ $(brew-deps):
 configure:
 	sudo pmset -a lidwake 1
 	sudo pmset -a lessbright 0
+	sudo pmset -a proximitywake 0
 	sudo systemsetup -setrestartfreeze on
 	defaults write -g AppleShowAllExtensions -bool true
 	defaults write -g ApplePressAndHoldEnabled -bool false
