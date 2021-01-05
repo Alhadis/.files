@@ -31,7 +31,7 @@
 	textconv = odt2txt
 	cachetextconv = true
 [diff "docx"]
-	textconv = docx2txt
+	textconv = docx2txt.pl - /dev/stdout <
 	cachetextconv = true
 [filter "lfs"]
 	process = git-lfs filter-process
