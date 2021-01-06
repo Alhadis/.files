@@ -42,5 +42,7 @@
 	user = Alhadis
 [gpg]
 	program = gpg2
+[init]
+	defaultBranch = master
 [pull]
 	rebase = false
