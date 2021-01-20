@@ -86,10 +86,6 @@ have bsdtar && {
 }
 
 
-# Full-screen terminal window
-alias fit='printf '\''\e[3;0;0t\e[8;0;0t'\'
-
-
 # Shortcut to start window manager (ignored if it's running)
 [ "$DISPLAY" ] || have startxfce4 && alias desktop='startxfce4'
 
@@ -170,6 +166,9 @@ case `uname -s` in
 	Darwin)
 		# Update installed Homebrew formulae
 		alias bup='brew update && brew upgrade && brew cleanup --prune=0'
+		
+		# Resize Terminal.app to fill the screen
+		alias fit='printf '\''\e[3;0;0t\e[4;0;9999t'\'
 		
 		# Print temperature diagnostics
 		alias temp='sudo powermetrics --samplers smc -i1 -n1 | grep --colour=none "^Fan\|temp"'
