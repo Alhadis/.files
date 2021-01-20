@@ -86,6 +86,10 @@ have bsdtar && {
 }
 
 
+# Full-screen terminal window
+alias fit='printf '\''\e[3;0;0t\e[8;0;0t'\'
+
+
 # Shortcut to start window manager (ignored if it's running)
 [ "$DISPLAY" ] || have startxfce4 && alias desktop='startxfce4'
 
@@ -180,7 +184,6 @@ case `uname -s` in
 		alias unquarantine='xattr -d com.apple.quarantine * 2>/dev/null || true'
 		
 		# Alias unreachable commands specific to macOS
-		alias fit='~/.files/etc/darwin/fit-terminal.scpt'
 		alias scrub='~/.files/etc/darwin/scrub.sh'
 		alias PlistBuddy='/usr/libexec/PlistBuddy'
 		
