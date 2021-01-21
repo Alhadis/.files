@@ -32,6 +32,11 @@ configure:
 	defaults write com.apple.Accessibility KeyRepeatDelay -float 0.5
 	defaults write com.apple.Accessibility KeyRepeatEnabled -int 1
 	defaults write com.apple.Accessibility KeyRepeatInterval -float 0.08
+	test -x /usr/local/bin/bash || brew install bash
+	defaults write com.apple.Terminal Shell /usr/local/bin/bash
+	defaults write com.apple.Terminal ShowLineMarks -bool false
+	defaults write com.apple.Terminal 'Default Window Settings' Pro
+	defaults write com.apple.Terminal 'Startup Window Settings' Pro
 	defaults write com.apple.dock autohide -bool false
 	defaults write com.apple.dock launchanim -bool false
 	defaults write com.apple.dock show-recents -bool false
