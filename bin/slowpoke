@@ -1,0 +1,28 @@
+#!/bin/sh
+set -e
+
+#
+# slowpoke: Dummy program for testing a program's read(2)ing ability.
+#
+
+log(){
+	printf '%s Received %s @ ' "$0" "$1" > /tmp/slowpoke.log
+	date >> /tmp/slowpoke.log
+	exit
+}
+
+rm -f /tmp/slowpoke.log
+for signal in SIGHUP SIGTERM SIGINT SIGQUIT; do
+	eval "log_$signal(){ log $signal; }"
+	trap log_$signal $signal
+done
+
+cmd=echo
+case $1 in
+	-s|--single-line) cmd='printf %s'; shift ;;
+esac
+
+delay=${1:-5}
+$cmd 'Slow... '
+sleep $delay
+$cmd ...poke
