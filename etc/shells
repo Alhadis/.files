@@ -6,6 +6,7 @@
 
 /bin/bash
 /bin/csh
+/bin/dash
 /bin/ksh
 /bin/rbash
 /bin/rksh
