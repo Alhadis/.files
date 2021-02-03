@@ -3,6 +3,7 @@ unset PATH
 paths='
 	~/.files/var/bin
 	~/.files/bin
+	~/.cargo/bin
 	~/.jsvu
 	~/bin
 	/sbin
@@ -32,6 +33,7 @@ unset MANPATH
 paths='
 	~/.files/var/man
 	~/.files/share/man
+	~/.cargo/share/man
 	/usr/local/share/man
 	/usr/local/man
 	/usr/share/man
