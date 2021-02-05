@@ -63,9 +63,16 @@ Convert PostScript to PNG
 
 
 
-Link to a specific page in a PDF
---------------------------------
+Deep-linking
+------------
 
+Text fragments:
+
+	https://url.com/file.html#:~:text=[fragment]
+
+PDFs:
+
+	https://url.com/file.pdf#[named-destination]
 	https://url.com/file.pdf#page=[number]
 
 Exempli gratia: [`https://troff.org/54.pdf#page=29`](https://troff.org/54.pdf#page=29)
