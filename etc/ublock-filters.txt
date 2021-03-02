@@ -1,0 +1,17 @@
+! Cookie messages
+##web-snackbar-container
+
+! Politics/real-world bullcrap unrelated to code
+##^script:has-text(/#?\bBlack\s*Lives\s*Matter\b/i)
+##[class*="blacklivesmatter" i]
+electronjs.org##.announcement-banner
+
+! Share/subscribe buttons
+fontawesome.com###social-buttons
+sourceforge.net###newsletter-floating
+web.dev##a[href*="/newsletter/" i]
+web.dev##share-action
+
+! Anything else which happens to shit me
+fontawesome.com###banner[class*=" fa"]
+github.com##.js-notification-top-shelf
