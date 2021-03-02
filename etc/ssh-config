@@ -6,6 +6,9 @@ Host 10.0.0.*
 
 Host github.com
 	IdentityFile ~/.ssh/github
+	Compression yes
+	KeepAlive yes
+	ServerAliveInterval 60
 
 Host bitbucket.org
 	IdentityFile ~/.ssh/bitbucket
