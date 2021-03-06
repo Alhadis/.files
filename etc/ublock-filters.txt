@@ -1,5 +1,6 @@
 ! Cookie messages
 ##web-snackbar-container
+###js-cookie
 
 ! Politics/real-world bullcrap unrelated to code
 ##^script:has-text(/#?\bBlack\s*Lives\s*Matter\b/i)
