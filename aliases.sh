@@ -139,6 +139,15 @@ alias ord='perl -mEncode=decode -E "map { printf \"%1\\\$s\tU+%1\\\$X\n\", ord d
 unset fn
 
 
+# Generate nicer-looking hexadecimal dumps
+have xxd     && alias xxd='xxd -u -g1'
+have hexdump && alias hexdump='hexdump -v \
+	-e \""[2m│[22m0x%08.8_ax[2m│[22m "\" \
+	-e '\''16/1 "%02X "'\'' \
+	-e \"" [2m│[22m"\" \
+	-e '\''16/1 "%_p" "'\''"[2m│[22m"'\''\n"'\'
+
+
 # Convert a font using FontForge
 have fontforge && alias convertfont='~/.files/etc/convert-font.ff 2>/dev/null'
 
