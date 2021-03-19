@@ -1,0 +1,20 @@
+: <<\; # ex:set filetype=sh: -*- mode: sh; sh-shell: bourne; -*-
+#
+# rgrep: Recursively search CWD for a pattern
+#
+# This is a fallback for running `grep -irn . -e` on systems
+# whose grep(1) lacks an `-r` switch. Tested and working on:
+#
+#	* Version 7 AT&T UNIX (PDP-11, SimH)
+#	* Solaris 11.3        (i86pc, VirtualBox)
+#	* BSD Awk             (macOS 11.2.2, Bash v3.2.57)
+#	* GNU Awk 5.1.0       "
+;
+find . -type f -print -exec grep -y -n "$@" {} \; \
+| sed '/^[0-9][0-9]*:/ { s/^/	/; s/:/:	/; }' \
+| sed '/^	/,/^[^	 \n]/ { s/^[^	 \n].*$/\
+&/; }' \
+| sed '$!N; /^[^	 \n].*\n[^	 \n].*$/!P; D' \
+| sed '$ {/^	/!d;}' \
+| sed ':a
+/^\n*$/{$d;N;};/\n$/ba'

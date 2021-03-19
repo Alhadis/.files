@@ -4,7 +4,6 @@ alias L='l -tr'
 alias l='LC_COLLATE=C ls -alh'
 alias p='pwd'
 alias c="printf '\033[3J\033c'"
-alias s='grep -irnw . -e'
 alias t='run-tests'
 
 
@@ -55,6 +54,11 @@ have exiftool && {
 have pbcopy || { alias pbcopy=clip; alias pbpaste=clip; }
 have sudo && ! have doas && alias doas=sudo
 
+
+
+# Recursively search for a pattern in current working directory
+alias s=~/.files/bin/rgrep
+(echo . | grep -r . 2>&1)>/dev/null && alias s='grep -irn . -e'
 
 
 # Enable coloured grep output if supported
