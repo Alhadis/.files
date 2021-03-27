@@ -14,7 +14,8 @@ spaces_around_operators = false
 spaces_around_brackets = none
 indent_brace_style = K&R
 
-[.git/COMMIT_EDITMSG]
+[{COMMIT_EDITMSG,MERGE_MSG}]
+trim_trailing_whitespace = true
 max_line_length = 72
 indent_style = space
 indent_size = 4
