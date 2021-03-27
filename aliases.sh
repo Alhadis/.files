@@ -77,6 +77,11 @@ alias s=~/.files/bin/rgrep
 have gunits && alias units='gunits'
 
 
+# Prefer authentic vi(1) implementations over Vim's symlinks
+have nvi && (vi --version | grep -iq VIM 2>&1)>/dev/null && alias vi=nvi
+have nex && (ex --version | grep -iq VIM 2>&1)>/dev/null && alias ex=nex
+
+
 # Ksh: Emulate Bash's history expansion
 case ${SHELL##*/} in ksh)
 	alias !!='`history | tail -n1 | cut -f2 | tee /dev/stderr`';;
