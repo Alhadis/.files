@@ -6,12 +6,12 @@ paths='
 	~/.cargo/bin
 	~/.jsvu
 	~/bin
-	/sbin
-	/usr/sbin
-	/bin
 	/usr/local/sbin
 	/usr/local/bin
+	/usr/sbin
 	/usr/bin
+	/sbin
+	/bin
 	/usr/X11R6/bin
 	/opt/local/sbin
 	/opt/local/bin
