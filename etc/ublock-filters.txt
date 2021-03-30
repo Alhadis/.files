@@ -13,6 +13,15 @@ sourceforge.net###newsletter-floating
 web.dev##a[href*="/newsletter/" i]
 web.dev##share-action
 
+! Stack Overflow topics I couldn't give a fuck about
+askubuntu.*###sidebar > *:not(.sidebar-related):not(#hot-network-questions)
+mathoverflow.*###sidebar > *:not(.sidebar-related):not(#hot-network-questions)
+serverfault.*###sidebar > *:not(.sidebar-related):not(#hot-network-questions)
+stackapps.*###sidebar > *:not(.sidebar-related):not(#hot-network-questions)
+stackexchange.*###sidebar > *:not(.sidebar-related):not(#hot-network-questions)
+stackoverflow.*###sidebar > *:not(.sidebar-related):not(#hot-network-questions)
+superuser.*###sidebar > *:not(.sidebar-related):not(#hot-network-questions)
+
 ! Anything else which happens to shit me
 fontawesome.com###banner[class*=" fa"]
 github.com##.js-notification-top-shelf
