@@ -1,0 +1,63 @@
+.Dd April 2, 2021
+.Dt CONVERT-PLIST 1
+.Os
+.Sh NAME
+.Nm convert-plist
+.Nd convert an OpenStep property list to/from XML
+.
+.Sh SYNOPSIS
+.Nm
+.Op Fl p | -print-format
+.Op Fl x | -xml
+.Ar file
+.
+.Nm
+.Op Fl h | -help
+.
+.Nm
+.Op Fl t | -run-tests
+.
+.Sh DESCRIPTION
+.Nm
+converts a property list
+.Ar file
+to or from the XML format described in
+.Xr plist 5 .
+.
+.Bl -tag -width 4n
+.It Fl p | -print-format
+Display the name of the input format, then exit.
+Intended for debugging.
+Possible values are
+.Ql xml ,
+.Ql binary ,
+and
+.Ql ascii .
+.
+.It t | -run-tests
+Run some built-in tests.
+.
+.It x | -xml
+Force conversion to XML format,
+if the file named on the command-line is binary.
+.El
+.
+.Sh EXIT STATUS
+.Ex -std
+.
+.Sh SEE ALSO
+.Xr pl 1 ,
+.Xr plutil 1 ,
+.Xr plist 5
+.
+.Sh AUTHORS
+.An -nosplit
+Copyright \(co 2021
+.An John Gardner Aq Mt gardnerjohng@gmail.com .
+.Pp
+Freely released under the
+.Lk http://opensource.org/licenses/ISC "ISC license" .
+.
+.Sh CAVEATS
+This utility leans strongly on macOS-provided utilities to function.
+It is unlikely to be useful to users of other systems.

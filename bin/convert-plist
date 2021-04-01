@@ -1,0 +1,541 @@
+#!/usr/bin/env bash
+set -eo pipefail
+
+#
+# convert-plist: Convert an OpenStep property list to/from XML
+#
+usage="Usage: ${0##*/} [-h|--help] [-p|--print-format] [-x|--xml] plist"
+print_format=
+run_tests=
+xml=
+
+while [[ $1 =~ ^- ]]; do case $1 in
+	-h|--help|-\?)     printf '%s\n' "$usage"; exit ;;
+	-p|--print-format) print_format=1 ;;
+	-t|--run-tests)    run_tests=1 ;;
+	-x|--xml)          xml=1 ;;
+	--)  shift; break ;;
+	-?*) printf >&2 "${0##*/}: Invalid option: %s\n%s\n" "$1" "$usage"; exit 1 ;;
+esac; shift; done
+
+# Make sure pl(1) and plutil(1) are installed before we do anything
+for cmd in plutil pl; do command >/dev/null 2>&1 -v "$cmd" || {
+	printf >&2 "${0##*/}: Required command '%s' not found\n" "$cmd"
+	exit 1
+}; done
+
+if [[ ! $run_tests ]]; then
+
+# The plutil(1) utility refuses to read FIFOs for some reason
+if [[ -p $1 || $1 == "-" ]]; then exec < "$1"; shift; fi
+
+# Work out where our input is coming from
+if [[ $# -gt 0 ]]; then
+	# shellcheck disable=SC2059
+	die()(printf >&2 "${0##*/}: $1\n" '"[4m'"$2"'[24m"'; exit 1)
+	[[ -e $1 ]] || die 'No such file: %s' "$1"
+	[[ -f $1 ]] || die 'Not a regular file: %s' "$2"
+else set --; fi
+
+# Allow explicit XML conversion
+if [[ $xml ]]; then exec plutil -convert xml1 "${1:--}" -o -; fi
+
+# Scan first 6 bytes to determine file-format
+read -r _ header <<END
+$(dd 2>/dev/null bs=1 count=6 ${1:+if="$1"} | od -tx1)
+END
+header=${header// }
+header=${header@U}
+input_format=xml
+case $header in
+	62706C697374) input_format=binary ;; # bplist
+	7B*)          input_format=ascii  ;; # {
+esac
+
+# Print the name of the resolved format
+if [[ $print_format ]]; then
+	echo $input_format
+	exit
+fi
+
+# Convert to XML
+if [[ $input_format == ascii ]]; then {
+	if [[ ! -t 0 ]]; then
+		echo "$header" | xxd -p -r
+		dd 2>/dev/null ${1:+if="$1"}
+	else
+		cat "$1"
+	fi
+} | sed -E '
+	s/([=,(]|^)[[:blank:]]*(YES|NO|ON|OFF|TRUE|FALSE)[[:blank:]]*($|[;,)])/\1"\2"\3/gi
+	s/"([0-9]{4}-(0[1-9]|1[0-2])-(0[1-9]|1[0-2]))[T ](([01][0-9]|2[0-4])(:[0-5][0-9]){2}) \+0000"/"\1T\4Z"/g
+' | plutil -convert xml1 - -o - | sed -E '
+	s/<string>([0-9]{4}-(0[1-9]|1[0-2])-(0[1-9]|1[0-2])T([01][0-9]|2[0-4])(:[0-5][0-9]){2}Z)<\/string>/<date>\1<\/date>/g
+	s/<string>(YES|ON|TRUE)<\/string>/<true\/>/gi
+	s/<string>(NO|OFF|FALSE)<\/string>/<false\/>/gi
+'
+	exit
+
+# Convert to “ASCII” (OpenStep-flavoured property list)
+else
+	cmd=$(cat <<'SHELL'
+	sed '
+		/<string>\([^<]*\)<\/string>/ s/[]/&/g
+		s/<data>/<string>/g
+		s/<\/data>/<\/string>/g
+		s/<true\/>/<string>YES<\/string>/g
+		s/<false\/>/<string>NO<\/string>/g
+	' | (data=; have_data=;
+	while IFS= read -r line; do
+		case $line in
+			*\</string\>)
+				if [[ $have_data ]]; then
+					printf '<string>\x11'
+					printf %s "${data}${line%%\</string\>*}" \
+						| tr -d '\020\021' | base64 -d | xxd -u -p | tr -d ' \n\t'
+					printf '</string>'
+					have_data=; data=
+				else printf '%s\n' "$line"; fi ;;
+			*\<string\>) have_data=1; data="${line##*\<string\>}" ;;
+			*) [[ $have_data ]] && data="${data}${line}" || printf '%s\n' "$line" ;;
+		esac
+	done) | pl | sed '
+		s/"YES"/YES/g
+		s/"NO"/NO/g
+		s/"\([^"]*\)"/<\1>/g
+		s/\([]\)/\1/g
+		s/^[[:blank:]]*//g
+		s/= *\([{(]\)$/= \1/g
+	' | awk '
+		BEGIN { depth = 0 }
+		/[\)}][,;]?$/ { depth-- }
+		{
+			indent = ""
+			for(i = 0; i < depth; ++i) indent = indent "\t"
+			printf "%s%s\n", indent, $0
+		}
+		/[\({][,;]?$/ { depth++ }
+	'
+SHELL
+	)
+	if [[ $input_format == binary ]]; then
+		cmd="plutil -convert xml1 - -o - | $cmd"
+	else
+		cmd="{ cat; printf '\n'; } | $cmd"
+	fi
+	if [[ -t 0 ]]; then
+		eval "< \"$1\" $cmd"
+	else
+		eval "{
+			echo \"$header\" | xxd -p -r;
+			dd 2>/dev/null${1:+ if=\"$1\"};
+		} | $cmd"
+	fi
+fi
+
+# Run some built-in tests
+else
+command -v shellcheck >/dev/null 2>&1 && shellcheck "$0"
+
+# Locate a highlighter for word-level diffs
+hl=$(command -v diff-highlight 2>&1 || :)
+[[ -x $hl ]] || for path in \
+	"$(which git | xargs realpath | xargs dirname)/../share" \
+	/usr/local/share \
+	/usr/share \
+; do
+	path="$path/git-core/contrib/diff-highlight/diff-highlight"
+	if [[ -f $path && -x $path ]]; then hl=$(realpath "$path"); break; fi
+done
+
+t(){
+	diff -U4 "$@" | "${hl:-tee}" | sed '
+		s/^--- .*/--- expected/
+		s/^+++ .*/+++ actual/
+		s/^-/[31m-/
+		s/^+/[32m+/
+		s/^@/[36m@/
+		s/$/[0m/
+	' | less -F
+}
+
+t <("$0" <<'PLIST'
+{
+	Foo = <466F6F>;
+	foo = <
+		66
+		67
+	>;
+	str = "
+		str
+		ing
+	";
+}
+PLIST
+) <(cat <<'XML'
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>Foo</key>
+	<data>
+	Rm9v
+	</data>
+	<key>foo</key>
+	<data>
+	Zmc=
+	</data>
+	<key>str</key>
+	<string>
+		str
+		ing
+	</string>
+</dict>
+</plist>
+XML
+)
+
+t <(echo '
+62706C6973743030DF10100102030405060708090A0B0C0D0E0F10111213
+1415161111111711111619111A5F10347061747465726E466F6C64657273
+53686F776E3A364542333533314634354533444537323939323031354139
+4041646F626549445F101A564D4D656D6F7279557361676550657263656E
+743634323032315F10284E534E61764C6173745573657253657448696465
+457874656E73696F6E427574746F6E53746174655F101275694C616E6775
+6167654B657920323032315F10164E534E61764C617374526F6F74446972
+6563746F72795F10224E5344697361626C65644368617261637465725061
+6C657474654D656E754974656D5F10327374796C65466F6C646572735368
+6F776E3A3645423335333146343545334445373239393230313541394041
+646F626549445F101F70616C65747465456E68616E636564466F6E745479
+70654B657920323032315F10326272757368466F6C6465727353686F776E
+3A3645423335333146343545334445373239393230313541394041646F62
+6549445F10254E5357696E646F77204672616D65204E534E617650616E65
+6C4175746F736176654E616D655F1033737761746368466F6C6465727353
+686F776E3A36454233353331463435453344453732393932303135413940
+41646F626549445F10356772616469656E74466F6C6465727353686F776E
+3A3645423335333146343545334445373239393230313541394041646F62
+6549445F10224E534E617650616E656C457870616E646564537461746546
+6F72536176654D6F64655F10214E534E617650616E656C457870616E6465
+6453697A65466F72536176654D6F64655F10327368617065466F6C646572
+7353686F776E3A3645423335333146343545334445373239393230313541
+394041646F626549445F10214E534E617650616E656C457870616E646564
+53697A65466F724F70656E4D6F6465100110460855656E5F4742597E2F44
+65736B746F70095F101E3532342034323320373434203536342030203020
+31373932203130393520095A7B3734342C203536347D5A7B3734352C2034
+35307D0008002B0062007F00AA00BF00D800FD01320154018901B101E702
+1F02440268029D02C102C302C502C602CC02D602D702F802F90304000000
+0000000201000000000000001B0000000000000000000000000000030F
+' | xxd -p -r | tee /tmp/hex | "$0") \
+<(cat <<'PLIST'
+{
+	NSDisabledCharacterPaletteMenuItem = YES;
+	NSNavLastRootDirectory = "~/Desktop";
+	NSNavLastUserSetHideExtensionButtonState = NO;
+	NSNavPanelExpandedSizeForOpenMode = "{745, 450}";
+	NSNavPanelExpandedSizeForSaveMode = "{744, 564}";
+	NSNavPanelExpandedStateForSaveMode = YES;
+	"NSWindow Frame NSNavPanelAutosaveName" = "524 423 744 564 0 0 1792 1095 ";
+	VMMemoryUsagePercent642021 = 70;
+	"brushFoldersShown:6EB3531F45E3DE72992015A9@AdobeID" = 1;
+	"gradientFoldersShown:6EB3531F45E3DE72992015A9@AdobeID" = 1;
+	"paletteEnhancedFontTypeKey 2021" = 1;
+	"patternFoldersShown:6EB3531F45E3DE72992015A9@AdobeID" = 1;
+	"shapeFoldersShown:6EB3531F45E3DE72992015A9@AdobeID" = 1;
+	"styleFoldersShown:6EB3531F45E3DE72992015A9@AdobeID" = 1;
+	"swatchFoldersShown:6EB3531F45E3DE72992015A9@AdobeID" = 1;
+	"uiLanguageKey 2021" = "en_GB";
+}
+PLIST
+)
+
+t <("$0" <<'XML'
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple Computer//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+	<dict>
+		<key>Foo</key>
+		<data>Rm9v</data>
+	</dict>
+</plist>
+XML
+) <(cat <<'PLIST'
+{
+	Foo = <Rm9v>;
+}
+PLIST
+)
+
+t <("$0" <<'XML'
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple Computer//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+	<dict>
+		<key>Booleans</key>
+		<dict>
+			<key>Yeah</key>
+			<true/>
+			<key>Nah</key>
+			<false/>
+		</dict>
+		<key>Strings</key>
+		<dict>
+			<key>foo</key>
+			<string>Zm9vCg==</string>
+			
+			<key>^Qfoo</key>
+			<string>Zm9vCg==</string>
+			
+			<key>^Pfoo</key>
+			<string>Zm9vCg==</string>
+			
+			<key>^P^Q</key>
+			<string>Zm9vCg==</string>
+		</dict>
+		
+		<key>Data, single-line</key>
+		<dict>
+			<key>foo</key>
+			<data>Zm9vCg==</data>
+			
+			<key>^Qfoo</key>
+			<data>Zm9vCg==</data>
+			
+			<key>^Pfoo</key>
+			<data>Zm9vCg==</data>
+			
+			<key>^P^Qfoo</key>
+			<data>Zm9vCg==</data>
+		</dict>
+		
+		<key>Data, multi-line</key>
+		<dict>
+			<key>foo</key>
+			<data>
+				Zm9vCg==
+			</data>
+			
+			<key>^Qfoo</key>
+			<data>
+				Zm9vCg==
+			</data>
+			
+			<key>^Pfoo</key>
+			<data>
+				Zm9vCg==
+			</data>
+			
+			<key>^P^Qfoo</key>
+			<data>
+				Zm9vCg==
+			</data>
+		</dict>
+		
+		<key>Another string</key>
+		<string>
+			A
+			B
+			C
+		</string>
+	</dict>
+</plist>
+XML
+) <(cat <<'PLIST'
+{
+	"Another string" = "\n\t\t\tA\n\t\t\tB\n\t\t\tC\n\t\t";
+	Booleans = {
+		Nah = NO;
+		Yeah = YES;
+	};
+	"Data, multi-line" = {
+		"^P^Qfoo" = <666F6F0A>;
+		"^Pfoo" = <666F6F0A>;
+		"^Qfoo" = <666F6F0A>;
+		foo = <666F6F0A>;
+	};
+	"Data, single-line" = {
+		"^P^Qfoo" = <Zm9vCg==>;
+		"^Pfoo" = <Zm9vCg==>;
+		"^Qfoo" = <Zm9vCg==>;
+		foo = <Zm9vCg==>;
+	};
+	Strings = {
+		"^P^Q" = "Zm9vCg==";
+		"^Pfoo" = "Zm9vCg==";
+		"^Qfoo" = "Zm9vCg==";
+		foo = "Zm9vCg==";
+	};
+}
+PLIST
+)
+
+t <("$0" <<'XML'
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple Computer//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+	<dict>
+		<key>Foo</key>
+		<dict>
+			<key>Bar</key>
+			<dict>
+				<key>Baz</key>
+				<array>
+					<dict>
+						<key>B</key>
+						<string>U+0042</string>
+					</dict>
+					<dict>
+						<key>A</key>
+						<array>
+							<array>
+								<string>One</string>
+								<string>Two</string>
+								<string>Three</string>
+							</array>
+							<array>
+								<string>1</string>
+								<string>2</string>
+								<string>3</string>
+							</array>
+							<array>
+								<string>I</string>
+								<string>II</string>
+								<string>III</string>
+							</array>
+						</array>
+					</dict>
+					<dict>
+						<key>Z</key>
+						<string>U+005A</string>
+					</dict>
+				</array>
+				
+				<key>Qux</key>
+				<array>
+					<string>One</string>
+					<string>Two</string>
+					<string>Three</string>
+					<string>Four</string>
+				</array>
+			</dict>
+		</dict>
+	</dict>
+</plist>
+XML
+) <(cat <<'PLIST'
+{
+	Foo = {
+		Bar = {
+			Baz = (
+				{
+					B = "U+0042";
+				},
+				{
+					A = (
+						(
+							One,
+							Two,
+							Three
+						),
+						(
+							1,
+							2,
+							3
+						),
+						(
+							I,
+							II,
+							III
+						)
+					);
+				},
+				{
+					Z = "U+005A";
+				}
+			);
+			Qux = (
+				One,
+				Two,
+				Three,
+				Four
+			);
+		};
+	};
+}
+PLIST
+)
+
+t <("$0" <<'XML'
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<array>
+	<array>
+		<string>One</string>
+		<string>Two</string>
+		<string>Three</string>
+	</array>
+	<array>
+		<string>1</string>
+		<string>2</string>
+		<string>3</string>
+	</array>
+	<array>
+		<string>I</string>
+		<string>II</string>
+		<string>III</string>
+	</array>
+</array>
+</plist>
+XML
+) <(cat <<'PLIST'
+(
+	(
+		One,
+		Two,
+		Three
+	),
+	(
+		1,
+		2,
+		3
+	),
+	(
+		I,
+		II,
+		III
+	)
+)
+PLIST
+)
+
+t <("$0" <<'XML'
+{
+	Date = "2021-04-01 16:19:02 +0000";
+	YEAH = YES;
+	NAH  = NO;
+	YES  = "YEAH";
+	NO   = "NAH";
+}
+XML
+) <(cat <<'PLIST'
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>Date</key>
+	<date>2021-04-01T16:19:02Z</date>
+	<key>NAH</key>
+	<false/>
+	<key>NO</key>
+	<string>NAH</string>
+	<key>YEAH</key>
+	<true/>
+	<key>YES</key>
+	<string>YEAH</string>
+</dict>
+</plist>
+PLIST
+)
+
+# End of tests
+fi
