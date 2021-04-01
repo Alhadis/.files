@@ -77,7 +77,7 @@ export PERL_MM_OPT="INSTALL_BASE=~/perl5"
 # Prefer Emacs for terminal-based editing
 EDITOR=`command -v emacs 2>/dev/null`
 [ -x "$EDITOR" ] && {
-	EDITOR="$EDITOR -nw"
+	EDITOR="NO_PKG=1 $EDITOR -nw"
 	GIT_EDITOR=$EDITOR
 	VISUAL=$EDITOR
 	export EDITOR GIT_EDITOR VISUAL
