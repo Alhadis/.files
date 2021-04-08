@@ -1,0 +1,99 @@
+#!/bin/sh
+set -o pipefail >/dev/null 2>&1 || :
+set -e
+
+#
+# format-diff: Highlight diff(1) output
+#
+version='v1.0.0'
+usage="Usage:\
+	${0##*/} /path/to/diff-file
+	${0##*/} [[--] ...diff-options] file.1 file.2
+	${0##*/} [-h|--help|-?] [-v|--version]
+	diff -U4 | ${0##*/} [-]
+	git diff | ${0##*/} [-]"
+
+# Parse command-line switches
+while [ -n "$1" ]; do case $1 in
+
+	# Print a brief usage summary and exit
+	-h|--help|-\?)
+		printf '%s\n' "$usage"
+		exit ;;
+	
+	# Print a version string and exit
+	-v|--version)
+		printf '%s\n' "$version"
+		exit ;;
+
+	# Double-dash: Terminate option parsing
+	--)
+		shift
+		break ;;
+
+	# Invalid option: abort
+	--*|-?*)
+		>&2 printf '%s: Invalid option: "%s"\n' "${0##*/}" "$1"
+		>&2 printf '%s\n' "$usage"
+		exit 1 ;;
+
+	# Argument not prefixed with a dash
+	*) break ;;
+
+esac; shift
+done
+
+
+# Check dependencies are available
+have()(for i in "$@"; do command -v "$i" >/dev/null 2>&1 || return 1; done)
+
+# Command for replicating coloured git-diff(1) output
+cmd="sed '"'
+	/^commit /, /^diff / { /^diff /! s/^/[0m/; }
+	s/^[a-z][a-z]* ..*/[1m&[0m/
+	s/^--- .*/--- expected/
+	s/^+++ .*/+++ actual/
+	s/^-/[31m-/
+	s/^+/[32m+/
+	s/^\(@\{2,3\}\) .* \1/[36m&[0m/
+	s/$/[0m/
+'\'
+
+# Use less(1) for displaying output that won't fit terminal window
+if [ -t 1 ]; then
+	cmd="$cmd | less -FR"
+fi
+
+# If `diff-highlight` exists in our $PATH, assume it does what we expect
+if have diff-highlight; then
+	cmd="diff-highlight | $cmd"
+
+# Otherwise, try to locate Git's word-level diff highlighter
+elif have git realpath dirname; then
+	for path in \
+		"`command -v 2>/dev/null git | xargs realpath | xargs dirname`/../share" \
+		/usr/local/share \
+		/usr/share \
+	; do
+		path="$path/git-core/contrib/diff-highlight/diff-highlight"
+		if [ -f "$path" ] && [ -x "$path" ]; then
+			cmd="`realpath "$path"` | $cmd"
+			break
+		fi
+	done
+	unset path
+fi
+
+# Reveal backspace and escape characters in diff output
+cmd="sed 's//&[2mESC&[22m/g; s//[2mBS[22m/g' | $cmd"
+
+# 1 argument: Assume it's a file containing a unified diff
+if [ $# -eq 1 ]; then
+	[ "$1" = '-' ] && shift || cmd='cat -- "$@"'" | $cmd"
+
+# 2+ arguments: Pass ARGV to diff(1)
+elif [ $# -ge 2 ]; then
+	cmd='diff -U4 "$@"'" | $cmd"
+fi
+
+eval "$cmd"

@@ -15,6 +15,11 @@
 	undo = reset --soft HEAD~1
 [credential]
 	helper = osxkeychain
+[color]
+	pager = false
+[pager]
+	show = format-diff
+	diff = format-diff
 [diff]
 	renames = copies
 [diff "bin"]

@@ -24,6 +24,14 @@ visit(){
 }
 
 
+# Generate a unified diff with highlighting
+diff(){
+	set -- diff -r -U4 "$@"
+	if [ ! -t 1 ]; then command "$@"; return $?; fi
+	command "$@" | format-diff
+}
+
+
 # Run git-status(1) with an empty line inserted before each list of changes
 g(){
 	if [ ! -t 1 ]; then git status "$@"; return $?; fi
