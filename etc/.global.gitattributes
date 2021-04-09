@@ -9,5 +9,4 @@
 
 # Document diffs
 *.docx    diff=docx
-*.doc     diff=docx
 *.odt     diff=odt
