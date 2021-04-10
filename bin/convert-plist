@@ -124,7 +124,7 @@ SHELL
 		cmd="{ cat; printf '\n'; } | $cmd"
 	fi
 	if [[ -t 0 ]]; then
-		eval "< \"$1\" $cmd"
+		eval "cat \"$1\" | $cmd"
 	else
 		eval "{
 			echo \"$header\" | xxd -p -r;
