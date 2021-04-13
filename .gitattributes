@@ -2,7 +2,7 @@
 share/dict/en_*   linguist-vendored
 
 # Documentation
-share/man/*       linguist-documentation
+share/man/**      linguist-documentation
 
 # Unrecognised filetypes
 *.colorscheme     linguist-language=INI
