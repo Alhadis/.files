@@ -31,7 +31,7 @@ have wasmtime && {
 
 # PostScript
 [ -f test.ps ] && have gs && {
-	gs -sDEVICE=txtwrite -sOutputFile=- -q -sBATCH -dNOPAUSE -dNOSAFER -I. test.ps
+	gs -sDEVICE=txtwrite -sOutputFile=- -q -sBATCH -dNOPAUSE -dNOSAFER -I. -- test.ps "$@"
 	exit
 }
 
