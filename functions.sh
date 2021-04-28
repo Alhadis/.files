@@ -128,6 +128,20 @@ encodeurl(){
 }
 
 
+# Execute a PostScript program
+gx(){
+	command -v \gs >/dev/null 2>&1 || {
+		>&2 printf 'GhostScript is required to use this function.\n'
+		return 1
+	}
+	if   [ ! -t 0    ]; then set -- - "$@"; fi
+	if   [ "$1" = -  ]; then shift; set -- /dev/stdin "$@"
+	elif [ ! -f "$1" ]; then >&2 printf 'gs: No such file: %s\n' "$1"; set --
+	elif [ $# -lt 1  ]; then >&2 printf 'Usage: gx file.ps [args...]\n'; return 1
+	fi; \gs -sDEVICE=txtwrite -sOutputFile=- -q -sBATCH -dNOPAUSE -dNOSAFER -I. -- "$@"
+}
+
+
 # Convert PostScript to PNG
 ps2png(){
 	command -v gs 2>&1 >/dev/null || {
