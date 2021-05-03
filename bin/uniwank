@@ -1,0 +1,78 @@
+#!/usr/bin/env perl
+use strict;
+use warnings;
+use autodie;
+use v5.14;
+use utf8;
+$| = 1;
+END { close STDOUT }
+
+use warnings     qw< FATAL utf8 >;
+use open         qw< :std :utf8 >;
+use feature      qw< unicode_strings >;
+use Getopt::Long qw< :config no_ignore_case no_auto_abbrev >;
+use Data::Dumper;
+
+# Load transliteration tables
+sub load_tsv {
+	my $path = glob "~/.files/share/doc/unicode-text-effects.tsv";
+	die "No such file: $path" unless -f $path;
+	open my $fh, "< :encoding(UTF-8)", $path;
+	my %styles = ();
+	my @chars = ("", "");
+	while(<$fh>){
+		next if /^#/;
+		chomp;
+		s~(\\|-|/)~\\$1~g;
+		my ($name, $output, $input) = split "\t";
+		$name =~ s/\\(.)/-/g;
+		$chars[0] .= $output;
+		$chars[1] .= $input;
+		$styles{$name} = eval "sub { tr/$input/$output/r }";
+	}
+	close $fh;
+	$styles{unstyle} = eval "sub { tr/$chars[0]/$chars[1]/r }";
+	%styles;
+}
+
+# Apply or remove cutesy effects to STDIN
+sub call {
+	my %styles = load_tsv;
+	my ($name) = @_;
+	local $/ = undef if -t 0;
+	while(<>){
+		print $styles{$name}->();
+	}
+}
+
+# Resolve selected style, or lack thereof
+@ARGV = ("-n") unless $#ARGV >= 0;
+
+GetOptions (
+	"n|none"                 => sub { call "unstyle"; },
+	"b|bold"                 => sub { call "Serif, Bold"; },
+	"i|italic"               => sub { call "Serif, Italic"; },
+	"B|bold-italic"          => sub { call "Serif, Bold Italic"; },
+	"ss|sans"                => sub { call "Sans-serif"; },
+	"sb|sans-bold"           => sub { call "Sans-serif, Bold"; },
+	"si|sans-italic"         => sub { call "Sans-serif, Italic"; },
+	"sbi|sans-bold-italic"   => sub { call "Sans-serif, Bold Italic"; },
+	"s|script"               => sub { call "Script"; },
+	"S|script-bold"          => sub { call "Script, Bold"; },
+	"f|fraktur"              => sub { call "Fraktur"; },
+	"F|fraktur-bold"         => sub { call "Fraktur, Bold"; },
+	"d|double-struck"        => sub { call "Double-struck"; },
+	"m|mono"                 => sub { call "Monospace"; },
+	"c|circled"              => sub { call "Circled"; },
+	"C|circled-negative"     => sub { call "Circled, Negative"; },
+	"p|parenthesised"        => sub { call "Parenthesised"; },
+	"r|region-indicators"    => sub { call "Regional Indicators"; },
+	"w|wide|full|full-width" => sub { call "Full-width"; },
+	"q|square"               => sub { call "Squared"; },
+	"Q|square-negated"       => sub { call "Squared, Negative"; },
+	"sc|caps|small-caps"     => sub { call "Small caps"; },
+	"sup|superscript"        => sub { call "Superscript"; },
+	"sub|subscript"          => sub { call "Subscript"; },
+	"u|upside-down"          => sub { call "Upside-down"; },
+	"t|tags"                 => sub { call "Tags"; },
+);

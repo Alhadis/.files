@@ -1,0 +1,183 @@
+.Dd May 3, 2021
+.Dt UNIWANK 1
+.Os
+.Sh NAME
+.Nm uniwank
+.Nd apply cutesy effects with Unicode symbols
+.
+.Sh SYNOPSIS
+.Nm uniwank
+.	Op Fl bBcCdfFimpqQrsStuw
+.	Op Fl ss
+.	Op Fl sb
+.	Op Fl si
+.	Op Fl sbi
+.	Op Fl sc
+.	Op Fl sup
+.	Op Fl sub
+.Nm uniwank
+.	Op Fl n | Fl -none
+.
+.Sh DESCRIPTION
+In the first form,
+.Nm
+converts input to a stylised rendition by (ab)using lookalike Unicode symbols.
+See
+.Sx EFFECTS
+for a list of supported effects.
+.Pp
+In the second form,
+.Nm
+removes such effects from its input.
+This is the default behaviour if no effects are requested.
+.Pp
+In both such forms, text is read from the standard input and printed on the standard output.
+.
+.Sh EFFECTS
+.Bl -tag -width 20
+.It Fl n , Fl -none
+Remove all of the effects
+.Nm
+understands.
+This is the default.
+.
+.It Fl b , Fl -bold
+Convert Latin and Greek alphanumerics to bold serif.
+.
+.It Fl i , Fl -italic
+Convert Latin and Greek alphanumerics to italic serif.
+.
+.It Fl B , Fl -bold-italic
+Convert Latin and Greek alphanumerics to bold and italic serif.
+.
+.It Fl ss , Fl -sans
+Convert Latin alphanumerics to sans-serif.
+.
+.It Fl sb , Fl -sans-bold
+Convert Latin and Greek alphanumerics to bold sans-serif.
+.
+.It Fl si , Fl -sans-italic
+Convert Latin alphanumerics to italic sans-serif.
+.
+.It Fl sbi , Fl -sans-bold-italic
+Convert Latin and Greek alphanumerics to bold and italic sans-serif.
+.
+.It Fl s , Fl -script
+Convert Latin letters to cursive.
+.
+.It Fl S , Fl -script-bold
+Convert Latin letters to bold cursive.
+.
+.It Fl f , Fl -fraktur
+Convert Latin letters to fraktur
+.Pq a.k.a., Do Gothic Dc or Do Blackletter Dc
+text.
+.
+.It Fl F , Fl -fraktur-bold
+Convert Latin letters to bold fraktur.
+.
+.It Fl d , Fl -double-struck
+Convert Latin alphanumerics to blackboard bold (outlined) text.
+.
+.It Fl m , Fl -mono
+Convert Latin alphanumerics to monospace (fixed-width) characters.
+.
+.It Fl c , Fl -circled
+Convert Latin alphanumerics and the symbols
+.Ql *+\-./<=>\e|∘
+to circled forms.
+.
+.It Fl C , Fl -circled-negative
+Convert capital Latin letters to solid-filled, circled forms.
+.
+.It Fl p , Fl -parenthesised
+Convert Latin alphanumerics to parenthesised forms.
+For example,
+.Ql "ABC"
+becomes
+.Ql "(A)(B)(C)" .
+.
+.It Fl r , Fl -region-indicators
+Convert capital letters to one of 26 symbols in Unicode's
+.Dq Region Indicators
+block.
+.
+.It Fl w , Fl -wide , Fl -full , Fl -full-width
+Convert Latin alphanumerics, spaces, and the symbols
+.Ql \(dq!#$%&\(aq()*+,\-./:;<=>?@[\e]^_`{|}~\[u2985]\[u2986]¢£¬¯\(bb¥\[u20A9]
+to CJK
+.Dq full-width
+versions.
+.
+.It Fl q , Fl -square
+Convert capital Latin letters and the symbols
+.Ql +-×⋅/\e*∘◽◇
+to squared forms.
+.
+.It Fl Q , Fl -square-negated
+Convert capital Latin letters to solid-filled, squared forms.
+.
+.It Fl sc , Fl -caps , Fl -small-caps
+Convert capital letters
+.Pq except for Ql Q , Ql X , No and Ql Y
+to small-cap variants.
+.
+.It Fl sup , Fl -superscript
+Convert Latin alphanumerics to superscripted forms.
+Not supported are the characters
+.Ql CFQSXYZabdeghjklmopqrtuvw
+.
+.It Fl sub , Fl -subscript
+Convert a subset of Latin alphanumerics to subscripted forms.
+Coverage is even more limited than that of
+.Fl superscript .
+.
+.It Fl u , Fl -upside-down
+Vertically mirrors text to resemble upside-down writing.
+.
+.It Fl t , Fl -tags
+Converts most ASCII characters to unprintable equivalents in Unicode's
+.Ql Tags
+block.
+.El
+.
+.Sh FILES
+.Pa ~/.files/share/doc/unicode-text-effects.tsv
+Transliteration tables for each effect.
+.
+.Sh EXIT STATUS
+.Ex -std
+.
+.Sh EXAMPLES
+Format text for shitposting:
+.Dl Nm echo ~AESTHETICS~ | Nm Fl w
+.Pp
+Format a black metal band logo:
+.Dl Nm echo No Endstille | Nm Fl f
+.Pp
+Cheat YouTube's comment filter, maybe:
+.Dl Nm echo No Retard | Nm Fl ss
+.Pp
+Troll whoever copy+pastes your code into their editor:
+.Dl Nm Fl -mono No < instruction-list.wast
+.
+.Sh SEE ALSO
+.Xr tr 1
+.Pp
+The
+.Lk http://qaz.wtf/u/convert.cgi "web-based version"
+upon which
+.Nm
+was based.
+.Pp
+The
+.Lk https://webassembly.github.io/simd/core/appendix/index-instructions.html page
+which inspired me to write this bullshit.
+.
+.Sh AUTHORS
+Copyright \(co 2021
+.An "John Gardner"
+.Aq Mt gardnerjohng@gmail.com .
+.Pp
+Freely released under the
+.Lk https://opensource.org/licenses/ISC "ISC license" .
