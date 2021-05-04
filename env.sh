@@ -56,6 +56,7 @@ export GPG_TTY=`tty`
 export GREP_COLORS="sl=38;5;240:mt=1;38;5;10;48;5;22:fn=38;5;242:se=38;5;237:ln=38;5;10"
 export GROFF_TMAC_PATH=~/.files/var/tmac:~/Labs/Mono:/usr/local/share/groff/site-tmac
 export GROFF_FONT_PATH=/usr/local/share/groff/site-font
+export GS_OPTIONS='-dNOSAFER -dNOSHORTERRORS -dOSTACKPRINT -dESTACKPRINT -I.'
 export HISTFILE=
 export LESS=-R
 export LYNX_CFG=~/.files/etc/lynx.cfg
