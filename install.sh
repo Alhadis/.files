@@ -63,6 +63,10 @@ command -v konsole 2>&1 >/dev/null && [ ! -h .local/share/konsole ] && {
 }
 
 
+# Link wsconsctl.conf(5)
+command -v wsconsctl >/dev/null 2>&1 && doas ln -sf ~/.files/etc/wsconsctl.conf /etc
+
+
 # Disable blinking cursor in Gnome Terminal
 command -v gsettings 2>&1 >/dev/null && [ "$DISPLAY" ] && {
 	gsettings set org.gnome.desktop.interface cursor-blink false
