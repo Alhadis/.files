@@ -33,10 +33,10 @@ for file in $dotfiles; do [ -h $file ] || {
 done; unset file
 
 
-# Copy SSH config
+# Link SSH config
 [ ! -s .ssh/config ] && {
-	cp .files/etc/ssh-config .ssh/config
-	printf 'Copied: %s -> %s\n' .files/etc/ssh-config .ssh/config
+	ln .files/etc/ssh-config .ssh/config
+	printf 'Linked: %s -> %s\n' .files/etc/ssh-config .ssh/config
 }
 
 # Tighten permissions on `~/.ssh' directory
