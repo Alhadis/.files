@@ -37,6 +37,7 @@ paths='
 	/usr/local/share/man
 	/usr/local/man
 	/usr/share/man
+	/usr/X11R6/man
 	/usr/X11/man
 	/opt/X11/share/man
 	/opt/local/man
