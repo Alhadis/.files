@@ -43,5 +43,8 @@ if [ -x /usr/bin/lesspipe ]; then
 	eval "`SHELL=/bin/sh lesspipe`"
 fi
 
+# Ensure ^T is used for sending SIGINFO
+stty status "`printf '\x14'`"
+
 # Enable this last so it doesn't screw with startup code
 set -o pipefail >/dev/null 2>&1
