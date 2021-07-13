@@ -115,6 +115,12 @@ for path in ~/.yarn/ ~/.config/yarn/global/node_modules/.; do
 	[ -d "${path}man" ] && MANPATH="$MANPATH:${path}man"
 done
 
+# PowerShell: Disable telemetry and suppress copyright banner
+have pwsh && {
+	export POWERSHELL_TELEMETRY_OPTOUT=1
+	alias pwsh='pwsh -NoLogo'
+}
+
 # RubyGems: Include latest version's executables in search path
 [ -d /usr/local/lib/ruby/gems ] && {
 	path=`echo /usr/local/lib/ruby/gems/* | sort --version-sort | tail -n1`
