@@ -181,6 +181,8 @@ case `uname -s` in
 		alias chmod='doas chmod'
 		alias mount='doas mount'
 		alias umount='doas umount'
+		alias pkg_add='doas pkg_add'
+		alias pkg_delete='doas pkg_delete'
 		have mount.exfat-fuse && {
 			alias mount.exfat='doas mount.exfat'
 			alias mount.exfat-fuse='doas mount.exfat-fuse'
