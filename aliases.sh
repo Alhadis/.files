@@ -37,7 +37,6 @@ alias scp='scp -pr'
 # Aliases for programs that mightn't be available/installed
 have bundle   && alias brake='LANG=en_AU.UTF-8 bundle exec rake'
 have fdupes   && alias dedupe='fdupes -dN'
-have tree     && alias tree='tree -a --noreport'
 have file     && alias mime='file --brief --mime-type'
 have mysql    && alias mysql='mysql --auto-vertical-output'
 have plutil   && alias pl='convert-plist'
@@ -67,6 +66,13 @@ alias s=~/.files/bin/rgrep
 	alias fgrep='fgrep --colour=auto'
 	alias egrep='egrep --colour=auto'
 };
+
+
+# Hide summary lines in tree(1) output
+have tree && if tree -a --noreport ~/.files/share >/dev/null 2>&1
+	then alias tree='tree -a --noreport'
+	else alias tree='tree -as'
+fi
 
 
 # Hide GNU bc(1)'s startup message
