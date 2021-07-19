@@ -13,3 +13,4 @@ konsoleui.rc      linguist-language=XML
 pro.terminal      linguist-language=XML
 terminalrc        linguist-language=INI
 etc/shells        linguist-language=INI
+etc/*.conf        linguist-language=INI

@@ -63,10 +63,6 @@ command -v konsole 2>&1 >/dev/null && [ ! -h .local/share/konsole ] && {
 }
 
 
-# Link wsconsctl.conf(5)
-command -v wsconsctl >/dev/null 2>&1 && doas ln -sf ~/.files/etc/wsconsctl.conf /etc
-
-
 # Disable blinking cursor in Gnome Terminal
 command -v gsettings 2>&1 >/dev/null && [ "$DISPLAY" ] && {
 	gsettings set org.gnome.desktop.interface cursor-blink false
@@ -96,8 +92,16 @@ command -v startxfce4 2>&1 >/dev/null && [ "$DISPLAY" ] && {
 }
 
 
-# Perform macOS-specific install stuff
-case `uname -s` in [Dd]arwin) cd ~/.files/etc/darwin && make ;; esac
+# Perform platform-specific install stuff
+case `uname -s` in
+	OpenBSD)
+		doas ln -sf ~/.files/etc/sysctl.conf    /etc
+		doas ln -sf ~/.files/etc/wsconsctl.conf /etc
+	;;
+	[Dd]arwin)
+		cd ~/.files/etc/darwin && make
+	;;
+esac
 
 
 # Install Node programs
