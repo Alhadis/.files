@@ -5,7 +5,7 @@ set -e
 #
 # format-diff: Highlight diff(1) output
 #
-version='v1.0.0'
+version='v1.1.0'
 usage="Usage:\
 	${0##*/} /path/to/diff-file
 	${0##*/} [[--] ...diff-options] file.1 file.2
@@ -69,15 +69,25 @@ if have diff-highlight; then
 	cmd="diff-highlight | $cmd"
 
 # Otherwise, try to locate Git's word-level diff highlighter
-elif have git realpath dirname; then
-	for path in \
-		"`command -v 2>/dev/null git | xargs realpath | xargs dirname`/../share" \
-		/usr/local/share \
-		/usr/share \
-	; do
+elif have git; then
+	unset have_coreutils
+
+	# Locate Git's (physical) installation directory
+	if have realpath dirname; then
+		have_coreutils=1
+		git="`command -v 2>/dev/null git | xargs realpath | xargs dirname`/../share"
+	else
+		git=`git --exec-path 2>/dev/null`
+		git="${git%/libexec/*}/share"
+	fi
+
+	# Resolve `diff-highlight` relative to aforementioned path
+	for path in "$git" /usr/local/share /usr/share; do
 		path="$path/git-core/contrib/diff-highlight/diff-highlight"
 		if [ -f "$path" ] && [ -x "$path" ]; then
-			cmd="`realpath "$path"` | $cmd"
+			[ "$have_coreutils" ] && path="`realpath "$path"`" \
+			|| { cd "${path%/*}"; path="`pwd`/diff-highlight"; cd -; }
+			cmd="$path | $cmd"
 			break
 		fi
 	done
