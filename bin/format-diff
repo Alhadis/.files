@@ -5,7 +5,7 @@ set -e
 #
 # format-diff: Highlight diff(1) output
 #
-version='v1.1.0'
+version='v1.2.0'
 usage="Usage:\
 	${0##*/} /path/to/diff-file
 	${0##*/} [[--] ...diff-options] file.1 file.2
@@ -61,7 +61,8 @@ cmd="sed '"'
 
 # Use less(1) for displaying output that won't fit terminal window
 if [ -t 1 ]; then
-	cmd="$cmd | less -FR"
+	cmd="$cmd | less -R"
+	[ "$SSH_CONNECTION" ] || cmd="${cmd}F"
 fi
 
 # If `diff-highlight` exists in our $PATH, assume it does what we expect
