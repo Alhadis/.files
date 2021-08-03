@@ -5,7 +5,7 @@
 ! Politics/real-world bullcrap unrelated to code
 ##^script:has-text(/#?\bBlack\s*Lives\s*Matter\b/i)
 ##[class*="blacklivesmatter" i]
-electronjs.org##.announcement-banner
+electronjs.org##[class|="announcement-banner"]
 
 ! Share/subscribe buttons
 fontawesome.com###social-buttons
