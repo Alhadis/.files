@@ -1,5 +1,5 @@
 set encoding=utf-8
-set modelineexpr
+silent! set modelineexpr
 filetype on
 syntax enable
 
