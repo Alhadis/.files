@@ -44,7 +44,7 @@ if [ -x /usr/bin/lesspipe ]; then
 fi
 
 # Ensure ^T is used for sending SIGINFO
-stty status "`printf '\x14'`"
+stty status "`printf '\x14'`" 2>/dev/null
 
 # Enable this last so it doesn't screw with startup code
 set -o pipefail >/dev/null 2>&1
