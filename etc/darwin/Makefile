@@ -61,3 +61,11 @@ configure:
 	defaults write com.apple.universalaccess closeViewScrollWheelToggle -bool true
 	defaults write com.apple.universalaccess closeViewZoomFollowsFocus -bool true
 	defaults write com.apple.universalaccess reduceMotion -bool true
+	defaults write com.apple.touchbar.agent {}
+	defaults write com.apple.touchbar.agent PresentationModeFnModes -dict \
+		appWithControlStrip functionKeys \
+		functionKeys fullControlStrip
+	defaults write com.apple.touchbar.agent PresentationModeGlobal appWithControlStrip
+	defaults write com.apple.touchbar.agent PresentationModePerApp -dict \
+		com.github.atom functionKeys \
+		org.gnu.Emacs functionKeys
