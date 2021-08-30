@@ -29,6 +29,7 @@ configure:
 	defaults write -g InitialKeyRepeat -int 12
 	defaults write -g com.apple.springing.enabled -bool true
 	defaults write -g com.apple.springing.delay -float 0
+	defaults write -g com.apple.swipescrolldirection -bool false
 	defaults write com.apple.Accessibility KeyRepeatDelay -float 0.5
 	defaults write com.apple.Accessibility KeyRepeatEnabled -int 1
 	defaults write com.apple.Accessibility KeyRepeatInterval -float 0.08
