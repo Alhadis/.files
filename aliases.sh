@@ -169,6 +169,9 @@ case `uname -s` in
 		# Reconnect WiFi
 		alias reconnect='doas sh /etc/netstart iwn0'
 
+		# Turn off the computer after shutting down
+		alias halt='halt -p'
+		
 		# Print temperature diagnostics
 		alias temp='sysctl hw.sensors | grep temp | sed "s/hw.sensors.//; s/\.temp[0-9]=/: /;"'
 
