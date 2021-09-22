@@ -161,6 +161,7 @@ case `uname` in [Dd]arwin)
 	# Scan Apple's Developer/SDK directories for manual-pages
 	paths='
 		/Applications/*/share/man
+		/Applications/*/Contents/Resources/man
 		/Developer/usr/share/man
 		/Developer/usr/*/share/man
 		/Developer/usr/X11/share/man
