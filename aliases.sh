@@ -32,6 +32,7 @@ alias du='du -h'
 alias mv='mv -i'
 alias cp='cp -i'
 alias scp='scp -pr'
+alias nl='nl -ba'
 
 
 # Aliases for programs that mightn't be available/installed
