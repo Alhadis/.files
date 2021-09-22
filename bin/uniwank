@@ -15,7 +15,7 @@ use Data::Dumper;
 
 # Load transliteration tables
 sub load_tsv {
-	my $path = glob "~/.files/share/doc/unicode-text-effects.tsv";
+	my $path = glob "~/.files/share/misc/unicode-text-effects.tsv";
 	die "No such file: $path" unless -f $path;
 	open my $fh, "< :encoding(UTF-8)", $path;
 	my %styles = ();

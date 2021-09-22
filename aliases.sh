@@ -142,7 +142,7 @@ have shred && alias nuke='shred -u' || alias nuke='rm -rfP'
 
 
 # Bring up notes for things I keep forgetting
-alias notes='less ~/.files/share/doc/random-notes.md'
+alias notes='less ~/.files/share/misc/random-notes.md'
 
 
 # Codepoint and base conversion
