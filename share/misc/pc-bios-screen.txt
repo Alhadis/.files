@@ -1,0 +1,21 @@
+[TAB] POST SCREEN
+[DEL] BIOS SETUP\Q-FLASH
+[F9]  XPRESS RECOVERY2
+[F12] BOOT MENU
+[END] Q-FLASH
+
+
+    Irrelevant wankery:
+======================================================
+Ultra Durable™ 3                   GIGABYTE™
+Motherboard
+
+    Unique Technology from GIGABYTE
+       2 OZ Copper PCB
+         50,000 hr. Japanese Solid Capacitor
+           Lower RDS(on) MOSE
+             Ferrite Core choke
+                                 SMART 6
+                                               2 OZ
+                                            Copper PCB
+======================================================
