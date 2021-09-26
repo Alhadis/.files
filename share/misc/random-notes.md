@@ -191,3 +191,13 @@ VirtualBox logins
 | Solaris 11.3  | `vagrant`   | `1vagrant`           |
 | Ubuntu        | `vagrant`   | `vagrant`            |
 <!--------------------------------------------------->
+
+
+
+Bit manipulation
+----------------
+
+	bit  = int >> 𝑁 & 1    Get
+	int |=   1 << 𝑁        Set
+	int &= ~(1 << 𝑁)       Unset
+	int ^=   1 << 𝑁        Toggle
