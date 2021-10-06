@@ -13,7 +13,7 @@ have(){
 
 # Nroff without trailing lines
 [ -f test.roff ] && have groff && {
-	groff -tpUTutf8 $@ < test.roff | sed -e :a -e '/^\n*$/{$d;N;};/\n$/ba'
+	groff -tpUTutf8 $@ test.roff | sed -e :a -e '/^\n*$/{$d;N;};/\n$/ba'
 	exit
 }
 
