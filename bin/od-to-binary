@@ -6,8 +6,21 @@ const fs = require("fs");
 for(const name of process.argv.slice(2)){
 	const data = fs.readFileSync(name, {encoding: "utf8"})
 		.trim()
-		.replace(/^[0-7]{7}\s+/gm, "")
-		.split(/\s+/g)
-		.map(n => parseInt(n, 8));
+		.split(/\r?\n|\r|\x85|\u2028|\u2029/)
+		.map(line => "*" !== (line = line.trim())
+			? line.split(/\s+/).map(n => parseInt(n, 8))
+			: null)
+		.map((line, index, array) => {
+			if(line) return line.slice(1);
+			const prev = array[index - 1];
+			const next = array[index + 1];
+			const repeat = prev.slice(1);
+			const stride = repeat.length;
+			const span = [];
+			for(let i = prev[0] + stride; i < next[0]; i += stride)
+				span.push(...repeat);
+			return span;
+		})
+		.flat();
 	fs.writeFileSync(name, Buffer.from(data), {encoding: "binary"});
 }
