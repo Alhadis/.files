@@ -4,7 +4,7 @@ Host *
 Host 10.0.0.*
 	IdentityFile ~/.ssh/local
 
-Host github.com
+Host github.com *.github.com
 	IdentityFile ~/.ssh/github
 	Compression yes
 	KeepAlive yes
