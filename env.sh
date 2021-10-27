@@ -116,6 +116,12 @@ for path in ~/.yarn/ ~/.config/yarn/global/node_modules/.; do
 	[ -d "${path}man" ] && MANPATH="$MANPATH:${path}man"
 done
 
+# JQ: Force readable indentation and configure colour palette
+have jq && {
+	export JQ_COLORS='1;39:0;36:0;36:0;33:0;32:2;37:2;37'
+	alias jq='jq --tab'
+}
+
 # PowerShell: Disable telemetry and suppress copyright banner
 have pwsh && {
 	export POWERSHELL_TELEMETRY_OPTOUT=1
