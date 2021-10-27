@@ -1,0 +1,169 @@
+'\" t
+.\" vim: ts=36
+.TH GM107 4 "13 January 2014" "GPU Database" "NVIDIA GM107"
+.SH NAME
+\fBgm107\fP, \fBnvidia\-gm107\fP \(em NVIDIA GM107 GPU specifications
+.
+.SH INTRO
+.ds Nm GM107
+.ds NV NVIDIA
+.ad l
+.nh
+.
+\*(NV\(cqs \*(Nm GPU uses the Maxwell architecture and is made using a 28\ nm production process at TSMC.
+With a die size of 148\ mm\(S2 and a transistor count of 1,870 million, it is a small chip.
+\*(Nm supports DirectX\ 12 (Feature Level 11_0).
+For GPU compute applications, OpenCL version 3.0 and CUDA 5.0 can be used.
+It features 640 shading units, 40 texture mapping units and 16 ROPs.
+.
+.SH SPECIFICATIONS
+.TS
+lb
+l l .
+Graphics Processor
+_
+GPU Name	GM107
+Architecture	Maxwell
+Foundry	TSMC
+Process Size	28 nm
+Transistors	1,870 million
+Density	12.6M / mm\(S2
+Die Size	148\ mm\(S2
+Released	January 13th, 2014
+Codename	NV117
+
+.T&
+lb
+l l .
+Graphics Features
+_
+DirectX	12 (11_0)
+OpenGL	4.6
+OpenCL	3.0
+Vulkan	1.1
+CUDA	5.0
+Shader Model	5.1
+PureVideo HD	VP6
+VDPAU	Feature Set E
+
+.T&
+lb
+l l .
+Render Config
+_
+Shading Units	640
+TMUs	40
+ROPs	16
+SMM Count	5
+GPCs	1
+L1 Cache	64\ KB per SMM
+L2 Cache	2048\ KB
+Max. TDP	225\ W
+SFUs	160
+.TE
+.
+.SH GRAPHICS CARDS
+Graphics cards using the NVIDIA GM107 GPU:
+.TS
+lb lb lb lb lb lb lb lb lb lb lb lb
+l  l  l  l  l  l  l  l  l  l  l  l .
+Name	Chip	Memory	Shaders	TMUs	ROPs	Base Clock	Boost Clock	Memory Clock
+_
+\*(NV GeForce 845M	N15S-GT1R	2 GB	512	32	16	863 MHz		1001 MHz
+\*(NV GeForce 940M	N16S-GT1-KB-B	2 GB	512	32	16	1020 MHz	1098 MHz	900 MHz
+\*(NV GeForce 940MX	N16S-GT1R	2 GB	512	32	8	795 MHz	861 MHz	1253 MHz
+\*(NV GeForce 945M		2 GB	640	40	16	928 MHz	1020 MHz	900 MHz
+\*(NV GeForce GTX 745 OEM	GM107-220-A2	4 GB	384	24	16	1033 MHz		900 MHz
+\*(NV GeForce GTX 750	GM107-300-A2	1024 MB	512	32	16	1020 MHz	1085 MHz	1253 MHz
+\*(NV GeForce GTX 750 Ti	GM107-400-A2	2 GB	640	40	16	1020 MHz	1085 MHz	1350 MHz
+\*(NV GeForce GTX 850A	N15P-GT-A1	2 GB	640	40	16	902 MHz	936 MHz	900 MHz
+\*(NV GeForce GTX 850M	N15P-GT-A1	2 GB	640	40	16	902 MHz		1001 MHz
+\*(NV GeForce GTX 860M	N15P-GX-A1	4 GB	640	40	16	1020 MHz	1085 MHz	1253 MHz
+\*(NV GeForce GTX 860M OEM	N15P-GX-A1	2 GB	640	40	16	1020 MHz	1085 MHz	1253 MHz
+\*(NV GeForce GTX 950A	N16P-GT	2 GB	640	40	16	993 MHz	1124 MHz	1001 MHz
+\*(NV GeForce GTX 950M	N16P-GT	4 GB	640	40	16	993 MHz	1124 MHz	900 MHz
+\*(NV GeForce GTX 950M Mac Edition	N16P-GT	2 GB	640	40	16	993 MHz	1124 MHz	900 MHz
+\*(NV GeForce GTX 960A	N16P-GX-A1	2 GB	640	40	16	1029 MHz	1085 MHz	1253 MHz
+\*(NV GeForce GTX 960M	N16P-GX-A1	4 GB	640	40	16	1097 MHz	1176 MHz	1253 MHz
+\*(NV GRID M10-8Q	GM107-570-A2	8 GB	640	40	16	1033 MHz	1306 MHz	1300 MHz
+\*(NV GRID M3-3020		4 GB	640	40	16	1033 MHz	1306 MHz	1300 MHz
+\*(NV GRID M40		8 GB	384	32	16	1033 MHz		1300 MHz
+\*(NV NVS 810		2 GB	512	32	16	902 MHz	1033 MHz	900 MHz
+\*(NV Quadro K1200	GM107-860-A2	4 GB	512	32	16	1058 MHz	1124 MHz	1250 MHz
+\*(NV Quadro K2200		4 GB	640	40	16	1046 MHz	1124 MHz	1253 MHz
+\*(NV Quadro K2200M		2 GB	640	40	16	667 MHz		1253 MHz
+\*(NV Quadro K620	GM107-850-A2	2 GB	384	24	16	1058 MHz	1124 MHz	900 MHz
+\*(NV Quadro M1000M	N16P-Q1-A2	2 GB	512	32	16	993 MHz		1253 MHz
+\*(NV Quadro M1200 Mobile		4 GB	640	40	16	991 MHz	1148 MHz	1253 MHz
+\*(NV Quadro M2000M	N16P-Q3-A2	4 GB	640	40	16	1029 MHz	1098 MHz	1253 MHz
+\*(NV Quadro M600M		2 GB	384	16	8	837 MHz	876 MHz	1253 MHz
+\*(NV Quadro M620 Mobile		2 GB	512	32	16	756 MHz	977 MHz	1253 MHz
+\*(NV Tesla M10	GM107-570-A2	8 GB	640	40	16	1033 MHz	1306 MHz	1300 MHz
+.TE
+.
+.SH AUTHORS
+.\" Begin polyfills
+.if !d UR \{ .de UR
+.ds U_ \\$1
+.ev 2
+.di _U
+..
+.de UE
+.br
+.di
+.ev
+.if g .do chop _U
+.ie g .do      _U
+.el           ._U
+\c
+\&\(la\\*(U_\(ra\c
+.rm U_ _U
+.ie g \&\\$*
+.el   \&\\$1 \\$2 \\$3 \\$4 \\$5 \\$6 \\$7 \\$8 \\$9
+.. \}
+.if !d MT \{ .de MT
+.ds M< \\$1
+.ev 2
+.di >M
+..
+.de ME
+.br
+.di
+.ev
+.if g .do chop >M
+.ie g .do      >M
+.el           .>M
+\c
+\&\(la\\*(M<\(ra\c
+.rm M< >M
+.ie g \&\\$*
+.el   \&\\$1 \\$2 \\$3 \\$4 \\$5 \\$6 \\$7 \\$8 \\$9
+.. \}
+.if !d MR \{ .de MR
+.IR \\$1 "(\\$2)\\$3"
+.. \}
+.\" End polyfills
+Specifications and intro text taken from
+.UR \fIhttps://\:www\.techpowerup\.com/\:gpu-specs/\:nvidia-gm107\.g762\fP
+TechPowerUp\(cqs GPU database
+.UE \.
+Copyright \(co\~2004-2021 \%www.techpowerup.com.
+All rights reserved.
+.
+.PP
+Man page adaptation by
+.MT \fIgardnerjohng@gmail\.com\fP
+Alhadis
+.ME
+on October 28th, 2021.
+.
+.SH SEE ALSO
+.MR quadro-k2200 4 ,
+.MR nv 4 ,
+.MR pci 4 ,
+.MR vga 4 .
+.
+.PP
+.UR \fIhttps://\:download\.nvidia\.com/\:XFree86/\:Linux-x86_64/\:470\.82\.00/\:README/\:supportedchips\.html\fP
+Appendix A. Supported \*(NV GPU Products
+.UE

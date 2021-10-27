@@ -1,0 +1,203 @@
+'\" t
+.\" vim: ts=28
+.TH QUADRO-K2200 4 "22 July 2014" "GPU Database" "NVIDIA Quadro K2200"
+.SH NAME
+\fBquadro\-k2200\fP, \fBnvidia\-k2200\fP \(em NVIDIA Quadro K2200 specifications
+.
+.SH SYNOPSIS
+.ds Nm Quadro\ K2200
+.ds NV NVIDIA
+.ad l
+.nh
+.
+\*(NV\~GM107, 1124\~MHz, 640\~cores, 40\~TMUs, 16\~ROPs, 4096\~MB\~GDDR5, 1253\~MHz, 128-bit
+.PP
+.B Recommended gaming resolutions:
+\f1640\(mu480, 1280\(mu720, 1366\(mu768, 1600\(mu900, 1920\(mu1080, 2560\(mu1440, 3840\(mu2160
+.
+.SH INTRO
+The \*(Nm was a professional graphics card by \*(NV, launched on July 22nd, 2014.
+Built on the 28\ nm process, and based on the GM107 graphics processor, the card supports DirectX 12.
+The GM107 graphics processor is an average-sized chip with a die area of 148\ mm\(S2 and 1,870 million transistors.
+It features 640 shading units, 40 texture mapping units, and 16 ROPs.
+\*(NV has paired 4\ GB GDDR5 memory with the \*(Nm, which are connected using a 128-bit memory interface.
+The GPU operates at a frequency of 1046\ MHz, which can be boosted up to 1124\ MHz, memory runs at 1253\ MHz (5\ Gbps effective).
+.PP
+Being a single-slot card, the \*(NV \*(Nm does not require any additional power connector, its power draw is rated at 68\ W maximum.
+Display outputs include: 1\~\(mu\~DVI, 2\~\(mu\~DisplayPort.
+\*(Nm is connected to the rest of the system using a PCI-Express 2.0 x16 interface.
+The card measures 202\ mm in length, 111\ mm in width, and features a single-slot cooling solution.
+.
+.SH SPECIFICATIONS
+.TS
+lb
+l l .
+Graphics Processor
+_
+GPU Name	GM107
+Architecture	Maxwell
+Foundry	TSMC
+Process Size	28\ nm
+Transistors	1,870 million
+Die Size	148\ mm\(S2
+
+.T&
+lb
+l l .
+Memory
+_
+Memory Size	4 GB
+Memory Type	GDDR5
+Memory Bus	128 bit
+Bandwidth	80.19 GB/s
+
+.T&
+lb
+l l .
+Graphics Features
+_
+DirectX	12 (11_0)
+OpenGL	4.6
+OpenCL	3.0
+Vulkan	1.1
+CUDA	5.0
+Shader Model	5.1
+
+.T&
+lb
+l l .
+Graphics Card
+_
+Release Date	July 22nd, 2014
+Generation	Quadro (Kx200)
+Production	End-of-life
+Bus Interface	PCIe 2.0 x16
+
+.T&
+lb
+l l .
+Clock Speeds
+_
+Base Clock	1046\ MHz
+Boost Clock	1124\ MHz
+Memory Clock	1253 MHz, 5 Gbps effective
+
+.T&
+lb
+l l .
+Board Design
+_
+Slot Width	Single-slot
+Length	202\ mm (8 inches)
+Width	111\ mm (4.4 inches)
+TDP	68 W
+Suggested PSU	250 W
+Outputs	1 \(mu DVI, 2 \(mu DisplayPort
+Power Connectors	None
+Board Number	P2010 SKU 500
+
+.T&
+lb
+l l .
+Render Config
+_
+Shading Units	640
+TMUs	40
+ROPs	16
+SMM Count	5
+L1 Cache	64 KB (per SMM)
+L2 Cache	2 MB
+
+.T&
+lb
+l l .
+Theoretical Performance
+_
+Pixel Rate	17.98\ GPixel/s
+Texture Rate	44.96\ GTexel/s
+FP32 (float) performance	1,439 GFLOPS
+FP64 (double) performance	44.96 GFLOPS (1:32)
+
+.T&
+lb
+l l .
+Appendix 1: PCI Info
+_
+PCI Device ID	0x13BA
+VDPAU Feature Set\fI\(dg\fP	E
+.TE
+.
+.PP
+.\" Begin polyfills
+.if !d UR \{ .de UR
+.ds U_ \\$1
+.ev 2
+.di _U
+..
+.de UE
+.br
+.di
+.ev
+.if g .do chop _U
+.ie g .do      _U
+.el           ._U
+\c
+\(la\\*(U_\(ra\c
+.rm U_ _U
+.ie g \&\\$*
+.el   \&\\$1 \\$2 \\$3 \\$4 \\$5 \\$6 \\$7 \\$8 \\$9
+.. \}
+.if !d MT \{ .de MT
+.ds M< \\$1
+.ev 2
+.di >M
+..
+.de ME
+.br
+.di
+.ev
+.if g .do chop >M
+.ie g .do      >M
+.el           .>M
+\c
+\(la\\*(M<\(ra\c
+.rm M< >M
+.ie g \&\\$*
+.el   \&\\$1 \\$2 \\$3 \\$4 \\$5 \\$6 \\$7 \\$8 \\$9
+.. \}
+.if !d MR \{ .de MR
+.IR \\$1 "(\\$2)\\$3"
+.. \}
+.\" End polyfills
+.
+\(dg \(em See \*(NV\(cqs documentation on
+.UR \fIhttps://\:download\.nvidia\.com/\:XFree86/\:Linux-x86_64/\:470\.82\.00/\:README/\:vdpausupport\.html\fP
+VDPAU feature sets
+.UE .
+.
+.
+.SH AUTHORS
+Specifications and intro text taken from
+.UR \fIhttps://\:www\.techpowerup\.com/\:gpu-specs/\:quadro-k2200\.c2601\fP
+TechPowerUp\(cqs GPU database
+.UE .
+Copyright \(co\~2004-2021 www.techpowerup.com.
+All rights reserved.
+.
+.PP
+Man page adaptation by
+.MT \fIgardnerjohng@gmail\.com\fP
+Alhadis
+.ME
+on October 28th, 2021.
+.
+.SH SEE ALSO
+.MR gm107 4 ,
+.MR nv 4 ,
+.MR pci 4 ,
+.MR vga 4 .
+.
+.PP
+.UR \fIhttps://\:download\.nvidia\.com/\:XFree86/\:Linux-x86_64/\:470\.82\.00/\:README/\:supportedchips\.html\fP
+Appendix A. Supported \*(NV GPU Products
+.UE
