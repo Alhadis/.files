@@ -58,7 +58,7 @@ have sudo && ! have doas && alias doas=sudo
 
 # Recursively search for a pattern in current working directory
 alias s=~/.files/bin/rgrep
-(echo . | grep -r . 2>&1)>/dev/null && alias s='grep -irn . -e'
+(cd ~/.files/bin && echo . | grep -r . 2>&1)>/dev/null && alias s='grep -irn . -e'
 
 
 # Enable coloured grep output if supported
