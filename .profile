@@ -46,5 +46,11 @@ fi
 # Ensure ^T is used for sending SIGINFO
 stty status "`printf '\x14'`" 2>/dev/null
 
+# ksh(1) keybindings
+case ${SHELL##*/} in ksh)
+	bind ^K=clear-screen
+	bind ^L=
+;; esac
+
 # Enable this last so it doesn't screw with startup code
 set -o pipefail >/dev/null 2>&1
