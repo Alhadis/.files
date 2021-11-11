@@ -201,6 +201,9 @@ case `uname -s` in
 		# Update installed Homebrew formulae
 		alias bup='brew update && brew upgrade && brew cleanup --prune=0'
 		
+		# Store download URLs in extended file attributes
+		have wget && alias wget='wget --xattr'
+		
 		# Resize Terminal.app to fill the screen
 		alias fit='printf '\''\e[3;0;0t\e[4;0;9999t'\'
 		
