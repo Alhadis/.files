@@ -62,6 +62,12 @@ command -v konsole 2>&1 >/dev/null && [ ! -h .local/share/konsole ] && {
 	ln -sf ~/.files/etc/inkscape/preferences.xml .config/inkscape/
 }
 
+# Link youtube-dl(1) configuration
+command -v youtube-dl 2>&1 >/dev/null && {
+	[ -d .config/youtube-dl ] || mkdir -p .config/youtube-dl
+	ln -sf ~/.files/etc/youtube-dl.conf .config/youtube-dl/config
+}
+
 
 # Disable blinking cursor in Gnome Terminal
 command -v gsettings 2>&1 >/dev/null && [ "$DISPLAY" ] && {
