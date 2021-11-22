@@ -30,6 +30,12 @@ configure:
 	defaults write -g com.apple.springing.enabled -bool true
 	defaults write -g com.apple.springing.delay -float 0
 	defaults write -g com.apple.swipescrolldirection -bool false
+	defaults write -g NSAutomaticCapitalizationEnabled -bool false
+	defaults write -g NSAutomaticDashSubstitutionEnabled -bool false
+	defaults write -g NSAutomaticPeriodSubstitutionEnabled -bool false
+	defaults write -g NSAutomaticQuoteSubstitutionEnabled -bool false
+	defaults write -g NSAutomaticSpellingCorrectionEnabled -bool false
+	defaults write -g NSAutomaticTextCompletionEnabled -bool false
 	defaults write com.apple.Accessibility KeyRepeatDelay -float 0.5
 	defaults write com.apple.Accessibility KeyRepeatEnabled -int 1
 	defaults write com.apple.Accessibility KeyRepeatInterval -float 0.08
@@ -46,12 +52,6 @@ configure:
 	defaults write com.apple.finder FXEnableExtensionChangeWarning -bool false
 	defaults write com.apple.finder NewWindowTarget PfDe
 	defaults write com.apple.finder NewWindowTargetPath "file://$${HOME}/Desktop/"
-	defaults write com.apple.finder NSAutomaticCapitalizationEnabled -bool false
-	defaults write com.apple.finder NSAutomaticDashSubstitutionEnabled -bool false
-	defaults write com.apple.finder NSAutomaticPeriodSubstitutionEnabled -bool false
-	defaults write com.apple.finder NSAutomaticQuoteSubstitutionEnabled -bool false
-	defaults write com.apple.finder NSAutomaticSpellingCorrectionEnabled -bool false
-	defaults write com.apple.finder NSAutomaticTextCompletionEnabled -bool false
 	defaults write com.apple.finder QuitMenuItem -bool true
 	defaults write com.apple.finder ShowExternalHardDrivesOnDesktop -bool true
 	defaults write com.apple.finder ShowHardDrivesOnDesktop -bool true
