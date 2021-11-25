@@ -10,7 +10,7 @@ alias t='run-tests'
 # Git shorthand
 have git && {
 	alias ga='git add --all'
-	alias gb='git branch -av'
+	alias gb='git branch -av --color=always'
 	alias gc='git gc && git prune -v'
 	alias gd='git diff --cached'
 	alias gh='gh-clone'
