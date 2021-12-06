@@ -107,8 +107,14 @@ have nodebrew && [ -x ~/.nodebrew/current/bin/node ] && {
 	MANPATH=~/.nodebrew/current/share/man:"$MANPATH"
 }
 
-# Stop brew(1) from auto-updating when installing stuff
-have brew && export HOMEBREW_NO_AUTO_UPDATE=1
+# Homebrew: Configure brew(1) for both macOS and Linux
+have brew && {
+	export HOMEBREW_DEVELOPER=1           # Offer feedback more useful to a tap maintainer
+	export HOMEBREW_NO_AUTO_UPDATE=1      # Don't auto-update when installing stuff
+	export HOMEBREW_NO_INSTALL_CLEANUP=1  # Don't bother cleaning up downloaded files
+	export HOMEBREW_FAIL_LOG_LINES=30     # Double the number of lines shown from error-logs
+	have bat && export HOMEBREW_BAT=1     # Highlight formulae source using bat(1)
+}
 
 # Yarn: Paths added to .bashrc upon installation
 for path in ~/.yarn/ ~/.config/yarn/global/node_modules/.; do
