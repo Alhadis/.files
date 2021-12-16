@@ -5,7 +5,6 @@ share/dict/en_*   linguist-vendored
 share/man/**      linguist-documentation
 
 # Unrecognised filetypes
-.shellcheckrc     linguist-language=INI
 *.colorscheme     linguist-language=INI
 Shell.profile     linguist-language=INI
 sessionui.rc      linguist-language=XML
