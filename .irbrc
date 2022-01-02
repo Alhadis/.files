@@ -1,4 +1,6 @@
 require "irb/completion"
+require "fileutils"
+require "pathname"
 require "pp"
 require "uri"
 
