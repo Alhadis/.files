@@ -1,5 +1,6 @@
 require "irb/completion"
 require "pp"
+require "uri"
 
 # Prompt string decoration
 RED = ENV["DISPLAY"] ? "\e[38;5;124m" : "\e[31m"
