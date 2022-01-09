@@ -22,4 +22,5 @@ IRB.conf[:INSPECT_MODE]       = true
 IRB.conf[:SAVE_HISTORY]       = false
 IRB.conf[:IGNORE_SIGINT]      = false
 IRB.conf[:USE_COLORIZE]       = true
+IRB.conf[:USE_AUTOCOMPLETE]   = false
 IRB.conf[:ECHO_ON_ASSIGNMENT] = true
