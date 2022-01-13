@@ -1,8 +1,11 @@
 require "irb/completion"
+require "date"
 require "fileutils"
+require "json"
 require "pathname"
 require "pp"
 require "uri"
+require "yaml"
 
 # Prompt string decoration
 RED = ENV["DISPLAY"] ? "\e[38;5;124m" : "\e[31m"
