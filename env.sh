@@ -191,6 +191,12 @@ case `uname` in [Dd]arwin)
 	
 	# macOS's man(1) gets confused if $MANPATH starts with a colon
 	MANPATH=${MANPATH#:}
+	
+	# Identify terminal emulators that don't define $TERM_PROGRAM
+	[ "$TERM_PROGRAM" ] || case $__CFBundleIdentifier in
+		*cool-retro-term) export TERM_PROGRAM='cool-retro-term' ;;
+		io.alacritty)     export TERM_PROGRAM='Alacritty' ;;
+	esac
 ;; esac 
 
 export PATH MANPATH
