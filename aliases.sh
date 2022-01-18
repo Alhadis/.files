@@ -199,7 +199,7 @@ case `uname -s` in
 
 	Darwin)
 		# Update installed Homebrew formulae
-		alias bup='brew update && brew upgrade && brew cleanup --prune=0'
+		alias bup='brew update && brew upgrade && brew cleanup --prune=all -s'
 		
 		# Store download URLs in extended file attributes
 		have wget && alias wget='wget --xattr'
