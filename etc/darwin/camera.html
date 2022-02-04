@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en-AU">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="initial-scale=1"/>
+<title>Camera</title>
+<style>
+*{
+	border: 0;
+	padding: 0;
+	margin: 0;
+	box-sizing: border-box;
+}
+video{
+	vertical-align: top;
+}
+</style></head><body><video></video><script type="module">
+	const stream = await navigator.mediaDevices.getUserMedia({video: true});
+	const video = document.body.firstChild;
+	video.srcObject = stream;
+	video.onloadedmetadata = () => video.play();
+	console.log(stream);
+</script></body></html>
