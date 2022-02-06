@@ -48,7 +48,7 @@ done
 have()(for i in "$@"; do command -v "$i" >/dev/null 2>&1 || return 1; done)
 
 # Command for replicating coloured git-diff(1) output
-cmd="sed '"'
+cmd="LANG=C sed '"'
 	/^commit /, /^diff / { /^diff /! s/^/[0m/; }
 	s/^[a-z][a-z]* ..*/[1m&[0m/
 	s/^--- .*/--- expected/
@@ -96,7 +96,7 @@ elif have git; then
 fi
 
 # Reveal backspace and escape characters in diff output
-cmd="sed 's//&[2mESC&[22m/g; s//[2mBS[22m/g' | $cmd"
+cmd="LANG=C sed 's//&[2mESC&[22m/g; s//[2mBS[22m/g' | $cmd"
 
 # 1 argument: Assume it's a file containing a unified diff
 if [ $# -eq 1 ]; then
