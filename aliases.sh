@@ -22,6 +22,7 @@ have git && {
 	alias PS='git commit --amend'
 	alias yeah='git reset HEAD .;'
 	alias nah='git checkout -- . && git clean -fd'
+	alias G='g --ignored'
 }
 
 
