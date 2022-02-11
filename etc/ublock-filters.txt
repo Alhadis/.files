@@ -5,6 +5,8 @@
 ! Politics/real-world bullcrap unrelated to code
 ##^script:has-text(/#?\bBlack\s*Lives\s*Matter\b/i)
 ##[class*="blacklivesmatter" i]
+##[href*="blacklivesmatter.org" i]
+11ty.dev##header .announcement
 electronjs.org##[class|="announcement-banner"]
 ||imgs.xkcd.com/news/blm.png$image
 
