@@ -1,8 +1,9 @@
-# Alacritty: https://github.com/jwilm/alacritty
+# Alacritty: https://github.com/alacritty/alacritty
 
 window:
     startup_mode: Maximized
     padding: { x: 5, y: 2 }
+    opacity: 0.85
 
 font:
     size:    14
@@ -10,7 +11,8 @@ font:
     normal:  { family: Menlig, style: Regular }
     bold:    { family: Menlig, style: Bold    }
     italic:  { family: Menlig, style: Italic  }
-    use_thin_strokes: false
+    builtin_box_drawing: false
+    use_thin_strokes:    false
 
 colors:
     primary:
@@ -44,7 +46,6 @@ colors:
         cyan:    '0x00E5E5'
         white:   '0xE5E5E5'
 
-background_opacity: 0.85
 dynamic_title:      true
 dynamic_padding:    false
 
