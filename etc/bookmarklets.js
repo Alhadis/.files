@@ -15,3 +15,6 @@ javascript:Function.prototype.call=undefined;
 
 // Search IMDb
 javascript:void(x=>x && (window.location = `https://${screen.width <= 900 ? "m." : ""}imdb.com/find?q=${encodeURIComponent(x)}`))(window.prompt("Search for a movie on IMDb:"));
+
+// SVG/PNG comparison mode
+javascript:void(l=>{const{documentElement:e,body:t}=l,n=t.firstElementChild;e.style.all=t.style.all=n.style.all="unset",window.onbeforeunload=()=>"Nah"})(document);
