@@ -165,7 +165,7 @@ done
 # macOS-specific
 case `uname` in [Dd]arwin)
 	# Include “keg-only” Homebrew formulae in search paths
-	for path in curl libarchive icu4c ruby sqlite tcl-tk texinfo; do
+	for path in curl file libarchive icu4c ruby sqlite tcl-tk texinfo; do
 		path="/usr/local/opt/$path"
 		test -d $path/bin       && PATH="$path/bin:$PATH"
 		test -d $path/sbin      && PATH="$path/sbin:$PATH"
