@@ -1,0 +1,152 @@
+# Contour: https://github.com/contour-terminal/contour
+
+default_profile: main
+platform_plugin: auto
+
+# Display
+reflow_on_resize: true
+renderer:
+    backend: default
+    tile_hashtable_slots: 4096
+    tile_cache_count: 4000
+    tile_direct_mapping: true
+
+# Inline images
+images:
+    sixel_scrolling: true
+    sixel_register_count: 4096
+    sixel_cursor_conformance: true
+    max_width:  0
+    max_height: 0
+
+# Memory
+pty_buffer_size:   1048576
+read_buffer_size:  16384
+spawn_new_process: false
+
+# Mouse/trackpad behaviour
+bypass_mouse_protocol_modifier: Shift
+mouse_block_selection_modifier: Control
+on_mouse_select: None
+word_delimiters: " /\\()\"'-.,:;<>~!@#$%^&*+=[]{}~?|│“”‘’«»⟨⟩"
+
+# User profile(s)
+profiles:
+    main:
+        initial_working_directory: "~"
+        show_title_bar:            true
+        fullscreen:                false
+        maximized:                 true
+        wm_class:                  contour
+        terminal_id:               VT525
+        terminal_size:             {columns: 80, lines: 25}
+        scrollbar:                 {position: right}
+
+        background:
+            opacity: 0.85
+            blur: true
+
+        cursor:               {shape: bar, blinking: false}
+        normal_mode: {cursor: {shape: bar, blinking: false}}
+        visual_mode: {cursor: {shape: bar, blinking: false}}
+
+        font:
+            size:                14
+            dpi_scale:           2.0
+            locator:             native
+            text_shaping:        {engine: native}
+            builtin_box_drawing: true
+            render_mode:         lcd
+            strict_spacing:      false
+            regular:             {family: Menlig, weight: regular, slant: normal, features: [liga, calt]}
+            italic:              {family: Menlig, weight: regular, slant: italic, features: [liga, calt]}
+            bold:                {family: Menlig, weight: bold,    slant: normal, features: [liga, calt]}
+            bold_italic:         {family: Menlig, weight: bold,    slant: italic, features: [liga, calt]}
+            emoji:               emoji
+
+        colors: default
+        bold_is_bright: false
+        draw_bold_text_with_bright_colors: false
+        hyperlink_decoration:
+            normal: dotted
+            hover: underline
+
+        history:
+            limit: 50000
+            auto_scroll_on_update: true
+            scroll_multiplier: 3
+
+        permissions:
+            change_font:    allow
+            capture_buffer: ask
+
+# Colour palette
+color_schemes:
+    default:
+        default:
+            background: 0x000000
+            foreground: 0xF2F2F2
+
+        cursor:
+            default: 0x606060
+            text:    CellBackground
+
+        hyperlink_decoration:
+            normal: 0xF0F000
+            hover:  0xFF0000
+
+        selection:
+            foreground: 0xF2F2F2
+            background: 0x414141
+
+        normal:
+            black:   0x000000
+            red:     0x990000
+            green:   0x00A600
+            yellow:  0x999900
+            blue:    0x0000B2
+            magenta: 0xB200B2
+            cyan:    0x00A6B2
+            white:   0xBFBFBF
+
+        bright:
+            black:   0x666666
+            red:     0xE50000
+            green:   0x00D900
+            yellow:  0xE5E500
+            blue:    0x0000FF
+            magenta: 0xE500E5
+            cyan:    0x00E5E5
+            white:   0xE5E5E5
+
+input_mapping:
+    # Keyboard
+    - {action: CancelSelection,        key: Escape,      mods: [],            mode: Select}
+    - {action: CopySelection,          key: C,           mods: [Meta],        mode: Select|Insert}
+    - {action: PasteClipboard,         key: V,           mods: [Meta],        mode: Select|Insert}
+    - {action: ClearHistoryAndReset,   key: K,           mods: [Meta],        }
+    - {action: DecreaseFontSize,       key: Minus,       mods: [Meta],        }
+    - {action: IncreaseFontSize,       key: Plus,        mods: [Meta],        }
+    - {action: NewTerminal,            key: N,           mods: [Meta],        }
+    - {action: Quit,                   key: Q,           mods: [Meta],        }
+    - {action: OpenConfiguration,      key: Comma,       mods: [Meta],        }
+    - {action: OpenFileManager,        key: O,           mods: [Meta],        }
+    - {action: ResetFontSize,          key: "0",         mods: [Meta],        }
+    - {action: ScreenshotVT,           key: S,           mods: [Meta],        }
+    - {action: ScrollMarkDown,         key: DownArrow,   mods: [Meta],        }
+    - {action: ScrollMarkUp,           key: UpArrow,     mods: [Meta],        }
+    - {action: ScrollPageDown,         key: PageDown,    mods: [],            }
+    - {action: ScrollPageUp,           key: PageUp,      mods: [],            }
+    - {action: ScrollToBottom,         key: DownArrow,   mods: [Meta, Alt],   }
+    - {action: ScrollToTop,            key: UpArrow,     mods: [Meta, Alt],   }
+    - {action: ToggleFullScreen,       key: F,           mods: [Meta],        }
+    - {action: ToggleTitleBar,         key: T,           mods: [Meta, Shift], }
+
+    # Mouse/touchpad
+    - {action: FollowHyperlink,        mouse: Left,      mods: [],            }
+    - {action: IncreaseFontSize,       mouse: WheelUp,   mods: [Control],     }
+    - {action: DecreaseFontSize,       mouse: WheelDown, mods: [Control],     }
+    - {action: ScrollDown,             mouse: WheelDown, mods: [],            }
+    - {action: ScrollUp,               mouse: WheelUp,   mods: [],            }
+    - {action: IncreaseOpacity,        mouse: WheelUp,   mods: [Alt],         }
+    - {action: DecreaseOpacity,        mouse: WheelDown, mods: [Alt],         }

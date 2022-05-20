@@ -194,6 +194,10 @@ case `uname` in [Dd]arwin)
 	
 	# Identify terminal emulators that don't define $TERM_PROGRAM
 	[ "$TERM_PROGRAM" ] || case $__CFBundleIdentifier in
+		*.contour-terminal.*|*.contour)
+			export TERM_PROGRAM=${TERMINAL_NAME_:-${TERM:-contour}}
+			export TERM_PROGRAM_VERSION=$TERMINAL_VERSION_STRING
+		;;
 		*cool-retro-term) export TERM_PROGRAM='cool-retro-term' ;;
 		io.alacritty)     export TERM_PROGRAM='Alacritty' ;;
 	esac

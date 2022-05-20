@@ -69,6 +69,12 @@ command -v youtube-dl 2>&1 >/dev/null && {
 }
 
 
+# Link Contour configuration
+command -v contour 2>&1 >/dev/null && {
+	[ -d .config/contour ] || mkdir -p .config/contour
+	ln -sf ~/.files/etc/contour.yml .config/contour/
+}
+
 # Disable blinking cursor in Gnome Terminal
 command -v gsettings 2>&1 >/dev/null && [ "$DISPLAY" ] && {
 	gsettings set org.gnome.desktop.interface cursor-blink false
