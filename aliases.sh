@@ -202,6 +202,10 @@ case `uname -s` in
 		# Update installed Homebrew formulae
 		alias bup='brew update && brew upgrade && brew cleanup --prune=all -s'
 		
+		# Display information about Homebrew formulae
+		alias bi='brew info'
+		alias bd='brew desc'
+		
 		# Store download URLs in extended file attributes
 		have wget && alias wget='wget --xattr'
 		
