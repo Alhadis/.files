@@ -19,6 +19,7 @@ $(brew-deps):
 
 # Make Apple bloatware more tolerable
 configure:
+	sudo chpass -s /bin/sh Alhadis
 	sudo pmset -a lidwake 1
 	sudo pmset -a lessbright 0
 	sudo pmset -a proximitywake 0
