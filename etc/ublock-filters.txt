@@ -28,3 +28,4 @@ superuser.*###sidebar > *:not(.sidebar-related), #left-sidebar
 ! Anything else which happens to shit me
 fontawesome.com###banner[class*=" fa"]
 github.com##.js-notification-top-shelf
+youtube.com##.ytp-next-button
