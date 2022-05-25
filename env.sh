@@ -109,6 +109,9 @@ have nodebrew && [ -x ~/.nodebrew/current/bin/node ] && {
 
 # Homebrew: Configure brew(1) for both macOS and Linux
 have brew && {
+	# Ensure all recently-updated formulae are reported by `brew update`
+	export HOMEBREW_UPDATE_REPORT_ALL_FORMULAE=1
+	
 	export HOMEBREW_DEVELOPER=1           # Offer feedback more useful to a tap maintainer
 	export HOMEBREW_NO_AUTO_UPDATE=1      # Don't auto-update when installing stuff
 	export HOMEBREW_NO_INSTALL_CLEANUP=1  # Don't bother cleaning up downloaded files
