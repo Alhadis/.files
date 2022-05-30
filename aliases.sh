@@ -202,6 +202,9 @@ case `uname -s` in
 		# Update installed Homebrew formulae
 		alias bup='brew update && brew upgrade && brew cleanup --prune=all -s'
 		
+		# Run livecheck for `alhadis/troff` tap
+		alias blc='brew livecheck -q --newer-only --tap alhadis/troff'
+		
 		# Display information about Homebrew formulae
 		alias bi='brew info'
 		alias bd='brew desc'
