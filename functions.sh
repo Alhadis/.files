@@ -212,6 +212,35 @@ crush(){
 }
 
 
+# Render a GitHub-flavoured markdown document
+gfm(){
+	if [ $# -eq 0 ]; then set -- "" "`cat`"
+	else case $1 in
+		--context|-c) set -- "$2" "$3" ;;
+		--context=*)  set -- "${1#*=}" "`shift && printf %s "$@"`" ;;
+		-c?*)         set -- "${1#-c}" "`shift && printf %s "$@"`" ;;
+		-)            set -- "" "`cat`" ;;
+		[!-]*)        set -- "" "$1" ;;
+		-*)
+			echo >&2 'Usage: gfm [-c|--context user/repo] /path/to/input.md'
+			case $1 in --help|--usage|-[h?]) return;; *) return 1;; esac
+		;;
+	esac; fi
+	[ ! "$1" ] || {
+		set -- "`printf %s "$1" | json-string`"  "$2"
+		set -- "`printf '"context": %s, ' "$1"`" "$2"
+	}
+	set -- "$1" "`printf '%s\n' "$2" | json-string`"
+	printf '{%s"text": %s, "mode": "gfm"}' "$1" "$2" | curl -qLfSs \
+		--data @- \
+		-X POST \
+		-H Accept:\ application/vnd.github.v3+json \
+		-H Content-Type:\ application/json \
+		https://api.github.com/markdown
+	[ -t 1 ] && echo || :
+}
+
+
 # Pretty-print a variable containing a colon-delimited path-list
 ppls(){
 	case $# in

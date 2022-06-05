@@ -1,0 +1,53 @@
+#!/usr/bin/sed -f
+# Convert input to a JSON-encoded string
+
+# Collect lines
+:a
+$! {
+	N
+	ba
+}
+
+# Escape quotes and backslashes
+s/["\\]/\\&/g
+
+# Escape control characters
+s/\x01/\\u0001/g
+s/\x02/\\u0002/g
+s/\x03/\\u0003/g
+s/\x04/\\u0004/g
+s/\x05/\\u0005/g
+s/\x06/\\u0006/g
+s/\x07/\\u0007/g
+s/\x0E/\\u000E/g
+s/\x0F/\\u000F/g
+s/\x10/\\u0010/g
+s/\x10/\\u0010/g
+s/\x11/\\u0011/g
+s/\x12/\\u0012/g
+s/\x13/\\u0013/g
+s/\x14/\\u0014/g
+s/\x15/\\u0015/g
+s/\x16/\\u0016/g
+s/\x17/\\u0017/g
+s/\x18/\\u0018/g
+s/\x19/\\u0019/g
+s/\x1A/\\u001A/g
+s/\x1B/\\u001B/g
+s/\x1C/\\u001C/g
+s/\x1D/\\u001D/g
+s/\x1E/\\u001E/g
+s/\x1F/\\u001F/g
+s/\x7F/\\u007F/g
+s/ /\\u2028/g
+s/ /\\u2029/g
+s/\x08/\\b/g
+s/\x0B/\\v/g
+s/\x0C/\\f/g
+s/\t/\\t/g
+s/\r/\\r/g
+s/\n/\\n/g
+
+# Lastly, enclose in quotes
+s/^/"/
+s/$/"/
