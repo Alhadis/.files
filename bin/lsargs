@@ -1,0 +1,20 @@
+#!/bin/sh
+
+#
+# lsargs: Print command-line arguments unambiguously.
+# shellcheck disable=SC2059
+#
+set -e
+
+format='\t$%s = \e[7m%s\e[27m\n'
+count=0
+
+printf '%s argument(s):\n' "$#"
+if [ "${0##*/}" != lsargs ]; then
+	printf "$format" 0 "$0"
+fi
+while [ $# -gt 0 ]; do
+	count=$((count + 1))
+	printf "$format" "$count" "$1"
+	shift
+done
