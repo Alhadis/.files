@@ -1,0 +1,23 @@
+#!/bin/sh
+set -e
+
+#
+# Download an OpenBSD release from local mirror.
+# Rendered (mostly) obsolete by sysupgrade(8).
+#
+
+if ! printf '%s' "$1" | grep -Eq '^[0-9]\.[0-9]$'; then
+	printf >&2 'Usage: %s [version-number]\n' "${0##*/}"
+	exit 2
+fi
+	
+set -- "$1" "`machine`"
+
+# Download firmware blobs
+wget -erobots=off -rl1 -nH -np -nv --no-config \
+	"http://firmware.openbsd.org/firmware/$1/"
+
+# Mirror the chosen release
+rsync -avzH --inplace --delete \
+	"rsync://mirror.internode.on.net/openbsd/$1/$2" "$1"
+cd "./$1/$2" && sha256 -c SHA256
