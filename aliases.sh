@@ -215,6 +215,9 @@ case `uname -s` in
 		# Resize Terminal.app to fill the screen
 		alias fit='printf '\''\e[3;0;0t\e[4;0;9999t'\'
 		
+		# Preview a file using Quick Look
+		alias peek='qlmanage -p >/dev/null 2>&1'
+		
 		# Print temperature diagnostics
 		alias temp='sudo powermetrics --samplers smc -i1 -n1 | grep --colour=none "^Fan\|temp"'
 		
