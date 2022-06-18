@@ -47,7 +47,9 @@ configure:
 	defaults write com.apple.Terminal 'Startup Window Settings' Pro
 	defaults write com.apple.dock autohide -bool false
 	defaults write com.apple.dock launchanim -bool false
+	defaults write com.apple.dock mineffect scale
 	defaults write com.apple.dock show-recents -bool false
+	defaults write com.apple.dock tilesize -float 82
 	defaults write com.apple.finder DisableAllAnimations -bool true
 	defaults write com.apple.finder FavoriteTagNames -array
 	defaults write com.apple.finder FXEnableExtensionChangeWarning -bool false
