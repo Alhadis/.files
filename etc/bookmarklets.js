@@ -17,4 +17,4 @@ javascript:Function.prototype.call=undefined;
 javascript:void(x=>x && (window.location = `https://${screen.width <= 900 ? "m." : ""}imdb.com/find?q=${encodeURIComponent(x)}`))(window.prompt("Search for a movie on IMDb:"));
 
 // SVG/PNG comparison mode
-javascript:void(l=>{const{documentElement:e,body:t}=l,n=t.firstElementChild;e.style.all=t.style.all=n.style.all="unset",window.onbeforeunload=()=>"Nah"})(document);
+javascript:void(l=>{if("file:"!==l.location.protocol||"image/"!==l.contentType.slice(0,6))return;const{documentElement:e,body:t}=l,n=t.firstElementChild;e.style.all=t.style.all=n.style.all="unset",window.onbeforeunload=()=>"Nah"})(document);
