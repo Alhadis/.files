@@ -214,6 +214,9 @@ case `uname` in [Dd]arwin)
 	esac
 ;; esac 
 
+# Search for manual pages in nearby directories
+MANPATH="$MANPATH:./man:./node_modules/.man"
+
 # Append info(1)'s default search-paths to $INFOPATH
 INFOPATH="${INFOPATH%:}:"
 
