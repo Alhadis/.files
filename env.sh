@@ -29,26 +29,27 @@ paths='
 done
 
 # Define manual search paths
-unset MANPATH
+unset MANPATH INFOPATH
 paths='
-	~/.files/var/man
-	~/.files/share/man
-	~/.cargo/share/man
-	/usr/local/share/man
-	/usr/local/man
-	/usr/share/man
-	/usr/X11R6/man
-	/usr/X11/man
-	/opt/X11/share/man
-	/opt/local/man
-	/opt/local/share/man
-	/usr/local/lib/node_modules/npm/man
-	/opt/tools/man
-	~/perl5/man
-	~/Forks/depot_tools/man
+	~/.files/var
+	~/.files/share
+	~/.cargo/share
+	/usr/local/share
+	/usr/local
+	/usr/share
+	/usr/X11R6
+	/usr/X11
+	/opt/X11/share
+	/opt/local
+	/opt/local/share
+	/usr/local/lib/node_modules/npm
+	/opt/tools
+	~/perl5
+	~/Forks/depot_tools
 '; for path in $paths; do
 	case $path in \~/*) path=~/${path#\~/};; esac
-	[ -d "$path" ] && MANPATH="${MANPATH#:}:$path"
+	[ -d "$path/man"  ] && MANPATH="${MANPATH#:}:$path/man"
+	[ -d "$path/info" ] && INFOPATH="${INFOPATH#:}:$path/info"
 done
 
 export DICPATH=~/.files/share/dict
@@ -105,6 +106,7 @@ have npm && {
 have nodebrew && [ -x ~/.nodebrew/current/bin/node ] && {
 	PATH=~/.nodebrew/current/bin:"$PATH"
 	MANPATH=~/.nodebrew/current/share/man:"$MANPATH"
+	INFOPATH=~/.nodebrew/current/share/info:"$INFOPATH"
 }
 
 # Homebrew: Configure brew(1) for both macOS and Linux
@@ -141,27 +143,31 @@ have pwsh && {
 [ -d /usr/local/lib/ruby/gems ] && {
 	path=`echo /usr/local/lib/ruby/gems/* | sort --version-sort | tail -n1`
 	[ -d "$path/bin" ] && PATH="$path/bin:$PATH"
-	for path in "$path/man" "$path/doc/man" "$path"/gems/*/man; do
-		[ -d "$path" ] && MANPATH="$MANPATH:$path"
+	for path in "$path" "$path/doc" "$path"/gems/*; do
+		[ -d "$path/man"  ] && MANPATH="$MANPATH:$path/man"
+		[ -d "$path/info" ] && INFOPATH="$INFOPATH:$path/info"
 	done
 }
 
 # Include other Troff implementations in search paths
 for path in "/usr/local/heirloom-doctools" "$DWBHOME"; do 
-	[ -d "$path/bin" ] && PATH="$path/bin:$PATH"
-	[ -d "$path/man" ] && MANPATH="$MANPATH:$path/man"
+	[ -d "$path/bin"  ] && PATH="$path/bin:$PATH"
+	[ -d "$path/man"  ] && MANPATH="$MANPATH:$path/man"
+	[ -d "$path/info" ] && INFOPATH="$INFOPATH:$path/info"
 done
 
 # SmartOS: Include `/smartdc/*' directories in search paths
 [ -d /smartdc ] && {
 	PATH="$PATH:/smartdc/bin:/opt/smartdc/bin:/opt/smartdc/agents/bin"
 	MANPATH="$MANPATH:/smartdc/man:/opt/smartdc/man"
+	INFOPATH="$INFOPATH:/smartdc/info:/opt/smartdc/info"
 }
 
 # Tcl/Tk: Add versioned installation paths to $MANPATH
 [ -d /usr/local/lib/tcl ] && {
-	for path in /usr/local/lib/tcl/*/man; do
-		[ -d "$path" ] && MANPATH="$MANPATH:$path"
+	for path in /usr/local/lib/tcl/*; do
+		[ -d "$path/man"  ] && MANPATH="$MANPATH:$path/man"
+		[ -d "$path/info" ] && INFOPATH="$INFOPATH:$path/info"
 	done
 }
 
@@ -170,26 +176,28 @@ case `uname` in [Dd]arwin)
 	# Include “keg-only” Homebrew formulae in search paths
 	for path in curl file libarchive icu4c ruby sphinx-doc sqlite tcl-tk texinfo; do
 		path="/usr/local/opt/$path"
-		test -d $path/bin       && PATH="$path/bin:$PATH"
-		test -d $path/sbin      && PATH="$path/sbin:$PATH"
-		test -d $path/share/man && MANPATH="$path/share/man:$MANPATH"
+		[ -d "$path/bin"        ] && PATH="$path/bin:$PATH"
+		[ -d "$path/sbin"       ] && PATH="$path/sbin:$PATH"
+		[ -d "$path/share/man"  ] && MANPATH="$path/share/man:$MANPATH"
+		[ -d "$path/share/info" ] && INFOPATH="$path/share/info:$INFOPATH"
 	done
 	
 	# Scan Apple's Developer/SDK directories for manual-pages
 	paths='
-		/Applications/*/share/man
-		/Applications/*/Contents/Resources/man
-		/Developer/usr/share/man
-		/Developer/usr/*/share/man
-		/Developer/usr/X11/share/man
-		/Library/Developer/CommandLineTools/usr/share/man
-		/Library/Developer/CommandLineTools/SDKs/*/usr/share/man
-		/System/Library/Filesystems/*/Contents/man
-		/Developer/Platforms/*/Developer/usr/share/man
-		/Developer/Platforms/*/Developer/usr/*/share/man
-		/Developer/Platforms/*/Developer/SDKs/*/usr/share/man
+		/Applications/*/share
+		/Applications/*/Contents/Resources
+		/Developer/usr/share
+		/Developer/usr/*/share
+		/Developer/usr/X11/share
+		/Library/Developer/CommandLineTools/usr/share
+		/Library/Developer/CommandLineTools/SDKs/*/usr/share
+		/System/Library/Filesystems/*/Contents
+		/Developer/Platforms/*/Developer/usr/share
+		/Developer/Platforms/*/Developer/usr/*/share
+		/Developer/Platforms/*/Developer/SDKs/*/usr/share
 	'; for path in $paths; do
-		[ -d "$path" ] && MANPATH="$MANPATH:$path"
+		[ -d "$path/man"  ] && MANPATH="$MANPATH:$path/man"
+		[ -d "$path/info" ] && INFOPATH="$INFOPATH:$path/info"
 	done
 	
 	# macOS's man(1) gets confused if $MANPATH starts with a colon
@@ -206,5 +214,8 @@ case `uname` in [Dd]arwin)
 	esac
 ;; esac 
 
-export PATH MANPATH
+# Append info(1)'s default search-paths to $INFOPATH
+INFOPATH="${INFOPATH%:}:"
+
+export PATH MANPATH INFOPATH
 unset path paths
