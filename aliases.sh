@@ -215,6 +215,7 @@ case `uname -s` in
 		
 		# Resize Terminal.app to fill the screen
 		alias fit='printf '\''\e[3;0;0t\e[4;0;9999t'\'
+		alias FIT='for i in /dev/ttys???; do fit > "$i"; done'
 		
 		# Preview a file using Quick Look
 		alias peek='qlmanage -p >/dev/null 2>&1'
