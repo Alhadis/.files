@@ -44,6 +44,9 @@
 	clean = git-lfs clean -- %f
 	smudge = git-lfs smudge -- %f
 	required = true
+[stash]
+	showIncludeUntracked = true
+	showPatch = true
 [help]
 	autocorrect = never
 [github]
