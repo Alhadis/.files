@@ -141,7 +141,7 @@ have pwsh && {
 
 # RubyGems: Include latest version's executables in search path
 [ -d /usr/local/lib/ruby/gems ] && {
-	path=`echo /usr/local/lib/ruby/gems/* | sort --version-sort | tail -n1`
+	path=`printf '%s\n' /usr/local/lib/ruby/gems/* | sort --version-sort | tail -n1`
 	[ -d "$path/bin" ] && PATH="$path/bin:$PATH"
 	for path in "$path" "$path/doc" "$path"/gems/*; do
 		[ -d "$path/man"  ] && MANPATH="$MANPATH:$path/man"
