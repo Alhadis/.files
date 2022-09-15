@@ -259,6 +259,17 @@ ppls(){
 }
 
 
+# Alphabetise a list of SHA-256 checksums
+sortsha(){
+	for i in "$@"; do
+		[ -s "$i" ] || continue
+		sorted=`sort -sk2 "$i" | grep .`
+		printf '%s\n' "$sorted" > "$i"
+	done
+	unset sorted
+}
+
+
 # Print names of files containing binary (non-textual) data
 listbinary(){
 	for i in "$@"; do
