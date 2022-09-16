@@ -1,3 +1,5 @@
+[uBlock Origin 1.41.6]
+
 ! Cookie messages
 ##web-snackbar-container
 ###js-cookie
@@ -29,4 +31,3 @@ superuser.*###sidebar > *:not(.sidebar-related), #left-sidebar
 fontawesome.com###banner[class*=" fa"]
 github.com##.js-notification-top-shelf
 youtube.com##.ytp-next-button
-wikipedia.org###centralNotice.cn-wle_2022_au
