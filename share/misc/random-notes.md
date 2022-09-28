@@ -201,3 +201,10 @@ Bit manipulation
 	int |=   1 << 𝑁        Set
 	int &= ~(1 << 𝑁)       Unset
 	int ^=   1 << 𝑁        Toggle
+
+
+
+List everything captured by Archive.org
+---------------------------------------
+
+	https://web.archive.org/web/*/http://site.domain/*
