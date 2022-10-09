@@ -5,6 +5,9 @@
 #
 cd "$HOME"
 
+# Assume that systems without doas(1) have sudo(1) installed by default
+command -v doas 2>&1 >/dev/null || doas()(sudo "$@")
+
 # Silence is golden
 [ -e .hushlogin ] || touch .hushlogin
 
@@ -48,13 +51,18 @@ command -v konsole 2>&1 >/dev/null && [ ! -h .local/share/konsole ] && {
 	[ -d .local/share ] || mkdir -p .local/share
 	rm -rf .local/share/konsole
 	ln -sf ~/.files/etc/konsole .local/share/konsole
-	
-	# Install Menlig font
+}
+
+# Install editor font
+if [ "`uname -s`" = Darwin ]; then
+	mkdir -p ~/Library/Fonts
+	ln .files/share/desktop/Menlig.otf ~/Library/Fonts
+else
 	fonts=/usr/local/share/fonts
 	[ -d "$fonts" ] && [ ! -e "$fonts/Menlig.otf" ] &&
-		cp .files/share/desktop/Menlig.otf "$fonts/Menlig.otf"
+		doas cp .files/share/desktop/Menlig.otf "$fonts/Menlig.otf"
 	unset fonts
-}
+fi
 
 
 # Link Inkscape preferences
