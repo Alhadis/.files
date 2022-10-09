@@ -62,7 +62,16 @@ cmd="LANG=C sed '"'
 # Use less(1) for displaying output that won't fit terminal window
 if [ -t 1 ]; then
 	cmd="$cmd | less -R"
-	[ "$SSH_CONNECTION" ] || cmd="${cmd}F"
+
+	# Return to command-line if content isn't long enough to warrant paging
+	[ "$SSH_CONNECTION" ] || {
+		cmd="${cmd}F"
+		
+		# HACK: Older Less versions (<= 530) discard input on TTYs with alternate screens
+		#       There's no easy way to test this, so pass `--no-init` to versions we know
+		#       are lagging behind. Source: https://unix.stackexchange.com/a/107355
+		case `uname -s`:`which less` in OpenBSD:/usr/bin/less) cmd="${cmd}X";; esac
+	}
 fi
 
 # If `diff-highlight` exists in our $PATH, assume it does what we expect
