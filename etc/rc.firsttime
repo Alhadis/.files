@@ -1,0 +1,169 @@
+#!/bin/sh
+set -e
+
+#
+# rc.firsttime(8) -- Finish setting up a new workstation.
+#
+# Intended to automate most of the tasks described by afterboot(8),
+# reproducing in as much detail my usual OpenBSD setup. This should
+# only be run *once* by root, before any other usernames are created.
+#
+# Manual steps are as follows:
+#
+# 1. Copy or download this script to the root directory
+# 2. Attach and mount my thumb-drive containing credentials and SSH keys
+# 3. Reboot
+# 4. Be present to enter password for my main account (Alhadis).
+#    Pay attention to what's typed: there's no confirmation after!
+#
+# It's possible there's a way to eliminate or simplify some of all of the
+# above steps. Currently, I'm just glad I no longer have to recall these
+# steps each time I'm on a new computer.
+#
+
+
+# Print a newline-delimited list of currently-mounted volumes
+# Assumption: names of mount-points will never contain newlines
+# shellcheck disable=SC2295
+mount_points(){
+	set -- "`df -kP`" '
+'
+	set -- "$1" "$2" "${1%%$2*}"
+	set -- "$1" "$2" "${3%%Mounted on}"
+	printf %s "${1#*$2}" | sed "s/^.\{${#3}\}//"
+}
+
+# Print the path to a mounted filesystem that contains my SSH keys
+# Returns an error code if no such beast was found.
+locate_key_drive(){
+	while IFS= read -r path; do
+		test -d "$path" || {
+			printf >&2 'No such mount-point: %s\n' "$path"
+			return 2
+		}
+		if [ "`sha256 -qb "$path/.ssh/github.pub" 2>/dev/null`" \
+		= 'CJeaUtyc/aXLPgmNPpABbSPzyu2uEipl5auS8It3xKc=' ]; then
+			printf %s\\n "$path"
+			return
+		fi
+	done <<-EOF
+		`mount_points`
+	EOF
+	return 1
+}
+
+
+# Assert that we're running on the right platform
+case `uname -s` in OpenBSD);; *)
+	echo >&2 "This script must be run on OpenBSD"
+	exit 1
+;; esac
+
+# Assert that we're running with superuser privileges
+case `id -u` in 0);; *)
+	echo >&2 "This script must be executed by root"
+	exit 1
+;; esac
+
+# Avoid recreating an existing user
+case `id -u Alhadis 2>/dev/null` in 1000)
+	echo >&2 "User 'Alhadis' already exists"
+	exit 1
+;; esac
+
+# Assert that thumb-drive containing SSH keys has been mounted
+keys=`locate_key_drive || :`
+[ "$keys" ] && [ -d "$keys/.ssh" ] || {
+	echo >&2 "Failed to identify thumb-drive containing SSH keys"
+	echo >&2 "Mount the filesystem, then try again"
+	exit 1
+}
+
+# Configure Wi-Fi
+[ -f /etc/hostname.iwn0 ] || {
+	cp "$keys/hostname.iwn0" /etc
+	sh /etc/netstart iwn0
+}
+
+# Install missing dependencies
+pkg_add -zUl /dev/stdin <<-EOF
+	alacritty
+	bash
+	bat
+	coreutils
+	curl
+	dash--static
+	docker-cli
+	dos2unix
+	electron
+	emacs--gtk3
+	exfat-fuse
+	fdupes
+	feh
+	ffmpeg
+	firefox
+	fontforge
+	ghostscript--a4-gtk
+	git
+	git-lfs
+	gmake
+	gnupg
+	grap
+	groff
+	gsed
+	gunits
+	heirloom-doctools
+	hunspell
+	konsole
+	libarchive
+	libmagic
+	libreoffice
+	lynx
+	mozilla-dicts-en-AU
+	mozilla-dicts-en-GB
+	node
+	p5-Image-ExifTool
+	p7zip
+	qemu
+	ripgrep
+	rsync--iconv
+	shellcheck
+	simh
+	sqlite3
+	t1utils
+	testdisk
+	unrar
+	vim--gtk3
+	vlc
+	wget
+	xclip
+	xfce
+EOF
+
+# Create my user account
+adduser -v \
+	-e bcrypt,7 \
+	-group wheel \
+	-message no \
+	-uid_start 1000 \
+	-batch Alhadis staff "John Gardner" \
+	"`echo >&2 'Setting password...'; encrypt -pb7`"
+
+# Configure doas(1) for the current session
+[ -s /etc/doas.conf ] || cp -f /etc/examples/doas.conf /etc
+if ! grep -q Alhadis /etc/doas.conf; then
+	echo 'permit nopass Alhadis as root' >> /etc/doas.conf
+fi
+
+# Install SSH and GPG keys
+cd "$keys"
+rm -rf /home/Alhadis/.ssh
+rm -rf /home/Alhadis/.gnupg
+doas -u Alhadis sh "/$keys/INSTALL"
+
+# Finish setting up userland
+cd /home/Alhadis
+doas -u Alhadis git clone https://github.com/Alhadis/.files.git
+doas -u Alhadis git -C .files remote set-url origin git@github.com:Alhadis/.files.git
+doas -u Alhadis .files/install.sh || : # FIXME: Replace with make(1)
+doas -u Alhadis git clone git@github.com:Alhadis/.emacs.d
