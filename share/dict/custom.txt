@@ -139,6 +139,8 @@ nr
 nroff
 nullary
 octonary
+octothorpe
+octothorpes
 ogdoadic
 pentadic
 petabit
@@ -190,5 +192,6 @@ userbase
 usership
 vendored
 vigenary
+well-formedness
 whitespace
 zoomer
