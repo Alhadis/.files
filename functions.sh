@@ -214,8 +214,7 @@ crush(){
 
 # Render a GitHub-flavoured markdown document
 gfm(){
-	if [ $# -eq 0 ]; then set -- "" "`cat`"
-	else case $1 in
+	case $1 in
 		--context|-c) set -- "$2" "$3" ;;
 		--context=*)  set -- "${1#*=}" "`shift && printf %s "$@"`" ;;
 		-c?*)         set -- "${1#-c}" "`shift && printf %s "$@"`" ;;
@@ -225,16 +224,19 @@ gfm(){
 			echo >&2 'Usage: gfm [-c|--context user/repo] /path/to/input.md'
 			case $1 in --help|--usage|-[h?]) return;; *) return 1;; esac
 		;;
-	esac; fi
+	esac
 	[ ! "$1" ] || {
 		set -- "`printf %s "$1" | json-string`"  "$2"
 		set -- "`printf '"context": %s, ' "$1"`" "$2"
 	}
-	set -- "$1" "`printf '%s\n' "$2" | json-string`"
+	case $2 in
+		*?*) set -- "$1" "`json-string < "$2"`" ;;
+		'')  set -- "$1" "`cat | json-string`"  ;;
+	esac
 	printf '{%s"text": %s, "mode": "gfm"}' "$1" "$2" | curl -qLfSs \
 		--data @- \
 		-X POST \
-		-H Accept:\ application/vnd.github.v3+json \
+		-H Accept:\ application/vnd.github+json \
 		-H Content-Type:\ application/json \
 		https://api.github.com/markdown
 	[ -t 1 ] && echo || :
