@@ -2,7 +2,7 @@
 .ds < \(lq\fI
 .ds > \fP\(rq
 .ds .. \.\.\.
-.ds - \N'45'\N'45'
+.if '\*(.T'utf8' .tr -\-^\(ha~\(ti
 .ad l
 .nh
 .de SX
@@ -51,6 +51,12 @@ blog post.
 .
 .
 .SH EXAMPLE
+.am EX
+.tr `\(ga'\(aq
+..
+.am EE
+.tr ``''
+..
 You can create a new language grammar by opening the bundle editor
 (\fIWindow\fP \(-> \fIShow Bundle Editor\fP)
 and select \(lqNew Language\(rq from the add button in the lower left corner.
@@ -391,7 +397,7 @@ _
 comment	For comments
 comment.line	Line comments. We specialise further so that the type of comment start character(s) can be extracted from the scope.
 comment.line.double-slash	// comment
-comment.line.double-dash	\*- comment
+comment.line.double-dash	-- comment
 comment.line.number-sign	# comment
 comment.line.percentage	% comment
 comment.line.{character}	Other types of line comments
@@ -456,7 +462,7 @@ allowing the same tab-triggers to expand differently, depending on context.
 T}
 punctuation	Symbols which are often washed out to improve legibility.
 punctuation.definition	Markers for the start and end of an item
-punctuation.definition.string	\fI'\fP and \fI"\fP delimiting a string literal
+punctuation.definition.string	\fI\(aq\fP and \fI"\fP delimiting a string literal
 punctuation.definition.array	\fI()\fP or \fI[]\fP enclosing an item list
 punctuation.definition.header	\fI#\fP in Markdown headings
 punctuation.definition.list	\fI*\fP in Markdown list items
@@ -482,12 +488,12 @@ storage.modifier	Storage modifiers like \fIstatic\fP, \fIfinal\fP, \fIabstract\f
 \~
 string	Strings
 string.quoted	Quoted strings
-string.quoted.single	Single-quoted strings: \fI'foo'\fP
+string.quoted.single	Single-quoted strings: \fI\(aqfoo\(aq\fP
 string.quoted.double	Double-quoted strings: \fI"foo"\fP
 string.quoted.triple	Triple-quoted strings: \fI"""Python"""\fP
-string.quoted.other	Other types of quoting: \fI$'shell'\fP, \fI%s{...}\fP
+string.quoted.other	Other types of quoting: \fI$\(aqshell\(aq\fP, \fI%s{...}\fP
 string.unquoted	Things like here-docs and here-strings
-string.interpolated	Strings which are \(lqevaluated\(rq: \fI`date`\fP, \fI$(pwd)\fP
+string.interpolated	Strings which are \(lqevaluated\(rq: \fI\(gadate\(ga\fP, \fI$(pwd)\fP
 string.regexp	Regular expressions: \fI/(\ew+)/\fP
 string.other	Other types of strings (should rarely be used)
 \~
