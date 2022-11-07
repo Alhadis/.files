@@ -36,6 +36,9 @@
 [diff "odt"]
 	textconv = odt2txt
 	cachetextconv = true
+[diff "doc"]
+	textconv = antiword -rsft
+	cachetextconv = true
 [diff "docx"]
 	textconv = docx2txt.pl - /dev/stdout <
 	cachetextconv = true
