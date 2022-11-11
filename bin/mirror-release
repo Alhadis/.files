@@ -6,12 +6,25 @@ set -e
 # Rendered (mostly) obsolete by sysupgrade(8).
 #
 
-if ! printf '%s' "$1" | grep -Eq '^[0-9]\.[0-9]$'; then
-	printf >&2 'Usage: %s [version-number]\n' "${0##*/}"
+case $1 in [0-9].[0-9]);; *)
+	echo >&2 "Usage: ${0##*/} <version-number> [arch]"
 	exit 2
-fi
-	
-set -- "$1" "`machine`"
+;; esac
+
+# Check that dependencies are installed
+for cmd in machine rsync uname wget; do
+	command -v $cmd >/dev/null 2>&1 || {
+		echo "${0##*/}: required command '$cmd' not found, aborting"
+		exit 1
+	}
+done
+
+# Resolve optional second parameter for specifying architecture
+[ "$2" ] || {
+	set -- "$1" amd64
+	case `uname -s` in OpenBSD) set -- "$1" "`machine`";; esac
+	echo "${0##*/}: no architecture specified; defaulting to $2"
+}
 
 # Download firmware blobs
 wget -erobots=off -rl1 -nH -np -nv --no-config \
@@ -19,5 +32,10 @@ wget -erobots=off -rl1 -nH -np -nv --no-config \
 
 # Mirror the chosen release
 rsync -avzH --inplace --delete \
-	"rsync://mirror.internode.on.net/openbsd/$1/$2" "$1"
-cd "./$1/$2" && sha256 -c SHA256
+ 	"rsync://mirror.planetunix.net/OpenBSD/$1/$2" "$1"
+
+# Validate checksums
+cd "./$1/$2"
+if   command -v sha256    >/dev/null 2>&1; then sha256    -c SHA256;
+elif command -v sha256sum >/dev/null 2>&1; then sha256sum -c SHA256;
+else echo "${0##*/}: unable to verify release integrity"; exit 1; fi
