@@ -20,7 +20,7 @@ while [ -n "$1" ]; do case $1 in
 	--)                   shift; break   ;;
 	-*)
 		printf '%s\n' "$usage"
-		case $i in
+		case $1 in
 			-h|--help|-\?) exit 0 ;;
 			*)             exit 1 ;;
 		esac ;;
@@ -34,14 +34,30 @@ done
 	exit 1
 }
 
+# Resolve prefix based on search type
+case $type in
+	extension) query="path:**/?*.${1#.}" ;;
+	filename)  query="path:**/$1" ;;
+	language)  query="language:\"$1\"" ;;
+esac
+
+# Append any additional query parameters
+shift
+while [ $# -gt 0 ]; do
+	case $1 in
+		*\ *) query="$query \"$1\"" ;;
+		*?*)  query="$query $1" ;;
+	esac
+	shift
+done
+
 case `uname -s` in
 	Darwin) browse=open ;;
 	*)      browse=xdg-open ;;
 esac
 
-printf \
-	'%sq=%s%%3A%s+NOT+nothack&type=Code' \
-	'https://github.com/search?' \
-	"$type" \
-	"$1" \
-| xargs $browse
+$browse "https://github.com/search?q=`printf %s "$query" | sed '
+	s/:/%3A/g
+	s,/,%2F,g
+	s/[[:blank:]]\{1,\}/+/g
+'`&type=Code"
