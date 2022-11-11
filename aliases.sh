@@ -185,6 +185,11 @@ case `uname -s` in
 		# Mount USB stick
 		alias usb='mount -t msdos /dev/sd"`(mount | grep -q /dev/sd2) && echo 3 || echo 2`"i /mnt'
 
+		# macOS-specific aliases that creep into muscle memory
+		alias bi='pkg_info'
+		have nvi || alias nvi='vi'
+		have nex || alias nex='ex'
+
 		# Run the following commands as superuser by default
 		alias chown='doas chown'
 		alias chgrp='doas chgrp'
