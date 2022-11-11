@@ -1,48 +1,61 @@
 #!/bin/sh
+set -e
 
 #
 # gh-search: Search for filetypes on GitHub
 #
-
-usage='Usage: gh-search [-e|--extension] [-f|--filename] [-l|--language] query'
-type=extension
-
-[ $# -lt 2 ] && {
-	>&2 printf '%s\n' "$usage"
-	exit 1
-}
+usage='Usage: gh-search [-p] [-e extension] [-f filename] [-l language] [query]'
+unset ext name lang print
+die()(printf >&2 "%s: %s\n" "${0##*/}" "$@"; exit 1)
 
 while [ -n "$1" ]; do case $1 in
-	-e|--ext|--extension) type=extension ;;
-	-f|--file|--filename) type=filename  ;;
-	-n|--name)            type=filename  ;;
-	-l|--language)        type=language  ;;
-	--)                   shift; break   ;;
-	-*)
+	-h|--help|-\?)
 		printf '%s\n' "$usage"
+		exit
+	;;
+	# Unbundle short options
+	-[p]?*)
+		tail="${1#??}"
+		head=${1%"$tail"}
+		shift
+		set -- "$head" "-$tail" "$@"
+		continue
+	;;
+	# Expand parametric values
+	-[efnl]?*|--[!=]*=*)
 		case $1 in
-			-h|--help|-\?) exit 0 ;;
-			*)             exit 1 ;;
-		esac ;;
+			--*) tail=${1#*=}; head=${1%%=*} ;;
+			*)   tail=${1#??}; head=${1%"$tail"} ;;
+		esac
+		shift
+		set -- "$head" "$tail" "$@"
+		continue
+	;;
+	-p|--print)     print=1; ;;
+	-e|--extension) ext=$2;  shift ;;
+	-f|--filename)  name=$2; shift ;;
+	-n|--name)      name=$2; shift ;;
+	-l|--language)  lang=$2; shift ;;
+	--)             shift; break   ;;
+	-*) die "invalid option: '$1'" "$usage" ;;
 	*) break ;;
 esac; shift
 done
 
-[ -z "$1" ] && {
-	>&2 printf 'gh-search: No search query specified\n'
-	>&2 printf '%s\n' "$usage"
-	exit 1
-}
+# Bail if there's nothing to search for
+[ "$ext$name$lang$print$1" ] || die 'no search query specified'
 
-# Resolve prefix based on search type
-case $type in
-	extension) query="path:**/?*.${1#.}" ;;
-	filename)  query="path:**/$1" ;;
-	language)  query="language:\"$1\"" ;;
-esac
+# Resolve conflicting option pairs
+[ -z "$ext" ] || [ -z "$name" ] ||
+	die 'extension and filename queries are mutually exclusive'
+
+# Resolve search qualifiers
+unset query
+[ -z "$ext"  ] || query="path:**/?*.${ext#.}"
+[ -z "$name" ] || query="path:**/$name"
+[ -z "$lang" ] || query="$query language:\"$lang\""
 
 # Append any additional query parameters
-shift
 while [ $# -gt 0 ]; do
 	case $1 in
 		*\ *) query="$query \"$1\"" ;;
@@ -51,13 +64,23 @@ while [ $# -gt 0 ]; do
 	shift
 done
 
-case `uname -s` in
-	Darwin) browse=open ;;
-	*)      browse=xdg-open ;;
-esac
-
-$browse "https://github.com/search?q=`printf %s "$query" | sed '
+set -- "https://github.com/search?q=`printf %s "${query# }" | sed '
+	s/%/%25/g
 	s/:/%3A/g
 	s,/,%2F,g
+	s/?/%3F/g
+	s/&/%26/g
+	s/+/%2B/g
 	s/[[:blank:]]\{1,\}/+/g
-'`&type=Code"
+'`&type=code"
+
+# Print search url if `--print` was passed
+[ -z "$print" ] || {
+	printf '%s\n' "$1"
+	exit
+}
+
+case `uname -s` in
+	Darwin) open "$@" ;;
+	*)      xdg-open "$@" ;;
+esac

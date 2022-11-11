@@ -1,0 +1,121 @@
+.Dd November 12, 2022
+.if '\*(.T'utf8' .tr -\-
+.Dt GH-SEARCH 1
+.Os
+.Sh NAME
+.Nm gh-search
+.Nd search for filetypes on GitHub
+.
+.Sh SYNOPSIS
+.ie n .ds  .. \.\.\.
+.el   .ds1 .. \[u2026]
+.Nm
+.Op Fl p
+.Op Fl l Ar language
+.Fl e Ar extension
+.Op Ar query Ns No \*(..
+.
+.Nm
+.Op Fl p
+.Op Fl l Ar language
+.Fl f Ar filename
+.Op Ar query Ns No \*(..
+.
+.Nm
+.Op Fl p
+.Op Fl l Ar language
+.Ar query Ns No \*(..
+.
+.Sh DESCRIPTION
+.Nm
+opens a GitHub.com file search in the user's web browser
+.Pq Xr open 1 No on macOS , Xr xdg-open 1 otherwise .
+Search terms may be specified as a file extension (first form),
+verbatim filename (second form),
+or an ordinary string search (third form).
+.
+.Bl -tag -width 6n
+.It Fl e Ar name , Fl \-extension Ar name
+Perform a file extension search.
+If the extension
+.Ar name
+begins with a period,
+it will be trimmed.
+.Pp
+Equivalent search qualifier:
+.Dl path:**/?*. Ns Ar ext
+.
+.It Fl f Ar name , Fl \-filename Ar name
+Perform a verbatim filename search.
+Path separators
+.Pq Ql /
+may be embedded in order to include a
+.Xr dirname 3
+component.
+.Pp
+Equivalent search qualifier:
+.Dl path:**/ Ns Ar name
+.
+.It Fl l Ar name , Fl \-language Ar name
+Restrict search results to a specific (programming) language.
+.Pp
+Equivalent search qualifier:
+.Dl language: Ns Ar name
+.
+.It Fl n Ar name , Fl \-name Ar name
+Deprecated alias for
+.Fl \-filename ,
+kept only for compatibility.
+.
+.It Fl p , Fl \-print
+Print the search URL instead of opening it.
+.
+.It Fl h , Fl \-help , Fl \-usage
+Print a brief usage summary, then exit.
+.
+.It Ar query
+Additional search parameters to include.
+.El
+.
+.Sh EXIT STATUS
+.Ex -std
+.
+.Sh EXAMPLES
+Search for
+.Sy *.ff
+files that contain the string
+.Dq fontforge :
+.Dl Nm Fl e Li ff fontforge
+.
+.Pp
+Search for files named
+.Dq doas.conf :
+.Dl Nm Fl f Li doas.conf
+.
+.Pp
+Search for
+.Sy *.conf
+files classified as INI:
+.Dl Nm Fl e Li conf Fl l Li INI
+.
+.Pp
+Search for JavaScript files containing the string
+.Dq use asm :
+.Dl Nm Fl l Li JavaScript Qq Li use asm
+.
+.Sh DIAGNOSTICS
+.Bl -tag -width 6n
+.It Cm "extension and filename queries are mutually exclusive"
+Both the
+.Fl extension
+and
+.Fl filename
+options were specified, rendering the nature of the search ambiguous.
+.It Cm "no search query specified"
+Insufficient parameters were supplied to form a meaningful search URL.
+.El
+.
+.Sh SEE ALSO
+.Xr open 1 ,
+.Xr wget 1 ,
+.Xr xdg-open 1
