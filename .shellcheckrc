@@ -1,6 +1,7 @@
 shell=sh
 enable=deprecate-which
 external-sources=true
+disable=SC2015
 
 # Solaris 8-9 compatibility
 disable=SC2006  # Don't suggest $(…) instead of `…`
