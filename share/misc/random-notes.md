@@ -208,3 +208,10 @@ List everything captured by Archive.org
 ---------------------------------------
 
 	https://web.archive.org/web/*/http://site.domain/*
+
+
+
+Modify `$ARGV` whilst keeping first `N` arguments
+-------------------------------------------------
+
+	eval "shift 2 && set -- \"$1\" \"\$@\""
