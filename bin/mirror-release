@@ -6,8 +6,12 @@ set -e
 # Rendered (mostly) obsolete by sysupgrade(8).
 #
 
+# Provide a means to opt-out of adding a post-install script
+unset no_hook
+case $1 in --no-hook) no_hook=1; shift;; esac
+
 case $1 in [0-9].[0-9]);; *)
-	echo >&2 "Usage: ${0##*/} <version-number> [arch]"
+	echo >&2 "Usage: ${0##*/} [--no-hook] <version-number> [arch]"
 	exit 2
 ;; esac
 
@@ -39,3 +43,17 @@ cd "./$1/$2"
 if   command -v sha256    >/dev/null 2>&1; then sha256    -c SHA256;
 elif command -v sha256sum >/dev/null 2>&1; then sha256sum -c SHA256;
 else echo "${0##*/}: unable to verify release integrity"; exit 1; fi
+
+# Include install.site(5) script
+[ -z "$no_hook" ] || exit
+[ -s install.site ] && exit || :
+cat > install.site <<-SHELL
+	#!/bin/sh
+	set -e
+	url='https://github.com/Alhadis/.files/blob/HEAD/etc/install.site?raw=1'
+	ftp -o /finish-setup.sh "\$url"
+	sh - < /finish-setup.sh && rm -f /finish-setup.sh
+SHELL
+chmod +x install.site
+tar -chvzf "site${1%%.*}${1#*.}.tgz" install.site
+rm -f install.site

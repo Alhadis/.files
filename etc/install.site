@@ -1,8 +1,8 @@
 #!/bin/sh
-set -e
+set -xe
 
 #
-# rc.firsttime(8) -- Finish setting up a new workstation.
+# install.site(5) -- Finish setting up a new workstation.
 #
 # Intended to automate most of the tasks described by afterboot(8),
 # reproducing in as much detail my usual OpenBSD setup. This should
@@ -15,10 +15,6 @@ set -e
 # 3. Reboot
 # 4. Be present to enter password for my main account (Alhadis).
 #    Pay attention to what's typed: there's no confirmation after!
-#
-# It's possible there's a way to eliminate or simplify some of all of the
-# above steps. Currently, I'm just glad I no longer have to recall these
-# steps each time I'm on a new computer.
 #
 
 
@@ -52,6 +48,23 @@ locate_key_drive(){
 	return 1
 }
 
+# Print the names of ifconfig(1) blocks that match grep(1)
+ifgrep(){
+	ifconfig \
+	| sed -e:a -e 'N;s/\n[[:blank:]]\{1,\}/ /g;$!ba' \
+	| grep "$@" \
+	| sed 's/:.*//'
+}
+
+# Return true if $1 appears more than once in argument list
+memq(){
+	while [ $# -gt 1 ]; do
+		[ "$1" = "$2" ] && return
+		eval "shift 2 && set -- \"$1\" \"\$@\""
+	done
+	return 1
+}
+
 
 # Assert that we're running on the right platform
 case `uname -s` in OpenBSD);; *)
@@ -79,13 +92,53 @@ keys=`locate_key_drive || :`
 	exit 1
 }
 
-# Configure Wi-Fi
-[ -f /etc/hostname.iwn0 ] || {
-	cp "$keys/hostname.iwn0" /etc
-	sh /etc/netstart iwn0
+# Configure root account's shell profile
+while IFS= read -r line; do
+	grep -Fqs "$line" ~/.profile || printf '%s\n' "$line" >> ~/.profile
+done <<-SHELL
+	alias ..='cd ..'
+	alias l='ls -alh'
+	alias L='l -tr'
+	alias c='clear'
+	alias p='pwd'
+SHELL
+
+# Configure hostname(7)
+hostname Aztec.ziggurat
+[ -f /etc/hostname ] && hostname > /etc/myname || :
+
+# Configure network access
+memq --no-network "$@" || {
+	unset reconnecting
+
+	# Configure Ethernet
+	if=`ifgrep media:\ Ethernet`
+	[ -s "/etc/hostname.$if" ] || {
+		cat > "/etc/hostname.$if" <<-EOF
+			inet6 autoconf
+			inet autoconf
+		EOF
+		sh /etc/netstart "$if"
+		reconnecting=1
+	}
+
+	# Configure Wi-Fi
+	[ -f /etc/hostname.iwn0 ] || {
+		cp "$keys/hostname.iwn0" /etc
+		sh /etc/netstart iwn0
+		reconnecting=1
+	}
+
+	# Wait for connectivity if netstart(1) was called
+	[ -z "$reconnecting" ] || timeout 10s sh - <<-SHELL || :
+		while ! ping -c1 -q google.com >/dev/null; do
+			sleep 1
+		done
+	SHELL
 }
 
 # Install missing dependencies
+memq --no-packages "$@" ||
 pkg_add -zUl /dev/stdin <<-EOF
 	alacritty
 	bash
@@ -152,18 +205,26 @@ adduser -v \
 # Configure doas(1) for the current session
 [ -s /etc/doas.conf ] || cp -f /etc/examples/doas.conf /etc
 if ! grep -q Alhadis /etc/doas.conf; then
-	echo 'permit nopass Alhadis as root' >> /etc/doas.conf
+	cat >> /etc/doas.conf <<-EOF
+		permit keepenv :wheel
+		permit nopass Alhadis as root
+		permit nolog nopass keepenv root as Alhadis
+		permit nolog nopass keepenv setenv { PATH } root as root
+	EOF
 fi
 
 # Install SSH and GPG keys
 cd "$keys"
 rm -rf /home/Alhadis/.ssh
 rm -rf /home/Alhadis/.gnupg
-doas -u Alhadis sh "/$keys/INSTALL"
+doas -u Alhadis sh "/${keys#/}/INSTALL"
+doas -u Alhadis sh -c 'cd ~/.ssh && cp local.pub authorized_keys'
 
 # Finish setting up userland
 cd /home/Alhadis
+command -v git >/dev/null 2>&1 || pkg_add -zU git curl wget emacs--gtk3
 doas -u Alhadis git clone https://github.com/Alhadis/.files.git
 doas -u Alhadis git -C .files remote set-url origin git@github.com:Alhadis/.files.git
 doas -u Alhadis .files/install.sh || : # FIXME: Replace with make(1)
 doas -u Alhadis git clone git@github.com:Alhadis/.emacs.d
+cp .exrc /etc/vi.exrc
