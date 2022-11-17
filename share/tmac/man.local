@@ -1,0 +1,19 @@
+.\" -*- nroff -*-
+.
+.\" Fix spurious copy+pasta hazards
+.tr -\-^\(ha~\(ti
+.
+.\" Enable OSC 8 hyperlinks
+.if !rU .nr U 1
+.
+.\" Prefer old-school headings in terminal output
+.if n \{\
+.	nr CS 1
+.	nr CT 1
+.\}
+.
+.\" Prefer BSD-style formatting for cross-references
+.if !dMF \{\
+.	ie t .ds MF CW
+.	el   .ds MF R
+.\}

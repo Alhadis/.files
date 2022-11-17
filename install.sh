@@ -76,6 +76,15 @@ command -v youtube-dl 2>&1 >/dev/null && {
 	ln -sf ~/.files/etc/youtube-dl.conf .config/youtube-dl/config
 }
 
+# Link Troff macros
+for tmac in /usr/local /usr; do
+	cd "$tmac/share/groff/site-tmac" || continue
+	for tmac in ~/.files/share/tmac/*; do
+		printf 'Linked: %s -> %s\n' "$tmac" "$PWD"
+		ln -sf "$tmac" .
+	done
+	cd - && break
+done; unset tmac
 
 # Link Contour configuration
 command -v contour 2>&1 >/dev/null && {

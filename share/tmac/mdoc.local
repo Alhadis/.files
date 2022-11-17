@@ -1,0 +1,12 @@
+.\" -*- nroff -*-
+.cp 0
+.mso man.local
+.
+.\" Typeset cross-references using traditional BSD formatting
+.ie t .ds doc-Xr-font \f(CW
+.el   .ds doc-Xr-font \fR
+.ds doc-page-topic-font \*[doc-Xr-font]
+.ds doc-page-section-font \*[doc-Xr-font]
+.
+.\" Don't actually italicise pathnames
+.ie t .ds doc-Pa-font \f(CW
