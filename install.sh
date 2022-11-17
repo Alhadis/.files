@@ -3,10 +3,10 @@
 #
 # install.sh: Quickly setup a new workstation
 #
-cd "$HOME"
+cd "$HOME" || exit
 
 # Assume that systems without doas(1) have sudo(1) installed by default
-command -v doas 2>&1 >/dev/null || doas()(sudo "$@")
+command -v doas >/dev/null 2>&1 || doas()(sudo "$@")
 
 # Silence is golden
 [ -e .hushlogin ] || touch .hushlogin
@@ -29,6 +29,7 @@ dotfiles='
 	.zshrc
 '
 # Link `$HOME/$file` to `$HOME/.files/$file` unless it's already symlinked
+# shellcheck disable=SC2086
 for file in $dotfiles; do [ -h $file ] || {
 	ln -sf .files/$file
 	printf 'Symlinked: %s -> %s\n' $file .files/$file;
@@ -47,7 +48,7 @@ chmod go-rwx .ssh/*
 
 
 # Link Konsole profile
-command -v konsole 2>&1 >/dev/null && [ ! -h .local/share/konsole ] && {
+command -v konsole >/dev/null 2>&1 && [ ! -h .local/share/konsole ] && {
 	[ -d .local/share ] || mkdir -p .local/share
 	rm -rf .local/share/konsole
 	ln -sf ~/.files/etc/konsole .local/share/konsole
@@ -71,12 +72,13 @@ fi
 }
 
 # Link youtube-dl(1) configuration
-command -v youtube-dl 2>&1 >/dev/null && {
+command -v youtube-dl >/dev/null 2>&1 && {
 	[ -d .config/youtube-dl ] || mkdir -p .config/youtube-dl
 	ln -sf ~/.files/etc/youtube-dl.conf .config/youtube-dl/config
 }
 
 # Link Troff macros
+# shellcheck disable=SC2167,SC2165
 for tmac in /usr/local /usr; do
 	cd "$tmac/share/groff/site-tmac" || continue
 	for tmac in ~/.files/share/tmac/*; do
@@ -87,18 +89,18 @@ for tmac in /usr/local /usr; do
 done; unset tmac
 
 # Link Contour configuration
-command -v contour 2>&1 >/dev/null && {
+command -v contour >/dev/null 2>&1 && {
 	[ -d .config/contour ] || mkdir -p .config/contour
 	ln -sf ~/.files/etc/contour.yml .config/contour/
 }
 
 # Disable blinking cursor in Gnome Terminal
-command -v gsettings 2>&1 >/dev/null && [ "$DISPLAY" ] && {
+command -v gsettings >/dev/null 2>&1 && [ "$DISPLAY" ] && {
 	gsettings set org.gnome.desktop.interface cursor-blink false
 }
 
 # Configure Xfce4
-command -v startxfce4 2>&1 >/dev/null && [ "$DISPLAY" ] && {
+command -v startxfce4 >/dev/null 2>&1 && [ "$DISPLAY" ] && {
 	xfconf-query -nt int -c keyboards -p /Default/KeyRepeat/Delay -s 200
 	xfconf-query -nt int -c keyboards -p /Default/KeyRepeat/Rate  -s 60
 	xfconf-query -nt int -c xfwm4     -p /general/workspace_count -s 1
@@ -134,7 +136,7 @@ esac
 
 
 # Install Node programs
-command -v npm 2>&1 >/dev/null && {
+command -v npm >/dev/null 2>&1 && {
 	npm=`npm --global root`
 	install=
 	modules='
@@ -176,6 +178,7 @@ command -v npm 2>&1 >/dev/null && {
 	for module in $modules; do
 		[ -d "$npm/$module" ] || install="$install $module";
 	done
+	# shellcheck disable=SC2086
 	[ "$install" ] && npm --global install $install
 	unset install module
 }
