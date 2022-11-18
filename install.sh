@@ -21,6 +21,7 @@ dotfiles='
 	.gitconfig
 	.inputrc
 	.irbrc
+	.manpath
 	.npmrc
 	.profile
 	.vimrc
