@@ -166,10 +166,6 @@ have hexdump && alias hexdump='hexdump -v \
 	-e '\''16/1 "%_p" "'\''"[2m│[22m"'\''\n"'\'
 
 
-# Convert a font using FontForge
-have fontforge && alias convertfont='~/.files/etc/convert-font.ff 2>/dev/null'
-
-
 # OS-specific
 case `uname -s` in
 	OpenBSD)

@@ -128,6 +128,18 @@ encodeurl(){
 }
 
 
+# Convert a font using FontForge
+have fontforge && convertfont()(
+	cmd=~/.files/etc/convert-font.ff
+	ext=${1#.}
+	shift
+	while [ $# -gt 0 ]; do
+		fontforge -quiet -lang=ff -script "$cmd" "$1" "${1%.*}.$ext" || return $?
+		shift
+	done
+)
+
+
 # Execute a PostScript program
 gx(){
 	command -v \gs >/dev/null 2>&1 || {
