@@ -1,0 +1,15 @@
+{
+	// Display warning at startup if Bluetooth has been enabled unexpectedly
+	Label = "com.alhadis.check-bluetooth";
+	RunAtLoad = YES;
+	StandardOutPath = "/dev/null";
+	StandardErrorPath = "/dev/null";
+	ProgramArguments = (
+		"/bin/sh", "-c",
+		"if system_profiler -xml SPBluetoothDataType \\
+		| plutil -extract 0._items.0.controller_properties.controller_state raw - \\
+		| grep -iq '^attrib_on$'; then
+			osascript -e 'display notification \"Bluetooth is enabled\" with title \"Warning\"'
+		fi"
+	);
+}

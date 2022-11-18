@@ -1,4 +1,15 @@
-all: configure /etc/man.conf /etc/shells
+all: configure cronjobs /etc/man.conf /etc/shells
+
+# Configure scheduled tasks with launchd(8)
+cron = ~/Library/LaunchAgents
+jobs = $(notdir $(wildcard *.plist))
+$(cron):
+	mkdir $@
+	chmod 0700 $@
+$(cron)/%: %
+	convert-plist < $< > $@
+	chmod 0644 $@
+cronjobs: $(cron) $(addprefix $(cron)/,$(jobs))
 
 # Upgrade antique programs that ship with macOS
 brew-path = $(shell brew --prefix)/bin
