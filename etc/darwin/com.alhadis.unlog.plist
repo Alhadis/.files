@@ -1,0 +1,13 @@
+{
+	// Scrub download-log every hour; partially replicates “./scrub.sh”
+	Label = "com.alhadis.unlog";
+	ProgramArguments = (
+		"/usr/bin/sqlite3",
+		"~/Library/Preferences/com.apple.LaunchServices.QuarantineEventsV*",
+		"DELETE FROM LSQuarantineEvent; VACUUM"
+	);
+	RunAtLoad = YES;
+	StandardErrorPath = "/dev/null";
+	StandardOutPath = "/dev/null";
+	StartInterval = 3600;
+}
