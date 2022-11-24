@@ -12,7 +12,6 @@ font:
     bold:    { family: Menlig, style: Bold    }
     italic:  { family: Menlig, style: Italic  }
     builtin_box_drawing: false
-    use_thin_strokes:    false
 
 colors:
     primary:
