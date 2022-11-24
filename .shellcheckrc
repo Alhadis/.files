@@ -1,7 +1,8 @@
 shell=sh
 enable=deprecate-which
 external-sources=true
-disable=SC2015
+disable=SC2009  # Prefer `ps | grep` over pgrep(1)
+disable=SC2015  # Silence nag about operator chaining
 
 # Solaris 8-9 compatibility
 disable=SC2006  # Don't suggest $(…) instead of `…`
