@@ -2,11 +2,19 @@
 
 #
 # install.sh: Quickly setup a new workstation
+# shellcheck disable=SC2317
 #
 cd "$HOME" || exit
 
 # Assume that systems without doas(1) have sudo(1) installed by default
-command -v doas >/dev/null 2>&1 || doas()(sudo "$@")
+root_cmd='sudo'
+command -v doas >/dev/null 2>&1 && root_cmd='doas' || doas()(sudo "$@")
+
+# Re-execute with superuser privileges if they've been requested
+if [ "$1" = --root ]; then
+	shift
+	exec $root_cmd .files/install.sh "$@"
+fi
 
 # Silence is golden
 [ -e .hushlogin ] || touch .hushlogin
@@ -58,7 +66,7 @@ command -v konsole >/dev/null 2>&1 && [ ! -h .local/share/konsole ] && {
 # Install editor font
 if [ "`uname -s`" = Darwin ]; then
 	mkdir -p ~/Library/Fonts
-	ln .files/share/desktop/Menlig.otf ~/Library/Fonts
+	ln -f .files/share/desktop/Menlig.otf ~/Library/Fonts
 else
 	fonts=/usr/local/share/fonts
 	[ -d "$fonts" ] && [ ! -e "$fonts/Menlig.otf" ] &&
@@ -86,7 +94,7 @@ for tmac in /usr/local /usr; do
 		printf 'Linked: %s -> %s\n' "$tmac" "$PWD"
 		ln -sf "$tmac" .
 	done
-	cd - && break
+	cd - >/dev/null 2>&1 && break
 done; unset tmac
 
 # Link Contour configuration
@@ -135,6 +143,10 @@ case `uname -s` in
 	;;
 esac
 
+
+# XXX: Leave NPM package installation alone for now, it slows everything else
+# down (such as when running `install.sh` to repair missing/deleted symlinks).
+exit
 
 # Install Node programs
 command -v npm >/dev/null 2>&1 && {

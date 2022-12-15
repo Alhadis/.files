@@ -139,7 +139,7 @@ memq --no-network "$@" || {
 
 # Install missing dependencies
 memq --no-packages "$@" ||
-pkg_add -zUl /dev/stdin <<-EOF
+pkg_add -mvzUl /dev/stdin <<-EOF
 	alacritty
 	bash
 	bat
@@ -225,6 +225,6 @@ cd /home/Alhadis
 command -v git >/dev/null 2>&1 || pkg_add -zU git curl wget emacs--gtk3
 doas -u Alhadis git clone https://github.com/Alhadis/.files.git
 doas -u Alhadis git -C .files remote set-url origin git@github.com:Alhadis/.files.git
-doas -u Alhadis .files/install.sh || : # FIXME: Replace with make(1)
-doas -u Alhadis git clone git@github.com:Alhadis/.emacs.d
+doas -u Alhadis .files/install.sh --root || : # FIXME: Replace with make(1)
+doas -u Alhadis git clone git@github.com:Alhadis/.emacs.d.git
 cp .exrc /etc/vi.exrc
