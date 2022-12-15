@@ -204,10 +204,22 @@ Bit manipulation
 
 
 
-List everything captured by Archive.org
----------------------------------------
+Archive.org
+-----------
+
+List everything captured for a domain:
 
 	https://web.archive.org/web/*/http://site.domain/*
+
+Direct link to original (unmodified) file:
+
+	date=`date +%Y%m%d`
+	https://web.archive.org/web/${DATE}id_/http://site.domain/page.html
+
+Most recently-archived version of a page:
+
+	curl "https://archive.org/wayback/available?url=$URL" \
+	| JQ_COLORS= jq -Mre '.archived_snapshots.closest.url | select(. != null)'
 
 
 
