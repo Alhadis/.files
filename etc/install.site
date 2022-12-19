@@ -194,7 +194,7 @@ pkg_add -mvzUl /dev/stdin <<-EOF
 EOF
 
 # Configure default settings for adduser(8)
-if ! -f /etc/adduser.conf; then
+if ! [ -f /etc/adduser.conf ]; then
 	cat >> /etc/adduser.conf <<-EOF
 		verbose = 1
 		defaultpasswd = "yes"
@@ -244,8 +244,8 @@ doas -u Alhadis sh -c 'cd ~/.ssh && cp local.pub authorized_keys'
 cd /home/Alhadis
 command -v git >/dev/null 2>&1 || pkg_add -zU git curl wget emacs--gtk3
 doas -u Alhadis git clone https://github.com/Alhadis/.files.git
-doas -u Alhadis git -C .files remote set-url origin git@github.com:Alhadis/.files.git
-doas -u Alhadis .files/install.sh --root || : # FIXME: Replace with make(1)
 doas -u Alhadis git clone https://github.com/Alhadis/.emacs.d.git
+doas -u Alhadis git -C .files   remote set-url origin git@github.com:Alhadis/.files.git
 doas -u Alhadis git -C .emacs.d remote set-url origin git@github.com:Alhadis/.emacs.d.git
-cp .exrc /etc/vi.exrc
+cp -f .files/.exrc /etc/vi.exrc
+doas -u Alhadis .files/install.sh || : # FIXME: Replace with make(1)

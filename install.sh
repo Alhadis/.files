@@ -4,18 +4,10 @@
 # install.sh: Quickly setup a new workstation
 # shellcheck disable=SC2317
 #
+cd ~ || exit
 
 # Assume that systems without doas(1) have sudo(1) installed by default
-root_cmd='sudo'
-command -v doas >/dev/null 2>&1 && root_cmd='doas' || doas()(sudo "$@")
-
-# Re-execute with superuser privileges if they've been requested
-if [ "$1" = --root ]; then
-	shift
-	exec $root_cmd "$0" "$@"
-fi
-
-cd ~ || exit
+command -v doas >/dev/null 2>&1 || doas()(sudo "$@")
 
 # Silence is golden
 [ -e .hushlogin ] || touch .hushlogin
@@ -49,7 +41,7 @@ done; unset file
 
 # Link SSH config
 [ ! -s .ssh/config ] && {
-	ln .files/etc/ssh-config .ssh/config
+	ln -f .files/etc/ssh-config .ssh/config
 	printf 'Linked: %s -> %s\n' .files/etc/ssh-config .ssh/config
 }
 
@@ -92,8 +84,10 @@ command -v youtube-dl >/dev/null 2>&1 && {
 for tmac in /usr/local /usr; do
 	cd "$tmac/share/groff/site-tmac" || continue
 	for tmac in ~/.files/share/tmac/*; do
+		[ ! -h "./${tmac##*/}" ] || continue
+		[ -w "$PWD" ] && unset doas || doas='doas'
 		printf 'Linked: %s -> %s\n' "$tmac" "$PWD"
-		ln -sf "$tmac" .
+		$doas ln -sf "$tmac" .
 	done
 	cd - >/dev/null 2>&1 && break
 done; unset tmac
