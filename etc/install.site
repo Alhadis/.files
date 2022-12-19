@@ -193,6 +193,26 @@ pkg_add -mvzUl /dev/stdin <<-EOF
 	xfce
 EOF
 
+# Configure default settings for adduser(8)
+if ! -f /etc/adduser.conf; then
+	cat >> /etc/adduser.conf <<-EOF
+		verbose = 1
+		defaultpasswd = "yes"
+		encryptionmethod = "auto"
+		dotdir = "/etc/skel"
+		send_message = "no"
+		message_file = "/etc/adduser.message"
+		config = "/etc/adduser.conf"
+		logfile = "/var/log/adduser"
+		home = "/home"
+		path = ('/bin', '/usr/bin', '/usr/local/bin')
+		shellpref = ('sh', 'bash', 'ksh')
+		defaultshell = "ksh"
+		defaultgroup = "USER"
+		defaultclass = "default"
+	EOF
+fi
+
 # Create my user account
 adduser -v \
 	-e bcrypt,7 \
