@@ -4,7 +4,6 @@
 # install.sh: Quickly setup a new workstation
 # shellcheck disable=SC2317
 #
-cd "$HOME" || exit
 
 # Assume that systems without doas(1) have sudo(1) installed by default
 root_cmd='sudo'
@@ -13,8 +12,10 @@ command -v doas >/dev/null 2>&1 && root_cmd='doas' || doas()(sudo "$@")
 # Re-execute with superuser privileges if they've been requested
 if [ "$1" = --root ]; then
 	shift
-	exec $root_cmd .files/install.sh "$@"
+	exec $root_cmd "$0" "$@"
 fi
+
+cd ~ || exit
 
 # Silence is golden
 [ -e .hushlogin ] || touch .hushlogin
@@ -144,9 +145,9 @@ case `uname -s` in
 esac
 
 
+exit
 # XXX: Leave NPM package installation alone for now, it slows everything else
 # down (such as when running `install.sh` to repair missing/deleted symlinks).
-exit
 
 # Install Node programs
 command -v npm >/dev/null 2>&1 && {
