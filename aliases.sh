@@ -48,7 +48,8 @@ have doas     && alias doas='doas '
 have less     && alias ll='l | less'
 have exiftool && {
 	alias stripmeta='exiftool -All= -overwrite_original'
-	alias x='exiftool'
+	alias x='exiftool -a -U'
+	alias X='x -b -X'
 }
 
 
