@@ -117,6 +117,7 @@ have brew && {
 	export HOMEBREW_DEVELOPER=1           # Offer feedback more useful to a tap maintainer
 	export HOMEBREW_NO_AUTO_UPDATE=1      # Don't auto-update when installing stuff
 	export HOMEBREW_NO_INSTALL_CLEANUP=1  # Don't bother cleaning up downloaded files
+	export HOMEBREW_NO_INSTALL_FROM_API=1 # Report outdated and recently-added formulae
 	export HOMEBREW_FAIL_LOG_LINES=30     # Double the number of lines shown from error-logs
 	have bat && export HOMEBREW_BAT=1     # Highlight formulae source using bat(1)
 }
