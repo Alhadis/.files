@@ -27,7 +27,7 @@
 	textconv = hexdump -v -C
 	cachetextconv = true
 [diff "exif"]
-	textconv = exiftool -x FileName -x Directory
+	textconv = exiftool -a -U -x FileName -x Directory
 	cachetextconv = true
 [diff "ps"]
 	textconv = ps2ascii
