@@ -29,6 +29,10 @@
 [diff "exif"]
 	textconv = exiftool -a -U -x FileName -x Directory
 	cachetextconv = true
+[diff "pdf"]
+	textconv = pdftotext -htmlmeta -layout - /dev/stdout <
+	cachetextconv = true
+	binary = true
 [diff "ps"]
 	textconv = ps2ascii
 	cachetextconv = true

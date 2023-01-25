@@ -3,7 +3,6 @@
 *.gif     diff=exif
 *.jpg     diff=exif
 *.jpeg    diff=exif
-*.pdf     diff=exif
 *.png     diff=exif
 *.psd     diff=exif
 
@@ -11,3 +10,4 @@
 *.doc     diff=doc
 *.docx    diff=docx
 *.odt     diff=odt
+*.pdf     diff=pdf
