@@ -1,0 +1,26 @@
+#!/bin/sh
+set -e
+
+#
+# Convert a git-config(1) section's contents to quoted sh(1) variables
+#
+# TODO: Implement proper option handling, prepend variable names with
+# `section[_subsection]_`, and treat arguments as fully-resolved keys
+# by default.
+#
+case $1 in '')
+	printf >&2 'Usage: git enum-vars <name-regexp>\n'
+	exit 2
+;; esac
+
+git config --name-only --get-regexp "$1" | \
+while IFS= read -r name; do
+	key=`printf %s "$name" | sed '
+		s/^.*\.\([^.]\{1,\}\)$/\1/
+		s/^[0-9]/_&/
+		s/[^0-9A-Za-z_]\{1,\}/_/g
+	'`
+	val=`git config -f ./.gitconfig "$name"`
+	val=`git rev-parse --sq-quote "$val" | sed 's/^[[:blank:]]*//'`
+	printf '%s=%s\n' "$key" "$val"
+done
