@@ -7,6 +7,7 @@
 *.psd     diff=exif
 
 # Document diffs
+*.eps     diff=ps
 *.doc     diff=doc
 *.docx    diff=docx
 *.odt     diff=odt
