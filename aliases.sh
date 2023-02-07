@@ -46,6 +46,7 @@ have plutil   && alias pl='convert-plist'
 have sudo     && alias sudo='sudo '
 have doas     && alias doas='doas '
 have less     && alias ll='l | less'
+have xq       && alias xq='xq --tab --indent=4'
 have exiftool && {
 	alias stripmeta='exiftool -All= -overwrite_original'
 	alias x='exiftool -a -U'
