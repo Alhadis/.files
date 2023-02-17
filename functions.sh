@@ -318,6 +318,33 @@ listbinary(){
 }
 
 
+# Print a directory file listing ordered by modification time
+recentlychanged(){
+	[ -n "$1" ] || set -- .
+	[ -d "$1" ] || {
+		printf 'Usage: recentlychanged /path/to/root/dir\n'
+		return 1
+	}
+	case `stat --version 2>&1` in
+		*GNU*) stat="stat --printf=%Y\t%n\n";;
+		*)     stat='stat -f %m%t%N';;
+	esac
+	find "$1" -type f -exec $stat {} + | sort -n
+}
+
+
+# Print the URL whence a file was downloaded
+have xattr && wherefrom()(
+	xattr "$1" | while IFS= read -r attr; do
+		case $attr in
+			user.xdg.origin.url) xattr -p "$attr" "$1" ;;
+			com.apple.metadata:kMDItemWhereFroms) xattr -xp "$attr" "$1" | xxd -p -r | pl;;
+			*) continue ;;
+		esac; break
+	done
+)
+
+
 # Compare filesize before and after gzip compression
 # - Source: https://github.com/mathiasbynens/dotfiles
 gzcmp(){
