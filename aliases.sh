@@ -159,6 +159,10 @@ alias ord='perl -mEncode=decode -E "map { printf \"%1\\\$s\tU+%1\\\$X\n\", ord d
 unset fn
 
 
+# Print public IP address
+alias myip='dig +short myip.opendns.com @resolver1.opendns.com'
+
+
 # Generate nicer-looking hexadecimal dumps
 have xxd     && alias xxd='xxd -u -g1'
 have hexdump && alias hexdump='hexdump -v \

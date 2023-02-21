@@ -186,6 +186,20 @@ unfuck(){
 }
 
 
+# Print machine's local IP address
+localip(){
+	case `uname -s` in
+		Darwin) ipconfig getifaddr en0;;
+		Linux)  ip route get 1;;
+		*) ifconfig | sed -n '
+			s/^/ /; s/$/ /
+			s/[:[:blank:]]127\.0\.0\.1[[:blank:]]//g
+			s/.*inet \(addr:\)\{0,1\}\(\([0-9]*\.\)\{3\}[0-9]*\).*/\2/p
+		' | head -n1;;
+	esac
+}
+
+
 # Print geographical location of an IP address
 iplocation(){
 	[ $# -eq 0 ] && {
