@@ -17,3 +17,6 @@
 .	ie t .ds MF CW
 .	el   .ds MF R
 .\}
+.
+.\" Use Apple's ugly "x-man-page://" protocol on macOS
+.do if '\V[GROFF_PLATFORM_NAME]'Darwin' .nr an*MR-URL-format 2
