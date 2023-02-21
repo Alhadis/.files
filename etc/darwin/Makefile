@@ -48,6 +48,7 @@ configure:
 	defaults write -g NSAutomaticQuoteSubstitutionEnabled -bool false
 	defaults write -g NSAutomaticSpellingCorrectionEnabled -bool false
 	defaults write -g NSAutomaticTextCompletionEnabled -bool false
+	defaults write -g NSToolbarTitleViewRolloverDelay -float 0.0
 	defaults write com.apple.Accessibility KeyRepeatDelay -float 0.5
 	defaults write com.apple.Accessibility KeyRepeatEnabled -int 1
 	defaults write com.apple.Accessibility KeyRepeatInterval -float 0.08
