@@ -1,25 +1,46 @@
 #!/bin/sh
 
-# Clear the clipboard's contents
+# Split bundled option clusters
+case $1 in -s?*) eval "shift && set -- -s \"${1#??}\" \"\$@\"";; esac
+
+# Special modes of operation
 case $1 in
+	# Clear the clipboard's contents
 	-c|--clear|\
 	-r|--reset)
 		printf '' | "$0";
 		exit $?
 	;;
+
+	# List available data formats/targets
+	-l|--list)
+		if command -v osascript >/dev/null
+			then exec ~/.files/etc/darwin/clip-item.scpt
+			else exec xclip -o -sel clip -t TARGETS
+		fi
+	;;
+
+	# Display a particular data format/target stored on the clipboard
+	-s|--select)
+		shift
+		if command -v osascript >/dev/null
+			then exec ~/.files/etc/darwin/clip-item.scpt "$@"
+			else exec xclip -o -sel clip -t "$1"
+		fi
+	;;
 esac
 
 # Copy to clipboard
 if [ ! -t 0 ]; then
-	if command -v pbcopy >/dev/null; then
-		pbcopy
-	else
-		xclip -sel clip
+	if command -v pbcopy >/dev/null
+		then pbcopy
+		else xclip -sel clip
 	fi
+
+# Paste from clipboard
 else
-	if command -v pbpaste >/dev/null; then
-		pbpaste
-	else
-		xclip -o -sel clip
+	if command -v pbpaste >/dev/null
+		then pbpaste
+		else xclip -o -sel clip
 	fi
 fi
