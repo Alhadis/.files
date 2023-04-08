@@ -1,3 +1,4 @@
+# Important stuff
 [user]
 	name = Alhadis
 	email = gardnerjohng@gmail.com
@@ -9,26 +10,69 @@
 	whitespace = -blank-at-eol
 	ignorecase = false
 	untrackedCache = true
-[alias]
-	co = checkout
-	r = remote --verbose
-	s = status
-	undo = reset --soft HEAD~1
-	rewind = reset --hard
 [credential]
 	helper = osxkeychain
+[github]
+	user = Alhadis
+[gpg]
+	program = gpg2
+
+# Porcelain configuration
 [color]
 	pager = false
+[diff]
+	renames = copies
+[help]
+	autocorrect = never
+[init]
+	defaultBranch = master
 [pager]
 	show = format-diff
 	diff = format-diff
-[diff]
-	renames = copies
+[pull]
+	rebase = false
+[stash]
+	showIncludeUntracked = true
+	showPatch = true
+
+# User-defined git(1) subcommands
+[alias]
+	# Rarely-used shorthands
+	co = checkout
+	r = remote --verbose
+	s = status
+
+	# Manipulate history of local checkout
+	undo = reset --soft HEAD~1
+	rewind = reset --hard
+
+	# Print the object-ID of the branch's last commit
+	latest-hash = show --no-patch --format=%H
+
+	# Print the name of the most recently-tagged release
+	latest-tag = for-each-ref \
+		--merged=HEAD \
+		--count=1 \
+		--ignore-case \
+		--sort='-*creatordate' \
+		--format='%(refname:lstrip=-1)' \
+		refs/tags
+
+# Diff drivers for binary file formats
 [diff "bin"]
 	textconv = hexdump -v -C
 	cachetextconv = true
+[diff "doc"]
+	textconv = antiword -rsft
+	cachetextconv = true
+[diff "docx"]
+	textconv = docx2txt.pl - /dev/stdout <
+	cachetextconv = true
 [diff "exif"]
 	textconv = exiftool -a -U -x FileName -x Directory
+	cachetextconv = true
+[diff "odt"]
+	textconv = odt2txt
 	cachetextconv = true
 [diff "pdf"]
 	textconv = pdftotext -htmlmeta -layout - /dev/stdout <
@@ -38,30 +82,10 @@
 	textconv = ps2ascii
 	cachetextconv = true
 	binary = true
-[diff "odt"]
-	textconv = odt2txt
-	cachetextconv = true
-[diff "doc"]
-	textconv = antiword -rsft
-	cachetextconv = true
-[diff "docx"]
-	textconv = docx2txt.pl - /dev/stdout <
-	cachetextconv = true
+
+# Filter drivers
 [filter "lfs"]
 	process = git-lfs filter-process
 	clean = git-lfs clean -- %f
 	smudge = git-lfs smudge -- %f
 	required = true
-[stash]
-	showIncludeUntracked = true
-	showPatch = true
-[help]
-	autocorrect = never
-[github]
-	user = Alhadis
-[gpg]
-	program = gpg2
-[init]
-	defaultBranch = master
-[pull]
-	rebase = false
