@@ -54,6 +54,12 @@ have wasmtime && {
 	exit
 }
 
+# AppleScript
+[ -f test.scpt ] && have osascript && {
+	osascript -l AppleScript test.scpt "$@"
+	exit
+}
+
 # Haskell
 [ -f test.hs ] && have ghc runghc && {
 	runghc test.hs "$@"
