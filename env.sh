@@ -96,6 +96,9 @@ have npm && {
 	# Prepend linked and globally-installed modules to search path
 	export NODE_PATH=~/.files/var/node:/usr/local/lib/node_modules:/usr/lib/node_modules
 	
+	# Silence REPL session logging
+	export NODE_REPL_HISTORY=/dev/null
+	
 	# Force ASCII output for non-graphical displays
 	[ "$DISPLAY" ] || {
 		export npm_config_unicode=false
