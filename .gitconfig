@@ -68,6 +68,9 @@
 [diff "docx"]
 	textconv = docx2txt.pl - /dev/stdout <
 	cachetextconv = true
+[diff "dyld"]
+	textconv = dyld_info -platform -segments -dependents -objc -inits -exports -fixups
+	cachetextconv = true
 [diff "exif"]
 	textconv = exiftool -a -U -x FileName -x Directory
 	cachetextconv = true
@@ -82,6 +85,9 @@
 	textconv = ps2ascii
 	cachetextconv = true
 	binary = true
+[diff "sym"]
+	textconv = nm -aCp
+	cachetextconv = true
 
 # Filter drivers
 [filter "lfs"]

@@ -12,3 +12,8 @@
 *.docx    diff=docx
 *.odt     diff=odt
 *.pdf     diff=pdf
+
+# Symbol/library diffs
+*.[ao]    diff=sym
+*.so      diff=sym
+*.dylib   diff=dyld
