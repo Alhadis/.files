@@ -6,16 +6,16 @@
 
 have(){
 	while [ $# -gt 0 ]; do
-		command -v "$1" 2>&1 >/dev/null || return 1
+		command -v "$1" >/dev/null 2>&1 || return 1
 		shift
 	done
 }
 
 # Nroff without trailing lines
-[ -f test.roff ] && have groff && {
-	groff -tpUTutf8 $@ test.roff | sed -e :a -e '/^\n*$/{$d;N;};/\n$/ba'
-	exit
-}
+# shellcheck disable=SC2068
+[ -f test.roff ] && have groff && \
+	exec groff -tpUTutf8 $@ test.roff | sed -e :a -e '/^\n*$/{$d;N;};/\n$/ba'
+
 
 # FontForge without annoying license banner
 [ -f test.ff ] && have fontforge && {
@@ -32,98 +32,85 @@ have(){
 
 # TypeScript
 have ts-node && {
-	[ -f test.ts  ] && { ts-node test.ts  "$@"; exit; }
-	[ -f test.tsx ] && { ts-node test.tsx "$@"; exit; }
+	export TS_NODE_COMPILER_OPTIONS='{"jsx": "react", "target": "esnext", "noEmit": true}'
+	[ -f test.tsx ] && exec ts-node test.tsx "$@"
+	[ -f test.ts  ] && exec ts-node test.ts  "$@"
 }
 
 # WebAssembly
 have wasmtime && {
-	[ -f test.wat  ] && { wasmtime test.wat  "$@"; exit; }
-	[ -f test.wast ] && { wasmtime test.wast "$@"; exit; }
+	[ -f test.wat  ] && exec wasmtime test.wat  "$@"
+	[ -f test.wast ] && exec wasmtime test.wast "$@"
 }
 
 # PostScript
-[ -f test.ps ] && have gs && {
-	gs -sDEVICE=txtwrite -sOutputFile=- -q -sBATCH -dNOPAUSE -dNOSAFER -I. -- test.ps "$@"
-	exit
-}
+[ -f test.ps ] && have gs && \
+	exec gs -sDEVICE=txtwrite -sOutputFile=- -q -sBATCH -dNOPAUSE -dNOSAFER -I. -- test.ps "$@"
 
 # PowerShell
-[ -f test.ps1 ] && have pwsh && {
-	pwsh -File test.ps1 "$@"
-	exit
-}
+[ -f test.ps1 ] && have pwsh && \
+	exec pwsh -File test.ps1 "$@"
 
 # AppleScript
-[ -f test.scpt ] && have osascript && {
-	osascript -l AppleScript test.scpt "$@"
-	exit
-}
+[ -f test.scpt ] && have osascript && \
+	exec osascript -l AppleScript test.scpt "$@"
 
 # Haskell
-[ -f test.hs ] && have ghc runghc && {
-	runghc test.hs "$@"
-	exit
-}
+[ -f test.hs ] && have ghc runghc && \
+	exec runghc test.hs "$@"
+
+# Emacs Lisp
+[ -f test.el ] && have emacs && \
+	exec emacs --script test.el "$@"
 
 # Various other programming languages
-[ -f test.awk ] && { awk -f test.awk;     exit; }
-[ -f test.lua ] && { lua ./test.lua "$@"; exit; }
-[ -f test.tcl ] && { tclsh test.tcl "$@"; exit; }
-[ -f test.sh  ] && {      ./test.sh "$@"; exit; }
-[ -f test.pl  ] && { perl ./test.pl "$@"; exit; }
-[ -f test.rb  ] && { ruby ./test.rb "$@"; exit; }
-[ -f test.js  ] && { node ./test.js "$@"; exit; }
+[ -f test.awk ] && exec awk -f test.awk
+[ -f test.lua ] && exec lua ./test.lua "$@"
+[ -f test.tcl ] && exec tclsh test.tcl "$@"
+[ -f test.sh  ] && exec      ./test.sh "$@"
+[ -f test.pl  ] && exec perl ./test.pl "$@"
+[ -f test.rb  ] && exec ruby ./test.rb "$@"
+[ -f test.js  ] && exec node ./test.js "$@"
 
 # JavaScript with native module support
-[ -f test.mjs ] && have node && {
-	node --experimental-modules test.mjs "$@"
-	exit
-}
+[ -f test.mjs ] && have node && \
+	exec node --experimental-modules test.mjs "$@"
 
 # Makefile: "make test" (GNU Make only)
 [ -f Makefile ] && grep Makefile -qe ^test: && {
 	if have gmake; then
-		gmake test
-		exit
+		exec gmake test
 	elif make --version 2>/dev/null | grep -q GNU; then
-		make test
-		exit
+		exec make test
 	fi
 }
 
 # Rakefile
 [ -f Rakefile ] && have bundle rake && {
+	# shellcheck disable=SC2145
 	[ -f "$1" ] && case $1 in *.rb) set -- "TEST=$@";; esac
-	LANG=en_AU.UTF-8 bundle exec rake test "$@"
-	exit
+	LANG=en_AU.UTF-8 exec bundle exec rake test "$@"
 }
 
 # Atom
-[ -d spec ] && have atom && {
-	atom -t spec;
-	exit;
-}
+[ -d spec ] && have atom && \
+	exec atom -t spec
 
 # Atom + Mocha
-[ -d test ] && [ -d node_modules/atom-mocha ] && have atom mocha && {
-	atom -t test;
-	exit;
-}
+[ -d test ] && [ -d node_modules/atom-mocha ] && have atom mocha && \
+	exec atom -t test
 
 # Mocha
-[ -d test ] && have mocha && {
-	mocha
-	exit
-}
+[ -d test ] && have mocha && \
+	exec mocha
 
 # C: Compile, run, delete
 [ -f test.c ] && {
 	cc -o test.c.tmp test.c || exit $?
 	./test.c.tmp "$@"
 	set -- $?
-	rm ./test.c.tmp
-	exit $1
+	rm -f ./test.c.tmp
+	exit "$1"
 }
 
 # V: Compile, run, delete
@@ -131,12 +118,12 @@ have wasmtime && {
 	v -o test.v.tmp test.v
 	./test.v.tmp "$@"
 	set -- $?
-	rm ./test.v.tmp
-	exit $1
+	rm -f ./test.v.tmp
+	exit "$1"
 }
 
 # Unknown executable assumed to be a test-script
-[ -x test ] && [ -f test ] && { ./test "$@"; exit; }
+[ -x test ] && [ -f test ] && exec ./test "$@"
 
 # No tests found; do nothing
 true
