@@ -333,10 +333,10 @@ listbinary(){
 
 
 # Print a directory file listing ordered by modification time
-recentlychanged(){
+outline(){
 	[ -n "$1" ] || set -- .
 	[ -d "$1" ] || {
-		printf 'Usage: recentlychanged /path/to/root/dir\n'
+		printf 'Usage: outline /path/to/root/dir\n'
 		return 1
 	}
 	case `stat --version 2>&1` in
