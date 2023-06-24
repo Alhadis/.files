@@ -126,6 +126,19 @@ command -v startxfce4 >/dev/null 2>&1 && [ "$DISPLAY" ] && {
 	}
 }
 
+# Link Audacity preferences
+# shellcheck disable=SC2165,SC2167,SC3009
+for dir in ~/Library/Application\ Support/audacity ~/.audacity-data; do
+	[ -d "$dir" ] || continue
+	link=~/.files/etc/audacity/config
+	[ -h "$link" ] || ln -sf "$dir" "$link"
+	for dir in "${link%/*}"/{Macros,Plug-Ins}; do
+		set -- "${link%/*}/${dir##*/}" "$link/${dir##*/}"
+		[ -h "$2" ] || rm -rf "$2" && ln -sf "$@"
+	done
+	break
+done
+
 
 # Perform platform-specific install stuff
 case `uname -s` in

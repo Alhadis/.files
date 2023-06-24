@@ -1,0 +1,2 @@
+Normalize:ApplyGain="1" PeakLevel="-1" RemoveDcOffset="1" StereoIndependent="0"
+ExportMP3:
