@@ -53,7 +53,6 @@
 	<command key="" name="SelCursorStoredCursor"/>
 	<command key="" name="StoreCursorPosition"/>
 	<command key="" name="ZeroCross"/>
-	<command key="" name="ZoomSel"/>
 	<command key="" name="ZoomToggle"/>
 	<command key="" name="AdvancedVZoom"/>
 	<command key="" name="FitV"/>
@@ -340,7 +339,7 @@
 	<command key="Ctrl+S"       name="Save"/>
 	<command key="Shift+Ctrl+S" name="SaveAs"/>
 	<command key="Ctrl+I"       name="ImportAudio"/>
-	<command key="Ctrl+E"       name="Export"/>
+	<command key="Shift+Ctrl+E" name="Export"/>
 	<command key="Ctrl+Q"       name="Exit"/>
 	<command key="Ctrl+Z"       name="Undo"/>
 	<command key="Shift+Ctrl+Z" name="Redo"/>
@@ -356,6 +355,7 @@
 	<command key="Ctrl+0"       name="ZoomNormal"/>
 	<command key="Ctrl+="       name="ZoomIn"/>
 	<command key="Ctrl+-"       name="ZoomOut"/>
+	<command key="Ctrl+E"       name="ZoomSel"/>
 	<command key="Space"        name="DefaultPlayStop"/>
 	<command key="Home"         name="CursProjectStart"/>
 	<command key="End"          name="CursProjectEnd"/>
