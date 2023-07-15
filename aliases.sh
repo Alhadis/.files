@@ -127,6 +127,10 @@ alias trimend='sed -e :a -e '"'"'/^\n*$/{$d;N;};/\n$/ba'"'"
 alias prune='find -L . -name . -o -type d -prune -o -type l -exec rm -v {} +'
 
 
+# List files with at least one hard-link
+alias hardlinks='find . \! -type d \! -links 1'
+
+
 # Transliterate non-ASCII characters to their nearest ASCII equivalents
 have uconv && alias asciify='uconv -x ":: Any-Latin; :: Latin-ASCII; [:^ASCII:] > \\_"'
 
