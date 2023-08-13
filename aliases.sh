@@ -243,6 +243,9 @@ case `uname -s` in
 		# Remove annoying extended attributes added to downloads
 		alias unquarantine='xattr -d com.apple.quarantine * 2>/dev/null || true'
 		
+		# Locate an “.app” bundle by ID
+		alias findapp='mdfind "kMDItemContentType = com.apple.application-bundle && kMDItemCFBundleIdentifier ="'
+		
 		# Alias unreachable commands specific to macOS
 		alias scrub='~/.files/etc/darwin/scrub.sh'
 		alias PlistBuddy='/usr/libexec/PlistBuddy'
