@@ -21,6 +21,7 @@ paths='
 	~/.wasmtime/bin
 	~/.deno/bin
 	~/.local/bin
+	~/perl5/bin
 	~/go/bin
 	~/Forks/depot_tools
 '; for path in $paths; do
@@ -74,10 +75,12 @@ export WASMTIME_HOME=~/.wasmtime
 [ "$DISPLAY" ] || case `uname` in [Dd]arwin) export DISPLAY=1 ;; esac
 
 # Perl/CPAN modules path
-export PERL5LIB=~/perl5/lib/perl5:$PERL5LIB
-export PERL_LOCAL_LIB_ROOT=~/perl5:$PERL_LOCAL_LIB_ROOT
-export PERL_MB_OPT='--install_base "~/perl5"'
-export PERL_MM_OPT="INSTALL_BASE=~/perl5"
+have perl && [ -d ~/perl5 ] && {
+	export PERL5LIB=~/perl5/lib/perl5:$PERL5LIB
+	export PERL_LOCAL_LIB_ROOT=~/perl5:$PERL_LOCAL_LIB_ROOT
+	export PERL_MB_OPT='--install_base "~/perl5"'
+	export PERL_MM_OPT="INSTALL_BASE=~/perl5"
+}
 
 # Prefer Emacs for terminal-based editing
 EDITOR=`command -v emacs 2>/dev/null`
