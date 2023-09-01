@@ -1,243 +1,5 @@
 #!/bin/sh
 
-# Jump to whatever directory contains a file or executable
-visit(){
-	[ -n "$1" ] || {
-		>&2 printf "Usage: visit [file | command]\n";
-		return 1;
-	}
-
-	# If given a directory, go to it
-	[ -d "$1" ] && { cd "$1"; return; }
-
-	path=`command -v "$1" 2>/dev/null || printf %s "$1"`;
-
-	[ -e "$path" ] || {
-		>&2 printf 'Not found: %s\n' "$path";
-		return 1;
-	}
-
-	# Resolve symbolic links if possible
-	command -v realpath 2>&1 >/dev/null && path=`realpath "$path"`
-	cd "${path%/*}"
-	unset path
-}
-
-
-# Generate a unified diff with highlighting
-diff(){
-	set -- diff -r -U4 "$@"
-	if [ ! -t 1 ]; then command "$@"; return $?; fi
-	command "$@" | format-diff
-}
-
-
-# Run git-status(1) with an empty line inserted before each list of changes
-g(){
-	if [ ! -t 1 ]; then git status "$@"; return $?; fi
-	git -c color.status=always status "$@" \
-	| sed -e '1h;1!H;$!d;x;{s/\(\n[^]*\)\(\n\)\([[:blank:]]*\[\)/\1\2\2\3/g;}'
-}
-
-
-# Locate files by name
-f(){
-	find . -type f -name "*$1*";
-}
-
-
-# Browse a manual-page's source code
-mansrc(){
-	less `man -w $@`
-}
-
-
-# Browse an executable's source code
-src(){
-	less `command -v "$1"`
-}
-
-
-# Print bytes by decimal value
-bytes(){
-	case $1 in -h|--help|-\?|'')
-		printf >&2 'Usage: bytes [0..255]\n'; [ "$1" ]
-		return ;;
-	esac
-	printf %b "`printf \\\\%03o "$@"`"
-}
-
-
-# Display file permissions in octal format
-ostat(){
-	case $1 in -h|--help|-\?|'')
-		printf >&2 'Usage: ostat [...files]\n'; [ "$1" ]
-		return ;;
-	esac
-	
-	# GNU/Linux
-	if command -v gstat >/dev/null 2>&1; then gstat -c %a "$@"
-	elif stat -c %a /   >/dev/null 2>&1; then stat  -c %a "$@"
-	
-	# BSD derivatives
-	else while [ $# -gt 0 ]; do
-		stat -f %Op "$1" | tail -c4
-		shift
-	done; fi
-}
-
-
-# Display modification date as a Unix timestamp
-unixstamp(){
-	case `stat --version 2>/dev/null` in
-		*GNU*) stat -c %Y "$@" ;; # Linux
-		*)     stat -f %m "$@" ;; # BSD/macOS
-	esac
-}
-
-
-# Quick 2-way conversion of WebP images
-webp(){
-	[ -z "$1" ] && {
-		>&2 printf 'Usage: webp /path/to/file\n'
-		return 1
-	}
-	[ ! -f "$1" ] && {
-		>&2 printf "ERROR: \"%s\" isn't a valid image file.\n" "$1"
-		return 1
-	}
-	case $1 in
-		*.webp) dwebp "$1" -o "${1%.webp}.png";;
-		*)      cwebp "$1" -o "${1%.[[:alnum:]]*}.webp";;
-	esac
-}
-
-
-# Encode characters that have a special meaning in URIs
-encodeurl(){
-	for arg in "$@"; do
-		# Use JavaScript's URI-encoding function if possible
-		if command -v node 2>&1 >/dev/null; then
-			arg=`printf %s "$arg" | sed 's/"/\\"/g'`
-			node -pe 'encodeURIComponent("'"$arg"'").replace(/%20/g, "+")'
-		else
-			printf '%s\n' "$arg" | sed 's,/,%2F,g; s/\\/%5C/g;
-			s/\?/%3F/g; s/&/%26/g; s/\+/%2B/g; s/\s+|%20/+/g'
-		fi
-	done
-}
-
-
-# Convert a font using FontForge
-have fontforge && convertfont()(
-	cmd=~/.files/etc/convert-font.ff
-	ext=${1#.}
-	shift
-	while [ $# -gt 0 ]; do
-		fontforge -quiet -lang=ff -script "$cmd" "$1" "${1%.*}.$ext" || return $?
-		shift
-	done
-)
-
-
-# Execute a PostScript program
-gx(){
-	command -v \gs >/dev/null 2>&1 || {
-		>&2 printf 'GhostScript is required to use this function.\n'
-		return 1
-	}
-	if   [ ! -t 0    ]; then set -- - "$@"; fi
-	if   [ "$1" = -  ]; then shift; set -- /dev/stdin "$@"
-	elif [ ! -f "$1" ]; then >&2 printf 'gs: No such file: %s\n' "$1"; set --
-	elif [ $# -lt 1  ]; then >&2 printf 'Usage: gx file.ps [args...]\n'; return 1
-	fi; \gs -sDEVICE=txtwrite -sOutputFile=- -q -sBATCH -dNOPAUSE -dNOSAFER -I. -- "$@"
-}
-
-
-# Convert PostScript to PNG
-ps2png(){
-	command -v gs 2>&1 >/dev/null || {
-		>&2 printf 'GhostScript is required to use this function.\n'
-		return 1
-	}
-	[ $# -lt 1 ] && {
-		>&2 printf 'Usage: ps2png [files...]\n'
-		return 1
-	}
-	for arg in "$@"; do
-		\gs -q -r300 -dTextAlphaBits=4 -sDEVICE=png16m -o "${arg%.ps}-%d.png" "$arg"
-	done; unset arg
-}
-
-
-# Make other people's projects less aggravating to read
-unfuck(){
-	command -v prettier 2>&1 >/dev/null || {
-		>&2 printf 'Prettier is required to use this function.\n'
-		return 1
-	}
-	[ $# -gt 0 ] || set -- "**/*.{js,jsx,json,ts,mjs,css,less,scss}"
-	prettier >/dev/null \
-		--config ~/Labs/JG/etc/.prettierrc.json \
-		--with-node-modules \
-		--loglevel silent \
-		--no-editorconfig \
-		--write -- "$@"
-}
-
-
-# Print machine's local IP address
-localip(){
-	case `uname -s` in
-		Darwin) ipconfig getifaddr en0;;
-		Linux)  ip route get 1;;
-		*) ifconfig | sed -n '
-			s/^/ /; s/$/ /
-			s/[:[:blank:]]127\.0\.0\.1[[:blank:]]//g
-			s/.*inet \(addr:\)\{0,1\}\(\([0-9]*\.\)\{3\}[0-9]*\).*/\2/p
-		' | head -n1;;
-	esac
-}
-
-
-# Print geographical location of an IP address
-iplocation(){
-	[ $# -eq 0 ] && {
-		>&2 printf 'Usage: iplocation [ip-addr]\n'
-		return 1
-	}
-	(printf %s "$1" | grep -Eqe '^([0-9]+\.){3}[0-9]+') || {
-		>&2 printf 'Not an IP address: %s\n' "$1"
-		return 2
-	}
-	printf '%s\n' "`curl -s "https://extreme-ip-lookup.com/json/$1"`" | json -i
-}
-
-
-# Empty clipboard, wipe history logs, and nuke pointless junk
-purge(){
-	rm -fP .{irb,units,node_repl,python}_history .lesshst ~/.DS_Store
-	case `uname -s` in [Dd]arwin) rm -fP ~/.Trash/* ~/.Trash/.DS_Store;; esac
-	case "${0##-}"  in bash) history -c;; esac
-	clip -c
-}
-
-
-# Archive files using 7-Zip's strongest compression settings
-crush(){
-	command -v 7z 2>&1 >/dev/null || {
-		>&2 printf 'error: p7zip not installed or 7z executable not in path\n'
-		return 1
-	}
-	case $# in
-		0) >&2 printf 'Usage: crush /path/to/file.psd\n'; return 1 ;;
-		1) name=`basename "${1%.[[:alnum:]]*}" | sed 's/[[:blank:]]/-/g; s/--*/-/g'`;;
-		*) name=archive ;;
-	esac
-	7z a -t7z -m0=lzma -mx=9 -mfb=64 -md=32m -ms=on "${name}.7z" "$@"
-}
-
-
 # Create an archive of each specified directory
 archive()(
 	[ $# -eq 0 ] && {
@@ -262,6 +24,72 @@ archive()(
 	done
 )
 
+# Print bytes by decimal value
+bytes(){
+	case $1 in -h|--help|-\?|'')
+		printf >&2 'Usage: bytes [0..255]\n'; [ "$1" ]
+		return ;;
+	esac
+	printf %b "`printf \\\\%03o "$@"`"
+}
+
+# Convert a font using FontForge
+have fontforge && convertfont()(
+	cmd=~/.files/etc/convert-font.ff
+	ext=${1#.}
+	shift
+	while [ $# -gt 0 ]; do
+		fontforge -quiet -lang=ff -script "$cmd" "$1" "${1%.*}.$ext" || return $?
+		shift
+	done
+)
+
+# Archive files using 7-Zip's strongest compression settings
+crush(){
+	command -v 7z 2>&1 >/dev/null || {
+		>&2 printf 'error: p7zip not installed or 7z executable not in path\n'
+		return 1
+	}
+	case $# in
+		0) >&2 printf 'Usage: crush /path/to/file.psd\n'; return 1 ;;
+		1) name=`basename "${1%.[[:alnum:]]*}" | sed 's/[[:blank:]]/-/g; s/--*/-/g'`;;
+		*) name=archive ;;
+	esac
+	7z a -t7z -m0=lzma -mx=9 -mfb=64 -md=32m -ms=on "${name}.7z" "$@"
+}
+
+# Generate a unified diff with highlighting
+diff(){
+	set -- diff -r -U4 "$@"
+	if [ ! -t 1 ]; then command "$@"; return $?; fi
+	command "$@" | format-diff
+}
+
+# Encode characters that have a special meaning in URIs
+encodeurl(){
+	for arg in "$@"; do
+		# Use JavaScript's URI-encoding function if possible
+		if command -v node 2>&1 >/dev/null; then
+			arg=`printf %s "$arg" | sed 's/"/\\"/g'`
+			node -pe 'encodeURIComponent("'"$arg"'").replace(/%20/g, "+")'
+		else
+			printf '%s\n' "$arg" | sed 's,/,%2F,g; s/\\/%5C/g;
+			s/\?/%3F/g; s/&/%26/g; s/\+/%2B/g; s/\s+|%20/+/g'
+		fi
+	done
+}
+
+# Locate files by name
+f(){
+	find . -type f -name "*$1*";
+}
+
+# Run git-status(1) with an empty line inserted before each list of changes
+g(){
+	if [ ! -t 1 ]; then git status "$@"; return $?; fi
+	git -c color.status=always status "$@" \
+	| sed -e '1h;1!H;$!d;x;{s/\(\n[^]*\)\(\n\)\([[:blank:]]*\[\)/\1\2\2\3/g;}'
+}
 
 # Render a GitHub-flavoured markdown document
 gfm(){
@@ -293,6 +121,100 @@ gfm(){
 	[ -t 1 ] && echo || :
 }
 
+# Execute a PostScript program
+gx(){
+	command -v \gs >/dev/null 2>&1 || {
+		>&2 printf 'GhostScript is required to use this function.\n'
+		return 1
+	}
+	if   [ ! -t 0    ]; then set -- - "$@"; fi
+	if   [ "$1" = -  ]; then shift; set -- /dev/stdin "$@"
+	elif [ ! -f "$1" ]; then >&2 printf 'gs: No such file: %s\n' "$1"; set --
+	elif [ $# -lt 1  ]; then >&2 printf 'Usage: gx file.ps [args...]\n'; return 1
+	fi; \gs -sDEVICE=txtwrite -sOutputFile=- -q -sBATCH -dNOPAUSE -dNOSAFER -I. -- "$@"
+}
+
+# Compare filesize before and after gzip compression
+# - Source: https://github.com/mathiasbynens/dotfiles
+gzcmp(){
+	origsize=`wc -c < "$1"`
+	gzipsize=`gzip -c "$1" | wc -c`
+	ratio=`printf '%d * 100 / %d\n' "$gzipsize" "$origsize" | bc -l`
+	printf 'Original: %d bytes\n' "$origsize"
+	printf 'Gzipped:  %d bytes (%2.2f%%)\n' "$gzipsize" "$ratio"
+	unset origsize gzipsize ratio
+}
+
+# Print geographical location of an IP address
+iplocation(){
+	[ $# -eq 0 ] && {
+		>&2 printf 'Usage: iplocation [ip-addr]\n'
+		return 1
+	}
+	(printf %s "$1" | grep -Eqe '^([0-9]+\.){3}[0-9]+') || {
+		>&2 printf 'Not an IP address: %s\n' "$1"
+		return 2
+	}
+	printf '%s\n' "`curl -s "https://extreme-ip-lookup.com/json/$1"`" | json -i
+}
+
+# Print names of files containing binary (non-textual) data
+listbinary(){
+	for i in "$@"; do
+		[ ! -f "$i" ] && continue;
+		[ ! -s "$i" ] || grep -Iq "$i" -Ee. || printf %s\\n "$i";
+	done
+}
+
+# Print machine's local IP address
+localip(){
+	case `uname -s` in
+		Darwin) ipconfig getifaddr en0;;
+		Linux)  ip route get 1;;
+		*) ifconfig | sed -n '
+			s/^/ /; s/$/ /
+			s/[:[:blank:]]127\.0\.0\.1[[:blank:]]//g
+			s/.*inet \(addr:\)\{0,1\}\(\([0-9]*\.\)\{3\}[0-9]*\).*/\2/p
+		' | head -n1;;
+	esac
+}
+
+# Browse a manual-page's source code
+mansrc(){
+	less `man -w $@`
+}
+
+# Display file permissions in octal format
+ostat(){
+	case $1 in -h|--help|-\?|'')
+		printf >&2 'Usage: ostat [...files]\n'; [ "$1" ]
+		return ;;
+	esac
+	
+	# GNU/Linux
+	if command -v gstat >/dev/null 2>&1; then gstat -c %a "$@"
+	elif stat -c %a /   >/dev/null 2>&1; then stat  -c %a "$@"
+	
+	# BSD derivatives
+	else while [ $# -gt 0 ]; do
+		stat -f %Op "$1" | tail -c4
+		shift
+	done; fi
+}
+
+# Print a directory file listing ordered by modification time
+outline(){
+	[ -n "$1" ] || set -- .
+	[ -d "$1" ] || {
+		printf 'Usage: outline /path/to/root/dir\n'
+		return 1
+	}
+	case `stat --version 2>&1` in
+		*GNU*) stat="stat --printf=%Y\t%n\n";;
+		*)     stat='stat -f %m%t%N';;
+	esac
+	find "$1" -type f -exec $stat {} + | sort -n
+}
 
 # Pretty-print a variable containing a colon-delimited path-list
 ppls(){
@@ -311,6 +233,28 @@ ppls(){
 	unset nolabel
 }
 
+# Convert PostScript to PNG
+ps2png(){
+	command -v gs 2>&1 >/dev/null || {
+		>&2 printf 'GhostScript is required to use this function.\n'
+		return 1
+	}
+	[ $# -lt 1 ] && {
+		>&2 printf 'Usage: ps2png [files...]\n'
+		return 1
+	}
+	for arg in "$@"; do
+		\gs -q -r300 -dTextAlphaBits=4 -sDEVICE=png16m -o "${arg%.ps}-%d.png" "$arg"
+	done; unset arg
+}
+
+# Empty clipboard, wipe history logs, and nuke pointless junk
+purge(){
+	rm -fP .{irb,units,node_repl,python}_history .lesshst ~/.DS_Store
+	case `uname -s` in [Dd]arwin) rm -fP ~/.Trash/* ~/.Trash/.DS_Store;; esac
+	case "${0##-}"  in bash) history -c;; esac
+	clip -c
+}
 
 # Alphabetise a list of SHA-256 checksums
 sortsha(){
@@ -322,30 +266,72 @@ sortsha(){
 	unset sorted
 }
 
-
-# Print names of files containing binary (non-textual) data
-listbinary(){
-	for i in "$@"; do
-		[ ! -f "$i" ] && continue;
-		[ ! -s "$i" ] || grep -Iq "$i" -Ee. || printf %s\\n "$i";
-	done
+# Browse an executable's source code
+src(){
+	less `command -v "$1"`
 }
 
-
-# Print a directory file listing ordered by modification time
-outline(){
-	[ -n "$1" ] || set -- .
-	[ -d "$1" ] || {
-		printf 'Usage: outline /path/to/root/dir\n'
+# Make other people's projects less aggravating to read
+unfuck(){
+	command -v prettier 2>&1 >/dev/null || {
+		>&2 printf 'Prettier is required to use this function.\n'
 		return 1
 	}
-	case `stat --version 2>&1` in
-		*GNU*) stat="stat --printf=%Y\t%n\n";;
-		*)     stat='stat -f %m%t%N';;
-	esac
-	find "$1" -type f -exec $stat {} + | sort -n
+	[ $# -gt 0 ] || set -- "**/*.{js,jsx,json,ts,mjs,css,less,scss}"
+	prettier >/dev/null \
+		--config ~/Labs/JG/etc/.prettierrc.json \
+		--with-node-modules \
+		--loglevel silent \
+		--no-editorconfig \
+		--write -- "$@"
 }
 
+# Display modification date as a Unix timestamp
+unixstamp(){
+	case `stat --version 2>/dev/null` in
+		*GNU*) stat -c %Y "$@" ;; # Linux
+		*)     stat -f %m "$@" ;; # BSD/macOS
+	esac
+}
+
+# Jump to whatever directory contains a file or executable
+visit(){
+	[ -n "$1" ] || {
+		>&2 printf "Usage: visit [file | command]\n";
+		return 1;
+	}
+
+	# If given a directory, go to it
+	[ -d "$1" ] && { cd "$1"; return; }
+
+	path=`command -v "$1" 2>/dev/null || printf %s "$1"`;
+
+	[ -e "$path" ] || {
+		>&2 printf 'Not found: %s\n' "$path";
+		return 1;
+	}
+
+	# Resolve symbolic links if possible
+	command -v realpath 2>&1 >/dev/null && path=`realpath "$path"`
+	cd "${path%/*}"
+	unset path
+}
+
+# Quick 2-way conversion of WebP images
+webp(){
+	[ -z "$1" ] && {
+		>&2 printf 'Usage: webp /path/to/file\n'
+		return 1
+	}
+	[ ! -f "$1" ] && {
+		>&2 printf "ERROR: \"%s\" isn't a valid image file.\n" "$1"
+		return 1
+	}
+	case $1 in
+		*.webp) dwebp "$1" -o "${1%.webp}.png";;
+		*)      cwebp "$1" -o "${1%.[[:alnum:]]*}.webp";;
+	esac
+}
 
 # Print the URL whence a file was downloaded
 have xattr && wherefrom()(
@@ -357,15 +343,3 @@ have xattr && wherefrom()(
 		esac; break
 	done
 )
-
-
-# Compare filesize before and after gzip compression
-# - Source: https://github.com/mathiasbynens/dotfiles
-gzcmp(){
-	origsize=`wc -c < "$1"`
-	gzipsize=`gzip -c "$1" | wc -c`
-	ratio=`printf '%d * 100 / %d\n' "$gzipsize" "$origsize" | bc -l`
-	printf 'Original: %d bytes\n' "$origsize"
-	printf 'Gzipped:  %d bytes (%2.2f%%)\n' "$gzipsize" "$ratio"
-	unset origsize gzipsize ratio
-}
