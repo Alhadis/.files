@@ -288,9 +288,31 @@ unfuck(){
 
 # Display modification date as a Unix timestamp
 unixstamp(){
-	case `stat --version 2>/dev/null` in
-		*GNU*) stat -c %Y "$@" ;; # Linux
-		*)     stat -f %m "$@" ;; # BSD/macOS
+	# Handle unrecognised options
+	case $1 in --help|--short|-[-hs]);; -?*)
+		printf >&2 "unixstamp: illegal option '%s'\n" "$1"
+		shift; set -- '' "$@"
+	;; esac
+
+	# Discard options terminator
+	[ "$1" = -- ] && shift
+
+	case $1 in
+		-h|--help|-\?|'')
+			printf >&2 'Usage: unixstamp [-s|--short] ...files\n'; [ "$1" ]
+			return ;;
+		
+		# Force low-precision (seconds-based) timestamps if requested
+		-s|--short) shift; case `stat --version 2>/dev/null` in
+			*GNU*) stat -c %Y "$@" ;;
+			*)     stat -f %m "$@" ;;
+		esac ;;
+
+		# Print high-precision timestamps by default
+		*) case `date --version 2>/dev/null` in
+			*GNU*) while [ $# -gt 0 ]; do date -r "$1" +%s.%N; shift; done ;;
+			*)     stat -f %Fm "$@" ;;
+		esac ;;
 	esac
 }
 
