@@ -168,7 +168,7 @@ alias myip='dig +short myip.opendns.com @resolver1.opendns.com'
 
 
 # Generate nicer-looking hexadecimal dumps
-have xxd     && alias xxd='xxd -u -g1'
+have xxd     && alias xxd='NO_COLOR=1 xxd -u -g1'
 have hexdump && alias hexdump='hexdump -v \
 	-e \""[2m│[22m0x%08.8_ax[2m│[22m "\" \
 	-e '\''16/1 "%02X "'\'' \
