@@ -312,7 +312,7 @@ unixstamp(){
 		*) case `date --version 2>/dev/null` in
 			*GNU*) while [ $# -gt 0 ]; do date -r "$1" +%s.%N; shift; done ;;
 			*)     stat -f %Fm "$@" ;;
-		esac ;;
+		esac | sed 's/\.\{0,1\}0*$//';;
 	esac
 }
 
