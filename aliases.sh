@@ -75,7 +75,7 @@ alias s=~/.files/bin/rgrep
 
 # Hide summary lines in tree(1) output
 have tree && if tree -a --noreport ~/.files/share >/dev/null 2>&1
-	then alias tree='tree -a --noreport'
+	then alias tree='tree -a --noreport'; alias bush='tree -spugDF --metafirst --timefmt="%Y-%m-%d %T"'
 	else alias tree='tree -as'
 fi
 
