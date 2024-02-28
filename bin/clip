@@ -1,7 +1,10 @@
 #!/bin/sh
 
 # Split bundled option clusters
-case $1 in -s?*) eval "shift && set -- -s \"${1#??}\" \"\$@\"";; esac
+case $1 in
+	-p?*) eval "shift && set -- -p \"${1#??}\" \"\$@\"";;
+	-l?*) eval "shift && set -- -l \"${1#??}\" \"\$@\"";;
+esac
 
 # Special modes of operation
 case $1 in
@@ -12,20 +15,21 @@ case $1 in
 		exit $?
 	;;
 
-	# List available data formats/targets
-	-l|--list)
-		if command -v osascript >/dev/null
-			then exec ~/.files/etc/darwin/clip-item.scpt
-			else exec xclip -o -sel clip -t TARGETS
-		fi
-	;;
-
-	# Display a particular data format/target stored on the clipboard
-	-s|--select)
-		shift
-		if command -v osascript >/dev/null
-			then exec ~/.files/etc/darwin/clip-item.scpt "$@"
-			else exec xclip -o -sel clip -t "$1"
+	# List or select specific data formats/targets
+	-l|--list|\
+	-p|--print)
+		if [ "$2" ]; then
+			case $1 in -p|--p*) raw='-p';; *) unset raw;; esac
+			shift
+			if command -v osascript >/dev/null
+				then exec ~/.files/etc/darwin/clip-item.scpt $raw "$@"
+				else exec xclip -o -sel clip -t "$1"
+			fi
+		else
+			if command -v osascript >/dev/null
+				then exec ~/.files/etc/darwin/clip-item.scpt
+				else exec xclip -o -sel clip -t TARGETS
+			fi
 		fi
 	;;
 esac
