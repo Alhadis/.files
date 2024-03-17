@@ -20,6 +20,7 @@ Troff
 TypeScript
 Verilog
 WebAssembly
+Yudi
 abampere
 abamperes
 achromatopsia
@@ -88,6 +89,7 @@ heptadic
 hexadic
 icosadic
 identicality
+infobox
 inimicable
 kiloampere
 kiloamperes
@@ -146,6 +148,10 @@ octonary
 octothorpe
 octothorpes
 ogdoadic
+omphaloscepsis
+omphalosceptic
+omphaloskepsis
+omphaloskeptic
 overmorrow
 pentadic
 petabit
@@ -179,6 +185,8 @@ stdin
 stdout
 sthène
 sthènes
+supersedence
+supersedure
 synaesthesis
 teraampere
 teraamperes
