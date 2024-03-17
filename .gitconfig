@@ -46,6 +46,13 @@
 	undo = reset --soft HEAD~1
 	rewind = reset --hard
 
+	# Print the default branch-name used by remote
+	default-branch = "! { \
+		remote=`git remote`; \
+		branch=`git symbolic-ref -q --short \"refs/remotes/$remote/HEAD\"`; \
+		printf '%s\n' \"${branch#\"$remote/\"}\"; \
+	};"
+
 	# Print the object-ID of the branch's last commit
 	latest-hash = show --no-patch --format=%H
 
