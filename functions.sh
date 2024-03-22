@@ -256,6 +256,33 @@ purge(){
 	clip -c
 }
 
+# Extract temporal and spatial data from a “Dynamic Desktop” as JSON
+have plutil && solarInfo(){
+	test -s "$1" || {
+		printf >&2 'solarInfo: No such file: \033[4m%s\033[24m\n' "$1"
+		return 1
+	}
+	exiftool -b -Solar "$1" \
+	| base64 -d \
+	| plutil -convert json -r - -o - \
+	| unexpand -t2 \
+	| sed '
+		s/"ap" *:/"appearance":/
+		s/"d" *:/"dark":/
+		s/"l" *:/"light":/
+		s/"si" *:/"solarInfo":/
+		s/"a" *:/"altitude":/
+		s/"z" *:/"azimuth":/
+		s/"i" *:/"index":/
+		/"o" *:/ {
+			s//"onlyLightMode":/
+			s/: *0\(,*\)$/: false\1/
+			s/: *1\(,*\)$/: true\1/
+		}
+		$ s/^}$/&\n/
+	'
+}
+
 # Alphabetise a list of SHA-256 checksums
 sortsha(){
 	for i in "$@"; do
