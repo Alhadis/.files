@@ -247,6 +247,7 @@ case `uname -s` in
 		alias findapp='mdfind "kMDItemContentType = com.apple.application-bundle && kMDItemCFBundleIdentifier ="'
 		
 		# Alias unreachable commands specific to macOS
+		alias openswith='~/.files/etc/darwin/opens-with.scpt'
 		alias scrub='~/.files/etc/darwin/scrub.sh'
 		alias PlistBuddy='/usr/libexec/PlistBuddy'
 		alias firefox='/Applications/Firefox.app/Contents/MacOS/firefox'
