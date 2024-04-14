@@ -196,6 +196,10 @@ case `uname -s` in
 		have nvi || alias nvi='vi'
 		have nex || alias nex='ex'
 
+		# Shims for missing/non-portable commands
+		have sudo   || alias sudo='doas'
+		have unlink || alias unlink='rm'
+
 		# Run the following commands as superuser by default
 		alias chown='doas chown'
 		alias chgrp='doas chgrp'
