@@ -143,6 +143,7 @@ done
 # Perform platform-specific install stuff
 case `uname -s` in
 	OpenBSD)
+		doas ln -sf ~/.files/etc/hosts          /etc
 		doas ln -sf ~/.files/etc/sysctl.conf    /etc
 		doas ln -sf ~/.files/etc/wsconsctl.conf /etc
 	;;

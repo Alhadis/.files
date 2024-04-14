@@ -1,4 +1,4 @@
-all: configure cronjobs /etc/man.conf /etc/shells
+all: configure cronjobs /etc/man.conf /etc/shells /etc/hosts
 
 # Configure scheduled tasks with launchd(8)
 cron = ~/Library/LaunchAgents
@@ -16,6 +16,14 @@ brew-path = $(shell brew --prefix)/bin
 brew-deps = $(addprefix $(brew-path)/,groff grap less)
 $(brew-deps):
 	HOMEBREW_NO_AUTO_UPDATE=1 brew install $(@F)
+
+# Symlink hosts(5) database
+/etc/hosts: ~/.files/etc/hosts
+	sudo rm -f $@
+	sudo ln -sf $< $@
+	sudo chmod 0644 $@
+	sudo chown -h root:wheel $@
+	sudo killall -HUP mDNSResponder
 
 # Update man.conf(5) to enable UTF-8 output and use Homebrew-installed Groff
 /etc/man.conf: ../man.conf $(brew-deps)
