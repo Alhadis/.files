@@ -145,6 +145,30 @@ gzcmp(){
 	unset origsize gzipsize ratio
 }
 
+# Read IPA notation out loud
+ipa(){
+	case $* in *[![:blank:]/\|]*) ;; *)
+		>&2 printf 'Usage: ipa [text-in-ipa-notation]\n'
+		return 1;;
+	esac
+	printf '{"text": "%s", "voice": "Nicole"}' "$*" \
+	| curl -qLfSs --data @- -X POST \
+		-H Content-Type:\ application/json \
+		'https://iawll6of90.execute-api.us-east-1.amazonaws.com/production' \
+	| jq -r | base64 -d | {
+		if command play --help | grep -iq SoX; then
+			play -qt mp3 -
+		elif command -v ffplay; then
+			ffplay -loglevel 0 -nodisp -autoexit -
+		elif command -v aucat && command -v lame; then
+			lame -r --decode --mp3input - /tmp/ipa.wav &&
+			aucat -i /tmp/ipa.wav
+		elif command -v audacious; then
+			audacious -qH -
+		fi
+	} >/dev/null 2>&1
+}
+
 # Print geographical location of an IP address
 iplocation(){
 	[ $# -eq 0 ] && {
