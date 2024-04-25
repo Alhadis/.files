@@ -11,6 +11,7 @@ curly_bracket_next_line = false
 spaces_around_operators = false
 spaces_around_brackets = none
 indent_brace_style = K&R
+spelling_language = en-AU
 
 [{COMMIT_EDITMSG,MERGE_MSG}]
 trim_trailing_whitespace = true
