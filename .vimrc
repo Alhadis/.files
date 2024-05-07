@@ -27,6 +27,26 @@ if has("gui_running")
 	colorscheme solarized
 endif
 
+" Configure spellcheck
+if has("spell")
+	set spelllang=en_au,en_gb
+	set spelloptions=camel
+	
+	let s:old_syntax = ""
+	let s:new_syntax = ""
+	fun s:SyntaxChanged()
+		let s:new_syntax = ""
+		if exists("b:current_syntax")
+			let s:new_syntax = b:current_syntax
+		endif
+		if     s:new_syntax =~ "gitcommit" | set spell
+		elseif s:old_syntax =~ "gitcommit" | set nospell
+		endif
+		let s:old_syntax = s:new_syntax
+	endfunction
+	autocmd Syntax * call s:SyntaxChanged()
+endif
+
 "======================================================================*
 set number
 set autoread
