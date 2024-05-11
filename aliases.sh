@@ -255,6 +255,7 @@ case `uname -s` in
 		alias scrub='~/.files/etc/darwin/scrub.sh'
 		alias PlistBuddy='/usr/libexec/PlistBuddy'
 		alias firefox='/Applications/Firefox.app/Contents/MacOS/firefox'
+		alias lsregister='/System/Library/Frameworks/CoreServices.framework/Frameworks/LaunchServices.framework/Support/lsregister'
 		
 		# Mount temporary case-sensitive filesystem
 		alias tempfs='hdiutil create -size 512m -fs "Case-sensitive APFS" -type UDIF -nospotlight -attach'
