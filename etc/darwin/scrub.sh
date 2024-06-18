@@ -20,9 +20,18 @@ sudo -v
 # Securely erase trash, unused logs, and autosaved/auto-generated junk
 sudo rm -rfPv ~/.Trash/* /Volumes/*/.Trashes/*
 sudo rm -rfPv ~/.emacs.d/auto-save-list
-sudo rm -fPv  ~/.{bash_history,lesshst,node_repl_history,viminfo}
+sudo rm -fPv  ~/.{{bash,brew_irb,node_repl,python,sqlite}_history,lesshst,viminfo}
 sudo rm -rfPv /private/var/log/asl/*.asl
 
 # Keeping a log of everything I download? Creepy, Apple. Really creepy.
 # - Source: https://macgasm.net/2013/01/18/good-morning-your-mac-keeps-a-log-of-all-your-downloads/
 sqlite3 ~/Library/Preferences/com.apple.LaunchServices.QuarantineEventsV* "DELETE FROM LSQuarantineEvent; VACUUM"
+
+# Clear recent locations
+defaults delete com.apple.appkit.xpc.openAndSavePanelService NSNavRecentPlaces
+defaults delete com.apple.finder FXDesktopVolumePositions
+defaults delete com.apple.finder FXRecentFolders
+defaults delete com.apple.finder RecentMoveAndCopyDestinations
+defaults delete com.apple.Safari RecentWebSearches
+sudo rm -rfPv ~/Library/Application\ Support/com.apple.sharedfilelist/*
+sudo killall Dock
