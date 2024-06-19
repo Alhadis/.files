@@ -216,7 +216,12 @@ Direct link to original (unmodified) file:
 	date=`date +%Y%m%d`
 	https://web.archive.org/web/${DATE}id_/http://site.domain/page.html
 
-Most recently-archived version of a page:
+Newest and oldest versions of an archived page, respectively:
+
+	Latest: https://web.archive.org/web/${URL}
+	Oldest: https://web.archive.org/web/1000/${URL}
+
+JSON API for interrogating a resource's archive status:
 
 	curl "https://archive.org/wayback/available?url=$URL" \
 	| JQ_COLORS= jq -Mre '.archived_snapshots.closest.url | select(. != null)'
