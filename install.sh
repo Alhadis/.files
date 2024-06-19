@@ -103,6 +103,9 @@ command -v gsettings >/dev/null 2>&1 && [ "$DISPLAY" ] && {
 	gsettings set org.gnome.desktop.interface cursor-blink false
 }
 
+# Configure GNU Nano
+command -v nano >/dev/null 2>&1 && make -C ~/.files/share/nano
+
 # Configure Xfce4
 command -v startxfce4 >/dev/null 2>&1 && [ "$DISPLAY" ] && {
 	xfconf-query -nt int -c keyboards -p /Default/KeyRepeat/Delay -s 200

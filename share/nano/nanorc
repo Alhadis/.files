@@ -1,0 +1,83 @@
+## nanorc(5) configuration file
+
+# Whitespace
+unset tabstospaces
+unset noconvert
+unset nonewlines
+set brackets ""'´’”)>]}»›"
+set whitespace "»·"
+set autoindent
+set tabsize 4
+set unix
+
+# Line-wrapping / filling
+unset breaklonglines
+set fill 72
+set punct ".!?…"
+set atblanks
+set trimblanks
+set nowrap
+
+# Default search settings
+unset casesensitive
+set regexp
+
+# Workspace
+unset emptyline
+unset indicator
+unset jumpyscrolling
+unset mouse
+set constantshow
+set linenumbers
+set minibar
+set nohelp
+set softwrap
+set stateflags
+
+# Backups / state retention
+unset allow_insecure_backup
+unset backup
+set backupdir "~/.emacs.d/auto-save-list"
+set historylog
+set positionlog
+set locking
+
+# Colour theme
+set boldtext
+set titlecolor  normal,#666
+set statuscolor normal,#666
+set numbercolor #666
+set selectedcolor ,cyan
+
+# Syntax highlighting
+include "~/.files/share/nano/syntaxes/*/*.nanorc"
+extendsyntax yaml tabgives "    "
+
+# Keybindings
+unbind ^B all
+unbind ^D all
+unbind ^N main
+unbind ^U all
+unbind ^Y all
+unbind M-J main
+unbind M-T main
+bind F1 help all
+bind F1 exit help
+bind F5 refresh main
+bind F7 speller main
+bind ^Z undo main
+bind ^Y redo main
+bind ^X cut main
+bind ^C copy main
+bind ^V paste all
+bind ^Q exit all
+bind ^S savefile main
+bind ^W writeout main
+bind ^O insert main
+bind ^R replace main
+bind ^G gotoline main
+bind ^F whereis all
+bind ^N findnext all
+bind ^Space mark main
+bind M-/ comment main
+set multibuffer

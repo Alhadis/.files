@@ -8,3 +8,6 @@ node_modules
 /etc/audacity/config
 /tmp.sh
 /var
+
+/share/nano/syntaxes/*
+!/share/nano/syntaxes/user

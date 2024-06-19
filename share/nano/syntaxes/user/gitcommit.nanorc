@@ -1,0 +1,28 @@
+# (W.I.P) Syntax highlighting for git-commit(1) messages
+# TODO:
+# - “\sChanges to be committed:\n\s+(modified/renamed/deleted/etc):\s+filename”
+# - "^#\s+On branch (\S+)"
+# - E-mail addresses, URLs, and @mentions
+# - Shortlinks: “user/repo@sha”, “user/repo#\d+”
+# - Autofix keywords: "Fixes:?\s*#\d+"
+
+syntax gitcommit "/(COMMIT_EDIT|MERGE_)MSG$"
+formatter sh "-c" "sed 's/^ \{1,3\}//' | git stripspace -s | fmt -l8 -t4 -w72"
+tabgives "    "
+comment "#"
+
+# Header
+color ,red start="^([^#].{0,49})" end="(.*)$"
+color bold,yellow "^[^#].{0,49}$"
+
+# Paragraphs
+color slate start="^\s*$" end="\x00"
+color ,red "^[^#].{72,}"
+color cyan "^ {2,}\S.*$"
+
+# Trailers
+icolor cyan start="^(Acked|Bug|Change-ID|Commit-Queue|CR-Commit-Position|References?|See(\s+also)?|(Signed-off|Reviewed|Co-authored)-(by|on)):\s+" end="\s*$"
+icolor orange     "^(Acked|Bug|Change-ID|Commit-Queue|CR-Commit-Position|References?|See(\s+also)?|(Signed-off|Reviewed|Co-authored)-(by|on)):\s+"
+
+# Comments
+color red "^#.*"
