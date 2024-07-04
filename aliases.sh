@@ -201,17 +201,10 @@ case `uname -s` in
 		have unlink || alias unlink='rm'
 
 		# Run the following commands as superuser by default
-		alias chown='doas chown'
-		alias chgrp='doas chgrp'
-		alias chmod='doas chmod'
-		alias mount='doas mount'
-		alias umount='doas umount'
-		alias pkg_add='doas pkg_add'
-		alias pkg_delete='doas pkg_delete'
-		have mount.exfat-fuse && {
-			alias mount.exfat='doas mount.exfat'
-			alias mount.exfat-fuse='doas mount.exfat-fuse'
-		}
+		# shellcheck disable=SC3009,SC2139
+		for fn in cdio ch{own,grp,mod} {,u}mount pkg_{add,delete} syspatch mount.exfat{,-fuse}; do
+			have "$fn" && alias "$fn"="doas $fn"
+		done; unset fn
 	;;
 
 	Darwin)
