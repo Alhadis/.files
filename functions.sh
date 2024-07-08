@@ -226,20 +226,6 @@ ostat(){
 	done; fi
 }
 
-# Print a directory file listing ordered by modification time
-outline(){
-	[ -n "$1" ] || set -- .
-	[ -d "$1" ] || {
-		printf 'Usage: outline /path/to/root/dir\n'
-		return 1
-	}
-	case `stat --version 2>&1` in
-		*GNU*) stat="stat --printf=%Y\t%n\n";;
-		*)     stat='stat -f %m%t%N';;
-	esac
-	find "$1" -type f -exec $stat {} + | sort -n
-}
-
 # Pretty-print a variable containing a colon-delimited path-list
 ppls(){
 	case $# in
@@ -404,6 +390,20 @@ webp(){
 		*.webp) dwebp "$1" -o "${1%.webp}.png";;
 		*)      cwebp "$1" -o "${1%.[[:alnum:]]*}.webp";;
 	esac
+}
+
+# Print a directory file listing ordered by modification time
+whatchanged(){
+	[ -n "$1" ] || set -- .
+	[ -d "$1" ] || {
+		printf 'Usage: whatchanged /path/to/root/dir\n'
+		return 1
+	}
+	case `stat --version 2>&1` in
+		*GNU*) stat="stat --printf=%Y\t%n\n";;
+		*)     stat='stat -f %m%t%N';;
+	esac
+	find "$1" -type f -exec $stat {} + | sort -n
 }
 
 # Print the URL whence a file was downloaded
