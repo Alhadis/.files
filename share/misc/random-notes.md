@@ -232,3 +232,14 @@ Modify `$ARGV` whilst keeping first `N` arguments
 -------------------------------------------------
 
 	eval "shift 2 && set -- \"$1\" \"\$@\""
+
+
+
+Work around overzealous comment censors
+---------------------------------------
+
+	U+202C POP DIRECTIONAL FORMATTING
+	U+202D LEFT-TO-RIGHT OVERRIDE
+	U+202E RIGHT-TO-LEFT OVERRIDE
+	U+00A0 NO-BREAK SPACE
+	(Followed by characters in reverse order)
