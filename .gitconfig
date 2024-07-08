@@ -34,6 +34,10 @@
 [stash]
 	showIncludeUntracked = true
 	showPatch = true
+[versionsort]
+	suffix = -alpha
+	suffix = -beta
+	suffix = -rc
 
 # User-defined git(1) subcommands
 [alias]
