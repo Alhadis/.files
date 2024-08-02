@@ -1,0 +1,20 @@
+##
+## uBlock Origin :: Trusted site directives
+## https://github.com/gorhill/uBlock/wiki/Dashboard:-Trusted-sites
+##
+
+# Predefined directives
+chrome-extension-scheme
+moz-extension-scheme
+
+# Obsolete directives (as of uBlock 1.56.1b1)
+about-scheme
+chrome-scheme
+edge-scheme
+opera-scheme
+vivaldi-scheme
+wyciwyg-scheme
+
+# User-defined whitelist
+ecosia.org
+yifytsubtitles.com

@@ -18,6 +18,10 @@ sourceforge.net###newsletter-floating
 web.dev##a[href*="/newsletter/" i]
 web.dev##share-action
 
+! "Sign in with Google" pop-ups
+###credential_picker_container:has(> iframe[src*=".google.com/" i])
+reddit.*###credential_picker_container
+
 ! Stack Overflow topics I couldn't give a fuck about
 askubuntu.*###sidebar > *:not(.sidebar-related), #left-sidebar
 mathoverflow.*###sidebar > *:not(.sidebar-related), #left-sidebar
@@ -31,4 +35,5 @@ superuser.*###sidebar > *:not(.sidebar-related), #left-sidebar
 developer.mozilla.org##section.place, sup.new
 fontawesome.com###banner[class*=" fa"]
 github.com##.js-notification-top-shelf
+mankier.com##main > a[href*="sponsor" i]
 youtube.com##.ytp-next-button
