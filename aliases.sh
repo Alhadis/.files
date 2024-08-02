@@ -247,7 +247,6 @@ case `uname -s` in
 		alias openswith='~/.files/etc/darwin/opens-with.scpt'
 		alias scrub='~/.files/etc/darwin/scrub.sh'
 		alias PlistBuddy='/usr/libexec/PlistBuddy'
-		alias firefox='/Applications/Firefox.app/Contents/MacOS/firefox'
 		alias lsregister='/System/Library/Frameworks/CoreServices.framework/Frameworks/LaunchServices.framework/Support/lsregister'
 		
 		# Mount temporary case-sensitive filesystem
