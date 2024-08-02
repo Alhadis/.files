@@ -100,5 +100,5 @@ done < <(find "${1:-.}" -name "${partial:+*}.DS_Store" -type f -print0 | sort -z
 
 
 	# If there were any files skipped for whatever reason, include those too.
-	[ $skipped -gt 0 ] && { printf '    %s file%s skipped\n' $skipped "$([ $skipped != 1 ] && echo s)"; };
+	[ $skipped -eq 0 ] || printf '    %s file%s skipped\n' $skipped "$([ $skipped != 1 ] && echo s)"
 }
