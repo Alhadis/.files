@@ -2,23 +2,24 @@
 
 #
 # dsclean: Purge directories of .DS_Store junk
+# shellcheck shell=bash
 #
 IFS=${IFS/ /}
 
 
 # Check for "-h" or "--home" long-option
-[[ `echo "$*" | grep -E '(\s|^)(--home|-h)(\s|$)'` != '' ]] && {
-	dsclean "$HOME" 2>/dev/null;
-	exit;
-}
+[[ `echo "$*" | grep -E '(\s|^)(--home|-h)(\s|$)'` != '' ]] &&
+	exec dsclean ~ 2>/dev/null
 
 
-# Parse any options.
-verbose=1
+# Parse any options
+unset partial quiet
 
-while getopts q option; do
+while getopts pq option; do
 	case $option in
-	q) verbose=0 ;; # Suppresses all feedback
+	p) partial=1 ;; # Include filenames merely ending in ".DS_Store"
+	q) quiet=1   ;; # Suppress all feedback
+	*) echo "Usage: $0 [-p] [-q] [/path/to/directory]" >&2; exit 1 ;;
 	esac
 done
 shift $((OPTIND - 1))
@@ -26,7 +27,7 @@ shift $((OPTIND - 1))
 
 
 # Trim trailing slash from directory argument
-[[ $1 =~ /$ ]] && set -- "${1%/}"
+set -- "${1%/}"
 
 
 # Track how many files are deleted, and how many bytes we've saved. Just because.
@@ -41,56 +42,56 @@ b=$(tput sgr0)              # Normal formatting
 blue=$(tput setaf 12)       # Blue-coloured
 arrow="${B}${blue}==>${b}"  # Arrow
 
+if [[ ! ${FORCE_COLOR:+1} && (! -t 1 || $NO_COLOR) ]]; then
+	unset B b blue
+	arrow='==>'
+fi
 
-# Display some feedback if we're running in verbose mode.
-[ $verbose = 1 ] && { echo "$arrow${B} STARTING CLEAN:${b}"; }
+
+# Display some feedback if we're running in verbose mode
+[ "$quiet" ] || echo "$arrow${B} STARTING CLEAN:${b}"
 
 
 # Right. Search and destroy.
-for i in $(find ${1:-.} -name "*.DS_Store" -type f); do
+while IFS= read -r -d '' i; do
 
-	filesize=$(stat -f "%z" $i);
-	directory=$(dirname $i);
-	dirmod=$(stat -f "%Sm" -t "%Y%m%d%H%M.%S" $directory)
-
+	filesize=$(stat -f "%z" "$i")
+	directory=$(dirname "$i")
+	dirmod=$(stat -f "%Sm" -t "%Y%m%d%H%M.%S" "$directory")
 
 	# Kill the file.
-	unlink $i 2>/dev/null && {
+	if rm "$i" 2>/dev/null; then
 
-		# Deleted successfully.
-		if [ $verbose = 1 ]; then printf '    Removed: %s (%s bytes)\n' $i $filesize; fi
-		total_filesize=$(( $total_filesize + $filesize ))
-		removed=$(( $removed + 1 ))
+		# Deleted successfully
+		[ "$quiet" ] || printf '    Removed: %s (%s bytes)\n' "$i" "$filesize"
+		total_filesize=$(( total_filesize + filesize ))
+		removed=$(( removed + 1 ))
 		
-		# Restore the original modification time of the file's containing directory.
-		touch -t $dirmod $directory
-
-	} || {
-		
+		# Restore the original modification time of the file's containing directory
+		touch -t "$dirmod" "$directory"
+	else
 		# File isn't writable (read-only or insufficient permissions). Skip it.
-		[ $verbose = 1 ] && { printf "    Skipped: %s\n" $i; }
-		skipped=$(( $skipped + 1 ))
-	}
+		[ "$quiet" ] || printf "    Skipped: %s\n" "$i"
+		skipped=$(( skipped + 1 ))
+	fi
 
-done;
+done < <(find "${1:-.}" -name "${partial:+*}.DS_Store" -type f -print0 | sort -z);
 
 
 
 # Generate a feedback string to pass to stdout
-[ $verbose = 1 ] && {
-	echo "$arrow${B} SUMMARY:${b}";
+[ "$quiet" ] || {
+	echo "$arrow${B} SUMMARY:${b}"
 
-	feedback=$(printf "    %s file%s removed" $removed $([ $removed != 1 ] && echo 's'))
+	feedback=$(printf "    %s file%s removed" $removed "$([ $removed != 1 ] && echo s)")
 
-	# If at least one file was deleted, include how many bytes were saved in total.
+	# If at least one file was deleted, include how many bytes were saved in total
 	[ $removed -gt 0 ] && {
 
-		# Use format-bytes if available.
-		hash format-bytes 2>/dev/null && {
-			total_filesize_f=$( format-bytes -p $total_filesize )
-		} || {
-			total_filesize_f=$( printf '%s bytes' $total_filesize )
-		}
+		# Use format-bytes(1) if available
+		command -v format-bytes >/dev/null 2>&1 \
+			&& total_filesize_f=$( format-bytes -p   $total_filesize ) \
+			|| total_filesize_f=$( printf '%s bytes' $total_filesize )
 
 		feedback+=$( printf ' (%s total)' "$total_filesize_f" )
 	};
@@ -99,8 +100,5 @@ done;
 
 
 	# If there were any files skipped for whatever reason, include those too.
-	[ $skipped -gt 0 ] && { printf '    %s file%s skipped\n' $skipped $([ $skipped != 1 ] && echo 's'); };
-};
-
-
-exit 0;
+	[ $skipped -gt 0 ] && { printf '    %s file%s skipped\n' $skipped "$([ $skipped != 1 ] && echo s)"; };
+}

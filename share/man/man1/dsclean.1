@@ -1,5 +1,5 @@
 .\" -*- coding: utf-8 -*-
-.Dd January 8, 2019
+.Dd August 3, 2024
 .Dt DSCLEAN 1
 .Os "Mac OS X"
 .
@@ -9,7 +9,7 @@
 .
 .Sh SYNOPSIS
 .Nm
-.Op Fl q
+.Op Fl pq
 .Op Pa directory
 .Nm
 .Op Fl h | -home
@@ -35,17 +35,54 @@ Target the user\(cqs home directory instead of
 .Ar directory
 .Pq if present .
 Analogous to
-.Ql dsclean ~ 2> Ns Pa /dev/null .
+.Ql Nm dsclean No ~ Pf 2> Pa /dev/null .
+.
 .Pp
 .Em Note :
 Error messages emitted by
 .Xr find 1
 will be silenced, as certain user directories are private by default on macOS.
 .
+.It Fl p
+Include partially-matching filenames such as
+.Pa Junk.DS_Store .
+.
 .It Fl q
 Suppress all output.
 Analogous to
-.Ql dsclean > Ns Pa /dev/null .
+.Ql Nm Pf > Pa /dev/null .
+.El
+.
+.Sh ENVIRONMENT
+.ad l
+.de NC
+.	ie n .Em no-color.org
+.	el   .Lk no-color.org
+..
+.Bl -tag -width FORCE_COLOUR
+.It Ev FORCE_COLOR
+If set to a non-empty string,
+terminal highlighting will be used unconditionally,
+even when output is redirected.
+This variable takes precedence over
+.Ev NO_COLOR ,
+and its exact value is immaterial.
+Note that
+.Nm Ap s
+support for the
+.Ev FORCE_COLOR
+variable is an unofficial extension to the
+.NC
+specification.
+.
+.It Ev NO_COLOR
+If set to a non-empty string,
+terminal highlighting (colours and bold text) are suppressed,
+even when output is attached to a TTY.
+Consult
+.NC
+for details of the specification honoured by
+.Nm .
 .El
 .
 .Sh EXIT STATUS
@@ -76,9 +113,22 @@ instead of the original
 .Xr man 7
 macros.
 .
+.Pp
+.ad l
+On August 3rd 2024,
+.Nm Ap s
+default behaviour was changed to only target files whose full
+.Xr basename 3
+equals
+.Dq .DS_Store ,
+rather than targeting anything whose filename ended in that extension.
+The former behaviour can be opted-into by passing the
+.Fl p
+switch.
+.
 .Sh AUTHORS
 .An -nosplit
-Copyright \(co 2015-2020
+Copyright \(co 2015-2024
 .An John Gardner Aq Mt gardnerjohng@gmail.com .
 .Pp
 Freely released under the
@@ -94,3 +144,8 @@ which are prone to pollution when written to from macOS.
 .Sh BUGS
 Incorrect feedback is reported when attempting to set modification times of read-only folders.
 .
+.Pp
+The invocation
+.Ql Nm Fl -home
+ignores any other options that might be present, such as
+.Fl p .
