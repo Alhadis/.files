@@ -32,6 +32,7 @@ stackoverflow.*###sidebar > *:not(.sidebar-related), #left-sidebar
 superuser.*###sidebar > *:not(.sidebar-related), #left-sidebar
 
 ! Anything else which happens to shit me
+theguardian.com##div[id^="sp_message_container_"]:has(> iframe:only-child)
 developer.mozilla.org##section.place, sup.new
 fontawesome.com###banner[class*=" fa"]
 github.com##.js-notification-top-shelf
