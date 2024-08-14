@@ -18,3 +18,6 @@ javascript:void(x=>x && (window.location = `https://${screen.width <= 900 ? "m."
 
 // SVG/PNG comparison mode
 javascript:void(l=>{if("image/"!==l.contentType.slice(0,6))return;const{documentElement:e,body:t}=l,n=t.firstElementChild;e.style.all=t.style.all=n.style.all="unset",window.onbeforeunload=()=>"Nah"})(document);
+
+// HTML entity copy+pasta
+data:text/html,<meta%20name=viewport%20content="initial-scale=1;width=device-width"/><tt%20style="display:block;user-select:all;text-align:center;font:50vmin/100vh%20monospace">&trade;
