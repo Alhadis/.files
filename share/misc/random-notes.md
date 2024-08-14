@@ -228,6 +228,23 @@ JSON API for interrogating a resource's archive status:
 
 
 
+Convert CD-R rip in BIN/CUE format to ISO
+-----------------------------------------
+
+Use [BinChunker](http://he.fi/bchunk/) to generate mount(1)-able images:
+
+	bchunk cd-rip.{bin,cue} image.iso
+
+Install with:
+
+	apt-get install bchunk  # Linux
+	brew install bchunk     # macOS
+	pkg_add bchunk          # OpenBSD
+
+Source: https://wp.me/p29O5-15
+
+
+
 Modify `$ARGV` whilst keeping first `N` arguments
 -------------------------------------------------
 
