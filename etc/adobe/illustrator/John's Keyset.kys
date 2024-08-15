@@ -1,0 +1,4214 @@
+/Menus {
+	/~superScript2 {
+		/Context 0
+		/Modifiers 0
+		/Represent 0
+		/Key 0
+	}
+	/~subscript2 {
+		/Context 0
+		/Modifiers 0
+		/Represent 0
+		/Key 0
+	}
+	/navigateToPreviousDocumentGroup {
+		/Context 0
+		/Modifiers 224
+		/Represent 96
+		/Key 96
+	}
+	/navigateToNextDocumentGroup {
+		/Context 0
+		/Modifiers 192
+		/Represent 96
+		/Key 96
+	}
+	/navigateToPreviousDocument {
+		/Context 0
+		/Modifiers 96
+		/Represent 96
+		/Key 96
+	}
+	/navigateToNextDocument {
+		/Context 0
+		/Modifiers 64
+		/Represent 96
+		/Key 96
+	}
+	/debugPalette {
+		/Context 0
+		/Modifiers 224
+		/Represent 25
+		/Key 25
+	}
+	/zoomin2 {
+		/Context 0
+		/Modifiers 64
+		/Represent 43
+		/Key 43
+	}
+	/paste2 {
+		/Context 0
+		/Modifiers 0
+		/Represent 17
+		/Key 17
+	}
+	/copy2 {
+		/Context 0
+		/Modifiers 0
+		/Represent 16
+		/Key 16
+	}
+	/cut2 {
+		/Context 0
+		/Modifiers 0
+		/Represent 15
+		/Key 15
+	}
+	/undo2 {
+		/Context 0
+		/Modifiers 0
+		/Represent 0
+		/Key 0
+	}
+	/helpcontent2 {
+		/Context 0
+		/Modifiers 0
+		/Represent 0
+		/Key 0
+	}
+	/closeAll {
+		/Context 0
+		/Modifiers 192
+		/Represent 87
+		/Key 87
+	}
+	/new2 {
+		/Context 0
+		/Modifiers 192
+		/Represent 78
+		/Key 78
+	}
+	/switchUnits {
+		/Context 0
+		/Modifiers 224
+		/Represent 85
+		/Key 85
+	}
+	/Adobe\ New\ Swatch\ Shortcut\ Menu {
+		/Context 0
+		/Modifiers 0
+		/Represent 0
+		/Key 0
+	}
+	/Adobe\ Update\ Link\ Shortcut {
+		/Context 0
+		/Modifiers 0
+		/Represent 0
+		/Key 0
+	}
+	/AdobeLayerPalette3 {
+		/Context 0
+		/Modifiers 192
+		/Represent 76
+		/Key 76
+	}
+	/AdobeLayerPalette2 {
+		/Context 0
+		/Modifiers 64
+		/Represent 76
+		/Key 76
+	}
+	/Adobe\ New\ Style\ Shortcut {
+		/Context 0
+		/Modifiers 0
+		/Represent 0
+		/Key 0
+	}
+	/Adobe\ New\ Stroke\ Shortcut {
+		/Context 0
+		/Modifiers 192
+		/Represent 47
+		/Key 47
+	}
+	/Adobe\ New\ Fill\ Shortcut {
+		/Context 0
+		/Modifiers 64
+		/Represent 47
+		/Key 47
+	}
+	/Adobe\ Actions\ Batch {
+		/Context 0
+		/Modifiers 0
+		/Represent 0
+		/Key 0
+	}
+	/Adobe\ Color\ Palette\ Secondary {
+		/Context 0
+		/Modifiers 0
+		/Represent 0
+		/Key 0
+	}
+	/Adobe\ New\ Symbol\ Shortcut {
+		/Context 0
+		/Modifiers 0
+		/Represent 21
+		/Key 21
+	}
+	/exitFocus {
+		/Context 0
+		/Modifiers 0
+		/Represent 0
+		/Key 0
+	}
+	/enterFocus {
+		/Context 0
+		/Modifiers 0
+		/Represent 0
+		/Key 0
+	}
+	/avgAndJoin {
+		/Context 0
+		/Modifiers 96
+		/Represent 87
+		/Key 87
+	}
+	/repeatPathfinder {
+		/Context 0
+		/Modifiers 64
+		/Represent 52
+		/Key 52
+	}
+	/hide2 {
+		/Context 0
+		/Modifiers 224
+		/Represent 51
+		/Key 51
+	}
+	/lock2 {
+		/Context 0
+		/Modifiers 224
+		/Represent 50
+		/Key 50
+	}
+	/~superScript {
+		/Context 1
+		/Modifiers 96
+		/Represent 61
+		/Key 61
+	}
+	/~subscript {
+		/Context 1
+		/Modifiers 224
+		/Represent 61
+		/Key 61
+	}
+	/toggleLineComposer {
+		/Context 0
+		/Modifiers 224
+		/Represent 67
+		/Key 67
+	}
+	/toggleAutoHyphen {
+		/Context 0
+		/Modifiers 224
+		/Represent 72
+		/Key 72
+	}
+	/justifyAll {
+		/Context 0
+		/Modifiers 96
+		/Represent 70
+		/Key 70
+	}
+	/justifyRight {
+		/Context 0
+		/Modifiers 0
+		/Represent 0
+		/Key 0
+	}
+	/justifyCenter {
+		/Context 0
+		/Modifiers 0
+		/Represent 0
+		/Key 0
+	}
+	/justify {
+		/Context 0
+		/Modifiers 96
+		/Represent 74
+		/Key 74
+	}
+	/rightAlign {
+		/Context 0
+		/Modifiers 96
+		/Represent 82
+		/Key 82
+	}
+	/centerAlign {
+		/Context 0
+		/Modifiers 96
+		/Represent 67
+		/Key 67
+	}
+	/leftAlign {
+		/Context 0
+		/Modifiers 96
+		/Represent 76
+		/Key 76
+	}
+	/highlightFont2 {
+		/Context 0
+		/Modifiers 224
+		/Represent 77
+		/Key 77
+	}
+	/highlightFont {
+		/Context 0
+		/Modifiers 224
+		/Represent 70
+		/Key 70
+	}
+	/clearTypeScale {
+		/Context 0
+		/Modifiers 96
+		/Represent 88
+		/Key 88
+	}
+	/spacing {
+		/Context 0
+		/Modifiers 224
+		/Represent 79
+		/Key 79
+	}
+	/clearTrack {
+		/Context 0
+		/Modifiers 192
+		/Represent 81
+		/Key 81
+	}
+	/tracking {
+		/Context 0
+		/Modifiers 192
+		/Represent 75
+		/Key 75
+	}
+	/~kernCloser {
+		/Context 1
+		/Modifiers 96
+		/Represent 91
+		/Key 91
+	}
+	/~kernFurther {
+		/Context 1
+		/Modifiers 96
+		/Represent 93
+		/Key 93
+	}
+	/sizeStepDown {
+		/Context 0
+		/Modifiers 224
+		/Represent 44
+		/Key 44
+	}
+	/sizeStepUp {
+		/Context 0
+		/Modifiers 224
+		/Represent 46
+		/Key 46
+	}
+	/faceSizeDown {
+		/Context 0
+		/Modifiers 96
+		/Represent 44
+		/Key 44
+	}
+	/faceSizeUp {
+		/Context 0
+		/Modifiers 96
+		/Represent 46
+		/Key 46
+	}
+	/switchSelTool {
+		/Context 0
+		/Modifiers 192
+		/Represent 9
+		/Key 9
+	}
+	/systemInfo {
+		/Context 0
+		/Modifiers 0
+		/Represent 0
+		/Key 0
+	}
+	/wishform {
+		/Context 0
+		/Modifiers 0
+		/Represent 0
+		/Key 0
+	}
+	/supportContent {
+		/Context 0
+		/Modifiers 0
+		/Represent 0
+		/Key 0
+	}
+	/helpcontent {
+		/Context 0
+		/Modifiers 0
+		/Represent 14
+		/Key 14
+	}
+	/Adobe\ Symbol\ Palette\ Plugin\ Other\ libraries\ menu\ item {
+		/Context 0
+		/Modifiers 0
+		/Represent 0
+		/Key 0
+	}
+	/AdobeSwatch_\ Other\ libraries\ menu\ item {
+		/Context 0
+		/Modifiers 0
+		/Represent 0
+		/Key 0
+	}
+	/Adobe\ Art\ Style\ Plugin\ Other\ libraries\ menu\ item {
+		/Context 0
+		/Modifiers 0
+		/Represent 0
+		/Key 0
+	}
+	/AdobeBrushMgrUI\ Other\ libraries\ menu\ item {
+		/Context 0
+		/Modifiers 0
+		/Represent 0
+		/Key 0
+	}
+	/Adobe\ Variables\ Palette\ Menu\ Item {
+		/Context 0
+		/Modifiers 0
+		/Represent 0
+		/Key 0
+	}
+	/internal\ palettes\ posing\ as\ plug-in\ menus-tab {
+		/Context 0
+		/Modifiers 96
+		/Represent 84
+		/Key 84
+	}
+	/Adobe\ Paragraph\ Styles\ Palette {
+		/Context 0
+		/Modifiers 0
+		/Represent 0
+		/Key 0
+	}
+	/internal\ palettes\ posing\ as\ plug-in\ menus-paragraph {
+		/Context 0
+		/Modifiers 192
+		/Represent 84
+		/Key 84
+	}
+	/internal\ palettes\ posing\ as\ plug-in\ menus-opentype {
+		/Context 0
+		/Modifiers 224
+		/Represent 84
+		/Key 84
+	}
+	/alternate\ glyph\ palette\ plugin\ 2 {
+		/Context 0
+		/Modifiers 0
+		/Represent 0
+		/Key 0
+	}
+	/Character\ Styles {
+		/Context 0
+		/Modifiers 0
+		/Represent 0
+		/Key 0
+	}
+	/internal\ palettes\ posing\ as\ plug-in\ menus-character {
+		/Context 0
+		/Modifiers 0
+		/Represent 0
+		/Key 0
+	}
+	/Adobe\ Transparency\ Palette\ Menu\ Item {
+		/Context 0
+		/Modifiers 96
+		/Represent 23
+		/Key 23
+	}
+	/AdobeTransformObjects1 {
+		/Context 0
+		/Modifiers 64
+		/Represent 84
+		/Key 84
+	}
+	/Adobe\ Symbol\ Palette {
+		/Context 0
+		/Modifiers 96
+		/Represent 24
+		/Key 24
+	}
+	/Adobe\ Swatches\ Menu\ Item {
+		/Context 0
+		/Modifiers 0
+		/Represent 0
+		/Key 0
+	}
+	/Adobe\ SVG\ Interactivity\ Palette {
+		/Context 0
+		/Modifiers 0
+		/Represent 0
+		/Key 0
+	}
+	/Adobe\ Stroke\ Palette {
+		/Context 0
+		/Modifiers 64
+		/Represent 23
+		/Key 23
+	}
+	/Adobe\ Separation\ Preview\ Panel {
+		/Context 0
+		/Modifiers 0
+		/Represent 0
+		/Key 0
+	}
+	/ {
+		/Context 0
+		/Modifiers 0
+		/Represent 0
+		/Key 0
+	}
+	/Adobe\ Pattern\ Panel\ Toggle {
+		/Context 0
+		/Modifiers 0
+		/Represent 0
+		/Key 0
+	}
+	/Adobe\ PathfinderUI {
+		/Context 0
+		/Modifiers 96
+		/Represent 22
+		/Key 22
+	}
+	/AdobeNavigator {
+		/Context 0
+		/Modifiers 0
+		/Represent 0
+		/Key 0
+	}
+	/AI\ Magic\ Wand {
+		/Context 0
+		/Modifiers 0
+		/Represent 0
+		/Key 0
+	}
+	/Adobe\ LinkPalette\ Menu\ Item {
+		/Context 0
+		/Modifiers 0
+		/Represent 0
+		/Key 0
+	}
+	/Adobe\ CSXS\ Extension\ com.adobe.DesignLibraries.angularLibraries {
+		/Context 0
+		/Modifiers 0
+		/Represent 0
+		/Key 0
+	}
+	/Adobe\ Learn\ Panel\ Menu\ Item {
+		/Context 0
+		/Modifiers 0
+		/Represent 0
+		/Key 0
+	}
+	/AdobeLayerPalette1 {
+		/Context 0
+		/Modifiers 0
+		/Represent 20
+		/Key 20
+	}
+	/internal\ palettes\ posing\ as\ plug-in\ menus-info {
+		/Context 0
+		/Modifiers 64
+		/Represent 21
+		/Key 21
+	}
+	/Adobe\ Vectorize\ Panel {
+		/Context 0
+		/Modifiers 0
+		/Represent 0
+		/Key 0
+	}
+	/Adobe\ Style\ Palette {
+		/Context 0
+		/Modifiers 32
+		/Represent 18
+		/Key 18
+	}
+	/Adobe\ Gradient\ Palette {
+		/Context 0
+		/Modifiers 64
+		/Represent 22
+		/Key 22
+	}
+	/Adobe\ Flattening\ Preview {
+		/Context 0
+		/Modifiers 0
+		/Represent 0
+		/Key 0
+	}
+	/DocInfo1 {
+		/Context 0
+		/Modifiers 0
+		/Represent 0
+		/Key 0
+	}
+	/CSS\ Menu\ Item {
+		/Context 0
+		/Modifiers 0
+		/Represent 0
+		/Key 0
+	}
+	/Adobe\ Illustrator\ Kuler\ Panel {
+		/Context 0
+		/Modifiers 0
+		/Represent 0
+		/Key 0
+	}
+	/Adobe\ Harmony\ Palette {
+		/Context 0
+		/Modifiers 32
+		/Represent 16
+		/Key 16
+	}
+	/Adobe\ Color\ Palette {
+		/Context 0
+		/Modifiers 0
+		/Represent 19
+		/Key 19
+	}
+	/Adobe\ BrushManager\ Menu\ Item {
+		/Context 0
+		/Modifiers 0
+		/Represent 18
+		/Key 18
+	}
+	/internal\ palettes\ posing\ as\ plug-in\ menus-attributes {
+		/Context 0
+		/Modifiers 64
+		/Represent 24
+		/Key 24
+	}
+	/Adobe\ SmartExport\ Panel\ Menu\ Item {
+		/Context 0
+		/Modifiers 0
+		/Represent 0
+		/Key 0
+	}
+	/Adobe\ Artboard\ Palette {
+		/Context 0
+		/Modifiers 0
+		/Represent 0
+		/Key 0
+	}
+	/Style\ Palette {
+		/Context 0
+		/Modifiers 32
+		/Represent 19
+		/Key 19
+	}
+	/AdobeAlignObjects2 {
+		/Context 0
+		/Modifiers 32
+		/Represent 20
+		/Key 20
+	}
+	/Adobe\ Action\ Palette {
+		/Context 0
+		/Modifiers 0
+		/Represent 0
+		/Key 0
+	}
+	/Manage\ Tools\ Panel {
+		/Context 0
+		/Modifiers 0
+		/Represent 0
+		/Key 0
+	}
+	/New\ Tools\ Panel {
+		/Context 0
+		/Modifiers 0
+		/Represent 0
+		/Key 0
+	}
+	/Basic\ ToolBar {
+		/Context 0
+		/Modifiers 0
+		/Represent 0
+		/Key 0
+	}
+	/Advanced\ ToolBar {
+		/Context 0
+		/Modifiers 0
+		/Represent 0
+		/Key 0
+	}
+	/drover\ control\ palette\ plugin {
+		/Context 0
+		/Modifiers 0
+		/Represent 0
+		/Key 0
+	}
+	/applicationbar {
+		/Context 0
+		/Modifiers 0
+		/Represent 0
+		/Key 0
+	}
+	/appframe {
+		/Context 0
+		/Modifiers 0
+		/Represent 0
+		/Key 0
+	}
+	/Adobe\ Manage\ Workspace {
+		/Context 0
+		/Modifiers 0
+		/Represent 0
+		/Key 0
+	}
+	/Adobe\ New\ Workspace {
+		/Context 0
+		/Modifiers 0
+		/Represent 0
+		/Key 0
+	}
+	/Adobe\ Reset\ Workspace {
+		/Context 0
+		/Modifiers 0
+		/Represent 0
+		/Key 0
+	}
+	/Browse\ Add-Ons\ Menu {
+		/Context 0
+		/Modifiers 0
+		/Represent 0
+		/Key 0
+	}
+	/bringAllToFront {
+		/Context 0
+		/Modifiers 0
+		/Represent 0
+		/Key 0
+	}
+	/minimizeWindow {
+		/Context 0
+		/Modifiers 64
+		/Represent 77
+		/Key 77
+	}
+	/consolidateAllWindows {
+		/Context 0
+		/Modifiers 0
+		/Represent 0
+		/Key 0
+	}
+	/floatAllInWindows {
+		/Context 0
+		/Modifiers 0
+		/Represent 0
+		/Key 0
+	}
+	/floatInWindow {
+		/Context 0
+		/Modifiers 0
+		/Represent 0
+		/Key 0
+	}
+	/tile {
+		/Context 0
+		/Modifiers 0
+		/Represent 0
+		/Key 0
+	}
+	/cascade {
+		/Context 0
+		/Modifiers 0
+		/Represent 0
+		/Key 0
+	}
+	/newwindow {
+		/Context 0
+		/Modifiers 0
+		/Represent 0
+		/Key 0
+	}
+	/view10 {
+		/Context 0
+		/Modifiers 0
+		/Represent 0
+		/Key 0
+	}
+	/view9 {
+		/Context 0
+		/Modifiers 0
+		/Represent 0
+		/Key 0
+	}
+	/view8 {
+		/Context 0
+		/Modifiers 0
+		/Represent 0
+		/Key 0
+	}
+	/view7 {
+		/Context 0
+		/Modifiers 0
+		/Represent 0
+		/Key 0
+	}
+	/view6 {
+		/Context 0
+		/Modifiers 0
+		/Represent 0
+		/Key 0
+	}
+	/view5 {
+		/Context 0
+		/Modifiers 0
+		/Represent 0
+		/Key 0
+	}
+	/view4 {
+		/Context 0
+		/Modifiers 0
+		/Represent 0
+		/Key 0
+	}
+	/view3 {
+		/Context 0
+		/Modifiers 0
+		/Represent 0
+		/Key 0
+	}
+	/view2 {
+		/Context 0
+		/Modifiers 0
+		/Represent 0
+		/Key 0
+	}
+	/view1 {
+		/Context 0
+		/Modifiers 0
+		/Represent 0
+		/Key 0
+	}
+	/editview {
+		/Context 0
+		/Modifiers 0
+		/Represent 0
+		/Key 0
+	}
+	/newview {
+		/Context 0
+		/Modifiers 0
+		/Represent 0
+		/Key 0
+	}
+	/snappoint {
+		/Context 0
+		/Modifiers 192
+		/Represent 39
+		/Key 39
+	}
+	/pixelconstraints {
+		/Context 0
+		/Modifiers 0
+		/Represent 0
+		/Key 0
+	}
+	/snapgrid {
+		/Context 0
+		/Modifiers 96
+		/Represent 39
+		/Key 39
+	}
+	/showgrid {
+		/Context 0
+		/Modifiers 64
+		/Represent 39
+		/Key 39
+	}
+	/clearguide {
+		/Context 0
+		/Modifiers 0
+		/Represent 0
+		/Key 0
+	}
+	/releaseguide {
+		/Context 0
+		/Modifiers 192
+		/Represent 53
+		/Key 53
+	}
+	/makeguide {
+		/Context 0
+		/Modifiers 64
+		/Represent 53
+		/Key 53
+	}
+	/lockguide {
+		/Context 0
+		/Modifiers 192
+		/Represent 59
+		/Key 59
+	}
+	/showguide {
+		/Context 0
+		/Modifiers 64
+		/Represent 59
+		/Key 59
+	}
+	/Save\ Perspective\ Grid\ as\ Preset {
+		/Context 0
+		/Modifiers 0
+		/Represent 0
+		/Key 0
+	}
+	/Define\ Perspective\ Grid {
+		/Context 0
+		/Modifiers 0
+		/Represent 0
+		/Key 0
+	}
+	/Lock\ Station\ Point {
+		/Context 0
+		/Modifiers 0
+		/Represent 0
+		/Key 0
+	}
+	/Lock\ Perspective\ Grid {
+		/Context 0
+		/Modifiers 0
+		/Represent 0
+		/Key 0
+	}
+	/Snap\ to\ Grid {
+		/Context 0
+		/Modifiers 0
+		/Represent 0
+		/Key 0
+	}
+	/Show\ Ruler {
+		/Context 0
+		/Modifiers 0
+		/Represent 0
+		/Key 0
+	}
+	/Show\ Perspective\ Grid {
+		/Context 0
+		/Modifiers 0
+		/Represent 0
+		/Key 0
+	}
+	/Snapomatic\ on-off\ menu\ item {
+		/Context 0
+		/Modifiers 64
+		/Represent 85
+		/Key 85
+	}
+	/textthreads {
+		/Context 0
+		/Modifiers 96
+		/Represent 89
+		/Key 89
+	}
+	/Live\ Corner\ Annotator {
+		/Context 0
+		/Modifiers 0
+		/Represent 0
+		/Key 0
+	}
+	/Show\ Gaps\ Planet\ X {
+		/Context 0
+		/Modifiers 0
+		/Represent 0
+		/Key 0
+	}
+	/Gradient\ Feedback {
+		/Context 0
+		/Modifiers 192
+		/Represent 71
+		/Key 71
+	}
+	/videoruler {
+		/Context 0
+		/Modifiers 0
+		/Represent 0
+		/Key 0
+	}
+	/rulerCoordinateSystem {
+		/Context 0
+		/Modifiers 0
+		/Represent 0
+		/Key 0
+	}
+	/ruler {
+		/Context 0
+		/Modifiers 192
+		/Represent 82
+		/Key 82
+	}
+	/TransparencyGrid\ Menu\ Item {
+		/Context 0
+		/Modifiers 96
+		/Represent 68
+		/Key 68
+	}
+	/AI\ Bounding\ Box\ Toggle {
+		/Context 0
+		/Modifiers 96
+		/Represent 66
+		/Key 66
+	}
+	/showtemplate {
+		/Context 0
+		/Modifiers 0
+		/Represent 0
+		/Key 0
+	}
+	/pagetiling {
+		/Context 0
+		/Modifiers 0
+		/Represent 0
+		/Key 0
+	}
+	/artboard {
+		/Context 0
+		/Modifiers 96
+		/Represent 72
+		/Key 72
+	}
+	/AISlice\ Lock\ Menu {
+		/Context 0
+		/Modifiers 0
+		/Represent 0
+		/Key 0
+	}
+	/AISlice\ Feedback\ Menu {
+		/Context 0
+		/Modifiers 0
+		/Represent 0
+		/Key 0
+	}
+	/edge {
+		/Context 0
+		/Modifiers 64
+		/Represent 72
+		/Key 72
+	}
+	/actualsize {
+		/Context 0
+		/Modifiers 64
+		/Represent 49
+		/Key 49
+	}
+	/fitall {
+		/Context 0
+		/Modifiers 192
+		/Represent 48
+		/Key 48
+	}
+	/fitin {
+		/Context 0
+		/Modifiers 64
+		/Represent 48
+		/Key 48
+	}
+	/zoomout {
+		/Context 0
+		/Modifiers 64
+		/Represent 45
+		/Key 45
+	}
+	/zoomin {
+		/Context 0
+		/Modifiers 64
+		/Represent 43
+		/Key 61
+	}
+	/proofColors {
+		/Context 0
+		/Modifiers 0
+		/Represent 0
+		/Key 0
+	}
+	/proof-custom {
+		/Context 0
+		/Modifiers 0
+		/Represent 0
+		/Key 0
+	}
+	/proof-colorblindd {
+		/Context 0
+		/Modifiers 0
+		/Represent 0
+		/Key 0
+	}
+	/proof-colorblindp {
+		/Context 0
+		/Modifiers 0
+		/Represent 0
+		/Key 0
+	}
+	/proof-monitor-rgb {
+		/Context 0
+		/Modifiers 0
+		/Represent 0
+		/Key 0
+	}
+	/proof-win-rgb {
+		/Context 0
+		/Modifiers 0
+		/Represent 0
+		/Key 0
+	}
+	/proof-mac-rgb {
+		/Context 0
+		/Modifiers 0
+		/Represent 0
+		/Key 0
+	}
+	/proof-document {
+		/Context 0
+		/Modifiers 0
+		/Represent 0
+		/Key 0
+	}
+	/Adobe\ Presentation\ Mode {
+		/Context 0
+		/Modifiers 0
+		/Represent 0
+		/Key 0
+	}
+	/TrimView {
+		/Context 0
+		/Modifiers 0
+		/Represent 0
+		/Key 0
+	}
+	/raster {
+		/Context 0
+		/Modifiers 192
+		/Represent 89
+		/Key 89
+	}
+	/ink {
+		/Context 0
+		/Modifiers 224
+		/Represent 89
+		/Key 89
+	}
+	/OpenGLCompositorPreview {
+		/Context 0
+		/Modifiers 0
+		/Represent 0
+		/Key 0
+	}
+	/preview {
+		/Context 0
+		/Modifiers 64
+		/Represent 89
+		/Key 89
+	}
+	/Live\ PSAdapter_plugin_NTSC {
+		/Context 0
+		/Modifiers 0
+		/Represent 0
+		/Key 0
+	}
+	/Live\ PSAdapter_plugin_Dntr {
+		/Context 0
+		/Modifiers 0
+		/Represent 0
+		/Key 0
+	}
+	/Live\ PSAdapter_plugin_Txtz {
+		/Context 0
+		/Modifiers 0
+		/Represent 0
+		/Key 0
+	}
+	/Live\ PSAdapter_plugin_StnG {
+		/Context 0
+		/Modifiers 0
+		/Represent 0
+		/Key 0
+	}
+	/Live\ PSAdapter_plugin_Ptch {
+		/Context 0
+		/Modifiers 0
+		/Represent 0
+		/Key 0
+	}
+	/Live\ PSAdapter_plugin_MscT {
+		/Context 0
+		/Modifiers 0
+		/Represent 0
+		/Key 0
+	}
+	/Live\ PSAdapter_plugin_Grn\  {
+		/Context 0
+		/Modifiers 0
+		/Represent 0
+		/Key 0
+	}
+	/Live\ PSAdapter_plugin_Crql {
+		/Context 0
+		/Modifiers 0
+		/Represent 0
+		/Key 0
+	}
+	/Live\ PSAdapter_plugin_GlwE {
+		/Context 0
+		/Modifiers 0
+		/Represent 0
+		/Key 0
+	}
+	/Live\ PSAdapter_plugin_WtrP {
+		/Context 0
+		/Modifiers 0
+		/Represent 0
+		/Key 0
+	}
+	/Live\ PSAdapter_plugin_TrnE {
+		/Context 0
+		/Modifiers 0
+		/Represent 0
+		/Key 0
+	}
+	/Live\ PSAdapter_plugin_Stmp {
+		/Context 0
+		/Modifiers 0
+		/Represent 0
+		/Key 0
+	}
+	/Live\ PSAdapter_plugin_Rtcl {
+		/Context 0
+		/Modifiers 0
+		/Represent 0
+		/Key 0
+	}
+	/Live\ PSAdapter_plugin_Plst {
+		/Context 0
+		/Modifiers 0
+		/Represent 0
+		/Key 0
+	}
+	/Live\ PSAdapter_plugin_Phtc {
+		/Context 0
+		/Modifiers 0
+		/Represent 0
+		/Key 0
+	}
+	/Live\ PSAdapter_plugin_NtPr {
+		/Context 0
+		/Modifiers 0
+		/Represent 0
+		/Key 0
+	}
+	/Live\ PSAdapter_plugin_HlfS {
+		/Context 0
+		/Modifiers 0
+		/Represent 0
+		/Key 0
+	}
+	/Live\ PSAdapter_plugin_GraP {
+		/Context 0
+		/Modifiers 0
+		/Represent 0
+		/Key 0
+	}
+	/Live\ PSAdapter_plugin_CntC {
+		/Context 0
+		/Modifiers 0
+		/Represent 0
+		/Key 0
+	}
+	/Live\ PSAdapter_plugin_Chrm {
+		/Context 0
+		/Modifiers 0
+		/Represent 0
+		/Key 0
+	}
+	/Live\ PSAdapter_plugin_Chrc {
+		/Context 0
+		/Modifiers 0
+		/Represent 0
+		/Key 0
+	}
+	/Live\ PSAdapter_plugin_ChlC {
+		/Context 0
+		/Modifiers 0
+		/Represent 0
+		/Key 0
+	}
+	/Live\ PSAdapter_plugin_BsRl {
+		/Context 0
+		/Modifiers 0
+		/Represent 0
+		/Key 0
+	}
+	/Live\ PSAdapter_plugin_Pntl {
+		/Context 0
+		/Modifiers 0
+		/Represent 0
+		/Key 0
+	}
+	/Live\ PSAdapter_plugin_Mztn {
+		/Context 0
+		/Modifiers 0
+		/Represent 0
+		/Key 0
+	}
+	/Live\ PSAdapter_plugin_Crst {
+		/Context 0
+		/Modifiers 0
+		/Represent 0
+		/Key 0
+	}
+	/Live\ PSAdapter_plugin_ClrH {
+		/Context 0
+		/Modifiers 0
+		/Represent 0
+		/Key 0
+	}
+	/Live\ PSAdapter_plugin_OcnR {
+		/Context 0
+		/Modifiers 0
+		/Represent 0
+		/Key 0
+	}
+	/Live\ PSAdapter_plugin_Gls\  {
+		/Context 0
+		/Modifiers 0
+		/Represent 0
+		/Key 0
+	}
+	/Live\ PSAdapter_plugin_DfsG {
+		/Context 0
+		/Modifiers 0
+		/Represent 0
+		/Key 0
+	}
+	/Live\ PSAdapter_plugin_Smie {
+		/Context 0
+		/Modifiers 0
+		/Represent 0
+		/Key 0
+	}
+	/Live\ PSAdapter_plugin_SprS {
+		/Context 0
+		/Modifiers 0
+		/Represent 0
+		/Key 0
+	}
+	/Live\ PSAdapter_plugin_Spt\  {
+		/Context 0
+		/Modifiers 0
+		/Represent 0
+		/Key 0
+	}
+	/Live\ PSAdapter_plugin_InkO {
+		/Context 0
+		/Modifiers 0
+		/Represent 0
+		/Key 0
+	}
+	/Live\ PSAdapter_plugin_DrkS {
+		/Context 0
+		/Modifiers 0
+		/Represent 0
+		/Key 0
+	}
+	/Live\ PSAdapter_plugin_Crsh {
+		/Context 0
+		/Modifiers 0
+		/Represent 0
+		/Key 0
+	}
+	/Live\ PSAdapter_plugin_AngS {
+		/Context 0
+		/Modifiers 0
+		/Represent 0
+		/Key 0
+	}
+	/Live\ PSAdapter_plugin_AccE {
+		/Context 0
+		/Modifiers 0
+		/Represent 0
+		/Key 0
+	}
+	/Live\ PSAdapter_plugin_SmrB {
+		/Context 0
+		/Modifiers 0
+		/Represent 0
+		/Key 0
+	}
+	/Live\ PSAdapter_plugin_RdlB {
+		/Context 0
+		/Modifiers 0
+		/Represent 0
+		/Key 0
+	}
+	/Live\ Adobe\ PSL\ Gaussian\ Blur {
+		/Context 0
+		/Modifiers 0
+		/Represent 0
+		/Key 0
+	}
+	/Live\ PSAdapter_plugin_Wtrc {
+		/Context 0
+		/Modifiers 0
+		/Represent 0
+		/Key 0
+	}
+	/Live\ PSAdapter_plugin_Undr {
+		/Context 0
+		/Modifiers 0
+		/Represent 0
+		/Key 0
+	}
+	/Live\ PSAdapter_plugin_Spng {
+		/Context 0
+		/Modifiers 0
+		/Represent 0
+		/Key 0
+	}
+	/Live\ PSAdapter_plugin_SmdS {
+		/Context 0
+		/Modifiers 0
+		/Represent 0
+		/Key 0
+	}
+	/Live\ PSAdapter_plugin_RghP {
+		/Context 0
+		/Modifiers 0
+		/Represent 0
+		/Key 0
+	}
+	/Live\ PSAdapter_plugin_PstE {
+		/Context 0
+		/Modifiers 0
+		/Represent 0
+		/Key 0
+	}
+	/Live\ PSAdapter_plugin_PlsW {
+		/Context 0
+		/Modifiers 0
+		/Represent 0
+		/Key 0
+	}
+	/Live\ PSAdapter_plugin_PltK {
+		/Context 0
+		/Modifiers 0
+		/Represent 0
+		/Key 0
+	}
+	/Live\ PSAdapter_plugin_PntD {
+		/Context 0
+		/Modifiers 0
+		/Represent 0
+		/Key 0
+	}
+	/Live\ PSAdapter_plugin_NGlw {
+		/Context 0
+		/Modifiers 0
+		/Represent 0
+		/Key 0
+	}
+	/Live\ PSAdapter_plugin_Frsc {
+		/Context 0
+		/Modifiers 0
+		/Represent 0
+		/Key 0
+	}
+	/Live\ PSAdapter_plugin_FlmG {
+		/Context 0
+		/Modifiers 0
+		/Represent 0
+		/Key 0
+	}
+	/Live\ PSAdapter_plugin_DryB {
+		/Context 0
+		/Modifiers 0
+		/Represent 0
+		/Key 0
+	}
+	/Live\ PSAdapter_plugin_Ct\ \  {
+		/Context 0
+		/Modifiers 0
+		/Represent 0
+		/Key 0
+	}
+	/Live\ PSAdapter_plugin_ClrP {
+		/Context 0
+		/Modifiers 0
+		/Represent 0
+		/Key 0
+	}
+	/Live\ PSAdapter_plugin_GEfc {
+		/Context 0
+		/Modifiers 0
+		/Represent 0
+		/Key 0
+	}
+	/Live\ Deform\ Twist {
+		/Context 0
+		/Modifiers 0
+		/Represent 0
+		/Key 0
+	}
+	/Live\ Deform\ Squeeze {
+		/Context 0
+		/Modifiers 0
+		/Represent 0
+		/Key 0
+	}
+	/Live\ Deform\ Inflate {
+		/Context 0
+		/Modifiers 0
+		/Represent 0
+		/Key 0
+	}
+	/Live\ Deform\ Fisheye {
+		/Context 0
+		/Modifiers 0
+		/Represent 0
+		/Key 0
+	}
+	/Live\ Deform\ Rise {
+		/Context 0
+		/Modifiers 0
+		/Represent 0
+		/Key 0
+	}
+	/Live\ Deform\ Fish {
+		/Context 0
+		/Modifiers 0
+		/Represent 0
+		/Key 0
+	}
+	/Live\ Deform\ Wave {
+		/Context 0
+		/Modifiers 0
+		/Represent 0
+		/Key 0
+	}
+	/Live\ Deform\ Flag {
+		/Context 0
+		/Modifiers 0
+		/Represent 0
+		/Key 0
+	}
+	/Live\ Deform\ Shell\ Upper {
+		/Context 0
+		/Modifiers 0
+		/Represent 0
+		/Key 0
+	}
+	/Live\ Deform\ Shell\ Lower {
+		/Context 0
+		/Modifiers 0
+		/Represent 0
+		/Key 0
+	}
+	/Live\ Deform\ Bulge {
+		/Context 0
+		/Modifiers 0
+		/Represent 0
+		/Key 0
+	}
+	/Live\ Deform\ Arch {
+		/Context 0
+		/Modifiers 0
+		/Represent 0
+		/Key 0
+	}
+	/Live\ Deform\ Arc\ Upper {
+		/Context 0
+		/Modifiers 0
+		/Represent 0
+		/Key 0
+	}
+	/Live\ Deform\ Arc\ Lower {
+		/Context 0
+		/Modifiers 0
+		/Represent 0
+		/Key 0
+	}
+	/Live\ Deform\ Arc {
+		/Context 0
+		/Modifiers 0
+		/Represent 0
+		/Key 0
+	}
+	/SVG\ Filter\ Import {
+		/Context 0
+		/Modifiers 0
+		/Represent 0
+		/Key 0
+	}
+	/Live\ SVG\ Filters {
+		/Context 0
+		/Modifiers 0
+		/Represent 0
+		/Key 0
+	}
+	/Live\ Scribble\ Fill {
+		/Context 0
+		/Modifiers 0
+		/Represent 0
+		/Key 0
+	}
+	/Live\ Adobe\ Round\ Corners {
+		/Context 0
+		/Modifiers 0
+		/Represent 0
+		/Key 0
+	}
+	/Live\ Outer\ Glow {
+		/Context 0
+		/Modifiers 0
+		/Represent 0
+		/Key 0
+	}
+	/Live\ Inner\ Glow {
+		/Context 0
+		/Modifiers 0
+		/Represent 0
+		/Key 0
+	}
+	/Live\ Feather {
+		/Context 0
+		/Modifiers 0
+		/Represent 0
+		/Key 0
+	}
+	/Live\ Adobe\ Drop\ Shadow {
+		/Context 0
+		/Modifiers 0
+		/Represent 0
+		/Key 0
+	}
+	/Live\ Rasterize {
+		/Context 0
+		/Modifiers 0
+		/Represent 0
+		/Key 0
+	}
+	/Live\ Pathfinder\ Trap {
+		/Context 0
+		/Modifiers 0
+		/Represent 0
+		/Key 0
+	}
+	/Live\ Pathfinder\ Soft\ Mix {
+		/Context 0
+		/Modifiers 0
+		/Represent 0
+		/Key 0
+	}
+	/Live\ Pathfinder\ Hard\ Mix {
+		/Context 0
+		/Modifiers 0
+		/Represent 0
+		/Key 0
+	}
+	/Live\ Pathfinder\ Outline {
+		/Context 0
+		/Modifiers 0
+		/Represent 0
+		/Key 0
+	}
+	/Live\ Pathfinder\ Crop {
+		/Context 0
+		/Modifiers 0
+		/Represent 0
+		/Key 0
+	}
+	/Live\ Pathfinder\ Merge {
+		/Context 0
+		/Modifiers 0
+		/Represent 0
+		/Key 0
+	}
+	/Live\ Pathfinder\ Trim {
+		/Context 0
+		/Modifiers 0
+		/Represent 0
+		/Key 0
+	}
+	/Live\ Pathfinder\ Divide {
+		/Context 0
+		/Modifiers 0
+		/Represent 0
+		/Key 0
+	}
+	/Live\ Pathfinder\ Minus\ Back {
+		/Context 0
+		/Modifiers 0
+		/Represent 0
+		/Key 0
+	}
+	/Live\ Pathfinder\ Subtract {
+		/Context 0
+		/Modifiers 0
+		/Represent 0
+		/Key 0
+	}
+	/Live\ Pathfinder\ Exclude {
+		/Context 0
+		/Modifiers 0
+		/Represent 0
+		/Key 0
+	}
+	/Live\ Pathfinder\ Intersect {
+		/Context 0
+		/Modifiers 0
+		/Represent 0
+		/Key 0
+	}
+	/Live\ Pathfinder\ Add {
+		/Context 0
+		/Modifiers 0
+		/Represent 0
+		/Key 0
+	}
+	/Live\ Outline\ Stroke {
+		/Context 0
+		/Modifiers 0
+		/Represent 0
+		/Key 0
+	}
+	/Live\ Outline\ Object {
+		/Context 0
+		/Modifiers 0
+		/Represent 0
+		/Key 0
+	}
+	/Live\ Offset\ Path {
+		/Context 0
+		/Modifiers 0
+		/Represent 0
+		/Key 0
+	}
+	/Live\ Zig\ Zag {
+		/Context 0
+		/Modifiers 0
+		/Represent 0
+		/Key 0
+	}
+	/Live\ Twist {
+		/Context 0
+		/Modifiers 0
+		/Represent 0
+		/Key 0
+	}
+	/Live\ Scribble\ and\ Tweak {
+		/Context 0
+		/Modifiers 0
+		/Represent 0
+		/Key 0
+	}
+	/Live\ Transform {
+		/Context 0
+		/Modifiers 0
+		/Represent 0
+		/Key 0
+	}
+	/Live\ Roughen {
+		/Context 0
+		/Modifiers 0
+		/Represent 0
+		/Key 0
+	}
+	/Live\ Pucker\ &\ Bloat {
+		/Context 0
+		/Modifiers 0
+		/Represent 0
+		/Key 0
+	}
+	/Live\ Free\ Distort {
+		/Context 0
+		/Modifiers 0
+		/Represent 0
+		/Key 0
+	}
+	/Live\ Trim\ Marks {
+		/Context 0
+		/Modifiers 0
+		/Represent 0
+		/Key 0
+	}
+	/Live\ Ellipse {
+		/Context 0
+		/Modifiers 0
+		/Represent 0
+		/Key 0
+	}
+	/Live\ Rounded\ Rectangle {
+		/Context 0
+		/Modifiers 0
+		/Represent 0
+		/Key 0
+	}
+	/Live\ Rectangle {
+		/Context 0
+		/Modifiers 0
+		/Represent 0
+		/Key 0
+	}
+	/Live\ 3DRotate {
+		/Context 0
+		/Modifiers 0
+		/Represent 0
+		/Key 0
+	}
+	/Live\ 3DRevolve {
+		/Context 0
+		/Modifiers 0
+		/Represent 0
+		/Key 0
+	}
+	/Live\ 3DExtrude {
+		/Context 0
+		/Modifiers 0
+		/Represent 0
+		/Key 0
+	}
+	/Live\ Rasterize\ Effect\ Setting {
+		/Context 0
+		/Modifiers 0
+		/Represent 0
+		/Key 0
+	}
+	/Adobe\ Last\ Effect {
+		/Context 0
+		/Modifiers 224
+		/Represent 69
+		/Key 69
+	}
+	/Adobe\ Apply\ Last\ Effect {
+		/Context 0
+		/Modifiers 0
+		/Represent 0
+		/Key 0
+	}
+	/Selection\ Hat\ 11 {
+		/Context 0
+		/Modifiers 0
+		/Represent 0
+		/Key 0
+	}
+	/Selection\ Hat\ 10 {
+		/Context 0
+		/Modifiers 0
+		/Represent 0
+		/Key 0
+	}
+	/SmartEdit\ Menu\ Item {
+		/Context 0
+		/Modifiers 0
+		/Represent 0
+		/Key 0
+	}
+	/Area\ Text\ Objects\ menu\ item {
+		/Context 0
+		/Modifiers 0
+		/Represent 0
+		/Key 0
+	}
+	/Point\ Text\ Objects\ menu\ item {
+		/Context 0
+		/Modifiers 0
+		/Represent 0
+		/Key 0
+	}
+	/Text\ Objects\ menu\ item {
+		/Context 0
+		/Modifiers 0
+		/Represent 0
+		/Key 0
+	}
+	/Stray\ Points\ menu\ item {
+		/Context 0
+		/Modifiers 0
+		/Represent 0
+		/Key 0
+	}
+	/Clipping\ Masks\ menu\ item {
+		/Context 0
+		/Modifiers 0
+		/Represent 0
+		/Key 0
+	}
+	/Brush\ Strokes\ menu\ item {
+		/Context 0
+		/Modifiers 0
+		/Represent 0
+		/Key 0
+	}
+	/Bristle\ Brush\ Strokes\ menu\ item {
+		/Context 0
+		/Modifiers 0
+		/Represent 0
+		/Key 0
+	}
+	/Selection\ Hat\ 1 {
+		/Context 0
+		/Modifiers 0
+		/Represent 0
+		/Key 0
+	}
+	/Selection\ Hat\ 3 {
+		/Context 0
+		/Modifiers 0
+		/Represent 0
+		/Key 0
+	}
+	/Find\ Link\ Block\ Series\ menu\ item {
+		/Context 0
+		/Modifiers 0
+		/Represent 0
+		/Key 0
+	}
+	/Find\ Symbol\ Instance\ menu\ item {
+		/Context 0
+		/Modifiers 0
+		/Represent 0
+		/Key 0
+	}
+	/Find\ Live\ Shape\ menu\ item {
+		/Context 0
+		/Modifiers 0
+		/Represent 0
+		/Key 0
+	}
+	/Find\ Style\ menu\ item {
+		/Context 0
+		/Modifiers 0
+		/Represent 0
+		/Key 0
+	}
+	/Find\ Stroke\ Weight\ menu\ item {
+		/Context 0
+		/Modifiers 0
+		/Represent 0
+		/Key 0
+	}
+	/Find\ Stroke\ Color\ menu\ item {
+		/Context 0
+		/Modifiers 0
+		/Represent 0
+		/Key 0
+	}
+	/Find\ Opacity\ menu\ item {
+		/Context 0
+		/Modifiers 0
+		/Represent 0
+		/Key 0
+	}
+	/Find\ Fill\ Color\ menu\ item {
+		/Context 0
+		/Modifiers 0
+		/Represent 0
+		/Key 0
+	}
+	/Find\ Fill\ &\ Stroke\ menu\ item {
+		/Context 0
+		/Modifiers 0
+		/Represent 0
+		/Key 0
+	}
+	/Find\ Blending\ Mode\ menu\ item {
+		/Context 0
+		/Modifiers 0
+		/Represent 0
+		/Key 0
+	}
+	/Find\ Appearance\ Attributes\ menu\ item {
+		/Context 0
+		/Modifiers 0
+		/Represent 0
+		/Key 0
+	}
+	/Find\ Appearance\ menu\ item {
+		/Context 0
+		/Modifiers 0
+		/Represent 0
+		/Key 0
+	}
+	/Selection\ Hat\ 9 {
+		/Context 0
+		/Modifiers 192
+		/Represent 91
+		/Key 91
+	}
+	/Selection\ Hat\ 8 {
+		/Context 0
+		/Modifiers 192
+		/Represent 93
+		/Key 93
+	}
+	/Inverse\ menu\ item {
+		/Context 0
+		/Modifiers 96
+		/Represent 73
+		/Key 73
+	}
+	/Find\ Reselect\ menu\ item {
+		/Context 0
+		/Modifiers 64
+		/Represent 54
+		/Key 54
+	}
+	/deselectall {
+		/Context 0
+		/Modifiers 96
+		/Represent 65
+		/Key 65
+	}
+	/selectallinartboard {
+		/Context 0
+		/Modifiers 192
+		/Represent 65
+		/Key 65
+	}
+	/selectall {
+		/Context 0
+		/Modifiers 64
+		/Represent 65
+		/Key 65
+	}
+	/convertlegacyText4 {
+		/Context 0
+		/Modifiers 0
+		/Represent 0
+		/Key 0
+	}
+	/convertlegacyText3 {
+		/Context 0
+		/Modifiers 0
+		/Represent 0
+		/Key 0
+	}
+	/convertlegacyText2 {
+		/Context 0
+		/Modifiers 0
+		/Represent 0
+		/Key 0
+	}
+	/convertlegacyText1 {
+		/Context 0
+		/Modifiers 0
+		/Represent 0
+		/Key 0
+	}
+	/convertlegacyText {
+		/Context 0
+		/Modifiers 0
+		/Represent 0
+		/Key 0
+	}
+	/type-vertical {
+		/Context 0
+		/Modifiers 0
+		/Represent 0
+		/Key 0
+	}
+	/type-horizontal {
+		/Context 0
+		/Modifiers 0
+		/Represent 0
+		/Key 0
+	}
+	/showHiddenChar {
+		/Context 0
+		/Modifiers 192
+		/Represent 73
+		/Key 73
+	}
+	/~placeHolderText {
+		/Context 0
+		/Modifiers 0
+		/Represent 0
+		/Key 0
+	}
+	/~forcedLineBreak {
+		/Context 0
+		/Modifiers 0
+		/Represent 0
+		/Key 0
+	}
+	/~thinSpace {
+		/Context 1
+		/Modifiers 224
+		/Represent 77
+		/Key 77
+	}
+	/~hairSpace {
+		/Context 0
+		/Modifiers 0
+		/Represent 0
+		/Key 0
+	}
+	/~enSpace {
+		/Context 1
+		/Modifiers 96
+		/Represent 78
+		/Key 78
+	}
+	/~emSpace {
+		/Context 1
+		/Modifiers 96
+		/Represent 77
+		/Key 77
+	}
+	/~singleRightQuote {
+		/Context 0
+		/Modifiers 0
+		/Represent 0
+		/Key 0
+	}
+	/~singleLeftQuote {
+		/Context 0
+		/Modifiers 0
+		/Represent 0
+		/Key 0
+	}
+	/~doubleRightQuote {
+		/Context 0
+		/Modifiers 0
+		/Represent 0
+		/Key 0
+	}
+	/~doubleLeftQuote {
+		/Context 0
+		/Modifiers 0
+		/Represent 0
+		/Key 0
+	}
+	/~discretionaryHyphen {
+		/Context 1
+		/Modifiers 96
+		/Represent 45
+		/Key 45
+	}
+	/~enDash {
+		/Context 0
+		/Modifiers 0
+		/Represent 0
+		/Key 0
+	}
+	/~emDash {
+		/Context 0
+		/Modifiers 0
+		/Represent 0
+		/Key 0
+	}
+	/~trademarkSymbol {
+		/Context 0
+		/Modifiers 0
+		/Represent 0
+		/Key 0
+	}
+	/~sectionSymbol {
+		/Context 0
+		/Modifiers 0
+		/Represent 0
+		/Key 0
+	}
+	/~registeredTrademark {
+		/Context 0
+		/Modifiers 0
+		/Represent 0
+		/Key 0
+	}
+	/~paragraphSymbol {
+		/Context 0
+		/Modifiers 0
+		/Represent 0
+		/Key 0
+	}
+	/~ellipsis {
+		/Context 0
+		/Modifiers 0
+		/Represent 0
+		/Key 0
+	}
+	/~copyright {
+		/Context 0
+		/Modifiers 0
+		/Represent 0
+		/Key 0
+	}
+	/~bullet {
+		/Context 0
+		/Modifiers 0
+		/Represent 0
+		/Key 0
+	}
+	/Adobe\ Optical\ Alignment\ Item {
+		/Context 0
+		/Modifiers 0
+		/Represent 0
+		/Key 0
+	}
+	/outline {
+		/Context 0
+		/Modifiers 96
+		/Represent 79
+		/Key 79
+	}
+	/Adobe\ Illustrator\ Smart\ Punctuation\ Menu\ Item {
+		/Context 0
+		/Modifiers 0
+		/Represent 0
+		/Key 0
+	}
+	/Sentence\ case\ Change\ Case\ Item {
+		/Context 0
+		/Modifiers 0
+		/Represent 0
+		/Key 0
+	}
+	/Title\ Case\ Change\ Case\ Item {
+		/Context 0
+		/Modifiers 0
+		/Represent 0
+		/Key 0
+	}
+	/LowerCase\ Change\ Case\ Item {
+		/Context 0
+		/Modifiers 0
+		/Represent 0
+		/Key 0
+	}
+	/UpperCase\ Change\ Case\ Item {
+		/Context 0
+		/Modifiers 0
+		/Represent 0
+		/Key 0
+	}
+	/Adobe\ Illustrator\ Find\ Font\ Menu\ Item {
+		/Context 0
+		/Modifiers 0
+		/Represent 0
+		/Key 0
+	}
+	/Adobe\ IllustratorUI\ Resolve\ Missing\ Font {
+		/Context 0
+		/Modifiers 0
+		/Represent 0
+		/Key 0
+	}
+	/fitHeadline {
+		/Context 0
+		/Modifiers 0
+		/Represent 0
+		/Key 0
+	}
+	/removeThreading {
+		/Context 0
+		/Modifiers 0
+		/Represent 0
+		/Key 0
+	}
+	/releaseThreadedTextSelection {
+		/Context 0
+		/Modifiers 0
+		/Represent 0
+		/Key 0
+	}
+	/threadTextCreate {
+		/Context 0
+		/Modifiers 0
+		/Represent 0
+		/Key 0
+	}
+	/updateLegacyTOP {
+		/Context 0
+		/Modifiers 0
+		/Represent 0
+		/Key 0
+	}
+	/textpathtypeOptions {
+		/Context 0
+		/Modifiers 0
+		/Represent 0
+		/Key 0
+	}
+	/textpathtypeGravity {
+		/Context 0
+		/Modifiers 0
+		/Represent 0
+		/Key 0
+	}
+	/textpathtypestairs {
+		/Context 0
+		/Modifiers 0
+		/Represent 0
+		/Key 0
+	}
+	/textpathtype3d {
+		/Context 0
+		/Modifiers 0
+		/Represent 0
+		/Key 0
+	}
+	/textpathtypeSkew {
+		/Context 0
+		/Modifiers 0
+		/Represent 0
+		/Key 0
+	}
+	/textpathtypeRainbow {
+		/Context 0
+		/Modifiers 0
+		/Represent 0
+		/Key 0
+	}
+	/areatextoptions {
+		/Context 0
+		/Modifiers 0
+		/Represent 0
+		/Key 0
+	}
+	/point-area {
+		/Context 0
+		/Modifiers 0
+		/Represent 0
+		/Key 0
+	}
+	/alternate\ glyph\ palette\ plugin {
+		/Context 0
+		/Modifiers 0
+		/Represent 0
+		/Key 0
+	}
+	/Browse\ Typekit\ Fonts\ Menu\ IllustratorUI {
+		/Context 0
+		/Modifiers 0
+		/Represent 0
+		/Key 0
+	}
+	/collectForExportMultipleAsset {
+		/Context 0
+		/Modifiers 0
+		/Represent 0
+		/Key 0
+	}
+	/collectForExportSingleAsset {
+		/Context 0
+		/Modifiers 0
+		/Represent 0
+		/Key 0
+	}
+	/setIconDesign {
+		/Context 0
+		/Modifiers 0
+		/Represent 0
+		/Key 0
+	}
+	/setBarDesign {
+		/Context 0
+		/Modifiers 0
+		/Represent 0
+		/Key 0
+	}
+	/graphDesigns {
+		/Context 0
+		/Modifiers 0
+		/Represent 0
+		/Key 0
+	}
+	/editGraphData {
+		/Context 0
+		/Modifiers 0
+		/Represent 0
+		/Key 0
+	}
+	/setGraphStyle {
+		/Context 0
+		/Modifiers 0
+		/Represent 0
+		/Key 0
+	}
+	/Fit\ Artboard\ to\ selected\ Art {
+		/Context 0
+		/Modifiers 0
+		/Represent 0
+		/Key 0
+	}
+	/Fit\ Artboard\ to\ artwork\ bounds {
+		/Context 0
+		/Modifiers 0
+		/Represent 0
+		/Key 0
+	}
+	/ReArrange\ Artboards {
+		/Context 0
+		/Modifiers 0
+		/Represent 0
+		/Key 0
+	}
+	/setCropMarks {
+		/Context 0
+		/Modifiers 0
+		/Represent 0
+		/Key 0
+	}
+	/noCompoundPath {
+		/Context 0
+		/Modifiers 224
+		/Represent 56
+		/Key 56
+	}
+	/compoundPath {
+		/Context 0
+		/Modifiers 64
+		/Represent 56
+		/Key 56
+	}
+	/editMask {
+		/Context 0
+		/Modifiers 0
+		/Represent 0
+		/Key 0
+	}
+	/releaseMask {
+		/Context 0
+		/Modifiers 192
+		/Represent 55
+		/Key 55
+	}
+	/makeMask {
+		/Context 0
+		/Modifiers 64
+		/Represent 55
+		/Key 55
+	}
+	/Adobe\ Sketch\ Convert\ Menu {
+		/Context 0
+		/Modifiers 0
+		/Represent 0
+		/Key 0
+	}
+	/Text\ Wrap\ Options... {
+		/Context 0
+		/Modifiers 0
+		/Represent 0
+		/Key 0
+	}
+	/Release\ Text\ Wrap {
+		/Context 0
+		/Modifiers 0
+		/Represent 0
+		/Key 0
+	}
+	/Make\ Text\ Wrap {
+		/Context 0
+		/Modifiers 0
+		/Represent 0
+		/Key 0
+	}
+	/Expand\ Image\ Tracing {
+		/Context 0
+		/Modifiers 0
+		/Represent 0
+		/Key 0
+	}
+	/Release\ Image\ Tracing {
+		/Context 0
+		/Modifiers 0
+		/Represent 0
+		/Key 0
+	}
+	/Make\ and\ Expand\ Image\ Tracing {
+		/Context 0
+		/Modifiers 0
+		/Represent 0
+		/Key 0
+	}
+	/Make\ Image\ Tracing {
+		/Context 0
+		/Modifiers 0
+		/Represent 0
+		/Key 0
+	}
+	/Expand\ Planet\ X {
+		/Context 0
+		/Modifiers 0
+		/Represent 0
+		/Key 0
+	}
+	/Planet\ X\ Options {
+		/Context 0
+		/Modifiers 0
+		/Represent 0
+		/Key 0
+	}
+	/Release\ Planet\ X {
+		/Context 0
+		/Modifiers 0
+		/Represent 0
+		/Key 0
+	}
+	/Marge\ Planet\ X {
+		/Context 0
+		/Modifiers 0
+		/Represent 0
+		/Key 0
+	}
+	/Make\ Planet\ X {
+		/Context 0
+		/Modifiers 192
+		/Represent 88
+		/Key 88
+	}
+	/Edit\ Original\ Object {
+		/Context 0
+		/Modifiers 0
+		/Represent 0
+		/Key 0
+	}
+	/Show\ Object\ Grid\ Plane {
+		/Context 0
+		/Modifiers 0
+		/Represent 0
+		/Key 0
+	}
+	/Release\ with\ Perspective {
+		/Context 0
+		/Modifiers 0
+		/Represent 0
+		/Key 0
+	}
+	/Attach\ to\ Active\ Plane {
+		/Context 0
+		/Modifiers 0
+		/Represent 0
+		/Key 0
+	}
+	/Edit\ Envelope\ Contents {
+		/Context 0
+		/Modifiers 0
+		/Represent 0
+		/Key 0
+	}
+	/Expand\ Envelope {
+		/Context 0
+		/Modifiers 0
+		/Represent 0
+		/Key 0
+	}
+	/Envelope\ Options {
+		/Context 0
+		/Modifiers 0
+		/Represent 0
+		/Key 0
+	}
+	/Release\ Envelope {
+		/Context 0
+		/Modifiers 0
+		/Represent 0
+		/Key 0
+	}
+	/Make\ Envelope {
+		/Context 0
+		/Modifiers 192
+		/Represent 67
+		/Key 67
+	}
+	/Create\ Envelope\ Grid {
+		/Context 0
+		/Modifiers 192
+		/Represent 77
+		/Key 77
+	}
+	/Make\ Warp {
+		/Context 0
+		/Modifiers 224
+		/Represent 87
+		/Key 87
+	}
+	/Path\ Blend\ Reverse\ Stack {
+		/Context 0
+		/Modifiers 0
+		/Represent 0
+		/Key 0
+	}
+	/Path\ Blend\ Reverse\ Spine {
+		/Context 0
+		/Modifiers 0
+		/Represent 0
+		/Key 0
+	}
+	/Path\ Blend\ Replace\ Spine {
+		/Context 0
+		/Modifiers 0
+		/Represent 0
+		/Key 0
+	}
+	/Path\ Blend\ Expand {
+		/Context 0
+		/Modifiers 0
+		/Represent 0
+		/Key 0
+	}
+	/Path\ Blend\ Options {
+		/Context 0
+		/Modifiers 0
+		/Represent 0
+		/Key 0
+	}
+	/Path\ Blend\ Release {
+		/Context 0
+		/Modifiers 224
+		/Represent 66
+		/Key 66
+	}
+	/Path\ Blend\ Make {
+		/Context 0
+		/Modifiers 192
+		/Represent 66
+		/Key 66
+	}
+	/Adobe\ Pattern\ Tile\ Color {
+		/Context 0
+		/Modifiers 0
+		/Represent 0
+		/Key 0
+	}
+	/Adobe\ Edit\ Pattern {
+		/Context 0
+		/Modifiers 96
+		/Represent 21
+		/Key 21
+	}
+	/Adobe\ Make\ Pattern {
+		/Context 0
+		/Modifiers 0
+		/Represent 0
+		/Key 0
+	}
+	/Expand\ Shape {
+		/Context 0
+		/Modifiers 0
+		/Represent 0
+		/Key 0
+	}
+	/Convert\ to\ Shape {
+		/Context 0
+		/Modifiers 0
+		/Represent 0
+		/Key 0
+	}
+	/cleanup\ menu\ item {
+		/Context 0
+		/Modifiers 0
+		/Represent 0
+		/Key 0
+	}
+	/Rows\ and\ Columns.... {
+		/Context 0
+		/Modifiers 0
+		/Represent 0
+		/Key 0
+	}
+	/Knife\ Tool2 {
+		/Context 0
+		/Modifiers 0
+		/Represent 0
+		/Key 0
+	}
+	/Remove\ Anchor\ Points\ menu {
+		/Context 0
+		/Modifiers 0
+		/Represent 0
+		/Key 0
+	}
+	/Add\ Anchor\ Points2 {
+		/Context 0
+		/Modifiers 0
+		/Represent 0
+		/Key 0
+	}
+	/simplify\ menu\ item {
+		/Context 0
+		/Modifiers 0
+		/Represent 0
+		/Key 0
+	}
+	/Reverse\ Path\ Direction {
+		/Context 0
+		/Modifiers 0
+		/Represent 0
+		/Key 0
+	}
+	/OffsetPath\ v23 {
+		/Context 0
+		/Modifiers 0
+		/Represent 0
+		/Key 0
+	}
+	/OffsetPath\ v22 {
+		/Context 0
+		/Modifiers 0
+		/Represent 0
+		/Key 0
+	}
+	/average {
+		/Context 0
+		/Modifiers 192
+		/Represent 74
+		/Key 74
+	}
+	/join {
+		/Context 0
+		/Modifiers 64
+		/Represent 82
+		/Key 82
+	}
+	/TrimMark\ v25 {
+		/Context 0
+		/Modifiers 0
+		/Represent 0
+		/Key 0
+	}
+	/AISlice\ Clip\ to\ Artboard {
+		/Context 0
+		/Modifiers 0
+		/Represent 0
+		/Key 0
+	}
+	/AISlice\ Slice\ Options {
+		/Context 0
+		/Modifiers 0
+		/Represent 0
+		/Key 0
+	}
+	/AISlice\ Delete\ All\ Slices {
+		/Context 0
+		/Modifiers 0
+		/Represent 0
+		/Key 0
+	}
+	/AISlice\ Divide {
+		/Context 0
+		/Modifiers 0
+		/Represent 0
+		/Key 0
+	}
+	/AISlice\ Combine {
+		/Context 0
+		/Modifiers 0
+		/Represent 0
+		/Key 0
+	}
+	/AISlice\ Duplicate {
+		/Context 0
+		/Modifiers 0
+		/Represent 0
+		/Key 0
+	}
+	/AISlice\ Create\ from\ Selection {
+		/Context 0
+		/Modifiers 0
+		/Represent 0
+		/Key 0
+	}
+	/AISlice\ Create\ from\ Guides {
+		/Context 0
+		/Modifiers 0
+		/Represent 0
+		/Key 0
+	}
+	/AISlice\ Release\ Slice {
+		/Context 0
+		/Modifiers 0
+		/Represent 0
+		/Key 0
+	}
+	/AISlice\ Make\ Slice {
+		/Context 0
+		/Modifiers 0
+		/Represent 0
+		/Key 0
+	}
+	/Make\ Pixel\ Perfect {
+		/Context 0
+		/Modifiers 0
+		/Represent 0
+		/Key 0
+	}
+	/Flatten\ Transparency {
+		/Context 0
+		/Modifiers 0
+		/Represent 0
+		/Key 0
+	}
+	/AI\ Object\ Mosaic\ Plug-in4 {
+		/Context 0
+		/Modifiers 0
+		/Represent 0
+		/Key 0
+	}
+	/make\ mesh {
+		/Context 0
+		/Modifiers 0
+		/Represent 0
+		/Key 0
+	}
+	/Rasterize\ 8\ menu\ item {
+		/Context 0
+		/Modifiers 0
+		/Represent 0
+		/Key 0
+	}
+	/Crop\ Image {
+		/Context 0
+		/Modifiers 0
+		/Represent 0
+		/Key 0
+	}
+	/expandStyle {
+		/Context 0
+		/Modifiers 0
+		/Represent 0
+		/Key 0
+	}
+	/Expand3 {
+		/Context 0
+		/Modifiers 96
+		/Represent 69
+		/Key 69
+	}
+	/showAll {
+		/Context 0
+		/Modifiers 192
+		/Represent 51
+		/Key 51
+	}
+	/Selection\ Hat\ 6 {
+		/Context 0
+		/Modifiers 0
+		/Represent 0
+		/Key 0
+	}
+	/Selection\ Hat\ 4 {
+		/Context 0
+		/Modifiers 0
+		/Represent 0
+		/Key 0
+	}
+	/hide {
+		/Context 0
+		/Modifiers 64
+		/Represent 51
+		/Key 51
+	}
+	/unlockAll {
+		/Context 0
+		/Modifiers 192
+		/Represent 50
+		/Key 50
+	}
+	/Selection\ Hat\ 7 {
+		/Context 0
+		/Modifiers 0
+		/Represent 0
+		/Key 0
+	}
+	/Selection\ Hat\ 5 {
+		/Context 0
+		/Modifiers 0
+		/Represent 0
+		/Key 0
+	}
+	/lock {
+		/Context 0
+		/Modifiers 64
+		/Represent 50
+		/Key 50
+	}
+	/ungroup {
+		/Context 0
+		/Modifiers 96
+		/Represent 71
+		/Key 71
+	}
+	/group {
+		/Context 0
+		/Modifiers 64
+		/Represent 71
+		/Key 71
+	}
+	/Selection\ Hat\ 2 {
+		/Context 0
+		/Modifiers 0
+		/Represent 0
+		/Key 0
+	}
+	/sendToBack {
+		/Context 0
+		/Modifiers 96
+		/Represent 91
+		/Key 91
+	}
+	/sendBackward {
+		/Context 0
+		/Modifiers 64
+		/Represent 91
+		/Key 91
+	}
+	/sendForward {
+		/Context 0
+		/Modifiers 64
+		/Represent 93
+		/Key 93
+	}
+	/sendToFront {
+		/Context 0
+		/Modifiers 96
+		/Represent 93
+		/Key 93
+	}
+	/AI\ Reset\ Bounding\ Box {
+		/Context 0
+		/Modifiers 0
+		/Represent 0
+		/Key 0
+	}
+	/Transform\ v23 {
+		/Context 0
+		/Modifiers 224
+		/Represent 68
+		/Key 68
+	}
+	/transformshear {
+		/Context 0
+		/Modifiers 0
+		/Represent 0
+		/Key 0
+	}
+	/transformscale {
+		/Context 0
+		/Modifiers 0
+		/Represent 0
+		/Key 0
+	}
+	/transformreflect {
+		/Context 0
+		/Modifiers 0
+		/Represent 0
+		/Key 0
+	}
+	/transformrotate {
+		/Context 0
+		/Modifiers 0
+		/Represent 0
+		/Key 0
+	}
+	/transformmove {
+		/Context 0
+		/Modifiers 96
+		/Represent 77
+		/Key 77
+	}
+	/transformagain {
+		/Context 0
+		/Modifiers 64
+		/Represent 68
+		/Key 68
+	}
+	/ImportSettings {
+		/Context 0
+		/Modifiers 0
+		/Represent 0
+		/Key 0
+	}
+	/ExportSettings {
+		/Context 0
+		/Modifiers 0
+		/Represent 0
+		/Key 0
+	}
+	/KBSC\ Menu\ Item {
+		/Context 0
+		/Modifiers 224
+		/Represent 75
+		/Key 75
+	}
+	/assignprofile {
+		/Context 0
+		/Modifiers 0
+		/Represent 0
+		/Key 0
+	}
+	/color {
+		/Context 0
+		/Modifiers 96
+		/Represent 75
+		/Key 75
+	}
+	/PerspectiveGridPresets {
+		/Context 0
+		/Modifiers 0
+		/Represent 0
+		/Key 0
+	}
+	/SWFPresets {
+		/Context 0
+		/Modifiers 0
+		/Represent 0
+		/Key 0
+	}
+	/PDF\ Presets {
+		/Context 0
+		/Modifiers 0
+		/Represent 0
+		/Key 0
+	}
+	/Print\ Presets {
+		/Context 0
+		/Modifiers 0
+		/Represent 0
+		/Key 0
+	}
+	/Transparency\ Presets {
+		/Context 0
+		/Modifiers 0
+		/Represent 0
+		/Key 0
+	}
+	/EditOriginal\ Menu\ Item {
+		/Context 0
+		/Modifiers 0
+		/Represent 0
+		/Key 0
+	}
+	/Saturate3 {
+		/Context 0
+		/Modifiers 0
+		/Represent 0
+		/Key 0
+	}
+	/Overprint2 {
+		/Context 0
+		/Modifiers 0
+		/Represent 0
+		/Key 0
+	}
+	/Colors6 {
+		/Context 0
+		/Modifiers 0
+		/Represent 0
+		/Key 0
+	}
+	/Colors9 {
+		/Context 0
+		/Modifiers 0
+		/Represent 0
+		/Key 0
+	}
+	/Colors7 {
+		/Context 0
+		/Modifiers 0
+		/Represent 0
+		/Key 0
+	}
+	/Colors8 {
+		/Context 0
+		/Modifiers 0
+		/Represent 0
+		/Key 0
+	}
+	/Colors5 {
+		/Context 0
+		/Modifiers 0
+		/Represent 0
+		/Key 0
+	}
+	/Colors4 {
+		/Context 0
+		/Modifiers 0
+		/Represent 0
+		/Key 0
+	}
+	/Colors3 {
+		/Context 0
+		/Modifiers 0
+		/Represent 0
+		/Key 0
+	}
+	/Adjust3 {
+		/Context 0
+		/Modifiers 0
+		/Represent 0
+		/Key 0
+	}
+	/Recolor\ Art\ Dialog {
+		/Context 0
+		/Modifiers 0
+		/Represent 0
+		/Key 0
+	}
+	/Edit\ Custom\ Dictionary... {
+		/Context 0
+		/Modifiers 0
+		/Represent 0
+		/Key 0
+	}
+	/Check\ Spelling {
+		/Context 0
+		/Modifiers 64
+		/Represent 73
+		/Key 73
+	}
+	/Find\ Next {
+		/Context 0
+		/Modifiers 0
+		/Represent 0
+		/Key 0
+	}
+	/Find\ and\ Replace {
+		/Context 0
+		/Modifiers 0
+		/Represent 0
+		/Key 0
+	}
+	/clear {
+		/Context 0
+		/Modifiers 0
+		/Represent 0
+		/Key 0
+	}
+	/pasteInAllArtboard {
+		/Context 0
+		/Modifiers 224
+		/Represent 86
+		/Key 86
+	}
+	/pasteInPlace {
+		/Context 0
+		/Modifiers 96
+		/Represent 86
+		/Key 86
+	}
+	/pasteBack {
+		/Context 0
+		/Modifiers 64
+		/Represent 66
+		/Key 66
+	}
+	/pasteFront {
+		/Context 0
+		/Modifiers 64
+		/Represent 70
+		/Key 70
+	}
+	/paste {
+		/Context 0
+		/Modifiers 64
+		/Represent 86
+		/Key 86
+	}
+	/copy {
+		/Context 0
+		/Modifiers 64
+		/Represent 67
+		/Key 67
+	}
+	/cut {
+		/Context 0
+		/Modifiers 64
+		/Represent 88
+		/Key 88
+	}
+	/redo {
+		/Context 0
+		/Modifiers 96
+		/Represent 90
+		/Key 90
+	}
+	/undo {
+		/Context 0
+		/Modifiers 64
+		/Represent 90
+		/Key 90
+	}
+	/Print {
+		/Context 0
+		/Modifiers 64
+		/Represent 80
+		/Key 80
+	}
+	/File\ Info {
+		/Context 0
+		/Modifiers 224
+		/Represent 73
+		/Key 73
+	}
+	/doc-color-rgb {
+		/Context 0
+		/Modifiers 0
+		/Represent 0
+		/Key 0
+	}
+	/doc-color-cmyk {
+		/Context 0
+		/Modifiers 0
+		/Represent 0
+		/Key 0
+	}
+	/document {
+		/Context 0
+		/Modifiers 192
+		/Represent 80
+		/Key 80
+	}
+	/ai_browse_for_script {
+		/Context 0
+		/Modifiers 64
+		/Represent 25
+		/Key 25
+	}
+	/Package\ Menu\ Item {
+		/Context 0
+		/Modifiers 224
+		/Represent 80
+		/Key 80
+	}
+	/exportSelection {
+		/Context 0
+		/Modifiers 0
+		/Represent 0
+		/Key 0
+	}
+	/Adobe\ AI\ Save\ For\ Web {
+		/Context 0
+		/Modifiers 224
+		/Represent 83
+		/Key 83
+	}
+	/export {
+		/Context 0
+		/Modifiers 0
+		/Represent 0
+		/Key 0
+	}
+	/exportForScreens {
+		/Context 0
+		/Modifiers 192
+		/Represent 69
+		/Key 69
+	}
+	/AI\ Place {
+		/Context 0
+		/Modifiers 96
+		/Represent 80
+		/Key 80
+	}
+	/Search\ Adobe\ Stock {
+		/Context 0
+		/Modifiers 0
+		/Represent 0
+		/Key 0
+	}
+	/revert {
+		/Context 0
+		/Modifiers 192
+		/Represent 90
+		/Key 90
+	}
+	/Adobe\ AI\ Save\ Selected\ Slices {
+		/Context 0
+		/Modifiers 0
+		/Represent 0
+		/Key 0
+	}
+	/saveasTemplate {
+		/Context 0
+		/Modifiers 0
+		/Represent 0
+		/Key 0
+	}
+	/saveacopy {
+		/Context 0
+		/Modifiers 192
+		/Represent 83
+		/Key 83
+	}
+	/saveas {
+		/Context 0
+		/Modifiers 96
+		/Represent 83
+		/Key 83
+	}
+	/save {
+		/Context 0
+		/Modifiers 64
+		/Represent 83
+		/Key 83
+	}
+	/close {
+		/Context 0
+		/Modifiers 64
+		/Represent 87
+		/Key 87
+	}
+	/Adobe\ Bridge\ Browse {
+		/Context 0
+		/Modifiers 192
+		/Represent 79
+		/Key 79
+	}
+	/open {
+		/Context 0
+		/Modifiers 64
+		/Represent 79
+		/Key 79
+	}
+	/newFromTemplate {
+		/Context 0
+		/Modifiers 96
+		/Represent 78
+		/Key 78
+	}
+	/new {
+		/Context 0
+		/Modifiers 64
+		/Represent 78
+		/Key 78
+	}
+	/quit {
+		/Context 0
+		/Modifiers 64
+		/Represent 81
+		/Key 81
+	}
+	/showAllWindows {
+		/Context 0
+		/Modifiers 0
+		/Represent 0
+		/Key 0
+	}
+	/hideOthers {
+		/Context 0
+		/Modifiers 192
+		/Represent 72
+		/Key 72
+	}
+	/hideApp {
+		/Context 0
+		/Modifiers 0
+		/Represent 0
+		/Key 0
+	}
+	/BlackPref {
+		/Context 0
+		/Modifiers 0
+		/Represent 0
+		/Key 0
+	}
+	/FileClipboardPref {
+		/Context 0
+		/Modifiers 0
+		/Represent 0
+		/Key 0
+	}
+	/GPUPerformancePref {
+		/Context 0
+		/Modifiers 0
+		/Represent 0
+		/Key 0
+	}
+	/userInterfacePref {
+		/Context 0
+		/Modifiers 0
+		/Represent 0
+		/Key 0
+	}
+	/pluginPref {
+		/Context 0
+		/Modifiers 0
+		/Represent 0
+		/Key 0
+	}
+	/hyphenPref {
+		/Context 0
+		/Modifiers 0
+		/Represent 0
+		/Key 0
+	}
+	/slicePref {
+		/Context 0
+		/Modifiers 0
+		/Represent 0
+		/Key 0
+	}
+	/snapPref {
+		/Context 0
+		/Modifiers 0
+		/Represent 0
+		/Key 0
+	}
+	/guidegridPref {
+		/Context 0
+		/Modifiers 0
+		/Represent 0
+		/Key 0
+	}
+	/unitundoPref {
+		/Context 0
+		/Modifiers 64
+		/Represent 44
+		/Key 44
+	}
+	/keyboardPref {
+		/Context 0
+		/Modifiers 0
+		/Represent 0
+		/Key 0
+	}
+	/selectionPref {
+		/Context 0
+		/Modifiers 0
+		/Represent 0
+		/Key 0
+	}
+	/preference {
+		/Context 0
+		/Modifiers 64
+		/Represent 75
+		/Key 75
+	}
+	/about {
+		/Context 0
+		/Modifiers 0
+		/Represent 0
+		/Key 0
+	}
+}
+/Tools {
+	/Adobe\ Presentation\ Mode {
+		/Context 0
+		/Modifiers 32
+		/Represent 70
+		/Key 70
+	}
+	/Adobe\ Toggle\ Drawing\ Mode {
+		/Context 0
+		/Modifiers 32
+		/Represent 68
+		/Key 68
+	}
+	/Adobe\ Blend\ Mode\ Prev\ Mode {
+		/Context 0
+		/Modifiers 0
+		/Represent 0
+		/Key 0
+	}
+	/Adobe\ Blend\ Mode\ Next\ Mode {
+		/Context 0
+		/Modifiers 0
+		/Represent 0
+		/Key 0
+	}
+	/Adobe\ Blend\ Mode\ Luminosity {
+		/Context 0
+		/Modifiers 0
+		/Represent 0
+		/Key 0
+	}
+	/Adobe\ Blend\ Mode\ Color {
+		/Context 0
+		/Modifiers 0
+		/Represent 0
+		/Key 0
+	}
+	/Adobe\ Blend\ Mode\ Saturation {
+		/Context 0
+		/Modifiers 0
+		/Represent 0
+		/Key 0
+	}
+	/Adobe\ Blend\ Mode\ Hue {
+		/Context 0
+		/Modifiers 0
+		/Represent 0
+		/Key 0
+	}
+	/Adobe\ Blend\ Mode\ Exclusion {
+		/Context 0
+		/Modifiers 0
+		/Represent 0
+		/Key 0
+	}
+	/Adobe\ Blend\ Mode\ Difference {
+		/Context 0
+		/Modifiers 0
+		/Represent 0
+		/Key 0
+	}
+	/Adobe\ Blend\ Mode\ Hard\ Light {
+		/Context 0
+		/Modifiers 0
+		/Represent 0
+		/Key 0
+	}
+	/Adobe\ Blend\ Mode\ Soft\ Light {
+		/Context 0
+		/Modifiers 0
+		/Represent 0
+		/Key 0
+	}
+	/Adobe\ Blend\ Mode\ Overlay {
+		/Context 0
+		/Modifiers 0
+		/Represent 0
+		/Key 0
+	}
+	/Adobe\ Blend\ Mode\ Color\ Dodge {
+		/Context 0
+		/Modifiers 0
+		/Represent 0
+		/Key 0
+	}
+	/Adobe\ Blend\ Mode\ Screen {
+		/Context 0
+		/Modifiers 0
+		/Represent 0
+		/Key 0
+	}
+	/Adobe\ Blend\ Mode\ Lighten {
+		/Context 0
+		/Modifiers 0
+		/Represent 0
+		/Key 0
+	}
+	/Adobe\ Blend\ Mode\ Color\ Burn {
+		/Context 0
+		/Modifiers 0
+		/Represent 0
+		/Key 0
+	}
+	/Adobe\ Blend\ Mode\ Multiply {
+		/Context 0
+		/Modifiers 0
+		/Represent 0
+		/Key 0
+	}
+	/Adobe\ Blend\ Mode\ Darken {
+		/Context 0
+		/Modifiers 0
+		/Represent 0
+		/Key 0
+	}
+	/Adobe\ Blend\ Mode\ Normal {
+		/Context 0
+		/Modifiers 0
+		/Represent 0
+		/Key 0
+	}
+	/Adobe\ Opacity\ 100 {
+		/Context 0
+		/Modifiers 0
+		/Represent 0
+		/Key 0
+	}
+	/Adobe\ Opacity\ 90 {
+		/Context 0
+		/Modifiers 0
+		/Represent 0
+		/Key 0
+	}
+	/Adobe\ Opacity\ 80 {
+		/Context 0
+		/Modifiers 0
+		/Represent 0
+		/Key 0
+	}
+	/Adobe\ Opacity\ 70 {
+		/Context 0
+		/Modifiers 0
+		/Represent 0
+		/Key 0
+	}
+	/Adobe\ Opacity\ 60 {
+		/Context 0
+		/Modifiers 0
+		/Represent 0
+		/Key 0
+	}
+	/Adobe\ Opacity\ 50 {
+		/Context 0
+		/Modifiers 0
+		/Represent 0
+		/Key 0
+	}
+	/Adobe\ Opacity\ 40 {
+		/Context 0
+		/Modifiers 0
+		/Represent 0
+		/Key 0
+	}
+	/Adobe\ Opacity\ 30 {
+		/Context 0
+		/Modifiers 0
+		/Represent 0
+		/Key 0
+	}
+	/Adobe\ Opacity\ 20 {
+		/Context 0
+		/Modifiers 0
+		/Represent 0
+		/Key 0
+	}
+	/Adobe\ Opacity\ 10 {
+		/Context 0
+		/Modifiers 0
+		/Represent 0
+		/Key 0
+	}
+	/Adobe\ Opacity\ 0 {
+		/Context 0
+		/Modifiers 0
+		/Represent 0
+		/Key 0
+	}
+	/Adobe\ Symbolism\ Dec\ Intensity {
+		/Context 0
+		/Modifiers 32
+		/Represent 123
+		/Key 123
+	}
+	/Adobe\ Symbolism\ Inc\ Intensity {
+		/Context 0
+		/Modifiers 32
+		/Represent 125
+		/Key 125
+	}
+	/Adobe\ Tool\ Dec\ Diameter {
+		/Context 0
+		/Modifiers 0
+		/Represent 91
+		/Key 91
+	}
+	/Adobe\ Tool\ Inc\ Diameter {
+		/Context 0
+		/Modifiers 0
+		/Represent 93
+		/Key 93
+	}
+	/Adobe\ Toggle\ Closing\ Palettes {
+		/Context 0
+		/Modifiers 32
+		/Represent 9
+		/Key 9
+	}
+	/Adobe\ Toggle\ Palettes {
+		/Context 0
+		/Modifiers 0
+		/Represent 9
+		/Key 9
+	}
+	/Adobe\ Toggle\ Screen\ Mode {
+		/Context 0
+		/Modifiers 0
+		/Represent 70
+		/Key 70
+	}
+	/Adobe\ Paint\ None {
+		/Context 0
+		/Modifiers 0
+		/Represent 47
+		/Key 47
+	}
+	/Adobe\ Paint\ Gradient {
+		/Context 0
+		/Modifiers 0
+		/Represent 62
+		/Key 46
+	}
+	/Adobe\ Paint\ Color {
+		/Context 0
+		/Modifiers 0
+		/Represent 60
+		/Key 44
+	}
+	/Adobe\ Swap\ Fill\ Stroke {
+		/Context 0
+		/Modifiers 32
+		/Represent 88
+		/Key 88
+	}
+	/Adobe\ Default\ Fill\ Stroke {
+		/Context 0
+		/Modifiers 0
+		/Represent 68
+		/Key 68
+	}
+	/Adobe\ Toggle\ Fill\ Stroke {
+		/Context 0
+		/Modifiers 0
+		/Represent 88
+		/Key 88
+	}
+	/Adobe\ Stencil\ Tool {
+		/Context 0
+		/Modifiers 0
+		/Represent 0
+		/Key 0
+	}
+	/Adobe\ Pattern\ Tile\ Tool {
+		/Context 0
+		/Modifiers 0
+		/Represent 0
+		/Key 0
+	}
+	/Adobe\ Place\ Gun\ Tool {
+		/Context 0
+		/Modifiers 0
+		/Represent 0
+		/Key 0
+	}
+	/Adobe\ Zoom\ Tool {
+		/Context 0
+		/Modifiers 0
+		/Represent 90
+		/Key 90
+	}
+	/Adobe\ Page\ Tool {
+		/Context 0
+		/Modifiers 0
+		/Represent 0
+		/Key 0
+	}
+	/Adobe\ Scroll\ Tool {
+		/Context 0
+		/Modifiers 0
+		/Represent 72
+		/Key 72
+	}
+	/Adobe\ Knife\ Tool {
+		/Context 0
+		/Modifiers 0
+		/Represent 0
+		/Key 0
+	}
+	/Adobe\ Scissors\ Tool {
+		/Context 0
+		/Modifiers 0
+		/Represent 67
+		/Key 67
+	}
+	/Adobe\ Eraser\ Tool {
+		/Context 0
+		/Modifiers 0
+		/Represent 0
+		/Key 0
+	}
+	/Adobe\ Blend\ Tool {
+		/Context 0
+		/Modifiers 0
+		/Represent 87
+		/Key 87
+	}
+	/Adobe\ Measure\ Tool {
+		/Context 0
+		/Modifiers 0
+		/Represent 0
+		/Key 0
+	}
+	/Adobe\ Eyedropper\ Tool {
+		/Context 0
+		/Modifiers 0
+		/Represent 73
+		/Key 73
+	}
+	/Adobe\ Free\ Transform\ Tool {
+		/Context 0
+		/Modifiers 0
+		/Represent 69
+		/Key 69
+	}
+	/Adobe\ Puppet\ Warp\ Tool {
+		/Context 0
+		/Modifiers 0
+		/Represent 0
+		/Key 0
+	}
+	/Adobe\ Wrinkle\ Tool {
+		/Context 0
+		/Modifiers 0
+		/Represent 0
+		/Key 0
+	}
+	/Adobe\ Cyrstallize\ Tool {
+		/Context 0
+		/Modifiers 0
+		/Represent 0
+		/Key 0
+	}
+	/Adobe\ Scallop\ Tool {
+		/Context 0
+		/Modifiers 0
+		/Represent 0
+		/Key 0
+	}
+	/Adobe\ Bloat\ Tool {
+		/Context 0
+		/Modifiers 0
+		/Represent 0
+		/Key 0
+	}
+	/Adobe\ Pucker\ Tool {
+		/Context 0
+		/Modifiers 0
+		/Represent 0
+		/Key 0
+	}
+	/Adobe\ New\ Twirl\ Tool {
+		/Context 0
+		/Modifiers 0
+		/Represent 0
+		/Key 0
+	}
+	/Adobe\ Warp\ Tool {
+		/Context 0
+		/Modifiers 32
+		/Represent 82
+		/Key 82
+	}
+	/Adobe\ Width\ Tool {
+		/Context 0
+		/Modifiers 32
+		/Represent 87
+		/Key 87
+	}
+	/Adobe\ Reshape\ Tool {
+		/Context 0
+		/Modifiers 0
+		/Represent 0
+		/Key 0
+	}
+	/Adobe\ Shear\ Tool {
+		/Context 0
+		/Modifiers 0
+		/Represent 0
+		/Key 0
+	}
+	/Adobe\ Scale\ Tool {
+		/Context 0
+		/Modifiers 0
+		/Represent 83
+		/Key 83
+	}
+	/Adobe\ Reflect\ Tool {
+		/Context 0
+		/Modifiers 0
+		/Represent 0
+		/Key 0
+	}
+	/Adobe\ Rotate\ Tool {
+		/Context 0
+		/Modifiers 0
+		/Represent 82
+		/Key 82
+	}
+	/Adobe\ Planar\ Face\ Select\ Tool {
+		/Context 0
+		/Modifiers 32
+		/Represent 76
+		/Key 76
+	}
+	/Adobe\ Planar\ Paintbucket\ Tool {
+		/Context 0
+		/Modifiers 0
+		/Represent 75
+		/Key 75
+	}
+	/Adobe\ Shape\ Builder\ Tool {
+		/Context 0
+		/Modifiers 32
+		/Represent 77
+		/Key 77
+	}
+	/Adobe\ Mesh\ Editing\ Tool {
+		/Context 0
+		/Modifiers 0
+		/Represent 85
+		/Key 85
+	}
+	/Adobe\ Gradient\ Vector\ Tool {
+		/Context 0
+		/Modifiers 0
+		/Represent 71
+		/Key 71
+	}
+	/Adobe\ Touch\ Type\ Tool {
+		/Context 0
+		/Modifiers 32
+		/Represent 84
+		/Key 84
+	}
+	/Adobe\ Vertical\ Path\ Type\ Tool {
+		/Context 0
+		/Modifiers 0
+		/Represent 0
+		/Key 0
+	}
+	/Adobe\ Vertical\ Area\ Type\ Tool {
+		/Context 0
+		/Modifiers 0
+		/Represent 0
+		/Key 0
+	}
+	/Adobe\ Vertical\ Type\ Tool {
+		/Context 0
+		/Modifiers 0
+		/Represent 0
+		/Key 0
+	}
+	/Adobe\ Path\ Type\ Tool {
+		/Context 0
+		/Modifiers 0
+		/Represent 0
+		/Key 0
+	}
+	/Adobe\ Area\ Type\ Tool {
+		/Context 0
+		/Modifiers 0
+		/Represent 0
+		/Key 0
+	}
+	/Adobe\ Type\ Tool {
+		/Context 0
+		/Modifiers 0
+		/Represent 84
+		/Key 84
+	}
+	/Perspective\ Selection\ Tool {
+		/Context 0
+		/Modifiers 32
+		/Represent 86
+		/Key 86
+	}
+	/Perspective\ Grid\ Tool {
+		/Context 0
+		/Modifiers 0
+		/Represent 0
+		/Key 0
+	}
+	/Adobe\ Slice\ Select\ Tool {
+		/Context 0
+		/Modifiers 0
+		/Represent 0
+		/Key 0
+	}
+	/Adobe\ Slice\ Tool {
+		/Context 0
+		/Modifiers 32
+		/Represent 75
+		/Key 75
+	}
+	/Adobe\ Radar\ Graph\ Tool {
+		/Context 0
+		/Modifiers 0
+		/Represent 0
+		/Key 0
+	}
+	/Adobe\ Pie\ Graph\ Tool {
+		/Context 0
+		/Modifiers 0
+		/Represent 0
+		/Key 0
+	}
+	/Adobe\ Scatter\ Graph\ Tool {
+		/Context 0
+		/Modifiers 0
+		/Represent 0
+		/Key 0
+	}
+	/Adobe\ Area\ Graph\ Tool {
+		/Context 0
+		/Modifiers 0
+		/Represent 0
+		/Key 0
+	}
+	/Adobe\ Line\ Graph\ Tool {
+		/Context 0
+		/Modifiers 0
+		/Represent 0
+		/Key 0
+	}
+	/Adobe\ Stacked\ Bar\ Graph\ Tool {
+		/Context 0
+		/Modifiers 0
+		/Represent 0
+		/Key 0
+	}
+	/Adobe\ Bar\ Graph\ Tool {
+		/Context 0
+		/Modifiers 0
+		/Represent 0
+		/Key 0
+	}
+	/Adobe\ Stacked\ Column\ Graph\ Tool {
+		/Context 0
+		/Modifiers 0
+		/Represent 0
+		/Key 0
+	}
+	/Adobe\ Column\ Graph\ Tool {
+		/Context 0
+		/Modifiers 0
+		/Represent 74
+		/Key 74
+	}
+	/Adobe\ Symbol\ Styler\ Tool {
+		/Context 0
+		/Modifiers 0
+		/Represent 0
+		/Key 0
+	}
+	/Adobe\ Symbol\ Screener\ Tool {
+		/Context 0
+		/Modifiers 0
+		/Represent 0
+		/Key 0
+	}
+	/Adobe\ Symbol\ Stainer\ Tool {
+		/Context 0
+		/Modifiers 0
+		/Represent 0
+		/Key 0
+	}
+	/Adobe\ Symbol\ Spinner\ Tool {
+		/Context 0
+		/Modifiers 0
+		/Represent 0
+		/Key 0
+	}
+	/Adobe\ Symbol\ Sizer\ Tool {
+		/Context 0
+		/Modifiers 0
+		/Represent 0
+		/Key 0
+	}
+	/Adobe\ Symbol\ Scruncher\ Tool {
+		/Context 0
+		/Modifiers 0
+		/Represent 0
+		/Key 0
+	}
+	/Adobe\ Symbol\ Shifter\ Tool {
+		/Context 0
+		/Modifiers 0
+		/Represent 0
+		/Key 0
+	}
+	/Adobe\ Symbol\ Sprayer\ Tool {
+		/Context 0
+		/Modifiers 32
+		/Represent 83
+		/Key 83
+	}
+	/Adobe\ Shaper\ Tool {
+		/Context 0
+		/Modifiers 32
+		/Represent 78
+		/Key 78
+	}
+	/Adobe\ Corner\ Join\ Tool {
+		/Context 0
+		/Modifiers 0
+		/Represent 0
+		/Key 0
+	}
+	/Adobe\ Freehand\ Erase\ Tool {
+		/Context 0
+		/Modifiers 0
+		/Represent 0
+		/Key 0
+	}
+	/Adobe\ Freehand\ Smooth\ Tool {
+		/Context 0
+		/Modifiers 0
+		/Represent 0
+		/Key 0
+	}
+	/Adobe\ Freehand\ Tool {
+		/Context 0
+		/Modifiers 0
+		/Represent 78
+		/Key 78
+	}
+	/Adobe\ Blob\ Brush\ Tool {
+		/Context 0
+		/Modifiers 32
+		/Represent 66
+		/Key 66
+	}
+	/Adobe\ Brush\ Tool {
+		/Context 0
+		/Modifiers 0
+		/Represent 66
+		/Key 66
+	}
+	/Adobe\ Flare\ Tool {
+		/Context 0
+		/Modifiers 0
+		/Represent 0
+		/Key 0
+	}
+	/Adobe\ Shape\ Construction\ Star\ Tool {
+		/Context 0
+		/Modifiers 0
+		/Represent 0
+		/Key 0
+	}
+	/Adobe\ Shape\ Construction\ Regular\ Polygon\ Tool {
+		/Context 0
+		/Modifiers 32
+		/Represent 80
+		/Key 80
+	}
+	/Adobe\ Ellipse\ Shape\ Tool {
+		/Context 0
+		/Modifiers 0
+		/Represent 79
+		/Key 79
+	}
+	/Adobe\ Rounded\ Rectangle\ Tool {
+		/Context 0
+		/Modifiers 0
+		/Represent 0
+		/Key 0
+	}
+	/Adobe\ Rectangle\ Shape\ Tool {
+		/Context 0
+		/Modifiers 0
+		/Represent 77
+		/Key 77
+	}
+	/Adobe\ Polar\ Grid\ Tool {
+		/Context 0
+		/Modifiers 0
+		/Represent 0
+		/Key 0
+	}
+	/Adobe\ Rectangular\ Grid\ Tool {
+		/Context 0
+		/Modifiers 0
+		/Represent 0
+		/Key 0
+	}
+	/Adobe\ Shape\ Construction\ Spiral\ Tool {
+		/Context 0
+		/Modifiers 0
+		/Represent 0
+		/Key 0
+	}
+	/Adobe\ Arc\ Tool {
+		/Context 0
+		/Modifiers 0
+		/Represent 0
+		/Key 0
+	}
+	/Adobe\ Line\ Tool {
+		/Context 0
+		/Modifiers 0
+		/Represent 76
+		/Key 76
+	}
+	/Adobe\ Curvature\ Tool {
+		/Context 0
+		/Modifiers 32
+		/Represent 96
+		/Key 96
+	}
+	/Adobe\ Anchor\ Point\ Tool {
+		/Context 0
+		/Modifiers 32
+		/Represent 67
+		/Key 67
+	}
+	/Adobe\ Delete\ Anchor\ Point\ Tool {
+		/Context 0
+		/Modifiers 0
+		/Represent 45
+		/Key 45
+	}
+	/Adobe\ Add\ Anchor\ Point\ Tool {
+		/Context 0
+		/Modifiers 0
+		/Represent 43
+		/Key 61
+	}
+	/Adobe\ Pen\ Tool {
+		/Context 0
+		/Modifiers 0
+		/Represent 80
+		/Key 80
+	}
+	/Adobe\ Crop\ Tool {
+		/Context 0
+		/Modifiers 32
+		/Represent 79
+		/Key 79
+	}
+	/Adobe\ Direct\ Lasso\ Tool {
+		/Context 0
+		/Modifiers 0
+		/Represent 81
+		/Key 81
+	}
+	/Adobe\ Magic\ Wand\ Tool {
+		/Context 0
+		/Modifiers 0
+		/Represent 89
+		/Key 89
+	}
+	/Adobe\ Direct\ Object\ Select\ Tool {
+		/Context 0
+		/Modifiers 0
+		/Represent 0
+		/Key 0
+	}
+	/Adobe\ Direct\ Select\ Tool {
+		/Context 0
+		/Modifiers 0
+		/Represent 65
+		/Key 65
+	}
+	/Adobe\ Select\ Tool {
+		/Context 0
+		/Modifiers 0
+		/Represent 86
+		/Key 86
+	}
+}
+/type {
+	/unicodeString
+	/raw
+	/string
+	/real
+	/largeInteger
+	/integer
+	/proc
+	/directory
+}

@@ -1,0 +1,186 @@
+/uiShareButtonIsBlue 0
+/Ai_SaveBackupFiles 0
+/textImportantVisualLinesSnapping 0
+/textXHeightSnapping 1
+/textBaselineLineSnapping 1
+/Guide {
+	/Color {
+		/blue 1.0
+		/green 1.0
+		/red 0.2899976969
+	}
+	/Style 0
+	/ShowPixelGrid 1
+}
+/enableBackgroundExport 0
+/enableBackgroundSave 0
+/AutoActivateMissingFont 0
+/DisplayBitmapsAsAntiAliasedPixelPreview 0
+/useSysDefEdit 0
+/uiCanvasIsWhite 0
+/Grid {
+	/Color {
+		/Lite {
+			/b 0.7599999905
+			/g 0.7599999905
+			/r 0.7599999905
+		}
+		/Dark {
+			/b 0.5199999809
+			/g 0.5199999809
+			/r 0.5199999809
+		}
+	}
+	/Style 0
+	/Posn 1
+	/Vertical {
+		/Ticks 10
+		/Spacing 100.0
+	}
+	/Horizontal {
+		/Ticks 10
+		/Spacing 100.0
+	}
+}
+/plugin {
+	/AdobeSlicingPlugin {
+		/feedback {
+			/blue 19018
+			/green 19018
+			/red 65535
+		}
+		/showSliceNumbers 1
+	}
+	/FileClipboard {
+		/flatten 1
+		/pasteWithoutFormatting 0
+		/AICBOption 1
+		/copyAsAICB 0
+		/copyAsPDF 1
+		/linkoptions 2
+	}
+}
+/cloudAIAutoSaveTimerInterval 300
+/cloudAIEnableAutoSave 0
+/handleTypePref 0
+/snappingTolerance 2
+/moveLockedAndHiddenArt 0
+/zoomToSelection 1
+/constrainPathDragging 0
+/selectBehind 1
+/snapToPoint 1
+/showDirectionHandles 0
+/hitShapeOnPreview 1
+/EnableActualAreaTextSpaceAlign 0
+/EnableActualTextSpaceAlign 0
+/highlightAnchorOnMouseOver 1
+/angularGuides 1
+/textLineBoundsSnapping 1
+/textAnchorPointSnapping 1
+/liveCorners {
+	/cornerAngleLimit 177.0
+	/hideCornerWidgetBasedOnAngle 1
+}
+/zoomWithMouseWheel 0
+/policyForPreservingCorners 2
+/doubleClickToIsolate 1
+/fileFormatGetFile {
+	/ConvertedInFilename 1
+}
+/artNamesAreXMLIDs 0
+/antialias {
+	/image 1
+	/text 1
+	/graphic 1
+}
+/constrain {
+	/sin 0.0
+	/cos 1.0
+	/angle 0.0
+}
+/cursorKeyLength 1.0
+/selectSameTintPercentage 0
+/pen {
+	/disableAutoAddDelete 0
+}
+/cropMarkStyle 0
+/useGlobalRulers 0
+/hitTypeShapeOnPreview 1
+/usePreciseCursors 0
+/scaleLineWeight 0
+/transformPatterns 1
+/fontHeightOption 0
+/snapToGlyph 1
+/showSnapToGlyphOpt 1
+/blackPreservation {
+	/Export 1
+	/Onscreen 1
+}
+/showRichToolTips 0
+/uiOpenDocumentsAsTabs 1
+/uiBrightness 1.0
+/uiPersistDrawers 0
+/showToolTips 1
+/toolPen {
+	/rubberBandEnable 1
+}
+/selectionTolerance 3
+/anchorSizePref 7
+/ovalRadius 12.0
+/smartGuides {
+	/customAngles3 135.0
+	/customAngles2 90.0
+	/customAngles1 45.0
+	/customAngles0 0.0
+	/angles3 135.0
+	/angles2 90.0
+	/angles1 45.0
+	/angles0 0.0
+	/customAnglesCount 4
+	/anglesCount 4
+	/showSpacingGuides 1
+	/snapToActiveArtboardContent 0
+	/showReadouts 1
+	/showToolGuides 0
+	/showConstructionGuides 0
+	/showLabels 1
+	/tolerance 4
+	/showAlignmentGuides 1
+	/showObjectHighlighting 1
+}
+/showLockIcon 0
+/includeStrokeInBounds 1
+/uiScrollButtonPosition 0
+/numbersArePoints 0
+/strokeUnits 6
+/rulerType 6
+/AI\ WorldReadiness\ Dict\ Key 0
+/text {
+	/autoSizing 0
+	/doFontLocking 1
+	/doNonLatinInlineInput 1
+	/riseIncrement 2.0
+	/sizeIncrement 2.0
+	/kernIncrement 20
+	/highlightMissingFonts 1
+	/asianunits 2
+	/units 2
+	/recentFontMenu {
+		/showNEntries 10
+	}
+	/useEnglishFontNames 0
+	/fontMenu {
+		/faceSizeMultiplier 1.0
+		/showInFace 1
+	}
+}
+/UIPreferences {
+	/defaultScaleFactorLaunch 1
+	/appScaleFactor 1.0
+}
+/hyphenation {
+	/language 1
+}
+/showAsianTextOptions 0
+/EnableActualPointTextSpaceAlign 0
+/changed 0

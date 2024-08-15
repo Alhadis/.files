@@ -15,3 +15,13 @@ terminalrc        linguist-language=INI
 etc/shells        linguist-language=INI
 etc/*.conf        linguist-language=INI
 **/ublock/white*  linguist-language=Hosts
+
+# Adobe Illustrator settings
+[attr]aiprefs linguist-language=PostScript linguist-vendored
+Adobe*Prefs      aiprefs
+Last*Settings    aiprefs
+Vector*Presets   aiprefs
+**/Workspaces/*  aiprefs
+*.aia            aiprefs
+*.kys            aiprefs
+*.kys_mac        aiprefs

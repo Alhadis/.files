@@ -5,6 +5,7 @@ mandoc.db
 node_modules
 *.log
 
+/etc/adobe/*/current
 /etc/audacity/config
 /tmp.sh
 /var

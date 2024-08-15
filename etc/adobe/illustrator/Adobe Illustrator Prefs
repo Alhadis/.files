@@ -1,0 +1,2605 @@
+/precision {
+	/percentageNoUnits 2
+	/angleNoUnits 3
+	/fixedNoUnits 3
+	/millimetersWithUnits 3
+	/centimetersWithUnits 4
+	/inchesWithUnits 4
+	/pixelsWithUnits 3
+	/pointsWithUnits 3
+	/userWithUnits 4
+}
+/actionwarning {
+	/oldFileFormat 1
+}
+/printing {
+	/PostScript {
+		/preserveImageOrMeshFilledText 0
+	}
+}
+/Ai253_FastExit 1
+/DropLegacyScale9 0
+/GraphDimDialogConstrainPref 0
+/forceExtension 1
+/SavingFromInviteToEdit 0
+/SavingBeforeInviteToEdit 0
+/SwitchingNativeToCDPDlg 0
+/savingAsCopy 0
+/dontShowAgainOnboarding 1
+/AdobeSaveAsCloudDocumentPreference 0
+/enhanced3DEffectsOnboardingCoachMarkAcknowledged 1
+/textAllVisualLinesSnapping 0
+/textFirstLineSnapping 0
+/perspectivegrid {
+	/expandAnswer 0
+}
+/Threshold {
+	/DbrushPath {
+		/Save 30
+		/Clipboard 30
+	}
+}
+/Workspace {
+	/4E4F524F4F4D53Key 0
+}
+/LiveShapes {
+	/constrainPieAngles 0
+	/constrainDimensions 0
+	/constrainRadii 0
+	/maxLiveShapesToShowWidgetsOn 20
+	/autoShowPropertiesUIOnCreatingShape 0
+	/createLiveShapes 1
+	/hideWidgetsForShapeTools 0
+}
+/GlobalEdit {
+	/MaximumSimilarArtsToProcess 1000
+}
+/maxBridgeMRUFiles 30
+/ReplacingLinks 0
+/defaultPathShown 1
+/defaultPath [ 43
+	2f55736572732f416c68616469732f2e66696c65732f
+	6574632f61646f62652f696c6c7573747261746f72
+]
+/shrinkToFitResizedDocs 1
+/AdobeOpenCloudDocumentPreference 0
+/widthToolIsSelected 0
+/useSnapomatic 1
+/DontShowMissingFontDialogPreference 0
+/enableAGMThreadedRendering 0
+/messageIndex 0
+/FileNewFirstTime 0
+/japTextEMBoxLineSnapping 1
+/japTextCentreSnapping 1
+/isHexInUpperCase 0
+/QuickPortImpl 1
+/pageTiling {
+	/imageBoundsColor (r=0x00, g=0x00, b=0x00)
+	/mediaBoundsColor (r=0x00, g=0x00, b=0x00)
+}
+/photoshopFilter {
+	/excludeSpots 0
+	/separateProcess 0
+}
+/enableHyperThreadedRendering 0
+/RenderingTimerEnabled 0
+/isRulerOriginTopLeft 1
+/directionHandleMarkType 10
+/Devices {
+	/EnableWacom 1
+}
+/dictionary {
+	/updateDocumentsToNewDicitonary 0
+}
+/fileHandling {
+	/RenderLinksInLowRes 0
+}
+/useLowResProxy 0
+/GPPreferences {
+	/resetPreferencesSet 0
+}
+/AIShouldSuspendIdleInBackgroud 1
+/artboard {
+	/height_1 512.0
+	/width_1 512.0
+	/height 512.0
+	/width 512.0
+	/transform 0
+	/width_2 612.0
+	/height_2 792.0
+}
+/artnewdialog {
+	/advancedOptions 1
+	/artboardLayout 0
+	/artboardLayout_1 0
+	/artboardLayout_2 0
+	/artboardLayout_3 0
+	/artboardRowsOrCols 1
+	/artboardRowsOrCols_1 1
+	/artboardRowsOrCols_2 1
+	/artboardRowsOrCols_3 1
+	/artboardSpacing 20.0
+	/artboardSpacing_1 20.0
+	/artboardSpacing_2 20.0
+	/artboardSpacing_3 20.0
+	/bleedsLocked 1
+	/bleedsLocked_1 1
+	/bleedsLocked_2 1
+	/bleedsLocked_3 1
+	/bottomBleedSize 0.0
+	/bottomBleedSize_1 0.0
+	/bottomBleedSize_2 0.0
+	/bottomBleedSize_3 0.0
+	/docppi 72.0
+	/docppi_1 72.0
+	/docppi_2 72.0
+	/docppi_3 72.0
+	/documentType 1
+	/documentType_1 1
+	/documentType_2 1
+	/documentType_3 1
+	/fileModifiedDate 3718157382L
+	/fileModifiedDate_1 3718157382L
+	/fileModifiedDate_2 3718157382L
+	/fileModifiedDate_3 3718157382L
+	/fileSize 172568
+	/fileSize_1 172568
+	/fileSize_2 308719
+	/fileSize_3 308719
+	/isArtboardLayoutLeftToRight 1
+	/isArtboardLayoutLeftToRight_1 1
+	/isArtboardLayoutLeftToRight_2 1
+	/isArtboardLayoutLeftToRight_3 1
+	/lastUsedTime 3720668932L
+	/lastUsedTime_1 3719248262L
+	/lastUsedTime_2 3719248262L
+	/lastUsedTime_3 3719248262L
+	/leftBleedSize 0.0
+	/leftBleedSize_1 0.0
+	/leftBleedSize_2 0.0
+	/leftBleedSize_3 0.0
+	/numArtboards 1
+	/numArtboards_1 1
+	/numArtboards_2 1
+	/numArtboards_3 1
+	/numRecentPresets 3
+	/pixelaspectratio 1.0
+	/pixelaspectratio_1 1.0
+	/pixelaspectratio_2 1.0
+	/pixelaspectratio_3 1.0
+	/pixelperfectobjects 0
+	/pixelperfectobjects_1 0
+	/pixelperfectobjects_2 0
+	/pixelperfectobjects_3 0
+	/previewmode 2
+	/previewmode_1 2
+	/previewmode_2 2
+	/previewmode_3 2
+	/rasterresolution 300
+	/rasterresolution_1 300
+	/rasterresolution_2 300
+	/rasterresolution_3 300
+	/recentPresetIndex_0 0
+	/rightBleedSize 0.0
+	/rightBleedSize_1 0.0
+	/rightBleedSize_2 0.0
+	/rightBleedSize_3 0.0
+	/topBleedSize 0.0
+	/topBleedSize_1 0.0
+	/topBleedSize_2 0.0
+	/topBleedSize_3 0.0
+	/transparencygrid 0
+	/transparencygrid_1 1
+	/transparencygrid_2 1
+	/transparencygrid_3 1
+	/transparencygrid_color1_blue 65535
+	/transparencygrid_color1_blue_1 65535
+	/transparencygrid_color1_blue_2 65535
+	/transparencygrid_color1_blue_3 65535
+	/transparencygrid_color1_green 65535
+	/transparencygrid_color1_green_1 65535
+	/transparencygrid_color1_green_2 65535
+	/transparencygrid_color1_green_3 65535
+	/transparencygrid_color1_red 65535
+	/transparencygrid_color1_red_1 65535
+	/transparencygrid_color1_red_2 65535
+	/transparencygrid_color1_red_3 65535
+	/transparencygrid_color2_blue 52428
+	/transparencygrid_color2_blue_1 52428
+	/transparencygrid_color2_blue_2 52428
+	/transparencygrid_color2_blue_3 52428
+	/transparencygrid_color2_green 52428
+	/transparencygrid_color2_green_1 52428
+	/transparencygrid_color2_green_2 52428
+	/transparencygrid_color2_green_3 52428
+	/transparencygrid_color2_red 52428
+	/transparencygrid_color2_red_1 52428
+	/transparencygrid_color2_red_2 52428
+	/transparencygrid_color2_red_3 52428
+	/unit 6
+	/unit_1 2
+	/unit_2 2
+	/unit_3 1
+}
+/xml {
+	/UID {
+		/autoBaseNameUS [5 584d4c4944]
+	}
+}
+/aiFileFormat {
+	/clipboardPSLevel 3
+	/cmykPostScript 1
+	/documentPSLevel 3
+	/dumpPGFwithoutShortcut 0
+	/enableATEReadRecovery 0
+	/enableATEWriteRecovery 0
+	/enableContentRecovery 0
+	/PDFCompatibility 1
+}
+/IgnoreWordWithNumber 0
+/IgnoreRomanNumeral 0
+/IgnoreWordAllCap 0
+/IgnoreUncapSentenceStart 0
+/IgnoreRepeatedWord 0
+/colorModel 1
+/printerResolution 800.0
+/doSplitPath 0
+/showPlacedImages 0
+/Cloud\ AI\ Incremental\ Save\ Enabled\ Pref 1
+/CloudAIContentTypePref 1
+/open {
+	/legacyGradientMeshConversion 0
+}
+/LegacyArtboardOptions {
+	/artworkBounds 0
+	/pageTiles 0
+	/cropAreas 1
+	/artboard 1
+	/ShowDialog 1
+}
+/warning {
+	/legacyTextConversion 1
+	/colorConversion 1
+	/liveTrace 1
+	/fontProblem 1
+	/LegacyDictionaryChange 0
+}
+/adaptiveShareButtonClicked 1
+/CrashRecovery {
+	/AutomaticallySave 0
+	/IdleLoopTimeInterval 2
+	/TurnOffForComplexDocument 1
+	/RecoveryFolderLocation [ 64
+		2f55736572732f416c68616469732f2e66696c65732f6574632f61646f62652f
+		696c6c7573747261746f722f63757272656e742f446174615265636f76657279
+	]
+}
+/maximumUndoDepth 100
+/Performance {
+	/AnimZoom 0
+	/AutoSwitchEngine 1
+	/EnableGPU_Ver19_2 1
+	/GPUSupported 1
+	/ResponsiveZoom 1
+}
+/AIUserCancelledLogOff 0
+/attributePalette {
+	/currentUrlCount 0
+}
+/hideAnchorPointsInTools 1
+/CurvatureTool {
+	/rubberBandEnable 1
+}
+/AI\ New\ Art\ Basic\ Appearance 1
+/RecentFileNumber 0
+/DesignLibraryFTUEShown 0
+/showLinkInfo 0
+/AI\ Container\ Overrides\ Object 1
+/unselectedAnchorMarkType 1
+/selectedAnchorMarkType 9
+/snapomatic {
+	/GlyphColor {
+		/blue 0.2941176593
+		/green 0.8039215803
+		/red 0.4313725531
+	}
+	/Color {
+		/blue_19_2 1.0
+		/green_19_2 0.2899976969
+		/red_19_2 1.0
+	}
+}
+/textLineSnapping 1
+/layers {
+	/pastePreserveBackup 0
+	/pastePreserve 0
+}
+/isRulerIn4thQuad 1
+/dontUseSymbolRegPoint 0
+/onlyTransformPatterns 0
+/linkTransform 0
+/aiRotateWithTrackpad 1
+/aiShowSystemCompatibilityIssuesAtStartup 1
+/aiSwapAltControlWithScrollWheel 0
+/resetPreferencesSet 0
+/EnableActualViewPreview 1
+/Hello {
+	/NewDoc 1
+	/ShowHomeScreenWS 0
+}
+/outlineTol 0.0
+/freehandTol 2.0
+/showFindMoreTabV2 1
+/shaper {
+	/constrainScaling 0
+}
+/TouchPreferenceUI {
+	/PreciseCursor 1
+	/TWSKeyboardDetach 1
+	/SoftMessageDuration 4.0
+}
+/Swatches {
+	/linkHtWidthInDlg 0
+	/linkHVSpacingInDlg 0
+}
+/RotateViewToolForceEjected 0
+/RotateViewToolForceInjected 1
+/DefaultPaintStyle {
+	/ActiveGradient {
+		/AIColor {
+			/Kind ()
+		}
+	}
+	/ActiveColor {
+		/AIColor {
+			/RGB {
+				/Blue 0.0
+				/Green 0.0
+				/Red 0.0
+			}
+			/Kind (RGB)
+			/Gray {
+				/Gray 1.0
+			}
+			/CMYK {
+				/Cyan 0.7497214675
+				/Magenta 0.6791942716
+				/Yellow 0.6704966426
+				/Black 0.9014571905
+			}
+		}
+	}
+	/PathStyle {
+		/Stroke {
+			/MiterLimit 4.0
+			/Join (MiterJoin)
+			/Cap (ButtCap)
+			/Dash {
+				/Offset 0.0
+				/Length 0
+			}
+			/Width 1.0
+			/Overprint 0
+			/AIColor {
+				/Kind ()
+			}
+		}
+		/StrokePaint 0
+		/Fill {
+			/Overprint 0
+			/AIColor {
+				/Gray {
+					/Gray 1.0
+				}
+				/Kind (Gray)
+			}
+		}
+		/FillPaint 1
+	}
+	/StrokeActive 0
+}
+/Illustrator\ version 24
+/BucketTool {
+	/graphicsStyleExpanded 1
+	/text {
+		/paragraphStyle 1
+		/characterStyle 1
+	}
+	/paint {
+		/strokeExpanded 1
+		/fillExpanded 1
+		/objectExpanded 1
+		/stroke {
+			/dash 1
+			/miter 1
+			/join 1
+			/cap 1
+			/weight 1
+			/overprint 1
+			/transparency 1
+			/color 1
+		}
+		/stroke 1
+		/fill {
+			/overprint 1
+			/transparency 1
+			/color 1
+		}
+		/fill 1
+		/object {
+			/transparency 1
+		}
+	}
+	/graphicsStyle 0
+	/rasterSampleSize 1
+}
+/EyedropperTool {
+	/graphicsStyleExpanded 1
+	/text {
+		/characterStyle 1
+		/paragraphStyle 1
+	}
+	/paint {
+		/strokeExpanded 1
+		/fillExpanded 1
+		/objectExpanded 1
+		/stroke {
+			/dash 1
+			/miter 1
+			/join 1
+			/cap 1
+			/weight 1
+			/overprint 1
+			/transparency 1
+			/color 1
+		}
+		/stroke 1
+		/fill {
+			/overprint 1
+			/transparency 1
+			/color 1
+		}
+		/fill 1
+		/object {
+			/transparency 1
+		}
+	}
+	/graphicsStyle 0
+	/rasterSampleSize 1
+}
+/ColorHarmony {
+	/AdvanceDialogDefaultOn 0
+	/combineTintsOnExtraction 1
+	/mapMethodApplyToAll 1
+	/mapMethodPreserveSpots 1
+	/ShowAdjustSliders 0
+	/ShowHideColorGuide 1
+	/ShowStorage 1
+	/SliderColorSpace 3
+	/VariationTypeColorGuide 0
+}
+/Gradient\ Annotator\ View\ Option 1
+/Simplify {
+	/skipHUD 0
+}
+/BBRotateTolerance -1.0
+/BBScaleTolerance -1.0
+/showBoundingBox 1
+/EnableContentAwareDefaults 1
+/dynamicspelling 0
+/liveCorners {
+	/showWidget 1
+}
+/Planar {
+	/MergeTool {
+		/Highlight {
+			/StrokeColor {
+				/Blue 20224
+				/Green 20224
+				/Red 65535
+			}
+			/StrokeColorIndex 3
+			/Stroke 1
+			/Fill 1
+		}
+		/PreviewSwatchCursor 0
+		/PaintFills 1
+		/BreakEdge 0
+		/ClosedOpenFillPaths 1
+		/Gap {
+			/Length 3.0
+			/Type 0
+			/Detect 0
+		}
+	}
+	/FaceSelect {
+		/Highlight {
+			/Stroke 4
+			/Color {
+				/blue 20224
+				/green 20224
+				/red 65535
+			}
+		}
+		/Highlight 1
+		/SelectStrokes 1
+		/SelectFills 1
+	}
+	/Paintbucket {
+		/Highlight {
+			/Stroke 4
+			/Color {
+				/blue 20224
+				/green 20224
+				/red 65535
+			}
+		}
+		/CursorSwatchPrevew 1
+		/Highlight 1
+		/PaintStrokes 0
+		/PaintFills 1
+	}
+	/Resolution 100
+	/ArtboardGapPreview 0
+	/GapDetection {
+		/PreviewOn 1
+		/GapColor {
+			/blue 20224
+			/green 20224
+			/red 65535
+			/Color {
+				/blue 20224
+				/green 20224
+				/red 65535
+			}
+		}
+		/Custom 0
+		/Size 3.0
+	}
+	/GapDetection 1
+}
+/smartGuides {
+	/angularTolerance 2
+	/rotationalSnapArcTolerance 4
+	/showRotationalGuides 1
+	/isEnabled 0
+}
+/checkRequiredPlugins 1
+/UIPreferences {
+	/scaleCursor 1
+	/scaleUI 1
+	/snapUIScaleFactor 1
+	/workspaceTabsSize 2
+}
+/BIBCacheMaxSizeInBytes 41943040
+/BIBCacheSizeInPercentOfPhysicalRam 2.0
+/pluginCacheCheckCreateDate 1450838232
+/pluginCacheCheckModDate 1450838232
+/loadAdditionalPlugins 0
+/loadPluginsFromOutsideAppPackage 1
+/layout {
+	/0 {
+		/ApplicationBarOption 0
+		/ApplicationBarVisible 1
+		/FrameWindowVisible_19_2 1
+	}
+}
+/memory {
+	/memoryPercentage 0
+	/physicalRAMSize 16384
+	/usePhysicalRAMSize 0
+}
+/useProcessorSpecificCode 1
+/rastersys {
+	/scratch {
+		/secondary [ 0
+
+		]
+		/primary [ 1
+			2f
+		]
+	}
+}
+/EnableInternalMemoryPool 0
+/LiveEdit_State_Machine 1
+/LiveEdit_Global_EPF_Limit 5.0
+/editableGuides 0
+/plugin {
+	/GlobalBrushOptions {
+		/select 0
+		/fill 0
+		/fairnessPreset 2
+	}
+	/MixedFileList {
+		/file0 {
+			/name [13 3370742d636972636c652e6169]
+			/size 47333L
+			/type 0
+			/lastOpentime [25 323032312d31312d32325432303a31313a32302b31313a3030]
+			/path [ 60
+				2f55736572732f416c68616469732f4c6162732f66696c652d69636f6e73
+				2f6173736574732f656c656d656e74732f3370742d636972636c652e6169
+			]
+		}
+		/file1 {
+			/name [9 4172726f77732e6169]
+			/type 0
+			/size 746497L
+			/lastOpentime [25 323032312d31312d30385432303a34353a30382b31313a3030]
+			/path [ 56
+				2f55736572732f416c68616469732f4c6162732f66696c652d69636f
+				6e732f6173736574732f656c656d656e74732f4172726f77732e6169
+			]
+		}
+	}
+	/BRSTool30Mar9816Build {
+		/editing_distance 12.0
+	}
+	/BRSPencilTool {
+		/edit_selection 1
+	}
+	/Vector\ Sculpting {
+		/Mesh\ Visibility 1
+	}
+	/VariablesPaletteUI {
+		/VariablesPaletteCoachShownCount 1
+		/VariablesPaletteCoachOnboardingShown 0
+	}
+	/TransparencyPalette {
+		/InvertNewMasks 0
+		/NewMasksClip 1
+	}
+	/Illustrator {
+		/WritingStartupFile 0
+	}
+	/ai_navigation_put {
+		/rstr [0]
+		/alla 1
+		/exto 0
+		/lowr 1
+		/apnd 0
+	}
+	/ArtBrushOptions {
+		/PreviewChanges 1
+	}
+	/PDF {
+		/CompressPGF 1
+	}
+	/AI\ Toolbox\ UI\ Plugin {
+		/kToolBarDrawerIntroShown 1
+	}
+	/ai_navigation_get {
+		/link 1
+		/repl 0
+		/tmpl 0
+	}
+	/SmartExportUI {
+		/ShowLayersPanelAddAssetFTUE 1
+		/OpenLocationAfterExportPreference 1
+		/SmartExportActiveTab [25 536d6172744578706f72744163746976655461624173736574]
+		/SmartExportDialogRange [1 31]
+		/IncludeBleedInExport 1
+		/SmartExportFileNamePrefix [0]
+		/SmartExportFolderPath [0]
+		/SmartExportContentTypeForArtboard [5 52616e6765]
+		/SmartExportContentTypeForAssets [3 616c6c]
+		/SmartExportPreviewType [15 507265766965775479706547726964]
+		/SmartExportDialogBaseWidth 840.0
+		/SmartExportDialogBaseHeight 542.0
+		/CreateFoldersPreference 1
+		/ExportSelection {
+			/Count 1
+			/ShowExportPanel {
+				/Count 1
+			}
+		}
+	}
+	/NamedStylePopupPanel {
+		/ThumbnailType 0
+		/StylesView 0
+	}
+	/PreferenceUI {
+		/dialogWidth  649.0
+		/dialogHeight 565.0
+		/PrefDialogDimensionVersion (26.0.1)
+	}
+	/DontShowWarningAgain {
+		/AI9ClrMgmtNoProfInFile 0
+		/AISpotTransparencyAlertDlg 0
+		/applyAllLinkOption 0
+		/cantDeleteLastTextPath 1
+		/DropLegacyScale9 0
+		/illegalAddKnot 1
+		/illegalDeleteKnot 1
+		/illegalJoin 1
+		/illegalScissor 1
+		/legacyCSSaveWarning 1
+		/MissingLinkFileDummyKey 0
+		/noSelection 1
+		/notOkToInteract 1
+		/showClipboardWarning 1
+		/svgSaveWarningSupress 0
+		/-Vectorize\ Warning\ For\ Big\ Image\ Trace 1
+	}
+	/Luckyworker\ Pref {
+		/ReadPDFContent 0
+	}
+	/FileClipboard {
+		/aiOptimizeNetworkOperations 1
+		/appendExtension 0
+		/copySVGCBFormat 1
+		/copySVGCode 1
+		/copySVGForMuseCBFormat 1
+		/defaultCloudSave 1
+		/lowerCase 1
+		/retainClipboardData 0
+	}
+	/svgOptionDlg {
+		/O_ResponsiveSVG 0
+		/O_IncludeUnusedStyles 0
+		/O_UseSVGTextOnPath 1
+		/O_DisbleAutoKerning 1
+		/O_SVFontType 1
+		/O_SVGDTD 0
+		/O_DialogExpanded 1
+		/O_IncludeSlices 0
+		/O_IncludeXAP 0
+		/O_IncludePGF 0
+		/O_IncludeTemplate 0
+		/O_IncludeAdobeNameSpace 0
+		/O_RoundTrip 0
+		/O_TextOnPath 0
+		/O_GradientTolerance 0.25
+		/O_RasterResolution 72
+		/O_EmbedRasterLoc 2
+		/O_EmbedFontFormats 0
+		/O_Clip_To_Artboard 0
+		/O_Constrain_Proportions 1
+		/O_Also_Export_Compressed 0
+		/O_Export_LayerAsTitle 0
+		/O_ExportHiddenObjects 0
+		/O_Anti_Alias_Artwork 1
+		/O_Resolution_Unit 0
+		/O_Height_Unit 0
+		/O_Width_Unit 0
+	}
+	/SVGFormat {
+		/allowedSVGLinkingDepth 1
+		/CoordinatePrecision 1
+		/CoordinatePrecision2 7
+		/Encoding 2
+		/FileCompression 1
+		/FontLocation 1
+		/fontSubsetting 1
+		/FormatForFonts 1
+		/FormatForImages 1
+		/Rendering 1
+		/RestrictLinksToDocDirectory 0
+		/StyleType 1
+		/systemFont 0
+		/zoom 0
+	}
+	/AssetManagement {
+		/bridgeTalkPumpCycleInTicks 30
+		/vcLinkStatusUpdateCycleInTicks 120
+		/vcReplicaStatusUpdateCycleInTicks 30
+	}
+	/FileList { 
+		/file19 {/lastOpentime [0] /name [0] /size 0L}
+		/file18 {/lastOpentime [0] /name [0] /size 0L}
+		/file17 {/lastOpentime [0] /name [0] /size 0L}
+		/file16 {/lastOpentime [0] /name [0] /size 0L}
+		/file15 {/lastOpentime [0] /name [0] /size 0L}
+		/file14 {/lastOpentime [0] /name [0] /size 0L}
+		/file13 {/lastOpentime [0] /name [0] /size 0L}
+		/file12 {/lastOpentime [0] /name [0] /size 0L}
+		/file11 {/lastOpentime [0] /name [0] /size 0L}
+		/file10 {/lastOpentime [0] /name [0] /size 0L}
+		/file9  {/lastOpentime [0] /name [0] /size 0L}
+		/file8  {/lastOpentime [0] /name [0] /size 0L}
+		/file7  {/lastOpentime [0] /name [0] /size 0L}
+		/file6  {/lastOpentime [0] /name [0] /size 0L}
+		/file5  {/lastOpentime [0] /name [0] /size 0L}
+		/file4  {/lastOpentime [0] /name [0] /size 0L}
+		/file3  {/lastOpentime [0] /name [0] /size 0L}
+		/file2  {/lastOpentime [0] /name [0] /size 0L}
+		/file1  {/lastOpentime [0] /name [0] /size 0L}
+		/file0  {/lastOpentime [0] /name [0] /size 0L}
+	}
+	/WorkspacePrefix {
+		/Last\ Used\ Workspace\ Mode 1
+		/Last\ Actual\ Used\ Workspace\ Name [10 457373656e7469616c73]
+		/Last\ Used\ Workspace\ Name         [10 457373656e7469616c73]
+		/Previous\ Workspace\ Name           [10 457373656e7469616c73]
+		/Workspace\ Essentials\ Handled 1
+	}
+	/Navigator {
+		/Color {
+			/blue 0.31
+			/green 0.31
+			/red 1.0
+		}
+		/Artboard\ Mode 0
+		/DontDrawDash 1
+		/Greeking 72.0
+	}
+	/Align {
+		/StickyAlignOption 0
+	}
+	/KBSCShortcutFile {
+		/IsPreset 0
+		/FileName [13 4a6f686e2773204b6579736574]
+	}
+	/NamedStyle {
+		/ThumbnailType 0
+		/StylesView 0
+	}
+	/Symbols {
+		/VisibleKind 0
+	}
+	/Transform {
+		/AnchorPoint 5
+	}
+	/Cleanup_Preference {
+		/Cleanup_EmptyText 1
+		/Cleanup_NoPaintObjects 1
+		/Cleanup_StrayPoints 1
+	}
+	/AdobeBrush {
+		/ThumbnailView 1
+	}
+	/CSSExportPreference {
+		/CSSExtract {
+			/CSSExport {
+				/OtherResolution 300.0
+				/ResolutionOption 300
+				/UnsupportedArt 1
+				/Opera 1
+				/IExplorer 1
+				/FireFox 1
+				/Webkit 1
+				/VendorPref 1
+				/ExportUnnamedObjPref 0
+				/ExportDimension 0
+				/ExportPosition 0
+				/ExportOpacity 1
+				/ExportStroke 1
+				/ExportFill 1
+				/ExportUnit 4294967295
+			}
+		}
+	}
+	/AdobeSwatchPopup_Stroke {
+		/ColorListStyle 0
+		/CurrentListStyle 0
+		/GradientListStyle 0
+		/GroupsListStyle 0
+		/PatternListStyle 0
+		/ShowAllListStyle 0
+		/ShowFindField 0
+		/VisibleKind 0
+	}
+	/AdobeSwatchPopup_Fill {
+		/ColorListStyle 0
+		/CurrentListStyle 0
+		/GradientListStyle 0
+		/GroupsListStyle 0
+		/PatternListStyle 0
+		/ShowAllListStyle 0
+		/ShowFindField 0
+		/VisibleKind 0
+	}
+	/AdobeSwatch_ {
+		/ColorListStyle 0
+		/CurrentListStyle 0
+		/GradientListStyle 0
+		/GroupsListStyle 0
+		/PatternListStyle 0
+		/ShowAllListStyle 0
+		/ShowFindField 0
+		/VisibleKind 0
+	}
+	/ICCColorMgmt3.0 {
+		/settingsFile [ 90
+			2f4c6962726172792f4170706c69636174696f6e20537570706f72742f41646f
+			62652f436f6c6f722f53657474696e67732f5265636f6d6d656e6465642f4575
+			726f70652047656e6572616c20507572706f736520332e637366
+		]
+		/settingsFileValid 1
+		/useAdvanced 0
+		/useAI6 0
+	}
+	/PDFImport {
+		/CropTo 4
+		/PageNumber 1
+		/PageRange [0]
+		/HonourPageScale 0
+	}
+	/PDFExport {
+		/AdvancedListEntryExpanded 0
+		/AI11PDF_BleedBottom 0.0
+		/AI11PDF_BleedLeft 0.0
+		/AI11PDF_BleedLink 1
+		/AI11PDF_BleedRight 0.0
+		/AI11PDF_BleedTop 0.0
+		/AI11PDF_ColorBars 0
+		/AI11PDF_ColorCompressionKind 6
+		/AI11PDF_ColorCompressionQuality 1
+		/AI11PDF_ColorDownsampleImageAbove 225
+		/AI11PDF_ColorDownsampleKind 1
+		/AI11PDF_ColorDownsampleResolution 150
+		/AI11PDF_ColorTileSize 256
+		/AI11PDF_Compatibility 5
+		/AI11PDF_CompressArt 1
+		/AI11PDF_FastWebView 0
+		/AI11PDF_FlatteningPresetClipComplexRegion 1
+		/AI11PDF_FlatteningPresetMaxResolution 300.0
+		/AI11PDF_FlatteningPresetMinResolution 150.0
+		/AI11PDF_FlatteningPresetName [17 5b48696768205265736f6c7574696f6e5d]
+		/AI11PDF_FlatteningPresetOutlineStroke 1
+		/AI11PDF_FlatteningPresetOutlineText 0
+		/AI11PDF_FlatteningPresetPrinterResolution 800.0
+		/AI11PDF_FlatteningPresetVectorBalance 75
+		/AI11PDF_FlattenTransparency 0
+		/AI11PDF_GenerateThumbnails 1
+		/AI11PDF_GrayCompressionKind 6
+		/AI11PDF_GrayCompressionQuality 1
+		/AI11PDF_GrayDownsampleImageAbove 225
+		/AI11PDF_GrayDownsampleKind 1
+		/AI11PDF_GrayDownsampleResolution 150
+		/AI11PDF_GrayTileSize 256
+		/AI11PDF_MonochromeCompressionKind 4
+		/AI11PDF_MonochromeDownsampleKind 1
+		/AI11PDF_MonochromeDownsampleResolution 300
+		/AI11PDF_MonoDownsampleImageAbove 450
+		/AI11PDF_OffsetFromArtworkBottom 6.0
+		/AI11PDF_OffsetFromArtworkLeft 6.0
+		/AI11PDF_OffsetFromArtworkRight 6.0
+		/AI11PDF_OffsetFromArtworkTop 6.0
+		/AI11PDF_Overprint 0
+		/AI11PDF_PageInfo 0
+		/AI11PDF_PreserveAcrobatLayers 1
+		/AI11PDF_PreserveIllustratorEditingCapabilities 1
+		/AI11PDF_PrinterMarkType 0
+		/AI11PDF_RegMarks 0
+		/AI11PDF_SubsetFontRatio 0
+		/AI11PDF_TrimMarks 0
+		/AI11PDF_TrimMarkWeight 0.25
+		/AI11PDF_ViewPDFFile 0
+		/AI12PDF_ColorConversionPolicy 1
+		/AI12PDF_Description [0]
+		/AI12PDF_DestinationName [0]
+		/AI12PDF_DestinationPolicy 1
+		/AI12PDF_DontShowSecurityWarning 0
+		/AI12PDF_OutputCondition [0]
+		/AI12PDF_OutputConditionIdentifier [0]
+		/AI12PDF_OutputIntentProfileName [0]
+		/AI12PDF_OutputIntentProfileNamePolicy 1
+		/AI12PDF_ProfileInclusionPolicy 1
+		/AI12PDF_RegistryName [0]
+		/AI12PDF_Standard 1
+		/AI12PDF_Trapped 0
+		/AI12PDF_UsePrintTiling 0
+		/AI14PDF_DocBleed 1
+		/AI16PDF_FlatteningPresetAntiAlias 0
+		/ColorImageListEntryExpanded 0
+		/CompressionListEntryExpanded 0
+		/DescriptionListEntryExpanded 0
+		/FlattenerListEntryExpanded 0
+		/GeneralListEntryExpanded 0
+		/GrayImageListEntryExpanded 0
+		/MarksBleedsListEntryExpanded 0
+		/MonoImageListEntryExpanded 0
+		/OptionSet 2
+		/OptionSetName [21 5b496c6c7573747261746f722044656661756c745d]
+		/OptionSetNameSE [20 5b536d616c6c6573742046696c652053697a655d]
+		/OutputColorExpanded 0
+		/OutputListEntryExpanded 0
+		/OutputPDFXExpanded 0
+		/SecurityListEntryExpanded 0
+		/SmartExportDefaultPDFPresetName [30 5b536d616c6c6573742046696c652053697a65202850444620312e36295d]
+	}
+	/EraserTool {
+		/angle 0.0
+		/angleDependsOn 0
+		/angleRelativeTo 0
+		/angleRnd 0.0
+		/angleVariation 0.0
+		/diameter 10.0
+		/diameterDependsOn 0
+		/diameterRnd 0.0
+		/diameterVariation 0.0
+		/roundness 100.0
+		/roundnessDependsOn 0
+		/roundnessRnd 0.0
+		/roundnessVariation 0.0
+	}
+	/dBrush {
+		/CountBeforeSavePrint 1
+		/MousePoseAltitude 45.0000012522
+		/MousePoseAzimuth 45.0000012522
+		/MousePoseFollowPath 1
+		/MousePosePressure 0.5
+		/MousePoseTwist 0.0
+		/PhysicsThreads 0
+		/ShowPoseAnnotation 0
+		/ShowSteppingTrajectories 0
+		/UseODEPhysics 0
+		/UseSampledStepping 1
+	}
+	/BlobBrushTool {
+		/angle 0.0
+		/angleDependsOn 0
+		/angleRelativeTo 0
+		/angleRnd 0.0
+		/angleVariation 0.0
+		/diameter 10.0
+		/diameterDependsOn 0
+		/diameterRnd 0.0
+		/diameterVariation 0.0
+		/roundness 100.0
+		/roundnessDependsOn 0
+		/roundnessRnd 0.0
+		/roundnessVariation 0.0
+	}
+	/Adobe\ Freehand\ Smooth\ Tool {
+		/fairness_preset 2
+	}
+	/Adobe\ Freehand\ Tool {
+		/auto_close 1
+		/closing_distance 15.0
+		/edit_selection 1
+		/editing_distance 6.0
+		/fairness_preset 2
+		/fill 0
+		/select 1
+		/toggle_to_smooth 0
+	}
+	/Rasterize {
+		/Defaults {
+			/Alias 0
+			/DPI 72
+			/Mask 0
+			/Padding 36.0
+			/Spot 1
+			/Type 4
+		}
+		/rasterizeMemory 20
+	}
+	/Brush\ Library:\  {
+		/Applications {
+			/Adobe\ Illustrator\ 2023 {
+				/Presets.localized {
+					/en_GB {
+						/Brushes {
+							/Artistic {
+								/Artistic_Calligraphic.ai                {/Persistent 0 /ThumbnailView 1}
+								/Artistic_ChalkCharcoalPencil.ai         {/Persistent 0 /ThumbnailView 1}
+								/Artistic_Ink.ai                         {/Persistent 0 /ThumbnailView 1}
+								/Artistic_Paintbrush.ai                  {/Persistent 0 /ThumbnailView 1}
+								/Artistic_ScrollPen.ai                   {/Persistent 0 /ThumbnailView 1}
+								/Artistic_Watercolor.ai                  {/Persistent 0 /ThumbnailView 1}
+							}
+							/Image\ Brush {
+								/Image\ Brush\ Library.ai                {/Persistent 0 /ThumbnailView 1}
+							}
+							/Wacom\ 6D\ Brushes {
+								/6d\ Art\ Pen\ Brushes.ai                {/Persistent 0 /ThumbnailView 1}
+							}
+							/Arrows {
+								/Arrows_Special.ai                       {/Persistent 0 /ThumbnailView 1}
+								/Arrows_Standard.ai                      {/Persistent 0 /ThumbnailView 1}
+								/Pattern\ Arrows.ai                      {/Persistent 0 /ThumbnailView 1}
+							}
+							/Vector\ Packs {
+								/Grunge\ brushes\ vector\ pack.ai        {/Persistent 0 /ThumbnailView 1}
+								/Hand\ Drawn\ brushes\ vector\ pack.ai   {/Persistent 0 /ThumbnailView 1}
+							}
+							/Bristle\ Brush {
+								/Bristle\ Brush\ Library.ai              {/Persistent 0 /ThumbnailView 1}
+							}
+							/Decorative {
+								/Decorative_Banners\ and\ Seals.ai       {/Persistent 0 /ThumbnailView 1}
+								/Decorative_Scatter.ai                   {/Persistent 0 /ThumbnailView 1}
+								/Decorative_Text\ Dividers.ai            {/Persistent 0 /ThumbnailView 1}
+								/Elegant\ Curl\ &\ Floral\ Brush\ Set.ai {/Persistent 0 /ThumbnailView 1}
+							}
+							/Borders {
+								/Borders_Dashed.ai                       {/Persistent 0 /ThumbnailView 1}
+								/Borders_Decorative.ai                   {/Persistent 0 /ThumbnailView 1}
+								/Borders_Frames.ai                       {/Persistent 0 /ThumbnailView 1}
+								/Borders_Geometric.ai                    {/Persistent 0 /ThumbnailView 1}
+								/Borders_Indigenous.ai                   {/Persistent 0 /ThumbnailView 1}
+								/Borders_Lines.ai                        {/Persistent 0 /ThumbnailView 1}
+								/Borders_Novelty.ai                      {/Persistent 0 /ThumbnailView 1}
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+	/objectExpand {
+		/gradientSteps 255
+	}
+	/PG {
+		/infGridLines 1
+		/infObjects 1
+		/PlaneSwitcherPosition 0
+		/PlaneSwitcherVisible 1
+	}
+	/PNGFileFormat {
+		/AntiAlias 1
+		/Background {
+			/blue 65535
+			/green 65535
+			/red 65535
+		}
+		/BackgroundTransparent 1
+		/Interlaced 0
+		/ResolutionR 800.0
+	}
+	/PhotoshopFileFormat {
+		/HiddenLayers 0
+		/ImageMaps 1
+		/PixelAspectRatio 0
+		/PSD\ Import\ Option 1
+		/SelectedLayerCompID 4294967295
+		/SelectedLayerCompName [0]
+		/ShowPreview 0
+		/Slices 1
+		/SpotOptionApplyToAll 0
+	}
+	/3D\ Plugin\ Flattener\ Pref {
+		/DontReorderClipGroups 0
+	}
+	/PathFinder {
+		/RemoveRedundantPoints 0
+	}
+	/SmartExport {
+		/JPEGFormatToExport (JPG File Format)
+		/PDFFormatSmartExport 0
+	}
+	/Symbol\ Library:\  {
+		/Applications {
+			/Adobe\ Illustrator\ 2023 {
+				/Presets.localized {
+					/en_GB {
+						/Symbols {
+							/3D\ Symbols.ai                {/Persistent 0}
+							/Arrows.ai                     {/Persistent 0}
+							/Artistic\ Textures.ai         {/Persistent 0}
+							/Celebration.ai                {/Persistent 0}
+							/Charts.ai                     {/Persistent 0}
+							/Communication.ai              {/Persistent 0}
+							/Dot\ Pattern\ Vector\ Pack.ai {/Persistent 0}
+							/Fashion.ai                    {/Persistent 0}
+							/Florid\ Vector\ Pack.ai       {/Persistent 0}
+							/Flowers.ai                    {/Persistent 0}
+							/Grime\ Vector\ Pack.ai        {/Persistent 0}
+							/Hair\ and\ Fur.ai             {/Persistent 0}
+							/Heirloom.ai                   {/Persistent 0}
+							/Illuminate\ Flow\ Charts.ai   {/Persistent 0}
+							/Illuminate\ Org\ Charts.ai    {/Persistent 0}
+							/Illuminate\ Ribbons.ai        {/Persistent 0}
+							/Indigenous.ai                 {/Persistent 0}
+							/Logo\ Elements.ai             {/Persistent 0}
+							/Mad\ Science.ai               {/Persistent 0}
+							/Maps.ai                       {/Persistent 0}
+							/Mobile.ai                     {/Persistent 0}
+							/Nature.ai                     {/Persistent 0}
+							/Regal\ Vector\ Pack.ai        {/Persistent 0}
+							/Retro.ai                      {/Persistent 0}
+							/Sushi.ai                      {/Persistent 0}
+							/Tiki.ai                       {/Persistent 0}
+							/Web\ Buttons\ and\ Bars.ai    {/Persistent 0}
+							/Web\ Icons.ai                 {/Persistent 0}
+						}
+					}
+				}
+			}
+		}
+	}
+	/Art\ Style\ Library:\  {
+		/Applications {
+			/Adobe\ Illustrator\ 2023 {
+				/Presets.localized {
+					/en_GB {
+						/Graphic\ Styles {
+							/3D\ Effects.ai                {/Persistent 0 /StylesView 0 /ThumbnailType 0}
+							/Additive.ai                   {/Persistent 0 /StylesView 0 /ThumbnailType 0}
+							/Additive\ for\ Blob\ Brush.ai {/Persistent 0 /StylesView 0 /ThumbnailType 0}
+							/Artistic\ Effects.ai          {/Persistent 0 /StylesView 0 /ThumbnailType 0}
+							/Buttons\ and\ Rollovers.ai    {/Persistent 0 /StylesView 0 /ThumbnailType 0}
+							/Illuminate\ Styles.ai         {/Persistent 0 /StylesView 0 /ThumbnailType 0}
+							/Image\ Effects.ai             {/Persistent 0 /StylesView 0 /ThumbnailType 0}
+							/Neon\ Effects.ai              {/Persistent 0 /StylesView 0 /ThumbnailType 0}
+							/Scribble\ Effects.ai          {/Persistent 0 /StylesView 0 /ThumbnailType 0}
+							/Textures.ai                   {/Persistent 0 /StylesView 0 /ThumbnailType 0}
+							/Type\ Effects.ai              {/Persistent 0 /StylesView 0 /ThumbnailType 0}
+							/Vonster\ Pattern\ Styles.ai   {/Persistent 0 /StylesView 0 /ThumbnailType 0}
+						}
+					}
+				}
+			}
+		}
+	}
+	/AIDefaultPersistentLibraryPrefix {
+		/_count 0
+	}
+	/Workspaces {
+		/PrefCommentsPanelShowSetInWorkspace 1
+		/PrefDLPanelShowSetInWorkspace 1
+		/PrefPropertiesPanelShowSetInWorkspace 1
+	}
+	/AISwatchLibPersistentPrefix {
+		/_count 0
+	}
+	/AdobeSlicingPlugin {
+		/addSlicingTools 1
+		/divideEvenHorizontally 1
+		/divideEvenVertically 1
+		/divideHorizontally 1
+		/divideHorizontallyCount 1
+		/divideHorizontallyPixelCount 0
+		/dividePreview 0
+		/divideVertically 1
+		/divideVerticallyCount 1
+		/divideVerticallyPixelCount 0
+		/lockSlices 0
+	}
+	/Debug {
+		/timeActions 0
+		/useDebugMenu 0
+	}
+	/AIProxy_CacheFile_MetaData {
+		/AIProxy_data {
+			/Applications {
+				/Adobe\ Illustrator\ 2022 {
+					/Presets.localized {
+						/en_GB {
+							/Swatches {
+								/Color\ Books {
+									/ANPA\ Color.acb                           <28 c01b00000000000046949edd0000000046949edd0000000000000000>
+									/DIC\ Color\ Guide.acb                     <28 447400000000000046949edd0000000046949edd0000000000000000>
+									/FOCOLTONE.acb                             <28 484a00000000000046949edd0000000046949edd0000000000000000>
+									/HKS\ E.acb                                <28 100800000000000046949edd0000000046949edd0000000000000000>
+									/HKS\ E\ Process.acb                       <28 160800000000000046949edd0000000046949edd0000000000000000>
+									/HKS\ K.acb                                <28 260800000000000046949edd0000000046949edd0000000000000000>
+									/HKS\ K\ Process.acb                       <28 160800000000000046949edd0000000046949edd0000000000000000>
+									/HKS\ N.acb                                <28 040800000000000046949edd0000000046949edd0000000000000000>
+									/HKS\ N\ Process.acb                       <28 160800000000000046949edd0000000046949edd0000000000000000>
+									/HKS\ Z.acb                                <28 7b0500000000000046949edd0000000046949edd0000000000000000>
+									/HKS\ Z\ Process.acb                       <28 160800000000000046949edd0000000046949edd0000000000000000>
+									/PANTONE+\ CMYK\ Coated.acb                <28 b20c01000000000046949edd0000000046949edd0000000000000000>
+									/PANTONE+\ CMYK\ Uncoated.acb              <28 ca0c01000000000046949edd0000000046949edd0000000000000000>
+									/PANTONE+\ Color\ Bridge\ Coated.acb       <28 1a7a00000000000046949edd0000000046949edd0000000000000000>
+									/PANTONE+\ Color\ Bridge\ Uncoated.acb     <28 2a7a00000000000046949edd0000000046949edd0000000000000000>
+									/PANTONE+\ Metallic\ Coated.acb            <28 2e1d00000000000046949edd0000000046949edd0000000000000000>
+									/PANTONE+\ Pastels\ &\ Neons\ Coated.acb   <28 dc1400000000000046949edd0000000046949edd0000000000000000>
+									/PANTONE+\ Pastels\ &\ Neons\ Uncoated.acb <28 f01400000000000046949edd0000000046949edd0000000000000000>
+									/PANTONE+\ Premium\ Metallics\ Coated.acb  <28 9a1d00000000000046949edd0000000046949edd0000000000000000>
+									/PANTONE+\ Solid\ Coated.acb               <28 2f7e00000000000046949edd0000000046949edd0000000000000000>
+									/PANTONE+\ Solid\ Uncoated.acb             <28 437e00000000000046949edd0000000046949edd0000000000000000>
+									/TOYO\ 94\ COLOR\ FINDER.acb               <28 fa5700000000000046949edd0000000046949edd0000000000000000>
+									/TOYO\ COLOR\ FINDER.acb                   <28 846d00000000000046949edd0000000046949edd0000000000000000>
+									/TRUMATCH.acb                              <28 0cc000000000000046949edd0000000046949edd0000000000000000>
+								}
+							}
+						}
+					}
+					/Adobe\ Illustrator.app {
+						/Contents {
+							/Resources {
+								/AIDelayLoadedPlugins.cfg           <28 d024000000000000c7f6a6dd00000000c7f6a6dd0000000000000000>
+								/AIResolutionIndependentEffects.cfg <28 b212000000000000caf6a6dd00000000caf6a6dd0000000000000000>
+							}
+						}
+					}
+				}
+			}
+		}
+		/AIProxy_data_size {
+			/Applications {
+				/Adobe\ Illustrator\ 2022 {
+					/Presets.localized {
+						/en_GB {
+							/Swatches {
+								/Color\ Books {
+									/ANPA\ Color.acb 28
+									/DIC\ Color\ Guide.acb 28
+									/FOCOLTONE.acb 28
+									/HKS\ E.acb 28
+									/HKS\ E\ Process.acb 28
+									/HKS\ K.acb 28
+									/HKS\ K\ Process.acb 28
+									/HKS\ N.acb 28
+									/HKS\ N\ Process.acb 28
+									/HKS\ Z.acb 28
+									/HKS\ Z\ Process.acb 28
+									/PANTONE+\ CMYK\ Coated.acb 28
+									/PANTONE+\ CMYK\ Uncoated.acb 28
+									/PANTONE+\ Color\ Bridge\ Coated.acb 28
+									/PANTONE+\ Color\ Bridge\ Uncoated.acb 28
+									/PANTONE+\ Metallic\ Coated.acb 28
+									/PANTONE+\ Pastels\ &\ Neons\ Coated.acb 28
+									/PANTONE+\ Pastels\ &\ Neons\ Uncoated.acb 28
+									/PANTONE+\ Premium\ Metallics\ Coated.acb 28
+									/PANTONE+\ Solid\ Coated.acb 28
+									/PANTONE+\ Solid\ Uncoated.acb 28
+									/TOYO\ 94\ COLOR\ FINDER.acb 28
+									/TOYO\ COLOR\ FINDER.acb 28
+									/TRUMATCH.acb 28
+								}
+							}
+						}
+					}
+					/Adobe\ Illustrator.app {
+						/Contents {
+							/Resources {
+								/AIDelayLoadedPlugins.cfg 28
+								/AIResolutionIndependentEffects.cfg 28
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+	/FavoriteFamily {
+		/FavoriteFamilyCount 0
+	}
+	/RecentFont {
+		/RecentFontCount 7
+		/0 {/FontName (Cambria)                   /FontTechnology 101}
+		/1 {/FontName (Cambria-BoldItalic)        /FontTechnology 101}
+		/2 {/FontName (Menlig-Regular)            /FontTechnology 100}
+		/3 {/FontName (BleedingCowboys)           /FontTechnology 101}
+		/4 {/FontName (Brush445BT-Regular)        /FontTechnology 100}
+		/5 {/FontName (SourceSerifVariable-Roman) /FontTechnology 100}
+		/6 {/FontName (MyriadPro-Regular)         /FontTechnology 100}
+	}
+	/CropAreaPrefix {
+		/MoveContentWithArtbrd 1
+		/RealTimeFading 1
+		/ShowFading 1
+	}
+	/Adobe\ Vector\ Sculpting\ UI {
+		/ToolIntroFTUEShown 0
+		/ToolIntroFTUEShownCount 2
+	}
+	/Action {
+		/SavedSetCount 1
+		/SavedSets {
+			% Default Actions
+			/set-1 {
+				/name [15 44656661756c7420416374696f6e73]
+				/version 3
+				/isOpen 1
+				/actionCount 21
+				
+				% Opacity 60 (selection)
+				/action-1 {
+					/name [22 4f706163697479203630202873656c656374696f6e29]
+					/colorIndex 7
+					/keyIndex 0
+					/isOpen 0
+					/eventCount 1
+					/event-1 {
+						/internalName (ai_plugin_transparency)
+						/localizedName [12 5472616e73706172656e6379] % Transparency
+						/hasDialog 0
+						/isOn 1
+						/isOpen 0
+						/useRulersIn1stQuadrant 1
+						/parameterCount 1
+						/parameter-1 {
+							/unit 592474723
+							/value 60.0
+							/type (unit real)
+							/showInPalette 1
+							/key 1869635939
+						}
+					}
+				}
+
+				% Opacity 40 Screen (selection)
+				/action-2 {
+					/name [29 4f7061636974792034302053637265656e202873656c656374696f6e29]
+					/colorIndex 7
+					/keyIndex 0
+					/isOpen 0
+					/eventCount 2
+					/event-1 {
+						/internalName (ai_plugin_transparency)
+						/localizedName [12 5472616e73706172656e6379] % Transparency
+						/hasDialog 0
+						/isOn 1
+						/isOpen 0
+						/useRulersIn1stQuadrant 1
+						/parameterCount 1
+						/parameter-1 {
+							/unit 592474723
+							/value 40.0
+							/type (unit real)
+							/showInPalette 1
+							/key 1869635939
+						}
+					}
+					/event-2 {
+						/internalName (ai_plugin_transparency)
+						/localizedName [12 5472616e73706172656e6379] % Transparency
+						/hasDialog 0
+						/isOn 1
+						/isOpen 0
+						/useRulersIn1stQuadrant 1
+						/parameterCount 1
+						/parameter-1 {
+							/value 2
+							/name [6 53637265656e] % Screen
+							/type (enumerated)
+							/showInPalette 1
+							/key 1836016741
+						}
+					}
+				}
+
+				% Apply Default Style (selection)
+				/action-3 {
+					/name [31 4170706c792044656661756c74205374796c65202873656c656374696f6e29]
+					/colorIndex 7
+					/keyIndex 0
+					/isOpen 0
+					/eventCount 1
+					/event-1 {
+						/internalName (ai_plugin_styles)
+						/localizedName [14 47726170686963205374796c6573] % Graphic Styles
+						/hasDialog 0
+						/isOn 1
+						/isOpen 0
+						/useRulersIn1stQuadrant 1
+						/parameterCount 1
+						/parameter-1 {
+							/value [9 5b44656661756c745d] % [Default]
+							/type (ustring)
+							/showInPalette 1
+							/key 1937013100
+						}
+					}
+				}
+
+				% Save for Web GIF 64 Dithered
+				/action-4 {
+					/name [28 5361766520666f722057656220474946203634204469746865726564]
+					/colorIndex 7
+					/keyIndex 0
+					/isOpen 0
+					/eventCount 1
+					/event-1 {
+						/internalName (adobe_SaveForWeb)
+						/localizedName [12 5361766520666f7220576562] % Save for Web
+						/hasDialog 1
+						/isOn 1
+						/isOpen 1
+						/showDialog 1
+						/useRulersIn1stQuadrant 1
+						/parameterCount 18
+						/parameter-1 {
+							/value 1195984486
+							/name [6 474946383961] % GIF89a
+							/type (enumerated)
+							/showInPalette 4294967295
+							/key 1181578272
+						}
+						/parameter-2 {
+							/value 0
+							/type (boolean)
+							/showInPalette 4294967295
+							/key 1231975538
+						}
+						/parameter-3 {
+							/value 1399616630
+							/name [9 53656c656374697665] % Selective
+							/type (enumerated)
+							/showInPalette 4294967295
+							/key 1382376513
+						}
+						/parameter-4 {
+							/value 0
+							/type (boolean)
+							/showInPalette 4294967295
+							/key 1098207844
+						}
+						/parameter-5 {
+							/value 64
+							/type (integer)
+							/showInPalette 4294967295
+							/key 1313042284
+						}
+						/parameter-6 {
+							/value 1147564910
+							/name [9 446966667573696f6e] % Diffusion
+							/type (enumerated)
+							/showInPalette 4294967295
+							/key 1148479602
+						}
+						/parameter-7 {
+							/value 88
+							/type (integer)
+							/showInPalette 4294967295
+							/key 1148479553
+						}
+						/parameter-8 {
+							/value 0
+							/type (integer)
+							/showInPalette 4294967295
+							/key 1466262099
+						}
+						/parameter-9 {
+							/value 0
+							/type (integer)
+							/showInPalette 4294967295
+							/key 1282372467
+						}
+						/parameter-10 {
+							/value 1
+							/type (boolean)
+							/showInPalette 4294967295
+							/key 1416785523
+						}
+						/parameter-11 {
+							/value 1
+							/type (boolean)
+							/showInPalette 4294967295
+							/key 1299477536
+						}
+						/parameter-12 {
+							/value 255
+							/type (integer)
+							/showInPalette 4294967295
+							/key 1299477586
+						}
+						/parameter-13 {
+							/value 255
+							/type (integer)
+							/showInPalette 4294967295
+							/key 1299477575
+						}
+						/parameter-14 {
+							/value 255
+							/type (integer)
+							/showInPalette 4294967295
+							/key 1299477570
+						}
+						/parameter-15 {
+							/value [13 417274204f7074696d697a6564] % Art Optimised
+							/type (ustring)
+							/showInPalette 4294967295
+							/key 1097757761
+						}
+						/parameter-16 {
+							/value 0
+							/type (boolean)
+							/showInPalette 4294967295
+							/key 1131180097
+						}
+						/parameter-17 {
+							/value 0
+							/type (boolean)
+							/showInPalette 4294967295
+							/key 1397249101
+						}
+						/parameter-18 {
+							/value [13 4d6163696e746f73682048443a] % Macintosh HD:
+							/type (ustring)
+							/showInPalette 4294967295
+							/key 1231953952
+						}
+					}
+				}
+
+				% Save for Web JPG Medium
+				/action-5 {
+					/name [23 5361766520666f7220576562204a5047204d656469756d]
+					/colorIndex 7
+					/keyIndex 0
+					/isOpen 0
+					/eventCount 1
+					/event-1 {
+						/internalName (adobe_SaveForWeb)
+						/localizedName [12 5361766520666f7220576562] % Save for Web
+						/hasDialog 1
+						/isOn 1
+						/isOpen 1
+						/showDialog 1
+						/useRulersIn1stQuadrant 1
+						/parameterCount 14
+						/parameter-1 {
+							/value 1246774599
+							/name [4 4a504547] % JPEG
+							/type (enumerated)
+							/showInPalette 4294967295
+							/key 1181578272
+						}
+						/parameter-2 {
+							/value 0
+							/type (boolean)
+							/showInPalette 4294967295
+							/key 1231975538
+						}
+						/parameter-3 {
+							/value 30
+							/type (integer)
+							/showInPalette 4294967295
+							/key 1366062201
+						}
+						/parameter-4 {
+							/value 1
+							/type (boolean)
+							/showInPalette 4294967295
+							/key 1332769901
+						}
+						/parameter-5 {
+							/value 1
+							/type (integer)
+							/showInPalette 4294967295
+							/key 1348563827
+						}
+						/parameter-6 {
+							/value 0.0
+							/type (real)
+							/showInPalette 4294967295
+							/key 1651275122
+						}
+						/parameter-7 {
+							/value 1
+							/type (boolean)
+							/showInPalette 4294967295
+							/key 1299477536
+						}
+						/parameter-8 {
+							/value 255
+							/type (integer)
+							/showInPalette 4294967295
+							/key 1299477586
+						}
+						/parameter-9 {
+							/value 255
+							/type (integer)
+							/showInPalette 4294967295
+							/key 1299477575
+						}
+						/parameter-10 {
+							/value 255
+							/type (integer)
+							/showInPalette 4294967295
+							/key 1299477570
+						}
+						/parameter-11 {
+							/value [13 417274204f7074696d697a6564] % Art Optimised
+							/type (ustring)
+							/showInPalette 4294967295
+							/key 1097757761
+						}
+						/parameter-12 {
+							/value 0
+							/type (boolean)
+							/showInPalette 4294967295
+							/key 1131180097
+						}
+						/parameter-13 {
+							/value 0
+							/type (boolean)
+							/showInPalette 4294967295
+							/key 1397249101
+						}
+						/parameter-14 {
+							/value [13 4d6163696e746f73682048443a] % Macintosh HD:
+							/type (ustring)
+							/showInPalette 4294967295
+							/key 1231953952
+						}
+					}
+				}
+
+				% Save for Web PNG 24
+				/action-6 {
+					/name [19 5361766520666f722057656220504e47203234]
+					/colorIndex 7
+					/keyIndex 0
+					/isOpen 0
+					/eventCount 1
+					/event-1 {
+						/internalName (adobe_SaveForWeb)
+						/localizedName [12 5361766520666f7220576562] % Save for Web
+						/hasDialog 1
+						/isOn 1
+						/isOpen 1
+						/showDialog 1
+						/useRulersIn1stQuadrant 1
+						/parameterCount 11
+						/parameter-1 {
+							/value 1347301940
+							/name [6 504e472d3234] % PNG-24
+							/type (enumerated)
+							/showInPalette 4294967295
+							/key 1181578272
+						}
+						/parameter-2 {
+							/value 0
+							/type (boolean)
+							/showInPalette 4294967295
+							/key 1231975538
+						}
+						/parameter-3 {
+							/value 1
+							/type (boolean)
+							/showInPalette 4294967295
+							/key 1416785523
+						}
+						/parameter-4 {
+							/value 1
+							/type (boolean)
+							/showInPalette 4294967295
+							/key 1299477536
+						}
+						/parameter-5 {
+							/value 255
+							/type (integer)
+							/showInPalette 4294967295
+							/key 1299477586
+						}
+						/parameter-6 {
+							/value 255
+							/type (integer)
+							/showInPalette 4294967295
+							/key 1299477575
+						}
+						/parameter-7 {
+							/value 255
+							/type (integer)
+							/showInPalette 4294967295
+							/key 1299477570
+						}
+						/parameter-8 {
+							/value [13 417274204f7074696d697a6564] % Art Optimised
+							/type (ustring)
+							/showInPalette 4294967295
+							/key 1097757761
+						}
+						/parameter-9 {
+							/value 0
+							/type (boolean)
+							/showInPalette 4294967295
+							/key 1131180097
+						}
+						/parameter-10 {
+							/value 0
+							/type (boolean)
+							/showInPalette 4294967295
+							/key 1397249101
+						}
+						/parameter-11 {
+							/value [13 4d6163696e746f73682048443a] % Macintosh HD:
+							/type (ustring)
+							/showInPalette 4294967295
+							/key 1231953952
+						}
+					}
+				}
+
+				% Simplify (selection)
+				/action-7 {
+					/name [20 53696d706c696679202873656c656374696f6e29]
+					/colorIndex 7
+					/keyIndex 0
+					/isOpen 0
+					/eventCount 1
+					/event-1 {
+						/internalName (ai_plugin_simplify)
+						/localizedName [8 53696d706c696679] % Simplify
+						/hasDialog 1
+						/isOn 1
+						/isOpen 0
+						/showDialog 0
+						/useRulersIn1stQuadrant 1
+						/parameterCount 4
+						/parameter-1 {
+							/unit 592474723
+							/value 40.0
+							/type (unit real)
+							/showInPalette 1
+							/key 1919182693
+						}
+						/parameter-2 {
+							/unit 591490663
+							/value 0.0
+							/type (unit real)
+							/showInPalette 1
+							/key 1634561652
+						}
+						/parameter-3 {
+							/value 0
+							/type (boolean)
+							/showInPalette 1
+							/key 1936553064
+						}
+						/parameter-4 {
+							/value 1
+							/type (boolean)
+							/showInPalette 1
+							/key 1936552044
+						}
+					}
+				}
+
+				% Simplify Straight (selection)
+				/action-8 {
+					/name [29 53696d706c696679205374726169676874202873656c656374696f6e29]
+					/colorIndex 7
+					/keyIndex 0
+					/isOpen 0
+					/eventCount 1
+					/event-1 {
+						/internalName (ai_plugin_simplify)
+						/localizedName [8 53696d706c696679] % Simplify
+						/hasDialog 1
+						/isOn 1
+						/isOpen 0
+						/showDialog 0
+						/useRulersIn1stQuadrant 1
+						/parameterCount 4
+						/parameter-1 {
+							/unit 592474723
+							/value 40.0
+							/type (unit real)
+							/showInPalette 1
+							/key 1919182693
+						}
+						/parameter-2 {
+							/unit 591490663
+							/value 0.0
+							/type (unit real)
+							/showInPalette 1
+							/key 1634561652
+						}
+						/parameter-3 {
+							/value 1
+							/type (boolean)
+							/showInPalette 1
+							/key 1936553064
+						}
+						/parameter-4 {
+							/value 1
+							/type (boolean)
+							/showInPalette 1
+							/key 1936552044
+						}
+					}
+				}
+
+				% Revert
+				/action-9 {
+					/name [6 526576657274]
+					/colorIndex 7
+					/keyIndex 0
+					/isOpen 0
+					/eventCount 1
+					/event-1 {
+						/internalName (adobe_revertDocument)
+						/localizedName [6 526576657274] % Revert
+						/hasDialog 0
+						/isOn 1
+						/isOpen 0
+						/useRulersIn1stQuadrant 1
+						/parameterCount 0
+					}
+				}
+
+				% Delete Unused Panel Items
+				/action-10 {
+					/name [25 44656c65746520556e757365642050616e656c204974656d73]
+					/colorIndex 0
+					/keyIndex 0
+					/isOpen 0
+					/eventCount 12
+					/event-1 {
+						/internalName (ai_plugin_symbol_palette)
+						/localizedName [7 53796d626f6c73] % Symbols
+						/hasDialog 0
+						/isOn 1
+						/isOpen 0
+						/useRulersIn1stQuadrant 1
+						/parameterCount 1
+						/parameter-1 {
+							/value 12
+							/name [17 53656c65637420416c6c20556e75736564] % Select All Unused
+							/type (enumerated)
+							/showInPalette 4294967295
+							/key 1835363957
+						}
+					}
+					/event-2 {
+						/internalName (ai_plugin_symbol_palette)
+						/localizedName [7 53796d626f6c73] % Symbols
+						/hasDialog 1
+						/isOn 1
+						/isOpen 0
+						/showDialog 0
+						/useRulersIn1stQuadrant 1
+						/parameterCount 1
+						/parameter-1 {
+							/value 5
+							/name [13 44656c6574652053796d626f6c] % Delete Symbol
+							/type (enumerated)
+							/showInPalette 4294967295
+							/key 1835363957
+						}
+					}
+					/event-3 {
+						/internalName (adobe_stop)
+						/localizedName [4 53746f70] % Stop
+						/hasDialog 1
+						/isOn 1
+						/isOpen 0
+						/showDialog 1
+						/useRulersIn1stQuadrant 0
+						/parameterCount 2
+						/parameter-1 {
+							/value [0]
+							/type (ustring)
+							/showInPalette 0
+							/key 1952807028
+						}
+						/parameter-2 {
+							/value 1
+							/type (boolean)
+							/showInPalette 4294967295
+							/key 1668247156
+						}
+					}
+					/event-4 {
+						/internalName (ai_plugin_styles)
+						/localizedName [14 47726170686963205374796c6573] % Graphic Styles
+						/hasDialog 0
+						/isOn 1
+						/isOpen 0
+						/useRulersIn1stQuadrant 1
+						/parameterCount 1
+						/parameter-1 {
+							/value 14
+							/name [17 53656c65637420416c6c20556e75736564] % Select All Unused
+							/type (enumerated)
+							/showInPalette 1
+							/key 1835363957
+						}
+					}
+					/event-5 {
+						/internalName (ai_plugin_styles)
+						/localizedName [14 47726170686963205374796c6573] % Graphic Styles
+						/hasDialog 1
+						/isOn 1
+						/isOpen 0
+						/showDialog 0
+						/useRulersIn1stQuadrant 1
+						/parameterCount 1
+						/parameter-1 {
+							/value 3
+							/name [12 44656c657465205374796c65] % Delete Style
+							/type (enumerated)
+							/showInPalette 1
+							/key 1835363957
+						}
+					}
+					/event-6 {
+						/internalName (adobe_stop)
+						/localizedName [4 53746f70] % Stop
+						/hasDialog 1
+						/isOn 1
+						/isOpen 0
+						/showDialog 1
+						/useRulersIn1stQuadrant 0
+						/parameterCount 2
+						/parameter-1 {
+							/value [0]
+							/type (ustring)
+							/showInPalette 0
+							/key 1952807028
+						}
+						/parameter-2 {
+							/value 1
+							/type (boolean)
+							/showInPalette 4294967295
+							/key 1668247156
+						}
+					}
+					/event-7 {
+						/internalName (ai_plugin_brush)
+						/localizedName [5 4272757368] % Brush
+						/hasDialog 0
+						/isOn 1
+						/isOpen 0
+						/useRulersIn1stQuadrant 1
+						/parameterCount 1
+						/parameter-1 {
+							/value 8
+							/name [17 53656c65637420416c6c20556e75736564] % Select All Unused
+							/type (enumerated)
+							/showInPalette 1
+							/key 1835363957
+						}
+					}
+					/event-8 {
+						/internalName (ai_plugin_brush)
+						/localizedName [5 4272757368] % Brush
+						/hasDialog 1
+						/isOn 1
+						/isOpen 0
+						/showDialog 0
+						/useRulersIn1stQuadrant 1
+						/parameterCount 1
+						/parameter-1 {
+							/value 3
+							/name [12 44656c657465204272757368] % Delete Brush
+							/type (enumerated)
+							/showInPalette 1
+							/key 1835363957
+						}
+					}
+					/event-9 {
+						/internalName (adobe_stop)
+						/localizedName [4 53746f70] % Stop
+						/hasDialog 1
+						/isOn 1
+						/isOpen 0
+						/showDialog 1
+						/useRulersIn1stQuadrant 0
+						/parameterCount 2
+						/parameter-1 {
+							/value [0]
+							/type (ustring)
+							/showInPalette 0
+							/key 1952807028
+						}
+						/parameter-2 {
+							/value 1
+							/type (boolean)
+							/showInPalette 4294967295
+							/key 1668247156
+						}
+					}
+					/event-10 {
+						/internalName (ai_plugin_swatches)
+						/localizedName [8 5377617463686573] % Swatches
+						/hasDialog 0
+						/isOn 1
+						/isOpen 0
+						/useRulersIn1stQuadrant 1
+						/parameterCount 1
+						/parameter-1 {
+							/value 11
+							/name [17 53656c65637420416c6c20556e75736564] % Select All Unused
+							/type (enumerated)
+							/showInPalette 1
+							/key 1835363957
+						}
+					}
+					/event-11 {
+						/internalName (ai_plugin_swatches)
+						/localizedName [8 5377617463686573] % Swatches
+						/hasDialog 1
+						/isOn 1
+						/isOpen 0
+						/showDialog 0
+						/useRulersIn1stQuadrant 1
+						/parameterCount 1
+						/parameter-1 {
+							/value 3
+							/name [13 44656c65746520537761746368] % Delete Swatch
+							/type (enumerated)
+							/showInPalette 1
+							/key 1835363957
+						}
+					}
+					/event-12 {
+						/internalName (adobe_stop)
+						/localizedName [4 53746f70] % Stop
+						/hasDialog 1
+						/isOn 1
+						/isOpen 0
+						/showDialog 1
+						/useRulersIn1stQuadrant 0
+						/parameterCount 2
+						/parameter-1 {
+							/value [0]
+							/type (ustring)
+							/showInPalette 0
+							/key 1952807028
+						}
+						/parameter-2 {
+							/value 1
+							/type (boolean)
+							/showInPalette 4294967295
+							/key 1668247156
+						}
+					}
+				}
+
+				% Move Dialog (selection)
+				/action-11 {
+					/name [23 4d6f7665204469616c6f67202873656c656374696f6e29]
+					/colorIndex 7
+					/keyIndex 0
+					/isOpen 0
+					/eventCount 1
+					/event-1 {
+						/internalName (adobe_move)
+						/localizedName [4 4d6f7665] % Move
+						/hasDialog 1
+						/isOn 1
+						/isOpen 0
+						/showDialog 1
+						/useRulersIn1stQuadrant 1
+						/parameterCount 3
+						/parameter-1 {
+							/unit 592476268
+							/value 66.0
+							/type (unit real)
+							/showInPalette 1
+							/key 1752136302
+						}
+						/parameter-2 {
+							/unit 592476268
+							/value 0.0
+							/type (unit real)
+							/showInPalette 1
+							/key 1987339116
+						}
+						/parameter-3 {
+							/value 0
+							/type (boolean)
+							/showInPalette 1
+							/key 1668247673
+						}
+					}
+				}
+
+				% Scale Dialog (selection)
+				/action-12 {
+					/name [24 5363616c65204469616c6f67202873656c656374696f6e29]
+					/colorIndex 7
+					/keyIndex 0
+					/isOpen 0
+					/eventCount 1
+					/event-1 {
+						/internalName (adobe_scale)
+						/localizedName [5 5363616c65] % Scale
+						/hasDialog 1
+						/isOn 1
+						/isOpen 0
+						/showDialog 1
+						/useRulersIn1stQuadrant 1
+						/parameterCount 4
+						/parameter-1 {
+							/value 1
+							/type (boolean)
+							/showInPalette 1
+							/key 1970169453
+						}
+						/parameter-2 {
+							/value 0
+							/type (boolean)
+							/showInPalette 1
+							/key 1818848869
+						}
+						/parameter-3 {
+							/unit 592474723
+							/value 120.0
+							/type (unit real)
+							/showInPalette 1
+							/key 1935895653
+						}
+						/parameter-4 {
+							/value 0
+							/type (boolean)
+							/showInPalette 1
+							/key 1668247673
+						}
+					}
+				}
+
+				% Rotate Dialog (selection)
+				/action-13 {
+					/name [25 526f74617465204469616c6f67202873656c656374696f6e29]
+					/colorIndex 7
+					/keyIndex 0
+					/isOpen 0
+					/eventCount 1
+					/event-1 {
+						/internalName (adobe_rotate)
+						/localizedName [6 526f74617465] % Rotate
+						/hasDialog 1
+						/isOn 1
+						/isOpen 0
+						/showDialog 1
+						/useRulersIn1stQuadrant 1
+						/parameterCount 2
+						/parameter-1 {
+							/unit 591490663
+							/value 30.0
+							/type (unit real)
+							/showInPalette 1
+							/key 1634625388
+						}
+						/parameter-2 {
+							/value 0
+							/type (boolean)
+							/showInPalette 1
+							/key 1668247673
+						}
+					}
+				}
+
+				% Rotate 90 CW (selection)
+				/action-14 {
+					/name [24 526f74617465203930204357202873656c656374696f6e29]
+					/colorIndex 7
+					/keyIndex 0
+					/isOpen 0
+					/eventCount 1
+					/event-1 {
+						/internalName (adobe_rotate)
+						/localizedName [6 526f74617465] % Rotate
+						/hasDialog 1
+						/isOn 1
+						/isOpen 0
+						/showDialog 0
+						/useRulersIn1stQuadrant 1
+						/parameterCount 4
+						/parameter-1 {
+							/unit 591490663
+							/value 90.0
+							/type (unit real)
+							/showInPalette 1
+							/key 1634625388
+						}
+						/parameter-2 {
+							/value 0
+							/type (boolean)
+							/showInPalette 1
+							/key 1668247673
+						}
+						/parameter-3 {
+							/unit 592476268
+							/value 44.8530273438
+							/type (unit real)
+							/showInPalette 1
+							/key 1684370520
+						}
+						/parameter-4 {
+							/unit 592476268
+							/value 54.4116210938
+							/type (unit real)
+							/showInPalette 1
+							/key 1684370521
+						}
+					}
+				}
+
+				% Shear Dialog (selection)
+				/action-15 {
+					/name [24 5368656172204469616c6f67202873656c656374696f6e29]
+					/colorIndex 7
+					/keyIndex 0
+					/isOpen 0
+					/eventCount 1
+					/event-1 {
+						/internalName (adobe_shear)
+						/localizedName [5 5368656172] % Shear
+						/hasDialog 1
+						/isOn 1
+						/isOpen 0
+						/showDialog 1
+						/useRulersIn1stQuadrant 1
+						/parameterCount 3
+						/parameter-1 {
+							/unit 591490663
+							/value 45.0
+							/type (unit real)
+							/showInPalette 1
+							/key 1936220519
+						}
+						/parameter-2 {
+							/unit 591490663
+							/value 0.0
+							/type (unit real)
+							/showInPalette 1
+							/key 1634625388
+						}
+						/parameter-3 {
+							/value 0
+							/type (boolean)
+							/showInPalette 1
+							/key 1668247673
+						}
+					}
+				}
+
+				% Reflect Horizontal
+				/action-16 {
+					/name [18 5265666c65637420486f72697a6f6e74616c]
+					/colorIndex 7
+					/keyIndex 0
+					/isOpen 0
+					/eventCount 1
+					/event-1 {
+						/internalName (adobe_reflect)
+						/localizedName [7 5265666c656374] % Reflect
+						/hasDialog 1
+						/isOn 1
+						/isOpen 0
+						/showDialog 0
+						/useRulersIn1stQuadrant 1
+						/parameterCount 4
+						/parameter-1 {
+							/unit 591490663
+							/value 0.0
+							/type (unit real)
+							/showInPalette 1
+							/key 1634625388
+						}
+						/parameter-2 {
+							/value 0
+							/type (boolean)
+							/showInPalette 1
+							/key 1668247673
+						}
+						/parameter-3 {
+							/unit 592476268
+							/value -13.22265625
+							/type (unit real)
+							/showInPalette 1
+							/key 1684370520
+						}
+						/parameter-4 {
+							/unit 592476268
+							/value -2.6201171875
+							/type (unit real)
+							/showInPalette 1
+							/key 1684370521
+						}
+					}
+				}
+
+				% Unite (selection)
+				/action-17 {
+					/name [17 556e697465202873656c656374696f6e29]
+					/colorIndex 7
+					/keyIndex 0
+					/isOpen 0
+					/eventCount 1
+					/event-1 {
+						/internalName (ai_plugin_pathfinder)
+						/localizedName [10 5061746866696e646572] % Pathfinder
+						/hasDialog 0
+						/isOn 1
+						/isOpen 0
+						/useRulersIn1stQuadrant 1
+						/parameterCount 1
+						/parameter-1 {
+							/value 0
+							/name [6 20556e697465] % Unite
+							/type (enumerated)
+							/showInPalette 1
+							/key 1851878757
+						}
+					}
+				}
+
+				% Intersect (selection)
+				/action-18 {
+					/name [21 496e74657273656374202873656c656374696f6e29]
+					/colorIndex 7
+					/keyIndex 0
+					/isOpen 0
+					/eventCount 1
+					/event-1 {
+						/internalName (ai_plugin_pathfinder)
+						/localizedName [10 5061746866696e646572] % Pathfinder
+						/hasDialog 0
+						/isOn 1
+						/isOpen 0
+						/useRulersIn1stQuadrant 1
+						/parameterCount 1
+						/parameter-1 {
+							/value 1
+							/name [9 496e74657273656374] % Intersect
+							/type (enumerated)
+							/showInPalette 1
+							/key 1851878757
+						}
+					}
+				}
+
+				% Exclude (selection)
+				/action-19 {
+					/name [19 4578636c756465202873656c656374696f6e29]
+					/colorIndex 7
+					/keyIndex 0
+					/isOpen 0
+					/eventCount 1
+					/event-1 {
+						/internalName (ai_plugin_pathfinder)
+						/localizedName [10 5061746866696e646572] % Pathfinder
+						/hasDialog 0
+						/isOn 1
+						/isOpen 0
+						/useRulersIn1stQuadrant 1
+						/parameterCount 1
+						/parameter-1 {
+							/value 2
+							/name [7 4578636c756465] % Exclude
+							/type (enumerated)
+							/showInPalette 1
+							/key 1851878757
+						}
+					}
+				}
+
+				% Minus Front (selection)
+				/action-20 {
+					/name [23 4d696e75732046726f6e74202873656c656374696f6e29]
+					/colorIndex 7
+					/keyIndex 0
+					/isOpen 1
+					/eventCount 1
+					/event-1 {
+						/internalName (ai_plugin_pathfinder)
+						/localizedName [10 5061746866696e646572] % Pathfinder
+						/hasDialog 0
+						/isOn 1
+						/isOpen 1
+						/useRulersIn1stQuadrant 1
+						/parameterCount 1
+						/parameter-1 {
+							/value 3
+							/name [11 4d696e75732046726f6e74] % Minus Front
+							/type (enumerated)
+							/showInPalette 1
+							/key 1851878757
+						}
+					}
+				}
+
+				% Rasterise (selection)
+				/action-21 {
+					/name [21 526173746572697365202873656c656374696f6e29]
+					/colorIndex 7
+					/keyIndex 0
+					/isOpen 0
+					/eventCount 1
+					/event-1 {
+						/internalName (ai_plugin_rasterize)
+						/localizedName [9 526173746572697365] % Rasterise
+						/hasDialog 1
+						/isOn 1
+						/isOpen 0
+						/showDialog 0
+						/useRulersIn1stQuadrant 0
+						/parameterCount 8
+						/parameter-1 {
+							/value 0
+							/name [3 524742] % RGB
+							/type (enumerated)
+							/showInPalette 4294967295
+							/key 1668246642
+						}
+						/parameter-2 {
+							/value 150
+							/type (integer)
+							/showInPalette 4294967295
+							/key 1685088558
+						}
+						/parameter-3 {
+							/value 0
+							/name [5 5768697465] % White
+							/type (enumerated)
+							/showInPalette 4294967295
+							/key 1651205988
+						}
+						/parameter-4 {
+							/value 1
+							/name [7 4f75746c696e65] % Outline
+							/type (enumerated)
+							/showInPalette 4294967295
+							/key 1954115685
+						}
+						/parameter-5 {
+							/value 0
+							/name [4 4e6f6e65] % None
+							/type (enumerated)
+							/showInPalette 4294967295
+							/key 1634494763
+						}
+						/parameter-6 {
+							/value 0
+							/type (boolean)
+							/showInPalette 4294967295
+							/key 1835103083
+						}
+						/parameter-7 {
+							/value 0
+							/type (boolean)
+							/showInPalette 4294967295
+							/key 1886613620
+						}
+						/parameter-8 {
+							/unit 592476268
+							/value 0.0
+							/type (unit real)
+							/showInPalette 4294967295
+							/key 1885430884
+						}
+					}
+				}
+			}
+		}
+	}
+	/BatchAction {
+		/errFile [0]
+		/exportDir [0]
+		/fileNameAlgorithm 0
+		/includeSubDir 0
+		/openDir [0]
+		/overrideExport 0
+		/overrideOpen 0
+		/overrideSave 0
+		/placeObject 0
+		/saveDir [0]
+		/saveMode 0
+		/sourceMode 0
+		/stopForErr 1
+	}
+	/sangam {
+		/readers {
+			/InPlayMode 0
+			/sTEXT 0
+		}
+	}
+}
+/text {
+	/GreekingDisabled 1
+	/greekingThreshold 6.0
+	/enableAlternateGlyph 1
+	/enablePreciseBBox 0
+	/showTextTouchUpButton 0
+	/fontflyout {
+		/SampleTextOpt 0
+	}
+	/faceSize 12.0
+	/defaultFaceNames {
+		/Japanese     {/1 (KozGoPr6N-Regular)}
+		/EastEuropean {/1 (MyriadPro-Regular)}
+		/Roman        {/1 (MyriadPro-Regular)}
+	}
+	/groupTypeMenuByLanguage 1
+	/fontMenu {
+		/exploreModeOnbrdngShownCount 3
+		/japaneseFontPreview 0
+		/menuNameLimit 35
+		/needsExploreModeOnboarding 0
+		/showSubMenusInFace 0
+	}
+	/fillWithDefaultText 1
+	/debugFontMenu {
+		/lieAboutNativeScript 0
+		/writeDebugFile 0
+	}
+}
+/Responsive_Zoom_EPF_Limit 6.6666666667
+/cropareatool {
+	/CropAreaControlPalette {
+		/9PointRef 0
+	}
+}
+/changed 0

@@ -1,0 +1,762 @@
+/name [14 4a6f686e277320416374696f6e73]
+/version 3
+/isOpen 1
+/actionCount 5
+
+% Setup tracing
+/action-1 {
+	/name [13 53657475702074726163696e67]
+	/colorIndex 5
+	/keyIndex 9
+	/isOpen 0
+	/eventCount 13
+	/event-1 {
+		/internalName (adobe_commandManager)
+		/localizedName [16 416363657373204d656e75204974656d] % Access Menu Item
+		/hasDialog 0
+		/isOn 1
+		/isOpen 0
+		/useRulersIn1stQuadrant 0
+		/parameterCount 2
+		/parameter-1 {
+			/key 1769238125 % itnm
+			/showInPalette 4294967295
+			/type (ustring)
+			/value [13 646f632d636f6c6f722d726762] % doc-color-rgb
+		}
+		/parameter-2 {
+			/key 1818455661 % lcnm
+			/showInPalette 4294967295
+			/type (ustring)
+			/value [30 446f63756d656e7420436f6c6f72204d6f64653a2052474220436f6c6f72] % Document Colour Mode: RGB Colour
+		}
+	}
+	/event-2 {
+		/internalName (adobe_selectAll)
+		/localizedName [10 53656c65637420416c6c] % Select All
+		/hasDialog 0
+		/isOn 1
+		/isOpen 0
+		/useRulersIn1stQuadrant 0
+		/parameterCount 0
+	}
+	/event-3 {
+		/internalName (ai_plugin_transformPalette)
+		/localizedName [15 5472616e73666f726d2050616e656c] % Transform Panel
+		/hasDialog 0
+		/isOn 1
+		/isOpen 0
+		/useRulersIn1stQuadrant 0
+		/parameterCount 2
+		/parameter-1 {
+			/key 1954115685 % type
+			/showInPalette 4294967295
+			/type (enumerated)
+			/name [23 4d6f7665207265666572656e636520696e205820746f3a] % Move reference in X to:
+			/value 0
+		}
+		/parameter-2 {
+			/key 1986096245 % valu
+			/showInPalette 4294967295
+			/type (unit real)
+			/value 0.0
+			/unit 592476268 % #Pxl
+		}
+	}
+	/event-4 {
+		/internalName (ai_plugin_transformPalette)
+		/localizedName [15 5472616e73666f726d2050616e656c] % Transform Panel
+		/hasDialog 0
+		/isOn 1
+		/isOpen 0
+		/useRulersIn1stQuadrant 0
+		/parameterCount 2
+		/parameter-1 {
+			/key 1954115685 % type
+			/showInPalette 4294967295
+			/type (enumerated)
+			/name [23 4d6f7665207265666572656e636520696e205920746f3a] % Move reference in Y to:
+			/value 1
+		}
+		/parameter-2 {
+			/key 1986096245 % valu
+			/showInPalette 4294967295
+			/type (unit real)
+			/value 0.0
+			/unit 592476268 % #Pxl
+		}
+	}
+	/event-5 {
+		/internalName (adobe_commandManager)
+		/localizedName [16 416363657373204d656e75204974656d] % Access Menu Item
+		/hasDialog 0
+		/isOn 1
+		/isOpen 0
+		/useRulersIn1stQuadrant 0
+		/parameterCount 2
+		/parameter-1 {
+			/key 1769238125 % itnm
+			/showInPalette 4294967295
+			/type (ustring)
+			/value [30 46697420417274626f61726420746f20617274776f726b20626f756e6473] % Fit Artboard to artwork bounds
+		}
+		/parameter-2 {
+			/key 1818455661 % lcnm
+			/showInPalette 4294967295
+			/type (ustring)
+			/value [21 46697420746f20417274776f726b20426f756e6473] % Fit to Artwork Bounds
+		}
+	}
+	/event-6 {
+		/internalName (ai_plugin_Layer)
+		/localizedName [6 53686f773a20] % Show:
+		/hasDialog 1
+		/isOn 1
+		/isOpen 0
+		/showDialog 0
+		/useRulersIn1stQuadrant 0
+		/parameterCount 10
+		/parameter-1 {
+			/key 1836411236 % muid
+			/showInPalette 4294967295
+			/type (integer)
+			/value 4
+		}
+		/parameter-2 {
+			/key 1851878757 % name
+			/showInPalette 4294967295
+			/type (ustring)
+			/value [20 4c61796572732050616e656c204f7074696f6e73] % Layers Panel Options
+		}
+		/parameter-3 {
+			/key 1953068140 % titl
+			/showInPalette 4294967295
+			/type (ustring)
+			/value [8 54656d706c617465] % Template
+		}
+		/parameter-4 {
+			/key 1953329260 % tmpl
+			/showInPalette 4294967295
+			/type (boolean)
+			/value 1
+		}
+		/parameter-5 {
+			/key 1936224119 % show
+			/showInPalette 4294967295
+			/type (boolean)
+			/value 1
+		}
+		/parameter-6 {
+			/key 1819239275 % lock
+			/showInPalette 4294967295
+			/type (boolean)
+			/value 1
+		}
+		/parameter-7 {
+			/key 1886549623 % prvw
+			/showInPalette 4294967295
+			/type (boolean)
+			/value 1
+		}
+		/parameter-8 {
+			/key 1886547572 % prnt
+			/showInPalette 4294967295
+			/type (boolean)
+			/value 0
+		}
+		/parameter-9 {
+			/key 1684630830 % dim.
+			/showInPalette 4294967295
+			/type (boolean)
+			/value 1
+		}
+		/parameter-10 {
+			/key 1885564532 % pcnt
+			/showInPalette 4294967295
+			/type (unit real)
+			/value 50.0
+			/unit 592474723 % #Prc
+		}
+	}
+	/event-7 {
+		/internalName (ai_plugin_Layer)
+		/localizedName [6 53686f773a20] % Show:
+		/hasDialog 1
+		/isOn 1
+		/isOpen 0
+		/showDialog 0
+		/useRulersIn1stQuadrant 0
+		/parameterCount 10
+		/parameter-1 {
+			/key 1836411236 % muid
+			/showInPalette 4294967295
+			/type (integer)
+			/value 0
+		}
+		/parameter-2 {
+			/key 1937008996 % stid
+			/showInPalette 4294967295
+			/type (integer)
+			/value 2
+		}
+		/parameter-3 {
+			/key 1851878757 % name
+			/showInPalette 4294967295
+			/type (ustring)
+			/value [9 4e6577204c61796572] % New Layer
+		}
+		/parameter-4 {
+			/key 1953068140 % titl
+			/showInPalette 4294967295
+			/type (ustring)
+			/value [7 54726163696e67] % Tracing
+		}
+		/parameter-5 {
+			/key 1953329260 % tmpl
+			/showInPalette 4294967295
+			/type (boolean)
+			/value 0
+		}
+		/parameter-6 {
+			/key 1936224119 % show
+			/showInPalette 4294967295
+			/type (boolean)
+			/value 1
+		}
+		/parameter-7 {
+			/key 1819239275 % lock
+			/showInPalette 4294967295
+			/type (boolean)
+			/value 0
+		}
+		/parameter-8 {
+			/key 1886549623 % prvw
+			/showInPalette 4294967295
+			/type (boolean)
+			/value 1
+		}
+		/parameter-9 {
+			/key 1886547572 % prnt
+			/showInPalette 4294967295
+			/type (boolean)
+			/value 1
+		}
+		/parameter-10 {
+			/key 1684630830 % dim.
+			/showInPalette 4294967295
+			/type (boolean)
+			/value 0
+		}
+	}
+	/event-8 {
+		/internalName (ai_plugin_rectTool)
+		/localizedName [14 52656374616e676c6520546f6f6c] % Rectangle Tool
+		/hasDialog 1
+		/isOn 1
+		/isOpen 0
+		/showDialog 0
+		/useRulersIn1stQuadrant 0
+		/parameterCount 6
+		/parameter-1 {
+			/key 1953460076 % tool
+			/showInPalette 4294967295
+			/type (integer)
+			/value 15
+		}
+		/parameter-2 {
+			/key 2003072104 % wdth
+			/showInPalette 4294967295
+			/type (unit real)
+			/value 10.0
+			/unit 592476268 % #Pxl
+		}
+		/parameter-3 {
+			/key 1751607412 % hght
+			/showInPalette 4294967295
+			/type (unit real)
+			/value 10.0
+			/unit 592476268 % #Pxl
+		}
+		/parameter-4 {
+			/key 1668182644 % cnrt
+			/showInPalette 4294967295
+			/type (boolean)
+			/value 0
+		}
+		/parameter-5 {
+			/key 1668183128 % cntX
+			/showInPalette 4294967295
+			/type (unit real)
+			/value 5.0
+			/unit 592476268 % #Pxl
+		}
+		/parameter-6 {
+			/key 1668183129 % cntY
+			/showInPalette 4294967295
+			/type (unit real)
+			/value 517.0
+			/unit 592476268 % #Pxl
+		}
+	}
+	/event-9 {
+		/internalName (ai_plugin_Layer)
+		/localizedName [6 53686f773a20] % Show:
+		/hasDialog 0
+		/isOn 1
+		/isOpen 0
+		/useRulersIn1stQuadrant 0
+		/parameterCount 2
+		/parameter-1 {
+			/key 1836411236 % muid
+			/showInPalette 4294967295
+			/type (integer)
+			/value 19
+		}
+		/parameter-2 {
+			/key 1851878757 % name
+			/showInPalette 4294967295
+			/type (ustring)
+			/value [13 4c6f63617465204f626a656374] % Locate Object
+		}
+	}
+	/event-10 {
+		/internalName (adobe_clear)
+		/localizedName [5 436c656172] % Clear
+		/hasDialog 0
+		/isOn 1
+		/isOpen 0
+		/useRulersIn1stQuadrant 0
+		/parameterCount 0
+	}
+	/event-11 {
+		/internalName (adobe_commandManager)
+		/localizedName [16 416363657373204d656e75204974656d] % Access Menu Item
+		/hasDialog 0
+		/isOn 1
+		/isOpen 0
+		/useRulersIn1stQuadrant 0
+		/parameterCount 2
+		/parameter-1 {
+			/key 1769238125 % itnm
+			/showInPalette 4294967295
+			/type (ustring)
+			/value [5 666974696e] % fitin
+		}
+		/parameter-2 {
+			/key 1818455661 % lcnm
+			/showInPalette 4294967295
+			/type (ustring)
+			/value [22 46697420417274626f61726420696e2057696e646f77] % Fit Artboard in Window
+		}
+	}
+	/event-12 {
+		/internalName (adobe_playAction)
+		/localizedName [11 506c617920616374696f6e] % Play action
+		/hasDialog 0
+		/isOn 1
+		/isOpen 0
+		/useRulersIn1stQuadrant 0
+		/parameterCount 2
+		/parameter-1 {
+			/key 1936028718 % set.
+			/showInPalette 4294967295
+			/type (ustring)
+			/value [14 4a6f686e277320416374696f6e73] % John's Actions
+		}
+		/parameter-2 {
+			/key 1633907822 % actn
+			/showInPalette 4294967295
+			/type (ustring)
+			/value [18 576972656672616d65207377617463686573] % Wireframe swatches
+		}
+	}
+	/event-13 {
+		/internalName (adobe_playAction)
+		/localizedName [11 506c617920616374696f6e] % Play action
+		/hasDialog 0
+		/isOn 1
+		/isOpen 0
+		/useRulersIn1stQuadrant 0
+		/parameterCount 2
+		/parameter-1 {
+			/key 1936028718 % set.
+			/showInPalette 4294967295
+			/type (ustring)
+			/value [14 4a6f686e277320416374696f6e73] % John's Actions
+		}
+		/parameter-2 {
+			/key 1633907822 % actn
+			/showInPalette 4294967295
+			/type (ustring)
+			/value [18 44656661756c742074657874207374796c65] % Default text style
+		}
+	}
+}
+
+% Set fill to none
+/action-2 {
+	/name [16 5365742066696c6c20746f206e6f6e65]
+	/colorIndex 0
+	/keyIndex 0
+	/isOpen 0
+	/eventCount 2
+	/event-1 {
+		/internalName (ai_plugin_setColor)
+		/localizedName [9 53657420636f6c6f72] % Set colour
+		/hasDialog 0
+		/isOn 1
+		/isOpen 0
+		/useRulersIn1stQuadrant 0
+		/parameterCount 2
+		/parameter-1 {
+			/key 1768186740 % idct
+			/showInPalette 4294967295
+			/type (ustring)
+			/value [10 46696c6c20636f6c6f72] % Fill colour
+		}
+		/parameter-2 {
+			/key 1718185068 % fill
+			/showInPalette 4294967295
+			/type (boolean)
+			/value 1
+		}
+	}
+	/event-2 {
+		/internalName (ai_plugin_swatches)
+		/localizedName [8 5377617463686573] % Swatches
+		/hasDialog 0
+		/isOn 1
+		/isOpen 0
+		/useRulersIn1stQuadrant 0
+		/parameterCount 1
+		/parameter-1 {
+			/key 1937204072 % swch
+			/showInPalette 4294967295
+			/type (ustring)
+			/value [6 5b4e6f6e655d] % [None]
+		}
+	}
+}
+
+% Set stroke to none
+/action-3 {
+	/name [18 536574207374726f6b6520746f206e6f6e65]
+	/colorIndex 0
+	/keyIndex 0
+	/isOpen 0
+	/eventCount 2
+	/event-1 {
+		/internalName (ai_plugin_setColor)
+		/localizedName [9 53657420636f6c6f72] % Set colour
+		/hasDialog 0
+		/isOn 1
+		/isOpen 0
+		/useRulersIn1stQuadrant 0
+		/parameterCount 2
+		/parameter-1 {
+			/key 1768186740 % idct
+			/showInPalette 4294967295
+			/type (ustring)
+			/value [12 5374726f6b6520636f6c6f72] % Stroke colour
+		}
+		/parameter-2 {
+			/key 1718185068 % fill
+			/showInPalette 4294967295
+			/type (boolean)
+			/value 0
+		}
+	}
+	/event-2 {
+		/internalName (ai_plugin_swatches)
+		/localizedName [8 5377617463686573] % Swatches
+		/hasDialog 0
+		/isOn 1
+		/isOpen 0
+		/useRulersIn1stQuadrant 0
+		/parameterCount 1
+		/parameter-1 {
+			/key 1937204072 % swch
+			/showInPalette 4294967295
+			/type (ustring)
+			/value [6 5b4e6f6e655d] % [None]
+		}
+	}
+}
+
+% Wireframe swatches
+/action-4 {
+	/name [18 576972656672616d65207377617463686573]
+	/colorIndex 0
+	/keyIndex 0
+	/isOpen 0
+	/eventCount 2
+	/event-1 {
+		/internalName (adobe_playAction)
+		/localizedName [11 506c617920616374696f6e] % Play action
+		/hasDialog 0
+		/isOn 1
+		/isOpen 0
+		/useRulersIn1stQuadrant 0
+		/parameterCount 2
+		/parameter-1 {
+			/key 1936028718 % set.
+			/showInPalette 4294967295
+			/type (ustring)
+			/value [14 4a6f686e277320416374696f6e73] % John's Actions
+		}
+		/parameter-2 {
+			/key 1633907822 % actn
+			/showInPalette 4294967295
+			/type (ustring)
+			/value [16 5365742066696c6c20746f206e6f6e65] % Set fill to none
+		}
+	}
+	/event-2 {
+		/internalName (ai_plugin_setColor)
+		/localizedName [9 53657420636f6c6f72] % Set colour
+		/hasDialog 0
+		/isOn 1
+		/isOpen 0
+		/useRulersIn1stQuadrant 0
+		/parameterCount 6
+		/parameter-1 {
+			/key 1768186740 % idct
+			/showInPalette 4294967295
+			/type (ustring)
+			/value [12 5374726f6b6520636f6c6f72] % Stroke colour
+		}
+		/parameter-2 {
+			/key 1718185068 % fill
+			/showInPalette 4294967295
+			/type (boolean)
+			/value 0
+		}
+		/parameter-3 {
+			/key 1954115685 % type
+			/showInPalette 4294967295
+			/type (enumerated)
+			/name [9 52474220636f6c6f72] % RGB colour
+			/value 2
+		}
+		/parameter-4 {
+			/key 1919247406 % red.
+			/showInPalette 4294967295
+			/type (real)
+			/value 0.0
+		}
+		/parameter-5 {
+			/key 1735550318 % gren
+			/showInPalette 4294967295
+			/type (real)
+			/value 0.0
+		}
+		/parameter-6 {
+			/key 1651275109 % blue
+			/showInPalette 4294967295
+			/type (real)
+			/value 0.0
+		}
+	}
+}
+
+% Default text style
+/action-5 {
+	/name [18 44656661756c742074657874207374796c65]
+	/colorIndex 0
+	/keyIndex 0
+	/isOpen 0
+	/eventCount 2
+	/event-1 {
+		/internalName (adobe_SLOCharacterPalette)
+		/localizedName [17 4368617261637465722053657474696e67] % Character Setting
+		/hasDialog 0
+		/isOn 1
+		/isOpen 0
+		/useRulersIn1stQuadrant 0
+		/parameterCount 18
+		/parameter-1 {
+			/key 1718578804 % font
+			/showInPalette 4294967295
+			/type (ustring)
+			/value [7 417269616c4d54] % ArialMT
+		}
+		/parameter-2 {
+			/key 1635019876 % atld
+			/showInPalette 4294967295
+			/type (boolean)
+			/value 1
+		}
+		/parameter-3 {
+			/key 1635019621 % atke
+			/showInPalette 4294967295
+			/type (boolean)
+			/value 1
+		}
+		/parameter-4 {
+			/key 1953653611 % trck
+			/showInPalette 4294967295
+			/type (integer)
+			/value 0
+		}
+		/parameter-5 {
+			/key 1936292453 % size
+			/showInPalette 4294967295
+			/type (unit real)
+			/value 12.0
+			/unit 592476268 % #Pxl
+		}
+		/parameter-6 {
+			/key 1986359924 % vert
+			/showInPalette 4294967295
+			/type (unit real)
+			/value 100.0
+			/unit 592474723 % #Prc
+		}
+		/parameter-7 {
+			/key 1752134249 % hori
+			/showInPalette 4294967295
+			/type (unit real)
+			/value 100.0
+			/unit 592474723 % #Prc
+		}
+		/parameter-8 {
+			/key 1650553701 % base
+			/showInPalette 4294967295
+			/type (unit real)
+			/value 0.0
+			/unit 592476268 % #Pxl
+		}
+		/parameter-9 {
+			/key 1651664235 % brek
+			/showInPalette 4294967295
+			/type (boolean)
+			/value 0
+		}
+		/parameter-10 {
+			/key 1886547824 % prop
+			/showInPalette 4294967295
+			/type (boolean)
+			/value 1
+		}
+		/parameter-11 {
+			/key 1936488820 % slyt
+			/showInPalette 4294967295
+			/type (boolean)
+			/value 0
+		}
+		/parameter-12 {
+			/key 1970170990 % unln
+			/showInPalette 4294967295
+			/type (boolean)
+			/value 0
+		}
+		/parameter-13 {
+			/key 1937011307 % strk
+			/showInPalette 4294967295
+			/type (boolean)
+			/value 0
+		}
+		/parameter-14 {
+			/key 1920100726 % rriv
+			/showInPalette 4294967295
+			/type (boolean)
+			/value 1
+		}
+		/parameter-15 {
+			/key 1919247987 % refs
+			/showInPalette 4294967295
+			/type (unit real)
+			/value 12.0
+			/unit 592476268 % #Pxl
+		}
+		/parameter-16 {
+			/key 1919247988 % reft
+			/showInPalette 4294967295
+			/type (integer)
+			/value 0
+		}
+		/parameter-17 {
+			/key 1818324583 % lang
+			/showInPalette 4294967295
+			/type (enumerated)
+			/name [11 456e676c6973683a20554b] % English: UK
+			/value 14
+		}
+		/parameter-18 {
+			/key 1919906915 % rotc
+			/showInPalette 4294967295
+			/type (unit real)
+			/value 0.0
+			/unit 591490663 % #Ang
+		}
+	}
+	/event-2 {
+		/internalName (adobe_SLOParagraphPalette)
+		/localizedName [17 5061726167726170682053657474696e67] % Paragraph Setting
+		/hasDialog 0
+		/isOn 1
+		/isOpen 0
+		/useRulersIn1stQuadrant 0
+		/parameterCount 9
+		/parameter-1 {
+			/key 1634494830 % alin
+			/showInPalette 4294967295
+			/type (enumerated)
+			/name [12 416c69676e2063656e746572] % Align centre
+			/value 2
+		}
+		/parameter-2 {
+			/key 1818584692 % left
+			/showInPalette 4294967295
+			/type (unit real)
+			/value 0.0
+			/unit 592476268 % #Pxl
+		}
+		/parameter-3 {
+			/key 1919513646 % rit.
+			/showInPalette 4294967295
+			/type (unit real)
+			/value 0.0
+			/unit 592476268 % #Pxl
+		}
+		/parameter-4 {
+			/key 1718380148 % flft
+			/showInPalette 4294967295
+			/type (unit real)
+			/value 0.0
+			/unit 592476268 % #Pxl
+		}
+		/parameter-5 {
+			/key 1886613603 % pspc
+			/showInPalette 4294967295
+			/type (unit real)
+			/value 0.0
+			/unit 592476268 % #Pxl
+		}
+		/parameter-6 {
+			/key 1886613601 % pspa
+			/showInPalette 4294967295
+			/type (unit real)
+			/value 0.0
+			/unit 592476268 % #Pxl
+		}
+		/parameter-7 {
+			/key 1635087471 % auto
+			/showInPalette 4294967295
+			/type (boolean)
+			/value 0
+		}
+		/parameter-8 {
+			/key 1701603694 % elin
+			/showInPalette 4294967295
+			/type (boolean)
+			/value 0
+		}
+		/parameter-9 {
+			/key 1751215719 % hang
+			/showInPalette 4294967295
+			/type (boolean)
+			/value 0
+		}
+	}
+}
