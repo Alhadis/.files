@@ -1,0 +1,108 @@
+.Dd August 15, 2024
+.Dt XARINFO 1
+.Os
+.Sh NAME
+.Nm xarinfo
+.Nd display detailed contents of a xar(1) archive
+.
+.Sh SYNOPSIS
+.Nm
+.Ar file
+.
+.Sh DESCRIPTION
+.Nm
+is a simple wrapper around
+.Xr xar 1
+that lists verbose information about the contents of a XAR
+.Ar .
+.
+.Sh EXIT STATUS
+.Ex -std
+.
+.Sh EXAMPLES
+Given a XAR archive created from two single-line text files:
+.Bd -literal -offset 4n
+.Sy $ Nm echo Foo > foo.txt
+.Sy $ Nm echo Bar > bar.txt
+.Sy $ Nm xar -cf input.xar *.txt
+.Ed
+.Pp
+calling
+.Sy $ Nm xarinfo Ar input.xar
+.Pp
+will output:
+.Bd -literal -offset 4n
+Magic: 0x78617221 (OK)
+Size: 28
+Version: 1
+Compressed TOC length: 591
+Uncompressed TOC length: 1787
+Checksum algorithm: 1 (SHA1)
+Checksum: 2f7f024153e28eb7c18265356359afa3874c1634
+Algorithm: SHA1
+.sp 1
+File listing:
+-rw-r--r--   Alhadis/wheel             4 2024-08-14 18:09:17 bar.txt
+-rw-r--r--   Alhadis/wheel             4 2024-08-14 18:09:14 foo.txt
+.sp 1
+Table of contents:
+<?xml version="1.0" encoding="UTF-8"?>
+<xar>
+<toc>
+.ti +4n
+.Bq Em large XML dump omitted for brevity
+.ti
+</toc>
+</xar>
+.Ed
+.
+.Sh DIAGNOSTICS
+.Bl -tag -width 6n
+.It Sy "Required command not found"
+One or more dependencies required by
+.Nm
+were not found in the user's
+.Ev PATH .
+These include
+.Xr file 1 ,
+.Xr unexpand 1 ,
+and
+.Xr xar 1
+.Pq inclusive .
+.
+.It Sy "Error opening xar archive"
+The specified
+.Ar file
+isn't a properly-formatted XAR archive,
+isn't a regular file,
+or doesn't exist in the filesystem.
+.El
+.
+.Sh SEE ALSO
+.Xr git 1 ,
+.Xr gzinfo 1 ,
+.Xr xar 1
+.
+.Sh AUTHORS
+.An -nosplit
+Copyright \(co 2024
+.An John Gardner Aq Mt gardnerjohng@gmail.com .
+Freely released under the
+.Lk http://opensource.org/licenses/ISC "ISC license" .
+.
+.Sh CAVEATS
+.Nm
+only exists as a standalone command because it was too complex to embed within
+.Pa ~/.files/.gitconfig Ap s
+.Ql Sy diff.xar.textconv
+variable.
+It contains minimal error-checking beyond that described above,
+and requires input to be provided as a filename;
+that is, reading from standard input isn't supported.
+.
+.Pp
+.Xr xar 1
+is no longer being developed by Apple,
+and its inclusion with future macOS releases cannot be guaranteed.
+An archive of its source code is available from
+.Lk http://code.google.com/p/xar/ .

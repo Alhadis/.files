@@ -1,0 +1,112 @@
+.Dd August 15, 2024
+.Dt GZINFO 1
+.Os
+.Sh NAME
+.Nm gzinfo
+.Nd describe gzipped file for git-diff(1) drivers
+.
+.Sh SYNOPSIS
+.Nm
+.Op Fl v
+.Op Fl -
+.Ar file
+.
+.Sh DESCRIPTION
+.Nm
+describes compression-related metadata about a
+.Ar file
+compressed with
+.Xr gzip 1 ,
+formatted using RFC 822-style headers.
+.
+.Pp
+If the
+.Fl v
+switch is passed,
+the headers are followed by
+.Ar file Ap s
+decompressed contents,
+separated from the former by a single blank line.
+.
+.Sh FILES
+.Bl -tag -width 6n -compact
+.It Pa ~/.files/.gitconfig , ~/.files/etc/.global.gitattributes
+Local configuration files that globally define the
+.Ql Sy diff Ns = Ns Sy gz
+driver for
+.Pa *.gz
+files.
+.El
+.
+.Sh EXIT STATUS
+.Ex -std
+.
+.Sh EXAMPLES
+.Bd -literal -offset 4n
+.Sy $ Nm cd Ar /tmp
+.Sy $ Nm echo Ar Foo | Nm gzip > Ar piped.gz
+.Sy $ Nm gzinfo Ar piped.gz
+.Ed
+.Pp
+The above commands would output the following:
+.Bd -literal -offset 4n
+Method:           Deflate
+CRC:              DE00CA9
+Flags:            (none)
+Extra flags:      (none)
+Operating system: Unix
+Modify date:      2024\-08\-15 02:41:46 +1000
+Original size:    4
+Compressed size:  24
+Compressed ratio: \-99.9%
+.Ed
+.
+.Sh DIAGNOSTICS
+.Bl -tag -width 6n
+.It Sy "Required command not found"
+One or more dependencies required by
+.Nm
+were not found in the user's
+.Ev PATH .
+These include
+.Xr colrm 1 ,
+.Xr exiftool 1 ,
+.Xr expand 1 ,
+.Xr fold 1 ,
+and
+.Xr gunzip 1
+.Pq inclusive .
+.
+.It Sy "Error reading file"
+The gzipped
+.Ar file
+to examine either does not exist or isn't a regular file.
+.El
+.
+.Sh SEE ALSO
+.Xr git 1 ,
+.Xr gzip 1 ,
+.Xr xarinfo 1
+.Pp
+.Xr git-config 1
+for additional details on
+.Ql Sy diff.\& Ns Va driver Ns Sy \&.textconv
+configuration variables.
+.
+.Sh AUTHORS
+.An -nosplit
+Copyright \(co 2024
+.An John Gardner Aq Mt gardnerjohng@gmail.com .
+Freely released under the
+.Lk http://opensource.org/licenses/ISC "ISC license" .
+.
+.Sh BUGS
+This command is written for internal use by
+.Xr git-diff 1
+text conversion drivers,
+so its usage is quite restrictive.
+For example, reading from standard input is not supported.
+.
+.Pp
+Decompressed file contents are dumped to standard output as-is,
+even when they contain binary data.

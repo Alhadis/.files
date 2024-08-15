@@ -1,0 +1,62 @@
+#!/bin/sh
+
+#
+# gzinfo: Describe gzipped resource “$1” using RFC 822-style metadata fields.
+# shellcheck disable=SC2016
+#
+set -e
+
+for cmd in colrm exiftool expand fold gunzip; do
+	command -v "$cmd" >/dev/null 2>&1 && continue || :
+	printf >&2 '%s: Required command `%s` not found\n' "$0" "$cmd"
+	exit 1
+done
+
+case $1 in
+	-v) shift && verbose=1 ;;
+	--) shift ;;
+	*)  unset verbose;;
+esac
+
+# No argument passed
+[ -n "$1" ] || {
+	printf >&2 'Usage: gzinfo [-v] /path/to/rsrc.gz\n'
+	exit 1
+}
+
+# No such file
+[ -f "$1" ] || {
+	printf >&2 'gzinfo: Error reading file `%s`\n' "$1"
+	exit 1
+}
+
+# File isn't gzipped
+gunzip --test "$1" || exit $?
+
+
+{
+	gunzip -lv "$1" | colrm 14 29 | fold -w45 | sed '1,2d; 3 { s/  */\t/g; N; s/\n//; q; }'
+	exiftool -T -d '%Y-%m-%d %H:%M:%S %z' -Flags -ExtraFlags -ModifyDate -OperatingSystem "$1"
+	exiftool -m -p '$ArchivedFileName#' "$1"
+} | tr '\n' '\t' | awk '
+	BEGIN { FS = "\t" }
+	{
+		if ($1 == "defla") $1 = "Deflate";
+		print "Method:\t" $1;
+		print "CRC:\t" toupper($2);
+		print "Flags:\t" $7
+		print "Extra flags:\t" $8
+		print "Operating system:\t" $10
+		print "Modify date:\t" $9
+		if ($11) print "Original name:\t" $11;
+		print "Original size:\t" $4;
+		print "Compressed size:\t" $3;
+		print "Compressed ratio:\t" $5;
+	}
+' | expand -t18
+
+# Print decompressed contents to stdout if running verbosely
+if [ "$verbose" = 1 ]; then
+	echo
+	gunzip -c "$1"
+fi

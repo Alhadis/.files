@@ -1,19 +1,89 @@
 # Image diffs
-*.ai      diff=exif
-*.gif     diff=exif
-*.jpg     diff=exif
-*.jpeg    diff=exif
-*.png     diff=exif
-*.psd     diff=exif
+*.ai       diff=exif
+*.gif      diff=exif
+*.jpg      diff=exif
+*.jpeg     diff=exif
+*.mkv      diff=mkv
+*.png      diff=exif
+*.psd      diff=exif
 
 # Document diffs
-*.eps     diff=ps
-*.doc     diff=doc
-*.docx    diff=docx
-*.odt     diff=odt
-*.pdf     diff=pdf
+*.eps      diff=ps
+*.doc      diff=doc
+*.docx     diff=docx
+*.odt      diff=odt
+*.pdf      diff=pdf
+*.plist    diff=plist
+
+# SQLite databases
+*.mddata   diff=db
+*.db       diff=db?
+*.db3      diff=db
+*.s3db     diff=db
+*.sl3      diff=db
+*.sqlite   diff=db
+*.sqlite3  diff=db
+*.sqlitedb diff=db
 
 # Symbol/library diffs
-*.[ao]    diff=sym
-*.so      diff=sym
-*.dylib   diff=dyld
+*.[ao]     diff=sym
+*.so       diff=sym
+*.dylib    diff=dyld
+
+# Archive diffs
+*.7z       diff=7z
+*.asar     diff=asar
+*.cab      diff=tar
+*.deb      diff=deb
+*.dmg      diff=dmg
+*.egg      diff=zip
+*.gem      diff=tar
+*.iso      diff=7z
+*.jar      diff=zip
+*.msi      diff=7z
+*.nupkg    diff=zip
+*.rar      diff=rar
+*.rpm      diff=7z
+*.tar      diff=tar
+*.vsix     diff=zip
+*.whl      diff=zip
+*.xar      diff=xar
+*.xpi      diff=zip
+*.xz       diff=xz
+*.Z        diff=z
+*.zip      diff=zip
+
+# Compressed files
+*.bz       diff=bzip
+*.bz2      diff=bzip
+*.bzip     diff=bzip
+*.bzip2    diff=bzip
+*.gz       diff=gzip
+*.gzip     diff=gzip
+*.lz       diff=lzma
+*.lzma     diff=lzma
+*.lz4      diff=lz4
+*.sz       diff=sz
+*.zst      diff=zstd
+*.zstd     diff=zstd
+
+# Compressed archives
+*.tar.bz   diff=tar,bzip
+*.tar.bz2  diff=tar,bzip
+*.tar.xz   diff=tar,xz
+*.tar.Z    diff=tar,z
+*.taz      diff=tar,z
+*.tgz      diff=tar,gzip
+*.tar.gz   diff=tar,gzip
+*.tbz      diff=tar,bzip
+*.tbz2     diff=tar,bzip
+*.txz      diff=tar,xz
+*.tar.lz   diff=tar,lzma
+*.tar.lzma diff=tar,lzma
+*.tlzma    diff=tar,lzma
+*.tar.lz4  diff=tar,lz4
+*.tlz4     diff=tar,lz4
+*.tar.sz   diff=tar,sz
+*.tsz      diff=tar,sz
+*.tar.zst  diff=tar,zstd
+*.tzst     diff=tar,zstd

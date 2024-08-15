@@ -69,36 +69,137 @@
 		--format='%(refname:lstrip=-1)' \
 		refs/tags
 
+	# Print only the useful parts of git-check-attr(1) output
+	attr-names = "! git check-attr --all -z \"$1\" | xargs -0n3 /bin/sh -c 'echo $1' | sort #"
+	attr-value = "! { \
+		value=`git check-attr -z \"$1\" -- \"$2\" | tr '\\0' '\\t' | cut -f3`; \
+		case $value in unspecified) git attr-names \"$2\" | grep -Fqx \"$1\" || exit 1;; esac; \
+		printf '%s\\n' \"$value\"; \
+	}; #"
+
 # Diff drivers for binary file formats
+[diff "7z"]
+	textconv = 7z l -slt
+[diff "asar"]
+	textconv = file -b \"$1\" && asar list
 [diff "bin"]
 	textconv = hexdump -v -C
-	cachetextconv = true
+[diff "bzip"]
+	textconv = bunzip2 -kc
+[diff "db"]
+	algorithm = minimal
+	textconv = "sqlite3 \"$1\" .dump | unexpand -at2;:"
+	xfuncname = "^CREATE( TEMP(ORARY)?| VIRTUAL)? TABLE( IF NOT EXISTS)? ([A-Za-z0-9]+)\\b"
+	binary = true
+[diff "db?"]
+	cachetextconv = false
+	textconv = \
+		"case `file --brief --mime-type \"$1\"` in \
+		 	application/vnd.sqlite3)  exec git diff.run db  \"$1\";; \
+			application/octet-stream) exec git diff.run bin \"$1\";; \
+		esac; cat"
+[diff "deb"]
+	textconv = \
+		dpkg-deb --info \"$1\" && \
+		echo && (dpkg-deb --ctrl-tarfile \"$1\" | tar tvf -) && \
+		echo && dpkg-deb --contents
+[diff "dmg"]
+	textconv = hdiutil imageinfo
 [diff "doc"]
 	textconv = antiword -rsft
-	cachetextconv = true
 [diff "docx"]
 	textconv = docx2txt.pl - /dev/stdout <
-	cachetextconv = true
 [diff "dyld"]
 	textconv = dyld_info -platform -segments -dependents -objc -inits -exports -fixups
-	cachetextconv = true
 [diff "exif"]
 	textconv = exiftool -a -U -x FileName -x Directory
+[diff "gzip"]
+	textconv = gzinfo -v
+[diff "lz4"]
+	textconv = lz4 -dcfm
+[diff "lzma"]
+	textconv = lzmainfo \"$1\" && unlzma -c
+[diff "mkv"]
+	textconv = ffprobe
 	cachetextconv = true
 [diff "odt"]
 	textconv = odt2txt
-	cachetextconv = true
 [diff "pdf"]
-	textconv = pdftotext -htmlmeta -layout - /dev/stdout <
-	cachetextconv = true
+	textconv = pdftotext -htmlmeta -layout - - <
+	binary = true
+[diff "plist"]
+	textconv = convert-plist
 	binary = true
 [diff "ps"]
 	textconv = ps2ascii
-	cachetextconv = true
 	binary = true
+[diff "rar"]
+	textconv = unrar v -vy
 [diff "sym"]
 	textconv = nm -aCp
-	cachetextconv = true
+[diff "sz"]
+	textconv = snzip -dc
+[diff "tar"]
+	textconv = tar tvvzf \"$1\" && file -b
+[diff "tar,bzip"]
+	textconv = git diff.tarball bzip
+[diff "tar,gzip"]
+	textconv = git diff.tarball 'gunzip -kc'
+[diff "tar,lz4"]
+	textconv = git diff.tarball lz4
+[diff "tar,lzma"]
+	textconv = git diff.tarball 'unlzma -c'
+[diff "tar,sz"]
+	textconv = git diff.tarball sz
+[diff "tar,xz"]
+	textconv = git diff.run xz \"$1\" && echo && (unxz | tar tvf -) <
+[diff "tar,z"]
+	textconv = tar tvvzf
+[diff "tar,zstd"]
+	textconv = zstd -lv \"$1\" 2>&1 | tar tvf - && file -b
+[diff "xar"]
+	textconv = xarinfo
+[diff "xz"]
+	textconv = xz -lvv
+[diff "z"]
+	textconv = uncompress -c
+[diff "zip"]
+	textconv = zipinfo -l \"$1\" && (zipinfo -v \"$1\" | sed 1d) <
+[diff "zstd"]
+	textconv = zstd -lv \"$1\" 2>&1 | sed 1d && zstd -dcf <
+
+# Subcommands for debugging git-diff(1) drivers
+[alias.diff]
+	# List configured diff-drivers
+	drivers = ! git config --list --name-only | sed -En \
+		-e 's/[.]command$/.textconv/' \
+		-e 's/^diff[.]([^.]+)[.]textconv$/\\1/p'
+
+	# Purge cached diff-driver output
+	flush = ! git -c core.logAllRefUpdates=false \
+		for-each-ref --format='%(refname) %(objectname)' refs/notes/textconv/ \
+		| xargs -n2 git update-ref -d
+
+	# Perform text-conversion upon an arbitrary file
+	run = "! f(){ \
+		die(){ printf \"$@\" >&2; echo; exit 2; }; \
+		expect_file(){ test -f \"$1\" || die 'No such file: “%s”' \"$1\"; }; \
+		case $# in \
+			0) die 'Usage: git diff.run [diff-type] [file]';; \
+			1) expect_file \"$1\"; set -- \"`git attr-value diff \"$1\"`\" \"$1\";; \
+			*) expect_file \"$2\";; \
+		esac; \
+		test -n \"$1\" || die 'No driver defined for file “%s”' \"$2\"; \
+		cmd=`git config diff.\"$1\".textconv`; \
+		test -n \"$cmd\" || die 'No such driver: %s' \"$1\"; \
+		shift; eval \"$cmd\" \"$1\"; \
+	}; f"
+
+	# Decompress tarball using the named diff-driver
+	tarball = "! case $1 in \
+		*' '*) $1 \"$2\";; \
+		*) git diff.run \"$1\" \"$2\";; \
+	esac | tar tvf - && file -b \"$2\";:"
 
 # Filter drivers
 [filter "lfs"]

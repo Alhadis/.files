@@ -134,17 +134,6 @@ gx(){
 	fi; \gs -sDEVICE=txtwrite -sOutputFile=- -q -sBATCH -dNOPAUSE -dNOSAFER -I. -- "$@"
 }
 
-# Compare filesize before and after gzip compression
-# - Source: https://github.com/mathiasbynens/dotfiles
-gzcmp(){
-	origsize=`wc -c < "$1"`
-	gzipsize=`gzip -c "$1" | wc -c`
-	ratio=`printf '%d * 100 / %d\n' "$gzipsize" "$origsize" | bc -l`
-	printf 'Original: %d bytes\n' "$origsize"
-	printf 'Gzipped:  %d bytes (%2.2f%%)\n' "$gzipsize" "$ratio"
-	unset origsize gzipsize ratio
-}
-
 # Read IPA notation out loud
 ipa(){
 	case $* in *[![:blank:]/\|]*) ;; *)
