@@ -9,6 +9,12 @@ on run argv
 
 	set kPath to first item of argv
 	try
+		-- Silence gripes about relative POSIX paths being "scheme-less URLs"
+		if kPath doesn't start with "/"
+			if kPath starts with "./" then set kPath to text 3 thru (kPath's length) of kPath
+			set kPath to (do shell script "pwd") & "/" & kPath
+		end if
+
 		set result to POSIX path of (get default application of (info for POSIX file kPath))
 		if result ends with "/" then set result to text 1 thru (result's length - 1) of result
 		result
