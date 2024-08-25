@@ -36,6 +36,13 @@ Copy a file from another computer
 	        Remote machine we're copying    This one
 
 
+Mirror local directory on remote machine
+----------------------------------------
+
+	rsync -ave ssh ~/.atom Alhadis@10.0.0.74:/home/Alhadis/.atom
+	rsync -avic --delete ~/Documents/Logs/ Alhadis@10.0.0.74:/tmp/Logs
+
+
 
 Reference a range of commits
 ----------------------------
@@ -106,12 +113,13 @@ Generate disassembly
 ----------------------------------------------
 
 	nasm -f macho64 -o input.o input.asm
-	ld -macosx_version_min 10.7.0 -lSystem -o input input.o
+	ld -o input input.o -macosx_version_min 12.7 -static
 
-~~~asm
+~~~nasm
 ; input.asm
-global start
+global  start
 section .text
+
 start:
 	mov     rax, 0x2000004 ; write
 	mov     rdi, 1         ; stdout
@@ -127,27 +135,6 @@ section .data
 	msg:    db      "Hello, world!", 10
 	.len:   equ     $ - msg
 ~~~
-
-
-
-Resource fork access on macOS
------------------------------
-
-…is achieved by affixing `/..namedfork/rsrc` to the subject's filename.
-
-	RezWack -d /dev/null -r Palatino/..namedfork/rsrc -o Palatino.dfont
-	cp icon.rsrc file.txt/..namedfork/rsrc && SetFile -a C file.txt
-
-As explained by RezWack(1), this only works on HFS or HFS+ filesystems.
-
-
-
-Random weird shit on macOS
---------------------------
-
-	/usr/share/misc/birthtoken
-	/usr/share/sandbox/*.sb
-	/opt/X11/bin/xkeystone
 
 
 
@@ -181,6 +168,29 @@ Giant terminal text
 
 
 
+Configuration priority
+----------------------
+
+	1. Command-line
+	2. Environment variables
+	3. Local configuration
+	4. System configuration
+	5. Hardcoded defaults
+
+
+
+Traditional tab-sizes
+---------------------
+
+_De facto_ standard historically adopted for fixed tab-stop sizes in printers:
+
+	HT = 8 columns
+	VT = 6 lines
+
+Source: https://w.wiki/Ay8b
+
+
+
 VirtualBox logins
 -----------------
 
@@ -201,30 +211,6 @@ Bit manipulation
 	int |=   1 << 𝑁        Set
 	int &= ~(1 << 𝑁)       Unset
 	int ^=   1 << 𝑁        Toggle
-
-
-
-Archive.org
------------
-
-List everything captured for a domain:
-
-	https://web.archive.org/web/*/http://site.domain/*
-
-Direct link to original (unmodified) file:
-
-	date=`date +%Y%m%d`
-	https://web.archive.org/web/${DATE}id_/http://site.domain/page.html
-
-Newest and oldest versions of an archived page, respectively:
-
-	Latest: https://web.archive.org/web/${URL}
-	Oldest: https://web.archive.org/web/1000/${URL}
-
-JSON API for interrogating a resource's archive status:
-
-	curl "https://archive.org/wayback/available?url=$URL" \
-	| JQ_COLORS= jq -Mre '.archived_snapshots.closest.url | select(. != null)'
 
 
 
