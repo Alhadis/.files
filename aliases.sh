@@ -177,6 +177,7 @@ have hexdump && alias hexdump='hexdump -v \
 
 
 # OS-specific
+# shellcheck disable=SC3009,SC2139
 case `uname -s` in
 	OpenBSD)
 		# Reconnect WiFi
@@ -201,7 +202,6 @@ case `uname -s` in
 		have unlink || alias unlink='rm'
 
 		# Run the following commands as superuser by default
-		# shellcheck disable=SC3009,SC2139
 		for fn in cdio ch{own,grp,mod} {,u}mount pkg_{add,delete} syspatch mount.exfat{,-fuse}; do
 			have "$fn" && alias "$fn"="doas $fn"
 		done; unset fn
@@ -244,10 +244,16 @@ case `uname -s` in
 		alias findapp='mdfind "kMDItemContentType = com.apple.application-bundle && kMDItemCFBundleIdentifier ="'
 		
 		# Alias unreachable commands specific to macOS
-		alias openswith='~/.files/etc/darwin/opens-with.scpt'
-		alias scrub='~/.files/etc/darwin/scrub.sh'
-		alias PlistBuddy='/usr/libexec/PlistBuddy'
-		alias lsregister='/System/Library/Frameworks/CoreServices.framework/Frameworks/LaunchServices.framework/Support/lsregister'
+		for cmd in \
+			~/.files/etc/darwin/{open*.scpt,*.sh} \
+			/usr/libexec/PlistBuddy \
+			/System/Library/PrivateFrameworks/Apple80211.framework/Resources/airport \
+			/System/Library/Frameworks/CoreServices.framework/Frameworks/LaunchServices.framework/Support/lsregister \
+		; do
+			fn="${cmd##*/}"; fn="${fn%.*}"
+			have "$fn" || [ -x "$cmd" ] && alias "$fn"="$cmd"
+			unset fn
+		done; unset cmd
 		
 		# Mount temporary case-sensitive filesystem
 		alias tempfs='hdiutil create -size 512m -fs "Case-sensitive APFS" -type UDIF -nospotlight -attach'
