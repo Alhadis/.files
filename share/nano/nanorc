@@ -52,6 +52,9 @@ set selectedcolor ,cyan
 # Syntax highlighting
 include "~/.files/share/nano/syntaxes/*/*.nanorc"
 extendsyntax yaml tabgives "    "
+extendsyntax groff comment "'\""
+extendsyntax groff color yellow "(^['.][[:blank:]]*)?\\".*"
+extendsyntax man   color cyan   "(^['.][[:blank:]]*)?\\".*"
 
 # Keybindings
 unbind ^B all
