@@ -32,8 +32,12 @@ stackoverflow.*###sidebar > *:not(.sidebar-related), #left-sidebar
 superuser.*###sidebar > *:not(.sidebar-related), #left-sidebar
 
 ! Anything else which happens to shit me
+html.com###site-aside
+html.com###site-content div.post-single > .disclosure:has(> a[href^="/disclosure"])
 theguardian.com##div[id^="sp_message_container_"]:has(> iframe:only-child)
 developer.mozilla.org##section.place, sup.new
+developer.mozilla.org##aside.article-footer:has(.feedback)
+developer.mozilla.org###nav-footer
 fontawesome.com###banner[class*=" fa"]
 github.com##.js-notification-top-shelf
 mankier.com##main > a[href*="sponsor" i]
