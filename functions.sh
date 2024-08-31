@@ -134,6 +134,12 @@ gx(){
 	fi; \gs -sDEVICE=txtwrite -sOutputFile=- -q -sBATCH -dNOPAUSE -dNOSAFER -I. -- "$@"
 }
 
+# Format a test document using Heirloom Doctools
+have heirloom-nroff && h(){
+	! test -f test.roff || set -- "$@" test.roff
+	heirloom-nroff -x0 "$@" | trimstart | trimend
+}
+
 # Read IPA notation out loud
 ipa(){
 	case $* in *[![:blank:]/\|]*) ;; *)

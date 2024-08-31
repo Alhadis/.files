@@ -243,6 +243,12 @@ case `uname -s` in
 		# Locate an “.app” bundle by ID
 		alias findapp='mdfind "kMDItemContentType = com.apple.application-bundle && kMDItemCFBundleIdentifier ="'
 		
+		# Print 4-character creator/type codes
+		have GetFileInfo && {
+			alias typecode='GetFileInfo -t'
+			alias creatorcode='GetFileInfo -c'
+		}
+		
 		# Alias unreachable commands specific to macOS
 		for cmd in \
 			~/.files/etc/darwin/{open*.scpt,*.sh} \
