@@ -1,6 +1,7 @@
 shell=sh
 enable=deprecate-which
 external-sources=true
+disable=SC1111  # Accept “smart quotes” in strings
 disable=SC2009  # Prefer `ps | grep` over pgrep(1)
 disable=SC2015  # Silence nag about operator chaining
 
