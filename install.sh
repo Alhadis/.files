@@ -82,7 +82,9 @@ command -v youtube-dl >/dev/null 2>&1 && {
 # Link Troff macros
 # shellcheck disable=SC2167,SC2165
 for tmac in /usr/local /usr; do
-	cd "$tmac/share/groff/site-tmac" || continue
+	cd >/dev/null 2>&1 "$tmac/share/groff/site-tmac" || \
+	cd >/dev/null 2>&1 "$tmac/etc/groff/site-tmac"   || \
+	continue
 	for tmac in ~/.files/share/tmac/*; do
 		[ ! -h "./${tmac##*/}" ] || continue
 		[ -w "$PWD" ] && unset doas || doas='doas'
