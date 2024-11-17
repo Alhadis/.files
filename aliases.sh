@@ -243,6 +243,9 @@ case `uname -s` in
 		# Locate an “.app” bundle by ID
 		alias findapp='mdfind "kMDItemContentType = com.apple.application-bundle && kMDItemCFBundleIdentifier ="'
 		
+		# Print UTIs (Uniform Type Identifiers)
+		alias uti='mdls -name kMDItemContentType -name kMDItemContentTypeTree -name kMDItemKind'
+		
 		# Print 4-character creator/type codes
 		have GetFileInfo && {
 			alias typecode='GetFileInfo -t'
