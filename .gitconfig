@@ -50,6 +50,10 @@
 	undo = reset --soft HEAD~1
 	rewind = reset --hard
 
+	# Resolve project's root directory
+	root = rev-parse --show-toplevel
+	parent = rev-parse --show-superproject-working-tree
+
 	# Print the default branch-name used by remote
 	default-branch = "! { \
 		remote=`git remote`; \
