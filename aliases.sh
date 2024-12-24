@@ -218,6 +218,9 @@ case `uname -s` in
 		alias bi='brew info'
 		alias bd='brew desc'
 		
+		# Archive macOS-specific filesystem attributes
+		have bsdtar && alias bsdtar='bsdtar --acls --fflags --xattrs --mac-metadata'
+		
 		# Store download URLs in extended file attributes
 		have wget && alias wget='wget --xattr'
 		

@@ -6,8 +6,8 @@ archive()(
 		>&2 printf 'Usage: archive [...dir-paths]\n'
 		return 1
 	}
-	command -v bsdtar >/dev/null 2>&1 && cmd=bsdtar || cmd=tar
-	case `uname -s` in Darwin) cmd="$cmd --mac-metadata";; esac
+	command -v bsdtar >/dev/null 2>&1 && cmd='bsdtar -v --acls --fflags' || cmd='tar -v'
+	case `uname -s` in Darwin) cmd="$cmd --xattrs --mac-metadata";; esac
 	while [ $# -gt 0 ]; do
 		out="${1##*/}"
 		[ -e "$1" ] || {
@@ -17,8 +17,8 @@ archive()(
 		echo >&2 "Archiving: $1 -> $out.tgz"
 		# shellcheck disable=SC2086
 		$cmd -cvf "$out" "$1"
+		touch -cr "$1" "$out"
 		gzip -S .tgz "$out"
-		touch -r "$1" "$out.tgz"
 		chmod -w "$out.tgz"
 		shift
 	done
