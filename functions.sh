@@ -405,11 +405,28 @@ whatchanged(){
 
 # Print the URL whence a file was downloaded
 have xattr && wherefrom()(
-	xattr "$1" | while IFS= read -r attr; do
-		case $attr in
-			user.xdg.origin.url) xattr -p "$attr" "$1" ;;
-			com.apple.metadata:kMDItemWhereFroms) xattr -xp "$attr" "$1" | xxd -p -r | pl;;
-			*) continue ;;
-		esac; break
+	case $1 in
+		-s?*) sep=${1#-s};    shift  ;;
+		-s)   sep=${2:-'\0'}; shift 2;;
+		*)    sep=': ';;
+	esac
+	case $# in
+		0) printf >&2 'Usage: wherefrom [-s separator] ~/Downloads/*.file\n'; return 1;;
+		1) unset disambiguate;;
+		*) disambiguate=1;;
+	esac
+	while [ $# -gt 0 ]; do
+		xattr "$1" | while IFS= read -r attr; do
+			case $attr in
+				user.xdg.origin.url) mode=1;;
+				com.apple.metadata:kMDItemWhereFroms) mode=2;;
+				*) continue ;;
+			esac
+			[ -z "$disambiguate" ] || printf "%s${sep}" "$1"
+			case $mode in
+				1) xattr -p  "$attr" "$1";;
+				2) xattr -px "$attr" "$1" | xxd -p -r | pl;;
+			esac; break
+		done; shift
 	done
-)
+) && alias w\?=wherefrom
