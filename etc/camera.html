@@ -10,9 +10,22 @@
 	padding: 0;
 	margin: 0;
 	box-sizing: border-box;
+	&::before, &::after{
+		box-sizing: inherit;
+	}
+}
+:root{
+	background: #444;
 }
 video{
-	vertical-align: top;
+	background: #000;
+	box-shadow: 0 0 2em -.25em #000;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	max-width: 100vw;
+	max-height: 100vh;
 }
 </style></head><body><video></video><script type="module">
 	const stream = await navigator.mediaDevices.getUserMedia({video: true});
