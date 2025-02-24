@@ -9,16 +9,18 @@ archive()(
 	command -v bsdtar >/dev/null 2>&1 && cmd='bsdtar -v --acls --fflags' || cmd='tar -v'
 	case `uname -s` in Darwin) cmd="$cmd --xattrs --mac-metadata";; esac
 	while [ $# -gt 0 ]; do
-		out="${1##*/}"
 		[ -e "$1" ] || {
 			echo >&2 "Not found: $1"
 			return 1
 		}
-		echo >&2 "Archiving: $1 -> $out.tgz"
+		out="${1##*/}.tar"
+		echo >&2 "Archiving: $1 -> ${out%.*}.tgz"
 		# shellcheck disable=SC2086
 		$cmd -cvf "$out" "$1"
 		touch -cr "$1" "$out"
 		gzip -S .tgz "$out"
+		out=${out%.tar}
+		mv "$out.tar.tgz" "$out.tgz"
 		chmod -w "$out.tgz"
 		shift
 	done
