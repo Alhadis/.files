@@ -4,9 +4,15 @@ man/index.*
 mandoc.db
 node_modules
 *.log
+*.baklz4
+*.jsonlz4
+*.json.lz4
+*.mozlz4
 
 /etc/adobe/*/current
 /etc/audacity/config
+/etc/firefox/app-data
+/etc/firefox/profile
 /tmp.sh
 /var
 

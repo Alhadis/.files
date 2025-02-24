@@ -126,6 +126,8 @@
 [diff "mkv"]
 	textconv = ffprobe
 	cachetextconv = true
+[diff "mozlz4"]
+	textconv = (mozlz4 - | jq --tab .) <
 [diff "odt"]
 	textconv = odt2txt
 [diff "pdf"]

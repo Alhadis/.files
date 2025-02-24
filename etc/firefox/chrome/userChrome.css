@@ -1,0 +1,16 @@
+@charset "utf-8";
+@namespace url("http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul");
+
+/* Frosted glass/translucency effect (macOS only) */
+@media (-moz-bool-pref: "browser.theme.macos.native-theme")
+and    (-moz-bool-pref: "browser.tabs.allow_transparent_browser"){
+	body > *,
+	#navigator-toolbox,
+	#browser{
+		appearance: -moz-window-titlebar !important;
+		&:not(#customization-container) > * {
+			background: #0003 !important;
+			box-shadow: 1px 1px 5px #0006;
+		}
+	}
+}

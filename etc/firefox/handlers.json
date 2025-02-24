@@ -1,0 +1,21 @@
+{
+	"isDownloadsImprovementsAlreadyMigrated": false,
+	"defaultHandlersVersion": {},
+	"mimeTypes": {
+		"application/pdf": {"action": 3, "extensions": ["pdf"]},
+		"image/webp":      {"action": 3, "extensions": ["webp"]},
+		"image/avif":      {"action": 3, "extensions": ["avif"]},
+		"image/svg+xml":   {"action": 3, "extensions": ["svg", "svgz"]},
+		"text/xml":        {"action": 3, "extensions": ["xml", "xsl", "xbl"]}
+	},
+	"schemes": {
+		"podcasts": {"action": 4},
+		"mailto": {
+			"action": 2,
+			"handlers": [{
+				"name": "Gmail",
+				"uriTemplate": "https://mail.google.com/mail/?extsrc=mailto&url=%s"
+			}]
+		}
+	}
+}

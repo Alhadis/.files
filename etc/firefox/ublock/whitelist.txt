@@ -15,6 +15,20 @@ opera-scheme
 vivaldi-scheme
 wyciwyg-scheme
 
+# Banking websites
+anz.com.au
+bankofmelbourne.com.au
+bendigobank.com.au
+commbank.com.au
+nab.com.au
+westpac.com.au
+
+# Telecommunications and government websites
+gov.au
+optus.com.au
+telstra.com.au
+
 # User-defined whitelist
 ecosia.org
+podcasts.apple.com
 yifytsubtitles.com

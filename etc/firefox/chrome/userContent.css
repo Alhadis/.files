@@ -1,0 +1,341 @@
+/* Unsupported property to force “userContent.css” to appear in devtools */
+:root{
+	-webkit-locale: en-AU-u-sd-auvic-tz-aumel;
+}
+
+/* Reveal unusual control characters embedded in page */
+@media not (-moz-bool-pref: "layout.css.control-characters.enabled")
+and    not (-moz-bool-pref: "layout.css.control-characters.visible"){
+	:root { -moz-control-character-visibility: visible; }
+}
+
+/* Internal Firefox pages */
+@-moz-document url-prefix(about:){
+	html, body{
+		background: rgba(0, 0, 0, .1) !important;
+		min-height: 100vh;
+	}
+}
+
+/* AcronymFinder */
+@-moz-document domain(acronymfinder.com), domain(acronymattic.com){
+	/* Improve contrast */
+	body, .acronym__search, .footer-main, .active > .tabs__item{
+		color: #000 !important;
+		font-weight: normal !important;
+	}
+	html:has(meta[itemprop="description" i][content*="AcronymAttic" i]) a:any-link{
+		color: #267974 !important;
+	}
+	
+	/* Fill available space */
+	.container{
+		max-width: none !important;
+	}
+	.database-surfer > .row{
+		max-width: 1000px;
+		margin: 0 auto !important;
+	}
+	
+	/* Navbar */
+	#navigation{
+		min-height: 32px !important;
+		padding: 0 !important;
+		.navbar-text{
+			float: none !important;
+			&.navigation__menu    { margin: 8px 0 !important; }
+			&.navigation__socials { display: none !important; }
+		}
+		a:hover { color: #fff !important;   }
+		a:focus { outline: none !important; }
+	}
+
+	/* “Link/Citation” toolbar */
+	.text-content:has(> .citation){
+		margin: 0 0 1em !important;
+		.citation__link__col{
+			position: static !important;
+			a:focus{
+				outline: none !important;
+				text-decoration: none !important;
+			}
+		}
+
+		/* Spruce up the citation box */
+		#Citation{
+			box-shadow: 0 0 .75em -.35em #000;
+			padding: 1em;
+			margin-top: .75em;
+			textarea{
+				resize: none;
+			}
+			
+			/* Make citation styles easier to copy+paste */
+			ul > li{
+				user-select: all;
+				& > *:only-child > strong:first-child{
+					user-select: none;
+				}
+			}
+		}
+	}
+
+	/* Category filters */
+	.tabs > li{
+		vertical-align: middle !important;
+		font-size: 1.1em;
+		&.no-link{
+			display: none !important;
+		}
+	}
+
+	/* Search results list */
+	.result-list{
+		/* Remove third column; search links are broken */
+		.result-list th:last-child:empty,
+		td:has(a[href*="/~/search/google.aspx"]){
+			display: none !important;
+		}
+		
+		/* Auto-select abbreviation definitions */
+		.result-list__body__meaning{
+			user-select: all;
+		}
+	}
+
+	/* Remove pointless empty spaces */
+	#content > .acronym + [class$="-container"],
+	.result-list td[colspan="3"],
+	.search-results + div:has(> div[style*="width:"]),
+	.footer-main > .container > div:empty,
+	.fb-like-wrapper,
+	.twitter-share-button{
+		display: none !important;
+	}
+
+	/* Reduce excessive margins and tweak spacing */
+	.content-wrapper,
+	.search-sumup{
+		padding-bottom: 0 !important;
+		padding-top: 1em !important;
+	}
+}
+
+/* Fix UX nits with ClearSky */
+@-moz-document domain(clearsky.app){
+	/* Block-list entries */
+	.blocking-list-entry{
+		/* Remove “dead space” around clickable areas */
+		padding: 0 !important;
+		& > a[href]{
+			padding: .4em .6em;
+			display: block;
+		}
+		
+		/* Improve legibility of block dates */
+		.blocking-date{
+			opacity: unset;
+		}
+	}
+	
+	/* Clear(er)Sky */
+	.obscure-public-records-overlay{
+		display: none;
+	}
+	.history-panel-container-obscurePublicRecords{
+		filter: none !important;
+		opacity: unset;
+		pointer-events: unset;
+	}
+}
+
+/* GitHub code-view */
+@-moz-document domain(github.com){
+	/* Facilitate inspection of syntax highlighting */
+	#read-only-cursor-text-area ~ div:has(.react-code-lines){
+		pointer-events: unset !important;
+	}
+
+	/* Thicken underlines drawn beneath tokenised links */
+	.pl-corl{
+		text-decoration-skip-ink: none;
+		text-decoration-thickness: 1px;
+	}
+}
+
+/* Default to 4-column tabstops when displaying source code */
+@-moz-document domain(github.com), domain(gitlab.com), domain(mozilla.org){
+	code, kbd, listing, plaintext, pre, samp, textarea, tt, xmp{
+		tab-size: 4;
+	}
+	script:not([src]), style{
+		font-family: -moz-fixed;
+		white-space: pre;
+		tab-size: 4;
+	}
+}
+
+/* Apple developer docs */
+@-moz-document domain(developer.apple.com){
+	/* Hide that annoying “Retired Document” reminder */
+	#legacyOuterWrapper.show{
+		display: none !important;
+	}
+}
+
+/* Cultural decay and teenage depression */
+@-moz-document domain(instagram.com){
+	/* Facilitate inspection of embedded videos */
+	video ~ div{
+		pointer-events: none;
+		opacity: 0;
+	}
+
+	/* Hide that annoying nag-screen when browsing anonymously */
+	#scrollview:not(:last-child),
+	#scrollview ~ div:has([role="dialog"] input[type="password" i]){
+		display: none !important;
+	}
+}
+
+/* Apple podcasts */
+@-moz-document domain(podcasts.apple.com){
+	/* Make close buttons of “Choose another country…” notices easier to click */
+	.banner-container[aria-label^="Choose country" i]{
+		& > .banner-content{
+			position: relative;
+			button.close-button:first-child{
+				position: absolute;
+				padding: 15px 25px 20px !important;
+				transform: translate(-25px, -50%);
+				top: 50%;
+				left: 0;
+			}
+		}
+	}
+
+	/* Make play buttons easier to click in artwork thumbnails of episode lists */
+	.episode-wrapper__play-button-wrapper{
+		--interactivePlayButtonSize: 100%;
+		position: relative;
+		& button.play-button{
+			position: absolute;
+			width:  100%;
+			height: 100%;
+		}
+	}
+}
+
+/* Teach Wondery about dark mode */
+@-moz-document domain(wondery.com){
+	@media (prefers-color-scheme: dark){
+		:root, img, video, .pod-link svg, .site-header [class*="bg-charcoal"]{
+			filter: invert(1) hue-rotate(180deg);
+		}
+		.controlsContainer{
+			color: #000 !important;
+		}
+		.site-mode-selector .page-container .active-site-mode::before{
+			background-color: #000 !important;
+		}
+		.controlBar{
+			background-color: hsla(0, 0%, 90%, 0.8) !important;
+		}
+		[v-focus-visible="true"] [data-focus-visible-enabled="true"] :focus{
+			outline-color: #fff !important;
+		}
+	}
+}
+
+/* Assuage YouTube's rebarbative UX */
+@-moz-document domain(youtube.com){
+	/* Fill available content space */
+	ytd-rich-metadata-renderer{
+		max-width: none !important;
+	}
+
+	/* Remove rounded corners */
+	#ytd-player.ytd-watch-flexy,
+	ytd-thumbnail[size] .ytd-thumbnail{
+		border-radius: 0 !important;
+	}
+
+	/* Exempt searchable transcripts from YouTube sidebar filter */
+	ytd-watch-flexy #secondary{
+		display: none;
+		
+		&:has(#panels > *[target-id*="transcript" i]){
+			all: unset;
+			
+			#secondary-inner{
+				all:       unset;
+				display:   flex;
+				height:    100%;
+				width:     var(--ytd-watch-flexy-sidebar-width);
+				min-width: var(--ytd-watch-flexy-sidebar-min-width);
+			}
+			#panels > *,
+			#panels ~ *{
+				display: none;
+			}
+			#panels > *[target-id*="transcript" i]{
+				display: unset;
+				margin-bottom: 0;
+			}
+		}
+		&:has(#panels > *[target-id*="transcript" i][visibility*="HIDDEN" i]){
+			display: none !important;
+		}
+	}
+
+	/* Hide shorts in Subscriptions feed */
+	ytd-browse[page-subtype="subscriptions" i] ytd-rich-section-renderer:has(
+		.ShortsLockupViewModelHost,
+		ytm-shorts-lockup-view-model,
+		ytm-shorts-lockup-view-model-v2
+	){ display: none !important; }
+
+	/* Improve contrast of playback progress bars */
+	.ytp-cairo-refresh-signature-moments .ytp-play-progress,
+	.progress-bar-played.ytd-progress-bar-line,
+	#progress{
+		background: #f03 !important;
+	}
+	ytd-thumbnail-overlay-resume-playback-renderer{
+		background: light-dark(#ccc6c6, #534b4b) !important;
+		color-scheme: light dark;
+	}
+}
+
+/* Attempt to fix UX issues with the Wayback Machine's calendar widget */
+@-moz-document url-prefix(https://web.archive.org/web/){
+	#react-wayback-search{
+		.month .month-day-container{
+			cursor: text;
+			&.highlighted{
+				cursor: unset;
+				z-index: unset;
+			}
+		}
+		.calendar-day{
+			position: static;
+			background: #1eafec;
+			cursor: pointer;
+			
+			&:has(.measure.s2xx) { background: #1eafec; } /* Success */
+			&:has(.measure.s3xx) { background: #008000; } /* Redirect */
+			& > .position{ display: none !important; }
+			& > a{
+				position: absolute;
+				background-color: inherit !important;
+				border-radius: 50%;
+				overflow: hidden;
+				z-index:  9;
+				top:      0;
+				left:     0;
+				bottom:   0;
+				right:    0;
+			}
+		}
+	}
+}

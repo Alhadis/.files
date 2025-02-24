@@ -1,0 +1,53 @@
+{
+	"timeStamp": 1739853689562,
+	"version": "1.62.0",
+	"userSettings": {
+		"externalLists":  "https://ublockorigin.github.io/uAssets/filters/resource-abuse.txt",
+		"importedLists": ["https://ublockorigin.github.io/uAssets/filters/resource-abuse.txt"],
+		"firewallPaneMinimized": false,
+		"popupPanelSections": 63
+	},
+	"selectedFilterLists": [
+		"user-filters",
+		"ublock-filters",
+		"ublock-badware",
+		"ublock-privacy",
+		"ublock-quick-fixes",
+		"ublock-unbreak",
+		"easylist",
+		"easyprivacy",
+		"urlhaus-1",
+		"plowe-0",
+		"adguard-cookies",
+		"ublock-cookies-adguard",
+		"ublock-annoyances",
+		"https://ublockorigin.github.io/uAssets/filters/resource-abuse.txt"
+	],
+	"hiddenSettings": {},
+	"whitelist": [
+		"about-scheme",
+		"anz.com.au",
+		"bankofmelbourne.com.au",
+		"bendigobank.com.au",
+		"chrome-extension-scheme",
+		"chrome-scheme",
+		"commbank.com.au",
+		"ecosia.org",
+		"edge-scheme",
+		"gov.au",
+		"moz-extension-scheme",
+		"nab.com.au",
+		"opera-scheme",
+		"optus.com.au",
+		"podcasts.apple.com",
+		"telstra.com.au",
+		"vivaldi-scheme",
+		"westpac.com.au",
+		"wyciwyg-scheme",
+		"yifytsubtitles.com"
+	],
+	"dynamicFilteringString": "behind-the-scene * * noop\nbehind-the-scene * inline-script noop\nbehind-the-scene * 1p-script noop\nbehind-the-scene * 3p-script noop\nbehind-the-scene * 3p-frame noop\nbehind-the-scene * image noop\nbehind-the-scene * 3p noop",
+	"urlFilteringString": "",
+	"hostnameSwitchesString": "no-large-media: behind-the-scene false\nno-csp-reports: * true",
+	"userFilters": "[uBlock Origin 1.41.6]\n\n! Cookie messages\n##web-snackbar-container\n###js-cookie\n\n! Share/subscribe buttons\nfontawesome.com###social-buttons\nsourceforge.net###newsletter-floating\nweb.dev##a[href*=\"/newsletter/\" i]\nweb.dev##share-action\n\n! \"Sign in with Google\" pop-ups\n###credential_picker_container:has(> iframe[src*=\".google.com/\" i])\nreddit.*###credential_picker_container\n\n! More of Google's UI syphilis\nyoutube.com##.ytp-paid-content-overlay\nyoutube.com##ytm-paid-content-overlay-renderer\nyoutube.com###newness-dot\nyoutube.com###sponsor-button\nyoutube.com###yt-button-view-model\nyoutube.com##.ytp-miniplayer-button\nyoutube.com##.ytp-next-button\n\n! Stack Overflow topics I couldn't give a fuck about\naskubuntu.*###sidebar > *:not(.sidebar-related), #left-sidebar\nmathoverflow.*###sidebar > *:not(.sidebar-related), #left-sidebar\nserverfault.*###sidebar > *:not(.sidebar-related), #left-sidebar\nstackapps.*###sidebar > *:not(.sidebar-related), #left-sidebar\nstackexchange.*###sidebar > *:not(.sidebar-related), #left-sidebar\nstackoverflow.*###sidebar > *:not(.sidebar-related), #left-sidebar\nsuperuser.*###sidebar > *:not(.sidebar-related), #left-sidebar\n\n! Make Forbes articles easier to stomach\n||embedly.forbes.com/widgets^\n||forbes.com$media\n||view.ceros.com/forbes\nforbes.com##.ampplus-connatix:has(.cnx-video-container)\nforbes.com##.zephr-fin-free-report-modal\nforbes.com##.embedly-align\n\n! Anything else which happens to shit me\ngnu.org###fundraiser\nhtml.com###site-aside\nhtml.com###site-content div.post-single > .disclosure:has(> a[href^=\"/disclosure\"])\nabebooks.com###srp-results > #highlight-inventory\nbelong.com.au###belong-chat-iframer\nextreme-ip-lookup.com###axd\ntheguardian.com##div[id^=\"sp_message_container_\"]:has(> iframe:only-child)\ntheguardian.com##figure > aside[aria-label=\"newsletter promotion\" i]\ntheguardian.com###maincontent ~ gu-island[priority=\"feature\"]\ntheguardian.com##gu-island[name=\"StickyBottomBanner\"]\ndeveloper.mozilla.org##section.place, sup.new\ndeveloper.mozilla.org##aside.article-footer:has(.feedback)\ndeveloper.mozilla.org###nav-footer\nknowablemagazine.org###alerts\nknowablemagazine.org##.modal-backdrop\nlearn.microsoft.com###disclaimer-holder\nfontawesome.com###banner[class*=\" fa\"]\ngithub.com##.js-notification-top-shelf\nmankier.com##main > a[href*=\"sponsor\" i]"
+}

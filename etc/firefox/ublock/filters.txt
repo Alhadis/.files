@@ -4,14 +4,6 @@
 ##web-snackbar-container
 ###js-cookie
 
-! Politics/real-world bullcrap unrelated to code
-##^script:has-text(/#?\bBlack\s*Lives\s*Matter\b/i)
-##[class*="blacklivesmatter" i]
-##[href*="blacklivesmatter.org" i]
-11ty.dev##header .announcement
-electronjs.org##[class|="announcement-banner"]
-||imgs.xkcd.com/news/blm.png$image
-
 ! Share/subscribe buttons
 fontawesome.com###social-buttons
 sourceforge.net###newsletter-floating
@@ -22,6 +14,15 @@ web.dev##share-action
 ###credential_picker_container:has(> iframe[src*=".google.com/" i])
 reddit.*###credential_picker_container
 
+! More of Google's UI syphilis
+youtube.com##.ytp-paid-content-overlay
+youtube.com##ytm-paid-content-overlay-renderer
+youtube.com###newness-dot
+youtube.com###sponsor-button
+youtube.com###yt-button-view-model
+youtube.com##.ytp-miniplayer-button
+youtube.com##.ytp-next-button
+
 ! Stack Overflow topics I couldn't give a fuck about
 askubuntu.*###sidebar > *:not(.sidebar-related), #left-sidebar
 mathoverflow.*###sidebar > *:not(.sidebar-related), #left-sidebar
@@ -31,14 +32,31 @@ stackexchange.*###sidebar > *:not(.sidebar-related), #left-sidebar
 stackoverflow.*###sidebar > *:not(.sidebar-related), #left-sidebar
 superuser.*###sidebar > *:not(.sidebar-related), #left-sidebar
 
+! Make Forbes articles easier to stomach
+||embedly.forbes.com/widgets^
+||forbes.com$media
+||view.ceros.com/forbes
+forbes.com##.ampplus-connatix:has(.cnx-video-container)
+forbes.com##.zephr-fin-free-report-modal
+forbes.com##.embedly-align
+
 ! Anything else which happens to shit me
+gnu.org###fundraiser
 html.com###site-aside
 html.com###site-content div.post-single > .disclosure:has(> a[href^="/disclosure"])
+abebooks.com###srp-results > #highlight-inventory
+belong.com.au###belong-chat-iframer
+extreme-ip-lookup.com###axd
 theguardian.com##div[id^="sp_message_container_"]:has(> iframe:only-child)
+theguardian.com##figure > aside[aria-label="newsletter promotion" i]
+theguardian.com###maincontent ~ gu-island[priority="feature"]
+theguardian.com##gu-island[name="StickyBottomBanner"]
 developer.mozilla.org##section.place, sup.new
 developer.mozilla.org##aside.article-footer:has(.feedback)
 developer.mozilla.org###nav-footer
+knowablemagazine.org###alerts
+knowablemagazine.org##.modal-backdrop
+learn.microsoft.com###disclaimer-holder
 fontawesome.com###banner[class*=" fa"]
 github.com##.js-notification-top-shelf
 mankier.com##main > a[href*="sponsor" i]
-youtube.com##.ytp-next-button

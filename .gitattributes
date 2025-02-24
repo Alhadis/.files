@@ -1,6 +1,9 @@
 # Stuff I didn't write
 share/dict/en_*   linguist-vendored
 
+# Machine-generated files
+bookmarklets.html linguist-generated
+
 # Documentation
 share/man/**      linguist-documentation
 
@@ -18,10 +21,21 @@ etc/*.conf        linguist-language=INI
 
 # Adobe Illustrator settings
 [attr]aiprefs linguist-language=PostScript linguist-vendored
-Adobe*Prefs      aiprefs
-Last*Settings    aiprefs
-Vector*Presets   aiprefs
-**/Workspaces/*  aiprefs
-*.aia            aiprefs
-*.kys            aiprefs
-*.kys_mac        aiprefs
+Adobe*Prefs       aiprefs
+Last*Settings     aiprefs
+Vector*Presets    aiprefs
+**/Workspaces/*   aiprefs
+*.aia             aiprefs
+*.kys             aiprefs
+*.kys_mac         aiprefs
+
+# Mozilla LZ4-compressed files
+[attr]mozlz4 linguist-generated diff=mozlz4
+*.baklz4          mozlz4
+*.jsonlz4         mozlz4
+*.json.lz4        mozlz4
+*.mozlz4          mozlz4
+upgrade.jsonlz4-* mozlz4
+
+# Mozilla preferences file
+**/firefox/*.js   linguist-detectable=false
