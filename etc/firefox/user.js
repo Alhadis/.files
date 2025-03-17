@@ -54,6 +54,7 @@ user_pref("general.smoothScroll", true);
 user_pref("browser.search.suggest.enabled", true);
 user_pref("browser.search.update", false);
 user_pref("browser.search.region", "AU");
+user_pref("browser.urlbar.ctrlCanonizesURLs", false);
 user_pref("browser.urlbar.shortcuts.actions", true);
 user_pref("browser.urlbar.shortcuts.bookmarks", false);
 user_pref("browser.urlbar.shortcuts.history", false);
