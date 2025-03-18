@@ -1,5 +1,22 @@
 #!/bin/sh
 
+# Generate an XML-formatted AcoustID fingerprint
+have fpcalc && acoustid()(
+	case $1 in -h|--help|-\?|'')
+		printf >&2 'Usage: acoustid /path/to/track.wav [indent=2]\n'; [ "$1" ]
+		return ;;
+	esac
+	tab=`printf "%${2:-2}.s" | sed 's/ /	/g'`
+	dur=`exiftool -b -Duration "$1"` || return 1
+	dur=`round "$dur"`
+	fp=`fpcalc -t "$dur" -plain "$1" | tr -d '\n' | fold -w 78 | sed "s/^/$tab	/"`
+	cat <<-XML
+		$tab<fingerprint duration="$dur">
+		$fp
+		$tab</fingerprint>
+	XML
+)
+
 # Create an archive of each specified directory
 archive()(
 	[ $# -eq 0 ] && {
@@ -288,6 +305,21 @@ have plutil && solarInfo(){
 		}
 		$ s/^}$/&\n/
 	'
+}
+
+# Round a fractional value to the nearest integer
+round(){
+	set -- "${1#+}"
+	set -- "${1%.}"
+	set -- "$1" "${1%%.*}" "${1#*.}"
+	case ${1#-} in *[!.0-9]*|*.*.*) printf >&2 'Invalid number: %s\n' "$1"; return 1;; esac
+	case ${1#-} in *[!0-9]*);; *?*) printf '%s\n' "$1"; return;; esac
+	shift; case $1 in
+		-*) set -- - "$@";;
+		*)  set -- + "$@";;
+	esac
+	case $3 in [5-9]*) set -- '' "$(($2${1}1))";; esac
+	printf '%s\n' "$2"
 }
 
 # Alphabetise a list of SHA-256 checksums
