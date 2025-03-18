@@ -33,5 +33,10 @@ defaults delete com.apple.finder FXDesktopVolumePositions
 defaults delete com.apple.finder FXRecentFolders
 defaults delete com.apple.finder RecentMoveAndCopyDestinations
 defaults delete com.apple.Safari RecentWebSearches
-sudo rm -rfPv ~/Library/Application\ Support/com.apple.sharedfilelist/*
+
+# Clear recently-used files, but retain the user's current bookmarks
+cd ~/Library/Application\ Support/com.apple.sharedfilelist
+sudo find . -not -iname com.apple.LSSharedFileList.FavoriteItems.sfl? -mindepth 1 -print0 | sort -z | xargs -0 rm -rfPv
+
+# Refresh
 sudo killall Dock
