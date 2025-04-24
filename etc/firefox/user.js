@@ -40,7 +40,11 @@ user_pref("devtools.performance.popup.intro-displayed", true);
 
 // Tabbed navigation and window behaviour
 user_pref("browser.ctrlTab.sortByRecentlyUsed", false);
+user_pref("browser.urlbar.contextualSearch.enabled", false);
 user_pref("browser.link.open_newwindow", 3);
+user_pref("browser.tabs.groups.enabled", true);
+user_pref("browser.tabs.groups.smart.enabled", false);
+user_pref("browser.tabs.groups.dragOverDelayMS", 150);
 user_pref("browser.tabs.warnOnOpen", false);
 user_pref("browser.tabs.warnOnClose", false);
 user_pref("browser.warnOnQuitShortcut", false);

@@ -1,17 +1,17 @@
 {
-	"version": 10,
+	"version": 12,
 	"engines": [
-		{"id": "google",    "_name": "Google",     "_isAppProvided": true, "_metaData": {"hidden": false, "order": 1}},
-		{"id": "wikipedia", "_name": "Wikipedia",  "_isAppProvided": true, "_metaData": {"hidden": false, "order": 11}},
-		{"id": "ddg",       "_name": "DuckDuckGo", "_isAppProvided": true, "_metaData": {"hidden": true,  "order": 2}},
-		{"id": "bing",      "_name": "Bing",       "_isAppProvided": true, "_metaData": {"hidden": true,  "order": 3}},
-		{"id": "ebay-au",   "_name": "eBay",       "_isAppProvided": true, "_metaData": {"hidden": true,  "order": 4}},
+		{"id": "google",    "_name": "Google",         "_isAppProvided": true, "_metaData": {"hidden": false, "order": 1}},
+		{"id": "wikipedia", "_name": "Wikipedia (en)", "_isAppProvided": true, "_metaData": {"hidden": false, "order": 12}},
+		{"id": "ddg",       "_name": "DuckDuckGo",     "_isAppProvided": true, "_metaData": {"hidden": true,  "order": 2}},
+		{"id": "bing",      "_name": "Bing",           "_isAppProvided": true, "_metaData": {"hidden": true,  "order": 3}},
+		{"id": "ebay-au",   "_name": "eBay",           "_isAppProvided": true, "_metaData": {"hidden": true,  "order": 4}},
 		{
 			"id": "71badd3b-c2e6-40eb-b971-ac5f4bbed429",
 			"_name": "Ecosia",
 			"_loadPath": "[https]www.ecosia.org/ecosia.xml",
 			"description": "The search engine that plants trees",
-			"_iconURL": "data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiPz48c3ZnIHZlcnNpb249IjEuMSIgdmlld0JveD0iMCAwIDEwMDAgMTAwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48Y2lyY2xlIGZpbGw9IiMwMDgwMDkiIGN4PSI1MDAiIGN5PSI1MDAiIHI9IjUwMCIvPjxwYXRoIGZpbGw9IiNmZmYiIGQ9Ik01NDYgODU1YzI1NyA4IDMzNy05MiAzNTEtMTkzIDctNTItNDUtMTA0LTEyNy0xMDEgMTg2LTExNCA3OS0zMDgtNTYtMjExIDE4LTE3My0xNDEtMjY4LTI4OS0yMzgtMTM4IDI5LTIxOSAxNDAtMTQ5IDM3OC0xMDYtNjgtMTg4IDYwLTE2MyAxODEgMjQgMTEzIDExMyAxODkgMzI2IDE4Ny04IDMzLTE2IDEwNS0xOSAxMzYgNTEgOCAxMDMgOSAxNTQgMi0xMy01MC0yMy05OC0yNi0xNDBaTTM2MiAyOTVoMjc3djE0NGgtMTcxdjU1aDExMXY1NmgtMTEydjU0aDE3MnYxNDRoLTI3N3YtNDUzWiIvPjwvc3ZnPg",
+			"_iconMapObj": {"1000": "data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiPz48c3ZnIHZlcnNpb249IjEuMSIgdmlld0JveD0iMCAwIDEwMDAgMTAwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48Y2lyY2xlIGZpbGw9IiMwMDgwMDkiIGN4PSI1MDAiIGN5PSI1MDAiIHI9IjUwMCIvPjxwYXRoIGZpbGw9IiNmZmYiIGQ9Ik01NDYgODU1YzI1NyA4IDMzNy05MiAzNTEtMTkzIDctNTItNDUtMTA0LTEyNy0xMDEgMTg2LTExNCA3OS0zMDgtNTYtMjExIDE4LTE3My0xNDEtMjY4LTI4OS0yMzgtMTM4IDI5LTIxOSAxNDAtMTQ5IDM3OC0xMDYtNjgtMTg4IDYwLTE2MyAxODEgMjQgMTEzIDExMyAxODkgMzI2IDE4Ny04IDMzLTE2IDEwNS0xOSAxMzYgNTEgOCAxMDMgOSAxNTQgMi0xMy01MC0yMy05OC0yNi0xNDBaTTM2MiAyOTVoMjc3djE0NGgtMTcxdjU1aDExMXY1NmgtMTEydjU0aDE3MnYxNDRoLTI3N3YtNDUzWiIvPjwvc3ZnPg"},
 			"_metaData": {
 				"loadPathHash": "yrmumdgkKXjgcg8/WkVVbyA87Q3sB8Agrt4yqScNYGU=",
 				"order": 5
@@ -29,8 +29,7 @@
 			"_definedAliases": ["@ecosia"],
 			"_orderHint":      null,
 			"_telemetryId":    null,
-			"_iconMapObj":     null,
-			"_iconUpdateURL":  null,
+			"_filePath":       null,
 			"_updateInterval": null,
 			"_updateURL":      null
 		},{
@@ -38,7 +37,7 @@
 			"_name": "GitHub",
 			"_loadPath": "[https]github.com/github.xml",
 			"description": "Search public GitHub repositories",
-			"_iconURL": "data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiPz48c3ZnIHZlcnNpb249IjEuMSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB2aWV3Qm94PSIwIDAgMzIwIDMyMCI+PHBhdGggc3R5bGU9ImNvbG9yLXNjaGVtZTpsaWdodCBkYXJrO2ZpbGw6bGlnaHQtZGFyaygjMjQyOTJlLCNmMGY2ZmMpIiBkPSJNMTYxIDRDLTEwIDItNzEgMjQ4IDExMCAzMTZjOCAxIDExLTMgMTEtOHMwLTE2IDAtMzBjLTYxIDEwLTQ3LTI0LTcwLTQxLTYtMy0xNC0xMCAwLTExIDMwIDAgMjQgNDggNzEgMzAgMS0xMCA2LTE3IDEwLTIxLTg0LTYtODYtOTMtNTYtMTIyLTItNC03LTIwIDItNDIgMCAwIDEzLTQgNDQgMTYgMjUtNyA1Mi03IDgwIDAgMzEtMjEgNDQtMTYgNDQtMTYgOSAyMiAzIDM5IDIgNDMgMjkgMzEgMjYgMTE4LTU3IDEyMiA2IDUgMTEgMTUgMTEgMzAgMCAyMiAwIDM5IDAgNDRzMyA5IDExIDhDMzgwIDI1NSAzNDYgMTAgMTYxIDRaIi8+PC9zdmc+",
+			"_iconMapObj": {"320": "data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiPz48c3ZnIHZlcnNpb249IjEuMSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB2aWV3Qm94PSIwIDAgMzIwIDMyMCI+PHBhdGggc3R5bGU9ImNvbG9yLXNjaGVtZTpsaWdodCBkYXJrO2ZpbGw6bGlnaHQtZGFyaygjMjQyOTJlLCNmMGY2ZmMpIiBkPSJNMTYxIDRDLTEwIDItNzEgMjQ4IDExMCAzMTZjOCAxIDExLTMgMTEtOHMwLTE2IDAtMzBjLTYxIDEwLTQ3LTI0LTcwLTQxLTYtMy0xNC0xMCAwLTExIDMwIDAgMjQgNDggNzEgMzAgMS0xMCA2LTE3IDEwLTIxLTg0LTYtODYtOTMtNTYtMTIyLTItNC03LTIwIDItNDIgMCAwIDEzLTQgNDQgMTYgMjUtNyA1Mi03IDgwIDAgMzEtMjEgNDQtMTYgNDQtMTYgOSAyMiAzIDM5IDIgNDMgMjkgMzEgMjYgMTE4LTU3IDEyMiA2IDUgMTEgMTUgMTEgMzAgMCAyMiAwIDM5IDAgNDRzMyA5IDExIDhDMzgwIDI1NSAzNDYgMTAgMTYxIDRaIi8+PC9zdmc+"},
 			"_metaData": {
 				"loadPathHash": "MGfS/o8137mX8i5jU0OrzYrophP45/cnfg6iTiRT2hM=",
 				"order": 6
@@ -51,7 +50,7 @@
 			"_definedAliases": ["@github", "@gh"],
 			"_orderHint":      null,
 			"_telemetryId":    null,
-			"_iconUpdateURL":  null,
+			"_filePath":       null,
 			"_updateInterval": null,
 			"_updateURL":      null
 		},{
@@ -59,7 +58,7 @@
 			"_name": "IMDb",
 			"_loadPath": "[https]www.imdb.com/imdb.xml",
 			"description": "Search the Internet Movie Database",
-			"_iconURL": "data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiPz48c3ZnIHZlcnNpb249IjEuMSIgdmlld0JveD0iMCAwIDEwMDAgMTAwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCBmaWxsPSIjZjVjNTE4IiB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIi8+PHBhdGggZD0iTTEyNSA2NDFoNzh2LTI4MWgtNzhaTTMzMyAzNTloLTk4djI4MWg2NmwwLTE4NiAyOCAxODZoNDdsMjctMTkwIDAgMTkwaDY2di0yODFoLTk5bC0xNyAxMzFaTTUwMCA2NDF2LTI4MWgxMjJjMjggMCA1MCAyMiA1MCA1MHYxODJjMCAyNy0yMiA1MC01MCA1MFpNNTk5IDU1MXYtMTA5YzAtMjQgMy0zNS0yNS0zNXYxODVjMjcgMCAyNC05IDI1LTQxWk03NzggNjIwbC00IDE3aC03MHYtMjc4aDc1djkwYzE2LTI3IDkxLTM1IDk3IDI5djExM2MxIDQ5LTcwIDY3LTk3IDI4Wk04MDEgNDc5Yy00LTgtMjAtNi0yMy0xdjExM2MzIDcgMjAgNyAyMyAwIDItNCA0LTEwNSAwLTExMloiLz48L3N2Zz4",
+			"_iconMapObj": {"1000": "data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiPz48c3ZnIHZlcnNpb249IjEuMSIgdmlld0JveD0iMCAwIDEwMDAgMTAwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCBmaWxsPSIjZjVjNTE4IiB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIi8+PHBhdGggZD0iTTEyNSA2NDFoNzh2LTI4MWgtNzhaTTMzMyAzNTloLTk4djI4MWg2NmwwLTE4NiAyOCAxODZoNDdsMjctMTkwIDAgMTkwaDY2di0yODFoLTk5bC0xNyAxMzFaTTUwMCA2NDF2LTI4MWgxMjJjMjggMCA1MCAyMiA1MCA1MHYxODJjMCAyNy0yMiA1MC01MCA1MFpNNTk5IDU1MXYtMTA5YzAtMjQgMy0zNS0yNS0zNXYxODVjMjcgMCAyNC05IDI1LTQxWk03NzggNjIwbC00IDE3aC03MHYtMjc4aDc1djkwYzE2LTI3IDkxLTM1IDk3IDI5djExM2MxIDQ5LTcwIDY3LTk3IDI4Wk04MDEgNDc5Yy00LTgtMjAtNi0yMy0xdjExM2MzIDcgMjAgNyAyMyAwIDItNCA0LTEwNSAwLTExMloiLz48L3N2Zz4"},
 			"_metaData": {
 				"loadPathHash": "kXxm1M20Y6KYjUky/L4LSYUTXxiVAE9cUQ6dgghAvYs=",
 				"order": 7
@@ -72,15 +71,14 @@
 			"_definedAliases": ["@imdb"],
 			"_orderHint":      null,
 			"_telemetryId":    null,
-			"_iconMapObj":     null,
-			"_iconUpdateURL":  null,
+			"_filePath":       null,
 			"_updateInterval": null,
 			"_updateURL":      null
 		},{
 			"id": "a56c4a5d-3e0e-4c23-bc91-b4045a9aabd6",
 			"_name": "Discogs",
 			"_loadPath": "[user]",
-			"_iconURL": "data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiPz48c3ZnIHZlcnNpb249IjEuMSIgdmlld0JveD0iMCAwIDEwMDAgMTAwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48c3R5bGUgdHlwZT0idGV4dC9jc3MiPjpyb290e2NvbG9yLXNjaGVtZTpsaWdodCBkYXJrfXBhdGh7ZmlsbDpjdXJyZW50Q29sb3J9cGF0aFtzdHJva2Utd2lkdGhde2ZpbGw6bm9uZTtzdHJva2U6Y3VycmVudENvbG9yfTwvc3R5bGU+PGNsaXBQYXRoIGlkPSJhIj48cGF0aCBkPSJNNzgwIDBsLTI2MyA0ODFMMzEgMTAwMEgwVjBoNzgwWk0yMjYgMTAwMGg3NzRWMGgtMThsLTQ4NyA1MjMtMjY5IDQ3N1oiLz48L2NsaXBQYXRoPjxwYXRoIGQ9Ik01MDEgNTIyYy0xNyAwLTI4LTE4LTE5LTMzIDktMTUgMzAtMTUgMzggMCA5IDE1LTIgMzMtMTkgMzNaIi8+PHBhdGggc3Ryb2tlLXdpZHRoPSI2LjQiIGQ9Ik01MDEgNjM4Yy0xMDYgMC0xNzMtMTE2LTEyMC0yMDggNTMtOTIgMTg3LTkyIDI0MCAwIDUzIDkyLTE0IDIwOC0xMjAgMjA4WiIvPjxnIGNsaXAtcGF0aD0idXJsKCNhKSI+PHBhdGggc3Ryb2tlLXdpZHRoPSI3MSIgZD0iTTUwMCA5NjFjLTM1NiAwLTU4MC0zODctNDAxLTY5NSAxNzgtMzA4IDYyNi0zMDggODA0IDAgMTc4IDMwOC00NiA2OTUtNDAzIDY5NVoiLz48cGF0aCBzdHJva2Utd2lkdGg9Ijc3LjUiIGQ9Ik01MDAgODgzYy0yOTYgMC00ODItMzIxLTMzNC01NzcgMTQ4LTI1NiA1MjEtMjU2IDY2OSAwIDE0OCAyNTYtMzggNTc4LTMzNSA1NzdaIi8+PHBhdGggc3Ryb2tlLXdpZHRoPSI3NS42IiBkPSJNNTAxIDgwM2MtMjMzIDAtMzc5LTI1My0yNjMtNDU1IDExNy0yMDIgNDEwLTIwMiA1MjYgMCAxMTYgMjAyLTMwIDQ1Ni0yNjMgNDU1WiIvPjxwYXRoIHN0cm9rZS13aWR0aD0iNzQuNyIgZD0iTTUwMSA3MjNjLTE3MCAwLTI3Ny0xODYtMTkyLTMzNSA4NS0xNDggMzAwLTE0OSAzODUgMCA4NSAxNDgtMjIgMzM1LTE5MyAzMzVaIi8+PC9nPjwvc3ZnPg",
+			"_iconMapObj": {"1000": "data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiPz48c3ZnIHZlcnNpb249IjEuMSIgdmlld0JveD0iMCAwIDEwMDAgMTAwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48c3R5bGUgdHlwZT0idGV4dC9jc3MiPjpyb290e2NvbG9yLXNjaGVtZTpsaWdodCBkYXJrfXBhdGh7ZmlsbDpjdXJyZW50Q29sb3J9cGF0aFtzdHJva2Utd2lkdGhde2ZpbGw6bm9uZTtzdHJva2U6Y3VycmVudENvbG9yfTwvc3R5bGU+PGNsaXBQYXRoIGlkPSJhIj48cGF0aCBkPSJNNzgwIDBsLTI2MyA0ODFMMzEgMTAwMEgwVjBoNzgwWk0yMjYgMTAwMGg3NzRWMGgtMThsLTQ4NyA1MjMtMjY5IDQ3N1oiLz48L2NsaXBQYXRoPjxwYXRoIGQ9Ik01MDEgNTIyYy0xNyAwLTI4LTE4LTE5LTMzIDktMTUgMzAtMTUgMzggMCA5IDE1LTIgMzMtMTkgMzNaIi8+PHBhdGggc3Ryb2tlLXdpZHRoPSI2LjQiIGQ9Ik01MDEgNjM4Yy0xMDYgMC0xNzMtMTE2LTEyMC0yMDggNTMtOTIgMTg3LTkyIDI0MCAwIDUzIDkyLTE0IDIwOC0xMjAgMjA4WiIvPjxnIGNsaXAtcGF0aD0idXJsKCNhKSI+PHBhdGggc3Ryb2tlLXdpZHRoPSI3MSIgZD0iTTUwMCA5NjFjLTM1NiAwLTU4MC0zODctNDAxLTY5NSAxNzgtMzA4IDYyNi0zMDggODA0IDAgMTc4IDMwOC00NiA2OTUtNDAzIDY5NVoiLz48cGF0aCBzdHJva2Utd2lkdGg9Ijc3LjUiIGQ9Ik01MDAgODgzYy0yOTYgMC00ODItMzIxLTMzNC01NzcgMTQ4LTI1NiA1MjEtMjU2IDY2OSAwIDE0OCAyNTYtMzggNTc4LTMzNSA1NzdaIi8+PHBhdGggc3Ryb2tlLXdpZHRoPSI3NS42IiBkPSJNNTAxIDgwM2MtMjMzIDAtMzc5LTI1My0yNjMtNDU1IDExNy0yMDIgNDEwLTIwMiA1MjYgMCAxMTYgMjAyLTMwIDQ1Ni0yNjMgNDU1WiIvPjxwYXRoIHN0cm9rZS13aWR0aD0iNzQuNyIgZD0iTTUwMSA3MjNjLTE3MCAwLTI3Ny0xODYtMTkyLTMzNSA4NS0xNDggMzAwLTE0OSAzODUgMCA4NSAxNDgtMjIgMzM1LTE5MyAzMzVaIi8+PC9nPjwvc3ZnPg"},
 			"_metaData": {"order": 8},
 			"_urls": [{
 				"params":   [],
@@ -88,14 +86,15 @@
 				"template": "https://discogs.com/search/?q={searchTerms}&type=all"
 			}],
 			"_definedAliases": ["@disc"],
-			"_orderHint":       null,
-			"_telemetryId":     null
+			"_orderHint":      null,
+			"_telemetryId":    null,
+			"_filePath":       null
 		},{
 			"id": "3454145b-7e38-49ba-ba5e-570966b39380",
 			"_name": "Metal Archives",
 			"_loadPath": "[user]",
 			"description": "Search bands in Encyclopaedia Metallum",
-			"_iconURL": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAACZ0lEQVQ4jW2TTUhUYRSGn3vnMl5thutMzLhIbaNRYGCFCWGbRChEN7UQoigwwYU7DQssLWiTSJsGktq5mE0rCSSZoijCShC0IH8wcsKxmeudO//qOF+LGW/j5Ls65+G85zvfgSNRoptw5KSm9S6bZptXkhpVVbVXVFTMBnX9ndfpHO+Px3+UenyAAIQHpp96vdGGQg6IFlUVvqoqcR3EIKS6YeCJy2XbM0uAEAuBfNLQSiMwBxSzR2VlyLKMnk6TATT4cLS6uvVWMLgtA8SSKWLJFObMJHOAOTNpMYDM1hbpdBo7kMuP1rIaDPoAZICIYRIxTLTmDlamJtCaOywGsALEAQXwyjIpIAM3+qBRAdjQDWshe3ExO6NpLJomZcDvXI4s4AJbOfQoAKHIplV87mofpeyPaWIHXgOzBXZWkjgvxIV9XwAYkWVKmQJ8tduZLSxXLAT4LAQCaqVaiPyCwwCngYvAJ6eTt/G49VJYCFaBxJdX1lSOpnaGJWlbuQIfI9DpAWpcLr4ZBpeE4LLHw1I4zJuCeS3gx9HUzlrAbzUxhfiuxGHqhKp25nI5NgyDdcCRSKAlk8woCvPZLHMvx6lp7QJAj8asBrswJQ1Lktvtdi8t6ro7A9TabGzs7vIemAemnz/mILV1D3Af6pVhITbv6fqdCDw7Lkmo5eVoiQTzgH90CD0ao6v/oWX0jw5Z8QgsywAPYPwYjIWEYD2RwCwUGLE4Riy/zLsHsP90G3oGQe8DUVd0UHUgJurrxSnY4R/3Qf6Y9mlM07SfpnltC9oPgccBuCorzZ1sdtrpcLzoDYXCxfV/AYqPIAsB/cmyAAAAAElFTkSuQmCC",
+			"_iconMapObj": {"16": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAACZ0lEQVQ4jW2TTUhUYRSGn3vnMl5thutMzLhIbaNRYGCFCWGbRChEN7UQoigwwYU7DQssLWiTSJsGktq5mE0rCSSZoijCShC0IH8wcsKxmeudO//qOF+LGW/j5Ls65+G85zvfgSNRoptw5KSm9S6bZptXkhpVVbVXVFTMBnX9ndfpHO+Px3+UenyAAIQHpp96vdGGQg6IFlUVvqoqcR3EIKS6YeCJy2XbM0uAEAuBfNLQSiMwBxSzR2VlyLKMnk6TATT4cLS6uvVWMLgtA8SSKWLJFObMJHOAOTNpMYDM1hbpdBo7kMuP1rIaDPoAZICIYRIxTLTmDlamJtCaOywGsALEAQXwyjIpIAM3+qBRAdjQDWshe3ExO6NpLJomZcDvXI4s4AJbOfQoAKHIplV87mofpeyPaWIHXgOzBXZWkjgvxIV9XwAYkWVKmQJ8tduZLSxXLAT4LAQCaqVaiPyCwwCngYvAJ6eTt/G49VJYCFaBxJdX1lSOpnaGJWlbuQIfI9DpAWpcLr4ZBpeE4LLHw1I4zJuCeS3gx9HUzlrAbzUxhfiuxGHqhKp25nI5NgyDdcCRSKAlk8woCvPZLHMvx6lp7QJAj8asBrswJQ1Lktvtdi8t6ro7A9TabGzs7vIemAemnz/mILV1D3Af6pVhITbv6fqdCDw7Lkmo5eVoiQTzgH90CD0ao6v/oWX0jw5Z8QgsywAPYPwYjIWEYD2RwCwUGLE4Riy/zLsHsP90G3oGQe8DUVd0UHUgJurrxSnY4R/3Qf6Y9mlM07SfpnltC9oPgccBuCorzZ1sdtrpcLzoDYXCxfV/AYqPIAsB/cmyAAAAAElFTkSuQmCC"},
 			"_metaData": {"order": 9},
 			"_urls": [{
 				"params":   [],
@@ -105,17 +104,58 @@
 			"_definedAliases": ["@ma"],
 			"_orderHint":      null,
 			"_telemetryId":    null,
-			"_iconMapObj":     null
+			"_filePath":       null
+		},{
+			"id": "21f1f8e8-56c8-4ce9-8c7f-cc9a0260f900",
+			"_name": "Rate Your Music",
+			"_loadPath": "[user]",
+			"_iconMapObj": {"1000": "data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz48c3ZnIHZlcnNpb249IjEuMSIgdmlld0JveD0iMCAwIDEwMDAgMTAwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48bGluZWFyR3JhZGllbnQgaWQ9ImEiIHgxPSI0OTUiIHkxPSI0MDUiIHgyPSI0OTUiIHkyPSIxMjUiIGdyYWRpZW50VW5pdHM9InVzZXJTcGFjZU9uVXNlIj48c3RvcCBzdG9wLWNvbG9yPSIjODhjNmViIi8+PHN0b3Agc3RvcC1jb2xvcj0iIzIzOTJjYyIgb2Zmc2V0PSIxIi8+PC9saW5lYXJHcmFkaWVudD48bGluZWFyR3JhZGllbnQgaWQ9ImIiIHgxPSI1MzciIHkxPSI3NjMiIHgyPSI0OTQiIHkyPSI0NjMiIGdyYWRpZW50VW5pdHM9InVzZXJTcGFjZU9uVXNlIj48c3RvcCBzdG9wLWNvbG9yPSIjMjM4M2M2Ii8+PHN0b3Agc3RvcC1jb2xvcj0iIzMzNTE5ZiIgb2Zmc2V0PSIxIi8+PC9saW5lYXJHcmFkaWVudD48bGluZWFyR3JhZGllbnQgaWQ9ImMiIHgxPSI1MzUiIHkxPSI4OTUiIHgyPSI1MzUiIHkyPSI2NjQiIGdyYWRpZW50VW5pdHM9InVzZXJTcGFjZU9uVXNlIj48c3RvcCBzdG9wLWNvbG9yPSIjMWU0OTk5Ii8+PHN0b3Agc3RvcC1jb2xvcj0iIzFiM2I2YyIgb2Zmc2V0PSIxIi8+PC9saW5lYXJHcmFkaWVudD48bGluZWFyR3JhZGllbnQgaWQ9ImQiIHgxPSI2MjEiIHkxPSI3MTciIHgyPSI2MDAiIHkyPSI1MjgiIGdyYWRpZW50VW5pdHM9InVzZXJTcGFjZU9uVXNlIj48c3RvcCBzdG9wLWNvbG9yPSIjMWU0OTk5Ii8+PHN0b3Agc3RvcC1jb2xvcj0iIzFiM2I2YyIgb2Zmc2V0PSIxIi8+PC9saW5lYXJHcmFkaWVudD48cGF0aCBmaWxsPSIjZTZlNGU1IiBkPSJNOTk0IDQ5OUM5OTQgNzc0IDc3MiA5OTYgNDk4IDk5NiAyMjMgOTk2IDEgNzc0IDEgNDk5IDEgMjI1IDIyMyAzIDQ5OCAzIDc3MiAzIDk5NCAyMjYgOTk0IDQ5OVoiLz48cGF0aCBmaWxsPSJ1cmwoI2EpIiBkPSJNNzUzIDQ3NUM4MjAgNDc5IDg4MiA0NjEgOTI5IDQ0MSA5MjMgMzk3IDkxMSAzNTYgODkzIDMxOCA4MTAgMzI2IDY3NiAzMzAgNjAwIDI5OSA0ODUgMjUxIDQwOSA1NyAyNjggMTI4IDE0NCAyMDYgNjMgMzQyIDYzIDQ5OSA2MyA1NDAgNjggNTgwIDc5IDYxNiAxNDcgNTU1IDI5MiA0NDAgNDIyIDQwNCA1OTcgMzU4IDYwOSA0NjYgNzUzIDQ3NVoiLz48cGF0aCBmaWxsPSJ1cmwoI2IpIiBkPSJNOTI5IDQ0MkM4ODIgNDYzIDgyMCA0NzkgNzUzIDQ3NiA2MDkgNDY3IDU5NyAzNTggNDIwIDQwNiAyOTIgNDQxIDE0NyA1NTggNzcgNjE4IDkyIDY2NyAxMTQgNzE0IDE0NCA3NTYgMTkxIDcxNyAyNDggNjgwIDMxMSA2NjcgNDkwIDYyOSA0OTAgNzU4IDY0MiA3NDAgNzI2IDczMCA4MzkgNjUwIDkyNiA1ODAgOTMwIDU1NSA5MzMgNTI5IDkzMyA1MDIgOTMzIDQ4MCA5MzEgNDYxIDkyOSA0NDJaIi8+PHBhdGggZmlsbD0idXJsKCNjKSIgZD0iTTMxMSA2NjZDMjQ4IDY3OSAxOTEgNzE1IDE0NCA3NTUgMjIzIDg2NCAzNTIgOTM2IDQ5OCA5MzYgNzEyIDkzNiA4ODkgNzgxIDkyNiA1NzggODM5IDY0OCA3MjYgNzI5IDY0MiA3MzkgNDkwIDc1NiA0OTAgNjI2IDMxMSA2NjZaIi8+PHBhdGggZmlsbD0idXJsKCNkKSIgZD0iTTY4MCA1ODFDNjk4IDYyNSA2ODIgNjczIDY0MSA2OTEgNjAxIDcwNyA1NTUgNjg1IDUzNiA2NDIgNTE4IDU5OSA1MzQgNTUwIDU3NSA1MzMgNjE2IDUxNSA2NjMgNTM3IDY4MCA1ODFaIi8+PC9zdmc+"},
+			"_metaData": {"order": 10},
+			"_urls": [{
+				"params":   [],
+				"rels":     [],
+				"template": "https://rateyourmusic.com/search?searchterm={searchTerms}"
+			}],
+			"_definedAliases": ["@rym"],
+			"_orderHint":      null,
+			"_telemetryId":    null,
+			"_filePath":       null
+		},{
+			"id": "58b0a8e6-e134-4cda-a8c8-c6bee54a9c1d",
+			"_name": "MusicBrainz",
+			"_loadPath": "[https]musicbrainz.org/musicbrainz-artist.xml",
+			"description": "Indexed search for an artist on MusicBrainz.org",
+			"_iconMapObj": {"16": "data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz48c3ZnIHZlcnNpb249IjEuMSIgdmlld0JveD0iMCAwIDI1IDI4IiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPjxwb2x5Z29uIGZpbGw9IiNiYTQ3OGYiIHBvaW50cz0iMTIgMCAwIDcgMCAyMSAxMiAyOCAxMiAwIi8+PHBvbHlnb24gZmlsbD0iI2ViNzQzYiIgcG9pbnRzPSIxMyAwIDI1IDcgMjUgMjEgMTMgMjggMTMgMCIvPjwvc3ZnPg"},
+			"_metaData": {
+				"loadPathHash": "nq0CxBE5p7C/wV2T9vJM2nLXg4su9UFtEwZaCDuQqdY=",
+				"order": 11
+			},
+			"_urls": [{
+				"params":   [],
+				"rels":     [],
+				"template": "https://musicbrainz.org/search",
+				"type":     "searchform"
+			},{
+				"params":   [],
+				"rels":     [],
+				"template": "https://musicbrainz.org/search?type=artist&query={searchTerms}"
+			}],
+			"_definedAliases": ["@mb"],
+			"_orderHint":      null,
+			"_telemetryId":    null,
+			"_filePath":       null,
+			"_updateInterval": null,
+			"_updateURL":      null
 		},{
 			"id": "6c9b0b8f-befc-4932-bf0f-a7356c35a937",
 			"_name": "Open Library",
 			"_loadPath": "[https]openlibrary.org/open-library.xml",
 			"description": "Browse the Open library catalogue for indexed books and publications",
-			"_iconURL": "data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiPz48c3ZnIHZlcnNpb249IjEuMSIgdmlld0JveD0iMCAwIDEwMDAgMTAwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48c3R5bGUgdHlwZT0idGV4dC9jc3MiPjpyb290e2NvbG9yLXNjaGVtZTpsaWdodCBkYXJrfWNpcmNsZXtmaWxsOmxpZ2h0LWRhcmsoIzAwMCwjNWM1YTUwKX08L3N0eWxlPjxwYXRoIGZpbGw9Im5vbmUiIHN0cm9rZT0iI2QzY2NiMCIgc3Ryb2tlLXdpZHRoPSIxNS43IiBkPSJNNjcgNDEwbDQ3Mi0yNjBNNTQwIDEzMmwzODkgMjM0Ii8+PGNpcmNsZSBjeD0iNTQ5LjUiIGN5PSIxMzQuNSIgcj0iMzguNSIvPjxwYXRoIGZpbGw9IiM1MThhYmUiIGQ9Ik05MjEgNzQzbC04MTIgNjFjLTQ3IDQtODctMzItOTEtNzhMMCA0ODVjLTMtNDcgMzItODcgNzgtOTFsODEyLTYxYzQ3LTMgODggMzIgOTEgNzhsMTggMjQxYzQgNDctMzIgODgtNzggOTFaIi8+PHBhdGggZmlsbD0iI2ZmZiIgZD0iTTE3NyA3MTBjLTE1NyAxMy0xNjQtMjMzLTE5LTIzNyAxNTAtMTggMTc0IDIyNiAxOSAyMzdaTTE2MSA1MTFjLTg3IDYtNzMgMTcxIDEzIDE2MyA4Ni00IDc5LTE3MC0xMy0xNjNaTTMyNiA2NzFsLTEzLjItMTc2LjZjLTEuNS0xOS42IDUuOC0yOC42IDI3LjEtMzAuNWw1OS41LTQuNGM3OS41LTcuNiA4Ny44IDM3LjggOTEgNjIuMyAwIDM3LjYtOC42IDcxLjMtODAuMyA3Ny40bC00Mi41IDMuMSA0LjcgNjQuOGM0IDM3LjktNDQuNCA0Mi4xLTQ2LjMgMy45Wk0zNjAgNDk3bDUgNzBjNTUtMiA4MS03IDc4LTQxLTMtMjAtNS00MC04My0yOVpNNjc3IDU2N2wtOTYgNyA1IDY1IDEwOC04YzMwLTMgMzMgMzYgMyAzN2wtMTI2IDljLTE3IDEtMjktNC0zMC0yNmwtMTMtMTcyYy0xLTE2IDMtMjkgMjYtMzFsMTIyLTljMjktMyAzMyAzNSAyIDM2bC0xMDQgOCA0IDU2IDk2LTdjMjgtNCAzMiAzNCAzIDM1Wk04MDAgNDU0bDk5IDEyOC0xMC0xMzZjLTQtMzYgNDItMzkgNDMtM2wxNCAxODBjMiAzOC0zNiA0Ni02MSA4bC05OC0xMjcgMTAgMTM0YzQgMzUtNDIgNDAtNDQgNGwtMTMtMTc3Yy0zLTIzIDExLTM0IDIzLTM2IDE3LTMgMjUgOCAzNyAyNVoiLz48L3N2Zz4K",
+			"_iconMapObj": {"1000": "data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiPz48c3ZnIHZlcnNpb249IjEuMSIgdmlld0JveD0iMCAwIDEwMDAgMTAwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48c3R5bGUgdHlwZT0idGV4dC9jc3MiPjpyb290e2NvbG9yLXNjaGVtZTpsaWdodCBkYXJrfWNpcmNsZXtmaWxsOmxpZ2h0LWRhcmsoIzAwMCwjNWM1YTUwKX08L3N0eWxlPjxwYXRoIGZpbGw9Im5vbmUiIHN0cm9rZT0iI2QzY2NiMCIgc3Ryb2tlLXdpZHRoPSIxNS43IiBkPSJNNjcgNDEwbDQ3Mi0yNjBNNTQwIDEzMmwzODkgMjM0Ii8+PGNpcmNsZSBjeD0iNTQ5LjUiIGN5PSIxMzQuNSIgcj0iMzguNSIvPjxwYXRoIGZpbGw9IiM1MThhYmUiIGQ9Ik05MjEgNzQzbC04MTIgNjFjLTQ3IDQtODctMzItOTEtNzhMMCA0ODVjLTMtNDcgMzItODcgNzgtOTFsODEyLTYxYzQ3LTMgODggMzIgOTEgNzhsMTggMjQxYzQgNDctMzIgODgtNzggOTFaIi8+PHBhdGggZmlsbD0iI2ZmZiIgZD0iTTE3NyA3MTBjLTE1NyAxMy0xNjQtMjMzLTE5LTIzNyAxNTAtMTggMTc0IDIyNiAxOSAyMzdaTTE2MSA1MTFjLTg3IDYtNzMgMTcxIDEzIDE2MyA4Ni00IDc5LTE3MC0xMy0xNjNaTTMyNiA2NzFsLTEzLjItMTc2LjZjLTEuNS0xOS42IDUuOC0yOC42IDI3LjEtMzAuNWw1OS41LTQuNGM3OS41LTcuNiA4Ny44IDM3LjggOTEgNjIuMyAwIDM3LjYtOC42IDcxLjMtODAuMyA3Ny40bC00Mi41IDMuMSA0LjcgNjQuOGM0IDM3LjktNDQuNCA0Mi4xLTQ2LjMgMy45Wk0zNjAgNDk3bDUgNzBjNTUtMiA4MS03IDc4LTQxLTMtMjAtNS00MC04My0yOVpNNjc3IDU2N2wtOTYgNyA1IDY1IDEwOC04YzMwLTMgMzMgMzYgMyAzN2wtMTI2IDljLTE3IDEtMjktNC0zMC0yNmwtMTMtMTcyYy0xLTE2IDMtMjkgMjYtMzFsMTIyLTljMjktMyAzMyAzNSAyIDM2bC0xMDQgOCA0IDU2IDk2LTdjMjgtNCAzMiAzNCAzIDM1Wk04MDAgNDU0bDk5IDEyOC0xMC0xMzZjLTQtMzYgNDItMzkgNDMtM2wxNCAxODBjMiAzOC0zNiA0Ni02MSA4bC05OC0xMjcgMTAgMTM0YzQgMzUtNDIgNDAtNDQgNGwtMTMtMTc3Yy0zLTIzIDExLTM0IDIzLTM2IDE3LTMgMjUgOCAzNyAyNVoiLz48L3N2Zz4K"},
 			"_metaData": {
 				"loadPathHash": "AFlT9M1LVEXetffqb/ZCXz5KFQUi+xUTGYGD9rpe8y4=",
 				"updateexpir": 1734285360985,
-				"order": 10
+				"order": 13
 			},
 			"_urls": [{
 				"params":   [],
@@ -135,8 +175,7 @@
 			"_definedAliases": ["@ol"],
 			"_orderHint":      null,
 			"_telemetryId":    null,
-			"_iconMapObj":     null,
-			"_iconUpdateURL":  null,
+			"_filePath":       null,
 			"_updateInterval": null,
 			"_updateURL":      null
 		},{
@@ -144,11 +183,11 @@
 			"_name": "ManKier",
 			"_loadPath": "[https]www.mankier.com/mankier.xml",
 			"description": "Lookup HTML-formatted man(1) pages for Linux",
-			"_iconURL": "data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiPz48c3ZnIHZlcnNpb249IjEuMSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB2aWV3Qm94PSIwIDAgNTEyIDUxMiI+PHN0eWxlIHR5cGU9InRleHQvY3NzIj46cm9vdHtjb2xvci1zY2hlbWU6ZGFyayBsaWdodDtjb2xvcjpsaWdodC1kYXJrKCM2Njc4M2UsI2VjZGViZSl9cG9seWdvbixyZWN0LHBhdGh7ZmlsbDpjdXJyZW50Q29sb3J9PC9zdHlsZT48cG9seWdvbiBwb2ludHM9IjEyMCAzMjQgMjIyIDIyMiAxMjAgMTIwIDg2IDE1NCAxNTQgMjIyIDg2IDI5MCAxMjAgMzI0Ii8+PHJlY3QgeD0iMjIyIiB5PSIyOTAiIHdpZHRoPSIxMzYiIGhlaWdodD0iMzQiLz48cGF0aCBkPSJNMzg4IDM0SDUxYy0xNCAxLTI2IDYtMzYgMTVDNiA1OSAxIDcxIDAgODV2MzQxczAgMSAwIDFjMSAxNCA2IDI3IDE1IDM2IDEwIDEwIDIyIDE1IDM2IDE1aDQwOXMwIDAgMCAwYzE0IDAgMjctNiAzNi0xNSAxMC05IDE1LTIyIDE1LTM2di0yMThzMCAwIDAgMHYtNDdsLTEyNC0xMjdaTTQ3NiAxNzNoLTk1czAtOTUgMC05NWw5NSA5NlpNNDcxIDQzN2MtMyAzLTcgNS0xMSA1SDUyYy01IDAtOC0yLTExLTUtMy0zLTUtNy01LTExVjg2YzAtNSAyLTggNS0xMSAzLTMgNy01IDEyLTVoMjk1djEzN3MxMjkgMCAxMjkgMHYyMTljMCA1LTIgOC01IDEyWiIvPjwvc3ZnPg",
+			"_iconMapObj": {"512": "data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiPz48c3ZnIHZlcnNpb249IjEuMSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB2aWV3Qm94PSIwIDAgNTEyIDUxMiI+PHN0eWxlIHR5cGU9InRleHQvY3NzIj46cm9vdHtjb2xvci1zY2hlbWU6ZGFyayBsaWdodDtjb2xvcjpsaWdodC1kYXJrKCM2Njc4M2UsI2VjZGViZSl9cG9seWdvbixyZWN0LHBhdGh7ZmlsbDpjdXJyZW50Q29sb3J9PC9zdHlsZT48cG9seWdvbiBwb2ludHM9IjEyMCAzMjQgMjIyIDIyMiAxMjAgMTIwIDg2IDE1NCAxNTQgMjIyIDg2IDI5MCAxMjAgMzI0Ii8+PHJlY3QgeD0iMjIyIiB5PSIyOTAiIHdpZHRoPSIxMzYiIGhlaWdodD0iMzQiLz48cGF0aCBkPSJNMzg4IDM0SDUxYy0xNCAxLTI2IDYtMzYgMTVDNiA1OSAxIDcxIDAgODV2MzQxczAgMSAwIDFjMSAxNCA2IDI3IDE1IDM2IDEwIDEwIDIyIDE1IDM2IDE1aDQwOXMwIDAgMCAwYzE0IDAgMjctNiAzNi0xNSAxMC05IDE1LTIyIDE1LTM2di0yMThzMCAwIDAgMHYtNDdsLTEyNC0xMjdaTTQ3NiAxNzNoLTk1czAtOTUgMC05NWw5NSA5NlpNNDcxIDQzN2MtMyAzLTcgNS0xMSA1SDUyYy01IDAtOC0yLTExLTUtMy0zLTUtNy01LTExVjg2YzAtNSAyLTggNS0xMSAzLTMgNy01IDEyLTVoMjk1djEzN3MxMjkgMCAxMjkgMHYyMTljMCA1LTIgOC01IDEyWiIvPjwvc3ZnPg"},
 			"_metaData": {
 				"loadPathHash": "RtSgfvhnVpE5T/Pchc1W9z/Og6FjFstTF8f9d3e2j7s=",
 				"updateexpir": 1733914433555,
-				"order": 16
+				"order": 18
 			},
 			"_urls": [{
 				"params":   [],
@@ -168,34 +207,50 @@
 			"_definedAliases": ["@mank"],
 			"_orderHint":      null,
 			"_telemetryId":    null,
+			"_filePath":       null,
 			"_updateInterval": null,
-			"_updateURL":      null,
-			"_iconUpdateURL":  null
+			"_updateURL":      null
+		},{
+			"id": "3106ab3c-6dae-4b51-974a-6d549d026d1c",
+			"_name": "MDN",
+			"_loadPath": "[user]",
+			"description": "Search the Mozilla Developer Network for web technology docs",
+			"_iconMapObj": {"1000": "data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz48c3ZnIHZlcnNpb249IjEuMSIgdmlld0JveD0iMCAwIDEwMDAgMTAwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCBmaWxsPSIjMTUxNDFhIiB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIi8+PHBhdGggZmlsbD0iI2ZmZiIgZD0ibTQwMSAyMjUtMTcxIDU1MmgtNzBsMTcxLTU1MlptNjIgMHY1NTJoLTYydi01NTJabTI0MSAwLTE3MSA1NTJoLTcwbDE3MS01NTJabTYyIDB2NTUyaC02MnYtNTUyWiIvPjwvc3ZnPg"},
+			"_metaData": {"order": 19},
+			"_urls": [{
+				"params":   [],
+				"rels":     [],
+				"template": "https://mdn.io/{searchTerms}"
+			}],
+			"_definedAliases": ["@mdn", "@web"],
+			"_orderHint":      null,
+			"_telemetryId":    null,
+			"_filePath":       null
 		},{
 			"id": "5e1679a3-bef6-481b-bf72-c3caa2d5fb69",
 			"_name": "Searchfox",
 			"_loadPath": "[user]",
 			"description": "Search the source code of Mozilla Firefox",
-			"_iconURL": "data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiPz4KPHN2ZyB2ZXJzaW9uPSIxLjEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgdmlld0JveD0iMCAwIDEwMDAgMTAwMCI+Cgk8bGluZWFyR3JhZGllbnQgaWQ9ImZpbGwiIGdyYWRpZW50VW5pdHM9InVzZXJTcGFjZU9uVXNlIiB4MT0iMTUxLjUiIHkxPSIxNTIuOCIgeDI9Ijc5NC41IiB5Mj0iNzk1LjkiPgoJCTxzdG9wIG9mZnNldD0iMCIgc3RvcC1jb2xvcj0iI2Y4YWQ2MiIvPgoJCTxzdG9wIG9mZnNldD0iMSIgc3RvcC1jb2xvcj0iI2UxMjg1MSIvPgoJPC9saW5lYXJHcmFkaWVudD4KCTxzdHlsZSB0eXBlPSJ0ZXh0L2NzcyI+CgkJbGluZSwgZWxsaXBzZXsKCQkJZmlsbDogbm9uZTsKCQkJc3Ryb2tlOiB1cmwoI2ZpbGwpOwoJCQlzdHJva2Utd2lkdGg6IDE1MDsKCQkJc3Ryb2tlLWxpbmVjYXA6IHJvdW5kOwoJCX0KCTwvc3R5bGU+Cgk8bGluZSB4MT0iNzQxLjkiIHkxPSI3NDAuMSIgeDI9IjkyMy4yIiB5Mj0iOTIxLjQiLz4KCTxlbGxpcHNlIGN4PSI0NjAuNiIgY3k9IjQ2MS45IiByeD0iMzgxIiByeT0iMzg3LjciLz4KPC9zdmc+Cg",
-			"_metaData": {"order": 14},
+			"_iconMapObj": {"1000": "data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiPz4KPHN2ZyB2ZXJzaW9uPSIxLjEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgdmlld0JveD0iMCAwIDEwMDAgMTAwMCI+Cgk8bGluZWFyR3JhZGllbnQgaWQ9ImZpbGwiIGdyYWRpZW50VW5pdHM9InVzZXJTcGFjZU9uVXNlIiB4MT0iMTUxLjUiIHkxPSIxNTIuOCIgeDI9Ijc5NC41IiB5Mj0iNzk1LjkiPgoJCTxzdG9wIG9mZnNldD0iMCIgc3RvcC1jb2xvcj0iI2Y4YWQ2MiIvPgoJCTxzdG9wIG9mZnNldD0iMSIgc3RvcC1jb2xvcj0iI2UxMjg1MSIvPgoJPC9saW5lYXJHcmFkaWVudD4KCTxzdHlsZSB0eXBlPSJ0ZXh0L2NzcyI+CgkJbGluZSwgZWxsaXBzZXsKCQkJZmlsbDogbm9uZTsKCQkJc3Ryb2tlOiB1cmwoI2ZpbGwpOwoJCQlzdHJva2Utd2lkdGg6IDE1MDsKCQkJc3Ryb2tlLWxpbmVjYXA6IHJvdW5kOwoJCX0KCTwvc3R5bGU+Cgk8bGluZSB4MT0iNzQxLjkiIHkxPSI3NDAuMSIgeDI9IjkyMy4yIiB5Mj0iOTIxLjQiLz4KCTxlbGxpcHNlIGN4PSI0NjAuNiIgY3k9IjQ2MS45IiByeD0iMzgxIiByeT0iMzg3LjciLz4KPC9zdmc+Cg"},
+			"_metaData": {"order": 16},
 			"_urls": [{
 				"params":   [],
 				"rels":     [],
 				"template": "https://searchfox.org/mozilla-central/search?q={searchTerms}"
 			}],
-			"_definedAliases":   ["@fox", "@moz"],
-			"_orderHint":        null,
-			"_telemetryId":      null,
-			"_iconUpdateURL":    null
+			"_definedAliases": ["@fox", "@moz"],
+			"_orderHint":      null,
+			"_telemetryId":    null,
+			"_filePath":       null
 		},{
 			"id": "d424e280-d9ca-43d8-b85b-305ee3c611ff",
 			"_name": "Wiktionary",
 			"_loadPath": "[https]en.wiktionary.org/wiktionary-en.xml",
 			"description": "Search the English-language Wiktionary",
-			"_iconURL": "data:image/x-icon;base64,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",
+			"_iconMapObj": {"48": "data:image/x-icon;base64,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"},
 			"_metaData": {
 				"loadPathHash": "yo42h5XJRYWBPtfGuxmJ7/DGVhVCuoeS/IMWOL/PPd4=",
-				"order": 12
+				"order": 14
 			},
 			"_urls": [{
 				"params":   [],
@@ -215,55 +270,55 @@
 			"_definedAliases": ["@wikt"],
 			"_orderHint":      null,
 			"_telemetryId":    null,
+			"_filePath":       null,
 			"_updateInterval": null,
-			"_updateURL":      null,
-			"_iconUpdateURL":  null
+			"_updateURL":      null
 		},{
 			"id": "370019b5-5352-430c-99da-26bd61d7440e",
 			"_name": "Graphemica",
 			"_loadPath": "[user]",
 			"description": "Search for Unicode characters",
-			"_iconURL": "data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiPz48c3ZnIHZlcnNpb249IjEuMSIgdmlld0JveD0iMCAwIDEwMDAgMTAwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCBmaWxsPSIjZmZmIiB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIi8+PHBhdGggZD0iTTgzNSA3NjN2LTI2MnMtMTY4IDAtMTY4IDB2MjA2Yy0xMTMgNTctMjIzIDExLTIyMyAxMS0yMDktODEtMTU3LTQzMSA3MS00NDggOTMtNiAxNTcgMjUgMjA2IDc0bDg3LTEyMnMtMTA2LTEwMi0yOTMtMTAyLTI0NCA4MC0zMDkgMTcyYy0xMjkgMTg0LTM3IDQyMiA2MSA0OTkgMTY0IDE0MSA0MzEgMTIwIDU2OC0yOFoiLz48L3N2Zz4",
-			"_metaData": {"order": 13},
+			"_iconMapObj": {"1000": "data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiPz48c3ZnIHZlcnNpb249IjEuMSIgdmlld0JveD0iMCAwIDEwMDAgMTAwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCBmaWxsPSIjZmZmIiB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIi8+PHBhdGggZD0iTTgzNSA3NjN2LTI2MnMtMTY4IDAtMTY4IDB2MjA2Yy0xMTMgNTctMjIzIDExLTIyMyAxMS0yMDktODEtMTU3LTQzMSA3MS00NDggOTMtNiAxNTcgMjUgMjA2IDc0bDg3LTEyMnMtMTA2LTEwMi0yOTMtMTAyLTI0NCA4MC0zMDkgMTcyYy0xMjkgMTg0LTM3IDQyMiA2MSA0OTkgMTY0IDE0MSA0MzEgMTIwIDU2OC0yOFoiLz48L3N2Zz4"},
+			"_metaData": {"order": 15},
 			"_urls": [{
 				"params":   [],
 				"rels":     [],
 				"template": "https://graphemica.com/search?q={searchTerms}"
 			}],
-			"_orderHint": null,
-			"_telemetryId": null,
 			"_definedAliases": ["@char", "@glyph", "@uni"],
-			"_hasPreferredIcon": null
+			"_orderHint":      null,
+			"_telemetryId":    null,
+			"_filePath":       null
 		},{
 			"id": "1414cbbe-f700-481a-bb64-8ba5241efec1",
 			"_name": "Urban Dictionary",
 			"_loadPath": "[https]www.urbandictionary.com/urban-dictionary.xml",
 			"description": "Search Internet slang terms and neologisms",
-			"_iconURL": "data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiPz48c3ZnIHZlcnNpb249IjEuMSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB2aWV3Qm94PSIwIDAgMTAwMCAxMDAwIj48cGF0aCBmaWxsPSIjZjJmZDUzIiBkPSJNNTAwIDEwMDBjMzg0IDAgNjI0LTQxOCA0MzMtNzUxLTE5Mi0zMzMtNjc0LTMzMy04NjUgMC0xOTIgMzMzIDQ5IDc1MSA0MzMgNzUxWiIvPjxwYXRoIGZpbGw9IiMxZTI5MzUiIGQ9Ik0zNTggNDM5Yy0xLTMtMi0xMS0zLTEzIDQtNyAyMy0xMCAzMi0xNiA3IDMgMjIgOSAzMCAxMiAxNS03IDMxLTggMzYgOSA1IDIyLTkgNTEtMSA3NiA0IDM2LTggNSAyIDY0IDUgMjQgMyA2MCAxMyA0OCA2LTQgMy01IDM2IDE0IDIyIDE3IDI3IDQgMTcgMzgtMzggMTktMTAwIDUtMTMwLTEzLTgtMS02MiAxOS03NSAyNC01My0xMi00Ny0zNS01Ni0yNS0yMiAxNC0zLTEwNC0xMC0xMTItNy0zNSAyNS0xMTQtNDAtOTItMTItMTktMTQtNi0yNC0yNiAxNC0xOSAzNy0xNyA2Ny0xMiA0NSA4IDM1IDIyIDI2IDc2LTMgMTItMyAxNCAwIDE3IDQgMjYtNiAzNyA0IDgxIDAgMCA1IDMzIDUgMzMgMzggMTkgNzQgNiAxMTEtMTUgMTMtMjMgMTUtMTA3IDI1LTEzOCAxMi0yMy0xNC0zMS02My0yOFpNNjYyIDMyMGMyNSA1IDQwLTEyIDU1IDggMTAgMTItNCAyNyAzIDQxIDYgMTAtNSA1OCAwIDY4IDMgOSAzIDExIDAgMjMtNiAyMSA2IDExIDAgMzAtMyA5LTMgMTEgMCAxMyA2IDgtNiAxNCAwIDMwIDMgOSAxMiA3NyAxNCA4NSAxMiAxMyAyOSAyMCA1MSAyNSA4IDIgOCAyIDkgMTAgMiAxNS0xMCAxOC0yNCAyNC0xMyA5LTM2LTMtNDcgMXMtMzItMTQtNDEtMThjLTE5IDktNTAgMTktNjUgMjQtMTA4LTItMTMzLTE2OC02My0yMzUgMzAtMjkgNTgtMzkgOTktMTkgMTYgNyAyNSAxMCAzNyAxMSAyLTUgNy0xNCA5LTE4LTE2LTE4IDAtNzEtMjYtNjktNiAxLTQ5LTYtNTItOS03LTMyIDE1LTI4IDQzLTI0Wk02MDcgNjM3YzE2LTYgMzYtOSA0NC0yMyA3LTkgMTAtMTEgMTUtMTEgOSAxIDgtMjggMTgtMzkgNy01IDAtMjUtMS0zMS0xMS0zMyA3LTI3LTUtNDktOS0xNC0xMy01LTI0LTE3LTE0LTE0LTQ5LTE4LTYxLTUtMzIgMzAtNDAgMjYtMzggNzgtNSA0NyAxNSA1NyA1NCA5N1pNNTAwIDk2MWMzNTQgMCA1NzYtMzg2IDM5OS02OTMtMTc3LTMwNy02MjItMzA3LTc5OCAwLTE3NyAzMDcgNDUgNjkzIDM5OSA2OTNaIi8+PC9zdmc+",
+			"_iconMapObj": {"1000": "data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiPz48c3ZnIHZlcnNpb249IjEuMSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB2aWV3Qm94PSIwIDAgMTAwMCAxMDAwIj48cGF0aCBmaWxsPSIjZjJmZDUzIiBkPSJNNTAwIDEwMDBjMzg0IDAgNjI0LTQxOCA0MzMtNzUxLTE5Mi0zMzMtNjc0LTMzMy04NjUgMC0xOTIgMzMzIDQ5IDc1MSA0MzMgNzUxWiIvPjxwYXRoIGZpbGw9IiMxZTI5MzUiIGQ9Ik0zNTggNDM5Yy0xLTMtMi0xMS0zLTEzIDQtNyAyMy0xMCAzMi0xNiA3IDMgMjIgOSAzMCAxMiAxNS03IDMxLTggMzYgOSA1IDIyLTkgNTEtMSA3NiA0IDM2LTggNSAyIDY0IDUgMjQgMyA2MCAxMyA0OCA2LTQgMy01IDM2IDE0IDIyIDE3IDI3IDQgMTcgMzgtMzggMTktMTAwIDUtMTMwLTEzLTgtMS02MiAxOS03NSAyNC01My0xMi00Ny0zNS01Ni0yNS0yMiAxNC0zLTEwNC0xMC0xMTItNy0zNSAyNS0xMTQtNDAtOTItMTItMTktMTQtNi0yNC0yNiAxNC0xOSAzNy0xNyA2Ny0xMiA0NSA4IDM1IDIyIDI2IDc2LTMgMTItMyAxNCAwIDE3IDQgMjYtNiAzNyA0IDgxIDAgMCA1IDMzIDUgMzMgMzggMTkgNzQgNiAxMTEtMTUgMTMtMjMgMTUtMTA3IDI1LTEzOCAxMi0yMy0xNC0zMS02My0yOFpNNjYyIDMyMGMyNSA1IDQwLTEyIDU1IDggMTAgMTItNCAyNyAzIDQxIDYgMTAtNSA1OCAwIDY4IDMgOSAzIDExIDAgMjMtNiAyMSA2IDExIDAgMzAtMyA5LTMgMTEgMCAxMyA2IDgtNiAxNCAwIDMwIDMgOSAxMiA3NyAxNCA4NSAxMiAxMyAyOSAyMCA1MSAyNSA4IDIgOCAyIDkgMTAgMiAxNS0xMCAxOC0yNCAyNC0xMyA5LTM2LTMtNDcgMXMtMzItMTQtNDEtMThjLTE5IDktNTAgMTktNjUgMjQtMTA4LTItMTMzLTE2OC02My0yMzUgMzAtMjkgNTgtMzkgOTktMTkgMTYgNyAyNSAxMCAzNyAxMSAyLTUgNy0xNCA5LTE4LTE2LTE4IDAtNzEtMjYtNjktNiAxLTQ5LTYtNTItOS03LTMyIDE1LTI4IDQzLTI0Wk02MDcgNjM3YzE2LTYgMzYtOSA0NC0yMyA3LTkgMTAtMTEgMTUtMTEgOSAxIDgtMjggMTgtMzkgNy01IDAtMjUtMS0zMS0xMS0zMyA3LTI3LTUtNDktOS0xNC0xMy01LTI0LTE3LTE0LTE0LTQ5LTE4LTYxLTUtMzIgMzAtNDAgMjYtMzggNzgtNSA0NyAxNSA1NyA1NCA5N1pNNTAwIDk2MWMzNTQgMCA1NzYtMzg2IDM5OS02OTMtMTc3LTMwNy02MjItMzA3LTc5OCAwLTE3NyAzMDcgNDUgNjkzIDM5OSA2OTNaIi8+PC9zdmc+"},
 			"_metaData": {
 				"loadPathHash": "L+8q9lHbOv0dgFzDEHSRKgVNRwd4ZRfIFCT5u8p6yDg=",
-				"order": 15
+				"order": 17
 			},
 			"_urls": [{
-				"params": [],
-				"rels":   [],
+				"params":   [],
+				"rels":     [],
 				"template": "http://www.urbandictionary.com/define.php?term={searchTerms}"
 			}],
 			"_definedAliases": ["@ud"],
 			"_orderHint":      null,
 			"_telemetryId":    null,
+			"_filePath":       null,
 			"_updateInterval": null,
-			"_updateURL":      null,
-			"_iconUpdateURL":  null
+			"_updateURL":      null
 		},{
 			"id": "c28bc55f-286e-4029-b8fd-60fce50f5400",
 			"_name": "MetaCPAN",
 			"_loadPath": "[https]metacpan.org/metacpan.xml",
 			"description": "Search CPAN with MetaCPAN",
-			"_iconURL": "data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiPz48c3ZnIHZlcnNpb249IjEuMSIgdmlld0JveD0iMCAwIDEwMDAgMTAwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cGF0aCBmaWxsPSIjZGEyMDM3IiBkPSJNNDI5IDIzNWMwIDEwNy04NyAxOTQtMTk0IDE5NFM0MSAzNDIgNDEgMjM1IDEyOCA0MSAyMzUgNDFzMTk0IDg3IDE5NCAxOTRaTTk2OCAyMzVjMCAxMDctODcgMTk0LTE5NCAxOTRzLTE5NC04Ny0xOTQtMTk0IDg3LTE5NCAxOTQtMTk0IDE5NCA4NyAxOTQgMTk0Wk00MjkgNzc0YzAgMTA3LTg3IDE5NC0xOTQgMTk0cy0xOTQtODctMTk0LTE5NCA4Ny0xOTQgMTk0LTE5NCAxOTQgODcgMTk0IDE5NFpNOTY4IDc3NGMwIDEwNy04NyAxOTQtMTk0IDE5NHMtMTk0LTg3LTE5NC0xOTQgODctMTk0IDE5NC0xOTQgMTk0IDg3IDE5NCAxOTRaIi8+PC9zdmc+",
+			"_iconMapObj": {"1000": "data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiPz48c3ZnIHZlcnNpb249IjEuMSIgdmlld0JveD0iMCAwIDEwMDAgMTAwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cGF0aCBmaWxsPSIjZGEyMDM3IiBkPSJNNDI5IDIzNWMwIDEwNy04NyAxOTQtMTk0IDE5NFM0MSAzNDIgNDEgMjM1IDEyOCA0MSAyMzUgNDFzMTk0IDg3IDE5NCAxOTRaTTk2OCAyMzVjMCAxMDctODcgMTk0LTE5NCAxOTRzLTE5NC04Ny0xOTQtMTk0IDg3LTE5NCAxOTQtMTk0IDE5NCA4NyAxOTQgMTk0Wk00MjkgNzc0YzAgMTA3LTg3IDE5NC0xOTQgMTk0cy0xOTQtODctMTk0LTE5NCA4Ny0xOTQgMTk0LTE5NCAxOTQgODcgMTk0IDE5NFpNOTY4IDc3NGMwIDEwNy04NyAxOTQtMTk0IDE5NHMtMTk0LTg3LTE5NC0xOTQgODctMTk0IDE5NC0xOTQgMTk0IDg3IDE5NCAxOTRaIi8+PC9zdmc+"},
 			"_metaData": {
 				"loadPathHash": "CrRlXZoF/7ABTHBk3SUUxwgLMVFPlYfQ1R7Pc6Fnbq8=",
-				"order": 17
+				"order": 20
 			},
 			"_urls": [{
 				"params":   [],
@@ -273,18 +328,18 @@
 			"_definedAliases": ["@cpan"],
 			"_orderHint":      null,
 			"_telemetryId":    null,
+			"_filePath":       null,
 			"_updateInterval": null,
-			"_updateURL":      null,
-			"_iconUpdateURL":  null
+			"_updateURL":      null
 		},{
 			"id": "8f9aa873-4fd4-4ffa-9aef-d4f45be57479",
 			"_name": "NPM",
 			"_loadPath": "[https]static-production.npmjs.com/npm.xml",
 			"description": "Search for packages on NPM",
-			"_iconURL": "data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiPz48c3ZnIHZlcnNpb249IjEuMSIgdmlld0JveD0iMCAwIDEwMDAgMTAwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCBmaWxsPSIjY2IzODM3IiB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIi8+PHBvbHlnb24gZmlsbD0iI2ZmZiIgcG9pbnRzPSIxNjcgODMyIDUwMCA4MzIgNTAwIDMzMyA2NjYgMzMzIDY2NiA4MzIgODM0IDgzMiA4MzQgMTY2IDE2NyAxNjYgMTY3IDgzMiIvPjwvc3ZnPg",
+			"_iconMapObj": {"1000": "data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiPz48c3ZnIHZlcnNpb249IjEuMSIgdmlld0JveD0iMCAwIDEwMDAgMTAwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCBmaWxsPSIjY2IzODM3IiB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIi8+PHBvbHlnb24gZmlsbD0iI2ZmZiIgcG9pbnRzPSIxNjcgODMyIDUwMCA4MzIgNTAwIDMzMyA2NjYgMzMzIDY2NiA4MzIgODM0IDgzMiA4MzQgMTY2IDE2NyAxNjYgMTY3IDgzMiIvPjwvc3ZnPg"},
 			"_metaData": {
 				"loadPathHash": "V0alZd8ehUHJDExKzWlll13q3oNLOBTRNcv5x9vHdXU=",
-				"order": 18
+				"order": 21
 			},
 			"_urls": [{
 				"params":   [],
@@ -294,19 +349,19 @@
 			"_definedAliases": ["@node", "@npm"],
 			"_orderHint":      null,
 			"_telemetryId":    null,
+			"_filePath":       null,
 			"_updateInterval": null,
-			"_updateURL":      null,
-			"_iconUpdateURL":  null
+			"_updateURL":      null
 		},{
 			"id": "9a13a891-d391-4d3d-9c7e-86edfa0c7f3d",
 			"_name": "RubyGems",
 			"_loadPath": "[https]rubygems.org/rubygemsorg.xml",
 			"description": "Search RubyGems.org",
-			"_iconURL": "data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiPz48c3ZnIHZlcnNpb249IjEuMSIgdmlld0JveD0iMCAwIDEwMDAgMTAwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cGF0aCBmaWxsPSIjZTk1NzNmIiBkPSJNNjc3IDMyOWgtMzUybC0xMjMgMTI0IDI5OSAyOTkgMjk5LTI5OS0xMjMtMTI0Wk01MDAgMEw2NCAyNTB2NTAwbDQzNiAyNTAgNDM2LTI1MFYyNTBTNTAwIDAgNTAwIDBaTTg1MyA3MDJsLTM1MyAyMDQtMzUzLTIwNHYtNDA1TDUwMCA5M2wzNTMgMjA0djQwNVoiLz48L3N2Zz4",
+			"_iconMapObj": {"1000": "data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiPz48c3ZnIHZlcnNpb249IjEuMSIgdmlld0JveD0iMCAwIDEwMDAgMTAwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cGF0aCBmaWxsPSIjZTk1NzNmIiBkPSJNNjc3IDMyOWgtMzUybC0xMjMgMTI0IDI5OSAyOTkgMjk5LTI5OS0xMjMtMTI0Wk01MDAgMEw2NCAyNTB2NTAwbDQzNiAyNTAgNDM2LTI1MFYyNTBTNTAwIDAgNTAwIDBaTTg1MyA3MDJsLTM1MyAyMDQtMzUzLTIwNHYtNDA1TDUwMCA5M2wzNTMgMjA0djQwNVoiLz48L3N2Zz4"},
 			"_metaData": {
 				"loadPathHash": "qqT5G2zqJ4fR8pdYCAW7N8K7sNe2kGg4epwvH8OX11w=",
 				"updateexpir": 1734295497430,
-				"order": 19
+				"order": 22
 			},
 			"_urls": [{
 				"params":   [],
@@ -321,18 +376,33 @@
 			"_definedAliases": ["@gem", "@ruby"],
 			"_orderHint":      null,
 			"_telemetryId":    null,
+			"_filePath":       null,
 			"_updateInterval": null,
-			"_updateURL":      null,
-			"_iconUpdateURL":  null
+			"_updateURL":      null
+		},{
+			"id": "024f2676-97f3-4588-8f63-6f87479795cf",
+			"_name": "Schema.org",
+			"_loadPath": "[user]",
+			"_iconMapObj": {"64": "data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz48c3ZnIHZlcnNpb249IjEuMSIgdmlld0JveD0iMCAwIDY0IDY0IiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPjxyZWN0IGZpbGw9IiM5MDAiIHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiLz48dGV4dCBmaWxsPSIjZmZmIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmb250LXdlaWdodD0iNTAwIiBmb250LXNpemU9IjE3LjkiIGZvbnQtZmFtaWx5PSJBcmlhbCwgSGVsdmV0aWNhLCBzYW5zLXNlcmlmIiB0ZXh0LXJlbmRlcmluZz0ib3B0aW1pemVMZWdpYmlsaXR5Ij48dHNwYW4geD0iNTElIiB5PSI0NSUiPnNjaGVtYTwvdHNwYW4+PHRzcGFuIHg9IjUxJSIgeT0iNjYuNSUiPi5vcmc8L3RzcGFuPjwvdGV4dD48L3N2Zz4"},
+			"_metaData": {"order": 26},
+			"_urls": [{
+				"params":   [],
+				"rels":     [],
+				"template": "https://schema.org/docs/search_results.html?q={searchTerms}"
+			}],
+			"_definedAliases": ["@sch", "@schema"],
+			"_orderHint":      null,
+			"_telemetryId":    null,
+			"_filePath":       null
 		},{
 			"id": "02997fb6-32e4-41f0-bf0e-18838912c943",
 			"_name": "Acronym Finder",
 			"_loadPath": "[https]www.acronymfinder.com/~/st/open-search.xml",
 			"description": "Search for abbreviation and acronym definitions",
-			"_iconURL": "data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz48c3ZnIHZlcnNpb249IjEuMSIgdmlld0JveD0iMCAwIDEwMDAgMTAwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCBmaWxsPSIjZTAxZDI2IiB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIi8+PHBhdGggZmlsbD0iI2ZmZiIgZD0iTTMzMCA2ODJoMTEybDEyIDU3SDcxNFY1NzRIODIzVjQ1NEg3MTRWNDA4SDg0MFYyNzdINTU3bDIgMjgzLTkxLTI4M0gyOTlMMTYwIDc0MGgxNTdabTU2LTI0NSAyNSAxMjItNTUgMVoiLz48L3N2Zz4",
+			"_iconMapObj": {"1000": "data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz48c3ZnIHZlcnNpb249IjEuMSIgdmlld0JveD0iMCAwIDEwMDAgMTAwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCBmaWxsPSIjZTAxZDI2IiB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIi8+PHBhdGggZmlsbD0iI2ZmZiIgZD0iTTMzMCA2ODJoMTEybDEyIDU3SDcxNFY1NzRIODIzVjQ1NEg3MTRWNDA4SDg0MFYyNzdINTU3bDIgMjgzLTkxLTI4M0gyOTlMMTYwIDc0MGgxNTdabTU2LTI0NSAyNSAxMjItNTUgMVoiLz48L3N2Zz4"},
 			"_metaData": {
 				"loadPathHash": "NKVl/zWMUonCPsa3vaCb14V1tqqtpSxZ4xvOCjA5EYw=",
-				"order": 20
+				"order": 23
 			},
 			"_urls": [{
 				"params":   [],
@@ -352,18 +422,60 @@
 			"_definedAliases": ["@abbr", "@acronym"],
 			"_orderHint":      null,
 			"_telemetryId":    null,
+			"_filePath":       null,
 			"_updateInterval": null,
-			"_updateURL":      null,
-			"_iconUpdateURL":  null
+			"_updateURL":      null
+		},{
+			"id": "4b735fdb-7766-4f69-b56c-d718c3dfe975",
+			"_name": "Ethnologue",
+			"_loadPath": "[https]www.ethnologue.com/ethnologue.xml",
+			"description": "Search for world languages",
+			"_iconMapObj": {"200": "data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiPz48c3ZnIHZlcnNpb249IjEuMSIgdmlld0JveD0iMCAwIDIwMCAyMDAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiPjxmaWx0ZXIgaWQ9ImEiIGZpbHRlclVuaXRzPSJ1c2VyU3BhY2VPblVzZSIgY29sb3ItaW50ZXJwb2xhdGlvbi1maWx0ZXJzPSJzUkdCIj48ZmVGbG9vZCBmbG9vZC1vcGFjaXR5PSIwIiByZXN1bHQ9ImJnIi8+PGZlQ29sb3JNYXRyaXggaW49IlNvdXJjZUFscGhhIiB2YWx1ZXM9IjAgMCAwIDAgMCAwIDAgMCAwIDAgMCAwIDAgMCAwIDAgMCAwIDEyNyAwIiByZXN1bHQ9ImN1dG91dCIvPjxmZU9mZnNldCBkeT0iMSIvPjxmZUdhdXNzaWFuQmx1ciBzdGREZXZpYXRpb249IjEuNSIvPjxmZUNvbG9yTWF0cml4IHZhbHVlcz0iMCAwIDAgMCAwIDAgMCAwIDAgMCAwIDAgMCAwIDAgMCAwIDAgMC4yMiAwIi8+PGZlQmxlbmQgaW4yPSJiZyIgcmVzdWx0PSJzaGFkb3cxIi8+PGZlQ29sb3JNYXRyaXggaW49IlNvdXJjZUFscGhhIiB2YWx1ZXM9IjAgMCAwIDAgMCAwIDAgMCAwIDAgMCAwIDAgMCAwIDAgMCAwIDEyNyAwIiByZXN1bHQ9ImN1dG91dCIvPjxmZU9mZnNldCBkeT0iMSIvPjxmZUdhdXNzaWFuQmx1ciBzdGREZXZpYXRpb249IjEuNSIvPjxmZUNvbG9yTWF0cml4IHZhbHVlcz0iMCAwIDAgMCAwIDAgMCAwIDAgMCAwIDAgMCAwIDAgMCAwIDAgMC4yMiAwIi8+PGZlQmxlbmQgaW4yPSJzaGFkb3cxIiByZXN1bHQ9InNoYWRvdzIiLz48ZmVCbGVuZCBpbj0iU291cmNlR3JhcGhpYyIgaW4yPSJzaGFkb3cyIiByZXN1bHQ9InNoYXBlIi8+PC9maWx0ZXI+PGZpbHRlciBpZD0iYiIgeD0iMTY5IiB5PSItMiIgd2lkdGg9IjM0IiBoZWlnaHQ9IjcyLjY4NzUiIGZpbHRlclVuaXRzPSJ1c2VyU3BhY2VPblVzZSIgY29sb3ItaW50ZXJwb2xhdGlvbi1maWx0ZXJzPSJzUkdCIj48ZmVGbG9vZCBmbG9vZC1vcGFjaXR5PSIwIiByZXN1bHQ9ImJnIi8+PGZlQ29sb3JNYXRyaXggaW49IlNvdXJjZUFscGhhIiB2YWx1ZXM9IjAgMCAwIDAgMCAwIDAgMCAwIDAgMCAwIDAgMCAwIDAgMCAwIDEyNyAwIiByZXN1bHQ9ImhhcmRBbHBoYSIvPjxmZU9mZnNldCBkeT0iMC4zNzUiLz48ZmVHYXVzc2lhbkJsdXIgc3RkRGV2aWF0aW9uPSIwLjU2MjUiLz48ZmVDb2xvck1hdHJpeCB2YWx1ZXM9IjAgMCAwIDAgMCAwIDAgMCAwIDAgMCAwIDAgMCAwIDAgMCAwIDAuMjIgMCIvPjxmZUJsZW5kIGluMj0iYmciIHJlc3VsdD0ic2hhZG93MSIvPjxmZUNvbG9yTWF0cml4IGluPSJTb3VyY2VBbHBoYSIgdmFsdWVzPSIwIDAgMCAwIDAgMCAwIDAgMCAwIDAgMCAwIDAgMCAwIDAgMCAxMjcgMCIgcmVzdWx0PSJoYXJkQWxwaGEiLz48ZmVPZmZzZXQgZHk9IjEiLz48ZmVHYXVzc2lhbkJsdXIgc3RkRGV2aWF0aW9uPSIxLjUiLz48ZmVDb2xvck1hdHJpeCB2YWx1ZXM9IjAgMCAwIDAgMCAwIDAgMCAwIDAgMCAwIDAgMCAwIDAgMCAwIDAuMjIgMCIvPjxmZUJsZW5kIGluMj0ic2hhZG93MSIgcmVzdWx0PSJzaGFkb3cyIi8+PGZlQmxlbmQgaW49IlNvdXJjZUdyYXBoaWMiIGluMj0ic2hhZG93MiIgcmVzdWx0PSJzaGFwZSIvPjwvZmlsdGVyPjxjbGlwUGF0aCBpZD0iYyI+PHJlY3Qgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgcng9IjglIiBmaWxsPSIjZmZmIiBzdHJva2Utd2lkdGg9IjYuMjUiLz48L2NsaXBQYXRoPjxnIGNsaXAtcGF0aD0idXJsKCNjKSI+PHJlY3QgZmlsdGVyPSJ1cmwoI2EpIiBmaWxsPSIjZmZiNzFiIiB3aWR0aD0iMTQlIiBoZWlnaHQ9IjMzLjMlIiB4PSI4NiUiIHk9IjY2LjYlIi8+PHJlY3QgZmlsdGVyPSJ1cmwoI2EpIiBmaWxsPSIjOTMzNThkIiB3aWR0aD0iMTQlIiBoZWlnaHQ9IjMzLjMlIiB4PSI4NiUiIHk9IjMzLjMlIi8+PHJlY3QgZmlsdGVyPSJ1cmwoI2IpIiBmaWxsPSIjMDBhN2UxIiB3aWR0aD0iMTQlIiBoZWlnaHQ9IjMzLjMlIiB4PSI4NiUiIHk9IjAlIi8+PHJlY3QgZmlsdGVyPSJ1cmwoI2EpIiBmaWxsPSIjMDA1Y2I5IiB3aWR0aD0iODYlIiBoZWlnaHQ9IjEwMCUiLz48cGF0aCBmaWxsPSIjZmZmIiBkPSJtNTEuMzc1IDUzLjV2NS42ODc1YzIuODUzMSAwLjM3MjkyIDEwLjQyNSAyLjU5NjYgMTAuNjg4IDQuODEyNXY3Ny41YzAgMS42NjY3LTMuNTYyNSAzLjI1LTEwLjY4OCA0Ljc1djUuNjg3NWg3My44MTJjMS40MjM1LTcuODY0IDIuNDg3MS0xNS43ODkgMy4xODc1LTIzLjc1bC01LjY4NzUtMmMtMi4xNTI4IDUuOTkzMS00LjUyMDggMTAuMzEyLTYuODEyNSAxMi44MTItNC4yOTY3IDQuNDc0Ny0xMC44NTkgMy40MTY3LTE4LjMxMiAzLjU2MjUtMTIuMTQzLTAuMDM0NC0xNS45MzgtMS4zNzI0LTE1LjkzOC01di0zNC43NWMxNS4xMjYtMC4yMjI2MiAyMS44NjktMC40MDM1NiAyNi40MzggNC4zMTI1IDMuNTEzMS0yLjk1MTYgNC4zNjMzLTUuMzcxNyA3LjE4NzUtOS44NzVsLTIuNTYyNS0yLjc1aC0zMS4wNjJ2LTMxLjYyNWgyNi4yNWMzLjc5MTcgMCA1LjkxNjcgNC45NTgzIDYuMzc1IDE0Ljg3NWg1Ljg3NWMwLjkyMTc5LTMuNjExNCAyLjY2MzYtMTMuMzY1IDMuMTg3NS0yMS43NWwtMy4xODc1LTIuNXoiLz48L2c+PC9zdmc+"},
+			"_metaData": {
+				"loadPathHash": "NgclwCpspiJ/mM08TwA9MujLX5qLpbN9EoNgAh5UE54=",
+				"order": 25
+			},
+			"_urls": [{
+				"params":   [],
+				"rels":     [],
+				"template": "http://www.ethnologue.com/search/search_by_page/{searchTerms}"
+			}],
+			"_definedAliases": ["@eth"],
+			"_orderHint":      null,
+			"_telemetryId":    null,
+			"_filePath":       null,
+			"_updateInterval": null,
+			"_updateURL":      null
+		},{
+			"id": "757bf1da-1776-411a-bfe5-4776fefde9b0",
+			"_name": "Google Translate",
+			"_loadPath": "[https]translate.google.com/google-translate.xml",
+			"description": "Auto-translate text",
+			"_iconMapObj": {"1000": "data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz48c3ZnIHZlcnNpb249IjEuMSIgdmlld0JveD0iMCAwIDEwMDAgMTAwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cGF0aCBmaWxsPSIjZGJkYmRiIiBkPSJNOTMxLjcgOTk4LjNjMzYuNSAwIDY2LjQtMjkuNCA2Ni40LTY1LjRWMjY1LjhjMC0zNi0yOS45LTY1LjQtNjYuNC02NS40SDI4My42bDI2MC4xIDc5Ny45aDM4OHoiLz48cGF0aCBmaWxsPSIjZGNkY2RjIiBkPSJNOTMxLjcgMjMwLjRjOS43IDAgMTguOSAzLjggMjUuOCAxMC42IDYuOCA2LjcgMTAuNiAxNS41IDEwLjYgMjQuOHY2NjcuMWMwIDkuMy0zLjcgMTguMS0xMC42IDI0LjgtNi45IDYuOC0xNi4xIDEwLjYtMjUuOCAxMC42SDU2NS41TDMyNC45IDIzMC40aDYwNi44bTAtMzBIMjgzLjZsMjYwLjEgNzk3LjloMzg4YzM2LjUgMCA2Ni40LTI5LjQgNjYuNC02NS40VjI2NS44YzAtMzYtMjkuOS02NS40LTY2LjQtNjUuNHoiLz48cG9seWdvbiBmaWxsPSIjNDM1MmI4IiBwb2ludHM9IjQ4Mi4zLDgwOS44IDU0My43LDk5OC4zIDcxNC40LDgwOS44Ii8+PHBhdGggZmlsbD0iIzYwNzk4OCIgZD0iTTkzNi4xIDQ3Ni4xVjQzN0g3NDcuNnYtNjMuMmgtNjEuMlY0MzdINTY2LjF2MzkuMWgyMzkuNGMtMTIuOCA0NS4xLTQxLjEgODcuNy02OC43IDEyMC44LTQ4LjktNTcuOS00OS4xLTc2LjctNDkuMS03Ni43aC01MC44czIuMSAyOC4yIDcwLjcgMTA4LjZjLTIyLjMgMjIuOC0zOS4yIDM2LjMtMzkuMiAzNi4zbDE1LjYgNDguOHMyMy42LTIwLjMgNTMuMS01MS42YzI5LjYgMzIuMSA2Ny44IDcwLjcgMTE3LjIgMTE2LjdsMzIuMS0zMi4xYy01Mi45LTQ4LTkxLjctODYuMS0xMjAuMi0xMTYuNyAzOC4yLTQ1LjIgNzctMTAyLjEgODUuMi0xNTQuMkg5MzZ2LjF6Ii8+PHBhdGggZmlsbD0iIzQyODVmNCIgZD0iTTY2LjQgMEMyOS45IDAgMCAyOS45IDAgNjYuNXY2NzdjMCAzNi41IDI5LjkgNjYuNCA2Ni40IDY2LjRoNjQ4LjFMNDU0LjQgMGgtMzg4eiIvPjxsaW5lYXJHcmFkaWVudCBpZD0iYSIgZ3JhZGllbnRVbml0cz0idXNlclNwYWNlT25Vc2UiIHgxPSI1MzQuMyIgeTE9IjQzMy4yIiB4Mj0iOTk4LjEiIHkyPSI0MzMuMiI+PHN0b3Agb2Zmc2V0PSIwIiBzdG9wLWNvbG9yPSIjZmZmIiBzdG9wLW9wYWNpdHk9IjAuMiIvPjxzdG9wIG9mZnNldD0iMSIgc3RvcC1jb2xvcj0iI2ZmZiIgc3RvcC1vcGFjaXR5PSIwLjAyIi8+PC9saW5lYXJHcmFkaWVudD48cGF0aCBmaWxsPSJ1cmwoI2EpIiBkPSJNNTM0LjMgMjAwLjRoMzk3LjRjMzYuNSAwIDY2LjQgMjkuNCA2Ni40IDY1LjRWNjY2TDUzNC4zIDIwMC40eiIvPjxwYXRoIGZpbGw9IiNlZWUiIGQ9Ik0zNzEuNCA0MzAuNmMtMi41IDMwLjMtMjguNCA3NS4yLTkxLjEgNzUuMi01NC4zIDAtOTguMy00NC45LTk4LjMtMTAwLjJzNDQtMTAwLjIgOTguMy0xMDAuMmMzMC45IDAgNTEuNSAxMy40IDYzLjMgMjQuM2w0MS4yLTM5LjZjLTI3LjEtMjUtNjIuNC00MC42LTEwNC41LTQwLjYtODYuMSAwLTE1NiA2OS45LTE1NiAxNTZzNjkuOSAxNTYgMTU2IDE1NmM5MC4yIDAgMTQ5LjgtNjMuMyAxNDkuOC0xNTIuNiAwLTEyLjgtMS42LTIyLjItMy43LTMxLjhoLTE0NnY1My40bDkxIC4xeiIvPjxyYWRpYWxHcmFkaWVudCBpZD0iYiIgY3g9IjY1LjIwOCIgY3k9IjE5LjM2NiIgcj0iMTM5OC4yNzEiIGdyYWRpZW50VW5pdHM9InVzZXJTcGFjZU9uVXNlIj48c3RvcCBvZmZzZXQ9IjAiIHN0b3AtY29sb3I9IiNmZmYiIHN0b3Atb3BhY2l0eT0iLjEiLz48c3RvcCBvZmZzZXQ9IjEiIHN0b3AtY29sb3I9IiNmZmYiIHN0b3Atb3BhY2l0eT0iMCIvPjwvcmFkaWFsR3JhZGllbnQ+PHBhdGggZmlsbD0idXJsKCNiKSIgZD0iTTkzMS43IDIwMC40SDUxOC44TDQ1NC40IDBoLTM4OEMyOS45IDAgMCAyOS45IDAgNjYuNXY2NzdjMCAzNi41IDI5LjkgNjYuNCA2Ni40IDY2LjRoNDE1LjlsNjEuNCAxODguNGgzODhjMzYuNSAwIDY2LjQtMjkuNCA2Ni40LTY1LjRWMjY1LjhjMC0zNi0yOS45LTY1LjQtNjYuNC02NS40eiIvPjwvc3ZnPg"},
+			"_metaData": {
+				"loadPathHash": "uTcvDbQTjSAUCiXz0WLePE/dUbh+iYN6ZdR4GlbauqU=",
+				"order": 27
+			},
+			"_urls": [{
+				"params":   [],
+				"rels":     [],
+				"template": "https://translate.google.com/?source=osdd&sl=auto&tl=auto&text={searchTerms}&op=translate"
+			}],
+			"_definedAliases": ["@t", "@trans"],
+			"_orderHint":      null,
+			"_telemetryId":    null,
+			"_filePath":       null,
+			"_updateInterval": null,
+			"_updateURL":      null
 		},{
 			"id": "06184fd0-46f0-43c3-a4ee-263c7689c359",
 			"_name": "Qwant",
 			"_loadPath": "[https]www.qwant.com/opensearch.xml",
 			"description": "Privacy-focussed French alternative to DuckDuckGo",
-			"_iconURL": "data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz48c3ZnIHZlcnNpb249IjEuMSIgdmlld0JveD0iMCAwIDEwMDAgMTAwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiBzdHlsZT0iY29sb3Itc2NoZW1lOmxpZ2h0IGRhcmsiPjxyZWN0IGZpbGw9IiMyMTIzMjciIHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiIHJ4PSIxNiUiLz48cGF0aCBmaWxsPSIjZjlmYWZiIiBkPSJNNjg0IDQ5N0M2ODQgMzYwIDU4OSAyOTAgNDczIDI5MCAzNTYgMjkwIDI2MiAzNjAgMjYyIDQ5N2MwIDEyNyA4MCAxOTYgMTg0IDIwNiA1NCA4NyAxMzggMTEzIDIyMyA4OWw2LTggOS04Mi0xNS04Yy00OCA0MC0xMjQgNDAtMTc1IDkgMTA3LTggMTkwLTc3IDE5MC0yMDZabS0xMDAgMGMwIDk0LTM2IDE3MC0xMTEgMTcwLTc5IDAtMTExLTc2LTExMS0xNzAgMC05NCAzMy0xNzAgMTExLTE3MCA4MCAwIDExMSA3NiAxMTEgMTcwWk03MjkgMTI1IDcwNSAyMjEgNjEwIDI0NXYxMGw5NSAyNCAyNSA5Nmg5TDc2MyAyNzkgODYwIDI1NFYyNDZMNzYzIDIyMSA3MzkgMTI1WiIvPjwvc3ZnPg",
+			"_iconMapObj": {"1000": "data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz48c3ZnIHZlcnNpb249IjEuMSIgdmlld0JveD0iMCAwIDEwMDAgMTAwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiBzdHlsZT0iY29sb3Itc2NoZW1lOmxpZ2h0IGRhcmsiPjxyZWN0IGZpbGw9IiMyMTIzMjciIHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiIHJ4PSIxNiUiLz48cGF0aCBmaWxsPSIjZjlmYWZiIiBkPSJNNjg0IDQ5N0M2ODQgMzYwIDU4OSAyOTAgNDczIDI5MCAzNTYgMjkwIDI2MiAzNjAgMjYyIDQ5N2MwIDEyNyA4MCAxOTYgMTg0IDIwNiA1NCA4NyAxMzggMTEzIDIyMyA4OWw2LTggOS04Mi0xNS04Yy00OCA0MC0xMjQgNDAtMTc1IDkgMTA3LTggMTkwLTc3IDE5MC0yMDZabS0xMDAgMGMwIDk0LTM2IDE3MC0xMTEgMTcwLTc5IDAtMTExLTc2LTExMS0xNzAgMC05NCAzMy0xNzAgMTExLTE3MCA4MCAwIDExMSA3NiAxMTEgMTcwWk03MjkgMTI1IDcwNSAyMjEgNjEwIDI0NXYxMGw5NSAyNCAyNSA5Nmg5TDc2MyAyNzkgODYwIDI1NFYyNDZMNzYzIDIyMSA3MzkgMTI1WiIvPjwvc3ZnPg"},
 			"_metaData": {
 				"loadPathHash": "LIXLCgAJRWVHNwrhwzkjLIkrJkE/i3DSkN1ByWPkMiU=",
-				"order": 21
+				"order": 24
 			},
 			"_urls": [{
 				"params":   [],
@@ -383,9 +495,9 @@
 			"_definedAliases": ["@qw"],
 			"_orderHint":      null,
 			"_telemetryId":    null,
+			"_filePath":       null,
 			"_updateInterval": null,
-			"_updateURL":      null,
-			"_iconUpdateURL":  null
+			"_updateURL":      null
 		}
 	],
 	"metaData": {

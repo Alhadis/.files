@@ -1,14 +1,18 @@
 [uBlock Origin 1.41.6]
 
 ! Cookie messages
+##.ta-common-cookie-consent-message
 ##web-snackbar-container
 ###js-cookie
 
 ! Share/subscribe buttons
+##.beehiiv-newsletter-signup-container
 fontawesome.com###social-buttons
+mozilla.org##aside#newsletter-banner
 sourceforge.net###newsletter-floating
 web.dev##a[href*="/newsletter/" i]
 web.dev##share-action
+wondery.com##.upsell-banner
 
 ! "Sign in with Google" pop-ups
 ###credential_picker_container:has(> iframe[src*=".google.com/" i])
@@ -39,11 +43,13 @@ superuser.*###sidebar > *:not(.sidebar-related), #left-sidebar
 forbes.com##.ampplus-connatix:has(.cnx-video-container)
 forbes.com##.zephr-fin-free-report-modal
 forbes.com##.embedly-align
+forbes.com###forbes-dv
 
 ! Anything else which happens to shit me
 gnu.org###fundraiser
 html.com###site-aside
 html.com###site-content div.post-single > .disclosure:has(> a[href^="/disclosure"])
+publicholidays.com.au##.phgviewportconditional:has(> .sticky-ad-unit:only-child)
 abebooks.com###srp-results > #highlight-inventory
 belong.com.au###belong-chat-iframer
 extreme-ip-lookup.com###axd
@@ -51,6 +57,9 @@ theguardian.com##div[id^="sp_message_container_"]:has(> iframe:only-child)
 theguardian.com##figure > aside[aria-label="newsletter promotion" i]
 theguardian.com###maincontent ~ gu-island[priority="feature"]
 theguardian.com##gu-island[name="StickyBottomBanner"]
+metal-archives.com###affiliation-links
+discogs.com###release-recommendations
+discogs.com###release-videos
 developer.mozilla.org##section.place, sup.new
 developer.mozilla.org##aside.article-footer:has(.feedback)
 developer.mozilla.org###nav-footer
@@ -58,5 +67,6 @@ knowablemagazine.org###alerts
 knowablemagazine.org##.modal-backdrop
 learn.microsoft.com###disclaimer-holder
 fontawesome.com###banner[class*=" fa"]
+fontawesome.com###modal-fa5
 github.com##.js-notification-top-shelf
 mankier.com##main > a[href*="sponsor" i]
