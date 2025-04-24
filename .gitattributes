@@ -18,6 +18,7 @@ terminalrc        linguist-language=INI
 etc/shells        linguist-language=INI
 etc/*.conf        linguist-language=INI
 **/ublock/white*  linguist-language=Hosts
+calendar*         linguist-language=C linguist-detectable=false
 
 # Adobe Illustrator settings
 [attr]aiprefs linguist-language=PostScript linguist-vendored

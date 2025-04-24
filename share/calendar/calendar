@@ -1,0 +1,15 @@
+/* vim:set ft=calendar noet ts=10: -*- Mode: C; tab-width: 10; indent-tabs-mode: t; -*-
+ *
+ * User-defined calendar(1) file; loads relevant calendars and
+ * adds a few events unlikely to matter to anybody but me.
+ */
+LANG=en_AU.UTF-8
+
+/* Australian calendar */
+#include <calendar.australia>
+
+/* Birthdays */
+Apr 18	My birthday
+Aug 05	Dad's birthday
+Sep 17	Mum's birthday
+Oct 25	Zach's birthday

@@ -1,0 +1,101 @@
+/* vim:set ft=calendar noet ts=16: -*- Mode: C; tab-width: 16; indent-tabs-mode: t; -*-
+ *
+ * Updated Australian calendar(1) that features correct holiday lists (as of April 2025).
+ * Replaces the outdated file of the same name that ships with macOS (dated October 2006).
+ *
+ * Sources:
+ * - https://publicholidays.com.au/
+ * - https://www.australia.com/en/facts-and-planning/when-to-go/australian-public-holidays.html
+ * - https://en.wikipedia.org/wiki/Public_holidays_in_Australia#Public_holidays
+ */
+
+#ifndef _calendar_australia_
+#define _calendar_australia_
+
+LANG=en_AU.UTF-8
+CALENDAR=Gregorian
+CHARSET=UTF-8
+
+/* Daylight saving */
+Apr/SunFirst	Daylight saving time ends
+Oct/SunFirst	Daylight saving time starts
+
+/* Seasonal days */
+Mar 20*	Autumnal Equinox
+Jun 21*	Winter Solstice
+Sep 22*	Vernal Equinox
+Dec 21*	Summer Solstice
+
+/* National holidays */
+Jan 01	New Year's Day
+Jan 26	Australia Day
+Easter-2	Good Friday
+Easter-1	Holy Saturday
+Easter	Easter Sunday
+Easter+1	Easter Monday
+Apr 25	Anzac Day
+Dec 24	Christmas Eve
+Dec 25	Christmas Day
+Dec 26	Boxing Day
+Dec 31	New Year's Eve
+
+/* Other holidays */
+Feb 14	Valentine's Day
+Mar 17	St. Patrick's Day
+Mar 21	Harmony Day
+Apr 01	April Fool's Day
+May/SunSecond	Mother's Day
+Sep/SunFirst	Father's Day
+Nov 11	Remembrance Day
+
+/* Commonly-shared state holidays */
+Jun/MonSecond	King's Birthday (except in QLD)
+Oct/MonFirst	Labour Day (ACT, NSW, SA)
+
+/* Australian Capital Territory (https://www.act.gov.au/) */
+Mar/MonSecond	Canberra Day (ACT)
+May/MonLast*	Reconciliation Day (ACT)    /* First Monday on or after the 27th */
+
+/* Northern Territory (https://nt.gov.au/nt-public-holidays) */
+May/MonFirst	May Day (NT)
+Jun/FriLast	Borroloola Show Day (NT)
+Jul/FriFirst	Alice Springs Show Day (NT)
+Jul/FriSecond	Tennant Creek Show Day (NT)
+Jul/FriThird	Katherine Show Day (NT)
+Jul/FriFourth	Darwin Show Day (NT)
+Aug/MonFirst	Picnic Day (NT)
+
+/* Queensland (https://www.qld.gov.au/recreation/travel/holidays/public) */
+May/MonFirst	Labour Day (QLD)
+Aug/WedSecond*	Royal Queensland Show (QLD) /* First Wednesday after the 9th */
+Oct/MonFirst	King's Birthday (QLD)
+
+/* South Australia */
+Mar/MonSecond	Adelaide Cup Day (SA)
+Oct/MonFirst	Labour Day (SA)
+Dec 26	Proclamation Day (SA)
+
+/* Tasmania (https://worksafe.tas.gov.au/topics/laws-and-compliance/public-holidays) */
+Jan/WedSecond*	Devonport Cup (TAS)         /* First Wednesday between 1st–11th (inclusive) */
+Feb/MonSecond	Royal Hobart Regatta (TAS)
+Feb/WedLast	Launceston Cup (TAS)
+Mar/TueFirst	King Island Show (TAS)
+Mar/MonSecond	Eight Hours Day (TAS)
+Easter+2	Easter Tuesday (TAS)
+May/FriFirst*	AGFEST (TAS)                /* Friday following first Thursday */
+Oct/FriFirst*	Burnie Show (TAS)           /* Friday preceding first Saturday */
+Oct/FriThird*	Flinders Island Show (TAS)  /* Friday preceding third Saturday */
+Oct/ThuFourth*	Royal Hobart Show (TAS)     /* Thursday preceding fourth Saturday */
+Nov/MonFirst	Recreation Day (TAS)
+Nov/FriLast*	Devonport Show (TAS)
+
+/* Victoria */
+Mar/MonSecond	Labour Day (VIC)
+Mar/MonSecond	Moomba Festival (VIC)
+Nov/TueFirst	Melbourne Cup Day (VIC)
+
+/* Western Australia */
+Mar/MonFirst	Labour Day (WA)
+Jun/MonFirst	Western Australia Day (WA)
+
+#endif

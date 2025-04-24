@@ -68,6 +68,12 @@ else
 fi
 
 
+# Install event reminders
+command -v calendar >/dev/null 2>&1 && [ ! -d ~/.calendar ] && {
+	set -- .files/share/calendar .calendar
+	ln -sf "$@" && printf 'Symlinked: %s -> %s\n' "$@"
+}
+
 # Link Inkscape preferences
 [ -d .config/inkscape ] && {
 	ln -sf ~/.files/etc/inkscape/preferences.xml .config/inkscape/
