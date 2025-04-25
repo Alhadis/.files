@@ -2,78 +2,99 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<key>BackgroundBlur</key>
-	<real>0.0</real>
-	<key>BackgroundColor</key>
-	<data>
-	YnBsaXN0MDDUAQIDBAUGBwpYJHZlcnNpb25ZJGFyY2hpdmVyVCR0b3BYJG9iamVjdHMS
-	AAGGoF8QD05TS2V5ZWRBcmNoaXZlctEICVRyb290gAGjCwwTVSRudWxs0w0ODxAREldO
-	U1doaXRlXE5TQ29sb3JTcGFjZVYkY2xhc3NNMCAwLjg1MDAwMDAyABADgALSFBUWF1ok
-	Y2xhc3NuYW1lWCRjbGFzc2VzV05TQ29sb3KiFhhYTlNPYmplY3QIERokKTI3SUxRU1dd
-	ZGx5gI6Qkpeiq7O2AAAAAAAAAQEAAAAAAAAAGQAAAAAAAAAAAAAAAAAAAL8=
-	</data>
-	<key>Bell</key>
-	<false/>
-	<key>CursorColor</key>
-	<data>
-	YnBsaXN0MDDUAQIDBAUGBwpYJHZlcnNpb25ZJGFyY2hpdmVyVCR0b3BYJG9iamVjdHMS
-	AAGGoF8QD05TS2V5ZWRBcmNoaXZlctEICVRyb290gAGjCwwTVSRudWxs0w0ODxAREldO
-	U1doaXRlXE5TQ29sb3JTcGFjZVYkY2xhc3NLMC4zMDI0MTkzNgAQA4AC0hQVFhdaJGNs
-	YXNzbmFtZVgkY2xhc3Nlc1dOU0NvbG9yohYYWE5TT2JqZWN0CBEaJCkyN0lMUVNXXWRs
-	eYCMjpCVoKmxtAAAAAAAAAEBAAAAAAAAABkAAAAAAAAAAAAAAAAAAAC9
-	</data>
+	<!-- Fundamentals -->
+	<key>name</key><string>Pro</string>
+	<key>type</key><string>Window Settings</string>
+	<key>ProfileCurrentVersion</key><real>2.07</real>
+
+	<!-- Fit window to available screen-space (1792×1120) -->
+	<key>columnCount</key><integer>223</integer>
+	<key>rowCount</key><integer>58</integer>
+
+	<!-- Don't automatically close window when shell exits -->
+	<key>shellExitAction</key><integer>2</integer>
+
+	<!-- Options -->
+	<key>Bell</key><false/>
+	<key>CursorBlink</key><false/>
+	<key>DisableANSIColor</key><false/>
+	<key>ShowRepresentedURLInTitle</key><true/>
+	<key>ShowTTYNameInTabTitle</key><false/>
+	<key>ShowWindowSettingsNameInTitle</key><false/>
+	<key>UseBoldFonts</key><true/>
+	<key>UseBrightBold</key><false/>
+	<key>useOptionAsMetaKey</key><false/>
+	<key>VisualBell</key><false/>
+
+	<!-- Cursor shape (0 = Block, 1 = Underline, 2 = Vertical bar) -->
+	<key>CursorType</key>
+	<integer>0</integer>
+
+	<!-- Text display -->
+	<key>FontAntialias</key><true/>
+	<key>FontHeightSpacing</key><integer>1</integer>
+	<key>FontWidthSpacing</key><integer>1</integer>
+
+	<!-- Font: Menlo Regular 14 -->
 	<key>Font</key>
 	<data>
-	YnBsaXN0MDDUAQIDBAUGBwpYJHZlcnNpb25ZJGFyY2hpdmVyVCR0b3BYJG9iamVjdHMS
-	AAGGoF8QD05TS2V5ZWRBcmNoaXZlctEICVRyb290gAGkCwwVFlUkbnVsbNQNDg8QERIT
-	FFZOU1NpemVYTlNmRmxhZ3NWTlNOYW1lViRjbGFzcyNALAAAAAAAABAQgAKAA11NZW5s
-	by1SZWd1bGFy0hcYGRpaJGNsYXNzbmFtZVgkY2xhc3Nlc1ZOU0ZvbnSiGRtYTlNPYmpl
-	Y3QIERokKTI3SUxRU1heZ253foWOkJKUoqeyu8LFAAAAAAAAAQEAAAAAAAAAHAAAAAAA
-	AAAAAAAAAAAAAM4=
+		YnBsaXN0MDDUAQIDBAUGBwpYJHZlcnNpb25ZJGFyY2hpdmVyVCR0b3BYJG9iamVjdHMS
+		AAGGoF8QD05TS2V5ZWRBcmNoaXZlctEICVRyb290gAGkCwwVFlUkbnVsbNQNDg8QERIT
+		FFZOU1NpemVYTlNmRmxhZ3NWTlNOYW1lViRjbGFzcyNALAAAAAAAABAQgAKAA11NZW5s
+		by1SZWd1bGFy0hcYGRpaJGNsYXNzbmFtZVgkY2xhc3Nlc1ZOU0ZvbnSiGRtYTlNPYmpl
+		Y3QIERokKTI3SUxRU1heZ253foWOkJKUoqeyu8LFAAAAAAAAAQEAAAAAAAAAHAAAAAAA
+		AAAAAAAAAAAAAM4=
 	</data>
-	<key>FontAntialias</key>
-	<true/>
-	<key>FontWidthSpacing</key>
-	<integer>1</integer>
-	<key>ProfileCurrentVersion</key>
-	<real>2.0699999999999998</real>
-	<key>SelectionColor</key>
+
+	<!-- Background style: Greyscale 0% (solid black), 85% opacity -->
+	<key>BackgroundBlur</key><real>0.0</real>
+	<key>BackgroundColor</key>
 	<data>
-	YnBsaXN0MDDUAQIDBAUGBwpYJHZlcnNpb25ZJGFyY2hpdmVyVCR0b3BYJG9iamVjdHMS
-	AAGGoF8QD05TS2V5ZWRBcmNoaXZlctEICVRyb290gAGjCwwTVSRudWxs0w0ODxAREldO
-	U1doaXRlXE5TQ29sb3JTcGFjZVYkY2xhc3NLMC4yNTQwMzIyNQAQA4AC0hQVFhdaJGNs
-	YXNzbmFtZVgkY2xhc3Nlc1dOU0NvbG9yohYYWE5TT2JqZWN0CBEaJCkyN0lMUVNXXWRs
-	eYCMjpCVoKmxtAAAAAAAAAEBAAAAAAAAABkAAAAAAAAAAAAAAAAAAAC9
+		YnBsaXN0MDDUAQIDBAUGBwpYJHZlcnNpb25ZJGFyY2hpdmVyVCR0b3BYJG9iamVjdHMS
+		AAGGoF8QD05TS2V5ZWRBcmNoaXZlctEICVRyb290gAGjCwwTVSRudWxs0w0ODxAREldO
+		U1doaXRlXE5TQ29sb3JTcGFjZVYkY2xhc3NNMCAwLjg1MDAwMDAyABADgALSFBUWF1ok
+		Y2xhc3NuYW1lWCRjbGFzc2VzV05TQ29sb3KiFhhYTlNPYmplY3QIERokKTI3SUxRU1dd
+		ZGx5gI6Qkpeiq7O2AAAAAAAAAQEAAAAAAAAAGQAAAAAAAAAAAAAAAAAAAL8=
 	</data>
-	<key>ShowWindowSettingsNameInTitle</key>
-	<false/>
-	<key>TextBoldColor</key>
-	<data>
-	YnBsaXN0MDDUAQIDBAUGBwpYJHZlcnNpb25ZJGFyY2hpdmVyVCR0b3BYJG9iamVjdHMS
-	AAGGoF8QD05TS2V5ZWRBcmNoaXZlctEICVRyb290gAGjCwwTVSRudWxs0w0ODxAREldO
-	U1doaXRlXE5TQ29sb3JTcGFjZVYkY2xhc3NCMQAQA4AC0hQVFhdaJGNsYXNzbmFtZVgk
-	Y2xhc3Nlc1dOU0NvbG9yohYYWE5TT2JqZWN0CBEaJCkyN0lMUVNXXWRseYCDhYeMl6Co
-	qwAAAAAAAAEBAAAAAAAAABkAAAAAAAAAAAAAAAAAAAC0
-	</data>
+
+	<!-- Regular-intensity text colour: Greyscale 95%, 100% opacity -->
 	<key>TextColor</key>
 	<data>
-	YnBsaXN0MDDUAQIDBAUGBwpYJHZlcnNpb25ZJGFyY2hpdmVyVCR0b3BYJG9iamVjdHMS
-	AAGGoF8QD05TS2V5ZWRBcmNoaXZlctEICVRyb290gAGjCwwTVSRudWxs0w0ODxAREldO
-	U1doaXRlXE5TQ29sb3JTcGFjZVYkY2xhc3NLMC45NDc1ODA2NAAQA4AC0hQVFhdaJGNs
-	YXNzbmFtZVgkY2xhc3Nlc1dOU0NvbG9yohYYWE5TT2JqZWN0CBEaJCkyN0lMUVNXXWRs
-	eYCMjpCVoKmxtAAAAAAAAAEBAAAAAAAAABkAAAAAAAAAAAAAAAAAAAC9
+		YnBsaXN0MDDUAQIDBAUGBwpYJHZlcnNpb25ZJGFyY2hpdmVyVCR0b3BYJG9iamVjdHMS
+		AAGGoF8QD05TS2V5ZWRBcmNoaXZlctEICVRyb290gAGjCwwTVSRudWxs0w0ODxAREldO
+		U1doaXRlXE5TQ29sb3JTcGFjZVYkY2xhc3NLMC45NDc1ODA2NAAQA4AC0hQVFhdaJGNs
+		YXNzbmFtZVgkY2xhc3Nlc1dOU0NvbG9yohYYWE5TT2JqZWN0CBEaJCkyN0lMUVNXXWRs
+		eYCMjpCVoKmxtAAAAAAAAAEBAAAAAAAAABkAAAAAAAAAAAAAAAAAAAC9
 	</data>
-	<key>VisualBell</key>
-	<false/>
-	<key>columnCount</key>
-	<integer>223</integer>
-	<key>name</key>
-	<string>Pro</string>
-	<key>rowCount</key>
-	<integer>58</integer>
-	<key>shellExitAction</key>
-	<integer>2</integer>
-	<key>type</key>
-	<string>Window Settings</string>
+
+	<!-- High-intensity text colour: Greyscale 100%, 100% opacity -->
+	<key>TextBoldColor</key>
+	<data>
+		YnBsaXN0MDDUAQIDBAUGBwpYJHZlcnNpb25ZJGFyY2hpdmVyVCR0b3BYJG9iamVjdHMS
+		AAGGoF8QD05TS2V5ZWRBcmNoaXZlctEICVRyb290gAGjCwwTVSRudWxs0w0ODxAREldO
+		U1doaXRlXE5TQ29sb3JTcGFjZVYkY2xhc3NCMQAQA4AC0hQVFhdaJGNsYXNzbmFtZVgk
+		Y2xhc3Nlc1dOU0NvbG9yohYYWE5TT2JqZWN0CBEaJCkyN0lMUVNXXWRseYCDhYeMl6Co
+		qwAAAAAAAAEBAAAAAAAAABkAAAAAAAAAAAAAAAAAAAC0
+	</data>
+
+	<!-- Box-shaped input cursor: Greyscale 30%, 100% opacity -->
+	<key>CursorColor</key>
+	<data>
+		YnBsaXN0MDDUAQIDBAUGBwpYJHZlcnNpb25ZJGFyY2hpdmVyVCR0b3BYJG9iamVjdHMS
+		AAGGoF8QD05TS2V5ZWRBcmNoaXZlctEICVRyb290gAGjCwwTVSRudWxs0w0ODxAREldO
+		U1doaXRlXE5TQ29sb3JTcGFjZVYkY2xhc3NLMC4zMDI0MTkzNgAQA4AC0hQVFhdaJGNs
+		YXNzbmFtZVgkY2xhc3Nlc1dOU0NvbG9yohYYWE5TT2JqZWN0CBEaJCkyN0lMUVNXXWRs
+		eYCMjpCVoKmxtAAAAAAAAAEBAAAAAAAAABkAAAAAAAAAAAAAAAAAAAC9
+	</data>
+
+	<!-- Selected text background: Greyscale 25%, 100% opacity -->
+	<key>SelectionColor</key>
+	<data>
+		YnBsaXN0MDDUAQIDBAUGBwpYJHZlcnNpb25ZJGFyY2hpdmVyVCR0b3BYJG9iamVjdHMS
+		AAGGoF8QD05TS2V5ZWRBcmNoaXZlctEICVRyb290gAGjCwwTVSRudWxs0w0ODxAREldO
+		U1doaXRlXE5TQ29sb3JTcGFjZVYkY2xhc3NLMC4yNTQwMzIyNQAQA4AC0hQVFhdaJGNs
+		YXNzbmFtZVgkY2xhc3Nlc1dOU0NvbG9yohYYWE5TT2JqZWN0CBEaJCkyN0lMUVNXXWRs
+		eYCMjpCVoKmxtAAAAAAAAAEBAAAAAAAAABkAAAAAAAAAAAAAAAAAAAC9
+	</data>
 </dict>
 </plist>
