@@ -21,6 +21,8 @@ reddit.*###credential_picker_container
 ! More of Google's UI syphilis
 youtube.com##.ytp-paid-content-overlay
 youtube.com##ytm-paid-content-overlay-renderer
+youtube.com##ytd-app[fullscreen] #masthead-container
+youtube.com##ytd-subscribe-button-renderer yt-smartimation
 youtube.com###newness-dot
 youtube.com###sponsor-button
 youtube.com###yt-button-view-model
