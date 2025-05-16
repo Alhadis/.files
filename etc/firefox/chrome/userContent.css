@@ -198,6 +198,13 @@ and    not (-moz-bool-pref: "layout.css.control-characters.visible"){
 	}
 }
 
+/* Hide tooltips on OpenBSD's manual pages */
+@-moz-document domain(man.openbsd.org){
+	main.manual-text [class]:hover::before{
+		content: none !important;
+	}
+}
+
 /* Apple podcasts */
 @-moz-document domain(podcasts.apple.com){
 	/* Make close buttons of “Choose another country…” notices easier to click */
