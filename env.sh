@@ -208,6 +208,13 @@ case `uname` in [Dd]arwin)
 		[ -d "$path/info" ] && INFOPATH="$INFOPATH:$path/info"
 	done
 	
+	# Include non-brewed pip(1)-installed packages in search paths
+	for path in `printf '%s\n' ~/Library/Python/* 2>/dev/null | sort -rV`; do
+		[ -d "$path/bin"  ] && PATH="$PATH:$path/bin"
+		[ -d "$path/man"  ] && MANPATH="$MANPATH:$path/man"
+		[ -d "$path/info" ] && INFOPATH="$INFOPATH:$path/info"
+	done
+	
 	# macOS's man(1) gets confused if $MANPATH starts with a colon
 	MANPATH=${MANPATH#:}
 	
