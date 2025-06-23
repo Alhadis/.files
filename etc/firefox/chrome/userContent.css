@@ -308,6 +308,12 @@ and    not (-moz-bool-pref: "layout.css.control-characters.visible"){
 		ytm-shorts-lockup-view-model,
 		ytm-shorts-lockup-view-model-v2
 	){ display: none !important; }
+	
+	/* Hide unused buttons */
+	yt-button-view-model:has(button-view-model > button:is(
+		[aria-label="Clip"   i],
+		[aria-label="Thanks" i],
+	)){ display: none !important; }
 
 	/* Improve contrast of playback progress bars */
 	.ytp-cairo-refresh-signature-moments .ytp-play-progress,
