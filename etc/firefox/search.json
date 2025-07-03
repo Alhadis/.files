@@ -187,7 +187,7 @@
 			"_metaData": {
 				"loadPathHash": "RtSgfvhnVpE5T/Pchc1W9z/Og6FjFstTF8f9d3e2j7s=",
 				"updateexpir": 1733914433555,
-				"order": 18
+				"order": 20
 			},
 			"_urls": [{
 				"params":   [],
@@ -216,7 +216,7 @@
 			"_loadPath": "[user]",
 			"description": "Search the Mozilla Developer Network for web technology docs",
 			"_iconMapObj": {"1000": "data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz48c3ZnIHZlcnNpb249IjEuMSIgdmlld0JveD0iMCAwIDEwMDAgMTAwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCBmaWxsPSIjMTUxNDFhIiB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIi8+PHBhdGggZmlsbD0iI2ZmZiIgZD0ibTQwMSAyMjUtMTcxIDU1MmgtNzBsMTcxLTU1MlptNjIgMHY1NTJoLTYydi01NTJabTI0MSAwLTE3MSA1NTJoLTcwbDE3MS01NTJabTYyIDB2NTUyaC02MnYtNTUyWiIvPjwvc3ZnPg"},
-			"_metaData": {"order": 19},
+			"_metaData": {"order": 21},
 			"_urls": [{
 				"params":   [],
 				"rels":     [],
@@ -232,7 +232,7 @@
 			"_loadPath": "[user]",
 			"description": "Search the source code of Mozilla Firefox",
 			"_iconMapObj": {"1000": "data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiPz4KPHN2ZyB2ZXJzaW9uPSIxLjEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgdmlld0JveD0iMCAwIDEwMDAgMTAwMCI+Cgk8bGluZWFyR3JhZGllbnQgaWQ9ImZpbGwiIGdyYWRpZW50VW5pdHM9InVzZXJTcGFjZU9uVXNlIiB4MT0iMTUxLjUiIHkxPSIxNTIuOCIgeDI9Ijc5NC41IiB5Mj0iNzk1LjkiPgoJCTxzdG9wIG9mZnNldD0iMCIgc3RvcC1jb2xvcj0iI2Y4YWQ2MiIvPgoJCTxzdG9wIG9mZnNldD0iMSIgc3RvcC1jb2xvcj0iI2UxMjg1MSIvPgoJPC9saW5lYXJHcmFkaWVudD4KCTxzdHlsZSB0eXBlPSJ0ZXh0L2NzcyI+CgkJbGluZSwgZWxsaXBzZXsKCQkJZmlsbDogbm9uZTsKCQkJc3Ryb2tlOiB1cmwoI2ZpbGwpOwoJCQlzdHJva2Utd2lkdGg6IDE1MDsKCQkJc3Ryb2tlLWxpbmVjYXA6IHJvdW5kOwoJCX0KCTwvc3R5bGU+Cgk8bGluZSB4MT0iNzQxLjkiIHkxPSI3NDAuMSIgeDI9IjkyMy4yIiB5Mj0iOTIxLjQiLz4KCTxlbGxpcHNlIGN4PSI0NjAuNiIgY3k9IjQ2MS45IiByeD0iMzgxIiByeT0iMzg3LjciLz4KPC9zdmc+Cg"},
-			"_metaData": {"order": 16},
+			"_metaData": {"order": 18},
 			"_urls": [{
 				"params":   [],
 				"rels":     [],
@@ -274,12 +274,48 @@
 			"_updateInterval": null,
 			"_updateURL":      null
 		},{
+			"id": "1e160e9f-bdbb-4739-8020-6f60bfbca9de",
+			"_name": "Dictionary",
+			"_loadPath": "[user]",
+			"description": "Search for English-language definitions",
+			"_iconMapObj": {"1000": "data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz48c3ZnIHZlcnNpb249IjEuMSIgdmlld0JveD0iMCAwIDEwMDAgMTAwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCBmaWxsPSIjMDAyNDhiIiB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIi8+PHBhdGggZmlsbD0iI2ZmZiIgZD0iTTQ5OSAxODNMMTg5IDE4MEMxODggMTgwIDE4NiAxODAgMTg1IDE4MSAxODQgMTgxIDE4MyAxODIgMTgzIDE4MiAxODIgMTgzIDE4MSAxODQgMTgxIDE4NSAxODAgMTg2IDE4MCAxODcgMTgwIDE4OFY3MjJDMTgwIDcyNCAxODAgNzI1IDE4MSA3MjcgMTgyIDcyOCAxODMgNzI5IDE4NSA3MzBMNDE3IDg2NUM0MTkgODY2IDQyMSA4NjYgNDIzIDg2NSA0MjUgODY1IDQyNiA4NjQgNDI3IDg2MiA0MjggODYxIDQyOCA4NTkgNDI4IDg1OFYzNTlDNDI4IDM1OCA0MjggMzU2IDQyNyAzNTQgNDI2IDM1MyA0MjUgMzUyIDQyMyAzNTFMMzAwIDI4NEMyOTkgMjgzIDI5OCAyODIgMjk4IDI4MSAyOTcgMjgwIDI5NyAyNzkgMjk4IDI3OCAyOTggMjc2IDI5OSAyNzYgMzAwIDI3NSAzMDEgMjc0IDMwMiAyNzQgMzAzIDI3NEw1MjYgMzEyQzUyOCAzMTMgNTMwIDMxNCA1MzIgMzE1IDUzMyAzMTcgNTM0IDMxOSA1MzQgMzIxVjc3MEM1MzQgNzcyIDUzNCA3NzUgNTM2IDc3NiA1MzggNzc4IDU0MCA3NzkgNTQyIDc3OUg1NDMgQzcwOSA3NjEgODIxIDY0NSA4MjMgNDg0IDgyNiAzMDUgNjkyIDE4NSA0OTkgMTgzWiIvPjwvc3ZnPg"},
+			"_metaData": {"order": 15},
+			"_urls": [{
+				"params":   [],
+				"rels":     [],
+				"template": "https://www.dictionary.com/browse/{searchTerms}"
+			}],
+			"_definedAliases": ["@dict"],
+			"_orderHint":      null,
+			"_telemetryId":    null,
+			"_filePath":       null,
+			"_updateInterval": null,
+			"_updateURL":      null
+		},{
+			"id": "76b4abbc-612b-4790-b439-d8cdbda0a36c",
+			"_name": "Thesaurus",
+			"_loadPath": "[user]",
+			"description": "Search for synonyms and antonyms",
+			"_iconMapObj": {"1000": "data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz48c3ZnIHZlcnNpb249IjEuMSIgdmlld0JveD0iMCAwIDEwMDAgMTAwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCBmaWxsPSIjZjQ0NzI1IiB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIi8+PHBhdGggZmlsbD0iI2ZmZiIgZD0iTTYzMSA4OTBDNjMxIDg5MiA2MzEgODkzIDYzMCA4OTQgNjMwIDg5NSA2MjkgODk2IDYyNyA4OTcgNjI2IDg5OCA2MjUgODk4IDYyMyA4OTggNjIyIDg5OCA2MjAgODk4IDYxOSA4OTdMNTgyIDg3NiAzNzUgNzU2QzM3NCA3NTUgMzczIDc1NCAzNzIgNzUzIDM3MSA3NTEgMzcxIDc1MCAzNzEgNzQ4VjQ3OUMzNzEgNDc3IDM3MCA0NzUgMzY4IDQ3MyAzNjYgNDcyIDM2NCA0NzEgMzYyIDQ3MUgxNzhDMTc2IDQ3MSAxNzUgNDcxIDE3NCA0NzAgMTczIDQ3MCAxNzIgNDY5IDE3MSA0NjggMTcwIDQ2NyAxNzAgNDY2IDE2OSA0NjUgMTY5IDQ2NCAxNjkgNDYzIDE2OSA0NjJWMTg5QzE2OSAxODYgMTY5IDE4NCAxNzEgMTgyIDE3MyAxODEgMTc1IDE4MCAxNzggMTgwSDgzNEM4MzUgMTgwIDgzNiAxODAgODM3IDE4MCA4MzggMTgxIDgzOSAxODEgODQwIDE4MiA4NDEgMTgzIDg0MiAxODQgODQyIDE4NSA4NDIgMTg2IDg0MyAxODcgODQzIDE4OVY0NjJDODQzIDQ2NCA4NDIgNDY2IDg0MCA0NjggODM4IDQ3MCA4MzYgNDcxIDgzNCA0NzFINzUwQzc0OSA0NzEgNzQ4IDQ3MSA3NDcgNDcwIDc0NiA0NzAgNzQ1IDQ2OSA3NDQgNDY4IDc0MyA0NjcgNzQzIDQ2NiA3NDIgNDY1IDc0MiA0NjQgNzQxIDQ2MyA3NDEgNDYyVjMyN0M3NDIgMzI1IDc0MSAzMjMgNzM5IDMyMSA3MzggMzIwIDczNiAzMTkgNzM0IDMxOEw1MDAgMjc5QzQ5OSAyNzggNDk4IDI3OSA0OTcgMjc5IDQ5NiAyODAgNDk1IDI4MSA0OTQgMjgyIDQ5NCAyODMgNDk0IDI4NCA0OTQgMjg2IDQ5NSAyODcgNDk2IDI4OCA0OTcgMjg4TDYyNiAzNTlDNjI4IDM2MCA2MjkgMzYxIDYzMCAzNjIgNjMxIDM2NCA2MzEgMzY2IDYzMSAzNjdWNDcxTDYzMSA4OTBaIi8+PC9zdmc+"},
+			"_metaData": {"order": 16},
+			"_urls": [{
+				"params":   [],
+				"rels":     [],
+				"template": "https://www.thesaurus.com/browse/{searchTerms}"
+			}],
+			"_definedAliases": ["@aka", "@thes"],
+			"_orderHint":      null,
+			"_telemetryId":    null,
+			"_filePath":       null,
+			"_updateInterval": null,
+			"_updateURL":      null
+		},{
 			"id": "370019b5-5352-430c-99da-26bd61d7440e",
 			"_name": "Graphemica",
 			"_loadPath": "[user]",
 			"description": "Search for Unicode characters",
 			"_iconMapObj": {"1000": "data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiPz48c3ZnIHZlcnNpb249IjEuMSIgdmlld0JveD0iMCAwIDEwMDAgMTAwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCBmaWxsPSIjZmZmIiB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIi8+PHBhdGggZD0iTTgzNSA3NjN2LTI2MnMtMTY4IDAtMTY4IDB2MjA2Yy0xMTMgNTctMjIzIDExLTIyMyAxMS0yMDktODEtMTU3LTQzMSA3MS00NDggOTMtNiAxNTcgMjUgMjA2IDc0bDg3LTEyMnMtMTA2LTEwMi0yOTMtMTAyLTI0NCA4MC0zMDkgMTcyYy0xMjkgMTg0LTM3IDQyMiA2MSA0OTkgMTY0IDE0MSA0MzEgMTIwIDU2OC0yOFoiLz48L3N2Zz4"},
-			"_metaData": {"order": 15},
+			"_metaData": {"order": 17},
 			"_urls": [{
 				"params":   [],
 				"rels":     [],
@@ -297,7 +333,7 @@
 			"_iconMapObj": {"1000": "data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiPz48c3ZnIHZlcnNpb249IjEuMSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB2aWV3Qm94PSIwIDAgMTAwMCAxMDAwIj48cGF0aCBmaWxsPSIjZjJmZDUzIiBkPSJNNTAwIDEwMDBjMzg0IDAgNjI0LTQxOCA0MzMtNzUxLTE5Mi0zMzMtNjc0LTMzMy04NjUgMC0xOTIgMzMzIDQ5IDc1MSA0MzMgNzUxWiIvPjxwYXRoIGZpbGw9IiMxZTI5MzUiIGQ9Ik0zNTggNDM5Yy0xLTMtMi0xMS0zLTEzIDQtNyAyMy0xMCAzMi0xNiA3IDMgMjIgOSAzMCAxMiAxNS03IDMxLTggMzYgOSA1IDIyLTkgNTEtMSA3NiA0IDM2LTggNSAyIDY0IDUgMjQgMyA2MCAxMyA0OCA2LTQgMy01IDM2IDE0IDIyIDE3IDI3IDQgMTcgMzgtMzggMTktMTAwIDUtMTMwLTEzLTgtMS02MiAxOS03NSAyNC01My0xMi00Ny0zNS01Ni0yNS0yMiAxNC0zLTEwNC0xMC0xMTItNy0zNSAyNS0xMTQtNDAtOTItMTItMTktMTQtNi0yNC0yNiAxNC0xOSAzNy0xNyA2Ny0xMiA0NSA4IDM1IDIyIDI2IDc2LTMgMTItMyAxNCAwIDE3IDQgMjYtNiAzNyA0IDgxIDAgMCA1IDMzIDUgMzMgMzggMTkgNzQgNiAxMTEtMTUgMTMtMjMgMTUtMTA3IDI1LTEzOCAxMi0yMy0xNC0zMS02My0yOFpNNjYyIDMyMGMyNSA1IDQwLTEyIDU1IDggMTAgMTItNCAyNyAzIDQxIDYgMTAtNSA1OCAwIDY4IDMgOSAzIDExIDAgMjMtNiAyMSA2IDExIDAgMzAtMyA5LTMgMTEgMCAxMyA2IDgtNiAxNCAwIDMwIDMgOSAxMiA3NyAxNCA4NSAxMiAxMyAyOSAyMCA1MSAyNSA4IDIgOCAyIDkgMTAgMiAxNS0xMCAxOC0yNCAyNC0xMyA5LTM2LTMtNDcgMXMtMzItMTQtNDEtMThjLTE5IDktNTAgMTktNjUgMjQtMTA4LTItMTMzLTE2OC02My0yMzUgMzAtMjkgNTgtMzkgOTktMTkgMTYgNyAyNSAxMCAzNyAxMSAyLTUgNy0xNCA5LTE4LTE2LTE4IDAtNzEtMjYtNjktNiAxLTQ5LTYtNTItOS03LTMyIDE1LTI4IDQzLTI0Wk02MDcgNjM3YzE2LTYgMzYtOSA0NC0yMyA3LTkgMTAtMTEgMTUtMTEgOSAxIDgtMjggMTgtMzkgNy01IDAtMjUtMS0zMS0xMS0zMyA3LTI3LTUtNDktOS0xNC0xMy01LTI0LTE3LTE0LTE0LTQ5LTE4LTYxLTUtMzIgMzAtNDAgMjYtMzggNzgtNSA0NyAxNSA1NyA1NCA5N1pNNTAwIDk2MWMzNTQgMCA1NzYtMzg2IDM5OS02OTMtMTc3LTMwNy02MjItMzA3LTc5OCAwLTE3NyAzMDcgNDUgNjkzIDM5OSA2OTNaIi8+PC9zdmc+"},
 			"_metaData": {
 				"loadPathHash": "L+8q9lHbOv0dgFzDEHSRKgVNRwd4ZRfIFCT5u8p6yDg=",
-				"order": 17
+				"order": 19
 			},
 			"_urls": [{
 				"params":   [],
@@ -318,7 +354,7 @@
 			"_iconMapObj": {"1000": "data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiPz48c3ZnIHZlcnNpb249IjEuMSIgdmlld0JveD0iMCAwIDEwMDAgMTAwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cGF0aCBmaWxsPSIjZGEyMDM3IiBkPSJNNDI5IDIzNWMwIDEwNy04NyAxOTQtMTk0IDE5NFM0MSAzNDIgNDEgMjM1IDEyOCA0MSAyMzUgNDFzMTk0IDg3IDE5NCAxOTRaTTk2OCAyMzVjMCAxMDctODcgMTk0LTE5NCAxOTRzLTE5NC04Ny0xOTQtMTk0IDg3LTE5NCAxOTQtMTk0IDE5NCA4NyAxOTQgMTk0Wk00MjkgNzc0YzAgMTA3LTg3IDE5NC0xOTQgMTk0cy0xOTQtODctMTk0LTE5NCA4Ny0xOTQgMTk0LTE5NCAxOTQgODcgMTk0IDE5NFpNOTY4IDc3NGMwIDEwNy04NyAxOTQtMTk0IDE5NHMtMTk0LTg3LTE5NC0xOTQgODctMTk0IDE5NC0xOTQgMTk0IDg3IDE5NCAxOTRaIi8+PC9zdmc+"},
 			"_metaData": {
 				"loadPathHash": "CrRlXZoF/7ABTHBk3SUUxwgLMVFPlYfQ1R7Pc6Fnbq8=",
-				"order": 20
+				"order": 22
 			},
 			"_urls": [{
 				"params":   [],
@@ -339,7 +375,7 @@
 			"_iconMapObj": {"1000": "data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiPz48c3ZnIHZlcnNpb249IjEuMSIgdmlld0JveD0iMCAwIDEwMDAgMTAwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCBmaWxsPSIjY2IzODM3IiB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIi8+PHBvbHlnb24gZmlsbD0iI2ZmZiIgcG9pbnRzPSIxNjcgODMyIDUwMCA4MzIgNTAwIDMzMyA2NjYgMzMzIDY2NiA4MzIgODM0IDgzMiA4MzQgMTY2IDE2NyAxNjYgMTY3IDgzMiIvPjwvc3ZnPg"},
 			"_metaData": {
 				"loadPathHash": "V0alZd8ehUHJDExKzWlll13q3oNLOBTRNcv5x9vHdXU=",
-				"order": 21
+				"order": 23
 			},
 			"_urls": [{
 				"params":   [],
@@ -361,7 +397,7 @@
 			"_metaData": {
 				"loadPathHash": "qqT5G2zqJ4fR8pdYCAW7N8K7sNe2kGg4epwvH8OX11w=",
 				"updateexpir": 1734295497430,
-				"order": 22
+				"order": 24
 			},
 			"_urls": [{
 				"params":   [],
@@ -384,7 +420,7 @@
 			"_name": "Schema.org",
 			"_loadPath": "[user]",
 			"_iconMapObj": {"64": "data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz48c3ZnIHZlcnNpb249IjEuMSIgdmlld0JveD0iMCAwIDY0IDY0IiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPjxyZWN0IGZpbGw9IiM5MDAiIHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiLz48dGV4dCBmaWxsPSIjZmZmIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmb250LXdlaWdodD0iNTAwIiBmb250LXNpemU9IjE3LjkiIGZvbnQtZmFtaWx5PSJBcmlhbCwgSGVsdmV0aWNhLCBzYW5zLXNlcmlmIiB0ZXh0LXJlbmRlcmluZz0ib3B0aW1pemVMZWdpYmlsaXR5Ij48dHNwYW4geD0iNTElIiB5PSI0NSUiPnNjaGVtYTwvdHNwYW4+PHRzcGFuIHg9IjUxJSIgeT0iNjYuNSUiPi5vcmc8L3RzcGFuPjwvdGV4dD48L3N2Zz4"},
-			"_metaData": {"order": 26},
+			"_metaData": {"order": 29},
 			"_urls": [{
 				"params":   [],
 				"rels":     [],
@@ -402,7 +438,7 @@
 			"_iconMapObj": {"1000": "data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz48c3ZnIHZlcnNpb249IjEuMSIgdmlld0JveD0iMCAwIDEwMDAgMTAwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCBmaWxsPSIjZTAxZDI2IiB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIi8+PHBhdGggZmlsbD0iI2ZmZiIgZD0iTTMzMCA2ODJoMTEybDEyIDU3SDcxNFY1NzRIODIzVjQ1NEg3MTRWNDA4SDg0MFYyNzdINTU3bDIgMjgzLTkxLTI4M0gyOTlMMTYwIDc0MGgxNTdabTU2LTI0NSAyNSAxMjItNTUgMVoiLz48L3N2Zz4"},
 			"_metaData": {
 				"loadPathHash": "NKVl/zWMUonCPsa3vaCb14V1tqqtpSxZ4xvOCjA5EYw=",
-				"order": 23
+				"order": 25
 			},
 			"_urls": [{
 				"params":   [],
@@ -433,7 +469,7 @@
 			"_iconMapObj": {"200": "data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiPz48c3ZnIHZlcnNpb249IjEuMSIgdmlld0JveD0iMCAwIDIwMCAyMDAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiPjxmaWx0ZXIgaWQ9ImEiIGZpbHRlclVuaXRzPSJ1c2VyU3BhY2VPblVzZSIgY29sb3ItaW50ZXJwb2xhdGlvbi1maWx0ZXJzPSJzUkdCIj48ZmVGbG9vZCBmbG9vZC1vcGFjaXR5PSIwIiByZXN1bHQ9ImJnIi8+PGZlQ29sb3JNYXRyaXggaW49IlNvdXJjZUFscGhhIiB2YWx1ZXM9IjAgMCAwIDAgMCAwIDAgMCAwIDAgMCAwIDAgMCAwIDAgMCAwIDEyNyAwIiByZXN1bHQ9ImN1dG91dCIvPjxmZU9mZnNldCBkeT0iMSIvPjxmZUdhdXNzaWFuQmx1ciBzdGREZXZpYXRpb249IjEuNSIvPjxmZUNvbG9yTWF0cml4IHZhbHVlcz0iMCAwIDAgMCAwIDAgMCAwIDAgMCAwIDAgMCAwIDAgMCAwIDAgMC4yMiAwIi8+PGZlQmxlbmQgaW4yPSJiZyIgcmVzdWx0PSJzaGFkb3cxIi8+PGZlQ29sb3JNYXRyaXggaW49IlNvdXJjZUFscGhhIiB2YWx1ZXM9IjAgMCAwIDAgMCAwIDAgMCAwIDAgMCAwIDAgMCAwIDAgMCAwIDEyNyAwIiByZXN1bHQ9ImN1dG91dCIvPjxmZU9mZnNldCBkeT0iMSIvPjxmZUdhdXNzaWFuQmx1ciBzdGREZXZpYXRpb249IjEuNSIvPjxmZUNvbG9yTWF0cml4IHZhbHVlcz0iMCAwIDAgMCAwIDAgMCAwIDAgMCAwIDAgMCAwIDAgMCAwIDAgMC4yMiAwIi8+PGZlQmxlbmQgaW4yPSJzaGFkb3cxIiByZXN1bHQ9InNoYWRvdzIiLz48ZmVCbGVuZCBpbj0iU291cmNlR3JhcGhpYyIgaW4yPSJzaGFkb3cyIiByZXN1bHQ9InNoYXBlIi8+PC9maWx0ZXI+PGZpbHRlciBpZD0iYiIgeD0iMTY5IiB5PSItMiIgd2lkdGg9IjM0IiBoZWlnaHQ9IjcyLjY4NzUiIGZpbHRlclVuaXRzPSJ1c2VyU3BhY2VPblVzZSIgY29sb3ItaW50ZXJwb2xhdGlvbi1maWx0ZXJzPSJzUkdCIj48ZmVGbG9vZCBmbG9vZC1vcGFjaXR5PSIwIiByZXN1bHQ9ImJnIi8+PGZlQ29sb3JNYXRyaXggaW49IlNvdXJjZUFscGhhIiB2YWx1ZXM9IjAgMCAwIDAgMCAwIDAgMCAwIDAgMCAwIDAgMCAwIDAgMCAwIDEyNyAwIiByZXN1bHQ9ImhhcmRBbHBoYSIvPjxmZU9mZnNldCBkeT0iMC4zNzUiLz48ZmVHYXVzc2lhbkJsdXIgc3RkRGV2aWF0aW9uPSIwLjU2MjUiLz48ZmVDb2xvck1hdHJpeCB2YWx1ZXM9IjAgMCAwIDAgMCAwIDAgMCAwIDAgMCAwIDAgMCAwIDAgMCAwIDAuMjIgMCIvPjxmZUJsZW5kIGluMj0iYmciIHJlc3VsdD0ic2hhZG93MSIvPjxmZUNvbG9yTWF0cml4IGluPSJTb3VyY2VBbHBoYSIgdmFsdWVzPSIwIDAgMCAwIDAgMCAwIDAgMCAwIDAgMCAwIDAgMCAwIDAgMCAxMjcgMCIgcmVzdWx0PSJoYXJkQWxwaGEiLz48ZmVPZmZzZXQgZHk9IjEiLz48ZmVHYXVzc2lhbkJsdXIgc3RkRGV2aWF0aW9uPSIxLjUiLz48ZmVDb2xvck1hdHJpeCB2YWx1ZXM9IjAgMCAwIDAgMCAwIDAgMCAwIDAgMCAwIDAgMCAwIDAgMCAwIDAuMjIgMCIvPjxmZUJsZW5kIGluMj0ic2hhZG93MSIgcmVzdWx0PSJzaGFkb3cyIi8+PGZlQmxlbmQgaW49IlNvdXJjZUdyYXBoaWMiIGluMj0ic2hhZG93MiIgcmVzdWx0PSJzaGFwZSIvPjwvZmlsdGVyPjxjbGlwUGF0aCBpZD0iYyI+PHJlY3Qgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgcng9IjglIiBmaWxsPSIjZmZmIiBzdHJva2Utd2lkdGg9IjYuMjUiLz48L2NsaXBQYXRoPjxnIGNsaXAtcGF0aD0idXJsKCNjKSI+PHJlY3QgZmlsdGVyPSJ1cmwoI2EpIiBmaWxsPSIjZmZiNzFiIiB3aWR0aD0iMTQlIiBoZWlnaHQ9IjMzLjMlIiB4PSI4NiUiIHk9IjY2LjYlIi8+PHJlY3QgZmlsdGVyPSJ1cmwoI2EpIiBmaWxsPSIjOTMzNThkIiB3aWR0aD0iMTQlIiBoZWlnaHQ9IjMzLjMlIiB4PSI4NiUiIHk9IjMzLjMlIi8+PHJlY3QgZmlsdGVyPSJ1cmwoI2IpIiBmaWxsPSIjMDBhN2UxIiB3aWR0aD0iMTQlIiBoZWlnaHQ9IjMzLjMlIiB4PSI4NiUiIHk9IjAlIi8+PHJlY3QgZmlsdGVyPSJ1cmwoI2EpIiBmaWxsPSIjMDA1Y2I5IiB3aWR0aD0iODYlIiBoZWlnaHQ9IjEwMCUiLz48cGF0aCBmaWxsPSIjZmZmIiBkPSJtNTEuMzc1IDUzLjV2NS42ODc1YzIuODUzMSAwLjM3MjkyIDEwLjQyNSAyLjU5NjYgMTAuNjg4IDQuODEyNXY3Ny41YzAgMS42NjY3LTMuNTYyNSAzLjI1LTEwLjY4OCA0Ljc1djUuNjg3NWg3My44MTJjMS40MjM1LTcuODY0IDIuNDg3MS0xNS43ODkgMy4xODc1LTIzLjc1bC01LjY4NzUtMmMtMi4xNTI4IDUuOTkzMS00LjUyMDggMTAuMzEyLTYuODEyNSAxMi44MTItNC4yOTY3IDQuNDc0Ny0xMC44NTkgMy40MTY3LTE4LjMxMiAzLjU2MjUtMTIuMTQzLTAuMDM0NC0xNS45MzgtMS4zNzI0LTE1LjkzOC01di0zNC43NWMxNS4xMjYtMC4yMjI2MiAyMS44NjktMC40MDM1NiAyNi40MzggNC4zMTI1IDMuNTEzMS0yLjk1MTYgNC4zNjMzLTUuMzcxNyA3LjE4NzUtOS44NzVsLTIuNTYyNS0yLjc1aC0zMS4wNjJ2LTMxLjYyNWgyNi4yNWMzLjc5MTcgMCA1LjkxNjcgNC45NTgzIDYuMzc1IDE0Ljg3NWg1Ljg3NWMwLjkyMTc5LTMuNjExNCAyLjY2MzYtMTMuMzY1IDMuMTg3NS0yMS43NWwtMy4xODc1LTIuNXoiLz48L2c+PC9zdmc+"},
 			"_metaData": {
 				"loadPathHash": "NgclwCpspiJ/mM08TwA9MujLX5qLpbN9EoNgAh5UE54=",
-				"order": 25
+				"order": 28
 			},
 			"_urls": [{
 				"params":   [],
@@ -454,7 +490,7 @@
 			"_iconMapObj": {"1000": "data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz48c3ZnIHZlcnNpb249IjEuMSIgdmlld0JveD0iMCAwIDEwMDAgMTAwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cGF0aCBmaWxsPSIjZGJkYmRiIiBkPSJNOTMxLjcgOTk4LjNjMzYuNSAwIDY2LjQtMjkuNCA2Ni40LTY1LjRWMjY1LjhjMC0zNi0yOS45LTY1LjQtNjYuNC02NS40SDI4My42bDI2MC4xIDc5Ny45aDM4OHoiLz48cGF0aCBmaWxsPSIjZGNkY2RjIiBkPSJNOTMxLjcgMjMwLjRjOS43IDAgMTguOSAzLjggMjUuOCAxMC42IDYuOCA2LjcgMTAuNiAxNS41IDEwLjYgMjQuOHY2NjcuMWMwIDkuMy0zLjcgMTguMS0xMC42IDI0LjgtNi45IDYuOC0xNi4xIDEwLjYtMjUuOCAxMC42SDU2NS41TDMyNC45IDIzMC40aDYwNi44bTAtMzBIMjgzLjZsMjYwLjEgNzk3LjloMzg4YzM2LjUgMCA2Ni40LTI5LjQgNjYuNC02NS40VjI2NS44YzAtMzYtMjkuOS02NS40LTY2LjQtNjUuNHoiLz48cG9seWdvbiBmaWxsPSIjNDM1MmI4IiBwb2ludHM9IjQ4Mi4zLDgwOS44IDU0My43LDk5OC4zIDcxNC40LDgwOS44Ii8+PHBhdGggZmlsbD0iIzYwNzk4OCIgZD0iTTkzNi4xIDQ3Ni4xVjQzN0g3NDcuNnYtNjMuMmgtNjEuMlY0MzdINTY2LjF2MzkuMWgyMzkuNGMtMTIuOCA0NS4xLTQxLjEgODcuNy02OC43IDEyMC44LTQ4LjktNTcuOS00OS4xLTc2LjctNDkuMS03Ni43aC01MC44czIuMSAyOC4yIDcwLjcgMTA4LjZjLTIyLjMgMjIuOC0zOS4yIDM2LjMtMzkuMiAzNi4zbDE1LjYgNDguOHMyMy42LTIwLjMgNTMuMS01MS42YzI5LjYgMzIuMSA2Ny44IDcwLjcgMTE3LjIgMTE2LjdsMzIuMS0zMi4xYy01Mi45LTQ4LTkxLjctODYuMS0xMjAuMi0xMTYuNyAzOC4yLTQ1LjIgNzctMTAyLjEgODUuMi0xNTQuMkg5MzZ2LjF6Ii8+PHBhdGggZmlsbD0iIzQyODVmNCIgZD0iTTY2LjQgMEMyOS45IDAgMCAyOS45IDAgNjYuNXY2NzdjMCAzNi41IDI5LjkgNjYuNCA2Ni40IDY2LjRoNjQ4LjFMNDU0LjQgMGgtMzg4eiIvPjxsaW5lYXJHcmFkaWVudCBpZD0iYSIgZ3JhZGllbnRVbml0cz0idXNlclNwYWNlT25Vc2UiIHgxPSI1MzQuMyIgeTE9IjQzMy4yIiB4Mj0iOTk4LjEiIHkyPSI0MzMuMiI+PHN0b3Agb2Zmc2V0PSIwIiBzdG9wLWNvbG9yPSIjZmZmIiBzdG9wLW9wYWNpdHk9IjAuMiIvPjxzdG9wIG9mZnNldD0iMSIgc3RvcC1jb2xvcj0iI2ZmZiIgc3RvcC1vcGFjaXR5PSIwLjAyIi8+PC9saW5lYXJHcmFkaWVudD48cGF0aCBmaWxsPSJ1cmwoI2EpIiBkPSJNNTM0LjMgMjAwLjRoMzk3LjRjMzYuNSAwIDY2LjQgMjkuNCA2Ni40IDY1LjRWNjY2TDUzNC4zIDIwMC40eiIvPjxwYXRoIGZpbGw9IiNlZWUiIGQ9Ik0zNzEuNCA0MzAuNmMtMi41IDMwLjMtMjguNCA3NS4yLTkxLjEgNzUuMi01NC4zIDAtOTguMy00NC45LTk4LjMtMTAwLjJzNDQtMTAwLjIgOTguMy0xMDAuMmMzMC45IDAgNTEuNSAxMy40IDYzLjMgMjQuM2w0MS4yLTM5LjZjLTI3LjEtMjUtNjIuNC00MC42LTEwNC41LTQwLjYtODYuMSAwLTE1NiA2OS45LTE1NiAxNTZzNjkuOSAxNTYgMTU2IDE1NmM5MC4yIDAgMTQ5LjgtNjMuMyAxNDkuOC0xNTIuNiAwLTEyLjgtMS42LTIyLjItMy43LTMxLjhoLTE0NnY1My40bDkxIC4xeiIvPjxyYWRpYWxHcmFkaWVudCBpZD0iYiIgY3g9IjY1LjIwOCIgY3k9IjE5LjM2NiIgcj0iMTM5OC4yNzEiIGdyYWRpZW50VW5pdHM9InVzZXJTcGFjZU9uVXNlIj48c3RvcCBvZmZzZXQ9IjAiIHN0b3AtY29sb3I9IiNmZmYiIHN0b3Atb3BhY2l0eT0iLjEiLz48c3RvcCBvZmZzZXQ9IjEiIHN0b3AtY29sb3I9IiNmZmYiIHN0b3Atb3BhY2l0eT0iMCIvPjwvcmFkaWFsR3JhZGllbnQ+PHBhdGggZmlsbD0idXJsKCNiKSIgZD0iTTkzMS43IDIwMC40SDUxOC44TDQ1NC40IDBoLTM4OEMyOS45IDAgMCAyOS45IDAgNjYuNXY2NzdjMCAzNi41IDI5LjkgNjYuNCA2Ni40IDY2LjRoNDE1LjlsNjEuNCAxODguNGgzODhjMzYuNSAwIDY2LjQtMjkuNCA2Ni40LTY1LjRWMjY1LjhjMC0zNi0yOS45LTY1LjQtNjYuNC02NS40eiIvPjwvc3ZnPg"},
 			"_metaData": {
 				"loadPathHash": "uTcvDbQTjSAUCiXz0WLePE/dUbh+iYN6ZdR4GlbauqU=",
-				"order": 27
+				"order": 30
 			},
 			"_urls": [{
 				"params":   [],
@@ -475,7 +511,7 @@
 			"_iconMapObj": {"1000": "data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz48c3ZnIHZlcnNpb249IjEuMSIgdmlld0JveD0iMCAwIDEwMDAgMTAwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiBzdHlsZT0iY29sb3Itc2NoZW1lOmxpZ2h0IGRhcmsiPjxyZWN0IGZpbGw9IiMyMTIzMjciIHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiIHJ4PSIxNiUiLz48cGF0aCBmaWxsPSIjZjlmYWZiIiBkPSJNNjg0IDQ5N0M2ODQgMzYwIDU4OSAyOTAgNDczIDI5MCAzNTYgMjkwIDI2MiAzNjAgMjYyIDQ5N2MwIDEyNyA4MCAxOTYgMTg0IDIwNiA1NCA4NyAxMzggMTEzIDIyMyA4OWw2LTggOS04Mi0xNS04Yy00OCA0MC0xMjQgNDAtMTc1IDkgMTA3LTggMTkwLTc3IDE5MC0yMDZabS0xMDAgMGMwIDk0LTM2IDE3MC0xMTEgMTcwLTc5IDAtMTExLTc2LTExMS0xNzAgMC05NCAzMy0xNzAgMTExLTE3MCA4MCAwIDExMSA3NiAxMTEgMTcwWk03MjkgMTI1IDcwNSAyMjEgNjEwIDI0NXYxMGw5NSAyNCAyNSA5Nmg5TDc2MyAyNzkgODYwIDI1NFYyNDZMNzYzIDIyMSA3MzkgMTI1WiIvPjwvc3ZnPg"},
 			"_metaData": {
 				"loadPathHash": "LIXLCgAJRWVHNwrhwzkjLIkrJkE/i3DSkN1ByWPkMiU=",
-				"order": 24
+				"order": 26
 			},
 			"_urls": [{
 				"params":   [],
@@ -498,6 +534,103 @@
 			"_filePath":       null,
 			"_updateInterval": null,
 			"_updateURL":      null
+		},{
+			"id": "ca45b325-80bb-401a-b785-089e2f1a7dab",
+			"_name": "FileInfo",
+			"_loadPath": "[user]",
+			"description": "Search file formats by filename extension",
+			"_iconMapObj": {"48": "https://fileinfo.com/svg/favicon.svg"},
+			"_metaData": {"order": 27},
+			"_urls": [{
+				"params":   [],
+				"rels":     [],
+				"template": "https://fileinfo.com/search?query={searchTerms}"
+			},{
+				"params":   [],
+				"rels":     [],
+				"template": "https://fileinfo.com/ac?query={searchTerms}",
+				"type":     "application/x-suggestions+json"
+			}],
+			"_definedAliases": ["@fi", "@ext"],
+			"_orderHint":      null,
+			"_telemetryId":    null,
+			"_filePath":       null,
+			"_updateInterval": null,
+			"_updateURL":      null
+		},{
+			"id": "a4bfc51b-9e4f-455c-99ae-db3745bb517e",
+			"_name": "YouTube",
+			"_loadPath": "[https]www.youtube.com/youtube.xml",
+			"description": "Browse YouTube videos using its broken search function",
+			"_iconMapObj": {"1000": "data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz48c3ZnIHZlcnNpb249IjEuMSIgdmlld0JveD0iMCAwIDEwMDAgMTAwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cGF0aCBmaWxsPSIjZjAzIiBkPSJNNDk5IDg1MEM0OTkgODUwIDgxMyA4NTAgODkwIDgyOSA5MzQgODE3IDk2NyA3ODMgOTc5IDc0MiAxMDAwIDY2NSAxMDAwIDUwNCAxMDAwIDUwNCAxMDAwIDUwNCAxMDAwIDM0NCA5NzkgMjY4IDk2NyAyMjYgOTM0IDE5MiA4OTAgMTgxIDgxMyAxNjAgNDk5IDE2MCA0OTkgMTYwIDQ5OSAxNjAgMTg3IDE2MCAxMTAgMTgxIDY3IDE5MiAzMyAyMjYgMjEgMjY4IDAgMzQ0IDAgNTA0IDAgNTA0IDAgNTA0IDAgNjY1IDIxIDc0MiAzMyA3ODMgNjcgODE3IDExMCA4MjkgMTg3IDg1MCA0OTkgODUwIDQ5OSA4NTBaIi8+PHBhdGggZmlsbD0iI2ZmZiIgZD0iTTY1NSA1MDVMMzk3IDM1OFY2NTFMNjU1IDUwNVoiLz48L3N2Zz4"},
+			"_metaData": {
+				"loadPathHash": "CTUoeYcIWEX1of/7EM803f5WH5Mxztiq4iuzdzzEmg0=",
+				"order": 31
+			},
+			"_urls": [{
+				"params":   [],
+				"rels":     [],
+				"template": "https://www.youtube.com/results?search_query={searchTerms}&page={startPage?}&utm_source=opensearch"
+			}],
+			"_definedAliases": ["@yt"],
+			"_orderHint":      null,
+			"_telemetryId":    null,
+			"_filePath":       null,
+			"_updateInterval": null,
+			"_updateURL":      null
+		},{
+			"id": "26ec781b-f808-4348-9633-d599620c579e",
+			"_name": "OpenSubtitles",
+			"_loadPath": "[https]www.opensubtitles.org/opensubtitles.xml",
+			"description": "Download movie and TV subtitles",
+			"_iconMapObj": {
+				"16": "data:image/x-icon;base64,AAABAAEAEBAAAAEAGABoAwAAFgAAACgAAAAQAAAAIAAAAAEAGAAAAAAAAAAAAEgAAABIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAD///////8AAAD///////8AAAD///////8AAAD///////8AAAD///////8AAAAAAAD///////8AAAD///////8AAAD///////8AAAD///////8AAAD///////8AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACqqqr///////+qqqoAAAAAAADMzMzu7u7///////9VVVUAAAAAAAAAAAAAAAB3d3eZmZkAAAAAAACZmZmIiIgAAACIiIgAAAAAAABERETd3d0AAAAAAAAAAAAAAADu7u4REREAAAAAAAARERHu7u4AAABERET////////d3d0zMzMAAAAAAAAAAAAAAADd3d0iIiIAAAAAAAARERHd3d0AAADd3d1EREQAAAAAAAAAAAAAAAAAAAAAAAAAAAB3d3eZmZkAAAAAAACqqqp3d3cAAADMzMxEREQAAAARERHd3d0AAAAAAAAAAAAAAAAAAACZmZn///////+qqqoAAAAAAAAiIiLu7u7////////u7u4AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAD///////8AAAD///////8AAAD///////8AAAD///////8AAAD///////8AAAAAAAD///////8AAAD///////8AAAD///////8AAAD///////8AAAD///////8AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+				"64": "data:image/gif;base64,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"
+			},
+			"_metaData": {
+				"loadPathHash": "Pi11Shn09S2fTXGY5rJ+FQp7tDUCrs3JgsosYYQ8EfM=",
+				"order": 32
+			},
+			"_urls": [{
+				"params":   [],
+				"rels":     [],
+				"template": "http://www.opensubtitles.org/en/",
+				"type":     "searchform"
+			},{
+				"params":   [],
+				"rels":     [],
+				"template": "http://www.opensubtitles.org/en/search2/moviename-{searchTerms}/sublanguageid-eng"
+			},{
+				"params":   [],
+				"rels":     [],
+				"template": "http://www.opensubtitles.org/en/search2/moviename-{searchTerms}/sublanguageid-eng/rss_2_00",
+				"type":     "application/rss+xml"
+			},{
+				"params":   [],
+				"rels":     [],
+				"template": "http://www.opensubtitles.org/en/search2/moviename-{searchTerms}/sublanguageid-eng/atom_1_00",
+				"type":     "application/atom+xml"
+			},{
+				"params":   [],
+				"rels":     [],
+				"template": "http://www.opensubtitles.org/en/search2/moviename-{searchTerms}/sublanguageid-eng/xml",
+				"type":     "application/xml"
+			},{
+				"params":   [],
+				"rels":     [],
+				"template": "http://www.opensubtitles.org/en/search2/moviename-{searchTerms}/sublanguageid-eng/simplexml",
+				"type":     "application/xml"
+			},{
+				"params":   [],
+				"rels":     [],
+				"template": "http://www.opensubtitles.org/libs/suggest.php?format=json&MovieName={searchTerms}&SubLanguageID=eng",
+				"type":     "application/x-suggestions+json"
+			}],
+			"_definedAliases": ["@sub"],
+			"_orderHint":      null,
+			"_telemetryId":    null,
+			"_updateInterval": null,
+			"_updateURL":      null
 		}
 	],
 	"metaData": {
@@ -508,7 +641,7 @@
 		"experiment":          "",
 		"distroID":            "",
 		"appDefaultEngineId":  "google",
-		"defaultEngineId":     "71badd3b-c2e6-40eb-b971-ac5f4bbed429",
-		"defaultEngineIdHash": "05aXn1nyz3QPMz7JFMiRHfui3BW7ylHO5WobRpu6Qqs="
+		"defaultEngineId":     "",
+		"defaultEngineIdHash": "XnGSs+0M+rPZ38BLV/iT9qG8sRhyv5U9WQ69PzCAxlU="
 	}
 }
