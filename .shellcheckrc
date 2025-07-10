@@ -1,5 +1,6 @@
 shell=sh
 enable=deprecate-which
+enable=useless-use-of-cat
 external-sources=true
 disable=SC1111  # Accept “smart quotes” in strings
 disable=SC2009  # Prefer `ps | grep` over pgrep(1)
