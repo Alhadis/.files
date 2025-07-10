@@ -544,7 +544,7 @@
 			"_urls": [{
 				"params":   [],
 				"rels":     [],
-				"template": "https://fileinfo.com/search?query={searchTerms}"
+				"template": "https://fileinfo.com/extension/{searchTerms}"
 			},{
 				"params":   [],
 				"rels":     [],
