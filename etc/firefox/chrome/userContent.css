@@ -200,9 +200,10 @@ and    not (-moz-bool-pref: "layout.css.control-characters.visible"){
 
 /* Hide Gmail's distracting “Upgrade” button */
 @-moz-document domain(mail.google.com){
-	[role="navigation"] > *:has([data-onramp-input][data-button-classes]:only-child){
-		display: none !important;
-	}
+	[role="navigation"] > *:has([data-button-classes]:only-child:is(
+		[data-onramp-input],
+		[data-rp-onramp-input],
+	)){ display: none !important; }
 }
 
 /* Hide tooltips on OpenBSD's manual pages */

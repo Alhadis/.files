@@ -3,6 +3,7 @@
 ! Cookie messages
 ##.ta-common-cookie-consent-message
 ##web-snackbar-container
+###gdpr_consent_banner
 ###js-cookie
 
 ! Share/subscribe buttons
@@ -17,11 +18,13 @@ wondery.com##.upsell-banner
 ! "Sign in with Google" pop-ups
 ###credential_picker_container:has(> iframe[src*=".google.com/" i])
 reddit.*###credential_picker_container
+x.com###credential_picker_container
 
 ! YouTube
 youtube.com##.ytp-paid-content-overlay
 youtube.com##ytm-paid-content-overlay-renderer
 youtube.com##ytd-app[fullscreen] #masthead-container
+youtube.com##ytd-badge-supported-renderer:has(.badge[aria-label=Fundraiser i])
 youtube.com##ytd-subscribe-button-renderer yt-smartimation
 youtube.com###newness-dot
 youtube.com###sponsor-button
