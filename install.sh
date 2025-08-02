@@ -185,7 +185,6 @@ command -v npm >/dev/null 2>&1 && {
 		guess-sig
 		hint
 		jsdoc
-		json
 		karma
 		karma-coverage
 		karma-chrome-launcher

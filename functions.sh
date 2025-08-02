@@ -193,7 +193,7 @@ iplocation(){
 		>&2 printf 'Not an IP address: %s\n' "$1"
 		return 2
 	}
-	printf '%s\n' "`curl -s "https://extreme-ip-lookup.com/json/$1"`" | json -i
+	printf '%s\n' "`curl -s "https://extreme-ip-lookup.com/json/$1"`" | jq .
 }
 
 # Print names of files containing binary (non-textual) data
