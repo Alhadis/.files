@@ -1,0 +1,82 @@
+.Dd August 8, 2025
+.Dt FORMAT-HTTP-LINK 1
+.Os
+.Sh NAME
+.Nm format-http-link
+.Nd format RFC 8288-compliant Link header as JSON
+.
+.Sh DESCRIPTION
+.Nm
+reads an HTTP
+.Sy Link
+header from standard input and writes a JSON \
+representation of its contents to standard output.
+.Pp
+This utility is designed to be used alongside
+.Xr curl 1
+and
+.Xr jq 1
+for handling paginated resources.
+.
+.Sh EXIT STATUS
+.Ex -std
+.
+.Sh EXAMPLES
+Input (line-wrapped for clarity):
+.Bd -literal -offset 4n
+<https://example.org/page/1>; rel="first",
+<https://example.org/page/4>; rel="prev",
+<https://example.org/page/6>; rel="next",
+<https://example.org/page/10>; rel="last"
+.Ed
+.Pp
+Output (pretty-printed for clarity):
+.Bd -literal -offset 4n
+{
+	"first": "https://example.org/page/1",
+	"prev": "https://example.org/page/4",
+	"next": "https://example.org/page/6",
+	"last": "https://example.org/page/10",
+	"links": [{
+		"url": "https://example.org/page/1",
+		"params": {
+			"rel": ["first"]
+		}
+	},{
+		"url": "https://example.org/page/4",
+		"params": {
+			"rel": ["prev"]
+		}
+	},{
+		"url": "https://example.org/page/6",
+		"params": {
+			"rel": ["next"]
+		}
+	},{
+		"url": "https://example.org/page/10",
+		"params": {
+			"rel": ["last"]
+		}
+	}]
+}
+.Ed
+.
+.Sh SEE ALSO
+.Xr jq 1 ,
+.Xr JSON::PP 3 ,
+.ie t .Lk https://tools.ietf.org/html/rfc8288 "RFC\~8288" .
+.el   .Em RFC\~8288 .
+.
+.Sh AUTHORS
+.An -nosplit
+Copyright \(co 2025
+.An John Gardner Aq Mt gardnerjohng@gmail.com .
+Freely released under the
+.Lk http://opensource.org/licenses/ISC "ISC license" .
+.
+.Sh BUGS
+This script should accommodate
+.Pq or at least ignore
+unrelated HTTP headers.
+.Pp
+The order of fields in the emitted JSON output is not consistent.

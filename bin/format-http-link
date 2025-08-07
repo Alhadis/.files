@@ -1,0 +1,56 @@
+#!/usr/bin/env perl
+# Format an RFC 8288-compliant Link header as a JSON object
+use strict;
+use warnings;
+use v5.14;
+use utf8;
+use JSON::PP;
+
+my @links = ();
+my %result = ();
+$result{links} = \@links;
+while(<>){
+	chomp;
+	s/^Link:\h*//i;
+	while(m/
+		<([^<>]*)>
+		((?:
+			\s* ; \s*
+			[^<>;=,\s]+
+			\s* = \s*
+			(?:
+				"(?:[^"\\]|\\.)*"
+				|
+				[^\s,;="]+
+			)
+		)*)
+		\s* (?=,|$)
+	/gmx){
+		my ($url, $paramList) = ($1, $2);
+		my %params = ();
+		while($paramList =~ /
+			\s* ; \s*
+			([^<>;=,\s]+)
+			\s* = \s*
+			("(?:[^"\\]|\\.)*"|[^\s,;="]+)
+		/gx){
+			my ($key, $value) = ($1, $2);
+			if($value =~ /^"(.*)"$/){
+				$value = substr($value, 1, -1);
+				$value =~ s/\\(.)/$1/g;
+			}
+			if("rel" eq $key){
+				$value =~ s/^\s+|\s+$//g;
+				$value = [map {
+					$_ = lc($_);
+					$_ = "prev" if $_ eq "previous";
+					$result{$_} = $url if /^(?:contents|first|index|last|next|prev|up)$/;
+					$_;
+				} split(/\s+/, $value)];
+			}
+			$params{$key} = $value;
+		}
+		push(@links, {url => $url, params => \%params});
+	}
+}
+print encode_json(\%result);
