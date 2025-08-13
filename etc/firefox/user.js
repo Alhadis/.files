@@ -54,6 +54,12 @@ user_pref("browser.tabs.inTitlebar", 1);
 user_pref("general.autoScroll", true);
 user_pref("general.smoothScroll", true);
 
+// Weather forecasts
+user_pref("browser.urlbar.suggest.weather", true);
+user_pref("browser.urlbar.weather.featureGate", true);
+user_pref("browser.urlbar.weather.minKeywordLength", 3);
+user_pref("browser.urlbar.weather.uiTreatment", 2);
+
 // Search-bar
 user_pref("browser.search.suggest.enabled", true);
 user_pref("browser.search.update", false);
@@ -65,11 +71,21 @@ user_pref("browser.urlbar.shortcuts.history", false);
 user_pref("browser.urlbar.shortcuts.tabs", false);
 user_pref("browser.urlbar.showSearchTerms.enabled", false);
 user_pref("browser.urlbar.showSearchTerms.featureGate", false);
+user_pref("browser.urlbar.showSearchSuggestionsFirst", false);
+user_pref("browser.urlbar.speculativeConnect.enabled", false);
+user_pref("browser.urlbar.suggest.bookmark", true);
+user_pref("browser.urlbar.suggest.calculator", false);
+user_pref("browser.urlbar.suggest.clipboard", false);
 user_pref("browser.urlbar.suggest.engines", false);
+user_pref("browser.urlbar.suggest.history", true);
+user_pref("browser.urlbar.suggest.openpage", true);
 user_pref("browser.urlbar.suggest.quickactions", false);
 user_pref("browser.urlbar.suggest.recentsearches", false);
 user_pref("browser.urlbar.suggest.searches", false);
+user_pref("browser.urlbar.suggest.topsites", true);
 user_pref("browser.urlbar.suggest.trending", false);
+user_pref("browser.urlbar.trending.featureGate", false);
+user_pref("browser.urlbar.unitConversion.enabled", false);
 user_pref("browser.urlbar.update2.engineAliasRefresh", true);
 
 // Bookmarks
