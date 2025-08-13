@@ -60,6 +60,9 @@ configure:
 		&& sudo defaults write ./com.apple.smb.server NetBIOSName -string Stormbringer \
 		&& sudo defaults write ./com.apple.smb.server ServerDescription -string Stormbringer
 	sudo systemsetup -setrestartfreeze on
+	defaults write -g AppleInterfaceStyleSwitchesAutomatically -bool false
+	defaults write -g AppleLanguages -array en-AU ar-AU ja-AU ru-AU
+	defaults write -g AppleMeasurementUnits Centimeters
 	defaults write -g AppleShowAllExtensions -bool true
 	defaults write -g ApplePressAndHoldEnabled -bool false
 	defaults write -g KeyRepeat -int 1
@@ -74,7 +77,7 @@ configure:
 	defaults write -g NSAutomaticSpellingCorrectionEnabled -bool false
 	defaults write -g NSAutomaticTextCompletionEnabled -bool false
 	defaults write -g NSToolbarTitleViewRolloverDelay -float 0.0
-	defaults write com.apple.Accessibility KeyRepeatDelay -float 0.5
+	defaults write com.apple.Accessibility KeyRepeatDelay -float 0.2
 	defaults write com.apple.Accessibility KeyRepeatEnabled -int 1
 	defaults write com.apple.Accessibility KeyRepeatInterval -float 0.08
 	test -x /usr/local/bin/bash || brew install bash
@@ -85,6 +88,7 @@ configure:
 	defaults write com.apple.Preview PVSupressPDFCroppingAlert -bool true
 	defaults write com.apple.dock autohide -bool false
 	defaults write com.apple.dock launchanim -bool false
+	defaults write com.apple.dock magnification -bool false
 	defaults write com.apple.dock mineffect scale
 	defaults write com.apple.dock show-recents -bool false
 	defaults write com.apple.dock tilesize -float 82
@@ -99,6 +103,9 @@ configure:
 	defaults write com.apple.finder ShowMountedServersOnDesktop -bool true
 	defaults write com.apple.finder ShowRecentTags -bool false
 	defaults write com.apple.finder ShowRemovableMediaOnDesktop -bool true
+	defaults write com.apple.finder WarnOnEmptyTrash -bool false
+	defaults write com.apple.digihub com.apple.digihub.cd.music.appeared   -dict action -bool true
+	defaults write com.apple.digihub com.apple.digihub.cd.picture.appeared -dict action -bool true
 	defaults write com.apple.universalaccess closeViewScrollWheelModifiersInt -int 393216
 	defaults write com.apple.universalaccess closeViewScrollWheelToggle -bool true
 	defaults write com.apple.universalaccess closeViewZoomFollowsFocus -bool true
@@ -111,3 +118,25 @@ configure:
 	defaults write com.apple.touchbar.agent PresentationModePerApp -dict \
 		com.github.atom functionKeys \
 		org.gnu.Emacs functionKeys
+
+# Reset Dock icons
+dock:
+	defaults write com.apple.dock persistent-apps -array
+	for app in \
+		'/Applications/Firefox.app' \
+		'/Applications/Atom Beta.app' \
+		'/System/Applications/Utilities/Terminal.app' \
+	; do defaults write com.apple.dock persistent-apps -array-add \
+		"<dict>\
+			<key>tile-data</key>\
+			<dict>\
+				<key>file-data</key>\
+				<dict>\
+					<key>_CFURLStringType</key>\
+					<integer>0</integer>\
+					<key>_CFURLString</key>\
+					<string>$$app/</string>\
+				</dict>\
+			</dict>\
+		</dict>"; \
+	done && killall Dock
