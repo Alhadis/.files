@@ -67,6 +67,7 @@ abebooks.com###srp-results > #highlight-inventory
 belong.com.au###belong-chat-iframer
 developer.mozilla.org###nav-footer
 developer.mozilla.org##aside.article-footer:has(.feedback)
+developer.mozilla.org##.page-layout__banner:has(mdn-placement-top)
 developer.mozilla.org##section.place, sup.new
 discogs.com###release-recommendations
 discogs.com###release-videos
