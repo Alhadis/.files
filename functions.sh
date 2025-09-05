@@ -428,11 +428,15 @@ whatchanged(){
 		printf 'Usage: whatchanged /path/to/root/dir\n'
 		return 1
 	}
+	while :; do case $1 in
+		*?/) set -- "${1%/}";;
+		*)   break;;
+	esac; done
 	case `stat --version 2>&1` in
 		*GNU*) stat="stat --printf=%Y\t%n\n";;
 		*)     stat='stat -f %m%t%N';;
 	esac
-	find "$1" -type f -exec $stat {} + | sort -n
+	find -H "$1" -type f -exec $stat {} + | sort -n
 }
 
 # Print the URL whence a file was downloaded
