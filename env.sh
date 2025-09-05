@@ -66,7 +66,7 @@ export HISTFILE=
 export LESS=-fRS
 export LYNX_CFG=~/.files/etc/lynx.cfg
 export TROFFONTS=~/Fonts:~/Library/Fonts:$GROFF_FONT_PATH
-export WORDLIST=~/.files/share/dict/custom.txt
+export WORDLIST=~/.files/etc/firefox/persdict.dat
 export WASMTIME_HOME=~/.wasmtime
 
 

@@ -51,6 +51,7 @@ link_profile = \
 # Create symbolic and hard-links in Firefox user profile
 links: \
 	profile/user.js \
+	profile/persdict.dat \
 	profile/handlers.json \
 	profile/chrome/userChrome.css \
 	profile/chrome/userContent.css \
@@ -58,6 +59,11 @@ links: \
 
 # Symlinked list of persistent user preferences
 profile/user.js: user.js
+	@ $(link_profile)
+	@ $(symlink) ~/.files/etc/firefox/$^
+
+# Symlinked wordlist used by spellchecker
+profile/persdict.dat: persdict.dat
 	@ $(link_profile)
 	@ $(symlink) ~/.files/etc/firefox/$^
 

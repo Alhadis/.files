@@ -3,7 +3,7 @@ set -e
 cd "${0%/*}"
 
 # Update English dictionaries from upstream
-for ext in aff dic; do
+[ "$1" = '-q' ] || for ext in aff dic; do
 	url="https://cgit.freedesktop.org/libreoffice/dictionaries/plain/en/en_AU.$ext"
 	curl -I "$url" > /dev/null
 	curl -# "$url" > en_AU.$ext
