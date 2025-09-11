@@ -1,4 +1,8 @@
+# -*- makefile-gmake -*-
+
+# Section 1: Workstation setup
 all: configure cronjobs /etc/man.conf /etc/shells /etc/hosts
+
 
 # Configure scheduled tasks with launchd(8)
 cron = ~/Library/LaunchAgents
@@ -140,3 +144,98 @@ dock:
 			</dict>\
 		</dict>"; \
 	done && killall Dock
+
+
+
+# Section 2: Periodic file backups
+backups: notes-backup assets-backup
+
+
+# Backup Notes.app storage
+notes-backup = ~/Downloads/group.com.apple.notes
+notes-backup: $(notes-backup).tgz
+$(notes-backup).tgz: $(notes-backup).tar
+	$(call compress-tarball,Notes.app storage backup)
+
+$(notes-backup).tar: ~/Library/Group\ Containers/group.com.apple.notes
+	$(call create-tarball)
+
+
+
+# Shamelessly copy commercial/proprietary assets to use on non-Apple systems
+assets = ~/Downloads/Assets
+assets-backup: $(assets) dicts-backup desktops-backup
+$(assets):
+	mkdir -p $@
+
+
+# Downloaded language dictionaries
+dicts-source = /System/Library/AssetsV2/com_apple_MobileAsset_DictionaryServices_dictionaryOSX
+dicts-backup = $(assets)/dictionary-assets
+dicts-backup: $(assets) $(dicts-backup).tgz
+$(dicts-backup).tgz: $(dicts-backup).tar
+	$(call compress-tarball,Language dictionaries)
+
+$(dicts-backup).tar: $(dicts-source)
+	$(call create-tarball)
+
+
+# High-res/dynamic HEIC wallpapers
+desktops-backup: desktops-system desktops-mobile
+
+# Pre-installed wallpapers
+desktops-system = $(assets)/Desktop\ Pictures
+desktops-system: $(assets) $(desktops-system).tgz
+$(desktops-system).tgz: $(desktops-system).tar
+	$(call compress-tarball,Pre-installed wallpapers)
+
+$(desktops-system).tar: /System/Library/Desktop\ Pictures
+	$(call create-tarball)
+
+
+# Downloadable wallpapers
+desktops-mobile = $(assets)/com.apple.mobileAssetDesktop
+desktops-mobile: $(assets) $(desktops-mobile).tgz
+$(desktops-mobile).tgz: $(desktops-mobile).tar
+	$(call compress-tarball,Downloaded wallpaper archive)
+
+$(desktops-mobile).tar: ~/Library/Application\ Support/com.apple.mobileAssetDesktop
+	$(call create-tarball)
+
+
+# Don't regenerate tarballs if compressed versions already exist
+.INTERMEDIATE: \
+	$(notes-backup).tar \
+	$(dicts-backup).tar \
+	$(desktops-system).tar \
+	$(desktops-mobile).tar
+
+
+
+# Section 3: Canned recipe definitions
+
+# Generate an uncompressed archive of a directory
+define create-tarball
+dirs=`printf %s "$^" | tr -Cd / | wc -c`; \
+bsdtar --acls --fflags --xattrs --mac-metadata --strip-components="`expr $$dirs`" -cvf "$@" "$^"
+touch -cr "$^" "$@"
+sha256sum "$@"
+endef
+
+# Perform the final steps of generating a compressed tarball
+define compress-tarball
+gzip -fS .tgz "$^"
+@ unset old new; \
+if test -f "$@"; then \
+	old=`sha256sum 2>/dev/null "$@"`; \
+	new=`sha256sum 2>/dev/null "$^.tgz"`; \
+fi; \
+if [ "$${new%% *}" = "$${old%% *}" ] && [ -n "$$old" ]; then \
+	printf '%s already up-to-date\n' "$(or $(1),Archive)"; \
+	touch -cr "$^.tgz" "$@"; \
+	rm -f "$^.tgz"; \
+else \
+	mv -vf "$^.tgz" "$@"; \
+	chmod -w "$@"; \
+fi
+endef
