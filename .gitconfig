@@ -73,6 +73,15 @@
 		--format='%(refname:lstrip=-1)' \
 		refs/tags
 
+	# List tagged releases chronologically in tabular format
+	list-tags = tag \
+		--format='%(creatordate:iso8601)%09%(type)%09%(object)%09%(refname:strip=2)' \
+		--no-column \
+		--ignore-case \
+		--sort=refname \
+		--sort=creatordate \
+		--list
+
 	# Print only the useful parts of git-check-attr(1) output
 	attr-names = "! git check-attr --all -z \"$1\" | xargs -0n3 /bin/sh -c 'echo $1' | sort #"
 	attr-value = "! { \
