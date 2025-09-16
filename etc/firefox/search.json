@@ -631,6 +631,23 @@
 			"_telemetryId":    null,
 			"_updateInterval": null,
 			"_updateURL":      null
+		},{
+			"id": "f13bb92b-25ae-498a-a3d0-1673ef776b23",
+			"_name": "Unicode Sets",
+			"_loadPath": "[user]",
+			"description": "Manipulate sets of Unicode characters",
+			"_iconMapObj": {"1000": "data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiPz48c3ZnIHZlcnNpb249IjEuMSIgdmlld0JveD0iMCAwIDEwMDAgMTAwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCBmaWxsPSIjZGQxZjJjIiB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIi8+PHBhdGggZmlsbD0iI2ZmZiIgZD0ibTc4NSAzMjhjLTM2LTIxLTM2LTcyIDAtOTMgMzYtMjEgODEgNSA4MSA0NiAwIDQxLTQ1IDY3LTgxIDQ2em0tMTUgMzIzIDAtMjYxaDg1djM4NmwtMTE0IDAtMjEwLTM5NHYyMjVjLTcgOTctNzAgMTc5LTIxMiAxNzYtMTI2LTEtMTg3LTY4LTE5OC0xNzR2LTM1MGg5NHYzMDNjMCA5NSAzNCAxMzggMTExIDEzOCA3OSAwIDExMC0zOCAxMTAtMTM4di0zMDNoMTIzeiIvPjwvc3ZnPg"},
+			"_metaData": {"order": 33},
+			"_urls": [{
+				"params":   [],
+				"rels":     [],
+				"template": "https://util.unicode.org/UnicodeJsps/list-unicodeset.jsp?a={searchTerms}&i=General_Category+Script+LineBreak+Whitespace"
+			}],
+			"_definedAliases": ["@uniset", "@sets"],
+			"_orderHint":      null,
+			"_telemetryId":    null,
+			"_updateInterval": null,
+			"_updateURL":      null
 		}
 	],
 	"metaData": {
