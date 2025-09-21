@@ -76,6 +76,9 @@ Deep-linking
 Text fragments:
 
 	https://url.com/file.html#:~:text=[fragment]
+	https://url.com/file.html#:~:text=[prefix-,]start[,end][,-suffix]
+	                                   └──┬───┘ └───┬────┘  └───┬──┘
+	                                   Context    Match      Context
 
 PDFs:
 
