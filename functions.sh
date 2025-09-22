@@ -1,5 +1,3 @@
-#!/bin/sh
-
 # Generate an XML-formatted AcoustID fingerprint
 have fpcalc && acoustid()(
 	case $1 in -h|--help|-\?|'')

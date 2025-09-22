@@ -1,5 +1,3 @@
-#!/bin/sh
-
 # Current branch of Git repository
 branchName(){
 	set -- "$1" "$2" "`git branch --list --no-color 2>/dev/null | grep '^\* ' | sed 's/^\* //; s/^(//; s/)$//;'`"
