@@ -1,61 +1,265 @@
 #!/bin/sh
+set -e
 
-have(){
-	command -v "$1" 2>&1 >/dev/null
+have(){ command -v "$1" >/dev/null 2>&1; }
+
+# TODO: Figure out what we're doing with this function library
+# shellcheck disable=SC1090
+for lib in \
+	~/Labs/Atom-CI/src/0-shared.sh \
+	~/.files/var/lib/cmdkit.sh \
+; do if [ -f "$lib" ]; then . "$lib" && break; fi; done
+
+
+# If realpath(1) is unavailable, kludge it with a less accurate fallback
+have realpath || realpath(){
+	while [ $# -gt 0 ]; do case $1 in
+		/*) printf '%s\n' "${1%/}";;
+		*)  printf '%s/%s\n' "$PWD" "${1%/}";;
+	esac; shift; done
 }
 
-die(){
-	printf >&2 '%s\n' "$@"
-	exit 1
+# Locate the macOS application bundle containing a file
+get_app_bundle(){
+	while test "$1" != /; do
+		set -- "${1%/*}"
+		set -- "$1" "${1##*/}"
+		case $2 in *.app)
+		case `mdls --name kMDItemContentType --raw --nullMarker '' "$1"` in
+			com.apple.application-bundle) printf %s "$1"; return;;
+		esac;; esac
+	done
+	return 1;
 }
 
-open(){
-	if have atom
-	then NODE_ENV=production atom "$@"
-	else emacs -nw "$@"
+# Resolve the physical location of a command
+get_cmd_path(){
+	set -- "$1" "`command -v "$1"`"
+	test -n "$2" || {
+		err "No such command: %s" "$1" >&2
+		return 1
+	}
+	realpath "$2"
+}
+
+# Extract version string(s) from an editor's “--version” output
+# - Usage: get_version [--which app|electron|chrome|node] atom|atom-beta|pulsar|emacs
+get_version(){
+	case $1 in
+		-w|--which) set -- "$2" "$3";;
+		--which=*)  set -- "${1#*=}" "$2";;
+		-w?*)       set -- "${1#-w}" "$2";;
+		*)          set -- '' "$1";;
+	esac
+
+	# Verify that the requested editor command exists
+	set -- "$@" "`get_cmd_path "$2"`"
+	[ -n "$3" ] || return 1
+
+	# If possible, use macOS's mdls(1) utility to resolve application version
+	set -- "$@" "`get_app_bundle "$3"`"
+	if [ "$1" = app ] && [ -d "$4" ]; then
+		mdls -raw -name kMDItemVersion "$4"
+		return
+	fi
+
+	# Emacs only has one version-string to report
+	if [ "$2" = emacs ]; then
+		value=`"$3" --version | sed -n '/^GNU Emacs \([0-9.][^[:blank:]]*\)/ { s//\1/p; q; }'`
+		case $1 in
+			'')  printf 'app=%s\n' "$value";;
+			app) printf %s "$value";;
+		esac
+		return
+	fi
+
+	"$3" --version | while IFS=":$IFS" read -r key value; do
+		key=`printf %s "$key" | LANG=C tr '[A-Z]' '[a-z]'`
+		case $key in *[!A-Za-z0-9]*|[0-9]*)
+			>&2 printf 'Ignoring invalid variable name: “%s”\n' "$key"
+			continue
+		;; atom|atom-*|pulsar) key=app;; esac
+		case $1 in
+			'')     printf '%s=%s\n' "$key" "`argfmt "$value"`";;
+			"$key") printf %s "$value"; return;;
+		esac
+	done
+}
+
+# Determine the most favourable text-editor to use
+resolve(){
+	unset editor_cmd
+	unset editor_env
+	unset editor_args
+	if resolve_atom; then
+		editor_env='NODE_ENV=production'
+		editor_cmd="$atom"
+	elif have emacs; then
+		editor_cmd='emacs'
+		editor_args='-nw'
+	else
+		resolve_vi
+		editor_cmd="$vi"
 	fi
 }
 
-# Kludge for sites lacking GNU coreutils
-have realpath || eval 'realpath(){ printf %s "$@"; }'
+# Determine the most appropriate installation of Atom or Pulsar to use
+resolve_atom(){
+	unset atoms
+	
+	# Resolve Atom version(s)
+	if have atom;      then atoms="${atoms}s"; fi # Atom Stable
+	if have atom-beta; then atoms="${atoms}b"; fi # Atom Beta
+	if have pulsar;    then atoms="${atoms}p"; fi # Pulsar
+	
+	# If both beta and stable versions are installed, pick whichever's newer
+	case $atoms in sb*)
+		s_ver=`get_version -w app atom`
+		b_ver=`get_version -w app atom-beta`
+		case `semver "$s_ver" "$b_ver" | tail -n1` in
+			"$s_ver") atoms="s${atoms#sb}";;
+			"$b_ver") atoms="b${atoms#sb}";;
+		esac
+		unset s_ver b_ver
+	;; esac
+	
+	# If both Atom and Pulsar are installed, choose the latter only
+	# if “~/.pulsar” symlinks to “~/.atom”. This indicates that our
+	# workspace is supported by both editors.
+	case $atoms in [sb]p)
+		if [ -h ~/.pulsar ] && [ "`realpath ~/.pulsar`" = ~/.atom ]
+			then atoms="${atoms#?}"
+			else atoms="${atoms%p}"
+		fi
+	;; esac
+	
+	case $atoms in
+		*p) atom='pulsar';    apm='ppm';;
+		s*) atom='atom';      apm='apm';;
+		b*) atom='atom-beta'; apm='apm-beta';;
+		*)  return 1;;
+	esac
+	
+	export atom
+	export apm
+	unset atoms
+}
+
+# Determine which implementation of vi(1) to fall back on
+# shellcheck disable=SC2209
+resolve_vi(){
+	unset vi
+	if   have vim; then vi=vim
+	elif have nvi; then vi=nvi
+	else vi=vi
+	fi
+	export vi
+}
+
+# Launch the resolved text-editor with the given arguments
+edit(){
+	resolve
+	if [ "$dry_run" ]; then
+		[ -z "$editor_env"  ] || printf '%s ' "$editor_env"
+		[ -z "$editor_cmd"  ] || printf '%s'  "$editor_cmd"
+		[ -z "$editor_args" ] || printf ' %s' "$editor_args"
+		[ $# -eq 0 ]          || printf ' %s' "$@"
+		[ -t 1 ] && echo
+	else
+		[ -z "$editor_args" ] || set -- "$editor_args" "$@"
+		[ -z "$editor_cmd"  ] || set -- "$editor_cmd"  "$@"
+		[ -z "$editor_env"  ] || set -- "$editor_env"  "$@"
+		exec env "$@"
+	fi
+}
 
 
-while [ "$1" ]; do case $1 in
+# Parse command-line switches
+usage="
+	@ [--dry-run] [...files]     # Edit the specified files
+	@ [--dry-run] -m topic       # Edit the source of a manual page
+	@ [--dry-run] -x cmd         # Edit the source of an executable
+	@ [--dry-run] --recompile    # Recompile snippets
+	@ [--dry-run] --version      # Print version of resolved text-editor
+	@ --which                    # Print location of resolved text-editor
+"
+unset dry_run
+unset task
+while [ -n "$1" ]; do case $1 in
 
 	# Print a short help notice
 	-h|--help|-\?)
-		>&2 printf 'Usage: @ [-m name] [-r|--recompile] [-x name] ...files\n'
-		exit 0 ;;
-
-	# Open a manpage by name
-	-m|--man)
+		printf 'Usage:%s' "$usage"
+		exit ;;
+	
+	# Unbundle short options
+	-[hnrvw]?*)
+		tail="${1#??}"
+		head=${1%"$tail"}
 		shift
-		path=`man -w $@ | head -n1` || exit 1
-		open `realpath "$path"`
-		exit $? ;;
+		set -- "$head" "-$tail" "$@"
+		continue ;;
 
-	# Recompile snippets.cson from YASR repository
-	-r|--recompile)
-		[ -d ~/.atom ]     || die "Can't locate ~/.atom"
-		[ -d ~/Labs/YASR ] || die "Can't locate ~/Labs/YASR"
-		printf "Recompiling: ~/.atom/snippets.cson\n"
-		cd ~/.atom && make snippets
-		exit $? ;;
+	# Expand parametric values
+	-[mx]?*|--[!=]*=*)
+		case $1 in
+			--*) tail=${1#*=}; head=${1%%=*} ;;
+			*)   tail=${1#??}; head=${1%"$tail"} ;;
+		esac
+		shift
+		set -- "$head" "$tail" "$@"
+		continue ;;
 
-	# Open an executable by name
-	-x|--exec)
-		path=`command -v 2>/dev/null "$2"`
-		[ -f "$path" ] || die "No such executable: $2"
-		grep -Iq "$path" -Ee. || die "Binary file: $path"
-		open `realpath "$path"`
-		exit $? ;;
+	-n|--dry-run)   dry_run=1;;              # Print editor command that would be executed
+	-m|--man)       task=edit-man;;          # Open a manual page by name
+	-x|--exec)      task=edit-cmd;;          # Open an executable by name
+	-r|--recompile) task=compile-snippets;;  # Recompile snippets.cson from YASR repository
+	-v|--version)   task=version;;           # Print editor's version information
+	-w|--which)     task=echo-path;;         # Print full path of editor commanad
 
-	# Anything else; pass to program
+	# Double-dash: Terminate option parsing
+	--)
+		shift
+		break ;;
+
+	# Invalid option: abort
+	--*|-?*)
+		>&2 printf '@: Invalid option: "%s"\n' "$1"
+		>&2 printf 'Usage:%s' "$usage"
+		exit 1 ;;
+
+	# Argument not prefixed with a dash
 	*) break ;;
 
 esac; shift
 done
 
-[ $# -eq 0 ] && set -- "."
-
-open "$@"
+case $task in
+	compile-snippets)
+		[ -d ~/.atom ]     || die "Can't locate ~/.atom"
+		[ -d ~/Labs/YASR ] || die "Can't locate ~/Labs/YASR"
+		cmd='cd ~/.atom && make snippets'
+		if [ "$dry_run" ]; then
+			printf '%s\n' "$cmd"
+		else
+			cmdfmt "$cmd"
+			eval "$cmd"
+		fi ;;
+	echo-path)
+		resolve
+		get_cmd_path "$editor_cmd" ;;
+	edit-man)
+		path=`man -w "$1"`
+		[ -n "$path" ] || exit 1
+		edit "$path" ;;
+	edit-cmd)
+		path=`command -v "$1" 2>/dev/null`
+		[ -f "$path" ] || die "No such executable: $2"
+		grep -Iq "$path" -Ee. || die "Binary file: $path"
+		path=`realpath "$path"`
+		edit "$path" ;;
+	version)
+		edit --version;;
+	*)
+		edit "$@";;
+esac
