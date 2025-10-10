@@ -648,6 +648,23 @@
 			"_telemetryId":    null,
 			"_updateInterval": null,
 			"_updateURL":      null
+		},{
+			"id": "1b2bb731-97e4-4e74-a910-6f84225a16a3",
+			"_name": "National Vulnerabilities Database",
+			"_loadPath": "[user]",
+			"description": "Search for publicly-known security vulnerabilities and exposures",
+			"_iconMapObj": {"194": "data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiIHN0YW5kYWxvbmU9Im5vIj8+PHN2ZyB2ZXJzaW9uPSIxLjEiIHZpZXdCb3g9IjAgMCAxOTQgMTk0IiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPjxyZWN0IGZpbGw9IiMwMDAiIHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiLz48cGF0aCBmaWxsPSIjZmZmIiBkPSJNNDkuNyA2LjdjMS45LjkgNC42IDMuNCA2IDUuNWwyLjYgMy45LS43IDE3LjJDNTcuMyA0Mi44IDU2LjcgNTYgNTYuMyA2Mi43IDU1LjggNzIuOSA1NS45IDc1IDU3LjEgNzUgNTcuOSA3NSA2NS4zIDY4LjIgNzMuNiA1OS45TDg4LjcgNDQuOCA5My4zIDQ5LjcgOTggNTQuNSA4MS4yIDcxLjFDNjcuMSA4NS4xIDYzLjkgODcuOCA2MC43IDg4LjQgNTUuNCA4OS40IDUwLjggODcuNiA0Ni42IDgyLjkgNDMuMSA3OS4xIDQzIDc4LjggNDMgNzAuNyA0MyA2Ni4yIDQzLjUgNTIuOSA0NC4xIDQxLjIgNDUgMjUuNCA0NSAxOS42IDQ0LjEgMTguNyA0My4zIDE3LjkgMzkgMjEuNyAyNy41IDMzTDEyIDQ4LjQgNy41IDQ0IDMgMzkuNiAxOC43IDIzLjdDMjcuNCAxNC45IDM1LjkgNy4yIDM3LjUgNi40IDQxLjYgNC42IDQ1LjUgNC43IDQ5LjcgNi43Wk0xMTAgNjcuNmMwIC42LTIuOSAxMS02LjUgMjMtNi41IDIyLjEtNy4zIDI1LjQtNS42IDI1LjQuNSAwIDEwLjctMi45IDIyLjYtNi41IDEyLTMuNiAyMi43LTYuNSAyMy45LTYuNSAyLjYgMCA0Mi40IDM5LjcgNDUuMSA0NSAyLjYgNS4yIDMuMSAxNS42IDEgMjEuOS0yIDYtOC45IDEzLjYtMTUgMTYuNi02IDMtMTguNSAyLjgtMjQuNS0uNC00LjUtMi4zLTM4LTM0LjYtMzgtMzYuNSAwLTEuNCAyNS4yLTI2LjYgMjYuNS0yNi42LjYgMCAzIDEuOSA1LjMgNC4zbDQuMiA0LjMtOC41IDguNGMtNC43IDQuNy04LjUgOS4yLTguNSAxMCAwIC45IDUuMSA2LjYgMTEuMyAxMi43IDguNSA4LjQgMTIuMiAxMS40IDE1LjQgMTIuMyAxMyAzLjkgMjQuNy05LjQgMTguNy0yMS4zLTEuOS0zLjktMzQuMy0zNi43LTM2LjItMzYuNy0uNyAwLTEwLjIgMi43LTIxIDYtMTAuOSAzLjMtMjEgNi0yMi42IDYtNy40IDAtMTMuOS02LjctMTQtMTQuNCAwLTIuNCAyLjktMTMuMyA2LjgtMjYuMSAzLjgtMTIuMSA3LjUtMjQuMiA4LjMtMjYuOWwxLjUtNC45IDQuOSA0LjljMi43IDIuNiA0LjkgNS4zIDQuOSA2WiIvPjwvc3ZnPg"},
+			"_metaData": {"order": 34},
+			"_urls": [{
+				"params":   [],
+				"rels":     [],
+				"template": "https://nvd.nist.gov/vuln/search#/nvd/home?keyword={searchTerms}&resultType=records"
+			}],
+			"_definedAliases": ["@nvd", "@cve"],
+			"_orderHint":      null,
+			"_telemetryId":    null,
+			"_updateInterval": null,
+			"_updateURL":      null
 		}
 	],
 	"metaData": {
