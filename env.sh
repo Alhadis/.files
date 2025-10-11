@@ -179,6 +179,14 @@ done
 	done
 }
 
+# Adobe AIR: Add versioned SDKs to search path
+path=~/.airsdk/airsdkmanager.cfg
+have java && [ -s "$path" ] && {
+	path=`sed -n '/^AIR_SDKS=[^[:blank:]]/!n;s/^[^=]*=//p;q' "$path"`
+	path=`printf '%s\n' "$path"/AIRSDK* | sort --version-sort | tail -n1`
+	[ -d "$path/bin" ] && PATH="$PATH:$path/bin"
+}
+
 # macOS-specific
 case `uname` in [Dd]arwin)
 	# Include “keg-only” Homebrew formulae in search paths
