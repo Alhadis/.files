@@ -160,7 +160,10 @@ user_pref("browser.download.manager.addToRecentDocs", false);
 user_pref("browser.download.clearHistoryOnDelete", 2);
 
 // Tell “AI” to fuck off, and ensure it stays fucked-off
+user_pref("browser.search.visualSearch.featureGate", false);
 user_pref("browser.ml.enable", false);
+user_pref("browser.ml.chat.menu", false);
+user_pref("browser.ml.chat.page", false);
 user_pref("browser.ml.chat.enabled", false);
 user_pref("browser.ml.chat.sidebar", false);
 user_pref("browser.ml.chat.shortcuts", false);

@@ -1,12 +1,31 @@
 {
-	"version": 12,
+	"version": 13,
 	"engines": [
-		{"id": "google",    "_name": "Google",         "_isAppProvided": true, "_metaData": {"hidden": false, "order": 1}},
-		{"id": "wikipedia", "_name": "Wikipedia (en)", "_isAppProvided": true, "_metaData": {"hidden": false, "order": 12}},
-		{"id": "ddg",       "_name": "DuckDuckGo",     "_isAppProvided": true, "_metaData": {"hidden": true,  "order": 2}},
-		{"id": "bing",      "_name": "Bing",           "_isAppProvided": true, "_metaData": {"hidden": true,  "order": 3}},
-		{"id": "ebay-au",   "_name": "eBay",           "_isAppProvided": true, "_metaData": {"hidden": true,  "order": 4}},
+		{"id": "google",    "_name": "Google",     "_isConfigEngine": true, "_metaData": {"hidden": false, "order": 1}},
+		{"id": "ddg",       "_name": "DuckDuckGo", "_isConfigEngine": true, "_metaData": {"hidden": true,  "order": 2}},
+		{"id": "bing",      "_name": "Bing",       "_isConfigEngine": true, "_metaData": {"hidden": true,  "order": 3}},
+		{"id": "ebay-au",   "_name": "eBay",       "_isConfigEngine": true, "_metaData": {"hidden": true,  "order": 4}},
 		{
+			"id": "wikipedia",
+			"_name": "Wikipedia (en)",
+			"_isConfigEngine": true,
+			"_metaData": {
+				"hidden": false,
+				"order": 13,
+				"alias": "@w"
+			}
+		},{
+			"id": "perplexity",
+			"_name": "Perplexity",
+			"description": "More AI crap nobody asked for",
+			"_isConfigEngine": true,
+			"_metaData": {
+				"hideOneOffButton": true,
+				"hidden": true,
+				"order": 99,
+				"alias": ""
+			}
+		},{
 			"id": "71badd3b-c2e6-40eb-b971-ac5f4bbed429",
 			"_name": "Ecosia",
 			"_loadPath": "[https]www.ecosia.org/ecosia.xml",
@@ -155,7 +174,7 @@
 			"_metaData": {
 				"loadPathHash": "AFlT9M1LVEXetffqb/ZCXz5KFQUi+xUTGYGD9rpe8y4=",
 				"updateexpir": 1734285360985,
-				"order": 13
+				"order": 12
 			},
 			"_urls": [{
 				"params":   [],
