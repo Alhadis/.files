@@ -274,6 +274,15 @@ and    not (-moz-bool-pref: "layout.css.control-characters.visible"){
 	ytd-thumbnail[size] .ytd-thumbnail{
 		border-radius: 0 !important;
 	}
+	
+	/* Fix missing visual cues */
+	#guide-links-primary,
+	#guide-links-secondary{
+		&.ytd-guide-renderer > a:hover{
+			color: light-dark(#000, #eee) !important;
+			color-scheme: light dark;
+		}
+	}
 
 	/* Exempt searchable transcripts from YouTube sidebar filter */
 	ytd-watch-flexy #secondary{
@@ -303,12 +312,30 @@ and    not (-moz-bool-pref: "layout.css.control-characters.visible"){
 		}
 	}
 
-	/* Hide shorts in Subscriptions feed */
+	/* Hide shorts on homepage and in Subscriptions feed */
+	ytd-rich-section-renderer:has(ytd-rich-shelf-renderer[is-shorts]),
 	ytd-browse[page-subtype="subscriptions" i] ytd-rich-section-renderer:has(
 		.ShortsLockupViewModelHost,
 		ytm-shorts-lockup-view-model,
 		ytm-shorts-lockup-view-model-v2
-	){ display: none !important; }
+	),
+	
+	/* Hide unused sidebar items */
+	ytd-guide-entry-renderer:has(> a:is(
+		[title="Home"        i],
+		[title="Shorts"      i],
+		[title="Playlists"   i],
+		[title="Your videos" i],
+		[title="You"         i],
+	)),
+	
+	/* Hide sidebar sections I'll never care about */
+	ytd-guide-section-renderer:has(a:is(
+		a[title="Music"           i],
+		a[title="Gaming"          i],
+		a[title="YouTube Premium" i],
+		a[title="YouTube Music"   i],
+	)),
 	
 	/* Hide unused buttons */
 	yt-button-view-model:has(button-view-model > button:is(
@@ -325,6 +352,36 @@ and    not (-moz-bool-pref: "layout.css.control-characters.visible"){
 	ytd-thumbnail-overlay-resume-playback-renderer{
 		background: light-dark(#ccc6c6, #534b4b) !important;
 		color-scheme: light dark;
+	}
+	
+	/* Prefer solid-coloured progress bars */
+	.ytp-play-progress{
+		background: #f03 !important;
+	}
+	.ytThumbnailOverlayProgressBarHostWatchedProgressBar{
+		height: 6px !important;
+		& > div[class$="Segment" i][style]:only-child{
+			border-top: 2px solid #000 !important;
+			background: #f03 !important;
+		}
+	}
+	
+	/* Make comments section accessible during full-screen mode */
+	body:has(ytd-app[fullscreen]){
+		overflow: initial !important;
+		min-height: 100vh;
+		
+		ytd-app[fullscreen]{
+			position: relative !important;
+			overflow: hidden scroll !important;
+		}
+		#columns{
+			display: block !important;
+			#primary{
+				margin: 0 auto !important;
+				--ytd-margin-6x: 0;
+			}
+		}
 	}
 }
 

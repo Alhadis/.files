@@ -30,8 +30,10 @@ youtube.com##ytd-subscribe-button-renderer yt-smartimation
 youtube.com###newness-dot
 youtube.com###sponsor-button
 youtube.com###yt-button-view-model
+youtube.com##.ytp-autonav-toggle
 youtube.com##.ytp-miniplayer-button
 youtube.com##.ytp-next-button
+youtube.com##.ytp-size-button
 
 ! Stack Exchange sites
 askubuntu.*###sidebar > *:not(.sidebar-related), #left-sidebar
