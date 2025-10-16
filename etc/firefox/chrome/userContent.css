@@ -138,9 +138,14 @@ and    not (-moz-bool-pref: "layout.css.control-characters.visible"){
 		}
 	}
 	
+	/* Hide donation nag */
+	body{ overflow: initial !important; }
+	a[href].donate,
+	#root ~ .MuiDialog-root,
+	
 	/* Clear(er)Sky */
 	.obscure-public-records-overlay{
-		display: none;
+		display: none !important;
 	}
 	.history-panel-container-obscurePublicRecords{
 		filter: none !important;
