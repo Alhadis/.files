@@ -50,6 +50,12 @@
 	undo = reset --soft HEAD~1
 	rewind = reset --hard
 
+	# Record a historical change-set
+	backdate = "! { \
+		date="$1"; shift; \
+		GIT_AUTHOR_DATE=\"$date\" GIT_COMMITTER_DATE=\"$date\" git commit "$@"; \
+	};"
+
 	# Resolve project's root directory
 	root = rev-parse --show-toplevel
 	parent = rev-parse --show-superproject-working-tree
