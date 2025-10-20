@@ -31,6 +31,7 @@ youtube.com###newness-dot
 youtube.com###sponsor-button
 youtube.com###yt-button-view-model
 youtube.com##.ytp-autonav-toggle
+youtube.com##.ytp-ce-hide-button-container
 youtube.com##.ytp-miniplayer-button
 youtube.com##.ytp-next-button
 youtube.com##.ytp-size-button
