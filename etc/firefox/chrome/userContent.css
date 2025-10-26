@@ -388,6 +388,32 @@ and    not (-moz-bool-pref: "layout.css.control-characters.visible"){
 			}
 		}
 	}
+	
+	/* Hide recommended videos layer during full-screen playback */
+	#movie_player.ytp-fullscreen{
+		.ytp-fullscreen-quick-actions,
+		.ytp-gradient-bottom,
+		&:not(.ended-mode) .ytp-fullscreen-grid{
+			display: none !important;
+		}
+		
+		/* End-of-video screen */
+		&.ended-mode .ytp-fullscreen-grid{
+			bottom: var(--yt-delhi-bottom-controls-height, 72px) !important;
+			top: 0 !important;
+			.ytp-modern-videowall-still{
+				display: flex !important;
+			}
+		}
+		
+		/* Anchor trackbar to bottom-edge of viewport */
+		.ytp-chrome-bottom{
+			bottom: 0 !important;
+			z-index: 99 !important;
+			--ytp-grid-peek-height: 0;
+			--ytp-grid-scroll-percentage: 0;
+		}
+	}
 }
 
 /* Attempt to fix UX issues with the Wayback Machine's calendar widget */
