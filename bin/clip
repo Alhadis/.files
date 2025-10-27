@@ -1,5 +1,20 @@
 #!/bin/sh
 
+# Ensure the shell's exit-on-error option is disabled
+set +e >/dev/null 2>&1
+
+# Avoid creating subshells (if possible) when checking for commands
+if builtin alias >/dev/null 2>&1;
+	then alias have='command -v >/dev/null 2>&1'
+	else have(){ command -v "$1" >/dev/null 2>&1; }
+fi
+
+# Terminate process with an error code
+die(){
+	printf >&2 "clip: %s\n" "${1:-fatal error}"
+	exit "${2:-1}"
+}
+
 # Split bundled option clusters
 case $1 in
 	-p?*) eval "shift && set -- -p \"${1#??}\" \"\$@\"";;
@@ -11,6 +26,10 @@ case $1 in
 	# Clear the clipboard's contents
 	-c|--clear|\
 	-r|--reset)
+		if ! have pbcopy && ! have xclip; then
+			have wl-copy && exec wl-copy -c
+			have xsel    && exec xsel -c
+		fi
 		printf '' | "$0";
 		exit $?
 	;;
@@ -21,30 +40,35 @@ case $1 in
 		if [ "$2" ]; then
 			case $1 in -p|--p*) raw='-p';; *) unset raw;; esac
 			shift
-			if command -v osascript >/dev/null
-				then exec ~/.files/etc/darwin/clip-item.scpt $raw "$@"
-				else exec xclip -o -sel clip -t "$1"
-			fi
+			have osascript && exec ~/.files/etc/darwin/clip-item.scpt $raw "$@"
+			have xclip     && exec xclip -o -sel clip -t "$1"
+			have wl-paste  && exec wl-paste -nt "$1"
 		else
-			if command -v osascript >/dev/null
-				then exec ~/.files/etc/darwin/clip-item.scpt
-				else exec xclip -o -sel clip -t TARGETS
-			fi
+			have osascript && exec ~/.files/etc/darwin/clip-item.scpt
+			have xclip     && exec xclip -o -sel clip -t TARGETS
+			have wl-paste  && exec wl-paste -l
+		fi
+		if have xsel
+			then die "xsel(1) does not support format selection"
+			else die "No clipboard driver found"
 		fi
 	;;
 esac
 
 # Copy to clipboard
 if [ ! -t 0 ]; then
-	if command -v pbcopy >/dev/null
-		then pbcopy
-		else xclip -sel clip
-	fi
+	have pbcopy   && exec pbcopy
+	have xclip    && exec xclip -sel clip
+	have wl-copy  && exec wl-copy
+	have xsel     && exec xsel
 
 # Paste from clipboard
 else
-	if command -v pbpaste >/dev/null
-		then pbpaste
-		else xclip -o -sel clip
-	fi
+	have pbpaste  && exec pbpaste
+	have xclip    && exec xclip -o -sel clip
+	have wl-paste && exec wl-paste -n
+	have xsel     && exec xsel -o
 fi
+
+# No CLI for system clipboard is available
+die "No clipboard driver found"
