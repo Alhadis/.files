@@ -146,6 +146,10 @@ alias pp='printf %s '\'"$fn"'.map(n => String(n)).sort().join("\n"); pp(globalTh
 unset fn
 
 
+# Dump an SQLite database in human-readable form
+have sqlite3 && alias sqldump='sqlite3 /dev/stdin .dump <'
+
+
 # Order-of-operations check. Runs clipboard contents through Terser to reveal which brackets are unnecessary.
 have terser && alias ooc='clip | sed '\''s/^[^=]*$/_=&/'\'' | terser -mc'
 
