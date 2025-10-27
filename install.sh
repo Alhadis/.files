@@ -106,9 +106,44 @@ command -v contour >/dev/null 2>&1 && {
 	ln -sf ~/.files/etc/contour.yml .config/contour/
 }
 
-# Disable blinking cursor in Gnome Terminal
+# Configure GNOME
 command -v gsettings >/dev/null 2>&1 && [ "$DISPLAY" ] && {
 	gsettings set org.gnome.desktop.interface cursor-blink false
+	gsettings set org.gnome.desktop.interface monospace-font-name "Menlig 13"
+	gsettings set org.gnome.desktop.interface show-battery-percentage true
+	gsettings set org.gnome.desktop.peripherals.keyboard delay 200
+	gsettings set org.gnome.desktop.peripherals.keyboard repeat-interval 60
+	gsettings set org.gnome.desktop.wm.preferences audible-bell false
+	
+	# Desktop wallpaper
+	uri="file://$HOME/.files/share/desktop/wallpaper.jpg"
+	gsettings set org.gnome.desktop.background picture-uri "$uri"
+	gsettings set org.gnome.desktop.background picture-uri-dark "$uri"
+	
+	# Configure terminal profile
+	key='org.gnome.Terminal.Legacy.Profile:/org/gnome/terminal/legacy/profiles:'
+	key="$key/:`gsettings get org.gnome.Terminal.ProfilesList default | tr -d \'\\\"`/"
+	gsettings set "$key" audible-bell false
+	gsettings set "$key" cursor-shape ibeam
+	gsettings set "$key" login-shell true
+	gsettings set "$key" scrollback-unlimited true
+	gsettings set "$key" text-blink-mode 'never'
+	gsettings set "$key" visible-name 'Default'
+	gsettings set "$key" use-theme-colors false
+	gsettings set "$key" foreground-color '#ffffff'
+	gsettings set "$key" background-color '#000000'
+	gsettings set "$key" background-transparency-percent 15
+	gsettings set "$key" default-size-columns 110
+	gsettings set "$key" default-size-rows 30
+	
+	# Default text-editor
+	gsettings set org.gnome.TextEditor highlight-current-line true
+	gsettings set org.gnome.TextEditor highlight-matching-brackets true
+	gsettings set org.gnome.TextEditor indent-style 'tab'
+	gsettings set org.gnome.TextEditor indent-width -1
+	gsettings set org.gnome.TextEditor show-line-numbers true
+	gsettings set org.gnome.TextEditor spellcheck false
+	gsettings set org.gnome.TextEditor tab-width 4
 }
 
 # Configure GNU Nano

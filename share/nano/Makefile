@@ -34,3 +34,12 @@ clean:
 	rmdir ~/.config >/dev/null 2>&1 || :
 
 .PHONY: clean
+
+
+# Portability hack for Debian-based systems
+/usr/local/share/nano:
+	[ -w /usr/local/share ] || sudo='sudo'; \
+	if test -d /usr/share/nano; \
+		then $$sudo ln -s /usr/share/nano $@; \
+		else [ -d "$@" ] || $$sudo mkdir -p "$@"; \
+	fi

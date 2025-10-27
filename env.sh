@@ -18,6 +18,7 @@ paths='
 	/opt/tools/sbin
 	/opt/tools/bin
 	/usr/games
+	/snap/bin
 	~/.wasmtime/bin
 	~/.deno/bin
 	~/.local/bin

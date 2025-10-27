@@ -56,6 +56,7 @@ have exiftool && {
 
 # Programs known by other names on other systems
 have pbcopy || { alias pbcopy=clip; alias pbpaste=clip; }
+have batcat && ! have bat && alias bat=batcat
 have sudo && ! have doas && alias doas=sudo
 
 
