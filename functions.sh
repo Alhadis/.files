@@ -217,7 +217,12 @@ localip(){
 
 # Browse a manual-page's source code
 mansrc(){
-	less `man -w $@`
+	path=`man -w "$1" || :`
+	[ -f "$path" ] || return 1
+	if command -v bat >/dev/null 2>&1
+		then bat --language=troff "$path"
+		else less "$path"
+	fi
 }
 
 # Display file permissions in octal format
@@ -332,7 +337,15 @@ sortsha(){
 
 # Browse an executable's source code
 src(){
-	less `command -v "$1"`
+	path=`command -v "$1"`
+	[ -x "$path" ] || {
+		>&2 printf 'No such executable: %s\n' "$path"
+		return 1
+	}
+	if command -v bat >/dev/null 2>&1
+		then bat "$path"
+		else less "$path"
+	fi
 }
 
 # Make other people's projects less aggravating to read
