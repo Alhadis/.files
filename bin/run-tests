@@ -53,7 +53,7 @@ have wasmtime && {
 
 # AppleScript
 [ -f test.scpt ] && have osascript && \
-	exec osascript -l AppleScript test.scpt "$@"
+	exec osascript -ss -l AppleScript test.scpt "$@"
 
 # Haskell
 [ -f test.hs ] && have ghc runghc && \
