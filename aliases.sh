@@ -246,7 +246,7 @@ case `uname -s` in
 		alias umount='diskutil unmount'
 		
 		# Remove annoying extended attributes added to downloads
-		alias unquarantine='xattr -d com.apple.quarantine * 2>/dev/null || true'
+		alias unquarantine='xattr -d com.apple.quarantine ./* 2>/dev/null || true'
 		
 		# Locate an “.app” bundle by ID
 		alias findapp='mdfind "kMDItemContentType = com.apple.application-bundle && kMDItemCFBundleIdentifier ="'
