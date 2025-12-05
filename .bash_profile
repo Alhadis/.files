@@ -13,8 +13,10 @@
 
 } 2>/dev/null
 
-# Omit duplicate entries from command history
-export HISTCONTROL=ignoredups:ignorespace
+# Command history
+export HISTCONTROL=ignoredups:ignorespace  # Omit duplicate entries
+export HISTTIMEFORMAT='[%F %T%z]%t'        # Show timestamps
+export HISTSIZE='-1'                       # Remove size limit
 
 if [ -r ~/.profile ]; then
 	. ~/.profile
