@@ -98,6 +98,7 @@ configure:
 	defaults write com.apple.dock tilesize -float 82
 	defaults write com.apple.finder DisableAllAnimations -bool true
 	defaults write com.apple.finder FavoriteTagNames -array
+	defaults write com.apple.finder FXPreferredViewStyle clmv
 	defaults write com.apple.finder FXEnableExtensionChangeWarning -bool false
 	defaults write com.apple.finder NewWindowTarget PfDe
 	defaults write com.apple.finder NewWindowTargetPath "file://$${HOME}/Desktop/"
