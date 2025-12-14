@@ -101,6 +101,17 @@ f(){
 	find . -type f -name "*$1*";
 }
 
+# Display filesize(s) in bytes
+filesize(){
+	case `stat -c %F / 2>&1` in
+		*[Dd]irectory*) stat -c %s -- "$@";;
+		*) if command -v gstat >/dev/null 2>&1
+			then gstat -c %s -- "$@"
+			else  stat -f %z -- "$@"
+		fi;;
+	esac
+}
+
 # Run git-status(1) with an empty line inserted before each list of changes
 g(){
 	if [ ! -t 1 ]; then git status "$@"; return $?; fi
