@@ -107,6 +107,7 @@ The “GNUmake idiom” OpenBSD hates is `$<`
 Generate disassembly
 --------------------
 
+	otool -GHILVdfhjlrtx -dyld_info -dyld_opcodes /usr/bin/osascript
 	clang -S -mllvm --x86-asm-syntax=intel -O0 test.c
 	d8 --print-bytecode test.js
 
