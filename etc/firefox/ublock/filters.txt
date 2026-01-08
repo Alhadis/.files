@@ -8,6 +8,7 @@
 
 ! Share/subscribe buttons
 ##.beehiiv-newsletter-signup-container
+firefox.com##aside#newsletter-banner
 fontawesome.com###social-buttons
 mozilla.org##aside#newsletter-banner
 sourceforge.net###newsletter-floating
@@ -26,7 +27,9 @@ youtube.com##ytm-paid-content-overlay-renderer
 youtube.com##ytd-app[fullscreen] #masthead-container
 youtube.com##ytd-app[fullscreen] .ytp-chrome-top-buttons
 youtube.com##ytd-badge-supported-renderer:has(.badge[aria-label=Fundraiser i])
+youtube.com##ytd-rich-item-renderer:has(badge-shape[aria-label="Members only" i])
 youtube.com##ytd-subscribe-button-renderer yt-smartimation
+youtube.com###emoji-button
 youtube.com###newness-dot
 youtube.com###sponsor-button
 youtube.com###yt-button-view-model
@@ -35,6 +38,19 @@ youtube.com##.ytp-ce-hide-button-container
 youtube.com##.ytp-miniplayer-button
 youtube.com##.ytp-next-button
 youtube.com##.ytp-size-button
+
+! Internet Movie Database
+||api.graphql.imdb.com/*operationName=HERO_WATCH_BOX*
+||api.graphql.imdb.com/*operationName=TopPicks*
+imdb.com##.footer__app
+imdb.com##.navbar__imdbpro, .pro-upsell, li:has(#ProUpsellLink)
+imdb.com##.ipc-avatar button[aria-label*="favorite" i]
+imdb.com##.ipc-reaction-summary
+imdb.com##.ipc-watchlist-ribbon
+imdb.com##a[aria-label*="preferred services" i]
+imdb.com##[data-testid="hero-subnav-bar-share-button"]
+imdb.com##[data-testid="list-page-sidebar-feedback"]
+imdb.com##[data-testid="title-cast-styling-proupsell"]
 
 ! Stack Exchange sites
 askubuntu.*###sidebar > *:not(.sidebar-related), #left-sidebar
@@ -75,6 +91,7 @@ developer.mozilla.org##section.place, sup.new
 discogs.com###release-recommendations
 discogs.com###release-videos
 extreme-ip-lookup.com###axd
+fandom.com###WikiaRail
 fontawesome.com###banner[class*=" fa"]
 fontawesome.com###modal-fa5
 github.com##.js-notification-top-shelf
@@ -85,3 +102,5 @@ learn.microsoft.com###disclaimer-holder
 mankier.com##main > a[href*="sponsor" i]
 metal-archives.com###affiliation-links
 publicholidays.com.au##.phgviewportconditional:has(> .sticky-ad-unit:only-child)
+tumblr.com###glass-container
+weather.com##.combinedTopAdsSectionWrapper

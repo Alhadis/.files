@@ -1,5 +1,5 @@
 /* Unsupported property to force “userContent.css” to appear in devtools */
-:root{
+body{
 	-webkit-locale: en-AU-u-sd-auvic-tz-aumel;
 }
 
@@ -188,9 +188,30 @@ and    not (-moz-bool-pref: "layout.css.control-characters.visible"){
 	}
 }
 
+/* Internet Movie Database */
+@-moz-document domain(imdb.com){
+	.ipc-avatar{
+		outline: 1px solid #0000001F;
+		
+		/* Prefer unclipped profile pictures */
+		&, .ipc-media ~ .ipc-lockup-overlay{
+			&, & > *{
+				border-radius: unset !important;
+			}
+		}
+	}
+	
+	/* Container below movie poster/trailers */
+	.gilQBG{
+		align-items: start !important;
+		margin: 1em 1.5em !important;
+	}
+}
+
 /* Cultural decay and teenage depression */
 @-moz-document domain(instagram.com){
 	/* Facilitate inspection of embedded videos */
+	div:has(> #scrollview:first-child + div:last-child),
 	video ~ div{
 		pointer-events: none;
 		opacity: 0;
@@ -199,6 +220,86 @@ and    not (-moz-bool-pref: "layout.css.control-characters.visible"){
 	/* Hide that annoying nag-screen when browsing anonymously */
 	#scrollview:not(:last-child),
 	#scrollview ~ div:has([role="dialog"] input[type="password" i]){
+		display: none !important;
+	}
+}
+
+/* Teach JSDoc about dark mode whilst tweaking its layout */
+@-moz-document domain(jsdoc.app){
+	html, body{
+		color-scheme:      light dark;
+		--text-color:      light-dark(#3d3d3c, #666)    !important;
+		--tomorrow-gray:   light-dark(#8e908c, #999)    !important;
+		--tomorrow-red:    light-dark(#c82829, #f00)    !important;
+		--tomorrow-purple: light-dark(#8959a8, #c161ff) !important;
+		--tomorrow-green:  light-dark(#718c00, #52c114) !important;
+		background-color:  light-dark(#fff, #101418)    !important;
+	}
+	header{
+		background-color:  light-dark(#ebebeb, #000) !important;
+		border-bottom: 1px light-dark(#c6c6c6, #333) solid !important;
+	}
+	h1, h2, h3, h4, h5, h6, th{
+		color: light-dark(#b93a38, #f23431) !important;
+	}
+	a:any-link{
+		color: light-dark(#605c89, #88b6ff) !important;
+	}
+	p, ul, ol{
+		text-indent:  unset !important;
+		margin-left:  3em   !important;
+		margin-right: 1.5em !important;
+		&:not(p){
+			padding-left: 1.5em !important;
+		}
+	}
+	code, pre{
+		font: .875em/1.5 Menlig, Menlo, monospace   !important;
+		background-color: light-dark(#dedede, #111) !important;
+		border-color:     light-dark(#999, #444)    !important;
+		&.hljs.language-none{
+			--text-color: light-dark(#3d3d3c, #e6e6e6);
+		}
+		&:is(pre){
+			margin: 1em 0 !important;
+			padding: .5em .7em !important;
+		}
+		& code{
+			font-size:        unset !important;
+			line-height:      unset !important;
+			background-color: unset !important;
+		}
+	}
+	figure{
+		margin: 1em 1em 2em 3em !important;
+		& > pre{
+			margin-left: -.5em !important;
+		}
+	}
+	th, td{
+		background-color: light-dark(#dedede, #111) !important;
+		border-color:     light-dark(#999, #444)    !important;
+		
+		/* Tabular content: reign in previously-applied spacing adjustments */
+		p, pre     { margin:    1em !important; }
+		figure     { margin:  .75em !important; }
+		figure pre { margin:      0 !important; }
+		figcaption { margin:  .25em !important; }
+		
+		/* Compensate for lack of descendant margins in text-only cells */
+		&:not(:has(> :first-child)){
+			padding: .25em 1em !important;
+		}
+	}
+	@media (prefers-color-scheme: dark){
+		img.license-badge{
+			outline: 1px solid #000b;
+			outline-offset: -2px;
+		}
+	}
+	
+	/* Hide that pointless “Fork me on GitHub” ribbon */
+	*:has(> .github-ribbon:only-child){
 		display: none !important;
 	}
 }
@@ -246,6 +347,13 @@ and    not (-moz-bool-pref: "layout.css.control-characters.visible"){
 	}
 }
 
+/* Archaic microblogging */
+@-moz-document domain(tumblr.com){
+	html, body{
+		overflow: unset !important;
+	}
+}
+
 /* Teach Wondery about dark mode */
 @-moz-document domain(wondery.com){
 	@media (prefers-color-scheme: dark){
@@ -288,6 +396,11 @@ and    not (-moz-bool-pref: "layout.css.control-characters.visible"){
 			color-scheme: light dark;
 		}
 	}
+	
+	/* Fix visibility “thrashing” caused by tooltip rollover events */
+	yt-popover:not(:has(*)){
+		pointer-events: none !important;
+	}
 
 	/* Exempt searchable transcripts from YouTube sidebar filter */
 	ytd-watch-flexy #secondary{
@@ -316,6 +429,12 @@ and    not (-moz-bool-pref: "layout.css.control-characters.visible"){
 			display: none !important;
 		}
 	}
+
+	/* Hide browser-game sections on homepage */
+	ytd-rich-section-renderer:has(a[title="YouTube Playables" i]:is(
+		[href^="/playableplayables" i],
+		[href^="/playables" i],
+	)),
 
 	/* Hide shorts on homepage and in Subscriptions feed */
 	ytd-rich-section-renderer:has(ytd-rich-shelf-renderer[is-shorts]),
@@ -359,6 +478,16 @@ and    not (-moz-bool-pref: "layout.css.control-characters.visible"){
 		color-scheme: light dark;
 	}
 	
+	/* Reorder sidebar sections */
+	#sections{
+		display: grid;
+		grid-template-columns: 1fr;
+		& > ytd-guide-section-renderer{
+			&:has(ytd-guide-entry-renderer > a[title="Home"    i]){ order: -2; }
+			&:has(ytd-guide-entry-renderer > a[title="History" i]){ order: -1; }
+		}
+	}
+	
 	/* Prefer solid-coloured progress bars */
 	.ytp-play-progress{
 		background: #f03 !important;
@@ -389,6 +518,21 @@ and    not (-moz-bool-pref: "layout.css.control-characters.visible"){
 		}
 	}
 	
+	/* End-of-video screen */
+	.ytp-fullscreen-grid{
+		z-index: 30 !important;
+		bottom: var(--yt-delhi-bottom-controls-height, 72px) !important;
+		top: 0 !important;
+		
+		.ytp-fullscreen-grid-main-content{
+			align-items: start !important;
+		}
+		.ytp-modern-videowall-still{
+			display: flex !important;
+			margin-bottom: 0 !important;
+		}
+	}
+	
 	/* Hide recommended videos layer during full-screen playback */
 	#movie_player.ytp-fullscreen{
 		.ytp-fullscreen-quick-actions,
@@ -397,13 +541,9 @@ and    not (-moz-bool-pref: "layout.css.control-characters.visible"){
 			display: none !important;
 		}
 		
-		/* End-of-video screen */
-		&.ended-mode .ytp-fullscreen-grid{
-			bottom: var(--yt-delhi-bottom-controls-height, 72px) !important;
-			top: 0 !important;
-			.ytp-modern-videowall-still{
-				display: flex !important;
-			}
+		/* Use 4×3-sized grid for end-of-video thumbnails */
+		.ytp-fullscreen-grid-stills-container{
+			grid-template-columns: repeat(4, 1fr) !important;
 		}
 		
 		/* Anchor trackbar to bottom-edge of viewport */
