@@ -236,6 +236,27 @@ mansrc(){
 	fi
 }
 
+# Set file modification time(s)
+mtime(){
+	seconds=$1; nanoseconds=0
+	case $1 in
+		[!0-9.]|.*|*.|*.*.*)
+			printf >&2 'mtime: invalid timestamp: %s\n' "$1"
+			return 1
+		;;
+		*?.?*)
+			seconds="${1%.*}"
+			nanoseconds="${1#*.}"
+		;;
+	esac
+	date="`TZ=UTC date -r "$seconds" '+%Y-%m-%dT%H:%M:%S'`.${nanoseconds}Z"
+	while [ $# -gt 1 ]; do
+		touch -d "$date" "$2"
+		shift
+	done
+	unset seconds nanoseconds date
+}
+
 # Display file permissions in octal format
 ostat(){
 	case $1 in -h|--help|-\?|'')
