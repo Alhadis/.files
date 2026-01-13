@@ -1,0 +1,19 @@
+{
+	"extends": "@alhadis/eslint-config",
+	"env": {"greasemonkey": true},
+	"overrides": [{
+		"files": "!shared.js",
+		"rules": {
+			"camelcase": ["error", {"allow": ["^GM_"]}]
+		},
+		"globals": {
+			"filesafe": "readonly",
+			"observe":  "readonly"
+		}
+	},{
+		"files": "shared.js",
+		"rules": {
+			"no-unused-vars": ["error", {"varsIgnorePattern": "^(?:filesafe|observe)$"}]
+		}
+	}]
+}
