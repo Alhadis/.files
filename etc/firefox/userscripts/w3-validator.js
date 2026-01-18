@@ -11,14 +11,21 @@
 // ==/UserScript==
 "use strict";
 
-// Nu HTML checker only supports web-hosted uploads…
+// Nu HTML checker
 if(location.pathname.startsWith("/nu/")){
 	const [form] = document.forms;
 	form.showsource .checked = true;
 	form.showoutline.checked = true;
-	form.docselect.value = "textarea";
-	form.doc.value ="";
+	form.showimagereport.checked = true;
+	form.docselect.value = "file";
+	document.activeElement.blur();
+	"file" === form.doc.type || installFileUpload();
 	form.doc.focus();
+	
+	// Don't retain last input-mode between visits
+	window.addEventListener("beforeunload", () => {
+		window.localStorage.removeItem("lastInputMode");
+	});
 }
 
 // Old-style validator

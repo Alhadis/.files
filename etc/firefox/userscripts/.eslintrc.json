@@ -11,6 +11,11 @@
 			"observe":  "readonly"
 		}
 	},{
+		"files": "w3-validator.js",
+		"globals": {
+			"installFileUpload": "readonly"
+		}
+	},{
 		"files": "shared.js",
 		"rules": {
 			"no-unused-vars": ["error", {"varsIgnorePattern": "^(?:filesafe|observe)$"}]
