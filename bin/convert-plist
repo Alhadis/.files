@@ -48,8 +48,8 @@ header=${header// }
 header=${header@U}
 input_format=xml
 case $header in
-	62706C697374) input_format=binary ;; # bplist
-	7B*)          input_format=ascii  ;; # {
+	62706C697374)     input_format=binary ;; # bplist
+	7B*|28*|2F2[AF]*) input_format=ascii  ;; # { ( // /*
 esac
 
 # Print the name of the resolved format
