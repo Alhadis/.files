@@ -180,6 +180,13 @@ and    not (-moz-bool-pref: "layout.css.control-characters.visible"){
 	}
 }
 
+/* Google search results */
+@-moz-document url-prefix("https://www.google.com/search"){
+	html, body{
+		overflow: visible !important;
+	}
+}
+
 /* Apple developer docs */
 @-moz-document domain(developer.apple.com){
 	/* Hide that annoying “Retired Document” reminder */
