@@ -3,6 +3,7 @@ Thumbs.db
 coverage
 Desktop.ini
 node_modules
+pod2htm[di].tmp
 .nyc_output
 ._*
 .\#*
