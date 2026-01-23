@@ -30,6 +30,46 @@ Location of system dictionaries
 
 Source: https://apple.stackexchange.com/a/404468
 
+Convert them to usable formats using [`pyglossary`](https://github.com/ilius/pyglossary):
+
+~~~console
+λ pip3 install pyglossary
+λ pyglossary /path/to/*.dictionary/ converted.tsv
+λ pyglossary --help # To display other formats to convert to
+~~~
+
+
+
+Location of downloaded podcasts
+-------------------------------
+
+	~/Library/Group\ Containers/*.groups.com.apple.podcasts/Library/Cache/*.mp3
+	~/Library/Group\ Containers/*.groups.com.apple.podcasts/Library/Cache/IMImageStore-Default/*
+
+
+
+Xcode-related stuff
+-------------------
+
+Project builds:
+
+	~/Library/Developer/Xcode/DerivedData/*/Build/Products/Development/
+
+Keybinding configs and syntax highlighting themes:
+
+	~/Library/Developer/Xcode/UserData/KeyBindings/*.idekeybindings
+	~/Library/Developer/Xcode/UserData/FontAndColorThemes/*.xccolortheme
+
+
+
+Location of notes and reminders
+-------------------------------
+
+	~/Library/Group Containers/group.com.apple.notes/NoteStore.sqlite
+	~/Library/Reminders/Container_v1/Stores/*.sqlite
+
+Decode `NotesStore.sqlite` with [`apple_cloud_notes_parser`](https://github.com/threeplanetssoftware/apple_cloud_notes_parser).
+
 
 
 Apple's transition from man-1.6 to mandoc
