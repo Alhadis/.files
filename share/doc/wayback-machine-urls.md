@@ -13,10 +13,15 @@ Direct link to original (unmodified) file:
 	date=`date +%Y%m%d`
 	https://web.archive.org/web/${DATE}id_/http://site.domain/page.html
 
-Newest and oldest versions of an archived page, respectively:
+Oldest capture for an archived page:
 
-	Latest: https://web.archive.org/web/${URL}
-	Oldest: https://web.archive.org/web/1000/${URL}
+	https://web.archive.org/web/0/${URL}
+
+Newest capture for an archived page:
+
+	https://web.archive.org/web/9/${URL}
+	https://web.archive.org/web/${URL}
+
 
 JSON API for interrogating a resource's archive status:
 
