@@ -149,7 +149,7 @@ unset fn
 # Dump an SQLite database in human-readable form
 have sqlite3 && {
 	have bat && fn=\''bat --file-name=\"\$1\" -lsql'\' || fn='less'
-	alias sqldump="sh -c 'exec sqlite3 -readonly \"\$1\" .dump | tabfix'\"\`test -t 1 || printf '| %s' "$fn"\`\" --"
+	alias sqldump="sh -c 'exec sqlite3 -readonly \"\$1\" .dump | tabfix'\"\`test -t 1 || printf '| %s' $fn\`\" --"
 	unset fn
 };
 
