@@ -22,8 +22,8 @@ function filesafe(input){
 		input = input.replaceAll(key, map[key]);
 	return input
 		.replace(/"([^"]*)"/g, "“$1”")
-		.replace(/\.(.[^.]*)?$/, "․$1")
 		.replace(/\.{3}/g, "…")
+		.replace(/^\.\./g, "‥")
 		.replace(/^\./, "․");
 }
 
