@@ -204,6 +204,7 @@ case `uname` in [Dd]arwin)
 	paths='
 		/Applications/*/share
 		/Applications/*/Contents/Resources
+		/Applications/*/Contents/Developer/usr/share
 		/Developer/usr/share
 		/Developer/usr/*/share
 		/Developer/usr/X11/share
