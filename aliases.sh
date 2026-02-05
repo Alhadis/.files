@@ -162,10 +162,6 @@ have terser && alias ooc='clip | sed '\''s/^[^=]*$/_=&/'\'' | terser -mc'
 have shred && alias nuke='shred -u' || alias nuke='rm -rfP'
 
 
-# Bring up notes for things I keep forgetting
-alias notes='less ~/.files/share/doc/reminders.md'
-
-
 # Codepoint and base conversion
 for fn in chr oct hex; do alias "$fn"="perl -E 'say join $/, map $fn, -t ? @ARGV : map split, <>'"; done;
 alias ord='perl -mEncode=decode -E "map { printf \"%1\\\$s\tU+%1\\\$X\n\", ord decode \"UTF-8\", \$_ } -t ? @ARGV : map split, <>"'

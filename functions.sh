@@ -257,6 +257,49 @@ mtime(){
 	unset seconds nanoseconds date
 }
 
+# Bring up notes for things I keep forgetting
+# shellcheck disable=SC1007,SC3009,SC3044
+notes(){
+	case $1 in
+		# Print a terse usage summary, then exit
+		-h|--help|-\?)
+			printf 'Usage: notes [topic=reminders]\n% 12s %s\n' 'notes' '--list'
+			return;;
+		# List all note-files viewable by this function
+		-l|--list)
+			set -- ~/.files/share/doc
+			printf 'Notes files in \033[4m%s\033[24m:\n' "$1";
+			find -s "$1" -type f \( -name '*.md' -or -name '*.txt' \) | sort -f | \
+			while IFS= read -r line; do
+				{ basename "$line"; head -n1 "$line"; } \
+				| sed 's/\.txt$/.md/; /\.md$/ { s///; N; s/ *\n */— /;}'
+			done | column -ts | sed 's/^/\t/'
+			return;;
+		# Ignore option-list terminator
+		--) shift;;
+	esac
+
+	# Resolve topic synonyms and abbreviations
+	shopt -s nocasematch >/dev/null 2>&1 || :
+	case ${1%.md} in
+		archive|archive.org|wayback|wayback-machine|wbm)  set -- wayback-machine-urls;;
+		appl|apple|mac|macos|mac\ os|osx|os[[:blank:]/]x) set -- apple;;
+		urls) set -- urls;;
+	esac
+
+	# Page resolved filename with either bat(1) or less(1), whichever's available
+	set -- ~/.files/share/doc/"$1"
+	set -- "$1.md" "$1.txt"
+	if   test -f "$1"; then set -- "$1"
+	elif test -f "$2"; then set -- "$2"
+	else set -- "${1%/*}/reminders.md"
+	fi
+	if command -v bat >/dev/null 2>&1
+		then BAT_STYLE='plain' bat -p "$1"
+		else less "$1"
+	fi
+}
+
 # Display file permissions in octal format
 ostat(){
 	case $1 in -h|--help|-\?|'')
