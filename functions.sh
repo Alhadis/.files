@@ -282,6 +282,7 @@ notes(){
 	# Resolve topic synonyms and abbreviations
 	shopt -s nocasematch >/dev/null 2>&1 || :
 	case ${1%.md} in
+		applescript*|osa|osax|scpt|apple-protocol*)       set -- applescript-protocol;;
 		archive|archive.org|wayback|wayback-machine|wbm)  set -- wayback-machine-urls;;
 		appl|apple|mac|macos|mac\ os|osx|os[[:blank:]/]x) set -- apple;;
 		urls) set -- urls;;
