@@ -52,7 +52,7 @@ soulseek: /usr/local/share/soulseek
 	ln -s /Volumes/Films/TV       $@/TV
 
 # Make Apple bloatware more tolerable
-configure:
+configure: dock terminal
 	sudo chpass -s /bin/sh Alhadis
 	sudo pmset -a lidwake 1
 	sudo pmset -a lessbright 0
@@ -84,11 +84,6 @@ configure:
 	defaults write com.apple.Accessibility KeyRepeatDelay -float 0.2
 	defaults write com.apple.Accessibility KeyRepeatEnabled -int 1
 	defaults write com.apple.Accessibility KeyRepeatInterval -float 0.08
-	test -x /usr/local/bin/bash || brew install bash
-	defaults write com.apple.Terminal Shell /usr/local/bin/bash
-	defaults write com.apple.Terminal ShowLineMarks -bool false
-	defaults write com.apple.Terminal 'Default Window Settings' Pro
-	defaults write com.apple.Terminal 'Startup Window Settings' Pro
 	defaults write com.apple.Preview PVSupressPDFCroppingAlert -bool true
 	defaults write com.apple.dock autohide -bool false
 	defaults write com.apple.dock launchanim -bool false
@@ -145,6 +140,27 @@ dock:
 			</dict>\
 		</dict>"; \
 	done && killall Dock
+
+# Configure macOS's terminal emulator
+terminal:
+	test -x /usr/local/bin/bash || brew install bash
+	defaults write com.apple.Terminal Shell /usr/local/bin/bash
+	defaults write com.apple.Terminal ShowLineMarks -bool false
+	defaults write com.apple.Terminal StartupAction -int 1
+	defaults write com.apple.Terminal NSNavLastRootDirectory ~/Desktop
+	defaults delete 2>/dev/null com.apple.Terminal CommandHistory   || :
+	defaults delete 2>/dev/null com.apple.Terminal PreviousCommands || :
+	defaults delete 2>/dev/null com.apple.Terminal 'Window Groups'  || :
+	defaults write com.apple.Terminal 'Default Window Settings' Pro
+	defaults write com.apple.Terminal 'Startup Window Settings' Pro
+	defaults write com.apple.Terminal 'Window Settings' -dict
+	for i in \
+		/System/Applications/Utilities/Terminal.app/Contents/Resources/Initial\ Settings/*.terminal \
+		~/.files/etc/darwin/*.terminal \
+	; do defaults write com.apple.Terminal 'Window Settings' -dict-add \
+		"`basename "$$i" .terminal`" \
+		"`convert-plist -x "$$i" | sed '1,/^<plist/d; /^<\/plist>/d'`"; \
+	done
 
 
 
