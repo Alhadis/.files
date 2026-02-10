@@ -106,6 +106,20 @@ configure: dock terminal
 	defaults write com.apple.finder WarnOnEmptyTrash -bool false
 	defaults write com.apple.digihub com.apple.digihub.cd.music.appeared   -dict action -bool true
 	defaults write com.apple.digihub com.apple.digihub.cd.picture.appeared -dict action -bool true
+	defaults write com.apple.menuextra.textinput ModeNameVisible -bool false
+	defaults -currentHost write com.apple.controlcenter BatteryShowPercentage  -bool true
+	defaults -currentHost write com.apple.controlcenter AirplayRecieverEnabled -bool false
+	defaults -currentHost write com.apple.controlcenter ScreenMirroring        -int 0
+	defaults -currentHost write com.apple.controlcenter Battery                -int 22
+	defaults -currentHost write com.apple.controlcenter Bluetooth              -int 18
+	defaults -currentHost write com.apple.controlcenter Clock                  -int 18
+	defaults -currentHost write com.apple.controlcenter WiFi                   -int 18
+	defaults -currentHost write com.apple.controlcenter Sound                  -int 16
+	defaults -currentHost write com.apple.controlcenter Display                -int 24
+	defaults -currentHost write com.apple.controlcenter NowPlaying             -int 24
+	defaults -currentHost write com.apple.controlcenter UserSwitcher           -int 24
+	defaults -currentHost write com.apple.controlcenter KeyboardBrightness     -int 24
+	defaults -currentHost write com.apple.controlcenter AccessibilityShortcuts -int 24
 	defaults write com.apple.universalaccess closeViewScrollWheelModifiersInt -int 393216
 	defaults write com.apple.universalaccess closeViewScrollWheelToggle -bool true
 	defaults write com.apple.universalaccess closeViewZoomFollowsFocus -bool true
