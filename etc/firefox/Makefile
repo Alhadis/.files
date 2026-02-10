@@ -101,7 +101,7 @@ ublock/settings.json: ublock/filters.txt ublock/whitelist.txt
 	expected_version=`jq -r .version < $@`; \
 	installed_version=`unzip -p "$$xpi" manifest.json | jq -r .version`; \
 	if ! test "$$expected_version" = "$$installed_version"; then \
-		echo >&2 'uBlock version mismatch (on-file: $$expected_version, installed: $$installed_version)'; \
+		echo >&2 "uBlock version mismatch (on-file: $$expected_version, installed: $$installed_version)"; \
 		exit 1; \
 	fi; \
 	unset file_changed; \

@@ -12,6 +12,7 @@ firefox.com##aside#newsletter-banner
 fontawesome.com###social-buttons
 mozilla.org##aside#newsletter-banner
 sourceforge.net###newsletter-floating
+makefiletutorial.com##.social-buttons
 web.dev##a[href*="/newsletter/" i]
 web.dev##share-action
 wondery.com##.upsell-banner

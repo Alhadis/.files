@@ -17,6 +17,22 @@ and    not (-moz-bool-pref: "layout.css.control-characters.visible"){
 	}
 }
 
+/* Disable clipping to facilitate full-page screenshots of settings pages */
+@-moz-document url-prefix(about:preferences),  url-prefix(about:addons){
+	@media (-moz-bool-pref: "user.unclipped-settings-pages"){
+		#preferences-root, #preferences-body, #preferences-stack{
+			flex: unset !important;
+			height: auto !important;
+			display: block !important;
+			min-height: max-content !important;
+			overflow: visible !important;
+		}
+		body > #full > #sidebar{
+			height: max-content !important;
+		}
+	}
+}
+
 /* AcronymFinder */
 @-moz-document domain(acronymfinder.com), domain(acronymattic.com){
 	/* Improve contrast */
@@ -308,6 +324,77 @@ and    not (-moz-bool-pref: "layout.css.control-characters.visible"){
 	/* Hide that pointless “Fork me on GitHub” ribbon */
 	*:has(> .github-ribbon:only-child){
 		display: none !important;
+	}
+}
+
+
+/* Makefile cookbooks and cheatsheats */
+@-moz-document domain(makefiletutorial.com){
+	html, body{
+		font: 600 1em/1.5 system-ui, Segoe UI, sans-serif !important;
+		tab-size: 4 !important;
+		height: auto !important;
+		min-height: 100vh;
+	}
+	@media (max-width: 1020px){
+		.body-wrapper{
+			padding: 0 !important;
+		}
+	}
+	#header, h1 + h2, h2 + h3, h4 + h5, h5 + h6{
+		margin-top: 0 !important;
+	}
+	p{
+		margin: 1em 0 !important;
+		:is(h2, h3, h4, h5, h6) + &{
+			margin-top: .5em !important;
+		}
+	}
+	pre, code, samp, tt{
+		font: 500 1em/1.5 Menlig, monospace !important;
+		p > &{
+			padding: 3px 5px !important;
+		}
+		pre > code:only-child, .hljs{
+			padding: .5em 1em !important;
+			display: block;
+		}
+	}
+	a:any-link{
+		color: #1c2020 !important;
+	}
+	
+	/* Table of contents (sidebar on desktop) */
+	#left{
+		font-size: unset !important;
+		width: 320px !important;
+		.toc :is(ol, ul){
+			margin: 0;
+			padding: 0;
+			li{
+				display: inline;
+				margin: 0 !important;
+				a:any-link{
+					display: block;
+					padding: .333em .5em;
+				}
+			}
+		}
+	}
+	
+	/* Page content */
+	.content{
+		ul, ol{
+			padding-left: 1em !important;
+			&, & > li{
+				list-style: initial !important;
+				line-height: inherit !important;
+				margin: 0 !important;
+				&::before{
+					content: none !important;
+				}
+			}
+		}
 	}
 }
 
