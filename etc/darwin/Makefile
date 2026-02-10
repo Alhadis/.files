@@ -106,6 +106,13 @@ configure: dock terminal
 	defaults write com.apple.finder WarnOnEmptyTrash -bool false
 	defaults write com.apple.digihub com.apple.digihub.cd.music.appeared   -dict action -bool true
 	defaults write com.apple.digihub com.apple.digihub.cd.picture.appeared -dict action -bool true
+	defaults write com.apple.DictionaryServices DCSPreferenceVersion -int 7
+	defaults write com.apple.DictionaryServices DCSActiveDictionaries -array \
+		com.apple.dictionary.ODE \
+		com.apple.dictionary.OTE \
+		com.apple.dictionary.AppleDictionary \
+		~/Library/Dictionaries/*.dictionary \
+		com.apple.dictionary.NOAD
 	defaults write com.apple.menuextra.textinput ModeNameVisible -bool false
 	defaults -currentHost write com.apple.controlcenter BatteryShowPercentage  -bool true
 	defaults -currentHost write com.apple.controlcenter AirplayRecieverEnabled -bool false
