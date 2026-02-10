@@ -16,5 +16,7 @@ node_modules
 /tmp.sh
 /var
 
+/share/db/*
 /share/nano/syntaxes/*
+!/share/db/Makefile
 !/share/nano/syntaxes/user
