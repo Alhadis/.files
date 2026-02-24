@@ -11,6 +11,16 @@
 			"observe":  "readonly"
 		}
 	},{
+		"files": "mw-*.js",
+		"parserOptions": {
+			"ecmaVersion": 5,
+			"sourceType": "script"
+		},
+		"rules": {
+			"no-var": 0,
+			"vars-on-top": 0
+		}
+	},{
 		"files": "w3-validator.js",
 		"globals": {
 			"installFileUpload": "readonly"
