@@ -538,7 +538,13 @@ and    not (-moz-bool-pref: "layout.css.control-characters.visible"){
 		ytm-shorts-lockup-view-model-v2
 	),
 	
+	/* Hide “Most Relevant” section in Subscriptions feed */
+	ytd-browse[page-subtype="subscriptions" i] ytd-rich-section-renderer:has(
+		ytd-rich-shelf-renderer[has-expansion-button]
+	),
+	
 	/* Hide unused sidebar items */
+	ytd-guide-downloads-entry-renderer,
 	ytd-guide-entry-renderer:has(> a:is(
 		[title="Home"        i],
 		[title="Shorts"      i],

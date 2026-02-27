@@ -25,6 +25,8 @@ x.com###credential_picker_container
 
 ! YouTube
 youtube.com##.ytp-paid-content-overlay
+youtube.com##yt-list-item-view-model:has([role='text']:contains(/\bRemove\s+ads\b/i))
+youtube.com##ytd-menu-service-item-renderer:has(yt-formatted-string:contains(/^Thanks$/i))
 youtube.com##ytm-paid-content-overlay-renderer
 youtube.com##ytd-app[fullscreen] #masthead-container
 youtube.com##ytd-app[fullscreen] .ytp-chrome-top-buttons
@@ -92,10 +94,13 @@ developer.mozilla.org##.page-layout__banner:has(mdn-placement-top)
 developer.mozilla.org##section.place, sup.new
 discogs.com###release-recommendations
 discogs.com###release-videos
+dropbox.com###maestro-campaigns-toolkit-portal
+dropbox.com##[data-testid="indicator-button-background"]
 extreme-ip-lookup.com###axd
 fandom.com###WikiaRail
 fontawesome.com###banner[class*=" fa"]
 fontawesome.com###modal-fa5
+github.com##.BorderGrid-row:has(a.Button[href*="workflow_template="])
 github.com##.js-notification-top-shelf
 gnu.org###fundraiser
 html.com###site-aside

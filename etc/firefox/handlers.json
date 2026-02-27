@@ -9,7 +9,13 @@
 		"text/xml":        {"action": 3, "extensions": ["xml", "xsl", "xbl"]}
 	},
 	"schemes": {
-		"podcasts": {"action": 4},
+		"applescript":  {"action": 4},
+		"feed":         {"action": 4},
+		"itmss":        {"action": 4},
+		"macappstore":  {"action": 4},
+		"podcasts":     {"action": 4},
+		"x-dictionary": {"action": 4},
+		"x-man-page":   {"action": 4},
 		"mailto": {
 			"action": 2,
 			"handlers": [{
