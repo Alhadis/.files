@@ -13,18 +13,18 @@ $(HOME)/.config/nano:
 NANO = /usr/local/share/nano
 syntaxes/default: $(NANO)
 	rm -f $@
-	ln -s "$?" $@
+	ln -s "$^" $@
 
 syntaxes/extra: $(NANO)/extra
 	rm -f $@
-	ln -s "$?" $@
+	ln -s "$^" $@
 
 syntaxes/user:
 	touch -ch $@
 
 syntaxes/%: $(NANO)/%
-	[ -h $@ ] && rm -f $@
-	ln -s "$?" $@
+	[ -h $@ ] && rm -f "$@"
+	ln -s "$^" "$@"
 
 
 # Wipe generated symlinks to nanorc(5) directories
