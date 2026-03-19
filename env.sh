@@ -143,6 +143,18 @@ have jq && {
 	alias jq='jq --tab'
 }
 
+# Bat: Display filesizes and fix mangled border decorations
+have bat && {
+	export BAT_STYLE='full'
+	export BAT_PAGER='less -F'
+	export BAT_THEME='Monokai Extended'
+	[ -z "$DISPLAY" ] && {
+		export BAT_THEME='ansi'
+		export BAT_STYLE='numbers,header-filename,header-filesize,snip'
+		export LC_CTYPE="${LC_CTYPE:-en_AU.UTF-8}"
+	};
+}
+
 # PowerShell: Disable telemetry and suppress copyright banner
 have pwsh && {
 	export POWERSHELL_TELEMETRY_OPTOUT=1
