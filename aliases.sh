@@ -74,11 +74,20 @@ alias s=~/.files/bin/rgrep
 };
 
 
-# Hide summary lines in tree(1) output
-have tree && if tree -a --noreport ~/.files/bin >/dev/null 2>&1
-	then alias tree='tree -a --noreport'; alias bush='tree -spugDF --metafirst --timefmt="%Y-%m-%d %T"'
-	else alias tree='tree -as'
-fi
+# Use the most featureful version of tree(1) available
+# shellcheck disable=SC2139
+have colortree && tree=colortree || tree=tree
+if "$tree" -a --noreport ~/.files/bin >/dev/null 2>&1; then
+	[ -z "${DISPLAY}${SSH_TTY}${TREE_CHARSET+1}" ] || export TREE_CHARSET=UTF-8
+	alias tree="$tree -aN --noreport"
+	set -- "$tree" -aspugDN --noreport "--timefmt='%Y-%m-%d %T'"
+	if "$@" --metafirst ~/.files/bin 2>&1 | grep -q 'Invalid argument.*--metafirst'
+		then eval "bush(){ $* \"\$@\"|sed 's/ / /g;s/^\([^][]*  *\)\(\[[^][]*\] *\)/\2\1/';}"
+		else alias bush="$* --metafirst"
+	fi; set --
+elif have tree; then
+	alias tree='tree -as'
+fi; unset tree
 
 
 # Hide GNU bc(1)'s startup message

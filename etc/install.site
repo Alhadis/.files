@@ -143,6 +143,7 @@ pkg_add -mvzUl /dev/stdin <<-EOF
 	alacritty
 	bash
 	bat
+	colortree
 	coreutils
 	curl
 	dash--static
