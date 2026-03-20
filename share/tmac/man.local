@@ -1,12 +1,21 @@
 .\" -*- nroff -*-
 .
 .\" Fix spurious copy+pasta hazards
-.tr -\-^\(ha~\(ti\'\(aq
+.do trnt -\-^\(ha~\(ti\'\(aq
 .
 .\" Enable OSC 8 hyperlinks
 .if !rU .nr U 1
 .
-.\" Prefer old-school headings in terminal output
+.\" Shut up about deprecated or missing fonts
+.do warn \n[.warn]-131072
+.
+.\" Remap unportable font references
+.if !F CW \{
+.	ie t .do ftr CW CR
+.	el   .do ftr CW R
+.\}
+.
+.\" Prefer ALL CAPS headings in terminal output
 .if n \{\
 .	nr CS 1
 .	nr CT 1
