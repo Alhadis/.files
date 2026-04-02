@@ -3,7 +3,7 @@
 // @description  Redirect localised file-pages to their canonical URL on Wikimedia Commons.
 // @author       Alhadis
 // @license      ISC
-// @version      1.0
+// @version      1.1
 // @grant        GM_getValue
 // @namespace    https://github.com/Alhadis/.files
 // @downloadURL  https://raw.github.com/Alhadis/.files/HEAD/etc/firefox/userscripts/mw-redirect.js
@@ -49,12 +49,14 @@
 // @match        *://*.setesdalswiki.no/wiki/*
 // @match        *://*.shoutwiki.com/wiki/*
 // @match        *://*.spiele.j-crew.de/wiki/*
+// @match        *://*.terminals-wiki.org/wiki/*
 // @match        *://*.translatewiki.net/wiki/*
 // @match        *://*.tuepedia.de/wiki/*
 // @match        *://*.uncyclopedia.co/wiki/*
 // @match        *://*.urbipedia.org/hoja/*
 // @match        *://*.vikidia.org/wiki/*
 // @match        *://*.vragwiki.dk/wiki/*
+// @match        *://*.wiki.musicbrainz.org/*
 // @match        *://*.wiki.sn.at/wiki/*
 // @match        *://*.wikichip.org/wiki/*
 // @match        *://*.wikieducator.org/*
