@@ -5,6 +5,7 @@ share/dict/en_*   linguist-vendored
 bookmarklets.html linguist-generated
 
 # Documentation
+share/doc/*.html  linguist-documentation
 share/man/**      linguist-documentation
 
 # Unrecognised filetypes

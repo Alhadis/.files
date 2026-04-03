@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+<meta name="color-scheme" content="light dark"/>
+<meta name="viewport" content="initial-scale=1, minimum-scale=1"/>
+<title>Speech Synthesis Programming Guide | Phonemes</title>
+<meta scheme="apple_ref" id="identifier" name="identifier" content="//apple_ref/doc/uid/TP40004365"/>
+<link rel="canonical" href="https://developer.apple.com/library/archive/documentation/UserExperience/Conceptual/SpeechSynthesisProgrammingGuide/Phonemes/Phonemes.html#//apple_ref/doc/uid/TP40004365-CH9-SW1"/>
+<style>
+	/** Typeface for rendering IPA notation */
+	@font-face{
+		font-family: IPA;
+		font-weight: normal;
+		font-style: normal;
+		font-variant-ligatures: contextual;
+		src:
+			/* Sans-serif */
+			local("Doulos SIL"),
+			local("DejaVu Sans"),
+			local("Noto Sans"),
+			local("Andika"),
+			
+			/* Serif */
+			local("Gentium"),
+			local("Charis SIL"),
+			
+			/* Commercial */
+			local("Calibri"),
+			local("Segoe UI"),
+			local("Brill"),
+			local("Cambria"),
+			
+			/* Fallback */
+			local("sans-serif");
+	}
+
+	/** Fixed-pitch/monospaced font-family */
+	@font-face {
+		font-family: mono;
+		font-weight: normal;
+		font-style: normal;
+		font-variant-ligatures: contextual;
+		src:
+			local("Menlig"),
+			local("Menlo"),
+			local("Menloco"),
+			local("Monaco"),
+			local("SFMono-Regular"),
+			local("Consolas"),
+			local("Cousine"),
+			local("Lucida Console"),
+			local("Liberation Mono"),
+			local("DejaVu Sans Mono"),
+			local("Bitstream Vera Sans Mono"),
+			local("Andale Mono"),
+			local("Courier New"),
+			local("Courier"),
+			local("monospace");
+	}
+
+	*{
+		box-sizing: border-box;
+		tab-size: 4;
+		&::before, &::after{
+			box-sizing: inherit;
+		}
+	}
+	
+	html{
+		font-family: sans-serif;
+	}
+
+	code, kbd, listing, plaintext, pre, samp, textarea, tt, xmp{
+		font-family: mono;
+		font-size-adjust: .5;
+		white-space: pre;
+	}
+	
+	pre{
+		margin-inline-start: 1em;
+		&:has(code:only-child){
+			user-select: all;
+		}
+	}
+	
+	.action{
+		font-style: italic;
+		quotes: "(" ")";
+		&::before { content: open-quote; }
+		&::after  { content: close-quote; }
+	}
+
+	#phonemes{
+		&, tr, th, td{
+			border: 1px solid;
+			border-collapse: collapse;
+			white-space: nowrap;
+			vertical-align: middle;
+		}
+		th, td:last-child{
+			padding: .5em;
+		}
+		th:first-child,
+		th:nth-child(2){
+			min-width: 5em;
+		}
+		th[rowspan="2"]{
+			min-width: 20em;
+		}
+		
+		td:has(:is(code, samp):not(:only-child)){
+			text-align: center;
+		}
+		
+		td:not(.action):nth-child(3){
+			border: none;
+			color: color(from currentColor srgb r g b / 0.8);
+			letter-spacing: .1em;
+			font-kerning: none;
+			em{
+				color: color(from currentColor srgb r g b / 1);
+				text-decoration: underline;
+				text-decoration-thickness: 1px;
+				text-decoration-inset: -1px 1px;
+				text-underline-position: under;
+				padding-right: .1em;
+			}
+		}
+		
+		code, samp{
+			display: inline-block;
+			padding: .35em;
+			font-size: 1.25em;
+			line-height: 1;
+			text-align: center;
+			vertical-align: middle;
+			cursor: text;
+			user-select: all;
+			speak-as: spell-out digits literal-punctuation;
+			
+			&:only-child{
+				min-width: 4em;
+			}
+			&:not(:only-child){
+				&:first-child       { padding-right: 0; }
+				&:not(:first-child) { padding-left:  0; }
+			}
+		}
+		samp{
+			font-family: IPA;
+		}
+	}
+</style>
+</head>
+
+<body>
+	<h1>Legacy macOS Phoneme Symbols</h1>
+	<p>Referenced from a <a href="https://superuser.com/a/887829" rel="external">Stack Exchange</a> answer.</p>
+	
+	<h2>Voices that support <code>[[inpt PHON]]</code> directives</h2>
+	<ul id="voices">
+		<li>Alex</li>
+		<li>Fred</li>
+		<li>Victoria</li>
+	</ul>
+	<p>(Re)generate this list using the following shell-script:</p>
+	<pre lang="shell"><code>#!/bin/sh
+set -e
+
+# List pre-10.6 voices with phoneme directive support (requires `sox`)
+for v in `say -v '?' | sed 's/[[:blank:]].*//'`; do
+say -v "$v" \
+	--file-format=WAVE \
+	--data-format=LEF32@32000 \
+	-o /tmp/voice-test.wav \
+	'[[inpt PHON]]@@@'
+case `sox /tmp/voice-test.wav -n stat 2>&1 | sed -n '
+	/^Maximum amplitude:/! d
+	s/.*: *\([^ ]*\)$/6k0[1+]sR0 0 \1!>Rn/p
+' | dc` in 1) echo "$v";; esac
+done || :; unset v
+rm -f /tmp/voice-test.wav</code></pre>
+	<script>
+		"use strict";
+		const self = document.currentScript;
+		const code = self.previousElementSibling;
+		const name = "list-phoneme-compatible-voices.sh";
+		const type = "text/x-shellscript;charset=UTF-8";
+		code && code.parentNode.insertBefore(Object.assign(document.createElement("a"), {
+			href: `data:${type};filename=${name},${encodeURIComponent(code.textContent)}%0A`,
+			type, download: name,
+			textContent: "Download",
+		}), self);
+	</script>
+	
+	<h2>North American English phoneme symbols</h2>
+	<p>Extracted from <a href="https://developer.apple.com/library/archive/documentation/UserExperience/Conceptual/SpeechSynthesisProgrammingGuide/Phonemes/Phonemes.html#//apple_ref/doc/uid/TP40004365-CH9-SW1">Apple's documentation archive</a>, modified to include corresponding <a href="https://en.wikipedia.org/wiki/International_Phonetic_Alphabet">IPA</a> symbol(s).</p>
+	<table id="phonemes">
+		<thead>
+			<tr>
+				<th colspan="2">Phoneme symbol</th>
+				<th scope="col" rowspan="2">Example of pronunciation</th>
+			</tr>
+			<tr>
+				<th scope="col"><abbr title="International Phonetic Alphabet">IPA</abbr></th>
+				<th scope="col">macOS</th>
+			</tr>
+		</thead>
+
+		<tbody>
+			<tr><td title="Not applicable"></td><td><code>%</code></td><td class="action">silence</td></tr>
+			<tr><td title="Not applicable"></td><td><code>@</code></td><td class="action">breath intake</td></tr>
+			<tr><td><samp>æ</samp></td><td><code>AE</code></td><td>b<em>a</em>t</td></tr>
+			<tr><td><samp>eɪ</samp></td><td><code>EY</code></td><td>b<em>ai</em>t</td></tr>
+			<tr><td><samp>ɔ</samp></td><td><code>AO</code></td><td>c<em>au</em>ght</td></tr>
+			<tr><td><samp>əˈ</samp></td><td><code>AX</code></td><td><em>a</em>bout</td></tr>
+			<tr><td><samp>i</samp></td><td><code>IY</code></td><td>b<em>ee</em>t</td></tr>
+			<tr><td><samp>ɛ</samp></td><td><code>EH</code></td><td>b<em>e</em>t</td></tr>
+			<tr><td><samp>ɪ</samp></td><td><code>IH</code></td><td>b<em>i</em>t</td></tr>
+			<tr><td><samp>aɪ</samp></td><td><code>AY</code></td><td>b<em>i</em>te</td></tr>
+			<tr><td><samp>ɪ</samp></td><td><code>IX</code></td><td>ros<em>e</em>s</td></tr>
+			<tr><td><samp>ɑ</samp></td><td><code>AA</code></td><td>f<em>a</em>ther</td></tr>
+			<tr><td><samp>u</samp></td><td><code>UW</code></td><td>b<em>oo</em>t</td></tr>
+			<tr><td><samp>ʊ</samp></td><td><code>UH</code></td><td>b<em>oo</em>k</td></tr>
+			<tr><td><samp>ʌ</samp> <samp>ɜ</samp></td><td><code>UX</code></td><td>b<em>u</em>d</td></tr>
+			<tr><td><samp>oʊ</samp></td><td><code>OW</code></td><td>b<em>oa</em>t</td></tr>
+			<tr><td><samp>aʊ</samp></td><td><code>AW</code></td><td>b<em>ou</em>t</td></tr>
+			<tr><td><samp>ɔɪ</samp></td><td><code>OY</code></td><td>b<em>oy</em></td></tr>
+			<tr><td><samp>b</samp></td><td><code>b</code></td><td><em>b</em>in</td></tr>
+			<tr><td><samp>ʧ</samp> <samp>t͡ʃ</samp></td><td><code>C</code></td><td><em>ch</em>in</td></tr>
+			<tr><td><samp>d</samp></td><td><code>d</code></td><td><em>d</em>in</td></tr>
+			<tr><td><samp>ð</samp></td><td><code>D</code></td><td><em>th</em>em</td></tr>
+			<tr><td><samp>f</samp></td><td><code>f</code></td><td><em>f</em>in</td></tr>
+			<tr><td><samp>ɡ</samp></td><td><code>g</code></td><td><em>g</em>ain</td></tr>
+			<tr><td><samp>h</samp></td><td><code>h</code></td><td><em>h</em>at</td></tr>
+			<tr><td><samp>ʤ</samp> <samp>d͡ʒ</samp></td><td><code>J</code></td><td><em>j</em>ump</td></tr>
+			<tr><td><samp>k</samp></td><td><code>k</code></td><td><em>k</em>in</td></tr>
+			<tr><td><samp>l</samp></td><td><code>l</code></td><td><em>l</em>imb</td></tr>
+			<tr><td><samp>m</samp></td><td><code>m</code></td><td><em>m</em>at</td></tr>
+			<tr><td><samp>n</samp></td><td><code>n</code></td><td><em>n</em>ap</td></tr>
+			<tr><td><samp>ŋ</samp></td><td><code>N</code></td><td>ta<em>ng</em></td></tr>
+			<tr><td><samp>nˌ</samp></td><td><code>EN</code></td><td><em>in</em>come</td></tr>
+			<tr><td><samp>p</samp></td><td><code>p</code></td><td><em>p</em>in</td></tr>
+			<tr><td><samp>ɹ</samp></td><td><code>r</code></td><td><em>r</em>an</td></tr>
+			<tr><td><samp>s</samp></td><td><code>s</code></td><td><em>s</em>in</td></tr>
+			<tr><td><samp>ʃ</samp></td><td><code>S</code></td><td><em>sh</em>in</td></tr>
+			<tr><td><samp>t</samp></td><td><code>t</code></td><td><em>t</em>in</td></tr>
+			<tr><td><samp>θ</samp></td><td><code>T</code></td><td><em>th</em>in</td></tr>
+			<tr><td><samp>v</samp></td><td><code>v</code></td><td><em>v</em>an</td></tr>
+			<tr><td><samp>w</samp></td><td><code>w</code></td><td><em>w</em>et</td></tr>
+			<tr><td><samp>j</samp></td><td><code>y</code></td><td><em>y</em>et</td></tr>
+			<tr><td><samp>z</samp></td><td><code>z</code></td><td><em>z</em>oo</td></tr>
+			<tr><td><samp>ʒ</samp></td><td><code>Z</code></td><td>mea<em>s</em>ure</td></tr>
+			<tr><td><samp>ˈ</samp></td><td title="Not applicable"></td><td class="action">ignored</td></tr>
+		</tbody>
+	</table>
+	<script>
+		"use strict";
+
+		function getMappings(){
+			const map = [];
+			for(const {rows} of phonemes.tBodies)
+			for(const {cells} of rows){
+				const ipa = cells[0].querySelectorAll("samp");
+				const mac = cells[1].textContent;
+				if(!ipa.length) continue;
+				for(const {textContent: i} of ipa)
+					i.length > 1 ? map.unshift([i, mac]) : map.push([i, mac]);
+			}
+			const rev = {__proto__: null};
+			for(const [key, value] of map)
+				(rev[value] ??= []).push(key);
+			map.reversed = rev;
+			return map;
+		}
+		
+		function makeSedScript(){
+			let result = String.raw `
+				#!/usr/bin/sed -f
+				
+				:a
+				$! {
+					N;
+					s/\n/ /
+					$! ba
+				}
+			` + "\n";
+			for(const [key, value] of getMappings()){
+				const uc = key.toUpperCase();
+				if(uc !== key)
+					result += `s/${uc}/${value}/g\n`;
+				result += `s/${key}/${value}/g\n`;
+			}
+			result += String.raw `
+				s/[^A-Za-z ]//g
+				s/^[[:blank:]]*//
+				s/[[:blank:]]*$//
+				s/[[:blank:]]\{1,\}/ /g
+				s/^/[[inpt PHON]]/
+			`;
+			const [indent] = result.match(/^\t+/m);
+			result = result.replace(new RegExp("^" + indent, "gm"), "").trim();
+			return result;
+		}
+		
+		window.ondblclick = event => {
+			const {target} = event;
+			if("TH" !== target.tagName) return;
+			const mode = {
+				__proto__: null,
+				"IPA": 0,
+				"macOS": 1,
+				"Phoneme symbol": 2,
+			}[target.textContent.trim()] ?? -1;
+			const sel = window.getSelection();
+			sel.empty();
+			for(const row of phonemes.rows){
+				if("TBODY" !== row.parentNode.tagName) continue;
+				const range = document.createRange();
+				let [ipa, mac] = row.cells;
+				switch(mode){
+					default: continue;
+					case 0: range.selectNode(ipa); break;
+					case 1: range.selectNode(mac); break;
+					case 2:
+						ipa = ipa.firstChild ?? ipa;
+						mac = mac.firstChild ?? mac;
+						range.setStart(ipa, 0);
+						range.setEnd(mac, mac.childNodes.length);
+				}
+				sel.addRange(range);
+			}
+		};
+	</script>
+</body>
+</html>
