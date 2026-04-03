@@ -7,15 +7,18 @@
 .
 .Sh SYNOPSIS
 .Nm
-.Op Fl p | -print-format
 .Op Fl x | -xml
-.Ar file
+.Op Ar file
 .
 .Nm
-.Op Fl h | -help
+.Fl p | -print-format
+.Op Ar file
 .
 .Nm
-.Op Fl t | -run-tests
+.Fl t | -run-tests
+.
+.Nm
+.Fl h | -help
 .
 .Sh DESCRIPTION
 .Nm
@@ -23,11 +26,21 @@ converts a property list
 .Ar file
 to or from the XML format described in
 .Xr plist 5 .
+If no
+.Ar file
+argument is specified,
+.Nm
+reads from standard input.
 .
 .Bl -tag -width 4n
+.It Fl x , -xml
+Force conversion to XML format,
+if the file named on the command-line is binary.
+Input that already contains XML will be reformatted and normalised using
+.Xr plutil 1 .
+.
 .It Fl p , -print-format
 Display the name of the input format, then exit.
-Intended for debugging.
 Possible values are
 .Ql xml ,
 .Ql binary ,
@@ -36,10 +49,13 @@ and
 .
 .It Fl t , -run-tests
 Run some built-in tests.
+Intended for debugging only.
+Requires
+.Xr shellcheck 1 .
 .
-.It Fl x , -xml
-Force conversion to XML format,
-if the file named on the command-line is binary.
+.It Fl h , -help
+Print an abbreviated usage summary, then exit.
+.
 .El
 .
 .Sh EXIT STATUS
@@ -52,7 +68,7 @@ if the file named on the command-line is binary.
 .
 .Sh AUTHORS
 .An -nosplit
-Copyright \(co 2021
+Copyright \(co 2021-2026
 .An John Gardner Aq Mt gardnerjohng@gmail.com .
 .Pp
 Freely released under the
@@ -61,3 +77,15 @@ Freely released under the
 .Sh CAVEATS
 This utility leans strongly on macOS-provided utilities to function.
 It is unlikely to be useful to users of other systems.
+.
+.Sh BUGS
+There is no option to force OpenStep (or binary)
+.Xr plist 5
+output.
+.Pp
+GNUstep extensions like NSDate literals are understood by
+.Nm ,
+but are not round-trippable.
+.Pp
+An option to use GNUstep extensions when converting to ASCII property-lists would be helpful,
+and would partially solve the previously-mentioned issue of round-tripping,
