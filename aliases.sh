@@ -1,6 +1,6 @@
 # Shorthand
 alias ..='cd ..'
-alias L='l -tr'
+alias L='l -trH'
 alias l='LC_COLLATE=C ls -alh'
 alias p='pwd'
 alias c="printf '\033[2J\033[3J\033[H\033c'"
