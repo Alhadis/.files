@@ -28,15 +28,17 @@ for cmd in plutil pl; do command >/dev/null 2>&1 -v "$cmd" || {
 if [[ ! $run_tests ]]; then
 
 # The plutil(1) utility refuses to read FIFOs for some reason
-if [[ -p $1 || $1 == "-" ]]; then exec < "$1"; shift; fi
+if [[ -p $1 || $1 =~ ^(-|/+dev/+(stdin|fd/+0))$ ]]; then
+	exec < "$1"
+	shift
 
 # Work out where our input is coming from
-if [[ $# -gt 0 ]]; then
+elif [[ $# -gt 0 ]]; then
 	# shellcheck disable=SC2059
 	die()(printf >&2 "${0##*/}: $1\n" '"[4m'"$2"'[24m"'; exit 1)
 	[[ -e $1 ]] || die 'No such file: %s' "$1"
-	[[ -f $1 ]] || die 'Not a regular file: %s' "$2"
-else set --; fi
+	[[ -f $1 ]] || die 'Not a regular file: %s' "$1"
+fi
 
 # Scan first 6 bytes to determine file-format
 read -r _ header <<END
@@ -56,9 +58,9 @@ if [[ $print_format ]]; then
 	exit
 fi
 
-# Normalise formatting if both input and requested formats are XML
-if [[ $input_format == xml && $xml ]]; then
-	if [[ -t 0 ]]
+# Delegate conversion to plutil(1) if no OpenStep plist(5)-wrangling is needed
+if [[ $input_format != ascii && $xml ]]; then
+	if [[ -n "$1" ]]
 		then exec plutil -convert xml1 "$1" -o -
 		else {
 			echo "$header" | xxd -p -r
@@ -68,7 +70,7 @@ if [[ $input_format == xml && $xml ]]; then
 
 # Convert to XML
 elif [[ $input_format == ascii ]]; then {
-	if [[ ! -t 0 ]]; then
+	if [[ -z "$1" ]]; then
 		echo "$header" | xxd -p -r
 		dd 2>/dev/null ${1:+if="$1"}
 	else
@@ -76,13 +78,34 @@ elif [[ $input_format == ascii ]]; then {
 	fi
 	echo # Ensure trailing newline
 } | sed -E '
+	# Isolate quoted strings
+	s/^([^"=\/\n]+)("([^"]|\\")*")([[:blank:]]*=)?/\1\n\2\4\n/g
+	s/^([^="]*)[[:blank:]]*=[[:blank:]]*("([^"]|\\")*")/\1 =\n\2\n/g
+' | sed -E '
+	# Collapse multiline strings
 	:a
-	/([=,({]|^)[[:blank:]]*"([^\\"]|\\[0-7]{1,3}|\\U[0-9A-Fa-f]{1,4}|\\.)*$/ { N; s/\n/\\n/g; ba
+	/^(([^"]*|"([^"]|\\")*")=)?[[:blank:]]*"([^"]|\\")*$/ {
+		N
+		s/\n/\\n/
+		/\\n([^"]|\\")*"/! ba
 	}
-	/<[^<>"]*$/ { N; s/\n[[:blank:]]*//; ba
+
+	# Collapse multiline data-spans
+	:d
+	/<[^<>"]*$/ { N; s/\n[[:blank:]]*//; bd
 	}
 	s/([=,(]|^)[[:blank:]]*(<\[[^][<>]*\]>)/\1\n\2\n/g
 	s/([=,(]|^)[[:blank:]]*(<\*D[^<>]*>)/\1\n\2\n/g
+	
+	# Strip comments
+	s/^(([^"=\/\n*]|\/[^"=\n*])+)\/\/.*/\1/g
+	:c
+	s/^(([^"=\/\n*]|\/[^"=\n*])+)\/\*([^*]|\*[^\/])*\*\//\1/g; tc
+	/^(([^"=\/\n*]|\/[^"=\n*])+)\/\*([^*]|\*[^\/])*$/ {
+		N
+		/\n([^*]|\*[^\/])*\*\//! bc
+		s/\/\*.*\*\///
+	}
 ' | { while IFS= read -r line; do case $line in
 	# Base64-encoded bytestring
 	\<\[*\]\>)
@@ -176,6 +199,8 @@ else
 		s/\([]\)/\1/g
 		s/^[[:blank:]]*//g
 		s/= *\([{(]\)$/= \1/g
+		s/= "\([A-Za-z0-9/:$_.-]\{1,\}\)"/= \1/g
+		s/^"\([A-Za-z0-9/:$_.-]\{1,\}\)"/\1/g
 	' | awk '
 		BEGIN { depth = 0 }
 		/[\)}][,;]?$/ { depth-- }
@@ -193,7 +218,7 @@ SHELL
 	else
 		cmd="{ cat; printf '\n'; } | $cmd"
 	fi
-	if [[ -t 0 ]]; then
+	if [[ -n "$1" ]]; then
 		eval "cat \"$1\" | $cmd"
 	else
 		eval "{
@@ -313,7 +338,7 @@ t <(echo '
 	"shapeFoldersShown:6EB3531F45E3DE72992015A9@AdobeID" = 1;
 	"styleFoldersShown:6EB3531F45E3DE72992015A9@AdobeID" = 1;
 	"swatchFoldersShown:6EB3531F45E3DE72992015A9@AdobeID" = 1;
-	"uiLanguageKey 2021" = "en_GB";
+	"uiLanguageKey 2021" = en_GB;
 }
 PLIST
 )
@@ -817,6 +842,67 @@ XML
 
 t <("$0" <<'PLIST'
 {
+	/*
+	// Comment
+	// containing
+	Foo = "String".
+	*/ /* Another comment */
+	/* "Quoted string?" */ /* "Quoted
+	again" */
+	Foo = <466F6F>;
+	foo = <
+		66
+		67
+	>;
+	str = "
+		str
+		ing
+		ing
+	";
+	cmt = "
+		// Comment
+		/*
+			Multi-line comment
+		*/
+	";
+	end = 1;
+}
+PLIST
+) <(cat <<'XML'
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>Foo</key>
+	<data>
+	Rm9v
+	</data>
+	<key>cmt</key>
+	<string>
+		// Comment
+		/*
+			Multi-line comment
+		*/
+	</string>
+	<key>end</key>
+	<integer>1</integer>
+	<key>foo</key>
+	<data>
+	Zmc=
+	</data>
+	<key>str</key>
+	<string>
+		str
+		ing
+		ing
+	</string>
+</dict>
+</plist>
+XML
+)
+
+t <("$0" <<'PLIST'
+{
 	Yeah = <*BY>;
 	Nah  = <*BN>;
 	Int  = <*I30>;
@@ -888,6 +974,35 @@ t <(echo '
 </dict>
 </plist>
 XML
+)
+
+t <("$0" <<'XML'
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>$20.50</key>
+	<string>$20.50</string>
+	<key>...</key>
+	<string>...</string>
+	<key>:../Foo/Bar/</key>
+	<string>:../Foo/Bar/</string>
+	<key>A_.-Z</key>
+	<string>A_.-Z</string>
+	<key>scope</key>
+	<string>string.quoted.double.lang-id</string>
+</dict>
+</plist>
+XML
+) <(cat <<'PLIST'
+{
+	$20.50 = $20.50;
+	... = ...;
+	:../Foo/Bar/ = :../Foo/Bar/;
+	A_.-Z = A_.-Z;
+	scope = string.quoted.double.lang-id;
+}
+PLIST
 )
 
 # End of tests
