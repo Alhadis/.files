@@ -92,6 +92,7 @@ for details of the specification honoured by
 .Xr chflags 1 ,
 .Xr find 1 ,
 .Xr rm 1 ,
+.Xr dot_clean 8 ,
 .Xr Mac::Finder::DSStore 3
 .
 .Sh HISTORY
@@ -128,7 +129,7 @@ switch.
 .
 .Sh AUTHORS
 .An -nosplit
-Copyright \(co 2015-2024
+Copyright \(co 2015-2026
 .An John Gardner Aq Mt gardnerjohng@gmail.com .
 .Pp
 Freely released under the
@@ -140,6 +141,13 @@ The
 utility is intended for use on Apple macOS.
 Its usefulness on other systems is limited to purging shared network drives and portable media,
 which are prone to pollution when written to from macOS.
+.Pp
+Note that
+.Nm Ap s
+function can also be achieved using
+.Xr find 1 ,
+albeit without preserving directory modification times:
+.Dl Cm find Fl s Ar path Fl type Ar f Fl name Ar .DS_Store Fl delete Fl print
 .
 .Sh BUGS
 Incorrect feedback is reported when attempting to set modification times of read-only folders.
