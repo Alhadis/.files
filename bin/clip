@@ -21,6 +21,12 @@ case $1 in
 	-l?*) eval "shift && set -- -l \"${1#??}\" \"\$@\"";;
 esac
 
+# Default clipboard operation
+if [ ! -t 0 ]
+	then op='copy'
+	else op='paste'
+fi
+
 # Special modes of operation
 case $1 in
 	# Clear the clipboard's contents
@@ -53,10 +59,13 @@ case $1 in
 			else die "No clipboard driver found"
 		fi
 	;;
+	
+	# Override default clipboard operation
+	--copy|--paste) op="${1#--}";;
 esac
 
 # Copy to clipboard
-if [ ! -t 0 ]; then
+if [ "$op" = copy ]; then
 	have pbcopy   && exec pbcopy
 	have xclip    && exec xclip -sel clip
 	have wl-copy  && exec wl-copy
