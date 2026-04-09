@@ -1,0 +1,22 @@
+{
+	AppleScriptSourceAttributes = (
+		{NSFont = "Menlo-Regular 12"; NSColor = (0.5,   0.0,    0.5);},  // Uncompiled text
+		{NSFont = "Menlo-Regular 12"; NSColor = (1.0,   0.0,    0.0);},  // Operators
+		{NSFont = "Menlo-Bold    12"; NSColor = (0.0,   0.0,    0.0);},  // Language keywords
+		{NSFont = "Menlo-Regular 12"; NSColor = (0.0,   0.0,    1.0);},  // Application keywords
+		{NSFont = "Menlo-Regular 12"; NSColor = (0.3,   0.3,    0.3);},  // Comments
+		{NSFont = "Menlo-Regular 12"; NSColor = (0.0,   0.0,    0.0);},  // Values
+		{NSFont = "Menlo-Regular 12"; NSColor = (0.25,  0.5,    0.0);},  // Variables and subroutines
+		{NSFont = "Menlo-Regular 12"; NSColor = (0.0,   0.0,    0.0);},  // Strings
+		{NSFont = "Menlo-Bold    12"; NSColor = (0.0,   0.0,    1.0);},  // Command names
+		{NSFont = "Menlo-Regular 12"; NSColor = (0.0,   0.0,    1.0);},  // Parameter names
+		{NSFont = "Menlo-Italic  12"; NSColor = (0.0,   0.0,    1.0);},  // Classes
+		{NSFont = "Menlo-Regular 12"; NSColor = (0.42,  0.02,   0.83);}, // Properties
+		{NSFont = "Menlo-Italic  12"; NSColor = (0.42,  0.02,   0.83);}, // Enumerated values
+		{NSFont = "Menlo-Bold    12"; NSColor = (0.0,   0.086,  0.69);}, // Additional command names
+		{NSFont = "Menlo-Regular 12"; NSColor = (0.0,   0.086,  0.69);}, // Additional parameter names
+		{NSFont = "Menlo-Italic  12"; NSColor = (0.0,   0.086,  0.69);}, // Additional classes
+		{NSFont = "Menlo-Regular 12"; NSColor = (0.266, 0.0824, 0.69);}, // Additional properties
+		{NSFont = "Menlo-Italic  12"; NSColor = (0.266, 0.0824, 0.69);}, // Additional enumerated values
+	);
+}

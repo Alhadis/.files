@@ -1,0 +1,26 @@
+{
+	/*
+		Reference for structure/order of source-attribute array:
+		/System/Library/PrivateFrameworks/JavaScriptOSA.framework/Resources/en.lproj/SourceStyleNames.plist
+	*/
+	JavaScriptSourceAttributes = (
+		{NSFont = "Menlo-Regular 12"; NSColor = (0.5, 0.0,   0.5);},   // Uncompiled text 
+		{NSFont = "Menlo-Regular 12"; NSColor = (0.0, 0.0,   0.0);},   // Operators
+		{NSFont = "Menlo-Regular 12"; NSColor = (0.0, 0.0,   0.8);},   // Language keywords
+		{NSFont = "Menlo-Regular 12"; NSColor = (0.0, 0.0,   1.0);},   // Application keywords
+		{NSFont = "Menlo-Regular 12"; NSColor = (0.0, 0.604, 0.0);},   // Comments
+		{NSFont = "Menlo-Regular 12"; NSColor = (0.0, 0.427, 0.427);}, // Values
+		{NSFont = "Menlo-Regular 12"; NSColor = (0.0, 0.0,   0.8);},   // Variables and subroutines
+		{NSFont = "Menlo-Regular 12"; NSColor = (1.0, 0.2,   0.6);},   // Strings
+		{NSFont = "Menlo-Regular 12"; NSColor = (0.0, 0.0,   1.0);},   // Command names
+		{NSFont = "Menlo-Regular 12"; NSColor = (0.0, 0.0,   0.0);},   // Parameter names
+		{NSFont = "Menlo-Regular 12"; NSColor = (0.0, 0.0,   0.8);},   // Classes
+		{NSFont = "Menlo-Regular 12"; NSColor = (0.0, 0.0,   0.8);},   // Properties
+		{NSFont = "Menlo-Regular 12"; NSColor = (0.0, 0.604, 0.0);},   // Enumerated values
+		{NSFont = "Menlo-Regular 12"; NSColor = (0.0, 0.0,   1.0);},   // Additional command names
+		{NSFont = "Menlo-Regular 12"; NSColor = (0.0, 0.0,   0.0);},   // Additional parameter names
+		{NSFont = "Menlo-Regular 12"; NSColor = (0.0, 0.0,   0.8);},   // Additional classes
+		{NSFont = "Menlo-Regular 12"; NSColor = (0.0, 0.0,   0.8);},   // Additional properties
+		{NSFont = "Menlo-Regular 12"; NSColor = (0.0, 0.604, 0.0);},   // Additional enumerated values
+	);
+}

@@ -1,0 +1,25 @@
+{
+	// Disable logging
+	EnableEventLogHistory   = NO;
+	enableEventLogHistory   = NO;
+	NumberOfEventLogEntries = 0;
+	
+	// Disable soft-wrapping
+	IndentsWrappedLines = NO;
+	WrapsLines          = NO;
+	wrapLines           = NO;
+	
+	// Other editor settings
+	UsesScriptAssistant              = YES;  // Enable autocomplete suggestions
+	EscapesWhiteSpace                = YES;  // Escape tabs and newlines
+	TabWidth                         = 4;    // Ensure readable indentation
+	
+	// Interface settings
+	ShowDefaultTarget                = YES;  // Show “tell” application menu
+	LibraryWindowVisible             = YES;  // Show Library pane by default
+	OSAShowInheritedInfoInDictionary = YES;  // Show inherited dictionary members
+	LastPreferencesIdentifier        = SEGeneralPreferences;
+	
+	// Scripting definitions
+	LibraryApplications = {};
+}

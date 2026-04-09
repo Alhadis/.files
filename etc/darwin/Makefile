@@ -6,7 +6,7 @@ all: configure cronjobs /etc/man.conf /etc/shells /etc/hosts
 
 # Configure scheduled tasks with launchd(8)
 cron = ~/Library/LaunchAgents
-jobs = $(notdir $(wildcard *.plist))
+jobs = $(notdir $(wildcard com.alhadis.*.plist))
 $(cron):
 	mkdir $@
 	chmod 0700 $@
@@ -52,7 +52,7 @@ soulseek: /usr/local/share/soulseek
 	ln -s /Volumes/Films/TV       $@/TV
 
 # Make Apple bloatware more tolerable
-configure: dock terminal
+configure: applescript dock terminal
 	sudo chpass -s /bin/sh Alhadis
 	sudo pmset -a lidwake 1
 	sudo pmset -a lessbright 0
@@ -185,7 +185,191 @@ terminal:
 
 
 
-# Section 2: Periodic file backups
+# Section 2: AppleScript libraries and configuration
+applescript: scripting-additions script-libraries script-editor
+
+
+# Download third-party extensions
+scripting-additions: \
+	~/Library/ScriptingAdditions/Property\ List\ Tools.osax \
+	~/Library/ScriptingAdditions/List\ &\ Record\ Tools.osax \
+	~/Library/ScriptingAdditions/XML\ Tools.osax
+
+~/Library/ScriptingAdditions/List\ &\ Record\ Tools.osax: /tmp/ListRecordTools1.0.6.dmg
+	$(call extract-dmg,09f5ca4bec16923f21ff02610f2541d2)
+
+~/Library/ScriptingAdditions/Property\ List\ Tools.osax: /tmp/PListTools1.0.7.dmg
+	$(call extract-dmg,dd8b54729312d354a31414c2ec4e103a)
+
+~/Library/ScriptingAdditions/XML\ Tools.osax: /tmp/XMLTools2.9.4.dmg
+	$(call extract-dmg,bb7c4367182263409fc2c5f0210c5a93)
+
+/tmp/ListRecordTools1.0.6.dmg:
+	$(call download-asset,\
+		http://latenightsw.com/archives/ListRecordTools1.0.6.dmg,\
+		80da1d69e071a00ff5c8ceadd7a55ddf1b37e989ab14b472c354e0ba3e2e67e5,\
+		20161021130804)
+
+/tmp/PListTools1.0.7.dmg:
+	$(call download-asset,\
+		http://latenightsw.com/archives/PListTools1.0.7.dmg,\
+		30986f95941bf2c7c3b3670df71903cb10b491e3c5f4858c2b0cd8d5a7aec0f8,\
+		20161021130750)
+
+/tmp/XMLTools2.9.4.dmg:
+	$(call download-asset,\
+		http://www.latenightsw.com/archives/XMLTools2.9.4.dmg,\
+		e25326aa1440e12eb166c921ce14be117a18b2a50007b6c58df60878063b4a42,\
+		20161021125619)
+
+
+# Download third-party AppleScript libraries
+script-libraries: \
+	~/Library/Script\ Libraries/Dialog\ Toolkit.scptd \
+	~/Library/Script\ Libraries/FileManagerLib.scptd \
+	~/Library/Script\ Libraries/Metadata\ Lib.scptd
+
+~/Library/Script\ Libraries/Dialog\ Toolkit.scptd: /tmp/Dialog_Toolkit.zip
+	$(call extract-zip,1b32dd7e1b27c5e37300dad5c2a721bd)
+
+~/Library/Script\ Libraries/FileManagerLib.scptd: /tmp/FileManagerLib_stuff.zip
+	$(call extract-zip,e1db3c24d780e3b80833d03d9e2bf474)
+
+~/Library/Script\ Libraries/Metadata\ Lib.scptd: /tmp/Metadata_Lib_stuff.zip
+	$(call extract-zip,f2da9e083ff2607fed15a3ebce5e7ad9)
+
+/tmp/Dialog_Toolkit.zip:
+	$(call download-asset,\
+		http://macosxautomation.com/applescript/apps/Dialog_Toolkit.zip,\
+		865c0d4dbb895d753de2018d98d717f3c477ef8f08d7cbba3c018a7ea8e73bf0,\
+		20160705042247)
+
+/tmp/Metadata_Lib_stuff.zip:
+	$(call download-asset,\
+		https://www.macosxautomation.com/applescript/apps/Metadata_Lib_stuff.zip,\
+		e7074b56df62c8ee42528247dafa00f69c99ccdd1011cac56fb2f08383dbae2d,\
+		20180210193730)
+
+/tmp/FileManagerLib_stuff.zip:
+	$(call download-asset,\
+		http://www.macosxautomation.com/applescript/apps/FileManagerLib_stuff.zip,\
+		af517f6092c360a41d4df131fa44b16644c22a8d0f329cdcf6d630adde147c82,\
+		20160705013713)
+
+
+# Don't redownload artefacts for built targets
+.INTERMEDIATE: \
+	/tmp/ListRecordTools1.0.6.dmg \
+	/tmp/PListTools1.0.7.dmg \
+	/tmp/XMLTools2.9.4.dmg \
+	/tmp/Dialog_Toolkit.zip \
+	/tmp/FileManagerLib_stuff.zip \
+	/tmp/Metadata_Lib_stuff.zip
+
+
+
+# Configure macOS's built-in Script Editor.app
+script-editor: sdefs-apps sefp
+	convert-plist -x com.apple.ScriptEditor2.plist | defaults import com.apple.ScriptEditor2 -
+	convert-plist -x $(sdefs-apps) | defaults import com.apple.ScriptEditor2 -
+
+
+# SEFormattingPreferences configuration (i.e, syntax highlighting colours)
+sefp-as = ~/Library/Preferences/com.apple.applescript.plist
+sefp-js = ~/Library/Preferences/com.apple.JavaScriptOSA.plist
+sefp: $(sefp-as) $(sefp-js)
+$(sefp-as): $(notdir $(sefp-js)); $(call sefp-import,com.apple.applescript,AppleScriptSourceAttributes) 
+$(sefp-js): $(notdir $(sefp-js)); $(call sefp-import,com.apple.JavaScriptOSA,JavaScriptSourceAttributes)
+
+# Import an unencoded plist(5) to configure Script Editor.app's syntax highlighting
+define sefp-import
+	@ echo "Importing syntax-highlighting for $(2:SourceAttributes=)..."
+	@ defaults write $(1) $(2) "($$(plutil -convert json $(1).plist -o - \
+	| jq -r '.$(2)[] | [(.NSColor | join(" ")), .NSFont] | @tsv' \
+	| while IFS=`printf '\t'` read -r colour font; do \
+		font=$$(./encode-text-style.scpt font $$font); \
+		colour=$$(./encode-text-style.scpt colour $$colour); \
+		printf '{ NSFont = <%s>; NSColor = <%s>; },\n' "$$font" "$$colour"; \
+	done))"
+endef
+
+
+# Search the system for scripting definitions
+sdefs-cache = ~/Library/Caches/Script\ Editor
+sdefs-list  = $(sdefs-cache)/scripting-definitions.txt
+sdefs-list: $(sdefs-list)
+$(sdefs-list):
+	@ mkdir -p "$(@D)"
+	@ echo "Searching system for scripting definitions..."
+	@ find 2>/dev/null > "$@" -s / \( \
+		-path '/System/Volumes' -or \
+		-path '/Volumes' -or \
+		-path '/Users' -or \
+		-path '/dev' \
+	\) -prune -or -type f -iname '*.sdef' -exec realpath {} + || :
+	@ echo "Searching user paths for scripting definitions..."
+	@ find 2>/dev/null >> "$@" -s ~ -depth 1 -type d -not \( \
+		-name Applications -or \
+		-name Library \
+	\) -prune -or -type f -iname '*.sdef' -not -name 'PrinterProxy.sdef' -exec realpath {} + || :
+	@ sdefs=`grep . "$@" | sort -uf`; printf '%s\n' "$$sdefs" > "$@"
+
+
+# Compile an array of scriptable applications
+sdefs-apps = $(sdefs-cache)/library-apps.plist
+sdefs-apps: $(sdefs-apps)
+$(sdefs-apps): $(sdefs-list)
+	@ echo "Formatting definition files as an importable property list..."
+	@ echo '{ LibraryApplications = {' > "$@"; rm -f "$@~"; \
+	defaults='/System/Library/Script Editor Plugins/Library.seplugin/Contents/Resources/SEPLibraryDefaults.plist'; \
+	if test -f "$$defaults"; then \
+		printf 'Importing defaults: %s\n' "$$defaults"; \
+		plutil -convert json "$$defaults" -o - \
+		| jq -r '.LibraryApplications | to_entries[] | [.key, (.value | .id, .name, .path)] | @tsv' \
+		| while IFS=`printf '\t'` read -r key id name path; do \
+			printf >> "$@" '"%s"={id="%s";name="%s";path="%s";};\n' "$$key" "$$id" "$$name" "$$path"; \
+			echo >> "$@~" "$$id"; \
+		done; \
+	fi; \
+	sed -n < "$^" \
+		-e :a \
+		-e '/./! d' \
+		-e 's|/$$||' \
+		-e '/\.app$$/   { p; n; }' \
+		-e '/\.osax$$/  { p; n; }' \
+		-e '/\.scptd$$/ { p; n; }' \
+		-e 's|/[^/]\{1,\}$$||' \
+		-e ta \
+	| sort -f | uniq | while IFS= read -r path; do \
+		plist=`convert-plist -x "$$path/Contents/Info.plist"`; \
+		if test -z "$$plist"; then \
+			printf >&2 'Failed to load library: %s\n' "$$path"; \
+			continue; \
+		fi; \
+		printf %s "$$plist" | plutil -convert json - -r -o - \
+		| jq -r '[.CFBundleIdentifier, .CFBundleName] | @tsv' \
+		| while IFS=`printf '\t'` read -r id name; do \
+			if grep -qxF "$$id" "$@~"; then \
+				printf >&2 'Already defined library with ID "%s"\n' "$$id"; \
+				continue; \
+			fi; \
+			if test -z "$$name"; then \
+				name="$${path##*/}"; \
+				name="$${name%.*}"; \
+			fi; \
+			set -- "$$name" "$$id" "$$name" "$$path"; \
+			printf '"%s"={id="%s";name="%s";path="%s";};\n' "$$@"; \
+			echo >> "$@~" "$$id"; \
+			printf >&2 'Defined library with ID "%s"\n' "$$id"; \
+		done; \
+	done | sort -d -f >> "$@"
+	@ echo '};}' >> "$@"; rm -f "$@~"
+	@ pl=`convert-plist -x "$@"`; printf '%s\n' "$$pl" | convert-plist > "$@"
+
+
+
+
+# Section 3: Periodic file backups
 backups: notes-backup assets-backup
 
 
@@ -250,7 +434,7 @@ $(desktops-mobile).tar: ~/Library/Application\ Support/com.apple.mobileAssetDesk
 
 
 
-# Section 3: Canned recipe definitions
+# Section 4: Canned recipe definitions
 
 # Generate an uncompressed archive of a directory
 define create-tarball
@@ -276,4 +460,42 @@ else \
 	mv -vf "$^.tgz" "$@"; \
 	chmod -w "$@"; \
 fi
+endef
+
+# Download and optionally checksum a binary asset
+define download-asset
+	wget -O "$@" "$(if $(3),https://web.archive.org/web/$(strip $(3))id_/$(strip $(1)),$(strip $(1)))"
+	$(if $(2),sha256sum "$@" | cut -d' ' -f1 | grep -qxiF "$(strip $(2))")
+	chmod -w "$@"
+endef
+
+# Preliminary logic shared by “~/Library/*/*.{bundle}/” recipes
+# NOTE: GNU make(1) does strange things to automatic variables like $@ when they contain whitespace,
+#       hence the reason for explicitly-defined local variables for dirname(1) and basename(1).
+define prepare-library-bundle
+	dir="$@"; base=$${dir##*/}; dir=$${dir%/*}; \
+	if test -d "$@"; then \
+		case `cd "$$dir" && find 2>/dev/null -s "$$base" | md5sum` in \
+			$(1)|$(1)\ *) touch -c "$@"; exit;; \
+			*) rm -vrf "$@";; \
+		esac; \
+	else rm -vf "$@"; fi; \
+	mkdir -vp "$$dir"
+endef
+
+# Extract a file named $(@F) from the root directory of a DMG package ($^)
+define extract-dmg
+	$(prepare-library-bundle); \
+	mnt=`hdiutil attach -plist -nobrowse -readonly -mountrandom /tmp "$^" \
+		| plutil -convert json - -o - \
+		| jq -r '.["system-entities"][] | .["mount-point"] | strings' \
+		| head -n1`; \
+	cp -vpR "$$mnt/$$base" "$$dir/$$base"; \
+	diskutil unmount force "$$mnt"
+endef
+
+# Extract an entry named $(@F) fromt the root of a ZIP archive ($^)
+define extract-zip
+	$(prepare-library-bundle); \
+	bsdtar -C "$$dir" -xvf "$^" "$$base/"
 endef
