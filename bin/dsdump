@@ -4,23 +4,306 @@ use warnings;
 use utf8;
 use v5.14;
 
+use POSIX qw<round>;
+use Data::Dumper::PP;
+use File::Basename qw<basename>;
 use Getopt::Long qw<:config bundling>;
+
+use Data::Plist;
+use Data::Plist::BinaryReader;
+use File::Which;
+use Mac::Alias::Parse;
+use Mac::Finder::DSStore::BuddyAllocator;
+use Mac::Finder::DSStore qw<getDSDBEntries makeEntries>;
 use Mac::AppleSingleDouble;
-use Data::Dumper;
+
+END { close STDOUT }
+use Carp qw< confess >;
+local $SIG{__DIE__} = sub {
+	confess "Uncaught exception: @_" unless $^S;
+};
 
 my $extractEntry = 0;
-GetOptions("e|extract=i" => \$extractEntry);
+my $raw = 0;
+GetOptions("e|extract=i" => \$extractEntry, "r|raw" => \$raw);
 
 for (@ARGV) {
-	my $store = new Mac::AppleSingleDouble($_);
-	if($extractEntry){
-		print $store->get_entry($extractEntry);
-	}
-	else{
-		my %output = (
-			finderInfo => $store->get_finder_info(),
-			allEntries => $store->get_all_entries(),
+	
+	# Desktop Services Store
+	if(/\.DS_Store$/){
+		my $store   = new Mac::Finder::DSStore::BuddyAllocator->open(new IO::File $_, "<");
+		my @entries = getDSDBEntries($store);
+		undef $store;
+		pp \@entries and next if $raw;
+		
+		my %files = ();
+		my %record_types = (
+			# Directory-specific record types
+			BKGD => "Finder Folder Background Picture",
+			bRsV => "Browse in Selected View",
+			bwsp => "Browser Window Settings",
+			dscl => "Directory Is Expanded in List View",
+			fdsc => "Directory Is Expanded in Limited Finder Window",
+			fwi0 => "Finder Window Information",
+			fwsw => "Finder Window Sidebar Width",
+			fwvh => "Finder Window Sidebar Height",
+			glvp => "Gallery View Settings",
+			GRP0 => "Group Items By",
+			icgo => "icgo. Unknown. Icon View?",
+			icsp => "icsp. Unknown. Icon View?",
+			ICVO => "Icon View Options",
+			icvo => "Icon View Options",
+			icvp => "Icon View Settings",
+			icvt => "Icon View Text Size",
+			info => "info: Unknown. Finder Info?",
+			lssp => "List View Scroll Position",
+			lsvC => "List View Columns",
+			LSVO => "List View Options",
+			lsvo => "List View Options",
+			lsvp => "List View Settings",
+			lsvP => "List View Settings",
+			lsvt => "List View Text Size",
+			pBB0 => "Finder Folder Background Image Bookmark",
+			pBBk => "Finder Folder Background Image Bookmark",
+			pict => "Background Image",
+			vSrn => "Opened Folder in New Tab",
+			vstl => "View Style Selected",
+
+			# Other record types
+			clip => "Text Clipping",
+			cmmt => "Finder Comments",
+			dilc => "Desktop Icon Location",
+			extn => "File Extension",
+			Iloc => "Icon Location",
+			lg1S => "Logical Size",
+			logS => "Logical Size",
+			modD => "Modified Date",
+			moDD => "Modified Date",
+			ph1S => "Physical Size",
+			phyS => "Physical Size",
+			ptbL => "Trash Put-back Location",
+			ptbN => "Trash Put-back Name",
 		);
-		print Dumper \%output;
+		my %data_types = (
+			long => "4-byte integer",
+			shor => '2-byte integer preceded by two zero bytes',
+			bool => "1-byte boolean value",
+			blob => "Arbitrary-length binary data",
+			type => "FourCharCode string",
+			ustr => "Unicode text string",
+			comp => "8-byte integer",
+			dutc => "8-byte Mac HFS+ datestamp",
+		);
+		my %view_styles = (
+			icnv => "Icon",
+			clmv => "Columns",
+			Nlsv => "List",
+			Flwv => "Cover-flow",
+		);
+		foreach my $entry (@entries){
+			my @list = $entry;
+			my $path = $entry->filename;
+			my $file = (defined $files{$path})
+				? $files{$path}
+				: ($files{$path} = {});
+			my $record = $entry->strucId;
+			my $type   = $entry->[2];
+			my $value  = $entry->[3];
+			
+			# Bytestream
+			if("blob" eq $type){
+				# Binary plist(5)
+				if("bplist" eq substr($value, 0, 6)){
+					eval {
+						my $reader = Data::Plist::BinaryReader->new;
+						my $plist  = $reader->open_string($value);
+						$value     = $plist->data;
+					};
+					
+					# Try to “purify” problematic plist(5) data using plutil(1)
+					eval {
+						use IPC::Run qw<run timeout>;
+						my @cmd = qw(plutil -convert xml1 - -o -);
+						my $output;
+						run \@cmd, \$value, \$output, timeout(10) or die "plutil: $@";
+						$value = $output;
+						$cmd[2] = "binary1";
+						run \@cmd, \$value, \$output, timeout(10) or die "plutil: $@";
+						my $reader = Data::Plist::BinaryReader->new;
+						my $plist  = $reader->open_string($output);
+						$value     = $plist->data;
+					} if $@ && defined(which "plutil");
+					
+					printf STDERR
+						"\x1B[38;5;9mERROR: %s\tRecord Type: %s\n\tContents: %s\x1B[39m\n",
+						$@, $record, join("", map {sprintf("%0.2hhX", ord $_)} split(//, $value))
+					if $@;
+					
+					my $alias = $value->{backgroundImageAlias};
+					if(defined $alias){
+						$value->{backgroundImageAlias} = Mac::Alias::Parse::unpack_alias($alias);
+					}
+				}
+				# 16-byte icon location data
+				elsif("Iloc" eq $record){
+					my @iloc = unpack("NNNN", $value);
+					my ($x, $y, $i) = map {
+						$_ == 0xFFFFFFFF ? undef : $_
+					} @iloc[0..3];
+					$value = {
+						"Icon Centre"    => {X => $x, Y => $y},
+						"Selected Index" => $i,
+						"Trailing Junk"  => sprintf("0x%0.8lX", $iloc[3]),
+					};
+				}
+				# 32-byte icon location data
+				elsif("dilc" eq $record){
+					my @dilc = unpack("NnnNNNNN*", $value);
+					my @quads = (
+						"Top right",
+						"Bottom right",
+						"Bottom left",
+						"Top left",
+					);
+					my ($x, $y) = @dilc[3..4];
+					my ($X, $Y) = ("Left", "Top");
+					($x, $X) = (4294967295 - $x, "Right")  if $x > 65535;
+					($y, $Y) = (4294967295 - $y, "Bottom") if $y > 65535;
+					$value = {
+						"Grid Quadrant" => $quads[$dilc[1] - 1],
+						"Grid Position" => {Left => $dilc[5], Top => $dilc[6]},
+						"Icon Position" => {$X => $x, $Y => $y},
+						"Junk" => [
+							sprintf("0x%0.8lX", $dilc[0]),
+							sprintf("0x%0.4lX", $dilc[2]),
+							sprintf("0x%0.8lX", $dilc[-1]),
+						],
+					};
+				}
+				# 16-byte Finder window information
+				elsif("fwi0" eq $record){
+					my @fwi0 = unpack("nnnnA4N", $value);
+					my $frame = {
+						Top    => shift @fwi0,
+						Left   => shift @fwi0,
+						Bottom => shift @fwi0,
+						Right  => shift @fwi0,
+					};
+					my $view = shift @fwi0;
+					$value = {
+						Frame => $frame,
+						"View Style" => $view_styles{$view},
+						"Trailing Junk" => sprintf("0x%0.8lX", @fwi0),
+					};
+				}
+				# 18/26-byte icon view options
+				elsif("icvo" eq lc $record){
+					my $prefix = substr($value, 0, 4);
+					$value = substr($value, 4);
+					if("icvo" eq $prefix){
+						my ($flags, $size, $sort) = unpack("C8nA4", $value);
+						$value = {
+							Flags => sprintf("0x%0.8lX", $flags).
+							"Icon Size" => $size,
+							"Sort By" => $sort,
+						};
+					}
+					else{
+						my ($size, $sort, $label, $flags) = unpack("nA4A4C*", $value);
+						my %label_edges = (
+							botm => "Bottom",
+							rght => "Right",
+						);
+						$value = {
+							"Icon Size" => $size,
+							"Sort By" => $sort,
+							"Label Position" => $label_edges{$label} || $label,
+							Flags => $flags,
+						};
+					}
+				}
+				# 12-byte background specifier (directories only)
+				elsif("BKGD" eq $record){
+					my $prefix = substr($value, 0, 4);
+					$value = substr($value, 4);
+					
+					# Default background
+					if("DefB" eq $prefix){
+						$value = {
+							Background      => "Default",
+							"Trailing Junk" => sprintf("0x%0.8lX", $value),
+						};
+					}
+					
+					# Solid colour: 16-bit RGB values (0–65535)
+					elsif("ClrB" eq $prefix){
+						my @colour = unpack("nnnn", $value);
+						my ($r, $g, $b) = map {$_ / 0xFFFF} @colour[0..3];
+						$value = {
+							Background => "Solid Colour",
+							"Trailing Junk" => sprintf("0x%0.2lX", $colour[3]),
+							Colour => {
+								Red   => $r,
+								Green => $g,
+								Blue  => $b,
+							},
+						};
+					}
+					
+					# Picture
+					elsif("PctB" eq $prefix){
+						my ($length, $junk) = unpack("NN*", $value);
+						$value = {
+							Background => "Picture",
+							Length => $length,
+							"Trailing Junk" => sprintf("0x%0.4lX", $junk),
+						};
+					}
+					
+					# Unrecognised prefix! (Shouldn't happen)
+					else{
+						die "Invalid prefix for BKGD record: '$prefix'";
+					}
+				}
+				# Alias record referencing folder's background image
+				elsif("pict" eq $record){
+					my @alias = unpack("C4nn", $value);
+					$value = {
+						Alias => {
+							Type    => shift @alias,
+							Size    => shift @alias,
+							Version => shift @alias,
+							Data    => Mac::Alias::Parse::unpack_alias($value),
+						},
+					};
+				}
+			}
+			# 4-character typecode string
+			elsif("type" eq $type){
+				# Folder view style
+				if("vstl" eq $record){
+					$value = $view_styles{$value};
+				}
+			}
+			
+			$record = $record_types{$record};
+			$file->{$record} = $value;
+		}
+		pp \%files;
+	}
+
+	# AppleSingle or AppleDouble
+	else{
+		my $store = new Mac::AppleSingleDouble($_);
+		if($extractEntry){
+			print $store->get_entry($extractEntry);
+		}
+		else{
+			my %output = (
+				finderInfo => $store->get_finder_info(),
+				allEntries => $store->get_all_entries(),
+			);
+			pp \%output;
+		}
 	}
 }

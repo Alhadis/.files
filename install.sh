@@ -199,6 +199,26 @@ case `uname -s` in
 esac
 
 
+# Install CPAN modules used by userland Perl programs
+have cpan && cpan \
+	Archive::Extract \
+	Data::Plist \
+	File::Which \
+	IPC::Run \
+	Mac::Alias::Parse \
+	Mac::Finder::DSStore \
+	Mac::AppleSingleDouble \
+	Regexp::Grammars
+
+# Symlink CPAN module(s) being developed locally
+dir="${PERL5LIB%%:*}"
+if [ -d "$dir" ] && [ ! -d "$dir/Data/Dumper" ]; then
+	mkdir -p "$dir/Data"
+	[ -d ~/Labs/Data-Dumper-PP/.git ] || (cd ~/Labs && gh Data-Dumper-PP)
+	ln -sf ~/Labs/Data-Dumper-PP/Data/Dumper "$dir/Data/Dumper"
+fi; unset dir
+
+
 exit
 # XXX: Leave NPM package installation alone for now, it slows everything else
 # down (such as when running `install.sh` to repair missing/deleted symlinks).
