@@ -110,11 +110,11 @@ chronologically in the order I originally discovered or consulted them:
 	along with the previous and next 8 lines (which helps identify clusters of contiguous strings with *possibly* shared usage).
 	
 	In our case, the aforementioned strategy worked, and revealed two adjacent strings that hinted at a URL handler:
-	`applescript` (the URL sheme) and `com.apple.scripteditor` (the URL's pathname).  The strings that followed were
+	`applescript` (the URL scheme) and `com.apple.scripteditor` (the URL's pathname).  The strings that followed were
 	mentioned in sources [1] and [2], but two of them weren't: [`appid`] and [`directory`]. After some experimentation,
 	these were confirmed to be undocumented parameters that influence the behaviour of Script Editor in highly-specific
 	(and decidedly unhelpful) ways. Nonetheless, I felt impelled to document my findings somewhere, and was my imperative
-	for penning this entire deep-deep.
+	for penning this entire deep-dive.
 	</details>
 
 [^4]: The trailing slash after `com.apple.scripteditor` is technically optional,
