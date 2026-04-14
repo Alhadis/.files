@@ -2,6 +2,7 @@ shell=sh
 enable=deprecate-which
 enable=useless-use-of-cat
 external-sources=true
+disable=SC1007  # Hush gripes about “ENV= cmd” use
 disable=SC1111  # Accept “smart quotes” in strings
 disable=SC2009  # Prefer `ps | grep` over pgrep(1)
 disable=SC2015  # Silence nag about operator chaining

@@ -76,7 +76,7 @@ have fontforge && convertfont()(
 
 # Archive files using 7-Zip's strongest compression settings
 crush(){
-	command -v 7z 2>&1 >/dev/null || {
+	command -v 7z >/dev/null 2>&1 || {
 		>&2 printf 'error: p7zip not installed or 7z executable not in path\n'
 		return 1
 	}
@@ -99,7 +99,7 @@ diff(){
 encodeurl(){
 	for arg in "$@"; do
 		# Use JavaScript's URI-encoding function if possible
-		if command -v node 2>&1 >/dev/null; then
+		if command -v node >/dev/null 2>&1; then
 			arg=`printf %s "$arg" | sed 's/"/\\"/g'`
 			node -pe 'encodeURIComponent("'"$arg"'").replace(/%20/g, "+")'
 		else
@@ -163,6 +163,7 @@ gfm(){
 }
 
 # Execute a PostScript program
+# shellcheck disable=SC1001
 gx(){
 	command -v \gs >/dev/null 2>&1 || {
 		>&2 printf 'GhostScript is required to use this function.\n'
@@ -350,7 +351,7 @@ ppls(){
 	esac
 	while [ $# -gt 0 ]; do
 		[ "$nolabel" ] || printf '%s:\n' "$1"
-		ls=`eval 'printf "%s\n" "$'$1'"' | tr : '\n'`
+		ls=`eval 'printf "%s\n" "$'"$1"'"' | tr : '\n'`
 		[ "$nolabel" ] || ls=`printf %s "$ls" | sed -e 's/^/	/'`
 		printf '%s\n' "$ls"
 		shift
@@ -360,7 +361,7 @@ ppls(){
 
 # Convert PostScript to PNG
 ps2png(){
-	command -v gs 2>&1 >/dev/null || {
+	command -v gs >/dev/null 2>&1 || {
 		>&2 printf 'GhostScript is required to use this function.\n'
 		return 1
 	}
@@ -375,6 +376,7 @@ ps2png(){
 
 # Empty clipboard, wipe history logs, and nuke pointless junk
 purge(){
+	# shellcheck disable=SC3009
 	rm -fP .{irb,units,node_repl,python}_history .lesshst ~/.DS_Store
 	case `uname -s` in [Dd]arwin) rm -fP ~/.Trash/* ~/.Trash/.DS_Store;; esac
 	case "${0##-}"  in bash) history -c;; esac
@@ -448,7 +450,7 @@ src(){
 
 # Make other people's projects less aggravating to read
 unfuck(){
-	command -v prettier 2>&1 >/dev/null || {
+	command -v prettier >/dev/null 2>&1 || {
 		>&2 printf 'Prettier is required to use this function.\n'
 		return 1
 	}
@@ -492,6 +494,7 @@ unixstamp(){
 }
 
 # Jump to whatever directory contains a file or executable
+# shellcheck disable=SC2164
 visit(){
 	[ -n "$1" ] || {
 		>&2 printf "Usage: visit [file | command]\n";
@@ -509,14 +512,13 @@ visit(){
 	}
 
 	# Resolve symbolic links if possible
-	command -v realpath 2>&1 >/dev/null && path=`realpath "$path"`
+	command -v realpath >/dev/null 2>&1 && path=`realpath "$path"`
 	cd "${path%/*}"
 	unset path
 }
 
 # Print the timestamp of the most recently-captured snapshot of a URL by the Wayback Machine
 have jq && wbm(){
-	local check=
 	case $1 in -c|--check) check=1; shift;; esac
 	set -- "$1" "`curl -D - "https://web.archive.org/web/$1" 2>&1 \
 	| grep -im1 '^x-archive-redirect-reason: *found capture at [0-9]' \
@@ -566,6 +568,7 @@ whatchanged(){
 		*GNU*) stat="stat --printf=%Y\t%n\n";;
 		*)     stat='stat -f %m%t%N';;
 	esac
+	# shellcheck disable=SC2086
 	find -H "$1" -type f -exec $stat {} + | sort -n
 }
 
