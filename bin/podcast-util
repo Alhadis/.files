@@ -1,0 +1,338 @@
+#!/bin/sh
+set -e
+
+# Declare a list of commands as program dependencies
+require(){
+	set -- "" "$@"
+	while [ $# -gt 1 ]; do
+		if command >/dev/null 2>&1 -v "$2"; then
+			eval "shift 2 && set -- \"$1\" \"\$@\""
+			continue
+		fi
+		eval "shift 2 && set -- \"$1, $2\" \"\$@\""
+	done
+	if [ -n "$1" ]; then
+		printf >&2 'Required command(s) not found: %s\n' "${1#, }"
+		return 1
+	fi
+}
+
+# Display filesize(s) in bytes
+filesize(){
+	case `stat -c %F / 2>&1` in
+		*[Dd]irectory*) stat -c %s -- "$@";;
+		*) if command -v gstat >/dev/null 2>&1
+			then gstat -c %s -- "$@"
+			else  stat -f %z -- "$@"
+		fi;;
+	esac
+}
+
+# Compose unique filesystem identifier(s) from device numbers and inodes
+fileID(){
+	case `stat -c %F / 2>&1` in
+		*[Dd]irectory*) stat -c %d.%i -- "$@";;
+		*) if command -v gstat >/dev/null 2>&1
+			then gstat -c %d.%i -- "$@"
+			else  stat -f %d.%i -- "$@"
+		fi;;
+	esac
+}
+
+# Print the number of hard-links of each file
+numLinks(){
+	case `stat -c %F / 2>&1` in
+		*[Dd]irectory*) stat -c %h -- "$@";;
+		*) if command -v gstat >/dev/null 2>&1
+			then gstat -c %h -- "$@"
+			else  stat -f %l -- "$@"
+		fi;;
+	esac
+}
+
+# Print the SHA-256 checksum for a file
+sha256(){
+	set -- "`sha256sum "$1"`"
+	printf %s "${1%% *}"
+}
+
+# Terminate execution with an error message
+die(){
+	printf >&2 '%s\n' "$1"
+	exit "${2:-1}"
+}
+
+# Trim leading and trailing whitespace
+trim(){
+	sed 's/^[[:blank:]]*//; s/[[:blank:]]*$//'
+}
+
+# Return true if two files have identical contents
+# shellcheck disable=SC2046
+is_identical(){
+	set -- "$1" "$2" `fileID "$1" "$2"`
+	case $3 in "$4") return;; esac
+	set -- "$1" "$2" `filesize "$1" "$2"`
+	case $3 in "$4");; *) return 1;; esac
+	test `sha256 "$1"` = `sha256 "$2"`
+}
+
+# If xattr(1) isn't present, define a noop function in its stead
+command -v xattr >/dev/null 2>&1 || xattr(){ :; }
+
+# Download file using wget(1)
+download_file(){
+	printf >&2 'Downloading %s: \033[4m%s\033[24m\n\033[2m' "${3:-file}" "$1"
+	set -- "$1" "$2" 0
+	if wget -nv -O "$2" "$1"
+		then xattr -w user.xdg.origin.url "$1" "$2"
+		else set -- "$1" "$2" $?; rm -f "$2"
+	fi
+	printf '\033[22m'
+	return "$3"
+}
+
+# Download an RSS feed
+download_rss_feed(){
+	printf >&2 'Downloading RSS feed: %s\n' "$1"
+	set -- "$1" "${2:-feed.rss}"
+	headers=`curl -LRo "$2" -D - "$1"`
+	
+	# Verify MD5 checksum if the server provided one
+	md5=`printf %s "$headers" | sed -n 's/\r//g;/^content-md5: */I{s///p;q;}'`
+	if test -n "$md5"; then
+		printf >&2 'Received content-md5 header: %s\n' "$md5"
+		md5=`printf %s "${md5#*:}" | base64 -d | xxd -p`
+		printf >&2 "Verifying MD5 checksum... "
+		if md5sum "$2" | grep -iq "$md5"
+			then echo >&2 'OK.'
+			else echo >&2 'failed!'; return 1
+		fi
+	fi
+	
+	# Fix indentation in-place whilst preserving timestamp
+	touch -r  "$2" "$2~"; tabfix "$2" > "$2~"
+	touch -cr "$2" "$2~"; cat "$2~" > "$2"
+	touch -cr "$2~" "$2"; rm -f "$2~"
+	
+	# Store the source URL of the downloaded file
+	xattr -w user.xdg.origin.url "$1" "$2"
+}
+
+rename_map=''
+
+# Construct a list of title corrections
+build_rename_map(){
+	echo >&2 "Building rename-map..."
+	for f in "$PODCAST_DIR"/*/feed.rss; do
+		test -f "$f" || {
+			echo >&2 'No podcast directories found'
+			return
+		}
+		set -- "${f%/*}"
+		set -- "${1##*/}"
+		add_to_rename_map "`xq -x rss/channel/title "$f"`" "$1"
+	done
+}
+
+# Print the corrected name for a title, if defined
+query_rename_map(){
+	printf '%s\n' "$rename_map" | grep -iFm1 "$1`printf '\t'`" | cut -f2
+}
+
+# Define a podcast-rename rule, mapping $1 to $2
+add_to_rename_map(){
+	if test "$1" = "$2"; then return; fi
+	test $# = 2 || set -- "$1" "$2"
+	if test -z "$1" || test -z "$2"; then
+		echo >&2 'Rename mapping arguments cannot be blank'
+		return 1
+	fi
+	printf >&2 'Adding rename rule: \033[4m%s\033[24m -> \033[4m%s\033[24m\n' "$@"
+	if test -z "$rename_map"
+		then rename_map=`printf '%s\t%s' "$@"`
+		else rename_map=`printf '%s\n%s\t%s' "$rename_map" "$@"`
+	fi
+}
+
+# Prepare a podcast directory from an RSS feed
+prepare_podcast_directory(){
+	# Normalise arguments
+	case $# in
+		0) echo >&2 'RSS feed not specified'; return 1;;
+		1) set -- '' "$1";;
+		*) set -- "$1" "$2";;
+	esac
+	
+	# Download RSS feeds specified as URLs
+	unset did_download
+	case $2 in http://?*|https://?*)
+		test -d "$PODCAST_DIR" || {
+			printf >&2 'Creating root podcast directory: %s\n' "$PODCAST_DIR"
+			mkdir -p "$PODCAST_DIR"
+		}
+		set -- "$@" "$PODCAST_DIR/feed.rss"
+		download_rss_feed "$2" "$3"
+		did_download=1
+		set -- "$1" "$3"
+	;; esac
+
+	xq -x 'rss/channel/title | rss/channel/image/url' "$2" | {
+		read -r title
+		read -r image
+		test -z "$1" || {
+			add_to_rename_map "$title" "$1"
+			title="$1"
+		}
+		dir="$PODCAST_DIR/`printf %s "$title" | filesafe`"
+		if [ -d "$dir" ]; then
+			printf >&2 'Podcast directory already exists: %s\n' "$dir"
+			test -z "$did_download" || {
+				printf >&2 'Removing downloaded file: %s\n' "$2"
+				rm -f "$2"
+			}
+			return 1
+		fi
+		mkdir "$dir"
+		ext="${image##*.}"
+		case $ext in [Jj][Pp][Ee][Gg]) ext='jpg';; esac
+		
+		download_file "$image" "$dir/Artwork.$ext" 'channel artwork'
+		mv "$2" "$dir/feed.rss"
+		chmod -w "$dir"/*
+	}
+}
+
+# Hard-link a cached track downloaded by Podcasts.app to our podcasts folder
+save_cached_track(){
+	printf >&2 'Saving cached download: %s\n' "$1"
+	title=`exiftool -m -b -Title "$1" | trim`
+	if test -z "$title"; then
+		printf >&2 'Episode title not found in metadata of %s\n' "$1"
+		return 1
+	fi
+	series=`exiftool -m -b -Album "$1" | trim`
+	if test -z "$series"; then
+		printf >&2 'Series title not found in metadata of %s\n' "$1"
+		return 1
+	fi
+	
+	# Apply title correction(s)
+	test -n "$rename_map" || build_rename_map
+	rename=`query_rename_map "$series"`
+	test -z "$rename" || series="$rename"
+	
+	xpath=`printf 'rss/channel/item[itunes:title[text()="%s"]]' "$title"`
+	dir="$PODCAST_DIR/$series"
+	if ! test -d "$dir"; then
+		printf >&2 "Directory for podcast '%s' doesn't exist\n" "$series"
+		return 1
+	fi
+	rss="$dir/feed.rss"
+	if ! test -s "$rss"; then
+		printf >&2 'Downloaded RSS feed is nonexistent or empty: %s\n' "$rss"
+		return 1
+	fi
+	xq -nx "$xpath" "$rss" | xq -x 'item/image/@href | item/pubDate | item/episode' | {
+		read -r image   || return 2
+		read -r date    || return 2
+		read -r episode || unset episode
+
+		# Convert RFC 5322-formatted pubDate into something touch(1) will recognise
+		fmt='+%Y-%m-%dT%H:%M:%S'
+		case `date --version 2>/dev/null` in
+			*GNU*) date=`TZ=UTC gdate -d "$date" "$fmt"`;;
+			*)     date=`TZ=UTC date -j -f '%a, %d %b %Y %H:%M:%S %z' "$date" "$fmt"`;;
+		esac
+
+		episode=`printf '%03.3s' "$episode"`
+		file=`printf %s "$title" | filesafe`
+		file="$episode $file.${1##*.}"
+		file="$dir/$file"
+		chmod +w "$1"
+		
+		# Link the cached version of the track to the “human-discoverable” one
+		if test -f "$1" && test -f "$file" && [ "`fileID "$1" "$file" | uniq | wc -l`" -eq 1 ]; then
+			echo >&2 'File already linked to podcasts directory!'
+		else
+			printf >&2 'Linked to \033[4m%s\033[24m\n' "$file"
+			ln "$1" "$file"
+		fi
+		
+		# Update extended attributes
+		xattr >/dev/null 2>&1 -d com.apple.quarantine "$file" || :
+		xattr >/dev/null 2>&1 -p user.xdg.origin.url  "$file" || {
+			db=`realpath "${1%/*}"/../../Documents/MTLibrary.sqlite 2>/dev/null`
+			if test -f "$db"; then
+				uid="${1##*/}"; uid="${uid%.*}"
+				url=`sqlite3 -readonly "$db" "SELECT ZENCLOSUREURL FROM ZMTEPISODE WHERE ZUUID = '$uid' LIMIT 1"`
+				test -z "$url" || xattr -w user.xdg.origin.url "$url" "$file"
+			fi
+		}
+		
+		# Update modification time and make file read-only
+		touch -cd "$date" "$file"
+		chmod 0444 "$file"
+		
+		# Force artwork filename to use 3-letter JPEG extensions
+		file="${file%.*}.${image##*.}"
+		case $file in *.[Jj][Pp][Ee][Gg]) file="${file%.????}.jpg";; esac
+		
+		# Download episode artwork if needed
+		file="${file%%\?*}"
+		download_file "$image" "$file" 'episode artwork'
+		if is_identical "$dir/Artwork".* "$file"; then
+			echo >&2 'Channel and episode artwork are identical; deleting the latter'
+			rm -f "$file"
+		else
+			touch -cd "$date" "$file"
+			chmod 0444 "$file"
+		fi
+	}
+}
+
+# Hard-link podcast tracks downloaded by macOS's Podcasts.app
+save_cached_tracks(){
+	for i in ~/Library/Group\ Containers/*.groups.com.apple.podcasts/Library/Cache/*.mp3; do
+		case `numLinks "$i" 2>/dev/null || :` in
+			1)  save_cached_track "$i" || :;;
+			?*) printf >&2 'Already saved: %s\n' "$i";;
+			'') echo >&2 'No cached tracks found'; return 1;;
+		esac
+	done
+}
+
+
+# Resolve root directory to save podcasts to
+PODCAST_DIR=${PODCAST_DIR-"$HOME/Downloads/Podcasts"}
+
+# Declare required commands before commencing program
+require base64 curl exiftool md5sum sha256sum sqlite3 touch wget xq
+
+case $1 in
+	init)
+		shift
+		case $# in
+			0) die 'Usage: podcast-util init [name] /path/to/feed.rss';;
+			1) case $1 in *.json)
+				test -f "$1" || die "No such config file: $1"
+				require jq
+				jq -r 'to_entries[] | [.key, .value] | @tsv' "$1" | while IFS='	' read -r name url; do
+					printf >&2 'Initialising podcast directory "%s" from \033[4m%s\033[24m\n' "$name" "$url"
+					prepare_podcast_directory "$name" "$url" || :
+				done; exit
+			;; esac;;
+		esac
+		prepare_podcast_directory "$@"
+	;;
+	save)
+		shift
+		case $# in
+			0) save_cached_tracks;;
+			*) while [ $# -gt 0 ]; do
+				save_cached_track "$1"
+				shift
+			done;;
+		esac
+	;;
+esac
