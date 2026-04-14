@@ -41,6 +41,19 @@ archive()(
 	done
 )
 
+# Set file access time(s) to their `kMDItemLastUsedDate` attributes
+have xattr && atime_from_xattr(){
+	while [ $# -gt 0 ]; do
+		last_used=`{ xattr 2>/dev/null -px com.apple.lastuseddate#PS "$1" || :; } | tr ' ' '\n'`
+		if test -n "$last_used"; then
+			seconds=`printf '%s\n' "$last_used" | head -n8 | tac | tr -d '\n' | dc -e '16i?p'`
+			nanoseconds=`printf '%s\n' "$last_used" | tail -n8 | tac | tr -d '\n' | dc -e '16i?p'`
+			touch -ad "`TZ=UTC date -r "$seconds" '+%Y-%m-%dT%H:%M:%S'`.${nanoseconds}Z" "$1"
+		fi
+		shift
+	done
+}
+
 # Print bytes by decimal value
 bytes(){
 	case $1 in -h|--help|-\?|'')
@@ -224,6 +237,15 @@ localip(){
 			s/.*inet \(addr:\)\{0,1\}\(\([0-9]*\.\)\{3\}[0-9]*\).*/\2/p
 		' | head -n1;;
 	esac
+}
+
+# Format perldoc(1) as a manual-page and display in a pager
+have groff && manpod(){
+	case $1 in "$PWD"/?*) set -- "${1##"$PWD/"}";; esac
+	pod2man --section=3 --utf8 "$1" \
+	| perl -pE 's/^\\& {4,}/\\&/' \
+	| groff -k -mandoc -Tutf8 -rLL="${COLUMNS}n" -Wall \
+	| less
 }
 
 # Browse a manual-page's source code
@@ -490,6 +512,27 @@ visit(){
 	command -v realpath 2>&1 >/dev/null && path=`realpath "$path"`
 	cd "${path%/*}"
 	unset path
+}
+
+# Print the timestamp of the most recently-captured snapshot of a URL by the Wayback Machine
+have jq && wbm(){
+	local check=
+	case $1 in -c|--check) check=1; shift;; esac
+	set -- "$1" "`curl -D - "https://web.archive.org/web/$1" 2>&1 \
+	| grep -im1 '^x-archive-redirect-reason: *found capture at [0-9]' \
+	| cut -d' ' -f5 \
+	| tr -d '\r'`"
+	case $2 in *[!0-9]*|'')
+		echo >&2 'No such archive'
+		return 1 ;;
+	esac
+	if test -z "$check" || curl -I "https://web.archive.org/web/$2id_/$1" >/dev/null 2>&1; then
+		echo "$2"
+		return 0
+	else
+		curl "https://archive.org/wayback/available?url=$1" \
+		| JQ_COLORS= jq -Mre '.archived_snapshots.closest.timestamp | select(. != null)'
+	fi
 }
 
 # Quick 2-way conversion of WebP images
