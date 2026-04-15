@@ -259,27 +259,6 @@ mansrc(){
 	fi
 }
 
-# Set file modification time(s)
-mtime(){
-	seconds=$1; nanoseconds=0
-	case $1 in
-		[!0-9.]|.*|*.|*.*.*)
-			printf >&2 'mtime: invalid timestamp: %s\n' "$1"
-			return 1
-		;;
-		*?.?*)
-			seconds="${1%.*}"
-			nanoseconds="${1#*.}"
-		;;
-	esac
-	date="`TZ=UTC date -r "$seconds" '+%Y-%m-%dT%H:%M:%S'`.${nanoseconds}Z"
-	while [ $# -gt 1 ]; do
-		touch -d "$date" "$2"
-		shift
-	done
-	unset seconds nanoseconds date
-}
-
 # Bring up notes for things I keep forgetting
 # shellcheck disable=SC1007,SC3009,SC3044
 notes(){
@@ -461,36 +440,6 @@ unfuck(){
 		--loglevel silent \
 		--no-editorconfig \
 		--write -- "$@"
-}
-
-# Display modification date as a Unix timestamp
-unixstamp(){
-	# Handle unrecognised options
-	case $1 in --help|--short|-[-hs]);; -?*)
-		printf >&2 "unixstamp: illegal option '%s'\n" "$1"
-		shift; set -- '' "$@"
-	;; esac
-
-	# Discard options terminator
-	[ "$1" = -- ] && shift
-
-	case $1 in
-		-h|--help|-\?|'')
-			printf >&2 'Usage: unixstamp [-s|--short] ...files\n'; [ "$1" ]
-			return ;;
-		
-		# Force low-precision (seconds-based) timestamps if requested
-		-s|--short) shift; case `stat --version 2>/dev/null` in
-			*GNU*) stat -c %Y "$@" ;;
-			*)     stat -f %m "$@" ;;
-		esac ;;
-
-		# Print high-precision timestamps by default
-		*) case `date --version 2>/dev/null` in
-			*GNU*) while [ $# -gt 0 ]; do date -r "$1" +%s.%N; shift; done ;;
-			*)     stat -f %Fm "$@" ;;
-		esac | sed 's/\.\{0,1\}0*$//';;
-	esac
 }
 
 # Jump to whatever directory contains a file or executable

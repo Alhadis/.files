@@ -1,0 +1,81 @@
+#!/bin/sh
+set -e
+
+#
+# utime: Get or set utimes(2) in highest-available resolution
+#
+
+unset mode
+case ${0##*/} in
+	atime) mode='a';;
+	mtime) mode='m';;
+esac
+
+unset link nofn
+while getopts almn opt; do
+	case $opt in
+	a) mode="a${mode#a}";; # Operate on last accessed time(s)
+	m) mode="${mode%m}m";; # Operate on last modified time(s)
+	n) nofn=1;;            # No filename prefixes in list output
+	l) link='h';;          # Operate on symlinks literally, not their targets
+	*) return 2;;
+	esac
+done; shift $((OPTIND-1))
+
+# Resolve format of timestamp argument (if any)
+seconds=$1; nanoseconds=0
+case $1 in
+	# Non-numeric arguments can't be timestamps
+	*[!0-9.]*|.*|*.|*.*.*)
+		unset seconds nanoseconds
+	;;
+	# Split floating-points into integral and fractional halves
+	*?.?*)
+		seconds="${1%.*}"
+		nanoseconds="${1#*.}"
+	;;
+esac
+
+# Set date of file(s)
+if [ "${seconds+1}" ]; then
+	date="`TZ=UTC date -r "$seconds" '+%Y-%m-%dT%H:%M:%S'`.${nanoseconds}Z"
+	shift
+	while [ $# -gt 0 ]; do
+		touch "-c$link$mode" -d "$date" "$1"
+		shift
+	done
+	unset seconds nanoseconds date
+
+# Print dates of file(s)
+else
+	# Determine which flavour of stat(1) is available: GNU or BSD
+	case `stat -c %F / 2>&1` in
+		*[Dd]irectory*) gnu='stat';;
+		*) if command -v gstat >/dev/null 2>&1
+			then gnu='gstat'
+			else unset gnu
+		fi;;
+	esac
+
+	# Prepare format strings for respective flavour of stat(1)
+	mode="${mode:-m}"; fmt=
+	while [ "${#mode}" -gt 0 ]; do
+		case $mode in
+			m*) [ "$gnu" ] && fmt="$fmt %.Y" || fmt="$fmt %Fm";;
+			a*) [ "$gnu" ] && fmt="$fmt %.X" || fmt="$fmt %Fa";;
+		esac
+		mode="${mode#?}"
+	done
+
+	# Prepend filename to format-string
+	if [ -z "$nofn" ] && [ $# -gt 1 ]
+		then [ "$gnu" ] && fmt="%n: ${fmt# }" || fmt="%N: ${fmt# }"
+		else fmt="${fmt# }"
+	fi
+
+	# Finally, let's see some stat(1) output
+	if [ "$gnu" ]
+		then "$gnu" -c "$fmt" -- "$@"
+		else   stat -f "$fmt" -- "$@"
+	fi | sed 's/\.\{0,1\}0*$//'
+fi

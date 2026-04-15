@@ -48,6 +48,12 @@ done; unset file
 # Tighten permissions on `~/.ssh' directory
 chmod go-rwx .ssh/*
 
+# Create symlinks for utime(1)
+dir=~/.files/var/bin
+[ -d "$dir" ]       || mkdir -p "$dir"
+[ -h "$dir/mtime" ] || ln -sf ../../bin/utime "$dir/mtime"
+[ -h "$dir/atime" ] || ln -sf ../../bin/utime "$dir/atime"
+
 
 # Link Konsole profile
 command -v konsole >/dev/null 2>&1 && [ ! -h .local/share/konsole ] && {

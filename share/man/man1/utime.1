@@ -1,0 +1,135 @@
+.Dd April 15, 2026
+.Dt UTIME 1
+.Os
+.
+.Sh NAME
+.Nm utime
+.Nd get or set utimes(2) at highest-available time resolution
+.
+.Sh SYNOPSIS
+.Nm
+.Op Fl alm
+.Ar timestamp
+.Ar files
+.
+.Nm
+.Op Fl almn
+.Ar files
+.
+.Sh DESCRIPTION
+In the first form,
+.Nm
+sets the access and modification times of each
+.Ar file
+named on the command-line.
+This behaves analogously to
+.Xr touch 1 ,
+except the timestamp is always specified as the first argument.
+.
+.Pp
+In the second form,
+.Nm
+prints the modification time of each
+.Ar file ,
+prepending its name to the printed timestamp unless the
+.Fl n
+switch is set.
+If the first
+.Ar file
+has a purely numeric name that could be confused for a timestamp,
+prefix it with
+.Sy ./
+to avoid running
+.Nm
+in the first form, described previously.
+.
+.Pp
+All timestamps used or displayed by
+.Nm
+are in seconds since the Unix epoch,
+with a possible fractional component of varying precision.
+.
+.Sh EXIT STATUS
+.Ex -std
+.
+.Sh EXAMPLES
+Set the access and modification time of
+.Pa frogurt.gif
+to October 29, 1992 20:03:27.17140708 (EST):
+.Dl Nm Sy 720407007.17140708 Pa frogurt.gif
+.\" Simpsons reference, obvs. Timestamp shown is:
+.\"   Original airdate of Simpsons S04E05
+.\" + 8:00 PM Eastern (National FOX broadcast time)
+.\" + timecode of this quote in an MKV rip
+.\" + production code (9F04) in hex
+.
+.Pp
+Print the modification times of
+.Pa /var/log/system.*
+.Dl Nm Pa /var/log/system.*
+Output:
+.Bd -literal -compact -offset 4n
+/var/log/system.log: 1776238641.888238725
+/var/log/system.log.0.gz: 1776175200.087771942
+/var/log/system.log.1.gz: 1776088800.234045638
+/var/log/system.log.2.gz: 1776002400.048894118
+.Ed
+.
+.Sh SEE ALSO
+.Xr date 1 ,
+.Xr stat 1 ,
+.Xr touch 1 ,
+.Xr clock_gettime 2 ,
+.Xr utimes 2
+.
+.Sh AUTHORS
+.An -nosplit
+Copyright \(co 2020-2026
+.An John Gardner Aq Mt gardnerjohng@gmail.com .
+Freely released under the
+.Lk http://opensource.org/licenses/ISC "ISC license" .
+.
+.Sh BUGS
+Filenames aren't aligned vertically in list output.
+.Pp
+An option to modify the string separating filenames from timestamps is needed.
+Something as simple as an
+.Fl 0
+switch for NUL-delimited output might suffice.
+.
+.Pp
+Options for displaying inode change timestamps and birthtimes should be added.
+Setting these fields to an arbitrary date appears to be impossible,
+so an
+.Fl b
+and
+.Fl c
+option should be supported only when printing stats,
+and issue an error if attempted to be used when setting utimes.
+.
+.Pp
+Non-existent files are created when setting timestamps,
+which is an undesired parallel with
+.Xr touch 1
+that goes against this program's intended purpose \
+of only operating upon
+.Em existing
+files.
+Users can always use
+.Xr touch 1
+followed by
+.Nm
+if they need to create
+.Em and
+set the timestamp of a hitherto non-existent file.
+.
+.Pp
+Examples of
+.Fl m
+and
+.Fl a
+switch usage,
+in both getter and setter operations,
+should be added to this man page's
+.Sx EXAMPLES
+section.
