@@ -117,6 +117,14 @@ have nodebrew && [ -x ~/.nodebrew/current/bin/node ] && {
 	INFOPATH=~/.nodebrew/current/share/info:"$INFOPATH"
 }
 
+# dprint: Rust-based language formatter
+have dprint && {
+	export DPRINT_CONFIG_DIR=~/Labs/JG/etc
+	export DPRINT_CONFIG_DISCOVERY=global
+	export DPRINT_EDITOR="$EDITOR"
+	export DPRINT_MAX_THREADS=6
+}
+
 # Homebrew: Configure brew(1) for both macOS and Linux
 have brew && {
 	# Ensure all recently-updated formulae are reported by `brew update`
