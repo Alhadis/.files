@@ -163,6 +163,19 @@ have sqlite3 && {
 };
 
 
+# Open infrequently-used documentation files
+set -- \
+	camelbook ~/Downloads/Programming_Perl_Fourth_Edition.pdf \
+	cstr54    ~/Documents/Books/Unix/CSTR-54.pdf \
+	psbook    ~/Downloads/PLRM.pdf \
+	id3       ~/Documents/Books/Specs/ID3/id3v2.4.0-frames.txt \
+; while [ $# -ge 2 ]; do
+	# shellcheck disable=SC2139
+	[ -f "$2" ] && alias "$1"=open\ "$2"
+	shift 2
+done
+
+
 # Order-of-operations check. Runs clipboard contents through Terser to reveal which brackets are unnecessary.
 have terser && alias ooc='clip | sed '\''s/^[^=]*$/_=&/'\'' | terser -mc'
 
