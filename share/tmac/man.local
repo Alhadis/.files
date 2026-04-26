@@ -10,7 +10,7 @@
 .do warn \n[.warn]-131072
 .
 .\" Remap unportable font references
-.if !F CW \{
+.if !F CW \{\
 .	ie t .do ftr CW CR
 .	el   .do ftr CW R
 .\}
