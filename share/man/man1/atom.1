@@ -1,139 +1,277 @@
-.de op
-.	ds o \\fB\\$1\\fP
-.	ie \\n(.$>2 .as o , \\fB\\$2\\fP \\fI\\$3\\fP
-.	el .if \\n(.$=2 \{
-.		length L \\$1
-.		ie \\nL=2 .as o , \\fB\\$2\\fP
-.		el        .as o " \\fI\\$2\\fP
-.		rm L
-.	\}
-.	TP
-\\*o
-.	rm o
-..
-.de env
-.	TP
-\\fB\\$1\\fP
-..
+.\" -*- coding: utf-8; -*-
+.Dd March 8, 2022
+.Dt ATOM 1
+.Os
 .
 .\" ============================================================================
-.TH ATOM 1 v1.31.1
-.SH NAME
-atom \(em a hackable text editor for the 21st century
-.
-.SH SYNOPSIS
-.B  atom
-.RI [ options ]
-.RI [ "paths..." ]
-.
-.br
-.B atom
-.RI file \& : line : column
+.Sh NAME
+.Nm atom
+.Nd a hackable text editor for the 21st century
 .
 .\" ============================================================================
-.SH DESCRIPTION
-Opens one or more \fIpaths\fP in Atom, which may point to either files or folders.
-.PP
-If there is an existing Atom window that contains all of the given folders, the paths will be opened in that window.
+.Sh SYNOPSIS
+.Nm
+.Op Ar options
+.Op Ar paths...
+.
+.Nm
+.Sm
+.Ar file : line : column
+.Sm
+.
+.Nm
+.Fl -uri-handler
+.Ar atom://...
+.
+.\" ============================================================================
+.Sh DESCRIPTION
+Opens one or more
+.Ar paths
+in Atom, which may point to either files or folders.
+.Pp
+If there is an existing Atom window that contains all of the given folders,
+the paths will be opened in that window.
 Otherwise, they will be opened in a new window.
-.PP
-Paths that start with \(lqatom://\(rq will be interpreted as URLs.
+.Pp
+Paths that start with
+.Dq atom://
+will be interpreted as URLs.
 .
 .\" ============================================================================
-.SH OPTIONS
-.
-.op -1 --one ""
+.Sh OPTIONS
+.Bl -tag -width indent
+.It Fl 1 , -one
 This option is no longer supported.
-It was formerly used to preview v1.0 APIs, and became redundant once Atom v1.0 shipped.
+It was formerly used to preview v1.0 APIs,
+and became redundant once Atom v1.0 shipped.
 .
-.op -a --add ""
+.It Fl a , -add
 Open path as a new project in last used window.
+Mutually exclusive with the
+.Fl -new-window
+option.
 .
-.op --benchmark
+.It Fl -benchmark
 Open a new window that runs the specified benchmarks.
 .
-.op --benchmark-test
+.It Fl -benchmark-test
 Run a faster version of the benchmarks in headless mode.
+Prior to Atom v1.26.0, this option used two medial dashes
+.Pq Dq Fl -benchmark--test .
 .
-.op --clear-window-state
+.It Fl -clear-window-state
 Delete all Atom environment state.
 .
-.op -d --dev ""
+.It Fl d , -dev
 Run in development mode.
 .
-.op --enable-electron-logging
+.It Fl -enable-electron-logging
 Enable low-level logging messages from Electron.
 .
-.op -f --foreground ""
+.It Fl f , -foreground
 Keep the main process in the foreground.
 .
-.op -h --help ""
-Print a usage message.
+.It Fl h , -help
+Print a usage message, then exit.
 .
-.op --include-deprecated-apis
-This option is not currently supported.
+.It Fl -include-deprecated-apis
+This option is no longer supported.
+It was added in v0.207.0 as the inverse of the
+.Fl -one
+flag, enabling APIs that were pending removal in v1.0.
+This feature was removed in v1.0.1. \" 34d3dadd51e4f0d68d20b97126fe961552d6e5a6
 .
-.op -l --log-file file
-Log all output to \fIfile\fP.
+.It Fl l , -log-file Ar file
+Log all output to
+.Ar file .
 .
-.op -m --main-process ""
+.It Fl m , -main-process
 Run the specified specs in the main process.
 .
-.op -n --new-window ""
+.It Fl n , -new-window
 Open a new window.
+Mutually exclusive with the
+.Fl -add
+option.
 .
-.op -p --project file
-Start Atom with a project specification \fIfile\fP, which may be either CSON or JSON.
+.It Fl p , -project Ar file
+Start Atom with a project specification
+.Ar file ,
+which may be either CSON or JSON.
 .
-.op --profile-startup
+.It Fl -profile-startup
 Create a profile of the startup execution time.
 .
-.op -r --resource-path path
-Set the path to the Atom source directory and enable dev-mode.
+.It Fl r , -resource-path Ar path
+Set the Atom source directory to
+.Ar path
+and enable dev-mode.
 .
-.op --safe
+.It Fl -safe
 Do not load packages from
-.I ~/.atom/packages
+.Pa ~/.atom/packages
 or
-.IR ~/.atom/dev/packages .
+.Pa ~/.atom/dev/packages .
 .
-.op -t --test specs
+.It Fl t , -test Ar specs
 Run the specified
-.I specs
+.Ar specs
 and exit with an error code on failure.
 .
-.op --timeout delay
-When in test mode, waits until the specified time (in minutes) and kills the process (exit code: 130).
+.It Fl -timeout Ar delay
+When in test mode,
+wait until the specified
+.Ar delay
+.Pq in minutes
+before killing the process.
 .
-.op -v --version ""
-Print the version information.
+.It Fl v , -version
+Print version information for Atom, then exit.
 .
-.op -w --wait ""
+.It Fl w , -wait
 Wait for window to be closed before returning.
+.El
+.
+.\" ----------------------------------------------------------------------------
+.Ss Undocumented options
+.Bl -tag -width indent
+.It Fl -executed-from Ar path
+Specify the directory from whence Atom was executed.
+Defaults to
+.Ev PWD .
+.
+.It Fl -path-environment Ar value
+Override the
+.Ev PATH
+environment variable.
+This is a workaround for a bug on macOS; see
+.Em https://git.io/YC8_Ew .
+.
+.It Fl -uri-handler
+Ignore all arguments other than the first one that begins with
+.Dq atom:// .
+.El
 .
 .\" ============================================================================
-.SH ENVIRONMENT VARIABLES
-.env ATOM_DEV_RESOURCE_PATH
-The path from which Atom loads source code in dev-mode. Defaults to
-.IR ~/github/atom .
+.Sh ATOM SHARED SESSION PROTOCOL
+The
+.Sy atom://
+URI protocol is used to load resources during an Atom session.
+Resources are searched for in the following directories (in order):
+.Pp
+.Bl -enum -offset indent -width 1n -compact
+.It
+.Pa ~/.atom/assets
+.It
+.Pa ~/.atom/dev/packages
+.Pq unless in safe mode
+.It
+.Pa ~/.atom/packages
+.It
+.Pa RESOURCE_PATH/node_modules
+.El
 .
-.env ATOM_HOME
-The root path for all configuration files and folders. Defaults to
-.IR ~/.atom .
+.Pp
+A few URIs are handled specially and map to files in
+.Ev ATOM_HOME
+with variable file extensions:
+.Bd -unfilled -offset indent
+.ta 25n
+.Pa atom://.atom/stylesheet	\fR\(rA\fP Pa ~/.atom/styles.\& Ns No { Ns Pa css  , Ns Pa less   Ns }
+.Pa atom://.atom/keymap	\fR\(rA\fP Pa ~/.atom/keymap.\& Ns No { Ns Pa json , Ns Pa cson   Ns }
+.Pa atom://.atom/config	\fR\(rA\fP Pa ~/.atom/config.\& Ns No { Ns Pa json , Ns Pa cson   Ns }
+.Pa atom://.atom/init-script	\fR\(rA\fP Pa ~/.atom/init.\&   Ns No { Ns Pa js   , Ns Pa coffee Ns }
+.ta
+.Ed
 .
 .\" ============================================================================
-.SH SEE ALSO
-.BR apm (1)
+.Sh ENVIRONMENT
+.Bl -tag -width 4n
+.It Ev ATOM_DEV_RESOURCE_PATH
+The path from which Atom loads source code in dev-mode.
+Defaults to
+.Pa ~/github/atom .
 .
-.PP
-The Atom flight manual:
-.I http://flight-manual.atom.io/
+.It Ev ATOM_HOME
+The root path for all configuration files and folders.
+Defaults to
+.Pa ~/.atom .
+.
+.It Ev ATOM_UPDATE_URL_PREFIX
+URL root for querying Atom's update API.
+Defaults to
+.Pa https://atom.io .
+.Pp
+Queries follow the form
+.Dq /api/updates?version=1.61.0&os_version=21.6.0 .
+.El
 .
 .\" ============================================================================
-.SH AUTHORS
-Copyright \(co 2011\(en2018, GitHub Inc.
-Released under the MIT license.
+.Sh EXIT STATUS
+.Ex -std
+.Pp
+If the
+.Fl -timeout
+option was used and the process's run time exceeds the specified time limit,
+.Nm
+exits with error code 130.
 .
-.PP
-Manpage written by Alhadis
-.RI < gardnerjohng@gmail.com >.
+.\" ============================================================================
+.Sh SEE ALSO
+.Xr apm 1 ,
+.Xr electron 1 ,
+.Xr node 1 ,
+.Xr pulsar 1
+.
+.Pp
+Atom's now-defunct website:
+.D1 \fIhttps://web.archive.org/web/202204/https://atom.io/\fP
+.
+.Pp
+API reference in human- and machine-readable formats:
+.Bd -unfilled -offset indent -compact
+HTML: \fIhttps://web.archive.org/web/20220418052937if_/https://flight-manual.atom.io/api/\fP
+JSON: \fIhttps://github.com/atom/atom/releases/download/v1.61.0-beta0/atom-api.json\fP
+.Ed
+.
+.Pp
+API reference for Atom's version of Electron:
+.Bd -unfilled -offset indent -compact
+Docs: \fIhttps://github.com/electron/electron/tree/v11.4.12/docs/api\fP
+JSON: \fIhttps://github.com/electron/electron/releases/download/v11.4.12/electron-api.json\fP
+.Ed
+.
+.\" ============================================================================
+.Sh HISTORY
+Atom was first developed in 2008 by GitHub founder
+.An Chris Wanstrath Pq Sy @defunkt ,
+originally under the name
+.Dq Atomicity .
+It was open-sourced in May 2014 along with its application framework,
+thence called
+.Dq Atom Shell .
+The latter was renamed
+.Dq Electron
+on April 23, 2015.
+.
+.Pp
+On December 15, 2022, Atom was officially discontinued,
+its project repositories archived,
+and its website redirected to an end-of-life announcement on GitHub's blog.
+At the time, its last release was v1.63.1
+.Pq published November 23, 2022 .
+This release was redacted on January 30, 2023,
+following the exposure of encrypted code-signing certificates \
+used to sign v1.63.1 and v1.60.0.
+Since the redaction,
+the last releases published to Atom's stable and beta channels,
+respectively, are v1.60.0 and v1.61.0-beta0
+.Pq both published on March 8, 2022 .
+.
+.\" ============================================================================
+.Sh AUTHORS
+Copyright \(co 2011\(en2021, GitHub Inc.
+Released under the MIT license since 2014.
+.Pp
+Manual page written by
+.An Alhadis Aq Mt \fIgardnerjohng@gmail.com\fP .
