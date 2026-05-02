@@ -1,0 +1,225 @@
+.Dd May 2, 2026
+.Dt SAVANE 5
+.Os
+.Sh NAME
+.Nm Savane
+.Nd lightweight markup language for GNU Savannah
+.
+.Sh DESCRIPTION
+This page describes the
+.Nm Savane
+markup language for formatting text posted by users in items or item comments.
+.
+.Bl -tag -width 4n
+.Tg Scope
+.It Sy Tag scope
+Every markup element except
+.Sx verbatim
+and
+.Sx nomarkup
+blocks should fit in a single line.
+For example,
+this text isn't converted in two lines of italics:
+.Bd -literal -offset indent
+_First line
+Second line_
+.Ed
+.
+.\" --------------------------------------------------------------------
+.Tg Basic
+.It Sy Basic markup
+Basic markup tags are available almost everywhere.
+In Basic markup,
+multiple subsequent spaces and newlines are collapsed into single spaces.
+In
+.Sx Rich
+and
+.Sx Full
+markup,
+they are preserved.
+.
+.Pp
+.Tg bold
+\fBbold\fP markup is:
+.Bd -literal -offset indent
+*bold*
+.Ed
+.
+.Pp
+.Tg italic
+\fIitalic\fP markup is:
+.Bd -literal -offset indent
+_italic_
+.Ed
+.
+.Pp
+.Tg Links
+URLs are transformed to links;
+additionally you can give them a title:
+.Bd -literal -offset indent
+www.gnu.org
+http://www.fsf.org
+[http://url Title]
+.Ed
+.Pp
+.Tg Shortlinks
+Also, these texts are made links to comments
+(within the same item),
+tracker items and file attachments:
+.Bd -literal -offset indent
+comment #51
+bug #1419857
+task #289
+sr #4913 support #4913
+patch #119
+file #83521
+.Ed
+.
+.Pp
+.Tg images
+Links to file attachments whose names end in
+.Dq Li \.png ,
+.Dq Li \.jpg ,
+or
+.Dq Li \.jpeg
+(case-insensitive) are converted to HTML images;
+the surrounding parentheses and commas (if any) are removed:
+.Bd -literal -offset indent
+(file #47102)
+.Ed
+.
+.Pp
+You can add the
+.Sq Li alt
+attribute within the parentheses:
+.Bd -literal -offset indent
+(file #47102 Flying GNU)
+.Ed
+.
+.\" --------------------------------------------------------------------
+.Tg Rich
+.It Sy Rich markup
+Rich markup tags are available in comments.
+.Pp
+.Tg unnumbered-list
+Unnumbered list markup is:
+.Bd -literal -offset indent
+* item 1
+* item 2
+** item 2 subitem 1
+** item 2 subitem 2
+* item 3
+.Ed
+.Pp
+.Tg numbered-list
+Numbered list markup is:
+.Bd -literal -offset indent
+0 item 1
+00 item 1 subitem 1
+0 item 2
+.Ed
+.Pp
+.Tg ruler
+Horizontal ruler markup is:
+.Bd -literal -offset indent
+----
+.Ed
+.Pp
+.Tg verbatim
+Verbatim markup (useful for code bits) is:
+.Bd -literal -offset indent
++verbatim+
+seconds = 3600 * days * 24;
+_printf (_("Enter something:"));
+-verbatim-
+.Ed
+.
+.Pp
+The starting and ending verbatim marks take whole lines;
+the rest of the text that may be on the same lines is ignored.
+.Pp
+.Tg nomarkup
+The other tag that disables the markup is:
+.Bd -literal -offset indent
++nomarkup+ ... -nomarkup-
+.Ed
+.
+.Pp
+Unlike the
+.Li +verbatim+
+tag, it produces no text block and can apply to arbitrary parts of texts.
+.
+.Pp
+.Tg Quote
+Lines starting with
+.Dq >
+are highlighted as quotes:
+.Bd -literal -offset indent
+> Quoted line.
+.Ed
+.
+.\" --------------------------------------------------------------------
+.Tg Full
+.It Sy Full markup (heading tags)
+Heading tags are available in rare places like item original submissions,
+news items,
+project descriptions
+and user r\('esum\('es.
+.Tg H1
+First-level heading markup is:
+.Bd -literal -offset indent
+= Title =
+.Ed
+.
+.Pp
+.Tg H2
+Second-level heading markup is:
+.Bd -literal -offset indent
+== Subtitle ==
+.Ed
+.
+.Pp
+.Tg H3
+Third-level heading markup is:
+.Bd -literal -offset indent
+=== Subsubtitle ===
+.Ed
+.
+.Pp
+.Tg H4
+Fourth-level heading markup is:
+.Bd -literal -offset indent
+==== Subsubsubtitle ====
+.Ed
+.
+.El
+.Sh SEE ALSO
+.Xr cmark 1
+.
+.Pp
+Online version of Savane reference,
+upon which this man page was based:
+.D1 Em \%https://savannah.gnu.org/markup-test.php
+.
+.Pp
+Corresponding source code for Savane:
+.D1 Em \%https://cgit.git.savannah.gnu.org/cgit/savane.git/
+.D1 Em \%https://cgit.git.savannah.gnu.org/cgit/savane-cleanup.git/
+.
+.Pp
+Syntax highlighting for Savane in
+.Xr textmate 5
+format:
+.D1 Em \%https://github.com/Alhadis/language-etc/blob/HEAD/grammars/savane.cson
+.
+.Sh AUTHORS
+Copyright \(co 2026 Free Software Foundation, Inc.
+Verbatim copying and distribution of this entire \
+article is permitted in any medium, \
+provided this notice is preserved.
+.Pp
+Man page adapted by
+.An "John Gardner"
+.Aq Mt gardnerjohng@gmail.com
+on May 2, 2026,
+using markup reference based on Savane 3.17-c369.
