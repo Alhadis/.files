@@ -322,6 +322,7 @@ user_pref("devtools.command-button-responsive.enabled", true);
 user_pref("devtools.command-button-rulers.enabled", true);
 user_pref("devtools.command-button-screenshot.enabled", true);
 user_pref("devtools.debugger.map-scopes-enabled", true);
+user_pref("devtools.debugger.remote-enabled", true);
 user_pref("devtools.defaultColorUnit", "hex");
 user_pref("devtools.dom.enabled", true);
 user_pref("devtools.editor.autoclosebrackets", true);

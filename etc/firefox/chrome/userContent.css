@@ -247,6 +247,129 @@ and    not (-moz-bool-pref: "layout.css.control-characters.visible"){
 	}
 }
 
+/* iStock */
+@-moz-document domain(istockphoto.com){
+	nav > ul > li[data-testid="ai-gen-link"],
+	li.downloads:has(> a[href^="/ai/" i]),
+	#embedded-messaging{
+		display: none !important;
+	}
+
+	/* Hide rollover menu soliciting shitty AI features I'll never want/need/use */
+	[data-testid="gallery-mosaic-asset-overlay"],
+	[data-testid="modification-tools-menu"]{
+		button:is(
+			[aria-label="Modify with AI" i],
+			[data-testid^="add-to-board" i],
+			[data-testid="similars-button"],
+		){ display: none !important; }
+	}
+
+	/* Portfolio and search-result grids */
+	[data-testid="galleryContainer"]{
+		/* Silence masturbatory fluff about being an “AI-free library” */
+		[data-testid="gallery-items-container"] > *:has([data-testid="ai-mods-merch-tile"]),
+		[data-testid="gallery-marketing"]:has([data-testid="ai-mods-merch-banner"]){
+			display: none !important;
+		}
+	}
+
+	/* Account's purchases and download history */
+	section.download-history{
+		/* Dropkick Dropbox CTA */
+		.save-downloads-dropbox{
+			display: none !important;
+		}
+
+		/* Hide mention of “AI”-anything in tab-bar */
+		.download-history-results .view-downloads-by{
+			& > div > ul:only-child > li:has(> a:any-link:only-child:is(
+				[href^="/account/download/individual/ai" i]:is(
+					[href$="/aigen"], [href$="/aigen?"],
+					[href$="/aimod"], [href$="/aimod?"],
+				)
+			)){ display: none !important; }
+		}
+
+		.thumbnail-actions + .details{
+			& > .values{
+				width: calc(100% - 5em) !important;
+				
+				/* Property fields for each download row */
+				& > div > dl{
+					display: table !important;
+					padding: 0 !important;
+
+					/* Underline hyperlinks as a visual cue */
+					a[href]:hover{
+						text-decoration: underline 1.5px !important;
+						text-underline-offset: 2px;
+					}
+
+					/* Fix leading and non-hyperlinked fields coloured as such */
+					dl, dt, dd, ul{
+						line-height: 1.6 !important;
+						color: #000 !important;
+					}
+					dt, dd{
+						float: none !important;
+						display: table-cell !important;
+						vertical-align: top !important;
+						padding: 0 !important;
+						&:first-child{
+							padding-right: 1.5em !important;
+						}
+					}
+
+					& > .item-number-field,
+					& > div:has(ul.istock-licenses),
+					& > div[ng-if*="istock_collection" i]{
+						display: table-row !important;
+					}
+
+					/* 2010 called, they want their negative-margins back */
+					.clearfix{
+						display: none;
+					}
+				}
+			}
+			
+			/* Right-hand column containing action buttons */
+			& > .actions-right{
+				width: unset !important;
+				transform: none !important;
+				vertical-align: middle !important;
+
+				/* Enlarge download button */
+				a.download-icon-link{
+					display: inline-block !important;
+					transition: .15s ease-in opacity;
+					font-size: 3em !important;
+					padding: .25em !important;
+					&:hover{
+						opacity: .25;
+					}
+					svg[gi-icon="icon_download"]{
+						float: none !important;
+						width: 1.1em !important;
+						height: 1em !important;
+					}
+				}
+			}
+		}
+	}
+	
+	/* Site's footer */
+	div[data-testid="istock-footer"]{
+		/* Hide social media links */
+		nav > ul > li:is(
+			:has(> a[aria-label="Facebook"  i]),
+			:has(> a[aria-label="Twitter"   i]),
+			:has(> a[aria-label="Instagram" i]),
+		){ display: none !important; }
+	}
+}
+
 /* Teach JSDoc about dark mode whilst tweaking its layout */
 @-moz-document domain(jsdoc.app){
 	html, body{
@@ -685,6 +808,142 @@ and    not (-moz-bool-pref: "layout.css.control-characters.visible"){
 				bottom:   0;
 				right:    0;
 			}
+		}
+	}
+}
+
+
+/* GeoHack, used by Wikimedia Commons for displaying geocoordinate data */
+@-moz-document domain(geohack.toolforge.org){
+	/* Table containing geocoordinate data and world-map locator.
+	 * NB: These selectors are fragile (because we don't have anything better to use),
+	 * so if they break, check https://en.wikipedia.org/wiki/Template:GeoTemplate. */
+	.plainlinks:has(table th > a.mw-redirect[href$="/Geo_URI"]){
+		font-size: unset !important;
+		float: none !important;
+		position: absolute;
+		box-sizing: border-box;
+		padding-right: 28em;
+		max-width: 66em !important;
+		margin: 0 !important;
+		right: 0;
+		top: 2.5em;
+		
+		/* Left-hand side of header featuring popular map services */
+		& + .plainlinks{
+			margin: 0 64em 1.5em 0;
+			& + table.geoservices tr:first-child > td.directory{
+				&:first-child { width: 46.5% !important; }
+				&:last-child  { width: 53.5% !important; }
+			}
+		}
+		
+		td{
+			vertical-align: middle !important;
+		}
+		
+		td[colspan="3"]{
+			padding-bottom: 0 !important;
+			a[data-mw-original-href] + br + * > a:any-link{
+				color: #036 !important;
+			}
+		}
+		
+		/* Close gap between “Region” field's label and value */
+		th:has(> a.mw-redirect[title="Wikipedia:GEO"][href*="#region" i]){
+			text-align: right !important;
+			padding-right: 1em;
+		}
+		
+		/* Indicate when “Region” field is empty */
+		a[href$="wiki/ISO_3166-2:"]:empty{
+			pointer-events: none;
+			&::before{
+				color: #000;
+				content: "(n/a)";
+				opacity: 0.7;
+			}
+		}
+	}
+	
+	/* Suppress line-wrapping on “Contents” field */
+	tr[style*="border"]:has(> td[colspan="5"]){
+		white-space: nowrap;
+	}
+	
+	/* Anchor world-map to top-right corner of viewport */
+	td[rowspan="6"] > div[style*="relative"]{
+		overflow: hidden;
+		outline: 1px solid #0008;
+		position: absolute !important;
+		top: 0;
+		right: 0;
+		margin: .5em .5em 0 0;
+		z-index: 600;
+		
+		/* Improve pin visibility */
+		div[title^="Location on " i]:has(> span[typeof="mw:File"]){
+			span:has(> img.mw-file-element[src*="Location_dot_darkred.svg"]){
+				position: relative;
+				display: inline-block;
+				z-index: 2;
+
+				/* Origin lines */
+				&::before, &::after{
+					content: "";
+					border: 0 solid #fff8;
+					box-shadow: 0 0 3px #000;
+					position: absolute;
+					z-index: 1;
+				}
+				&::before{
+					width: 100vw;
+					left: -50vw;
+					margin-top: calc(50% - 1px);
+					border-top-width: 1px;
+				}
+				&::after{
+					height: 100vh;
+					top: -50vh;
+					margin-left: calc(-50% - 1px);
+					border-left-width: 1px;
+				}
+
+				/* Coloured pin */
+				img{
+					box-shadow: 0 0 3px -1px #000;
+					border-radius: 50%;
+					position: relative;
+					z-index: 2;
+					filter: url('data:image/svg+xml,\
+						<?xml version="1.0" encoding="utf-8"?>\
+						<svg version="1.1" xmlns="http://www.w3.org/2000/svg">\
+							<filter id="f">\
+								<feFlood flood-color="%23ff0" result="a"/>\
+								<feComposite in="a" in2="SourceGraphic" operator="in"/>\
+							</filter>\
+						</svg>#f');
+					transition: .3s ease transform;
+					transform: scale(1);
+					will-change: transform;
+				}
+			}
+		}
+		
+		/* Enlarge map on rollover */
+		transition: .3s ease transform;
+		transform-origin: 100% 0%;
+		will-change: transform;
+		&:hover{
+			transform: scale(2);
+			img.mw-file-element[src*="Location_dot_darkred.svg"]{
+				transform: scale(0.5);
+			}
+		}
+
+		/* Make map elements selectable for easier DOM inspection */
+		div:last-child:nth-child(3):not(:has(> *)){
+			pointer-events: none;
 		}
 	}
 }

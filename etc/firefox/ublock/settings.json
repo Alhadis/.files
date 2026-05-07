@@ -1,7 +1,8 @@
 {
-	"timeStamp": 1772164682391,
-	"version": "1.69.0",
+	"timeStamp": 1778149871953,
+	"version": "1.70.0",
 	"userSettings": {
+		"contextMenuEnabled": false,
 		"externalLists":  "https://ublockorigin.github.io/uAssets/filters/resource-abuse.txt",
 		"importedLists": ["https://ublockorigin.github.io/uAssets/filters/resource-abuse.txt"],
 		"firewallPaneMinimized": false,
@@ -15,6 +16,7 @@
 		"ublock-unbreak",
 		"easylist",
 		"easyprivacy",
+		"block-lan",
 		"urlhaus-1",
 		"plowe-0",
 		"adguard-cookies",

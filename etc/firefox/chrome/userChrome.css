@@ -1,5 +1,11 @@
 @charset "utf-8";
 @namespace url("http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul");
+@namespace html url("http://www.w3.org/1999/xhtml");
+
+/* Display URL characters unambiguously */
+.urlbar-input-box > html|input{
+	font-family: "PT Mono", Menlig, monospace !important;
+}
 
 /* Frosted glass/translucency effect (macOS only) */
 @media (-moz-bool-pref: "browser.theme.macos.native-theme")
