@@ -185,13 +185,20 @@ have shred && alias nuke='shred -u' || alias nuke='rm -rfP'
 
 
 # Codepoint and base conversion
-for fn in chr oct hex; do alias "$fn"="perl -E 'say join $/, map $fn, -t ? @ARGV : map split, <>'"; done;
+for fn in chr oct; do alias "$fn"="perl -E 'say join $/, map $fn, -t ? @ARGV : map split, <>'"; done;
 alias ord='perl -mEncode=decode -E "map { printf \"%1\\\$s\tU+%1\\\$X\n\", ord decode \"UTF-8\", \$_ } -t ? @ARGV : map split, <>"'
 unset fn
 
 
 # Print public IP address
 alias myip='dig +short myip.opendns.com @resolver1.opendns.com'
+
+
+# Convert hex-encoded data
+have xxd && {
+	alias hex='xxd -p -c0'
+	alias dehex='xxd -p -r'
+}
 
 
 # Generate nicer-looking hexadecimal dumps
