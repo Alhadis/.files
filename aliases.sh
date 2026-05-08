@@ -197,7 +197,7 @@ alias myip='dig +short myip.opendns.com @resolver1.opendns.com'
 # Convert hex-encoded data
 have xxd && {
 	alias hex='xxd -p -c0'
-	alias dehex='xxd -p -r'
+	alias dex='xxd -p -r'
 }
 
 
