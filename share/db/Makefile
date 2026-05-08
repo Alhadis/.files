@@ -9,7 +9,7 @@ Public-Suffix-List:; @$(mirrorGit) 'git@github.com:publicsuffix/list.git'
 
 # SpellCheck-Oriented WordLists
 SCOWL: SCOWL/Dictionaries SCOWL/wordlist
-SCOWL/Dictionaries:; @$(mirrorGit) 'https://anongit.freedesktop.org/git/libreoffice/dictionaries.git'
+SCOWL/Dictionaries:; @$(mirrorGit) 'https://git.libreoffice.org/dictionaries.git'
 SCOWL/wordlist:;     @$(mirrorGit) 'git@github.com:en-wl/wordlist.git'
 
 # Mozilla's web-technology docs
@@ -305,7 +305,7 @@ Atom/wrap-guide:;                      @$(mirrorGit) 'git@github.com:atom/wrap-g
 
 
 # Import the library of shared shell functions used in recipe bodies
-inc = . ~/Labs/Atom-CI/src/0-shared.sh
+inc = . ~/Labs/Atom-CI/src/0-shared.sh && title "$@"
 
 # Clone or update a local checkout of a Git repository
 mirrorGit = $(mirrorGit__fn); mirrorGit
