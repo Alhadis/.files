@@ -62,14 +62,25 @@ command -v konsole >/dev/null 2>&1 && [ ! -h .local/share/konsole ] && {
 	ln -sf ~/.files/etc/konsole .local/share/konsole
 }
 
-# Install editor font
+# Install editor and console fonts
+set -- \
+	.files/share/desktop/Menlig.otf \
+	.files/share/desktop/gallant12x22.ttf;
 if [ "`uname -s`" = Darwin ]; then
 	mkdir -p ~/Library/Fonts
-	ln -f .files/share/desktop/Menlig.otf ~/Library/Fonts
+	while [ "$1" ]; do
+		# shellcheck disable=SC3013
+		[ "$1" -ef ~/Library/Fonts/"${1##*/}" ] ||
+		ln -f "$1" ~/Library/Fonts
+		shift
+	done
 else
 	fonts=/usr/local/share/fonts
-	[ -d "$fonts" ] && [ ! -e "$fonts/Menlig.otf" ] &&
-		doas cp .files/share/desktop/Menlig.otf "$fonts/Menlig.otf"
+	while [ "$1" ]; do
+		[ -e "$fonts/${1##*/}" ] ||
+		doas cp "$1" "$fonts"
+		shift
+	done
 	unset fonts
 fi
 
