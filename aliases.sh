@@ -167,7 +167,7 @@ have sqlite3 && {
 set -- \
 	camelbook ~/Downloads/Programming_Perl_Fourth_Edition.pdf \
 	cstr54    ~/Documents/Books/Unix/CSTR-54.pdf \
-	psbook    ~/Downloads/PLRM.pdf \
+	plrm      ~/Downloads/PLRM.pdf \
 	id3       ~/Documents/Books/Specs/ID3/id3v2.4.0-frames.txt \
 ; while [ $# -ge 2 ]; do
 	# shellcheck disable=SC2139
