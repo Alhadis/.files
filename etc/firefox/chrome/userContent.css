@@ -623,7 +623,7 @@ and    not (-moz-bool-pref: "layout.css.control-characters.visible"){
 	ytd-watch-flexy #secondary{
 		display: none;
 		
-		&:has(#panels > *[target-id*="transcript" i]){
+		&:has(#panels > *[target-id*="transcript" i][visibility*="EXPANDED" i]){
 			all: unset;
 			
 			#secondary-inner{
@@ -641,9 +641,26 @@ and    not (-moz-bool-pref: "layout.css.control-characters.visible"){
 				display: unset;
 				margin-bottom: 0;
 			}
-		}
-		&:has(#panels > *[target-id*="transcript" i][visibility*="HIDDEN" i]){
-			display: none !important;
+			
+			/* Subtitles entry */
+			transcript-segment-view-model,
+			.ytd-transcript-segment-renderer{
+				font-size: 1.5rem !important;
+				line-height: 1.8rem !important;
+				font-weight: normal !important;
+				
+				/* Timecode */
+				.ytwTranscriptSegmentViewModelTimestamp,
+				.segment-timestamp{
+					all: unset !important;
+					color: #94d2f4 !important;
+					margin-right: .5em !important;
+					font-weight: 500 !important;
+				}
+				.segment-start-offset{
+					margin-right: .5em !important;
+				}
+			}
 		}
 	}
 
