@@ -85,6 +85,21 @@ theguardian.com##figure > aside[aria-label="newsletter promotion" i]
 theguardian.com###maincontent ~ gu-island[priority="feature"]
 theguardian.com##gu-island[name="StickyBottomBanner"]
 
+! SourceForge
+sourceforge.net##.l-header-nav > .sandiego.l-header-nav-bottom
+sourceforge.net##.l-header-nav nav.links > a:has(> .newsletter-icon)
+sourceforge.net##.l-two-column-page > .l-content-column ~ div
+sourceforge.net##.m-project-activity a.button.yellow[title*="Follow" i]
+sourceforge.net##.m-rate-project, .reviews-section
+sourceforge.net##.project-masthead *:is(.badges, .stats > .rating:has(a:any-link))
+sourceforge.net###about .achievement-badge
+sourceforge.net###get-updates
+sourceforge.net###share-project-button
+sourceforge.net###top_nav_admin > .dropdown > li:has(a[href*="/reviews/"])
+sourceforge.net##aside:nth-last-child(2).m-wide-projects-widget
+sourceforge.net##div:has(> #vibe-coding-bar-placeholder)
+sourceforge.net##footer.sandiego
+
 ! Anything else which happens to shit me
 abebooks.com###srp-results > #highlight-inventory
 belong.com.au###belong-chat-iframer

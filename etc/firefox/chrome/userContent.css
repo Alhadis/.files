@@ -450,6 +450,47 @@ and    not (-moz-bool-pref: "layout.css.control-characters.visible"){
 	}
 }
 
+/* The MySpace of source-code hosting providers */
+@-moz-document domain(sourceforge.net){
+	/* Add an orange keyline to compensate for removal of orange search-bar */
+	.l-header-nav.sandiego{
+		border-bottom: 3px solid #f60;
+	}
+
+	/* Container for (mostly) relevant stuff */
+	.l-content-column{
+		max-width: none !important;
+		
+		/* Flush overly-wide columns to the left */
+		.project-masthead .stats,
+		.small-12.columns{
+			flex: unset !important;
+			justify-content: initial !important;
+			& > .as-h2{
+				margin-right: 1.5em !important;
+			}
+		}
+	}
+	
+	/* Blue RSS icons? Not on my watch. */
+	a.blue.button:has(> svg[data-name="feed"]){
+		&.hollow{
+			border-color: currentColor !important;
+			color: #ff6e02 !important;
+			svg{ fill: currentColor !important; }
+		}
+		&.hollow:hover,
+		&:not(.hollow){
+			background: #ff6e02 !important;
+			svg{ fill: #fff !important; }
+		}
+	}
+	
+	/* Remove footer's fade-out effect on mobile */
+	.psp-section.collapsible-section::after{
+		content: none !important;
+	}
+}
 
 /* Makefile cookbooks and cheatsheats */
 @-moz-document domain(makefiletutorial.com){
