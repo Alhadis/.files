@@ -89,6 +89,8 @@ configure: applescript dock terminal
 	defaults write com.apple.dock launchanim -bool false
 	defaults write com.apple.dock magnification -bool false
 	defaults write com.apple.dock mineffect scale
+	defaults write com.apple.dock no-bouncing -bool false
+	defaults write com.apple.dock showhidden -bool true
 	defaults write com.apple.dock show-recents -bool false
 	defaults write com.apple.dock tilesize -float 82
 	defaults write com.apple.finder DisableAllAnimations -bool true
@@ -106,6 +108,7 @@ configure: applescript dock terminal
 	defaults write com.apple.finder WarnOnEmptyTrash -bool false
 	defaults write com.apple.digihub com.apple.digihub.cd.music.appeared   -dict action -bool true
 	defaults write com.apple.digihub com.apple.digihub.cd.picture.appeared -dict action -bool true
+	defaults write com.apple.mediaaccessibility MAAudibleMediaPrefPreferDescriptiveVideo -bool true
 	defaults write com.apple.DictionaryServices DCSPreferenceVersion -int 7
 	defaults write com.apple.DictionaryServices DCSActiveDictionaries -array \
 		com.apple.dictionary.ODE \
