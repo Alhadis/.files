@@ -612,27 +612,6 @@ and    not (-moz-bool-pref: "layout.css.control-characters.visible"){
 	}
 }
 
-/* Teach Wondery about dark mode */
-@-moz-document domain(wondery.com){
-	@media (prefers-color-scheme: dark){
-		:root, img, video, .pod-link svg, .site-header [class*="bg-charcoal"]{
-			filter: invert(1) hue-rotate(180deg);
-		}
-		.controlsContainer{
-			color: #000 !important;
-		}
-		.site-mode-selector .page-container .active-site-mode::before{
-			background-color: #000 !important;
-		}
-		.controlBar{
-			background-color: hsla(0, 0%, 90%, 0.8) !important;
-		}
-		[v-focus-visible="true"] [data-focus-visible-enabled="true"] :focus{
-			outline-color: #fff !important;
-		}
-	}
-}
-
 /* Assuage YouTube's rebarbative UX */
 @-moz-document domain(youtube.com){
 	/* Fill available content space */
