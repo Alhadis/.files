@@ -6,6 +6,7 @@ zle_highlight+=(paste:none)
 unsetopt beep
 unsetopt caseglob
 unsetopt completeinword
+unsetopt functionargzero
 unsetopt nomatch
 unsetopt promptcr
 unsetopt sharehistory
@@ -27,6 +28,7 @@ setopt mailwarning
 setopt notify
 setopt numericglobsort
 setopt pipefail
+setopt posixargzero
 setopt posixidentifiers
 setopt promptpercent
 setopt promptsubst
