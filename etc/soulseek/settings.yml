@@ -1,0 +1,47 @@
+%YAML 1.2
+# This file exists as a reminder of my last-used Soulseek settings, in the event
+# of unexpected data loss. These need to be set manually; the ‘scd1’ format that
+# users can export contains login credentials and other sensitive data, requires
+# each section to be specified (even if empty), and is an undocumented format.
+
+Username: Alhadis
+Clear complete downloads: yes
+Clear complete uploads:   no
+
+User list:
+    - Alhadis # For confirming shared paths
+    - GatorKnife
+    - disck
+    - FontMan77
+    - Humalien
+    - Mole
+    - Old.Coffin.Spirit
+
+File sharing:
+    Download folder: ~/Soulseek Downloads
+    Shared folder:
+        - Path:   /usr/local/share/soulseek
+          Access: Everyone
+    Excluded file extensions:
+        - .regex
+        - .ini
+        - .DS_Store
+    Max search results: 10000
+    Max queued uploads: 200
+    Immediately upload files smaller than:  100 # KBs
+    Accept uploads from user list:          no
+    Warn downloaders with empty shares:     no
+    Create subfolders for single downloads: no
+    Create username folders:                yes
+    Sort downloads by Downloading/Complete: yes
+    Show privately-shared files:            no
+
+UI:
+    Combine uploads and downloads tabs: yes
+    Auto-expand newly browsed shares: yes
+    Open tab at startup: Search
+    Chat timestamps: Per message (short)
+    Show Away status in app icon: yes
+    Show diagnostics tab: yes
+    Show event buttons: yes
+    Download folders on double-click: no

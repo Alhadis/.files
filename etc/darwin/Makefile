@@ -39,18 +39,6 @@ $(brew-deps):
 /etc/shells: ../shells
 	[ $@ -ef $< ] || sudo ln -f $< $@
 
-# Link directories to share on Soulseek
-soulseek: /usr/local/share/soulseek
-/usr/local/share/soulseek: ~/.files/var/share/soulseek
-	rm -f $@
-	ln -s $^ $@
-~/.files/var/share/soulseek:
-	mkdir -p $@
-	ln -s ~/Music $@
-	ln -s /Volumes/Films/Lossless $@/Bandcamp
-	ln -s /Volumes/Films/Movies   $@/Movies
-	ln -s /Volumes/Films/TV       $@/TV
-
 # Make Apple bloatware more tolerable
 configure: applescript dock terminal
 	sudo chpass -s /bin/sh Alhadis
