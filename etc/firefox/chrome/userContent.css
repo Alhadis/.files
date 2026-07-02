@@ -450,6 +450,38 @@ and    not (-moz-bool-pref: "layout.css.control-characters.visible"){
 	}
 }
 
+/* Teach the Semantic Versioning spec about dark mode too */
+@-moz-document domain(semver.org){
+	:root{
+		color-scheme: light dark;
+	}
+	body, ul.lang{
+		color: unset !important;
+		background: unset !important;
+	}
+	body{
+		font-size: initial !important;
+		line-height: 1.6 !important;
+		max-width: 56.25em !important;
+		padding: 0 1em !important;
+	}
+	a:any-link      { color: light-dark(#009, #aaf) !important; }
+	a:hover, a:focus{ color: light-dark(#000, #fff) !important; }
+	pre.highlight   { color: light-dark(#090, #4f4) !important; }
+	
+	/* Auto-select regexes and BNF grammar when clicked */
+	pre, code, tt{
+		user-select: all;
+		cursor: pointer;
+	}
+	#backusnaur-form-grammar-for-valid-semver-versions + .language-plaintext{
+		pre.highlight{
+			width: min-content;
+			margin: 0 auto;
+		}
+	}
+}
+
 /* The MySpace of source-code hosting providers */
 @-moz-document domain(sourceforge.net){
 	/* Add an orange keyline to compensate for removal of orange search-bar */
