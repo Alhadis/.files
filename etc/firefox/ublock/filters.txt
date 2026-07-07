@@ -22,6 +22,10 @@ google.com###lb:has(#promo_label_id:contains(/\sAI\s+mode\b/i))
 reddit.*###credential_picker_container
 x.com###credential_picker_container
 
+! Hide AI upsell attempts in Gmail
+mail.google.com##[data-pep-id="global-pep-gmail"]
+mail.google.com##div > [data-rp-placement-id='gemkick-pep-icon-callout-id']
+
 ! YouTube
 youtube.com##.ytp-paid-content-overlay
 youtube.com##yt-list-item-view-model:has([role='text']:contains(/\bRemove\s+ads\b/i))
