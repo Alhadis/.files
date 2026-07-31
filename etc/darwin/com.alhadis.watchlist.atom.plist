@@ -1,0 +1,14 @@
+{
+	// Restart Watchman if it stopped monitoring ~/.atom
+	Label = com.alhadis.watchlist.atom;
+	RunAtLoad = YES;
+	UserName = Alhadis;
+	StandardOutPath = /dev/null;
+	StandardErrorPath = /dev/null;
+	ProgramArguments = (
+		/bin/sh, -c,
+		"if ! watchman watch-list | jq -r .roots[] | grep -qxF ~/.atom'; \\
+			then cd ~/.atom && make watch; \\
+		fi"
+	);
+}

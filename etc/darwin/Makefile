@@ -13,6 +13,7 @@ $(cron):
 $(cron)/%: %
 	convert-plist < $< > $@
 	chmod 0644 $@
+	launchctl load $@
 cronjobs: $(cron) $(addprefix $(cron)/,$(jobs))
 
 # Upgrade antique programs that ship with macOS
