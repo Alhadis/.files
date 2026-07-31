@@ -220,6 +220,11 @@ case `uname -s` in
 		# Turn off the computer after shutting down
 		alias halt='halt -p'
 		
+		# Print checksums in “reversed” order by default
+		alias sha1='sha1 -r'
+		alias sha256='sha256 -r'
+		alias sha512='sha512 -r'
+		
 		# Print temperature diagnostics
 		alias temp='sysctl hw.sensors | grep temp | sed "s/hw.sensors.//; s/\.temp[0-9]=/: /;"'
 
