@@ -1,4 +1,4 @@
-.Dd April 15, 2026
+.Dd July 31, 2026
 .Dt UTIME 1
 .Os
 .
@@ -49,6 +49,15 @@ All timestamps used or displayed by
 are in seconds since the Unix epoch,
 with a possible fractional component of varying precision.
 .
+.Pp
+When the
+.Fl l
+switch is set,
+symbolic links are not dereferenced when getting or setting their timestamps.
+Note that setting symlink timestamps is not fully portable;
+see the first entry under
+.Sx CAVEATS .
+.
 .Sh EXIT STATUS
 .Ex -std
 .
@@ -82,12 +91,113 @@ Output:
 .Xr clock_gettime 2 ,
 .Xr utimes 2
 .
+.Sh HISTORY
+.Nm
+was originally written as a small shell-function named
+.Fn unixstamp
+on October 15, 2020, \
+designed to shim
+.Xr stat 1
+and call it with the correct arguments to display file modification times.
+This 4-line shim was expanded to 26 in September 2023 when support for \
+high-resolution timestamps was added,
+along with an option to force the earlier behaviour of printing only \
+low-resolution, seconds-based timestamps.
+.Pp
+On January 8, 2026, a separate shell-function for
+.Em modifying
+time timestamps was added,
+named
+.Fn mtime .
+This was complementary to
+.Fn unixstamp ,
+and the two functions were frequently confused.
+.Pp
+On April 15, 2026,
+both functions were replaced by the unified
+.Nm
+binary.
+The option for
+.Dq low-resolution
+was tossed,
+since authors who desire integral output can easily strip the \
+fractional component using tools like
+.Xr sed 1 .
+Support for setting both access and modification times was added,
+with options to limit operation to one or both properties.
+To avoid needing to retrain muscle memory,
+the command was written to enable the
+.Fl a
+and
+.Fl m
+switches by default when called as
+.Nm atime
+and
+.Nm mtime ,
+respectively.
+.Pq although creation of these aliases is left as an exercise for the user .
+.Pp
+On July 31, 2026, the previously-undocumented
+.Fl l
+switch was detailed in
+.Nm Ap s
+manual page,
+and support for systems whose
+.Xr touch 1
+implementation lacked support for the
+.Fl h
+switch was improved by falling back to the prefixed GNU variant,
+when available,
+and displaying a more helpful diagnostic message when not.
+.
 .Sh AUTHORS
 .An -nosplit
 Copyright \(co 2020-2026
 .An John Gardner Aq Mt gardnerjohng@gmail.com .
 Freely released under the
 .Lk http://opensource.org/licenses/ISC "ISC license" .
+.
+.Sh CAVEATS
+Modifying symlink timestamps is not supported on all platforms;
+if
+.Ql Nm touch Fl h
+fails,
+an attempt is made to use the GNU implementation instead
+.Pq assumed to be named Nm gtouch .
+If no such fallback exists,
+or is installed under a prefix other than
+.Dq g ,
+.Nm
+terminates with an error code before making any changes to the filesystem.
+Note that
+.Em reading
+timestamps from symbolic links imposes no such portability issue.
+.
+.Pp
+.de EM
+.ie t .Em \\$1
+.el      *\\$1*
+..
+Non-existent files are
+.EM not
+created when setting timestamps.
+This is by design;
+.Nm Ap s
+intended purpose is to operate upon
+.EM existing
+files only.
+To both create
+.EM and
+set the timestamp of an empty file,
+users are advised to use the
+.Xr touch 1
+command first,
+followed by
+.Nm :
+.Bd -literal -compact -offset indent
+.Nm touch Pa ./new-file
+.Nm Ar 1443581145.913283559 Pa ./new-file
+.Ed
 .
 .Sh BUGS
 Filenames aren't aligned vertically in list output.
@@ -106,22 +216,6 @@ and
 .Fl c
 option should be supported only when printing stats,
 and issue an error if attempted to be used when setting utimes.
-.
-.Pp
-Non-existent files are created when setting timestamps,
-which is an undesired parallel with
-.Xr touch 1
-that goes against this program's intended purpose \
-of only operating upon
-.Em existing
-files.
-Users can always use
-.Xr touch 1
-followed by
-.Nm
-if they need to create
-.Em and
-set the timestamp of a hitherto non-existent file.
 .
 .Pp
 Examples of

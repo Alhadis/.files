@@ -40,8 +40,20 @@ esac
 if [ "${seconds+1}" ]; then
 	date="`TZ=UTC date -r "$seconds" '+%Y-%m-%dT%H:%M:%S'`.${nanoseconds}Z"
 	shift
+	
+	# When the "-l" option is active, check upfront if this system's touch(1) can
+	# modify the timestamps of symlinks directly (as opposed to their targets).
+	# If not, resort to using GNU's gtouch(1) if available, and terminate with
+	# an error if it isn't.
+	gnu='g'; if [ "$link" ] && ! touch "-chm" "/.$$" >/dev/null 2>&1; then
+		command -v gtouch >/dev/null 2>&1 || {
+			echo >&2 "${0##*/}: '-h' option unsupported by touch; bailing"
+			exit 1
+		}
+	else unset gnu; fi
 	while [ $# -gt 0 ]; do
-		touch "-c$link$mode" -d "$date" "$1"
+		# shellcheck disable=SC2086
+		${gnu}touch "-c$link$mode" -d "$date" "$1"
 		shift
 	done
 	unset seconds nanoseconds date
