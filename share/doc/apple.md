@@ -23,6 +23,26 @@ As explained by RezWack(1), this only works on HFS or HFS+ filesystems.
 
 
 
+Modifier and menu icons
+-----------------------
+
+	⇪   Caps Lock
+	⇧   Shift
+	⌃   Control
+	⌥   Option
+	⌘   Command
+	⎋   Escape
+	⌦   Erase right
+	⌫   Erase left
+	🌐  Globe (formerly Fn)
+
+Icon glyphs are supplied by one of two icon fonts:
+
+	/System/Library/Fonts/Apple Symbols.ttf
+	/System/Library/Fonts/Keyboard.ttf
+
+
+
 Location of system dictionaries
 -------------------------------
 
