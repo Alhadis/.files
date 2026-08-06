@@ -1,0 +1,112 @@
+.Dd August 6, 2026
+.Dt FIT-WINDOWS 1
+.Os "Mac OS X"
+.
+.Sh NAME
+.Nm fit-windows
+.Nd resize an app's windows to fill the screen
+.
+.Sh SYNOPSIS
+.Nm Ar app-name
+.
+.Sh DESCRIPTION
+.Nm
+resizes a running application's windows to fill the available display space.
+It is equivalent to pressing the green menu-bar button of every app window \
+with the Option key held.
+.Bl -tag -width 4n
+.It Fl h , -help
+Print a short usage message,
+then terminate.
+.It Fl v , -version
+Print the program's version string,
+then terminate.
+.It Ar app-name
+An application whose windows are to be resized.
+Its human-readable name
+.Pq Dv kMDItemDisplayName
+must be provided,
+with or without a trailing
+.Dq .app .
+Attempting to specify an application by its bundle ID will
+.Em not
+work!
+.El
+.
+.Sh FILES
+.Bl -tag -width 4n
+.It Pa ~/.files/etc/darwin/fit-windows.scpt
+Path to
+.Nm Ap s
+AppleScript executable.
+.It Pf $ Dv TMPDIR Ns Pa /TemporaryItems/tmp.SPDisplaysReporter.plist
+Temporary
+.Xr plist 5
+file created when parsing the XML output of
+.Xr system_profiler 8 .
+.El
+.
+.Sh EXIT STATUS
+.Ex -std
+.
+.Sh EXAMPLES
+Resize every document window in Preview.app:
+.Dl Nm Li Preview
+.
+.Sh DIAGNOSTICS
+.Bl -ohang
+.It Sy "execution error: No application name specified (-1715)"
+The
+.Ar app-name
+parameter was omitted or set to the empty string.
+.It Sy "execution error: Parameter error. (-50)"
+An unrecognised option was passed to
+.Nm .
+.It Sy "execution error: Application isn\(cqt running. (-600)"
+The specified application isn't currently running.
+.El
+.
+.Sh SEE ALSO
+.Xr lsappinfo 1 ,
+.Xr osascript 1
+.
+.Sh HISTORY
+A simpler version of this script named
+.Ql fit-terminal.scpt
+was written on January 31, 2019,
+and was limited to resizing the windows of Terminal.app.
+Its usage was eventually obviated by the addition of shell aliases \
+that resized the terminal's window(s) using ANSI escape codes.
+The script was later deleted on April 8, 2024.
+.Pp
+In August 2026,
+a similar script was penned that targets any running application.
+.
+.Sh AUTHORS
+.An -nosplit
+Copyright \(co 2019-2026
+.An John Gardner Aq Mt gardnerjohng@gmail.com .
+Freely released under the
+.Lk http://opensource.org/licenses/ISC "ISC license" .
+.
+.Sh CAVEATS
+.ad l
+This program is written in AppleScript,
+and thus only works on macOS systems.
+.Pp
+.Xr jq 1
+and
+.Xr PlistBuddy 1
+.Pq located at Pa /usr/libexec/PlistBuddy
+are used to parse the JSON and XML output of
+.Xr system_profiler 8 ,
+respectively.
+In the latter's case,
+a temporary file is created in
+.Ev TMPDIR
+in order for
+.Nm PlistBuddy
+to be able to read it,
+as discussed in the
+.Sx FILES
+section.

@@ -299,7 +299,7 @@ case `uname -s` in
 		
 		# Alias unreachable commands specific to macOS
 		for cmd in \
-			~/.files/etc/darwin/{open*.scpt,*.sh} \
+			~/.files/etc/darwin/{{fit,open}*.scpt,*.sh} \
 			/usr/libexec/PlistBuddy \
 			/System/Library/PrivateFrameworks/Apple80211.framework/Resources/airport \
 			/System/Library/Frameworks/CoreServices.framework/Frameworks/LaunchServices.framework/Support/lsregister \
