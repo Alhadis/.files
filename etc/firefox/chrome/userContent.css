@@ -725,6 +725,10 @@ and    not (-moz-bool-pref: "layout.css.control-characters.visible"){
 	/* Hide channel membership and YouTube Premium upsells on homepage */
 	ytd-rich-section-renderer:has(
 		ytd-brand-video-singleton-renderer [aria-label*="Discover members-only" i],
+		ytd-brand-video-shelf-renderer a:is(
+			[href^="/channel_memberships?" i],
+			[href^="/channel_memberships"  i]
+		),
 		ytd-statement-banner-renderer a:is(
 			[href^="/premium?" i],
 			[href^="/premium"  i],

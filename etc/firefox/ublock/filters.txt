@@ -36,6 +36,9 @@ youtube.com##ytd-app[fullscreen] .ytp-chrome-top-buttons
 youtube.com##ytd-badge-supported-renderer:has(.badge[aria-label=Fundraiser i])
 youtube.com##ytd-rich-item-renderer:has(badge-shape[aria-label="Members only" i])
 youtube.com##ytd-subscribe-button-renderer yt-smartimation
+youtube.com###cinematics-container
+youtube.com###cinematics-full-bleed-container
+youtube.com###cinematics:has(canvas)
 youtube.com###emoji-button
 youtube.com###newness-dot
 youtube.com###sponsor-button
