@@ -17,6 +17,7 @@ konsoleui.rc      linguist-language=XML
 terminalrc        linguist-language=INI
 etc/shells        linguist-language=INI
 etc/*.conf        linguist-language=INI
+etc/paperspecs    linguist-language=CSV
 **/ublock/white*  linguist-language=Hosts
 calendar*         linguist-language=C linguist-detectable=false
 

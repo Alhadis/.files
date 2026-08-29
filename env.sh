@@ -66,6 +66,7 @@ export GS_OPTIONS='-dNOSAFER -dNOSHORTERRORS -dOSTACKPRINT -dESTACKPRINT -I.'
 export HISTFILE=
 export LESS=-fiRS
 export LYNX_CFG=~/.files/etc/lynx.cfg
+export PAPERSIZE=A4
 export TROFFONTS=~/Fonts:~/Library/Fonts:$GROFF_FONT_PATH
 export WORDLIST=~/.files/etc/firefox/persdict.dat
 export WASMTIME_HOME=~/.wasmtime

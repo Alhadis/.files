@@ -1,0 +1,117 @@
+A4,210,297,mm
+A5,148,210,mm
+A0,841,1189,mm
+A1,594,841,mm
+A2,420,594,mm
+A3,297,420,mm
+A6,105,148,mm
+A7,74,105,mm
+A8,52,74,mm
+A9,37,52,mm
+A10,26,37,mm
+B0,1000,1414,mm
+B1,707,1000,mm
+B2,500,707,mm
+B3,353,500,mm
+B4,250,353,mm
+B5,176,250,mm
+B6,125,176,mm
+B7,88,125,mm
+B8,62,88,mm
+B9,44,62,mm
+B10,31,44,mm
+C0,917,1297,mm
+C1,648,917,mm
+C2,458,648,mm
+C3,324,458,mm
+C4,229,324,mm
+C5,162,229,mm
+C6,114,162,mm
+C7,81,114,mm
+C8,57,81,mm
+C9,40,57,mm
+C10,28,40,mm
+Super A3,330,483,mm
+10x14,10,14,in
+11x17,11,17,in
+18x24,18,24,in
+Comm 10,4.125,9.5,in
+DL,110,220,mm
+Executive,7.25,10.5,in
+Flyer,8.5,11,in
+Folio,8.5,13,in
+Ledger,17,11,in
+Letter,8.5,11,in
+Letter,216,279,mm
+Legal,8.5,14,in
+Monarch,3.875,7.5,in
+Note,8.5,11,in
+Statement,5.5,8.5,in
+Tabloid,11,17,in
+Postcard,4.25,6,in
+Half Letter,5.5,8.5,in
+Half Executive,5.25,7.25,in
+FLSA,8.5,13,in
+FLSE,8.5,13,in
+A Sheet,8.5,11,in
+B Sheet,11,17,in
+C Sheet,17,22,in
+D Sheet,22,34,in
+E Sheet,34,44,in
+ANSI A,8.5,11,in
+ANSI B,11,17,in
+ANSI C,17,22,in
+ANSI D,22,34,in
+ANSI E,34,44,in
+ANSI Super B,13,19,in
+Arch A,9,12,in
+Arch B,12,18,in
+Arch C,18,24,in
+Arch D,24,36,in
+Arch E,36,48,in
+Arch E1,30,42,in
+Arch E2,26,36,in
+Arch E3,27,39,in
+JIS B0,1030,1456,mm
+JIS B1,728,1030,mm
+JIS B2,515,728,mm
+JIS B3,364,515,mm
+JIS B4,257,364,mm
+JIS B5,182,257,mm
+JIS B6,128,182,mm
+JIS B7,91,128,mm
+JIS B8,64,91,mm
+JIS B9,45,64,mm
+JIS B10,32,45,mm
+Australian/New Zealand broadsheet,420,594,mm
+Canadian tabloid,260,368,mm
+Canadian tall tab,260,413,mm
+Norwegian tabloid,280,400,mm
+British tabloid/compact,280,430,mm
+Berliner/midi,315,470,mm
+Swiss/Neue Zurcher Zeitung,320,475,mm
+Ciner format,350,500,mm
+Rhenish,350,520,mm
+Nordisch,400,570,mm
+US broadsheet,381,578,mm
+New York Times,305,559,mm
+Wall Street Journal,305,578,mm
+South African broadsheet,410,578,mm
+British broadsheet,375,597,mm
+USB label,60,13,mm
+CD discface,118,118,mm
+CD discface (mini),78,78,mm
+CD jewelcase insert (2-panel),120,120,mm
+CD jewelcase insert (4-panel),240,120,mm
+CD jewelcase traycard,150,118,mm
+CD folder,606,197,mm
+CD Digipak,285,251,mm
+DVD cover,273,183,mm
+DVD insert,120,178,mm
+Vinyl 7" label,92,92,mm
+Vinyl 7" jacket,368,187,mm
+Vinyl 7" gatefold,552,374,mm
+Vinyl 12" label,102,102,mm
+Vinyl 12" jacket,622,314,mm
+Vinyl 12" gatefold,638,626,mm
+Vinyl 12" insert,280,280,mm

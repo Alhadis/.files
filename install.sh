@@ -102,6 +102,12 @@ command -v youtube-dl >/dev/null 2>&1 && {
 	ln -sf ~/.files/etc/youtube-dl.conf .config/youtube-dl/config
 }
 
+# Link paper-size definitions
+[ -h .config/paperspecs ] || {
+	[ -d .config ] || mkdir -p .config
+	ln -sf ~/.files/etc/paperspecs .config/
+}
+
 # Link Troff macros
 # shellcheck disable=SC2167,SC2165
 for tmac in /usr/local /usr; do
