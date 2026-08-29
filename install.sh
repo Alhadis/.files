@@ -96,10 +96,10 @@ command -v calendar >/dev/null 2>&1 && [ ! -d ~/.calendar ] && {
 	ln -sf ~/.files/etc/inkscape/preferences.xml .config/inkscape/
 }
 
-# Link youtube-dl(1) configuration
-command -v youtube-dl >/dev/null 2>&1 && {
-	[ -d .config/youtube-dl ] || mkdir -p .config/youtube-dl
-	ln -sf ~/.files/etc/youtube-dl.conf .config/youtube-dl/config
+# Link yt-dlp(1) configuration
+command -v yt-dlp >/dev/null 2>&1 && {
+	[ -d .config/yt-dlp ] || mkdir -p .config/yt-dlp
+	ln -sf ~/.files/etc/yt-dlp.conf .config/yt-dlp/config
 }
 
 # Link paper-size definitions
