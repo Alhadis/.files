@@ -173,14 +173,37 @@ and    not (-moz-bool-pref: "layout.css.control-characters.visible"){
 /* GitHub code-view */
 @-moz-document domain(github.com){
 	/* Facilitate inspection of syntax highlighting */
-	#read-only-cursor-text-area ~ div:has(.react-code-lines){
-		pointer-events: unset !important;
+	#read-only-cursor-text-area ~ div,
+	[id^="CodeBlob-module__codeBlobInner"] > *{
+		&:has(.react-code-lines){
+			pointer-events: unset !important;
+		}
 	}
 
 	/* Thicken underlines drawn beneath tokenised links */
 	.pl-corl{
 		text-decoration-skip-ink: none;
 		text-decoration-thickness: 1px;
+	}
+
+	/* Display monospaced text using preferred editor font */
+	#read-only-cursor-text-area,
+	.markdown-body *:is(code, tt, samp),
+	.react-code-text,
+	pre, textarea{
+		--fontStack-monospace: Menlig, "Monaspace Neon", ui-monospace, monospace !important;
+		font-size: .875rem !important;
+		line-height: 1.43 !important;
+	}
+	
+	/* Add keyline to demarcate editor's left margin */
+	.react-line-numbers,
+	.react-line-numbers-no-virtualization{
+		border-right: 1px solid #8888;
+	}
+	
+	.react-code-lines .line-highlight{
+		margin-top: 10px;
 	}
 }
 
