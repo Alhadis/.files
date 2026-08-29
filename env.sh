@@ -242,9 +242,9 @@ case `uname` in [Dd]arwin)
 	
 	# Include non-brewed pip(1)-installed packages in search paths
 	for path in `printf '%s\n' ~/Library/Python/* 2>/dev/null | sort -rV`; do
-		[ -d "$path/bin"  ] && PATH="$PATH:$path/bin"
-		[ -d "$path/man"  ] && MANPATH="$MANPATH:$path/man"
-		[ -d "$path/info" ] && INFOPATH="$INFOPATH:$path/info"
+		[ -d "$path/bin"        ] && PATH="$PATH:$path/bin"
+		[ -d "$path/share/man"  ] && MANPATH="$MANPATH:$path/share/man"
+		[ -d "$path/share/info" ] && INFOPATH="$INFOPATH:$path/share/info"
 	done
 	
 	# macOS's man(1) gets confused if $MANPATH starts with a colon
