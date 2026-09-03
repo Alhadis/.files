@@ -819,11 +819,27 @@ and    not (-moz-bool-pref: "layout.css.control-characters.visible"){
 	.ytp-play-progress{
 		background: #f03 !important;
 	}
-	.ytThumbnailOverlayProgressBarHostWatchedProgressBar{
+	.ytThumbnailOverlayProgressBarHostWatchedProgressBar,
+	.ytwThumbnailOverlayResumePlaybackRendererHost{
 		height: 6px !important;
-		& > div[class$="Segment" i][style]:only-child{
+		& > div[style][class$="Segment" i]:only-child,
+		& > div[style][class$="Progress" i]:only-child{
 			border-top: 2px solid #000 !important;
 			background: #f03 !important;
+		}
+	}
+	
+	/* Numbered playlists */
+	yt-item-section-renderer:not([data-target-id="LL"]),
+	ytd-playlist-video-list-renderer{
+		& > div[id="contents"]{
+			counter-reset: playlist;
+			& > *{
+				counter-increment: playlist;
+				h3 a::before, .ytLockupMetadataViewModelTitle::before{
+					content: counter(playlist) ". ";
+				}
+			}
 		}
 	}
 	
