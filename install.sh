@@ -27,6 +27,8 @@ dotfiles='
 	.profile
 	.vimrc
 	.wgetrc
+	.Xdefaults
+	.xinitrc
 	.zshenv
 	.zshrc
 '

@@ -1,0 +1,69 @@
+*utf8: 1
+*VT100.font7: -adobe-courier-medium-r-normal--24-240-75-75-m-150-iso10646-1
+
+! Terminal
+XTerm*foreground: white
+XTerm*background: black
+XTerm*faceName: Menlo
+XTerm*faceSize: 14
+XTerm*locale: UTF-8
+XTerm*utf8: always
+XTerm.vt100.bellOnReset: false
+XTerm.vt100.cursorBar: true
+XTerm.vt100.cursorBlink: false
+XTerm.vt100.cutNewline: false
+XTerm.vt100.geometry: 100x28+20+20
+XTerm.vt100.italicULMode: false
+XTerm.vt100.loginShell: true
+XTerm.vt100.utf8Weblike: true
+XTerm*mainMenu.borderColor: white
+XTerm*mainMenu.borderWidth: 1
+XTerm*mainMenu.leftMargin: 2
+XTerm*mainMenu.rightMargin: 2
+XTerm*SimpleMenu*font: Menlo
+XTerm*SimpleMenu*fontSet: Menlo
+
+! Bitmap editor/viewer
+Bitmap*customization: -color
+Bitmap.geometry: 770x630
+Bitmap.input.geometry: 735x106-50+260
+Bitmap.input*background: white
+Bitmap*SimpleMenu.borderColor: black
+Bitmap*SimpleMenu.borderWidth: 1
+
+! Vector editor/viewer
+Fig*autorefresh: true
+Fig*metric: true
+Fig*visual: TrueColor
+Fig*font: -Adobe-Helvetica-Bold-R-Normal--0-0-100-100-P-0-ISO8859-1
+
+! Font browser
+XFontSel*scaledFonts: true
+XFontSel*printOnQuit: true
+XFontSel*showUnselectable: true
+
+! Time
+XClock*background: black
+XClock*foreground: green
+XClock*geometry: 200x200-0+0
+XClock*face: Orbitron:size=24
+XClock*analog: false
+XClock*brief: true
+XClock*chime: false
+XClock*twentyfour: false
+
+! Manual page viewer
+XMan*bothshown: true
+XMan*pagesize: 600x400+10+25
+
+! Eyeballs
+XEyes*biblicallyAccurate: true
+XEyes*distance: true
+XEyes*foreground: darkblue
+XEyes*geometry: 326x166+97+124
+XEyes*outline: #999
+
+! Miscellaneous apps
+Xcursor.theme: handhelds
+XLogo*foreground: grey
+XLogo*shapeWindow: true

@@ -17,10 +17,11 @@ $(cron)/%: %
 cronjobs: $(cron) $(addprefix $(cron)/,$(jobs))
 
 # Upgrade antique programs that ship with macOS
+brew     := HOMEBREW_NO_AUTO_UPDATE=1 brew
 brew-path = $(shell brew --prefix)/bin
 brew-deps = $(addprefix $(brew-path)/,groff grap less)
 $(brew-deps):
-	HOMEBREW_NO_AUTO_UPDATE=1 brew install $(@F)
+	$(brew) install $(@F)
 
 # Symlink hosts(5) database
 /etc/hosts: ~/.files/etc/hosts
@@ -156,7 +157,7 @@ dock:
 
 # Configure macOS's terminal emulator
 terminal:
-	test -x /usr/local/bin/bash || brew install bash
+	test -x /usr/local/bin/bash || $(brew) install bash
 	defaults write com.apple.Terminal Shell /usr/local/bin/bash
 	defaults write com.apple.Terminal ShowLineMarks -bool false
 	defaults write com.apple.Terminal StartupAction -int 1
@@ -174,6 +175,33 @@ terminal:
 		"`basename "$$i" .terminal`" \
 		"`convert-plist -x "$$i" | sed '1,/^<plist/d; /^<\/plist>/d'`"; \
 	done
+
+# Install and configure XQuartz
+x11-prefs = ~/Library/Preferences/org.xquartz.X11.plist
+xquartz: /opt/X11/bin/Xquartz xquartz-prefs
+xquartz-prefs: $(x11-prefs)
+/opt/X11/bin/Xquartz:
+	$(brew) install --cask xquartz font-orbitron
+	$(brew) install xclip xdot xfig xterm
+$(x11-prefs): $(notdir $(x11-prefs))
+	convert-plist -x $^ | defaults import $(^F:.plist=) -
+	cd ~/Library/Preferences; \
+	for id in org.macosforge.xquartz.X11 org.x.X11 org.macports.X11; do \
+		app=`mdfind kMDItemCFBundleIdentifier = "$$id" 2>/dev/null || :`; \
+		if test -d "$$app"; then \
+			ln -sf $^ "$$id.plist" && \
+			touch -chr "$@" "$$id.plist"; \
+		fi; \
+	done
+
+# Regenerate XML version of XQuartz preferences when updated
+watch:
+	test -x /usr/local/bin/watchman || $(brew) install watchman
+	watchman watch $(PWD)
+	watchman -- trigger $(PWD) remake org.xquartz.X11.plist -- make xquartz-prefs
+
+unwatch:
+	watchman watch-del $(PWD)
 
 
 

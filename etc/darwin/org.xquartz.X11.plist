@@ -1,0 +1,36 @@
+{
+	SUAutomaticallyUpdate     = YES;
+	SUHasLaunchedBefore       = YES;
+	SUUpdateRelaunchingMarker = NO;
+	cache_fonts               = YES;
+	done_xinit_check          = YES;
+	enable_iglx               = YES;
+	enable_fake_buttons       = YES;
+	enable_key_equivalents    = YES;
+	enable_system_beep        = NO;
+	no_auth                   = NO;
+	no_quit_alert             = YES;
+	nolisten_tcp              = YES;
+	option_sends_alt          = NO;
+	sync_pasteboard           = YES;
+	app_to_run                = /usr/X11R6/bin/twm;
+	login_shell               = /usr/local/bin/bash;
+	startx_script             = "/opt/X11/bin/startx -- /opt/X11/bin/Xquartz";
+	apps_menu = (
+		(Bitmap,              bitmap,          ""),
+		(Clipboard,           xclipboard,      ""),
+		(Clock,               xclock,          ""),
+		(Calculator,          xcalc,           ""),
+		(Eyes,                xeyes,           ""),
+		(Fonts,               xfontsel,        ""),
+		(Graphviz,            xdot,            ""),
+		(Manual,              xman,            m),
+		("Text Editor",       xedit,           e),
+		("Figure Editor",     xfig,            ""),
+		("Ditroff viewer",    xditview,        ""),
+		(Terminal,            "xterm -u8",     n),
+		("X Resource Editor", editres,         ""),
+		("X Resource Viewer", viewres,         ""),
+		("X Logo",            xlogo,           ""),
+	);
+}
