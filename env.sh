@@ -210,6 +210,15 @@ have java && [ -s "$path" ] && {
 	[ -d "$path/bin" ] && PATH="$PATH:$path/bin"
 }
 
+# Tailor realpath(1) output in SSH sessions for local scp(1) usage
+[ -n "$SSH_CONNECTION" ] && have realpath && {
+	realpath(){
+		printf "%s@%s:" "`id -un`" "`localip`"
+		command realpath "${1:-.}" | tr -d '\n'
+		test -d "${1:-.}" && echo / || echo
+	}
+}
+
 # macOS-specific
 case `uname` in [Dd]arwin)
 	# Include “keg-only” Homebrew formulae in search paths
