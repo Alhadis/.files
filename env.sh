@@ -109,6 +109,16 @@ have npm && {
 		export npm_config_unicode=false
 		export npm_config_heading='|'
 	};
+	
+	# Configure default node(1) options
+	unset opts; for opt in \
+		--no-warnings=ExperimentalWarning \
+		--experimental-import-meta-resolve \
+		--experimental-shadow-realm \
+		--experimental-wasm-modules \
+	; do opts="$opts $opt"; done
+	alias node="NODE_OPTIONS=\"${opts# }\" node"
+	unset opts opt
 }
 
 # Nodebrew: Include paths for currently-selected version
