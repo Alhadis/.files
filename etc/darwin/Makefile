@@ -19,7 +19,7 @@ cronjobs: $(cron) $(addprefix $(cron)/,$(jobs))
 # Upgrade antique programs that ship with macOS
 brew     := HOMEBREW_NO_AUTO_UPDATE=1 brew
 brew-path = $(shell brew --prefix)/bin
-brew-deps = $(addprefix $(brew-path)/,groff grap less)
+brew-deps = $(addprefix $(brew-path)/,groff grap less pipx)
 $(brew-deps):
 	$(brew) install $(@F)
 

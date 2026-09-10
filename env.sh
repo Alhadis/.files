@@ -4,6 +4,7 @@ paths='
 	~/.files/var/bin
 	~/.files/bin
 	~/.cargo/bin
+	~/.local/bin
 	~/.jsvu
 	~/bin
 	/usr/local/sbin
@@ -21,7 +22,6 @@ paths='
 	/snap/bin
 	~/.wasmtime/bin
 	~/.deno/bin
-	~/.local/bin
 	~/perl5/bin
 	~/go/bin
 	~/Forks/depot_tools
@@ -36,6 +36,7 @@ paths='
 	~/.files/var
 	~/.files/share
 	~/.cargo/share
+	~/.local/share
 	/usr/local/share
 	/usr/local
 	/usr/share

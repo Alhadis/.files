@@ -224,6 +224,25 @@ case `uname -s` in
 esac
 
 
+# Install Python packages
+have pipx && {
+	pipx install maigret pyglossary pygments id2xml yt-dlp
+	pipx inject yt-dlp \
+		brotli \
+		certifi \
+		curl_cffi \
+		mutagen \
+		pycryptodomex \
+		requests \
+		secretstorage \
+		websockets \
+		xattr \
+		yt-dlp-ejs
+	pipx upgrade-all --include-injected
+	"`pipx environment -V PIPX_BIN_DIR`/yt-dlp" -U
+}
+
+
 # Install CPAN modules used by userland Perl programs
 have cpan && cpan \
 	Archive::Extract \

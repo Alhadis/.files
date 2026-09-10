@@ -178,6 +178,7 @@ pkg_add -mvzUl /dev/stdin <<-EOF
 	node
 	p5-Image-ExifTool
 	p7zip
+	py3-pipx
 	qemu
 	ripgrep
 	rsync--iconv
