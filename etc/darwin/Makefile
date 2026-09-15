@@ -292,6 +292,9 @@ script-libraries: \
 script-editor: sdefs-apps sefp
 	convert-plist -x com.apple.ScriptEditor2.plist | defaults import com.apple.ScriptEditor2 -
 	convert-plist -x $(sdefs-apps) | defaults import com.apple.ScriptEditor2 -
+	defaults write com.apple.scriptmenu ScriptMenuEnabled -bool true
+	defaults write com.apple.scriptmenu ShowLibraryScripts -bool false
+	open /System/Library/CoreServices/Script\ Menu.app
 
 
 # SEFormattingPreferences configuration (i.e, syntax highlighting colours)
