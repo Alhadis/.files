@@ -11,6 +11,19 @@ Curiosities
 
 
 
+Trace event codes during execution
+----------------------------------
+
+	export AEDebugSends=1
+	export AEDebugReceives=1
+
+~~~console
+$ AEDebugSends=1 osascript -e "log 2 * 3" 2>/dev/null
+{ascr,cmnt target='psn '[osascript] {----=6} attr:{subj=NULL-impl,csig=65536} returnID=22049}
+~~~
+
+
+
 Resource fork access
 --------------------
 
