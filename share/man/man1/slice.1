@@ -1,0 +1,155 @@
+.Dd September 21, 2026
+.Dt SLICE 1
+.Os
+.Sh NAME
+.Nm slice
+.Nd extract a specific segment of bytes from input
+.
+.Sh SYNOPSIS
+.Nm
+.Op Fl f Ar from
+.Op Fl t Ar to
+.Op Ar --
+.Op Ar input
+.
+.Nm
+.Op Fl f Ar from
+.Op Fl l Ar length
+.Op Ar --
+.Op Ar input
+.
+.Sh DESCRIPTION
+.ad l
+.Nm
+extracts a subsection of
+.Ar input
+beginning at the byte offset specified by
+.Fl -from ,
+and ending at the offset specified by either
+.Fl -to
+or
+.Fl -length .
+If neither
+.Fl -to
+nor
+.Fl -length
+are specified,
+.Nm
+reads
+.Ar input
+from its starting point until completion.
+If
+.Ar input
+is omitted or set to the string
+.Ql - ,
+.Nm
+reads from standard input.
+.Bl -tag -width 4n
+.It Fl f , -from Ar offset
+Specify the beginning of the byte-range to read,
+measured from the beginning of the input stream.
+If omitted,
+.Nm
+will begin reading from the start of input as though
+.Ql Fl -from Sy 0
+were used.
+.It Fl h , -help
+Print a terse usage message to standard output,
+then exit.
+.It Fl l , -length Ar bytes
+Specify the size of the byte-range to read,
+measured from the offset set by
+.Fl -from ,
+or the start of the input stream if the latter is unspecified.
+This option is incompatible with
+.Fl -to .
+.It Fl t , -to Ar offset
+Specify the end of the byte-range to read,
+measured from the beginning of the input stream.
+If omitted,
+.Nm
+will continue reading until EOF is reached.
+This option is incompatible with
+.Fl -length .
+.El
+.
+.Sh ENVIRONMENT
+.Bl -tag -width 4n
+.It Ev DD_EXEC
+Command to use instead of the
+.Xr dd 1
+version found in the user's
+.Ev PATH .
+.El
+.
+.Sh EXIT STATUS
+.Ex -std
+.
+.Sh EXAMPLES
+Pull a 2.5 MBs file from an unmounted volume:
+.Dl Nm Fl f Ar 129252200448 Fl l Ar 2621440 Ar /dev/rdisk2
+.Pp
+Print the contents of a file without the initial 500-byte header:
+.Dl Nm Fl f Ar 500 Ar input.c
+.
+.Sh DIAGNOSTICS
+.Bl -ohang
+.It Sy Option \(aq Ns No ... Ns Sy \(aq missing argument
+The invocation of
+.Nm
+ended with a switch that anticipated an argument.
+.It Sy Invalid byte offset:
+A non-numeric or empty value was given where a byte-offset was expected,
+or the offset was a negative or non-integral value.
+.It Sy Cannot slice directory object
+.Nm Ap s Ar input
+argument pointed to a directory object,
+instead of a regular file,
+FIFO,
+or device special file.
+.It Sy Options Fl -to Sy and Fl -length Sy are mutually exclusive
+The endpoint of the range to be read is ambiguous due to conflicting parameters.
+.It Sy End offset must be greater than starting offset
+The value of the
+.Fl -to
+option is equal to or less than the value of
+.Fl -from .
+.It Sy Length argument must be greater than zero
+The value of the
+.Fl -length
+option is either zero or a negative value.
+.El
+.
+.Sh SEE ALSO
+.Xr dd 1 ,
+.Xr photorec 8
+.
+.Sh AUTHORS
+.An -nosplit
+Copyright \(co 2026
+.An John Gardner Aq Mt gardnerjohng@gmail.com .
+Freely released under the
+.Lk http://opensource.org/licenses/ISC "ISC license" .
+.
+.Sh CAVEATS
+The
+.Nm
+command is
+.Em not
+written to be performant.
+Its code is optimised for accuracy and portability,
+and thus takes into consideration the various limitations of different
+.Xr dd 1
+flavours.
+It also endeavours to be compatible with as many POSIX-compliant shells;
+however,
+.Xr posh 1
+.Pq at least as of version 0.14.1 on macOS
+proved too buggy to accommodate.
+.
+.Sh BUGS
+Offsets specified on the command-line do not support unit multipliers.
+.Pp
+A
+.Dq Fl -write Ns No = Ns Ar string
+option to overwrite specified byte-ranges ought to be added.

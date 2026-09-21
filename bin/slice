@@ -1,0 +1,238 @@
+#! /bin/sh
+
+#
+# slice: Extract a range of bytes from input
+# shellcheck disable=SC2086
+#
+set -e
+usage="${0##*/} [-f from] [-t to] [-l length] [--] [input-file]"
+from=0; to=; length=; file=
+
+# Allow user to override path to dd(1) executable
+# shellcheck disable=SC2139
+if test -x "$DD_EXEC"; then
+	if builtin alias >/dev/null 2>&1
+		then alias dd="$DD_EXEC"
+		else dd(){ "$DD_EXEC" "$@"; }
+	fi
+fi
+
+# Print a message to STDERR and terminate with an error code
+die(){
+	>&2 printf 'slice: %s\n' "$1"
+	exit ${2:-1}
+}
+
+# Return true if argument is a valid integer
+is_int(){
+	case $1 in
+		*[!-+0-9]*|'') return 1;;
+		*) case $1 in [-+]*[-+]*|[!-+]*[-+]) return 1;; esac;;
+	esac
+}
+
+# Select the item $1 of the arguments that follow
+nth(){
+	if test "$1" -lt 0; then
+		eval "shift && set -- \"$((($#-1)+($1+1)))\" \"\$@\""
+	fi
+	if test "$1" -gt 0 && test "$1" -le $(($#-1))
+		then eval "echo \"\$$(($1+1))\""
+		else return 1
+	fi
+}
+
+# Perform naive, integer-only exponentiation when all else fails
+pow(){
+	set -- "$1" "$2" "$1" 1 # Value, power, result, i
+	while test "$4" -lt "$2"; do
+		set -- "$1" "$2" $(($3*$1)) $(($4+1))
+	done
+	echo "$3"
+}
+
+# Exponentiation in shell arithmetic isn't supported by POSIX
+exponentiate_shim=0
+if ! (eval 'test 8 -eq $((2**3))' >/dev/null 2>&1); then
+	if   printf '2 3^p\n' | dc | grep -q 8; then exponentiate_shim=1
+	elif printf '2 ^ 3\n' | bc | grep -q 8; then exponentiate_shim=2
+	else exponentiate_shim=3
+	fi
+fi
+
+# Shim unit multipliers unsupported by this dd(1) implementation
+shim_dd_units(){
+	test -z "$did_shim_units" || return
+	unset prev_unit power
+	for unit in K:kilo M:mega G:giga T:tera P:peta E:exa Z:zetta Y:yotta R:ronna Q:quetta; do
+		abbr=${unit%%:*}
+		name=${unit##*:}
+		if dd 2>/dev/null if=/dev/null skip="1$abbr" count=1; then
+			power=0
+			prev_unit=$unit
+			eval "$name=1$abbr"
+		else
+			power=$((power+1))
+			unset value
+			# shellcheck disable=SC3019
+			case $exponentiate_shim in
+				0) value=$((1024**power));;
+				1) value=`printf '1024 %s^p\n' "$power" | dc`;;
+				2) value=`printf '1024 ^ %s\n' "$power" | bc`;;
+				3) value=`pow 1024 "$power"`;;
+			esac
+			eval "$name=${value}${prev_unit%%:*}"
+		fi
+	done
+	did_shim_units=1
+}
+
+# Calculate the most efficient block size for jumping to an absolute byte-offset
+# shellcheck disable=SC3019,SC3043
+params_for_offset(){
+	if test "$1" -lt 1024; then echo "$1" 1 0; return; fi
+	shim_dd_units
+	local bs exp power unit_size count remainder >/dev/null 2>&1 || :
+	bs=512; power=1; unit_size=1024
+	until test "$unit_size" -gt "$1"; do
+		bs="$unit_size"
+		case $exponentiate_shim in
+			0) unit_size=$((1024*(1024**power)));;
+			1) unit_size=`printf '1024 1024 %s^*p\n' "$power" | dc`;;
+			2) unit_size=`printf '1024*(1024^%s)\n'  "$power" | bc`;;
+			3) exp=`pow 1024 "$power"`; unit_size=$((1024*exp));;
+		esac
+		power=$((power+1))
+	done
+	count=$(($1/bs))
+	remainder=$(($1-(bs*count)))
+
+	# Check that unit multiplier is supported by dd(1) implementation
+	# shellcheck disable=SC2154
+	case $bs in
+		1024)             bs=$kilo;;
+		1048576)          bs=$mega;;
+		1073741824)       bs=$giga;;
+		1099511627776)    bs=$tera;;
+		1125899906842624) bs=$peta;;
+	esac
+	echo "$bs" "$count" "$remainder"
+}
+
+# Parse command-line switches
+while [ -n "$1" ]; do case $1 in
+
+	# Print a brief usage summary and exit
+	-h|--help|-\?)
+		printf 'Usage: %s\n' "$usage"
+		exit ;;
+
+	# Unbundle short options
+	-h?*)
+		tail="${1#??}"
+		head=${1%"$tail"}
+		shift
+		set -- "$head" "-$tail" "$@"
+		continue ;;
+
+	# Expand parametric values
+	-[ftl]?*|--[!=]*=*)
+		case $1 in
+			--*) tail=${1#*=}; head=${1%%=*} ;;
+			*)   tail=${1#??}; head=${1%"$tail"} ;;
+		esac
+		shift
+		set -- "$head" "$tail" "$@"
+		continue ;;
+
+	# Handle slice options
+	-f|--from|\
+	-t|--to|\
+	-l|--length)
+		if test -z "$2"
+			then die "Option '$1' missing argument"
+		elif ! is_int "$2" || test "$2" -lt 0
+			then die "Invalid byte offset: $2"
+		else
+			case ${1##*-} in
+				f*) from=$2;;
+				t*) to=$2;;
+				l*) length=$2;;
+			esac
+			shift
+		fi ;;
+
+	# Double-dash: Terminate option parsing
+	--)
+		shift
+		break ;;
+
+	# Invalid option: abort
+	--*|-?*)
+		>&2 printf '%s: Invalid option: "%s"\n' "${0##*/}" "$1"
+		>&2 printf 'Usage: %s\n' "$usage"
+		exit 1 ;;
+
+	# Argument not prefixed with a dash
+	*) break ;;
+
+esac; shift
+done
+
+# Resolve input source
+test "$1" = - && shift || :
+if test -n "$1" && test -e "$1"; then
+	if test -d "$1"
+		then die "Cannot slice directory object"
+		else case $1 in
+			/dev/stdin|/dev/fd/0) shift;;
+			*) file=$1;;
+		esac
+	fi
+fi
+file=${file:+ if="$file"}
+
+# Validate slice parameters
+if test -n "$to" && test -n "$length"; then
+	die "Options --to and --length are mutually exclusive"
+elif test "$to" -le "$from" 2>/dev/null; then
+	die "End offset must be greater than starting offset"
+elif test -n "$length"; then
+	if test "$length" -gt 0
+		then to=$((from+length))
+		else die "Length argument must be greater than zero"
+	fi
+fi
+
+# Ensure dd(1) treats data as binary
+export LC_ALL=C
+export LANG=C
+
+# Shortcut for no-skip reads
+if test "$from" -eq 0; then
+	if test -n "$to"
+		then exec dd status=none bs="$to" count=1$file
+		else exec dd status=none$file
+	fi
+elif test "$from" -lt 1024; then
+	if test -n "$to"
+		then exec dd status=none ibs=1 skip="$from" count="$((to-from))"$file
+		else exec dd status=none bs="$from" skip=1$file | dd status=none
+	fi
+fi
+
+# Do some actual extraction
+# shellcheck disable=SC2046
+if test -n "$to"; then
+	set -- `params_for_offset "$from"` "$((to-from))"
+	{ dd bs="$1" skip="$2"$file \
+	| dd bs="$3" skip=1 \
+	| dd bs="$4" count=1; \
+	} 2>/dev/null
+else
+	set -- `params_for_offset "$from"`
+	{ dd bs="$1" skip="$2"$file \
+	| dd bs="$3" skip=1 \
+	| dd; \
+	} 2>/dev/null
+fi
