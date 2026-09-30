@@ -4,6 +4,9 @@ set -e
 #
 # dirsize: Display directory size(s) in bytes
 #
+unset format
+case $1 in -f|--format) format='format-bytes'; shift;; esac
+
 du -ks "$@" | cut -f1 | dc -e '
 	# Main loop
 	[
@@ -25,4 +28,4 @@ du -ks "$@" | cut -f1 | dc -e '
 	# Entry-point:
 	lA  # Load macro A
 	x   # Execute it
-'
+' | ${format:-tee}

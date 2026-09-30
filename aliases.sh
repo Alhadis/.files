@@ -34,6 +34,7 @@ alias mv='mv -i'
 alias cp='cp -i'
 alias scp='scp -pr'
 alias nl='nl -ba'
+alias dirsize='dirsize -f'
 
 
 # Aliases for programs that mightn't be available/installed
