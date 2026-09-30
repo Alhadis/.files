@@ -4,101 +4,478 @@
 # dsclean: Purge directories of .DS_Store junk
 # shellcheck shell=bash
 #
-IFS=${IFS/ /}
 
+# Print an error message about an invalid option, then exit
+badopt(){
+	echo 2>&1 "${0##*/}: illegal option: '$1'"
+	echo 2>&1 "Usage: ${0##*/} [-gpq] [/path/to/directory]"
+	exit 1
+}
 
-# Check for "-h" or "--home" long-option
-[[ `echo "$*" | grep -E '(\s|^)(--home|-h)(\s|$)'` != '' ]] &&
-	exec dsclean ~ 2>/dev/null
+# Check that the named command(s) exist in the user's $PATH
+have(){
+	declare -a missing
+	while [[ $# -gt 0 ]]; do
+		command -v "$1" >/dev/null 2>&1 || missing+=("$1")
+		shift
+	done
+	case ${#missing[@]} in
+		0) return 0;;
+		1) printf 2>&1 "%s: Required command not found: %s\n"  "$0" "${missing[0]}";;
+		*) printf 2>&2 "%s: Required commands not found: %s\n" "$0" \
+			"$(printf '%s, ' "${missing[@]}" | sed 's/, $//')";;
+	esac
+	return 1
+}
 
+# Check up-front that commands required by dsclean(1) are installed
+have basename dirname format-bytes utime || exit $?
 
-# Parse any options
-unset partial quiet
+# Parse command-line options
+unset git home partial quiet run_tests
 
-while getopts pq option; do
+while getopts :ghpqt-: option; do
 	case $option in
-	p) partial=1 ;; # Include filenames merely ending in ".DS_Store"
-	q) quiet=1   ;; # Suppress all feedback
-	*) echo "Usage: $0 [-p] [-q] [/path/to/directory]" >&2; exit 1 ;;
+	g) git=1       ;; # Don't delete files tracked by a Git repository
+	h) home=1      ;; # Deprecated option for cleaning up user's $HOME
+	p) partial=1   ;; # Include filenames merely ending in ".DS_Store"
+	q) quiet=1     ;; # Suppress all feedback
+	t) run_tests=1 ;; # Run built-in unit-tests
+	-) case $OPTARG in
+		run-tests) run_tests=1;;
+		home)      home=1;;
+		*)         badopt "--$OPTARG";;
+	esac;;
+	*) badopt "-$option";;
 	esac
 done
 shift $((OPTIND - 1))
 
+# Bail if the user's requested two completely different operations
+if [[ $run_tests = 1 && $home = 1 ]]; then
+	echo >&2 "$0: conflicting options given: -h and -t"
+	exit 1
+
+# User's requested that Git-tracked files be skipped, but Git's not installed
+elif [[ $git = 1 ]] && ! have git; then
+	echo >&2 "$0: Git is required to use the -g option; aborting"
+	exit 1
+
+# Re-execute program from user's $HOME
+elif [[ $home = 1 ]]; then
+	opts='-'
+	[[ -z $git ]]     || opts+='g'
+	[[ -z $partial ]] || opts+='p'
+	[[ -z $quiet ]]   || opts+='q'
+	[[ $opts != - ]]  || unset opts
+	exec dsclean $opts ~ 2>/dev/null
+fi
 
 
 # Trim trailing slash from directory argument
 set -- "${1%/}"
 
-
-# Track how many files are deleted, and how many bytes we've saved. Just because.
-total_filesize=0
-skipped=0
-removed=0
-
+total_bytes=0   # Number of bytes saved after clean-up
+removed=0       # Number of files deleted
+skipped=0       # Number of files skipped
 
 # Formatting variables
-B=$(tput bold)              # Bold type
-b=$(tput sgr0)              # Normal formatting
-blue=$(tput setaf 12)       # Blue-coloured
-arrow="${B}${blue}==>${b}"  # Arrow
+B=$'\e'\[1m                 # Bold type
+F=$'\e'\[2m                 # Faded type
+b=$'\e'\[0m                 # Normal formatting
+green=$'\e'\[32m            # Green-coloured
+blue=$'\e'\[38\;5\;12m      # Blue-coloured
+arrow="${B}==>${b}"         # Header marker
+indent='    '               # Indentation string for non-heading output
 
+# Nullify terminal styling effects if they're unwanted/unsupported
 if [[ ! ${FORCE_COLOR:+1} && (! -t 1 || $NO_COLOR) ]]; then
-	unset B b blue
+	unset B F b green blue
 	arrow='==>'
 fi
 
+# Display an activity header demarcating the feedback that follows
+h1(){ echo "$blue$arrow${b}${B} $1${b}"; }
 
-# Display some feedback if we're running in verbose mode
-[ "$quiet" ] || echo "$arrow${B} STARTING CLEAN:${b}"
+# Display an activity subheading for grouping segments of feedback
+h2(){ echo "$green$arrow${b}${B} $1${b}"; }
 
+# Display an informational string about file removal
+# shellcheck disable=SC2059
+info(){
+	local fmt nl='\n'
+	[[ $1 = '-n' ]] && { shift; unset nl; }
+	fmt="$indent$1$nl"
+	shift && printf "$fmt" "$@"
+}
+
+# Make feedback functions no-ops if running in quiet-mode
+if [[ $quiet ]]; then
+	h1(){ :; }
+	h2(){ :; }
+	info(){ :; }
+fi
+
+if [[ ! $run_tests ]]; then
 
 # Right. Search and destroy.
+h1 'STARTING CLEAN:'
 while IFS= read -r -d '' i; do
+	dir=$(dirname "$i")
 
-	filesize=$(stat -f "%z" "$i")
-	directory=$(dirname "$i")
-	dirmod=$(stat -f "%Sm" -t "%Y%m%d%H%M.%S" "$directory")
-
-	# Kill the file.
-	if rm "$i" 2>/dev/null; then
-
-		# Deleted successfully
-		[ "$quiet" ] || printf '    Removed: %s (%s bytes)\n' "$i" "$filesize"
-		total_filesize=$(( total_filesize + filesize ))
-		removed=$(( removed + 1 ))
-		
-		# Restore the original modification time of the file's containing directory
-		touch -t "$dirmod" "$directory"
-	else
-		# File isn't writable (read-only or insufficient permissions). Skip it.
-		[ "$quiet" ] || printf "    Skipped: %s\n" "$i"
-		skipped=$(( skipped + 1 ))
+	# Skip files that're tracked by a Git repository when the “-g” switch is used
+	if [[ $git -eq 1 ]]; then
+		name=$(basename "$i")
+		status=$(git 2>/dev/null -C "$dir" status --ignored --porcelain=v1 "./$name" || echo .)
+		case $status in '!! '*|'?? '*|.);; *)
+			info 'Skipped: %s' "$i"
+			skipped=$((skipped+1))
+			continue
+		;; esac
 	fi
 
-done < <(find "${1:-.}" -name "${partial:+*}.DS_Store" -type f -print0 | sort -z);
+	st_size=0; st_nlink=1; st_dev=0; st_ino=0
+	eval "$(stat -s "$i")"
+	dirmod=$(stat -f "%Fm" -- "$dir")
 
+	# Keep track of which files have (or had) hard-links
+	if [[ $st_nlink -gt 1 ]]
+		then eval "_${st_dev}_${st_ino}=1"
+		else unset uid
+	fi
 
+	# Kill the file
+	if rm "$i" 2>/dev/null; then
+		removed=$((removed+1))
+		st_nlink=$((st_nlink-1))
 
-# Generate a feedback string to pass to stdout
+		[ "$quiet" ] || {
+			# Removed file had hard-links
+			if [[ $st_nlink -gt 0 ]]; then
+				s=$([[ $st_nlink = 1 ]] || echo s)
+				info 'Removed: %s (%s link%s remaining)' "$i" "$st_nlink" "$s"
+
+			# File had no hard-links, or none remaining
+			else
+				# Tailor feedback based on whether file was formerly hard-linked
+				[[ $(eval "echo \$_${st_dev}_${st_ino}") = 1 ]] &&
+					fmt='(last link; %s byte%s)' ||
+					fmt='(%s byte%s)'
+				s=$([[ $st_size = 1 ]] || echo s)
+				info "Removed: %s $fmt" "$i" "$st_size" "$s"
+				total_bytes=$((total_bytes + st_size))
+			fi
+		}
+
+		# Restore the original modification time of the file's containing directory
+		[ -w "$dir" ] && utime -m "$dirmod" "$dir" 2>/dev/null
+	else
+		# File isn't writable (read-only or insufficient permissions). Skip it.
+		info 'Skipped: %s' "$i"
+		skipped=$((skipped+1))
+	fi
+done < <(find -H "${1:-.}" -name "${partial:+*}.DS_Store" -type f -print0 | sort -z);
+
+# Display summary
 [ "$quiet" ] || {
-	echo "$arrow${B} SUMMARY:${b}"
+	h1 'SUMMARY:'
 
-	feedback=$(printf "    %s file%s removed" $removed "$([ $removed != 1 ] && echo s)")
+	# Tally how many files were deleted/unlinked during execution
+	s=$([[ $removed -eq 1 ]] || echo s)
+	info -n '%s file%s removed' "$removed" "$s"
 
 	# If at least one file was deleted, include how many bytes were saved in total
-	[ $removed -gt 0 ] && {
+	[[ $removed -eq 0 ]] || printf ' (%s total)' "$(format-bytes -p $total_bytes)"
+	echo
 
-		# Use format-bytes(1) if available
-		command -v format-bytes >/dev/null 2>&1 \
-			&& total_filesize_f=$( format-bytes -p   $total_filesize ) \
-			|| total_filesize_f=$( printf '%s bytes' $total_filesize )
-
-		feedback+=$( printf ' (%s total)' "$total_filesize_f" )
-	};
-	
-	printf '%s\n' "$feedback";
-
-
-	# If there were any files skipped for whatever reason, include those too.
-	[ $skipped -eq 0 ] || printf '    %s file%s skipped\n' $skipped "$([ $skipped != 1 ] && echo s)"
+	# If there were any files skipped for whatever reason, include those too
+	[[ $skipped -gt 0 ]] || exit 0
+	s=$([[ $skipped -eq 1 ]] || echo s)
+	info '%s file%s skipped' "$skipped" "$s"
 }
+
+# Run some built-in tests
+else
+h1 "RUNNING TESTS:"
+set -e
+
+h2 "Linting"
+have shellcheck mandoc
+cmd(){
+	printf 2>&1 '%s$ %s%s\n' "$F" "$1" "$b"
+	eval "$1"
+}
+cmd "shellcheck \"$0\""
+cmd "! { mandoc -Tlint \"\$(man -w dsclean)\" 2>&1 | grep -v \
+-e 'outdated .*makewhatis' \
+-e 'STYLE: referenced manual not found' \
+-e 'STYLE: operating system explicitly' \
+| grep -E .+; } || exit 1"
+
+h2 'Running tests'
+have realpath xargs
+
+# Locate a highlighter for word-level diffs
+hl=$(command -v diff-highlight 2>&1 || :)
+[[ -x $hl ]] || for path in \
+	"$(command -v git | xargs realpath | xargs dirname)/../share" \
+	/usr/local/share \
+	/usr/share \
+; do
+	path="$path/git-core/contrib/diff-highlight/diff-highlight"
+	if [[ -f $path && -x $path ]]; then hl=$(realpath "$path"); break; fi
+done
+
+# Compare two arguments and display a coloured diff if don't match
+cmp(){
+	if [[ $# -lt 2 && ! -t 0 ]]; then
+		set -- "$1" "$(cat)"
+	fi
+	case $1 in *$'\n');; *) set -- "$1"$'\n' "$2";; esac
+	case $2 in *$'\n');; *) set -- "$1" "$2"$'\n';; esac
+	diff=$(diff -U4 <(printf %s "$1") <(printf %s "$2") | "${hl:-tee}" | sed '
+		s/^--- .*/--- expected/
+		s/^+++ .*/+++ actual/
+		s/^-/[31m-/
+		s/^+/[32m+/
+		s/^@/[36m@/
+		s/$/[0m/
+	')
+	if [[ -n "$diff" ]]; then
+		printf %s "$diff"
+		return 1
+	fi
+}
+
+# Current test number
+test=1
+
+# Print an assertion heading
+it(){
+	printf '%s%s) It %s%s\n' "$F" $((test)) "$1" "$b"
+	test=$((test+1))
+}
+
+# Create a 600-byte .DS_Store file in the named directories
+mkds(){
+	[[ $# -gt 0 ]] || set -- "${1:-.}"
+	for arg in "$@"; do
+		if [[ -d $arg ]]; then
+			arg="$(realpath "${arg%/}")/.DS_Store"
+		elif [[ ! -e $arg && $(basename "$arg") != .DS_Store ]]; then
+			mkdir -p "$arg"
+			arg="${arg%/}/.DS_Store"
+		fi
+		dd status=none if=/dev/zero of="$arg" bs=600 count=1
+	done
+}
+
+# Clear testing stage
+cd /tmp || exit 1
+if [[ -d subdir ]]; then
+	chmod -R +w subdir
+	rm -rf subdir
+fi
+find . -type f -name '.DS_Store' -delete
+
+it 'deletes files named ".DS_Store"'
+mkds && test -f /tmp/.DS_Store
+cmp "$(dsclean)" <<-EOF
+	==> STARTING CLEAN:
+	    Removed: ./.DS_Store (600 bytes)
+	==> SUMMARY:
+	    1 file removed (600 B total)
+EOF
+test ! -f /tmp/.DS_Store
+cmp "$(dsclean)" <<-EOF
+	==> STARTING CLEAN:
+	==> SUMMARY:
+	    0 files removed
+EOF
+
+it 'deletes .DS_Store files in subdirectories'
+mkds subdir subdir/subsubdir
+utime -m '545679060' subdir
+utime -m '645679060' subdir/subsubdir
+test -f /tmp/subdir/.DS_Store
+test -f /tmp/subdir/subsubdir/.DS_Store
+cmp "$(dsclean)" <<-EOF
+	==> STARTING CLEAN:
+	    Removed: ./subdir/.DS_Store (600 bytes)
+	    Removed: ./subdir/subsubdir/.DS_Store (600 bytes)
+	==> SUMMARY:
+	    2 files removed (1.17 KBs total)
+EOF
+test ! -f /tmp/subdir/.DS_Store
+test ! -f /tmp/subdir/subsubdir/.DS_Store
+
+it 'preserves timestamps on directories it cleans'
+test 545679060 -eq "$(utime subdir)"
+test 645679060 -eq "$(utime subdir/subsubdir)"
+mkds subdir
+time=$(stat -f '%m' subdir)
+test 545679060 -lt "$time"
+cmp "$(dsclean)" <<-EOF
+	==> STARTING CLEAN:
+	    Removed: ./subdir/.DS_Store (600 bytes)
+	==> SUMMARY:
+	    1 file removed (600 B total)
+EOF
+test "$time" -eq "$(stat -f '%m' subdir)"
+chmod +w subdir
+rm -rf subdir
+
+it "skips files it can't delete"
+mkds subdir
+test -f subdir/.DS_Store
+chmod -w subdir
+time=$(stat -f '%m' subdir)
+cmp "$(dsclean)" <<-EOF
+	==> STARTING CLEAN:
+	    Skipped: ./subdir/.DS_Store
+	==> SUMMARY:
+	    0 files removed
+	    1 file skipped
+EOF
+test "$time" -eq "$(stat -f '%m' subdir)"
+mkds .
+test -f .DS_Store
+cmp "$(dsclean)" <<-EOF
+	==> STARTING CLEAN:
+	    Removed: ./.DS_Store (600 bytes)
+	    Skipped: ./subdir/.DS_Store
+	==> SUMMARY:
+	    1 file removed (600 B total)
+	    1 file skipped
+EOF
+test -f subdir/.DS_Store
+test ! -f .DS_Store
+test "$time" -eq "$(stat -f '%m' subdir)"
+chmod +w subdir
+rm -rf subdir
+
+it "doesn't delete files whose names merely end in \".DS_Store\""
+mkds .
+cp .DS_Store DS_Store
+cp .DS_Store Foo.DS_Store
+test -f .DS_Store
+test -f DS_Store
+test -f Foo.DS_Store
+cmp "$(dsclean)" <<-EOF
+	==> STARTING CLEAN:
+	    Removed: ./.DS_Store (600 bytes)
+	==> SUMMARY:
+	    1 file removed (600 B total)
+EOF
+test ! -f .DS_Store
+test -f DS_Store
+test -f Foo.DS_Store
+
+it 'deletes files whose names end in ".DS_Store" when "-p" is used'
+cp DS_Store .DS_Store
+cp DS_Store .DS_Store.Foo
+cmp "$(dsclean -p)" <<-EOF
+	==> STARTING CLEAN:
+	    Removed: ./.DS_Store (600 bytes)
+	    Removed: ./Foo.DS_Store (600 bytes)
+	==> SUMMARY:
+	    2 files removed (1.17 KBs total)
+EOF
+test ! -f .DS_Store
+test ! -f Foo.DS_Store
+test -f .DS_Store.Foo
+test -f DS_Store
+rm -f .DS_Store.Foo
+
+it "doesn't tally byte-savings from deleted hard-links"
+mkdir -p subdir
+mkdir -p subdir/{A,B}
+ln DS_Store subdir/A/.DS_Store
+ln DS_Store subdir/B/.DS_Store
+test DS_Store -ef subdir/A/.DS_Store
+test DS_Store -ef subdir/B/.DS_Store
+cmp "$(dsclean)" <<-EOF
+	==> STARTING CLEAN:
+	    Removed: ./subdir/A/.DS_Store (2 links remaining)
+	    Removed: ./subdir/B/.DS_Store (1 link remaining)
+	==> SUMMARY:
+	    2 files removed (0 B total)
+EOF
+ln DS_Store subdir/A/.DS_Store
+ln DS_Store subdir/B/.DS_Store
+mv DS_Store .DS_Store
+cmp "$(dsclean)" <<-EOF
+	==> STARTING CLEAN:
+	    Removed: ./.DS_Store (2 links remaining)
+	    Removed: ./subdir/A/.DS_Store (1 link remaining)
+	    Removed: ./subdir/B/.DS_Store (last link; 600 bytes)
+	==> SUMMARY:
+	    3 files removed (600 B total)
+EOF
+test ! -f .DS_Store
+test ! -f subdir/A/.DS_Store
+test ! -f subdir/B/.DS_Store
+rm -rf subdir
+
+it 'emits no output when the "-q" option is passed'
+mkds
+test -f /tmp/.DS_Store
+test -z "$(dsclean -q)"
+test ! -f /tmp/.DS_Store
+
+it "doesn't trip on paths containing embedded newlines"
+dir='very
+bad
+name'
+mkdir -p "$dir"
+mkds "$dir"
+test -f "$dir/.DS_Store"
+cmp "$(dsclean)" <<-EOF
+	==> STARTING CLEAN:
+	    Removed: ./very
+	bad
+	name/.DS_Store (600 bytes)
+	==> SUMMARY:
+	    1 file removed (600 B total)
+EOF
+test ! -f "$dir/.DS_Store"
+test -d "$dir"
+rmdir "$dir"
+
+it 'skips .DS_Store files tracked in Git when "-g" is passed'
+(
+	mkdir repo && cd repo
+	git init
+	echo '!.DS_Store'  >  .gitignore
+	echo 'Desktop.ini' >> .gitignore
+	echo Foo > text.txt
+	git add text.txt .gitignore
+	git commit -m 'Initialise repository'
+	mkds subdir
+	git add subdir/.DS_Store
+	git commit -m 'Add .DS_Store junk'
+	echo Foo > subdir/untracked.txt
+) >/dev/null 2>&1
+test -f repo/subdir/.DS_Store
+test -d repo/.git
+cmp "$(dsclean)" <<-EOF
+	==> STARTING CLEAN:
+	    Removed: ./repo/subdir/.DS_Store (600 bytes)
+	==> SUMMARY:
+	    1 file removed (600 B total)
+EOF
+test ! -f repo/subdir/.DS_Store
+git -C repo checkout -- subdir/.DS_Store
+test -f repo/subdir/.DS_Store
+cmp "$(dsclean -g)" <<-EOF
+	==> STARTING CLEAN:
+	    Skipped: ./repo/subdir/.DS_Store
+	==> SUMMARY:
+	    0 files removed
+	    1 file skipped
+EOF
+test -f repo/subdir/.DS_Store
+rm -rf repo
+
+# End of tests
+fi
