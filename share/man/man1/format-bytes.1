@@ -1,5 +1,5 @@
 .\" -*- coding: utf-8 -*-
-.Dd January 12, 2019
+.Dd September 30, 2026
 .Dt FORMAT-BYTES 1
 .Os
 .Sh NAME
@@ -7,39 +7,45 @@
 .Nd format a number of bytes for human-readable output
 .Sh SYNOPSIS
 .Nm
-.Op Fl hl
+.Op Fl lpz
 .Op Fl d Ar decimals
 .Op Fl f Ar filename
-.Ar bytes ...
-.Sh DESCRIPTION
-The
+.Op Ar bytes ...
 .Nm
-utility formats a list of
+.Fl -help
+.
+.Sh DESCRIPTION
+.ad l
+.Nm
+formats a list of
 .Ar bytes
 for human-readable output.
 For example,
-.Ql Nm Ar 4358361
-prints
-.Qq 4.16 MBs .
-.Nm
-reads from standard input if no
-.Ar bytes
-are passed.
-.
+.Sy 4358361
+becomes
+.Dq 4.16 MBs .
 .
 .\" Options
 .Bl -tag -width 4n
-.It Fl d , -decimals Ar num
-Specify maximum decimal length
-.Ar ( num
-digits after the decimal point).
+.It Fl d , -decimals Ar number
+Specify the precision of fractional results,
+expressed as the
+.Ar number
+of digits after the decimal point.
+Numbers are zero-padded to fill the width
+.Pq so, Sy 20.1 No becomes Sy 20.10
+unless the
+.Fl -trim-zeroes
+option is in effect.
 Default:
-.Ar 2 .
+.Sy 2 .
 .
 .It Fl f , -filename Ar file
-Read bytes from
-.Ar file 's
-size instead of the specified amount(s).
+Format
+.Ar file Ap s
+disk-size instead of the specified
+.Ar byte
+amounts (if any).
 .
 .It Fl h , -help
 Display a short usage summary, then exit.
@@ -48,52 +54,91 @@ Display a short usage summary, then exit.
 Use long unit-names like
 .Qq Kilobytes
 rather than
-.Qq KB .
-.El
+.Qq KBs .
+Always pluralised when necessary;
+unaffected by the presence of the
+.Fl p
+switch.
 .
-.Ss Obsolete options
-The following switches were defined in the original
-.Xr bash 1
-implementation of
-.Nm ,
-but have since been removed.
-They have no effect and only supported for compatibility with older scripts:
-.
-.Bl -tag -width 4n
-.It Fl p
+.It Fl p , Fl Fl Oo Sy no- Oc Ns Sy pluralise
 Pluralise short-units when necessary.
-The purpose of this switch was to toggle between
+If disabled using
+.Fl -no-pluralise ,
+quantities like
+.Qq 2.5 KBs
+will be formatted as
 .Qq 2.5 KB
-and
-.Qq 2.5 KBs ,
-which is now determined based on whether a result equals 1.
+instead.
+This option has no effect when
+.Fl -long-names
+is enabled.
 Note that the
 .Qq B
 unit is never pluralised.
 .
-.It Fl p
-By default,
-.Nm
-This option was formerly used to preserve redundant zeroes so
-.Ql 20 KB
-becomes formatted as
-.Ql 20.00 KB .
-This feature has since been removed, and needless zeroes are always stripped.
+.It Fl z , -trim-zeroes
+Trim redundant zeroes so that
+.Ql 20.00 KB
+is formatted as
+.Ql 20 KB ,
+and
+.Ql 32.40 KB
+is formatted as
+.Ql 32.4 KB .
+.Pp
+Prior to September 30th 2026,
+this option was named
+.Fl -keep-zeroes
+and had the inverse function,
+though it was made a no-op in 2019
+.Po see
+.Sx HISTORY
+for details
+.Pc .
 .El
+.
+.Pp
+If no
+.Ar bytes
+or
+.Ar filename
+are specified,
+.Nm
+reads a whitespace-separated list of numbers from standard input instead.
 .
 .Sh EXIT STATUS
 .Ex -std
 .
 .Sh EXAMPLES
+.ds -> \fR\(->\fP
+.nr -> \w'\*(->'u
+.ds > \h'|\\nXu-\\n(->u'\\*(->
+.ds ^ \h'|\\nXu'
+.ft R
+.if \n(.f=0 .ds ^ \*^\ \" Mandoc
+.
 Basic usage:
 .Bd -literal -compact -offset 4n
-.Li $ Nm Ar 1600 No "        # 1.56 KB"
+.Li $\kX Nm Ar 1600
+\*> 1.56 KBs
+.Ed
+.
+.Pp
+Format multiple byte values read from STDIN:
+.Bd -literal -compact -offset 4n
+.Li $ Nm echo Ar 33472512 217088 901120 4511531008 3747840 | Nm
+\*> 31.92 MBs
+\*^ 212.00 KBs
+\*^ 880.00 KBs
+\*^ 4.20 GBs
+\*^ 3.57 MBs
 .Ed
 .
 .Pp
 Use longer measurement units:
 .Bd -literal -compact -offset 4n
-.Li $ Nm Fl l Ar 1600 No "     # 1.56 Kilobytes"
+.Li $ Nm Fl l Ar 1600
+\*> 1.56 Kilobytes
 .Ed
 .
 .Pp
@@ -112,28 +157,53 @@ Read a file's size instead:
 was written on March 15th as a
 .Xr bash 1
 script, with numerous bugs and awkward documentation.
-A real manpage was added on May 14th, though it contained many mistakes.
+A real man page was added on May 14th,
+though it contained many mistakes.
 .
 .Pp
 The
 .Nm
 utility was rewritten in
 .Xr perl 1
-on January 12th 2019, and its manpage rewritten in
+on January 12th 2019,
+and its man page rewritten in
 .Xr mdoc 7
 instead of
 .Xr man 7
 macros.
-This new version added support for long-option names, simplified unit-formatting to be predictable and consistent,
+This new version added support for long-option names,
+simplified unit-formatting to be predictable and consistent,
 and dropped support for the
 .Fl f
 and
 .Fl k
 switches.
 .
+.Pp
+.ad l
+On September 30th 2026,
+.Nm
+was rewritten *yet again*,
+this time to bring back support for the
+.Fl -filename
+and
+.Fl -keep-zeroes
+switches,
+renaming the latter to
+.Fl -trim-zeroes
+and inverting its function.
+.Nm Ap s
+list of units was extended to include the ronna- and quetta- prefixes,
+adopted in 2022 by the BIPM (International Bureau of Weights and Measures).
+The broken
+.Fl -pluralise
+option was also fixed,
+and its effect restricted to short units only
+.Pq as output like Do 24.2 Kilobyte Dc makes no sense .
+.
 .Sh AUTHORS
 .An -nosplit
-Copyright \(co 2015-2019
+Copyright \(co 2015-2026
 .An John Gardner Aq Mt gardnerjohng@gmail.com .
 .Pp
 Freely released under the

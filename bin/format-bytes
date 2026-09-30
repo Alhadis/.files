@@ -5,28 +5,32 @@ use autodie;
 use v5.14;
 use Getopt::Long qw< :config bundling >;
 use POSIX;
+use bignum;
+$|++;
 
 # Parse CLI options
 my $decimals    = 2;
 my $filename    = "";
 my $long_names  = 0;
 my $show_help   = 0;
+my $pluralise   = 1;
+my $trim_zeroes = 0;
 
 GetOptions(
 	"d|decimals=n"  => \$decimals,
 	"f|filename=s"  => \$filename,
 	"l|long-names"  => \$long_names,
 	"h|help|?"      => \$show_help,
-	"p|pluralise"   => 0,
-	"k|keep-zeroes" => 0,
+	"p|pluralise!"  => \$pluralise,
+	"z|trim-zeroes" => \$trim_zeroes,
 );
 
 # Print a short usage summary and exit
-say "Usage: format-bytes [-hlpk] [-d num] [-f file] bytes" and exit if $show_help;
+say "Usage: format-bytes [-hlpz] [-d num] [-f file] bytes" and exit if $show_help;
 
 my @units = $long_names
-	? qw(Byte Kilobyte Megabyte Gigabyte Terabyte Petabyte Exabyte Zettabyte Yottabyte)
-	: qw(B KB MB GB TB PB EB ZB YB);
+	? qw(Byte Kilobyte Megabyte Gigabyte Terabyte Petabyte Exabyte Zettabyte Yottabyte Ronnabyte Quettabyte)
+	: qw(B KB MB GB TB PB EB ZB YB RB QB);
 
 # Read byte-count from a filesize instead
 if($_ = $filename){
@@ -47,7 +51,8 @@ for my $bytes (@ARGV){
 		$unit = $_;
 		$bytes >= 1024 ? $bytes /= 1024 : last;
 	}
-	($bytes = sprintf "\%.${decimals}f", $bytes) =~ s/\.0*$//g;
-	$unit .= "s" unless $bytes == 1 or $unit eq "B";
+	$bytes = sprintf "\%.${decimals}f", $bytes;
+	$bytes =~ s/\.0*$|\.\d*?(?<!0)\K0+$//g if $trim_zeroes;
+	$unit .= "s" unless ($pluralise == 0 and $long_names == 0) or $bytes == 1 or $unit eq "B";
 	say "$bytes $unit";
 }
