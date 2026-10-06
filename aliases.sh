@@ -76,7 +76,6 @@ alias s=~/.files/bin/rgrep
 
 
 # Use the most featureful version of tree(1) available
-# shellcheck disable=SC2139
 have colortree && tree=colortree || tree=tree
 if "$tree" -a --noreport ~/.files/bin >/dev/null 2>&1; then
 	[ -z "${DISPLAY}${SSH_TTY}${TREE_CHARSET+1}" ] || export TREE_CHARSET=UTF-8
@@ -171,7 +170,6 @@ set -- \
 	plrm      ~/Downloads/PLRM.pdf \
 	id3       ~/Documents/Books/Specs/ID3/id3v2.4.0-frames.txt \
 ; while [ $# -ge 2 ]; do
-	# shellcheck disable=SC2139
 	[ -f "$2" ] && alias "$1"=open\ "$2"
 	shift 2
 done
@@ -212,7 +210,7 @@ have hexdump && alias hexdump='hexdump -v \
 
 
 # OS-specific
-# shellcheck disable=SC3009,SC2139
+# shellcheck disable=SC3009
 case `uname -s` in
 	OpenBSD)
 		# Reconnect WiFi

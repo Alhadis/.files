@@ -9,7 +9,6 @@ usage="${0##*/} [-f from] [-t to] [-l length] [--] [input-file]"
 from=0; to=; length=; file=
 
 # Allow user to override path to dd(1) executable
-# shellcheck disable=SC2139
 if test -x "$DD_EXEC"; then
 	if builtin alias >/dev/null 2>&1
 		then alias dd="$DD_EXEC"
