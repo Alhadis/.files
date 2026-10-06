@@ -72,8 +72,14 @@ elif [[ $home = 1 ]]; then
 fi
 
 
+# Resolve supported find(1) options
+declare -a find_opts
+for opt in -H -s; do
+	find $opt / -type d -maxdepth 1 -print0 && find_opts+=("$opt") || :
+done >/dev/null 2>&1
+
 # Trim trailing slash from directory argument
-set -- "${1%/}"
+[[ $1 = / ]] || set -- "${1%/}"
 
 total_bytes=0   # Number of bytes saved after clean-up
 removed=0       # Number of files deleted
@@ -123,6 +129,9 @@ h1 'STARTING CLEAN:'
 while IFS= read -r -d '' i; do
 	dir=$(dirname "$i")
 
+	# Skip files we already deleted. This can happen due to firmlinked directories
+	[[ -s "$i" ]] || continue
+
 	# Skip files that're tracked by a Git repository when the “-g” switch is used
 	if [[ $git -eq 1 ]]; then
 		name=$(basename "$i")
@@ -149,7 +158,7 @@ while IFS= read -r -d '' i; do
 		removed=$((removed+1))
 		st_nlink=$((st_nlink-1))
 
-		[ "$quiet" ] || {
+		[[ $quiet ]] || {
 			# Removed file had hard-links
 			if [[ $st_nlink -gt 0 ]]; then
 				s=$([[ $st_nlink = 1 ]] || echo s)
@@ -168,16 +177,16 @@ while IFS= read -r -d '' i; do
 		}
 
 		# Restore the original modification time of the file's containing directory
-		[ -w "$dir" ] && utime -m "$dirmod" "$dir" 2>/dev/null
+		[[ -w $dir ]] && utime -m "$dirmod" "$dir" 2>/dev/null
 	else
 		# File isn't writable (read-only or insufficient permissions). Skip it.
 		info 'Skipped: %s' "$i"
 		skipped=$((skipped+1))
 	fi
-done < <(find -H "${1:-.}" -name "${partial:+*}.DS_Store" -type f -print0 | sort -z);
+done < <(find "${find_opts[@]}" "${1:-.}" -name "${partial:+*}.DS_Store" -type f -print0 | sort -z);
 
 # Display summary
-[ "$quiet" ] || {
+[[ $quiet ]] || {
 	h1 'SUMMARY:'
 
 	# Tally how many files were deleted/unlinked during execution
@@ -185,7 +194,7 @@ done < <(find -H "${1:-.}" -name "${partial:+*}.DS_Store" -type f -print0 | sort
 	info -n '%s file%s removed' "$removed" "$s"
 
 	# If at least one file was deleted, include how many bytes were saved in total
-	[[ $removed -eq 0 ]] || printf ' (%s total)' "$(format-bytes -p $total_bytes)"
+	[[ $removed -eq 0 ]] || printf ' (%s total)' "$(format-bytes -z $total_bytes)"
 	echo
 
 	# If there were any files skipped for whatever reason, include those too
