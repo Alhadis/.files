@@ -1,0 +1,47 @@
+.Dd October 6, 2026
+.Dt DEHEX 1
+.Os
+.Sh NAME
+.Nm dehex
+.Nd decode hexadecimal values as ASCII
+.
+.Sh DESCRIPTION
+.ad l
+.Nm
+reads a space-delimited list of hexadecimal bytes from standard input,
+printing for each one an
+.Tn ASCII
+character of the corresponding code point.
+Bytes must fall between
+.Sy 00
+and
+.Sy FF
+.Pq 255 ;
+values outside this range are truncated to their first byte.
+.Nm
+continues reading input until a blank line
+.Pq or Ev EOF
+is encountered.
+.
+.Sh EXIT STATUS
+.Ex -std
+.
+.Sh EXAMPLES
+Decode and print the word
+.Dq Hello
+to standard output:
+.Dl Li Nm echo Qo Ar 48 65 6C 6C 6F 2E 0A Qc | Nm
+.
+.Sh SEE ALSO
+.Xr dc 1 ,
+.Xr hexdump 1 ,
+.Xr od 1 ,
+.Xr xxd 1
+.
+.Sh AUTHORS
+.An -nosplit
+Copyright \(co 2026
+.An John Gardner Aq Mt gardnerjohng@gmail.com .
+.Pp
+Freely released under the
+.Lk https://opensource.org/license/ISC "ISC license" .

@@ -1,0 +1,44 @@
+#!/usr/bin/env dc
+
+# Read input in base-16 (hexadecimal)
+16 i
+
+# Macro E: Entry point into script
+[
+	c     # Clear stack
+	?     # Read next bunch of values from STDIN
+	z     # Count how many values were entered
+	0 =q  # Quit if there's nothing left to process
+	lX x  # Decode arguments
+	lE x  # Repeat function
+] sE
+
+# Macro Q: Wrapper around the quit command
+[
+	3 Q
+	q
+] sq
+
+# Macro S: Store values in array (Z-A)
+[
+	li :B      # Store next input value in array B[i]
+	li 1 + si  # Increment the "i" register
+	z 0 <S     # Repeat function if there're values left to process
+] sS
+
+# Macro P: Print stored values in reverse order (A-Z)
+[
+	li ;B P    # Print character with byte value in B[i]
+	li 1 - si  # Decrement the "i" register
+	li _1 <P   # Repeat function if counter >= 0
+] sP
+
+# Macro X: Decode hexadecimal values and print as ASCII
+[
+	z sn    # Store argument count in register "n"
+	0 si    # Store incrementing index in register "i"
+	lS x    # Store arguments in reverse order in array "B"
+	lP x    # Reread array contents in their intended order
+] sX
+
+lE x
