@@ -278,6 +278,7 @@ user_pref("layout.css.moz-control-character-visibility.enabled", true);
 user_pref("layout.css.overflow-moz-hidden-unscrollable.enabled", true);
 user_pref("layout.css.prefers-reduced-transparency.enabled", true);
 user_pref("layout.css.progress-function.enabled", true);
+user_pref("layout.css.random.enabled", true);
 user_pref("layout.css.scroll-driven-animations.enabled", true);
 user_pref("layout.css.style-queries.enabled", true);
 user_pref("layout.css.supports.at-rule.enabled", true);
