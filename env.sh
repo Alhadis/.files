@@ -233,7 +233,7 @@ have java && [ -s "$path" ] && {
 # macOS-specific
 case `uname` in [Dd]arwin)
 	# Include “keg-only” Homebrew formulae in search paths
-	for path in curl file libarchive icu4c ruby sphinx-doc sqlite tcl-tk texinfo xpdf; do
+	for path in bc curl file libarchive icu4c ruby sphinx-doc sqlite tcl-tk texinfo xpdf; do
 		path="/usr/local/opt/$path"
 		[ -d "$path/bin"        ] && PATH="$path/bin:$PATH"
 		[ -d "$path/sbin"       ] && PATH="$path/sbin:$PATH"
