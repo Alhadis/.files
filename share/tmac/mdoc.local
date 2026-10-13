@@ -12,5 +12,17 @@
 .\" Don't actually italicise pathnames
 .if t .ds doc-Pa-font \f(CW
 .
+.\" Customise fonts used by certain markup
+.ie t \{\
+.	ds doc-Dv-font CW
+.	ds doc-Ev-font CI
+.	ds doc-Li-font CW
+.\}
+.el \{\
+.	ds doc-Dv-font B
+.	ds doc-Ev-font I
+.	ds doc-Li-font R
+.\}
+.
 .\" Sync man-page protocol format with groff_man(7)
 .nr doc*Xr-URL-format \n[an*MR-URL-format]
