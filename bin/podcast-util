@@ -70,6 +70,7 @@ trim(){
 # Return true if two files have identical contents
 # shellcheck disable=SC2046
 is_identical(){
+	test -e "$1" && test -e "$2" || return 1
 	set -- "$1" "$2" `fileID "$1" "$2"`
 	case $3 in "$4") return;; esac
 	set -- "$1" "$2" `filesize "$1" "$2"`
@@ -79,6 +80,77 @@ is_identical(){
 
 # If xattr(1) isn't present, define a noop function in its stead
 command -v xattr >/dev/null 2>&1 || xattr(){ :; }
+
+# Convert an RFC 5322-formatted pubDate into something touch(1) recognises
+convert_date(){
+	set -- "$1" '+%Y-%m-%dT%H:%M:%S'
+	case `date --version 2>/dev/null` in
+		*GNU*) TZ=UTC gdate -d "$1" "$2";;
+		*)     TZ=UTC date -j -f '%a, %d %b %Y %H:%M:%S %z' "$1" "$2";;
+	esac
+}
+
+# Print the directory location for the named podcast
+directory_for_podcast(){
+	test -n "$rename_map" || build_rename_map
+	test "$1" = '-r' || set -- '' "$@"
+	set -- "$1" "$2" "`query_rename_map "$2"`"
+	test -z "$3" || set -- "$1" "$3"
+	set -- "$1" "`printf %s "$2" | filesafe`"
+	set -- "$1" "`printf %s/%s "${PODCAST_DIR:-.}" "$2"`"
+	if ! test -d "$2" && test "$1" = '-r'; then
+		printf >&2 'Podcast directory does not exist: %s\n' "$2"
+		return 1
+	fi
+	test -t 1 && printf '\033[4m%s\033[24m\n' "$2" || printf %s "$2"
+}
+
+# Download episode artwork if needed
+download_artwork(){
+	argless="${1%%\?*}"
+	if curl -LRI "$argless" >/dev/null 2>&1; then
+		shift
+		set -- "$argless" "$@"
+	fi
+	case ${1##*.} in
+		avif|bmp|gif|jpeg|jpg|png|webp) ext=.${1##*.};;
+		*) unset ext;;
+	esac
+	set -- "$1" "$2$ext" "${3:-artwork}"
+	if test -s "$2"
+		then printf >&2 'Already downloaded: \033[4m%s\033[24m\n' "$image"; return
+		else download_file "$@"
+	fi
+	
+	# Amend file extension if image format differs from what its URL suggested
+	image_type=`file --brief --mime-type "$2"`
+	case "$image_type" in
+		image/avif) ext='avif';;
+		image/bmp)  ext='bmp';;
+		image/gif)  ext='gif';;
+		image/jpeg) ext='jpg';;
+		image/png)  ext='png';;
+		image/webp) ext='webp';;
+		image/*)    ext="${image_type##*/}"; ext="${ext#x-}";;
+		*) printf >&2 'Unsupported image type: %s\n' "$image_type"; return 1;;
+	esac
+	test "${2%.*}" = "${2%.*}.$ext" || {
+		mv "$2" "${2%.*}.$ext"
+		set -- "$1" "${2%.*}.$ext"
+	}
+
+	# If the downloaded file is identical to the channel's artwork, delete it
+	# shellcheck disable=SC2010
+	if ! ls "${2%/*}/Artwork".* 2>/dev/null | grep -qxF "$2" \
+	&& is_identical "${2%/*}/Artwork".* "$2"; then
+		echo >&2 'Channel and episode artwork are identical; deleting the latter'
+		rm -f "$2"
+		return
+	fi
+
+	# Mark download read-only
+	chmod 0444 "$2"
+}
 
 # Download file using wget(1)
 download_file(){
@@ -117,6 +189,76 @@ download_rss_feed(){
 	
 	# Store the source URL of the downloaded file
 	xattr -w user.xdg.origin.url "$1" "$2"
+}
+
+# Download files enumerated by an RSS feed
+download_rss_feed_items(){
+	printf >&2 'Downloading items from RSS feed: %s\n' "$1"
+	if ! test -s "$1"; then
+		printf 'RSS feed is nonexistent or empty: %s\n' "$1"
+		return 1
+	fi
+	set -- "`realpath "$1"`"
+	series=`xq -x rss/channel/title "$1"`
+	image=`xq -x rss/channel/image/url "$1"`
+	dir=`directory_for_podcast "$series"`
+	
+	# Download items in reverse order (oldest to newest)
+	count=`xq -x 'count(/rss/channel/item)' "$1"`
+	index=$count
+	errors=0
+	while [ "$index" -gt 0 ]; do
+		# shellcheck disable=SC2030,SC2031,SC2106
+		xq --node -x "/rss/channel/item[$index]" "$1" | xq -x '
+			//title[namespace-uri()=""] |
+			//pubDate |
+			//image/@href |
+			//enclosure/@url |
+			//enclosure/@type
+		' | {
+			read -r title || return 2
+			read -r date  || return 2
+			read -r image || return 2
+			read -r url   || return 2
+			read -r type  || type='audio/mp3'
+			
+			# Resolve file-extension for enclosure's media-type
+			case $type in audio/?*);; *)
+				echo >&2 "Invalid media-type: $type"
+				errors=$((errors+1))
+				continue
+			;; esac
+			type=${type#audio/}
+			type=${type#x-}
+			case $type in
+				mpeg) type=mp3;;
+				mp4)  type=m4a;;
+				ogg)  type=oga;;
+			esac
+			
+			# Download media file
+			{ episode=`printf '%03.3s' "$((count-index))"`
+			file=`printf %s "$title" | filesafe`
+			file="$dir/$episode $file.${type:-mp3}"
+			if test -s "$file";
+				then printf >&2 'Already downloaded: \033[2m%s\033[24m\n' "$url"
+				else download_file "$url" "$file" 'episode'
+			fi
+			
+			# Download artwork file
+			download_artwork "$image" "${file%.*}" 'episode artwork'
+			
+			# Set modification time to publication date, then mark read-only
+			date=`convert_date "$date"`
+			touch -cd "$date" "${file%.}".*
+			chmod 0444 "$file"; } || {
+				errors=$((errors+1))
+				continue
+			}
+		}
+		# Decrement counter
+		index=$((index-1))
+	done
 }
 
 rename_map=''
@@ -194,10 +336,7 @@ prepare_podcast_directory(){
 			return 1
 		fi
 		mkdir "$dir"
-		ext="${image##*.}"
-		case $ext in [Jj][Pp][Ee][Gg]) ext='jpg';; esac
-		
-		download_file "$image" "$dir/Artwork.$ext" 'channel artwork'
+		download_artwork "$image" "$dir/Artwork" 'channel artwork'
 		mv "$2" "$dir/feed.rss"
 		chmod -w "$dir"/*
 	}
@@ -238,13 +377,7 @@ save_cached_track(){
 		read -r date    || return 2
 		read -r episode || unset episode
 
-		# Convert RFC 5322-formatted pubDate into something touch(1) will recognise
-		fmt='+%Y-%m-%dT%H:%M:%S'
-		case `date --version 2>/dev/null` in
-			*GNU*) date=`TZ=UTC gdate -d "$date" "$fmt"`;;
-			*)     date=`TZ=UTC date -j -f '%a, %d %b %Y %H:%M:%S %z' "$date" "$fmt"`;;
-		esac
-
+		date=`convert_date "$date"`
 		episode=`printf '%03.3s' "$episode"`
 		file=`printf %s "$title" | filesafe`
 		file="$episode $file.${1##*.}"
@@ -270,24 +403,12 @@ save_cached_track(){
 			fi
 		}
 		
-		# Update modification time and make file read-only
-		touch -cd "$date" "$file"
-		chmod 0444 "$file"
+		# Download episode artwork
+		download_artwork "$image" "${file%.*}" 'episode artwork'
 		
-		# Force artwork filename to use 3-letter JPEG extensions
-		file="${file%.*}.${image##*.}"
-		case $file in *.[Jj][Pp][Ee][Gg]) file="${file%.????}.jpg";; esac
-		
-		# Download episode artwork if needed
-		file="${file%%\?*}"
-		download_file "$image" "$file" 'episode artwork'
-		if is_identical "$dir/Artwork".* "$file"; then
-			echo >&2 'Channel and episode artwork are identical; deleting the latter'
-			rm -f "$file"
-		else
-			touch -cd "$date" "$file"
-			chmod 0444 "$file"
-		fi
+		# Update modification times and make episode files read-only
+		touch -cd "$date" "$file".*
+		chmod 0444 "$file".*
 	}
 }
 
@@ -324,6 +445,20 @@ case $1 in
 			;; esac;;
 		esac
 		prepare_podcast_directory "$@"
+	;;
+	download)
+		shift
+		test -n "$1" || die 'Usage: podcast-util download /path/to/feed.rss'
+		download_rss_feed_items "$1"
+	;;
+	# Print the location of a podcast directory
+	directory)
+		shift
+		case $1 in
+			*?.rss) ! test -f "$1" || set -- "`xq -x rss/channel/title "$1"`";;
+			'') printf %s "$PODCAST_DIR"; test -t 1 && echo || :; exit;;
+		esac
+		directory_for_podcast -r "$1"
 	;;
 	save)
 		shift
