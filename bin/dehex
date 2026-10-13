@@ -5,19 +5,28 @@
 
 # Macro E: Entry point into script
 [
-	c     # Clear stack
-	?     # Read next bunch of values from STDIN
-	z     # Count how many values were entered
-	0 =q  # Quit if there's nothing left to process
-	lX x  # Decode arguments
-	lE x  # Repeat function
+	c          # Clear stack
+	?          # Read next bunch of values from STDIN
+	z          # Count how many values were entered
+	0 =q       # Quit if there's nothing left to process
+	lX x       # Decode arguments
+	lE x       # Repeat function
 ] sE
 
 # Macro Q: Wrapper around the quit command
 [
-	3 Q
-	q
+	2 Q        # Break out of containing macro calls
+	q          # Quit the program
 ] sq
+
+# Macro X: Decode hexadecimal values and print as ASCII
+[
+	z sn       # Store argument count in register "n"
+	0 si       # Store incrementing index in register "i"
+	lS x       # Store arguments in reverse order in array "B"
+	li 1 - si  # Clamp register "i" to maximum array index
+	lP x       # Reread array contents in their intended order
+] sX
 
 # Macro S: Store values in array (Z-A)
 [
@@ -33,12 +42,5 @@
 	li _1 <P   # Repeat function if counter >= 0
 ] sP
 
-# Macro X: Decode hexadecimal values and print as ASCII
-[
-	z sn    # Store argument count in register "n"
-	0 si    # Store incrementing index in register "i"
-	lS x    # Store arguments in reverse order in array "B"
-	lP x    # Reread array contents in their intended order
-] sX
-
+# Invoke entry-point macro to begin processing
 lE x

@@ -1,4 +1,4 @@
-.Dd October 6, 2026
+.Dd October 13, 2026
 .Dt DEHEX 1
 .Os
 .Sh NAME
@@ -8,20 +8,45 @@
 .Sh DESCRIPTION
 .ad l
 .Nm
-reads a space-delimited list of hexadecimal bytes from standard input,
+reads a list of uppercased hexadecimal bytes from standard input,
 printing for each one an
 .Tn ASCII
 character of the corresponding code point.
-Bytes must fall between
-.Sy 00
-and
-.Sy FF
-.Pq 255 ;
-values outside this range are truncated to their first byte.
 .Nm
 continues reading input until a blank line
-.Pq or Ev EOF
+.Pq or Dv EOF
 is encountered.
+It is not an error for input to be empty.
+.Pp
+Values greater than
+.Li FF
+.Pq 255 in decimal
+are split into pairs of hex-digits,
+such that
+.Dq Li AAFF
+is interpreted in the same manner as
+.Do
+.\" NB: To reduce the width of the space separating individual byte values
+.\" styled using mdoc(7)'s “.Li” macro, format them using individual lines,
+.\" instead of a single multi-argument call.
+.Li AA
+.Li FF
+.Dc .
+Leading zeroes are prepended to byte-groups of odd-length:
+thus,
+.Dq Li 9450F3B
+and
+.Do
+.Li 0945
+.Li F3B
+.Dc
+are processed identically to
+.Do
+.Li 09
+.Li 45
+.Li 0F
+.Li 3B
+.Dc .
 .
 .Sh EXIT STATUS
 .Ex -std
@@ -30,12 +55,21 @@ is encountered.
 Decode and print the word
 .Dq Hello
 to standard output:
-.Dl Li Nm echo Qo Ar 48 65 6C 6C 6F 2E 0A Qc | Nm
+.Dl Nm echo Qo Ar 48 65 6C 6C 6F 2E 0A Qc | Nm
+.Pp
+Decode and print a UTF-8 encoded character
+.Pq Li U+1F602 :
+.Dl Nm echo Qo Ar F0 9F 98 82 0A Qc | Nm
+.Pp
+Enforce uppercase hex-digits before decoding:
+.Dl Nm echo Qo Ar 48656c6c6f2c20 Qc Qo Ar 776f726c642e0a Qc \
+| Nm tr Bo a-f Bc Bo A-F Bc | Nm
 .
 .Sh SEE ALSO
 .Xr dc 1 ,
 .Xr hexdump 1 ,
 .Xr od 1 ,
+.Xr tr 1 ,
 .Xr xxd 1
 .
 .Sh AUTHORS
@@ -45,3 +79,24 @@ Copyright \(co 2026
 .Pp
 Freely released under the
 .Lk https://opensource.org/license/ISC "ISC license" .
+.
+.Sh CAVEATS
+.ad l
+Input that contains lowercase hex digits isn't handled gracefully,
+often producing gibberish or an unhelpful error message.
+This happens because lowercase letters are interpreted as commands in
+.Xr dc 1 ,
+and only uppercase
+.Pq Li A\(enF
+is used to specify values in radices greater than 10.
+.if \n(.l<=(\n(.Hu*110u) .Pp
+To work around this limitation,
+add the following alias to your shell's startup profile:
+.Bd -literal -offset 4n
+.Sm off
+.Cm alias \~ Nm No = Qq Ev LANG Ns = Ar C No \~ Nm tr \~ \
+\(aq Bo a-f Bc \(aq\~ \
+\(aq Bo A-F Bc \(aq\~ \
+| \~ Nm
+.Sm on
+.Ed
