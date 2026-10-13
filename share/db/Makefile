@@ -1,5 +1,9 @@
+# Shims for BSD make
+> ?= $(.ALLSRC)
+^ ?= $>
+
 # Create offline copies of important repositories and databases
-all: IANA IMDb ISBN MDN MIME-Types Public-Suffix-List RFCs Schemas SCOWL
+all: HTML-Entities IANA IMDb ISBN MDN MIME-Types Public-Suffix-List RFCs Schemas SCOWL
 
 IANA:; @$(inc); cmd rsync -avz --delete rsync://rsync.iana.org/assignments IANA/
 RFCs:; @$(inc); cmd rsync -avz --delete rsync.rfc-editor.org::rfcs-text-only RFCs/
@@ -36,6 +40,15 @@ XML-Namespaces.tsv:
 		"printf 'Prefix\tURL\n' > $@" \
 		"curl -k 'https://prefix.cc/popular/all.file.txt' | sort >> $@" \
 	; do cmdfmt "$$cmd" && eval "$$cmd"; done
+
+# WHATWG named character references
+HTML-Entities: HTML-Entities.json
+HTML-Entities.json:
+	@$(inc); test -f $@ && cmd rm -f "$@"; \
+	cmd wget -O "$@" -nv 'https://html.spec.whatwg.org/entities.json'; \
+	cmd tabfix -i~ "$@"; \
+	cmd sed -i~ 's/{ *"/{"/g; s/" *}\(,*\)$$/"}\1/g' "$@"; \
+	cmd rm -f "$@~"
 
 # GitHub's Atom
 Atom: Atom/atom
