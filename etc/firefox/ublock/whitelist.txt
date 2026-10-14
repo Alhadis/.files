@@ -31,4 +31,3 @@ telstra.com.au
 # User-defined whitelist
 ecosia.org
 podcasts.apple.com
-yifytsubtitles.com
