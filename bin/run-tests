@@ -52,8 +52,10 @@ have wasmtime && {
 	exec pwsh -File test.ps1 "$@"
 
 # AppleScript
-[ -f test.scpt ] && have osascript && \
-	exec osascript -ss -l AppleScript test.scpt "$@"
+have osascript && {
+	[ -f test.scpt        ] && exec osascript -ss -l AppleScript test.scpt "$@"
+	[ -f test.applescript ] && exec osascript -ss -l AppleScript test.applescript "$@"
+}
 
 # Haskell
 [ -f test.hs ] && have ghc runghc && \
