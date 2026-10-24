@@ -12,5 +12,5 @@ Host github.com *.github.com
 	KeepAlive yes
 	ServerAliveInterval 60
 
-Host bitbucket.org
+Host ssh.bitbucket.org
 	IdentityFile ~/.ssh/bitbucket
